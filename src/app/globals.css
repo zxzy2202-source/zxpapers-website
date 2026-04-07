@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Brand: Global Trade Authority ── */
+/* Primary: Deep Navy #0F2B5B | Accent: Amber #F59E0B | Body: Inter | Display: Sora */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-inter), 'Inter', sans-serif;
+    @apply text-slate-800 bg-white;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+}
+
+@layer components {
+  .container {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1280px;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight;
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+
+  .section-subtitle {
+    @apply text-slate-500 mt-3 text-base leading-relaxed;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-7 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl;
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 border-2 border-white/40 text-white hover:bg-white/10 font-semibold px-7 py-3.5 rounded-xl transition-all duration-200;
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+
+  .btn-navy {
+    @apply inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg text-sm;
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+
+  .btn-amber {
+    @apply inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg text-sm;
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+
+  .page-hero {
+    @apply relative py-16 bg-[#0F2B5B] text-white overflow-hidden;
+  }
+
+  .page-hero-content {
+    @apply relative container;
+  }
+
+  .card-hover {
+    @apply bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .badge-amber {
+    @apply text-xs bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full font-semibold;
+  }
+
+  .badge-navy {
+    @apply text-xs bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full font-semibold;
+  }
+
+  .section-label {
+    @apply inline-flex items-center gap-2 text-blue-600 text-sm font-semibold uppercase tracking-wider mb-3;
+  }
+
+  /* 统一 Sora 字体工具类，替代内联 style */
+  .font-sora {
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+}
+
+/* Lightbox overlay */
+.lightbox-overlay {
+  @apply fixed inset-0 bg-black/90 z-[100] flex items-center justify-center;
+}
+
+/* Fade animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.animate-fade-up-delay-1 {
+  animation: fadeUp 0.6s ease 0.1s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fadeUp 0.6s ease 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fadeUp 0.6s ease 0.3s forwards;
+  opacity: 0;
+}

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow admin/internal paths
+Disallow: /api/
+Disallow: /__manus__/
+
+Sitemap: https://www.zxpapers.com/sitemap.xml
