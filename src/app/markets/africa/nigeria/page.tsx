@@ -10,13 +10,13 @@ import {
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier Nigeria | Bulk POS Paper Lagos",
+  title: "Thermal Paper Supplier Nigeria | Lagos",
   description:
     "Factory-direct thermal paper rolls for Nigerian distributors. 57×50mm, 57×40mm, 80×80mm. CIF Lagos/Apapa pricing. ISO 9001 certified, BPA-free.",
   keywords:
     "thermal paper rolls Nigeria, POS paper rolls Lagos, receipt paper Nigeria, thermal paper supplier Nigeria, bulk thermal paper Nigeria, 57x50 thermal paper Nigeria, POS rolls Abuja, thermal paper wholesale Nigeria, CBN POS paper Nigeria",
   openGraph: {
-    title: "Thermal Paper Rolls Supplier Nigeria | Factory Direct",
+    title: "Thermal Paper Supplier Nigeria | Direct",
     description:
       "Serving 15M+ POS terminals in Nigeria. CIF Lagos pricing. ISO 9001. BPA-free. FCL ready in 3–5 days.",
     type: "website",

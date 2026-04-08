@@ -4,7 +4,7 @@ import { CAN_LABELS_IMG, apps211x400 } from "../can-labels-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "211×400 Can Labels | Standard 12oz Beverage Can Labels",
+  title: "211×400 Can Labels | Standard 12oz Beverage",
   description:
     "211×400 can labels for standard 12oz beverage cans. Full-wrap, moisture-resistant, food-safe. CMYK printing, gloss/matte lamination. MOQ 5,000.",
   alternates: { canonical: `${SITE.domain}/products/can-labels/211x400` },

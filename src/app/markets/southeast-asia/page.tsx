@@ -9,11 +9,11 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier for Southeast Asia",
+  title: "Thermal Paper Supplier for Southeast Asia",
   description: "Factory-direct thermal paper rolls and labels for Southeast Asia distributors. Serving Thailand, Indonesia, Vietnam, Philippines, Malaysia.",
   keywords: "thermal paper rolls Southeast Asia, thermal paper Thailand, thermal paper Indonesia, thermal paper Vietnam, POS paper rolls supplier SEA",
   openGraph: {
-    title: "Thermal Paper Rolls Supplier for Southeast Asia",
+    title: "Thermal Paper Supplier for Southeast Asia",
     description: "Factory-direct thermal paper rolls for Thailand, Indonesia, Vietnam, Philippines, Malaysia. CIF pricing, OEM available.",
     url: "https://www.zxpapers.com/markets/southeast-asia",
       images: [

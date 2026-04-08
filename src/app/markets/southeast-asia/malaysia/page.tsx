@@ -6,7 +6,7 @@ import { SITE } from "@/config/siteData";
 import { MessageSquare, Phone, CheckCircle, Ship, Clock, Package } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Supplier Malaysia | CIF Port Klang",
+  title: "Thermal Paper Supplier Malaysia | Port Klang",
   description: "Factory-direct thermal paper rolls for Malaysia distributors. CIF Port Klang pricing, 80×80mm and 57×50mm in stock. FORM E available. OEM supported.",
   keywords: "thermal paper rolls Malaysia, thermal paper supplier Kuala Lumpur, POS paper rolls Malaysia, thermal roll supplier Port Klang, kertas thermal Malaysia, harga kertas thermal MYR, thermal paper Penang, thermal paper Johor Bahru, thermal paper Kota Kinabalu, kertas resit POS Malaysia",
   openGraph: {

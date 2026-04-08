@@ -6,7 +6,7 @@ import { CheckCircle, ArrowRight, Printer, Package, Clock, ShieldCheck, Layers, 
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "OEM Custom Printing on Thermal Paper Rolls & Labels | Private Label",
+  title: "OEM Custom Printing | Thermal Rolls & Labels",
   description: "Full OEM custom printing service for thermal paper rolls and labels. Logo, brand colors, QR codes, Arabic/English bilingual, TRA/ZATCA compliance.",
   keywords: [
     "OEM thermal paper printing",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   ].join(", "),
   alternates: { canonical: `${SITE.domain}/oem/custom-printing` },
   openGraph: {
-    title: "OEM Custom Printing on Thermal Paper Rolls & Labels | ZhixinPaper",
+    title: "OEM Custom Printing | Thermal Rolls & Labels",
     description: "Full OEM custom printing service. Logo, brand colors, QR codes, TRA/ZATCA compliance. MOQ 1,000 rolls. Free design proof.",
     images: [{ url: `${SITE.domain}/og-default.png`, width: 1200, height: 630, alt: "ZhixinPaper OEM Custom Printing" }],
   },

@@ -6,7 +6,7 @@ import { ArrowRight, Globe, Package, Star } from "lucide-react";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "OEM Case Studies | Global Client Success Stories",
+  title: "OEM Case Studies | Global Client Stories",
   description: "See how global distributors and retailers have grown their business with ZhixinPaper OEM thermal paper solutions. Case studies from 80+ countries.",
   alternates: { canonical: `${SITE.domain}/oem/case-studies` },
 };

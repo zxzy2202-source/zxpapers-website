@@ -7,7 +7,7 @@ import { detergentLabelSizes, DETERGENT_LABELS_IMG } from "./detergent-labels-da
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Detergent Labels Manufacturer | Custom Printed Cleaning Product Labels",
+  title: "Detergent Labels Manufacturer | Custom Labels",
   description:
     "OEM detergent labels for laundry, dish soap, cleaners, and fabric care products. Water-resistant, chemical-resistant, GHS compliant.",
   alternates: { canonical: `${SITE.domain}/products/detergent-labels` },

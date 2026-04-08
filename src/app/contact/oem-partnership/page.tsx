@@ -6,7 +6,7 @@ import { CheckCircle, Mail, Phone, Clock } from "lucide-react";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "OEM Partnership Inquiry | Start Your Private Label Project",
+  title: "OEM Partnership Inquiry | Private Label",
   description: "Start your thermal paper OEM partnership. Tell us your requirements and we will respond within 12 hours with a detailed quote, sample timeline, and NDA.",
   alternates: { canonical: `${SITE.domain}/contact/oem-partnership` },
 };

@@ -5,7 +5,7 @@ import { BookOpen, TrendingUp, Users, Lightbulb, ArrowRight, Clock } from "lucid
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Resource Center | Thermal Paper Guides, Insights & OEM Knowledge",
+  title: "Resource Center | Guides & Industry Insights",
   description: "Comprehensive resource center for thermal paper buyers and distributors. OEM guides, product knowledge, application cases, industry insights, and.",
   alternates: { canonical: `${SITE.domain}/resources` },
 };

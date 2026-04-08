@@ -6,7 +6,7 @@ import { Tag, Clock, ChevronRight, Thermometer, Droplets, Sun, AlertCircle, Chec
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Technical Guide | How It Works, Grades & Specs",
+  title: "Thermal Paper Technical Guide | Grades & Specs",
   description: "Complete technical guide to thermal paper: how thermal printing works, BPA-free vs phenol-free grades, paper weight selection, image life factors, printer.",
   keywords: "thermal paper guide, BPA-free thermal paper, thermal paper grades, thermal paper specifications, how thermal printing works",
   alternates: { canonical: `${SITE.domain}/resources/product-knowledge` },

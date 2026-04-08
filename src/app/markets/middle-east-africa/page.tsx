@@ -12,7 +12,7 @@ import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Supplier for Middle East & Africa",
+  title: "Thermal Paper Supplier | Middle East & Africa",
   description:
     "Factory-direct thermal paper rolls for distributors in UAE, Saudi Arabia, Nigeria, Kenya, Egypt, South Africa, Ghana, Tanzania.",
   keywords:

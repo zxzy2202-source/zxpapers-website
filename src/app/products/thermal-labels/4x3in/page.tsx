@@ -5,7 +5,7 @@ import type { ApplicationItem } from "@/components/products/SizeDetailPage";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: '4" x 3" Thermal Labels | Square Shipping & Product Labels',
+  title: '4×3" Thermal Labels | Shipping & Product',
   description: '4" x 3" square thermal labels for shipping, product packaging, and compliance labeling. Strong adhesive, high-contrast print. MOQ 5,000.',
   keywords: '4x3 thermal labels, 4 x 3 inch labels, square labels, shipping labels, thermal label wholesale',
   alternates: { canonical: `${SITE.domain}/products/thermal-labels/4x3in` },

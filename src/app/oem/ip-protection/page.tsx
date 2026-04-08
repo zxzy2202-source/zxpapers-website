@@ -6,7 +6,7 @@ import { SITE } from "@/config/siteData";
 import { Shield, Lock, FileText, CheckCircle, ArrowRight, Eye } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "IP Protection & NDA | Confidential OEM Manufacturing",
+  title: "IP Protection & NDA | Confidential OEM",
   description: `${SITE.name} protects your brand and intellectual property. NDA available before any discussion. Exclusive mold ownership, design confidentiality, and strict supplier agreements.`,
   alternates: {
     canonical: `${SITE.domain}/oem/ip-protection`,

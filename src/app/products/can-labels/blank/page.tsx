@@ -7,7 +7,7 @@ import { canLabelSizes, CAN_LABELS_IMG } from "../can-labels-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Blank Can Labels | Unprinted Full-Wrap Can Labels",
+  title: "Blank Can Labels | Unprinted Full-Wrap",
   description:
     "Blank unprinted can labels in white, kraft, and clear BOPP. Food-safe adhesive, moisture-resistant, compatible with all standard can sizes. MOQ 5,000.",
   alternates: { canonical: `${SITE.domain}/products/can-labels/blank` },

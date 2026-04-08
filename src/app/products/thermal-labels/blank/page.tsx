@@ -7,7 +7,7 @@ import { labelSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Blank Thermal Labels | High-Temp, Low-Temp & Removable Adhesive",
+  title: "Blank Thermal Labels | All Adhesive Types",
   description: "Direct thermal labels with permanent, removable, high-temperature (-196°C to 150°C) and low-temperature adhesive options.",
   alternates: { canonical: `${SITE.domain}/products/thermal-labels/blank` },
 };

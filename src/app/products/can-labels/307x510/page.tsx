@@ -4,7 +4,7 @@ import { CAN_LABELS_IMG, apps307x510 } from "../can-labels-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "307×510 Can Labels | Wide Body Food & Industrial Can Labels",
+  title: "307×510 Can Labels | Wide Body Can Labels",
   description:
     "307×510 can labels for wide-body food cans and industrial containers. Food-safe, solvent-resistant options. CMYK printing. MOQ 5,000. ISO 9001 certified.",
   alternates: { canonical: `${SITE.domain}/products/can-labels/307x510` },

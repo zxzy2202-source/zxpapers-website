@@ -4,7 +4,7 @@ import Link from "next/link";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier for Ethiopia | Addis Ababa Distributor",
+  title: "Thermal Paper Supplier Ethiopia | Addis Ababa",
   description: "Factory-direct thermal paper rolls for Ethiopia. CIF Djibouti port, 20–28 days delivery. 57×50mm and 80×80mm for CBE Birr, Telebirr POS terminals. L/C accepted.",
   keywords: "thermal paper rolls Ethiopia, thermal paper Addis Ababa, POS receipt paper Ethiopia, thermal paper supplier Africa",
   openGraph: {

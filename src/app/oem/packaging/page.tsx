@@ -6,7 +6,7 @@ import { CheckCircle, ArrowRight } from "lucide-react";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Private Label Packaging | Custom Box & Brand Packaging",
+  title: "Private Label Packaging | Custom Branding",
   description: "Custom private label packaging for thermal paper rolls and labels. Box design, shrink wrap, retail display packaging. MOQ 1,000 units.",
   alternates: { canonical: `${SITE.domain}/oem/packaging` },
 };

@@ -7,7 +7,7 @@ import { detergentLabelSizes, DETERGENT_LABELS_IMG } from "../detergent-labels-d
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Blank Detergent Labels | Unprinted Water-Resistant Labels",
+  title: "Blank Detergent Labels | Water-Resistant",
   description:
     "Blank unprinted detergent labels in BOPP, PE, and vinyl. Water-resistant, chemical-resistant. Compatible with flexo, digital, and thermal transfer.",
   alternates: { canonical: `${SITE.domain}/products/detergent-labels/blank` },

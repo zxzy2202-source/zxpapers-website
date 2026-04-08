@@ -4,7 +4,7 @@ import Link from "next/link";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier for Tanzania | Dar es Salaam Port",
+  title: "Thermal Paper Supplier Tanzania | East Africa",
   description: "Factory-direct thermal paper rolls for Tanzania. CIF Dar es Salaam port, 18–25 days delivery. M-Pesa & Airtel Money POS compatible. East Africa re-export hub.",
   keywords: "thermal paper rolls Tanzania, thermal paper Dar es Salaam, POS receipt paper Tanzania, thermal paper supplier East Africa",
   openGraph: {

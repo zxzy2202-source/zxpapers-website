@@ -7,7 +7,7 @@ import { paperRollSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Custom Printed Thermal Paper Rolls | Logo & Brand Printing OEM",
+  title: "Custom Printed Thermal Rolls | OEM Branding",
   description: "Custom printed thermal paper rolls with your logo, brand colors, QR codes, and promotional messages.",
   keywords: [
     "custom printed thermal paper rolls",

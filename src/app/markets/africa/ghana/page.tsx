@@ -9,13 +9,13 @@ import {
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier Ghana | POS Paper Accra Tema",
+  title: "Thermal Paper Supplier Ghana | Accra",
   description:
     "Factory-direct thermal paper rolls for Ghanaian distributors. 57×50mm, 57×40mm, 80×80mm. CIF Tema Port pricing. ISO 9001, BPA-free.",
   keywords:
     "thermal paper rolls Ghana, POS paper Accra, receipt paper Ghana, thermal paper Tema, MTN MoMo POS paper, thermal paper supplier Ghana, bulk thermal paper Ghana, West Africa thermal paper, ECOWAS thermal paper",
   openGraph: {
-    title: "Thermal Paper Rolls Supplier Ghana | CIF Tema Port",
+    title: "Thermal Paper Supplier Ghana | CIF Tema",
     description:
       "Serving 1.5M+ POS terminals in Ghana. CIF Tema Port. MTN MoMo compatible. ISO 9001. BPA-free.",
     type: "website",

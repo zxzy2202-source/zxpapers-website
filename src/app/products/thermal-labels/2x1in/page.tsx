@@ -4,7 +4,7 @@ import { LABELS_IMG, apps2x1 } from "../label-sizes-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: '2" x 1" Thermal Barcode Labels | Retail & Inventory Labels',
+  title: '2×1" Thermal Barcode Labels | Retail',
   description: '2" x 1" thermal barcode labels for retail price tags, inventory management, and product identification. Compatible with Zebra LP2824, GX420d. MOQ 5,000.',
   alternates: { canonical: `${SITE.domain}/products/thermal-labels/2x1in` },
 };

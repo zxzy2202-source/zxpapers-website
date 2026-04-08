@@ -4,7 +4,7 @@ import { LABELS_IMG, apps4x6 } from "../label-sizes-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: '4" x 6" Thermal Shipping Labels | E-commerce Standard',
+  title: '4×6" Thermal Shipping Labels | E-commerce',
   description: '4" x 6" thermal shipping labels — global e-commerce standard. Compatible with Zebra, DYMO, Amazon FBA, UPS, FedEx, DHL. Bulk wholesale. MOQ 5,000 labels.',
   alternates: { canonical: `${SITE.domain}/products/thermal-labels/4x6in` },
 };

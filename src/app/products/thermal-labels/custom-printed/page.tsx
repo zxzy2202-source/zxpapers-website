@@ -7,7 +7,7 @@ import { labelSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Custom Printed Thermal Labels | High-Temp & Removable",
+  title: "Custom Printed Thermal Labels | OEM Labels",
   description: "Custom printed thermal labels with your logo, barcode, and brand. Choose from permanent, removable, high-temperature (up to 180°C), or cryogenic (–196°C).",
   alternates: { canonical: `${SITE.domain}/products/thermal-labels/custom-printed` },
 };

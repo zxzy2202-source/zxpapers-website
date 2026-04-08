@@ -4,7 +4,7 @@ import { DETERGENT_LABELS_IMG, apps100x100 } from "../detergent-labels-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "100×100mm Detergent Labels | Square Container Labels",
+  title: "100×100mm Detergent Labels | Square Container",
   description:
     "100×100mm square detergent labels for pods, powder boxes, and multi-surface cleaners. Water-resistant, chemical-resistant. CMYK printing. MOQ 5,000.",
   alternates: { canonical: `${SITE.domain}/products/detergent-labels/100x100mm` },

@@ -4,7 +4,7 @@ import { DETERGENT_LABELS_IMG, apps70x200 } from "../detergent-labels-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "70×200mm Detergent Labels | Wrap-Around Bottle Labels",
+  title: "70×200mm Detergent Labels | Wrap-Around",
   description:
     "70×200mm wrap-around detergent labels for cylindrical bottles. Water-resistant, chemical-resistant. Full-wrap CMYK printing. MOQ 5,000.",
   alternates: { canonical: `${SITE.domain}/products/detergent-labels/70x200mm` },

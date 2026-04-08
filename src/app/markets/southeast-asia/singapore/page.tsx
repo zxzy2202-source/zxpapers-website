@@ -4,7 +4,7 @@ import Link from "next/link";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier for Singapore | ASEAN Distribution Hub",
+  title: "Thermal Paper Supplier Singapore | ASEAN Hub",
   description: "Factory-direct thermal paper rolls for Singapore. CIF Singapore port, 10–14 days delivery. PayNow & NETS POS compatible. ASEAN re-distribution hub.",
   keywords: "thermal paper rolls Singapore, thermal paper supplier Singapore, POS receipt paper Singapore, ASEAN thermal paper distributor, thermal paper SGD price, thermal paper PSA port Singapore, bulk thermal paper Singapore, thermal paper distributor ASEAN hub, 80x80 thermal paper Singapore",
   openGraph: {

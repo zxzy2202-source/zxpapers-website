@@ -6,7 +6,7 @@ import { SITE } from "@/config/siteData";
 import { MessageSquare, Phone, CheckCircle, Ship, Clock, Package } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Supplier Indonesia | CIF Tanjung Priok",
+  title: "Thermal Paper Supplier Indonesia | CIF Priok",
   description: "Factory-direct thermal paper rolls for Indonesia distributors. CIF Tanjung Priok (Jakarta) pricing, 57×50mm and 80×80mm in stock. FORM E available.",
   keywords: "thermal paper rolls Indonesia, thermal paper supplier Jakarta, POS paper rolls Indonesia, kertas thermal Indonesia, supplier kertas struk, harga kertas thermal IDR, thermal paper Surabaya, thermal paper Medan, thermal paper Bandung, kertas struk kasir Indonesia",
   openGraph: {

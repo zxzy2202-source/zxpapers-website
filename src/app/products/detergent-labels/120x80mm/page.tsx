@@ -4,7 +4,7 @@ import { DETERGENT_LABELS_IMG, apps120x80 } from "../detergent-labels-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "120×80mm Detergent Labels | Back Panel & Compliance Labels",
+  title: "120×80mm Detergent Labels | Back Panel",
   description:
     "120×80mm detergent back labels for ingredient lists, GHS compliance, and bilingual text. Water-resistant, chemical-resistant. CMYK printing. MOQ 5,000.",
   alternates: { canonical: `${SITE.domain}/products/detergent-labels/120x80mm` },

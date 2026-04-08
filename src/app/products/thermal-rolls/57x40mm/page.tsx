@@ -4,7 +4,7 @@ import { ROLLS_IMG, apps57x40 } from "../roll-sizes-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "57mm x 40mm Thermal Paper Rolls | Compact Handheld Printer Rolls",
+  title: "57×40mm Thermal Rolls | Handheld Printers",
   description: "57mm x 40mm compact thermal paper rolls for handheld printers and mobile POS. BPA-free. MOQ 1,000 rolls.",
   alternates: { canonical: `${SITE.domain}/products/thermal-rolls/57x40mm` },
 };

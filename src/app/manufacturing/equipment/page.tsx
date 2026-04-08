@@ -5,7 +5,7 @@ import { CheckCircle, Cpu, ArrowRight, Microscope, Settings, Wind } from "lucide
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Manufacturing Equipment | German & Japanese Machinery",
+  title: "Manufacturing Equipment | German & Japanese",
   description: "ZhixinPaper production equipment: Voith coating lines, Kampf slitters, Mark Andy label presses. 12 production lines, 500M+ rolls/year capacity.",
   alternates: { canonical: `${SITE.domain}/manufacturing/equipment` },
 };

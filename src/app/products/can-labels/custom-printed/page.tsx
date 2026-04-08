@@ -7,7 +7,7 @@ import { canLabelSizes, CAN_LABELS_IMG } from "../can-labels-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Custom Printed Can Labels | OEM Full-Color Can Labels",
+  title: "Custom Printed Can Labels | OEM Full-Color",
   description:
     "Custom printed can labels with CMYK and Pantone color printing. Full-wrap, gloss/matte lamination, NDA protection. MOQ 5,000.",
   alternates: { canonical: `${SITE.domain}/products/can-labels/custom-printed` },

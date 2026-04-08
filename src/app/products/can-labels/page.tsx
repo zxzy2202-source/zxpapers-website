@@ -7,7 +7,7 @@ import { canLabelSizes, CAN_LABELS_IMG } from "./can-labels-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Can Labels Manufacturer | Custom & Blank Can Labels",
+  title: "Can Labels Manufacturer | Custom & Blank",
   description:
     "OEM can labels for beverage, food, pet food, paint, and industrial cans. Full-wrap, moisture-resistant, food-safe. BPA-free options. MOQ 5,000 labels.",
   alternates: { canonical: `${SITE.domain}/products/can-labels` },

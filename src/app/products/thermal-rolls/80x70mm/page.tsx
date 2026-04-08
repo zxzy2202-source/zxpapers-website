@@ -4,7 +4,7 @@ import { ROLLS_IMG, apps80x70 } from "../roll-sizes-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "80mm x 70mm Thermal Paper Rolls | European POS Standard",
+  title: "80×70mm Thermal Paper Rolls | European POS",
   description: "80mm x 70mm thermal paper rolls — the standard POS receipt size across European retail and hospitality. BPA-free, ISO 9001 certified.",
   keywords: "80mm x 70mm thermal paper rolls, 80x70 receipt paper, European POS paper, thermal paper wholesale",
   alternates: { canonical: `${SITE.domain}/products/thermal-rolls/80x70mm` },

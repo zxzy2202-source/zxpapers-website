@@ -6,7 +6,7 @@ import { SITE } from "@/config/siteData";
 import { MessageSquare, Phone, CheckCircle, ArrowRight, Package, Ship, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Supplier Thailand | CIF Laem Chabang",
+  title: "Thermal Paper Supplier Thailand | CIF Laem",
   description: "Factory-direct thermal paper rolls for Thailand distributors. CIF Laem Chabang pricing, 80×80mm and 57×50mm in stock. FORM E available. OEM supported.",
   keywords: "thermal paper rolls Thailand, thermal paper supplier Bangkok, POS paper rolls Thailand, กระดาษความร้อน, thermal roll supplier Laem Chabang, thermal paper THB price, กระดาษใบเสร็จ, thermal paper Chiang Mai, thermal paper Phuket, thermal paper rolls bulk Thailand",
   openGraph: {

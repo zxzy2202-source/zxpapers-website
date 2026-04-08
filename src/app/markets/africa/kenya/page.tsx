@@ -9,13 +9,13 @@ import {
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier Kenya | POS Paper Nairobi Mombasa",
+  title: "Thermal Paper Supplier Kenya | Mombasa",
   description:
     "Factory-direct thermal paper rolls for Kenyan distributors. 57×50mm, 57×40mm, 80×80mm. CIF Mombasa pricing. ISO 9001, BPA-free.",
   keywords:
     "thermal paper rolls Kenya, POS paper Nairobi, receipt paper Kenya, thermal paper Mombasa, M-Pesa POS paper, thermal paper supplier Kenya, bulk thermal paper Kenya, 57x50 thermal paper Kenya, East Africa thermal paper",
   openGraph: {
-    title: "Thermal Paper Rolls Supplier Kenya | CIF Mombasa",
+    title: "Thermal Paper Supplier Kenya | CIF Mombasa",
     description:
       "Serving 3M+ POS terminals in Kenya. CIF Mombasa pricing. M-Pesa compatible. ISO 9001. BPA-free.",
     type: "website",

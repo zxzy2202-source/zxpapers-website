@@ -7,7 +7,7 @@ import { paperRollSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Blank Thermal Paper Rolls | BPA-Free POS Receipt Paper Manufacturer",
+  title: "Blank Thermal Paper Rolls | BPA-Free POS",
   description: "Factory-direct blank thermal paper rolls. BPA-free, ISO 9001 certified, FSC certified. MOQ 1,000 rolls. 57mm, 80mm and custom sizes. 7–15 day lead time.",
   alternates: { canonical: `${SITE.domain}/products/thermal-paper-rolls/blank` },
 };

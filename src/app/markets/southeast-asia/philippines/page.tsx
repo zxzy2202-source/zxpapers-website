@@ -6,7 +6,7 @@ import { SITE } from "@/config/siteData";
 import { MessageSquare, Phone, CheckCircle, Ship, Clock, Package } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Supplier Philippines | CIF Manila",
+  title: "Thermal Paper Supplier Philippines | Manila",
   description: "Factory-direct thermal paper rolls for Philippines distributors. CIF Manila (MICT) pricing, 57×50mm and 80×80mm in stock. FORM E available. OEM supported.",
   keywords: "thermal paper rolls Philippines, thermal paper supplier Manila, POS paper rolls Philippines, thermal roll supplier MICT, thermal paper PHP price, thermal paper Cebu, thermal paper Davao, thermal paper Makati, POS receipt paper Philippines, papel termico Philippines",
   openGraph: {

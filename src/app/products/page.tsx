@@ -7,7 +7,7 @@ import { SITE } from "@/config/siteData";
 import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls, Labels, Can Labels & Detergent Labels",
+  title: "Thermal Paper Rolls, Labels & Can Labels",
   description: "Complete range of thermal paper rolls, thermal labels, can labels, and detergent labels. Blank and custom printed options available.",
   alternates: { canonical: `${SITE.domain}/products` },
 };

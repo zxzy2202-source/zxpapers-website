@@ -5,7 +5,7 @@ import { CheckCircle, Shield, Award, ArrowRight, FileCheck, Leaf, Globe, Zap } f
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Certifications & Compliance | ISO 9001 FSC BPA-Free RoHS",
+  title: "Certifications | ISO 9001 FSC BPA-Free RoHS",
   description: "ZhixinPaper certifications: ISO 9001:2015, FSC, BPA-Free, RoHS, REACH, CE. All certificates available upon request for import/customs requirements.",
   alternates: { canonical: `${SITE.domain}/manufacturing/certifications` },
 };

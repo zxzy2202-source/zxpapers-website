@@ -6,7 +6,7 @@ import { CheckCircle, ArrowRight, Package, Globe, ShieldCheck, Tag, BarChart3, P
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Application Cases | Retail, Logistics, Healthcare",
+  title: "Application Cases | Retail & Logistics",
   description: "In-depth thermal paper application guide for 6 major industries: retail POS, food service, e-commerce logistics, healthcare, parking & transportation, and.",
   keywords: "thermal paper applications, POS receipt paper, shipping label thermal paper, healthcare thermal labels, restaurant kitchen printer paper",
   alternates: { canonical: `${SITE.domain}/resources/application-cases` },

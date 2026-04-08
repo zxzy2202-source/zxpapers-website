@@ -12,13 +12,13 @@ import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier for Africa | Bulk Factory Direct",
+  title: "Thermal Paper Supplier Africa | Bulk Direct",
   description:
     "Factory-direct thermal paper rolls for distributors across Africa — Nigeria, Kenya, South Africa, Ghana, Tanzania, Ethiopia.",
   keywords:
     "thermal paper rolls Africa, thermal paper Nigeria, thermal paper Kenya, thermal paper South Africa, thermal paper Ghana, POS paper rolls Africa, receipt paper supplier Africa, bulk thermal paper Africa, wholesale thermal paper Africa",
   openGraph: {
-    title: "Thermal Paper Rolls for Africa | Factory Direct Bulk Supply",
+    title: "Thermal Paper Rolls Supplier for Africa",
     description:
       "Serving 15M+ POS terminals across Africa. Factory direct, ISO 9001 certified, BPA-free. FCL ready in 3–5 days.",
     type: "website",

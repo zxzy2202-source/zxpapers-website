@@ -7,7 +7,7 @@ import { detergentLabelSizes, DETERGENT_LABELS_IMG } from "../detergent-labels-d
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Custom Printed Detergent Labels | OEM Cleaning Product Labels",
+  title: "Custom Printed Detergent Labels | OEM Labels",
   description:
     "Custom printed detergent labels with CMYK + Pantone printing. Water-resistant, chemical-resistant, GHS compliant. Gloss/matte lamination, embossing.",
   alternates: { canonical: `${SITE.domain}/products/detergent-labels/custom-printed` },

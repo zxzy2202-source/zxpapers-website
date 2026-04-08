@@ -6,7 +6,7 @@ import { SITE } from "@/config/siteData";
 import { MessageSquare, Phone, CheckCircle, Ship, Clock, Package } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Supplier Vietnam | CIF Ho Chi Minh",
+  title: "Thermal Paper Supplier Vietnam | CIF HCMC",
   description: "Factory-direct thermal paper rolls for Vietnam distributors. CIF Cat Lai (Ho Chi Minh) pricing, 80×80mm and 57×50mm in stock. FORM E available. OEM supported.",
   keywords: "thermal paper rolls Vietnam, thermal paper supplier Ho Chi Minh, POS paper rolls Vietnam, giấy nhiệt Vietnam, nhà cung cấp giấy in hóa đơn, giá giấy nhiệt VND, thermal paper Hanoi, thermal paper Da Nang, giấy in bill POS Vietnam, nhà máy giấy nhiệt Trung Quốc",
   openGraph: {

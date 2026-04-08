@@ -6,7 +6,7 @@ import { CheckCircle, ArrowRight, Package, ShieldCheck, Globe, Lightbulb, Clock,
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Complete OEM Thermal Paper Guide | MOQ, Sampling & Private Label",
+  title: "OEM Thermal Paper Guide | MOQ & Private Label",
   description: "Everything distributors need to know about thermal paper OEM manufacturing: MOQ, sampling process, private label packaging, customization options, lead.",
   keywords: "thermal paper OEM, custom thermal rolls, private label thermal paper, thermal paper manufacturer, BPA-free thermal paper OEM",
   alternates: { canonical: `${SITE.domain}/resources/oem-guide` },

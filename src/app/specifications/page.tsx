@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Specifications | Complete Technical Data",
+  title: "Thermal Paper Specifications | Technical Data",
   description: "Complete technical specifications for all thermal paper rolls and labels: dimensions, paper weight, coating grades, image life, temperature range, and.",
   alternates: { canonical: `${SITE.domain}/specifications` },
 };

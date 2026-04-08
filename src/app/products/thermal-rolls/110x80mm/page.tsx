@@ -4,7 +4,7 @@ import { ROLLS_IMG, apps110x80 } from "../roll-sizes-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "110mm x 80mm Thermal Paper Rolls | Wide Format POS & Kiosk",
+  title: "110×80mm Thermal Paper Rolls | Wide Format POS",
   description: "110mm x 80mm wide-format thermal paper rolls for kiosk printers, restaurant systems, and wide POS receipts. BPA-free, ISO 9001 certified.",
   keywords: "110mm x 80mm thermal paper rolls, 110x80 receipt paper, wide format thermal paper, kiosk printer paper",
   alternates: { canonical: `${SITE.domain}/products/thermal-rolls/110x80mm` },

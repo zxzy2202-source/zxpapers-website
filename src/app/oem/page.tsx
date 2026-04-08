@@ -7,7 +7,7 @@ import { CheckCircle, ArrowRight, Shield, Printer, Package, Palette, Award, Lock
 import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
-  title: "OEM Thermal Paper Manufacturing | Custom Printing & Private Label",
+  title: "OEM Thermal Paper | Custom Printing & Labels",
   description: "OEM thermal paper rolls and labels manufacturer. Custom printing, private label packaging, design support. ISO 9001 certified. MOQ 1,000 rolls. NDA available.",
   alternates: { canonical: `${SITE.domain}/oem` },
 };

@@ -9,13 +9,13 @@ import {
 import { SITE, CERTIFICATIONS } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier South Africa | POS Paper Durban",
+  title: "Thermal Paper Supplier South Africa | Durban",
   description:
     "Factory-direct thermal paper rolls for South African distributors. 80×80mm, 57×50mm, 79×80mm. CIF Durban / Cape Town pricing. ISO 9001, BPA-free.",
   keywords:
     "thermal paper rolls South Africa, POS paper Durban, receipt paper South Africa, thermal paper Johannesburg, thermal paper Cape Town, bulk thermal paper South Africa, 80x80 thermal paper South Africa, SADC thermal paper supplier",
   openGraph: {
-    title: "Thermal Paper Rolls Supplier South Africa | CIF Durban",
+    title: "Thermal Paper Supplier South Africa | Durban",
     description:
       "Serving 10M+ POS terminals in South Africa. CIF Durban / Cape Town. ISO 9001. BPA-free. SADC gateway.",
     type: "website",
