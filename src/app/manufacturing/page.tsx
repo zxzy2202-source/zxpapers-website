@@ -11,10 +11,10 @@ import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
   title: `Manufacturing Capabilities | ISO 9001 Thermal Paper Factory`,
-  description: `${SITE.name} manufacturing: ${FACTORY.area} factory, ${FACTORY.productionLines} production lines, ${FACTORY.annualOutput} rolls/year. ISO 9001, FSC, BPA-Free certified. German and Japanese equipment. Serving ${FACTORY.countriesServed}+ countries.`,
+  description: `ZhixinPaper manufacturing: 10000sqm factory, 20 production lines, 50000 tons annual output. Advanced slitting and printing machines.`,
   openGraph: {
     title: `Manufacturing | ${FACTORY.area} ISO 9001 Certified Factory`,
-    description: `${FACTORY.productionLines} production lines, ${FACTORY.annualOutput} rolls/year. German & Japanese equipment. Serving ${FACTORY.countriesServed}+ countries.`,
+    description: `ZhixinPaper manufacturing: 10000sqm factory, 20 production lines, 50000 tons annual output. Advanced slitting and printing machines.`,
       images: [
       {
         url: "https://www.zxpapers.com/og-default.png",

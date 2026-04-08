@@ -7,7 +7,7 @@ import { Shield, CheckCircle, Award, ClipboardCheck, ArrowRight, Microscope } fr
 
 export const metadata: Metadata = {
   title: "OEM Quality Assurance | ISO 9001 Certified",
-  description: `${SITE.name} OEM quality assurance: ISO 9001:2015 certified, multi-stage inspection, batch traceability, and third-party testing. Every OEM order meets your specifications.`,
+  description: `ZhixinPaper OEM quality assurance: ISO 9001:2015 certified, multi-stage inspection, batch traceability, and third-party testing.`,
   alternates: {
     canonical: `${SITE.domain}/oem/quality-assurance`,
   },

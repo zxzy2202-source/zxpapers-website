@@ -11,10 +11,10 @@ import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
   title: `About Us | ${FACTORY.yearsExperience}+ Years Thermal Paper Manufacturer`,
-  description: `${SITE.name}: Founded ${SITE.founded} in Xi'an, China. ISO 9001 & FSC certified thermal paper manufacturer. ${FACTORY.area} factory, ${FACTORY.productionLines} production lines, serving ${FACTORY.countriesServed}+ countries. OEM & bulk orders welcome.`,
+  description: "ZhixinPaper: Founded 2008 in Xinxiang, China. ISO 9001 & FSC certified thermal paper manufacturer. 10000sqm factory, 20 production lines, serving 50+ countries. OEM welcome.",
   openGraph: {
     title: `About Us | Thermal Paper Manufacturer Since ${SITE.founded}`,
-    description: `ISO 9001 certified factory in Xi'an, China. ${FACTORY.area} facility, ${FACTORY.productionLines} production lines, ${FACTORY.countriesServed}+ countries served.`,
+    description: "ZhixinPaper: Founded 2008 in Xinxiang, China. 10000sqm facility, 20 production lines, 50+ countries served.",
     type: "website",
       images: [
       {

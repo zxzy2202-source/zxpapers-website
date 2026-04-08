@@ -7,7 +7,7 @@ import { Shield, Lock, FileText, CheckCircle, ArrowRight, Eye } from "lucide-rea
 
 export const metadata: Metadata = {
   title: "IP Protection & NDA | Confidential OEM",
-  description: `${SITE.name} protects your brand and intellectual property. NDA available before any discussion. Exclusive mold ownership, design confidentiality, and strict supplier agreements.`,
+  description: `ZhixinPaper protects your brand and intellectual property. NDA available before discussion. Exclusive mold ownership for OEM clients.`,
   alternates: {
     canonical: `${SITE.domain}/oem/ip-protection`,
   },

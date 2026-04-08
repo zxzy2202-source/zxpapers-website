@@ -5,7 +5,7 @@ import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
   title: '4×6" Thermal Shipping Labels | E-commerce',
-  description: '4" x 6" thermal shipping labels — global e-commerce standard. Compatible with Zebra, DYMO, Amazon FBA, UPS, FedEx, DHL. Bulk wholesale. MOQ 5,000 labels.',
+  description: "4x6 inch thermal labels (100x150mm). Standard shipping label size for UPS, FedEx, DHL, USPS. Direct thermal printing, strong adhesive.",
   alternates: { canonical: `${SITE.domain}/products/thermal-labels/4x6in` },
 };
 
