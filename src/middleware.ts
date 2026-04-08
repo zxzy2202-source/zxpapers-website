@@ -14,8 +14,12 @@ export async function middleware(req: NextRequest) {
   if (isApiSeed) return NextResponse.next();
 
   // 验证 JWT token（轻量级，不依赖 Prisma）
+  // NextAuth v5 使用 JWE 加密，salt 默认为 cookieName
+  // 生产环境（HTTPS）使用 __Secure-authjs.session-token
   const secret = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "zxpapers-admin-secret-2024";
-  const token = await getToken({ req, secret });
+  const isSecure = req.nextUrl.protocol === "https:" || process.env.NODE_ENV === "production";
+  const cookieName = isSecure ? "__Secure-authjs.session-token" : "authjs.session-token";
+  const token = await getToken({ req, secret, cookieName, salt: cookieName });
   const isAuthenticated = !!token;
 
   // 保护 admin API 路由
