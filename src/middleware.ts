@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { auth } from "@/lib/auth";
+import { getToken } from "next-auth/jwt";
 
 export async function middleware(req: NextRequest) {
   const isAdminRoute = req.nextUrl.pathname.startsWith("/admin");
@@ -13,9 +13,10 @@ export async function middleware(req: NextRequest) {
   if (isApiAuth) return NextResponse.next();
   if (isApiSeed) return NextResponse.next();
 
-  // 使用 NextAuth v5 的 auth() 验证 session
-  const session = await auth();
-  const isAuthenticated = !!session?.user;
+  // 验证 JWT token（轻量级，不依赖 Prisma）
+  const secret = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "zxpapers-admin-secret-2024";
+  const token = await getToken({ req, secret });
+  const isAuthenticated = !!token;
 
   // 保护 admin API 路由
   if (isApiAdmin && !isAuthenticated) {
