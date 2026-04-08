@@ -4,7 +4,7 @@ import { getToken } from "next-auth/jwt";
 
 export async function middleware(req: NextRequest) {
   const isAdminRoute = req.nextUrl.pathname.startsWith("/admin");
-  const isLoginPage = req.nextUrl.pathname === "/admin/login";
+  const isLoginPage = req.nextUrl.pathname === "/admin/login" || req.nextUrl.pathname === "/admin/login/";
   const isApiAuth = req.nextUrl.pathname.startsWith("/api/auth");
   const isApiAdmin = req.nextUrl.pathname.startsWith("/api/admin");
 
