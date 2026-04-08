@@ -7,3 +7,7 @@ node_modules/
 .DS_Store
 dist/
 out/
+
+/src/generated/prisma
+*.db
+prisma/admin.db
