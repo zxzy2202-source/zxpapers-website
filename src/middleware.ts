@@ -7,9 +7,11 @@ export async function middleware(req: NextRequest) {
   const isLoginPage = req.nextUrl.pathname === "/admin/login" || req.nextUrl.pathname === "/admin/login/";
   const isApiAuth = req.nextUrl.pathname.startsWith("/api/auth");
   const isApiAdmin = req.nextUrl.pathname.startsWith("/api/admin");
+  const isApiSeed = req.nextUrl.pathname === "/api/admin/seed";
 
-  // 放行认证 API
+  // 放行认证 API 和 seed 初始化 API
   if (isApiAuth) return NextResponse.next();
+  if (isApiSeed) return NextResponse.next();
 
   // 验证 JWT token（轻量级，不依赖 Prisma）
   const token = await getToken({
