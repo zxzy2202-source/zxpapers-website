@@ -28,7 +28,7 @@ function LoginForm() {
     setLoading(false);
 
     if (result?.error) {
-      setError("Invalid username or password");
+      setError("用户名或密码错误");
     } else {
       router.push(callbackUrl);
       router.refresh();
@@ -49,7 +49,7 @@ function LoginForm() {
 
         <div>
           <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1.5">
-            Username
+            用户名
           </label>
           <input
             id="username"
@@ -59,13 +59,13 @@ function LoginForm() {
             required
             autoComplete="username"
             className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-gray-900 text-sm"
-            placeholder="Enter your username"
+            placeholder="请输入用户名"
           />
         </div>
 
         <div>
           <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1.5">
-            Password
+            密码
           </label>
           <input
             id="password"
@@ -75,7 +75,7 @@ function LoginForm() {
             required
             autoComplete="current-password"
             className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-gray-900 text-sm"
-            placeholder="Enter your password"
+            placeholder="请输入密码"
           />
         </div>
 
@@ -90,10 +90,10 @@ function LoginForm() {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
-              Signing in...
+              登录中...
             </>
           ) : (
-            "Sign In"
+            "登 录"
           )}
         </button>
       </form>
@@ -111,20 +111,20 @@ export default function AdminLoginPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">ZhixinPaper Admin</h1>
-          <p className="text-gray-500 mt-1 text-sm">Sign in to manage your website</p>
+          <h1 className="text-2xl font-bold text-gray-900">知心纸业 后台管理</h1>
+          <p className="text-gray-500 mt-1 text-sm">登录以管理您的网站</p>
         </div>
 
         <Suspense fallback={
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 text-center text-gray-400 text-sm">
-            Loading...
+            加载中...
           </div>
         }>
           <LoginForm />
         </Suspense>
 
         <p className="text-center text-xs text-gray-400 mt-6">
-          ZhixinPaper Admin Panel &copy; {new Date().getFullYear()}
+          知心纸业管理后台 &copy; {new Date().getFullYear()}
         </p>
       </div>
     </div>

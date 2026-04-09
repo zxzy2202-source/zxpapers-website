@@ -27,13 +27,13 @@ export default function DeleteArticleButton({ articleId }: { articleId: string }
           disabled={deleting}
           className="text-red-600 hover:text-red-700 text-xs font-medium"
         >
-          {deleting ? "..." : "Confirm"}
+          {deleting ? "..." : "确认删除"}
         </button>
         <button
           onClick={() => setConfirming(false)}
           className="text-gray-400 hover:text-gray-600 text-xs"
         >
-          Cancel
+          取消
         </button>
       </span>
     );
@@ -44,7 +44,7 @@ export default function DeleteArticleButton({ articleId }: { articleId: string }
       onClick={() => setConfirming(true)}
       className="text-gray-300 hover:text-red-500 text-xs transition-colors"
     >
-      Delete
+      删除
     </button>
   );
 }

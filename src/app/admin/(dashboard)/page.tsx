@@ -20,15 +20,21 @@ async function getRecentInquiries() {
   });
 }
 
+const statusLabels: Record<string, string> = {
+  NEW: "新询盘",
+  REPLIED: "已回复",
+  CLOSED: "已关闭",
+};
+
 export default async function AdminDashboardPage() {
   const stats = await getStats();
   const recentInquiries = await getRecentInquiries();
 
   const statCards = [
     {
-      title: "Total Inquiries",
+      title: "询盘总数",
       value: stats.totalInquiries,
-      sub: `${stats.newInquiries} new`,
+      sub: `${stats.newInquiries} 条新询盘`,
       href: "/admin/inquiries",
       color: "blue",
       icon: (
@@ -38,9 +44,9 @@ export default async function AdminDashboardPage() {
       ),
     },
     {
-      title: "New Inquiries",
+      title: "新询盘",
       value: stats.newInquiries,
-      sub: "Pending review",
+      sub: "待处理",
       href: "/admin/inquiries?status=NEW",
       color: "orange",
       icon: (
@@ -50,9 +56,9 @@ export default async function AdminDashboardPage() {
       ),
     },
     {
-      title: "Total Articles",
+      title: "文章总数",
       value: stats.totalArticles,
-      sub: `${stats.publishedArticles} published`,
+      sub: `${stats.publishedArticles} 篇已发布`,
       href: "/admin/articles",
       color: "green",
       icon: (
@@ -62,9 +68,9 @@ export default async function AdminDashboardPage() {
       ),
     },
     {
-      title: "Published Articles",
+      title: "已发布文章",
       value: stats.publishedArticles,
-      sub: "Live on website",
+      sub: "已在网站上线",
       href: "/admin/articles?status=PUBLISHED",
       color: "purple",
       icon: (
@@ -86,8 +92,8 @@ export default async function AdminDashboardPage() {
     <div className="space-y-6">
       {/* Page Title */}
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-gray-500 text-sm mt-1">Overview of your ZhixinPaper website</p>
+        <h1 className="text-2xl font-bold text-gray-900">控制台</h1>
+        <p className="text-gray-500 text-sm mt-1">知心纸业网站数据概览</p>
       </div>
 
       {/* Stats Grid */}
@@ -114,7 +120,7 @@ export default async function AdminDashboardPage() {
 
       {/* Quick Actions */}
       <div className="bg-white rounded-xl border border-gray-200 p-5">
-        <h2 className="text-sm font-semibold text-gray-900 mb-4">Quick Actions</h2>
+        <h2 className="text-sm font-semibold text-gray-900 mb-4">快捷操作</h2>
         <div className="flex flex-wrap gap-3">
           <Link
             href="/admin/articles/new"
@@ -123,7 +129,7 @@ export default async function AdminDashboardPage() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
-            New Article
+            新建文章
           </Link>
           <Link
             href="/admin/inquiries"
@@ -132,7 +138,7 @@ export default async function AdminDashboardPage() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
             </svg>
-            View Inquiries
+            查看询盘
           </Link>
           <Link
             href="/admin/images"
@@ -141,7 +147,7 @@ export default async function AdminDashboardPage() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
-            Manage Images
+            管理图片
           </Link>
         </div>
       </div>
@@ -149,14 +155,14 @@ export default async function AdminDashboardPage() {
       {/* Recent Inquiries */}
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
         <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-gray-900">Recent Inquiries</h2>
+          <h2 className="text-sm font-semibold text-gray-900">最新询盘</h2>
           <Link href="/admin/inquiries" className="text-xs text-blue-600 hover:text-blue-700">
-            View all →
+            查看全部 →
           </Link>
         </div>
         {recentInquiries.length === 0 ? (
           <div className="px-5 py-10 text-center text-gray-400 text-sm">
-            No inquiries yet
+            暂无询盘记录
           </div>
         ) : (
           <div className="divide-y divide-gray-50">
@@ -185,10 +191,10 @@ export default async function AdminDashboardPage() {
                         : "bg-gray-100 text-gray-600"
                     }`}
                   >
-                    {inquiry.status}
+                    {statusLabels[inquiry.status] || inquiry.status}
                   </span>
                   <span className="text-xs text-gray-400">
-                    {new Date(inquiry.createdAt).toLocaleDateString()}
+                    {new Date(inquiry.createdAt).toLocaleDateString("zh-CN")}
                   </span>
                 </div>
               </Link>

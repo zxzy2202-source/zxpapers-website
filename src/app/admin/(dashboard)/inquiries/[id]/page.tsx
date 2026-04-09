@@ -7,6 +7,12 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+const statusLabels: Record<string, string> = {
+  NEW: "新询盘",
+  REPLIED: "已回复",
+  CLOSED: "已关闭",
+};
+
 export default async function InquiryDetailPage({ params }: PageProps) {
   const { id } = await params;
 
@@ -30,7 +36,7 @@ export default async function InquiryDetailPage({ params }: PageProps) {
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
-        Back to Inquiries
+        返回询盘列表
       </Link>
 
       {/* Header */}
@@ -38,7 +44,7 @@ export default async function InquiryDetailPage({ params }: PageProps) {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{inquiry.name}</h1>
           <p className="text-gray-500 text-sm mt-1">
-            Received {new Date(inquiry.createdAt).toLocaleDateString("en-US", {
+            收到于 {new Date(inquiry.createdAt).toLocaleDateString("zh-CN", {
               weekday: "long",
               year: "numeric",
               month: "long",
@@ -51,20 +57,20 @@ export default async function InquiryDetailPage({ params }: PageProps) {
             statusColors[inquiry.status] || statusColors.NEW
           }`}
         >
-          {inquiry.status}
+          {statusLabels[inquiry.status] || inquiry.status}
         </span>
       </div>
 
       {/* Contact Info */}
       <div className="bg-white rounded-xl border border-gray-200 p-5">
-        <h2 className="text-sm font-semibold text-gray-900 mb-4">Contact Information</h2>
+        <h2 className="text-sm font-semibold text-gray-900 mb-4">联系人信息</h2>
         <dl className="grid grid-cols-2 gap-4">
           <div>
-            <dt className="text-xs text-gray-400 uppercase tracking-wide">Name</dt>
+            <dt className="text-xs text-gray-400 uppercase tracking-wide">姓名</dt>
             <dd className="text-sm text-gray-900 mt-0.5">{inquiry.name}</dd>
           </div>
           <div>
-            <dt className="text-xs text-gray-400 uppercase tracking-wide">Email</dt>
+            <dt className="text-xs text-gray-400 uppercase tracking-wide">邮箱</dt>
             <dd className="mt-0.5">
               <a href={`mailto:${inquiry.email}`} className="text-sm text-blue-600 hover:underline">
                 {inquiry.email}
@@ -73,25 +79,25 @@ export default async function InquiryDetailPage({ params }: PageProps) {
           </div>
           {inquiry.company && (
             <div>
-              <dt className="text-xs text-gray-400 uppercase tracking-wide">Company</dt>
+              <dt className="text-xs text-gray-400 uppercase tracking-wide">公司</dt>
               <dd className="text-sm text-gray-900 mt-0.5">{inquiry.company}</dd>
             </div>
           )}
           {inquiry.country && (
             <div>
-              <dt className="text-xs text-gray-400 uppercase tracking-wide">Country</dt>
+              <dt className="text-xs text-gray-400 uppercase tracking-wide">国家/地区</dt>
               <dd className="text-sm text-gray-900 mt-0.5">{inquiry.country}</dd>
             </div>
           )}
           {inquiry.phone && (
             <div>
-              <dt className="text-xs text-gray-400 uppercase tracking-wide">Phone</dt>
+              <dt className="text-xs text-gray-400 uppercase tracking-wide">电话</dt>
               <dd className="text-sm text-gray-900 mt-0.5">{inquiry.phone}</dd>
             </div>
           )}
           {inquiry.product && (
             <div>
-              <dt className="text-xs text-gray-400 uppercase tracking-wide">Product Interest</dt>
+              <dt className="text-xs text-gray-400 uppercase tracking-wide">感兴趣的产品</dt>
               <dd className="text-sm text-gray-900 mt-0.5">{inquiry.product}</dd>
             </div>
           )}
@@ -100,7 +106,7 @@ export default async function InquiryDetailPage({ params }: PageProps) {
 
       {/* Message */}
       <div className="bg-white rounded-xl border border-gray-200 p-5">
-        <h2 className="text-sm font-semibold text-gray-900 mb-3">Message</h2>
+        <h2 className="text-sm font-semibold text-gray-900 mb-3">询盘内容</h2>
         <p className="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">
           {inquiry.message}
         </p>

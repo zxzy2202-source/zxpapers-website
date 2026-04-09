@@ -63,7 +63,7 @@ export default function ImageManager({ images }: Props) {
 
       if (!res.ok) {
         const data = await res.json();
-        setError(data.error || "Upload failed");
+        setError(data.error || "上传失败");
         return;
       }
 
@@ -73,7 +73,7 @@ export default function ImageManager({ images }: Props) {
       setSelectedImage(null);
       router.refresh();
     } catch {
-      setError("Network error. Please try again.");
+      setError("网络错误，请重试。");
     } finally {
       setUploading(false);
     }
@@ -91,7 +91,7 @@ export default function ImageManager({ images }: Props) {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search images..."
+            placeholder="搜索图片..."
             className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"
           />
         </div>
@@ -102,7 +102,7 @@ export default function ImageManager({ images }: Props) {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
           </svg>
-          Upload Image
+          上传图片
         </button>
         <input
           ref={fileInputRef}
@@ -129,7 +129,7 @@ export default function ImageManager({ images }: Props) {
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
           </svg>
-          Uploading...
+          上传中...
         </div>
       )}
 
@@ -141,7 +141,7 @@ export default function ImageManager({ images }: Props) {
               <svg className="w-12 h-12 mx-auto mb-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <p className="text-sm">No images found</p>
+              <p className="text-sm">暂无图片</p>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3">
@@ -191,21 +191,21 @@ export default function ImageManager({ images }: Props) {
 
             <div className="space-y-2">
               <div>
-                <p className="text-xs text-gray-400">Filename</p>
+                <p className="text-xs text-gray-400">文件名</p>
                 <p className="text-sm text-gray-700 break-all">{selectedImage.filename}</p>
               </div>
               <div>
-                <p className="text-xs text-gray-400">Path</p>
+                <p className="text-xs text-gray-400">路径</p>
                 <p className="text-xs text-blue-600 break-all">{selectedImage.path}</p>
               </div>
               {selectedImage.alt && (
                 <div>
-                  <p className="text-xs text-gray-400">Alt Text</p>
+                  <p className="text-xs text-gray-400">Alt 文本</p>
                   <p className="text-sm text-gray-700">{selectedImage.alt}</p>
                 </div>
               )}
               <div>
-                <p className="text-xs text-gray-400">Size</p>
+                <p className="text-xs text-gray-400">文件大小</p>
                 <p className="text-sm text-gray-700">{formatSize(selectedImage.size)}</p>
               </div>
             </div>
@@ -217,7 +217,7 @@ export default function ImageManager({ images }: Props) {
                 rel="noopener noreferrer"
                 className="w-full text-center text-sm text-gray-600 border border-gray-200 rounded-lg py-1.5 hover:bg-gray-50 transition-colors"
               >
-                View Full Size ↗
+                查看原图 ↗
               </a>
               <button
                 onClick={() => {
@@ -226,7 +226,7 @@ export default function ImageManager({ images }: Props) {
                 }}
                 className="w-full text-sm text-blue-600 border border-blue-200 rounded-lg py-1.5 hover:bg-blue-50 transition-colors"
               >
-                Replace Image
+                替换图片
               </button>
             </div>
           </div>

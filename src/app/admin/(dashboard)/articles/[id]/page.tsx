@@ -26,7 +26,7 @@ export default async function EditArticlePage({ params }: PageProps) {
           </svg>
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Edit Article</h1>
+          <h1 className="text-2xl font-bold text-gray-900">编辑文章</h1>
           <p className="text-gray-500 text-sm mt-0.5 line-clamp-1">{article.title}</p>
         </div>
       </div>

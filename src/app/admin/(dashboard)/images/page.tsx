@@ -58,9 +58,9 @@ export default async function ImagesPage() {
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Images</h1>
+        <h1 className="text-2xl font-bold text-gray-900">图片管理</h1>
         <p className="text-gray-500 text-sm mt-1">
-          {allImages.length} images in /public/images/
+          /public/images/ 目录下共 {allImages.length} 张图片
         </p>
       </div>
       <ImageManager images={allImages} />

@@ -9,7 +9,11 @@ interface Props {
   notes: string;
 }
 
-const STATUSES = ["NEW", "REPLIED", "CLOSED"];
+const STATUSES = [
+  { value: "NEW", label: "新询盘" },
+  { value: "REPLIED", label: "已回复" },
+  { value: "CLOSED", label: "已关闭" },
+];
 
 export default function InquiryStatusActions({ inquiryId, currentStatus, notes: initialNotes }: Props) {
   const router = useRouter();
@@ -47,23 +51,23 @@ export default function InquiryStatusActions({ inquiryId, currentStatus, notes: 
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-5 space-y-4">
-      <h2 className="text-sm font-semibold text-gray-900">Update Status & Notes</h2>
+      <h2 className="text-sm font-semibold text-gray-900">更新状态与备注</h2>
 
       {/* Status Buttons */}
       <div>
-        <p className="text-xs text-gray-400 mb-2 uppercase tracking-wide">Status</p>
+        <p className="text-xs text-gray-400 mb-2 uppercase tracking-wide">状态</p>
         <div className="flex gap-2">
           {STATUSES.map((s) => (
             <button
-              key={s}
-              onClick={() => setStatus(s)}
+              key={s.value}
+              onClick={() => setStatus(s.value)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium border-2 transition-all ${
-                status === s
-                  ? statusColors[s]
+                status === s.value
+                  ? statusColors[s.value]
                   : "border-gray-200 text-gray-500 hover:border-gray-300"
               }`}
             >
-              {s}
+              {s.label}
             </button>
           ))}
         </div>
@@ -71,12 +75,12 @@ export default function InquiryStatusActions({ inquiryId, currentStatus, notes: 
 
       {/* Notes */}
       <div>
-        <p className="text-xs text-gray-400 mb-2 uppercase tracking-wide">Internal Notes</p>
+        <p className="text-xs text-gray-400 mb-2 uppercase tracking-wide">内部备注</p>
         <textarea
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           rows={3}
-          placeholder="Add internal notes about this inquiry..."
+          placeholder="添加关于此询盘的内部备注..."
           className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none"
         />
       </div>
@@ -94,10 +98,10 @@ export default function InquiryStatusActions({ inquiryId, currentStatus, notes: 
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
-              Saving...
+              保存中...
             </>
           ) : (
-            "Save Changes"
+            "保存更改"
           )}
         </button>
         {saved && (
@@ -105,7 +109,7 @@ export default function InquiryStatusActions({ inquiryId, currentStatus, notes: 
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
-            Saved!
+            已保存！
           </span>
         )}
       </div>

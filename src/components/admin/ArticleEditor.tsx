@@ -56,7 +56,7 @@ export default function ArticleEditor({ article }: Props) {
       Link.configure({ openOnClick: false }),
       Image,
       Placeholder.configure({
-        placeholder: "Start writing your article content here...",
+        placeholder: "在此开始撰写文章内容...",
       }),
     ],
     content: article?.content ?? "",
@@ -83,11 +83,11 @@ export default function ArticleEditor({ article }: Props) {
     const content = editor?.getHTML() || "";
 
     if (!title.trim()) {
-      setError("Title is required");
+      setError("标题不能为空");
       return;
     }
     if (!slug.trim()) {
-      setError("Slug is required");
+      setError("URL Slug 不能为空");
       return;
     }
 
@@ -120,7 +120,7 @@ export default function ArticleEditor({ article }: Props) {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Failed to save article");
+        setError(data.error || "保存失败，请重试");
         return;
       }
 
@@ -132,7 +132,7 @@ export default function ArticleEditor({ article }: Props) {
         router.refresh();
       }
     } catch {
-      setError("Network error. Please try again.");
+      setError("网络错误，请重试。");
     } finally {
       setSaving(false);
     }
@@ -146,13 +146,13 @@ export default function ArticleEditor({ article }: Props) {
         <div className="bg-white rounded-xl border border-gray-200 p-5 space-y-4">
           <div>
             <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1.5">
-              Title *
+              标题 *
             </label>
             <input
               type="text"
               value={title}
               onChange={(e) => handleTitleChange(e.target.value)}
-              placeholder="Enter article title..."
+              placeholder="输入文章标题..."
               className="w-full text-xl font-semibold text-gray-900 border-0 outline-none placeholder-gray-300 bg-transparent"
             />
           </div>
@@ -178,13 +178,13 @@ export default function ArticleEditor({ article }: Props) {
 
           <div>
             <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1.5">
-              Excerpt
+              摘要
             </label>
             <textarea
               value={excerpt}
               onChange={(e) => setExcerpt(e.target.value)}
               rows={2}
-              placeholder="Brief description of the article..."
+              placeholder="文章简短描述..."
               className="w-full text-sm text-gray-700 border border-gray-200 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 resize-none"
             />
           </div>
@@ -198,51 +198,51 @@ export default function ArticleEditor({ article }: Props) {
               {[
                 {
                   label: "B",
-                  title: "Bold",
+                  title: "加粗",
                   action: () => editor.chain().focus().toggleBold().run(),
                   active: editor.isActive("bold"),
                   className: "font-bold",
                 },
                 {
                   label: "I",
-                  title: "Italic",
+                  title: "斜体",
                   action: () => editor.chain().focus().toggleItalic().run(),
                   active: editor.isActive("italic"),
                   className: "italic",
                 },
                 {
                   label: "H2",
-                  title: "Heading 2",
+                  title: "二级标题",
                   action: () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
                   active: editor.isActive("heading", { level: 2 }),
                 },
                 {
                   label: "H3",
-                  title: "Heading 3",
+                  title: "三级标题",
                   action: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
                   active: editor.isActive("heading", { level: 3 }),
                 },
                 {
                   label: "UL",
-                  title: "Bullet List",
+                  title: "无序列表",
                   action: () => editor.chain().focus().toggleBulletList().run(),
                   active: editor.isActive("bulletList"),
                 },
                 {
                   label: "OL",
-                  title: "Ordered List",
+                  title: "有序列表",
                   action: () => editor.chain().focus().toggleOrderedList().run(),
                   active: editor.isActive("orderedList"),
                 },
                 {
                   label: "\"",
-                  title: "Blockquote",
+                  title: "引用",
                   action: () => editor.chain().focus().toggleBlockquote().run(),
                   active: editor.isActive("blockquote"),
                 },
                 {
                   label: "—",
-                  title: "Horizontal Rule",
+                  title: "分割线",
                   action: () => editor.chain().focus().setHorizontalRule().run(),
                   active: false,
                 },
@@ -262,7 +262,7 @@ export default function ArticleEditor({ article }: Props) {
                 </button>
               ))}
               <button
-                title="Undo"
+                title="撤销"
                 onClick={() => editor.chain().focus().undo().run()}
                 type="button"
                 className="px-2.5 py-1 rounded text-xs text-gray-600 hover:bg-gray-200 ml-auto"
@@ -270,7 +270,7 @@ export default function ArticleEditor({ article }: Props) {
                 ↩
               </button>
               <button
-                title="Redo"
+                title="重做"
                 onClick={() => editor.chain().focus().redo().run()}
                 type="button"
                 className="px-2.5 py-1 rounded text-xs text-gray-600 hover:bg-gray-200"
@@ -289,7 +289,7 @@ export default function ArticleEditor({ article }: Props) {
       <div className="space-y-4">
         {/* Publish */}
         <div className="bg-white rounded-xl border border-gray-200 p-5 space-y-4">
-          <h3 className="text-sm font-semibold text-gray-900">Publish</h3>
+          <h3 className="text-sm font-semibold text-gray-900">发布设置</h3>
 
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-red-700 text-xs">
@@ -299,29 +299,29 @@ export default function ArticleEditor({ article }: Props) {
 
           <div>
             <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1.5">
-              Status
+              状态
             </label>
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value)}
               className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
             >
-              <option value="DRAFT">Draft</option>
-              <option value="PUBLISHED">Published</option>
+              <option value="DRAFT">草稿</option>
+              <option value="PUBLISHED">已发布</option>
             </select>
           </div>
 
           <div>
             <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1.5">
-              Category
+              分类
             </label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
             >
-              <option value="INDUSTRY_INSIGHTS">Industry Insights</option>
-              <option value="PRODUCT_GUIDES">Product Guides</option>
+              <option value="INDUSTRY_INSIGHTS">行业资讯</option>
+              <option value="PRODUCT_GUIDES">产品指南</option>
             </select>
           </div>
 
@@ -331,21 +331,21 @@ export default function ArticleEditor({ article }: Props) {
               disabled={saving}
               className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white text-sm font-medium py-2 rounded-lg transition-colors"
             >
-              {saving ? "Saving..." : "Publish"}
+              {saving ? "保存中..." : "发布文章"}
             </button>
             <button
               onClick={() => handleSave("DRAFT")}
               disabled={saving}
               className="w-full bg-white hover:bg-gray-50 text-gray-700 text-sm font-medium py-2 rounded-lg border border-gray-200 transition-colors"
             >
-              Save as Draft
+              保存为草稿
             </button>
           </div>
         </div>
 
         {/* Cover Image */}
         <div className="bg-white rounded-xl border border-gray-200 p-5 space-y-3">
-          <h3 className="text-sm font-semibold text-gray-900">Cover Image</h3>
+          <h3 className="text-sm font-semibold text-gray-900">封面图片</h3>
           <input
             type="text"
             value={coverImage}
@@ -357,7 +357,7 @@ export default function ArticleEditor({ article }: Props) {
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={coverImage}
-              alt="Cover preview"
+              alt="封面预览"
               className="w-full h-32 object-cover rounded-lg border border-gray-200"
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = "none";
@@ -368,28 +368,28 @@ export default function ArticleEditor({ article }: Props) {
 
         {/* SEO */}
         <div className="bg-white rounded-xl border border-gray-200 p-5 space-y-3">
-          <h3 className="text-sm font-semibold text-gray-900">SEO</h3>
+          <h3 className="text-sm font-semibold text-gray-900">SEO 设置</h3>
           <div>
-            <label className="block text-xs text-gray-400 mb-1">Meta Title</label>
+            <label className="block text-xs text-gray-400 mb-1">Meta 标题</label>
             <input
               type="text"
               value={metaTitle}
               onChange={(e) => setMetaTitle(e.target.value)}
-              placeholder="SEO page title..."
+              placeholder="SEO 页面标题..."
               className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
             />
-            <p className="text-xs text-gray-400 mt-1">{metaTitle.length}/60 chars</p>
+            <p className="text-xs text-gray-400 mt-1">{metaTitle.length}/60 字符</p>
           </div>
           <div>
-            <label className="block text-xs text-gray-400 mb-1">Meta Description</label>
+            <label className="block text-xs text-gray-400 mb-1">Meta 描述</label>
             <textarea
               value={metaDesc}
               onChange={(e) => setMetaDesc(e.target.value)}
               rows={3}
-              placeholder="SEO description..."
+              placeholder="SEO 描述..."
               className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
             />
-            <p className="text-xs text-gray-400 mt-1">{metaDesc.length}/160 chars</p>
+            <p className="text-xs text-gray-400 mt-1">{metaDesc.length}/160 字符</p>
           </div>
         </div>
       </div>

@@ -7,8 +7,13 @@ interface PageProps {
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
-  INDUSTRY_INSIGHTS: "Industry Insights",
-  PRODUCT_GUIDES: "Product Guides",
+  INDUSTRY_INSIGHTS: "行业资讯",
+  PRODUCT_GUIDES: "产品指南",
+};
+
+const STATUS_LABELS: Record<string, string> = {
+  PUBLISHED: "已发布",
+  DRAFT: "草稿",
 };
 
 const STATUS_COLORS: Record<string, string> = {
@@ -38,8 +43,8 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Articles</h1>
-          <p className="text-gray-500 text-sm mt-1">{total} total articles</p>
+          <h1 className="text-2xl font-bold text-gray-900">文章管理</h1>
+          <p className="text-gray-500 text-sm mt-1">共 {total} 篇文章</p>
         </div>
         <Link
           href="/admin/articles/new"
@@ -48,18 +53,18 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
-          New Article
+          新建文章
         </Link>
       </div>
 
       {/* Filters */}
       <div className="flex gap-2 flex-wrap">
         {[
-          { label: "All", href: "/admin/articles" },
-          { label: "Published", href: "/admin/articles?status=PUBLISHED" },
-          { label: "Drafts", href: "/admin/articles?status=DRAFT" },
-          { label: "Industry Insights", href: "/admin/articles?category=INDUSTRY_INSIGHTS" },
-          { label: "Product Guides", href: "/admin/articles?category=PRODUCT_GUIDES" },
+          { label: "全部", href: "/admin/articles" },
+          { label: "已发布", href: "/admin/articles?status=PUBLISHED" },
+          { label: "草稿", href: "/admin/articles?status=DRAFT" },
+          { label: "行业资讯", href: "/admin/articles?category=INDUSTRY_INSIGHTS" },
+          { label: "产品指南", href: "/admin/articles?category=PRODUCT_GUIDES" },
         ].map((tab) => {
           const isActive =
             tab.href === "/admin/articles"
@@ -91,19 +96,19 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
             <svg className="w-12 h-12 mx-auto mb-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            <p className="text-sm">No articles found</p>
+            <p className="text-sm">暂无文章</p>
             <Link href="/admin/articles/new" className="text-blue-600 text-sm hover:underline mt-2 inline-block">
-              Create your first article →
+              创建第一篇文章 →
             </Link>
           </div>
         ) : (
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-200">
-                <th className="text-left px-5 py-3 font-medium text-gray-500">Title</th>
-                <th className="text-left px-5 py-3 font-medium text-gray-500 hidden md:table-cell">Category</th>
-                <th className="text-left px-5 py-3 font-medium text-gray-500">Status</th>
-                <th className="text-left px-5 py-3 font-medium text-gray-500 hidden sm:table-cell">Updated</th>
+                <th className="text-left px-5 py-3 font-medium text-gray-500">标题</th>
+                <th className="text-left px-5 py-3 font-medium text-gray-500 hidden md:table-cell">分类</th>
+                <th className="text-left px-5 py-3 font-medium text-gray-500">状态</th>
+                <th className="text-left px-5 py-3 font-medium text-gray-500 hidden sm:table-cell">更新时间</th>
                 <th className="px-5 py-3"></th>
               </tr>
             </thead>
@@ -121,12 +126,12 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
                   </td>
                   <td className="px-5 py-3.5">
                     <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${STATUS_COLORS[article.status] || "bg-gray-100 text-gray-600"}`}>
-                      {article.status}
+                      {STATUS_LABELS[article.status] || article.status}
                     </span>
                   </td>
                   <td className="px-5 py-3.5 text-gray-400 text-xs hidden sm:table-cell">
-                    {new Date(article.updatedAt).toLocaleDateString("en-US", {
-                      month: "short",
+                    {new Date(article.updatedAt).toLocaleDateString("zh-CN", {
+                      month: "numeric",
                       day: "numeric",
                       year: "numeric",
                     })}
@@ -137,7 +142,7 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
                         href={`/admin/articles/${article.id}`}
                         className="text-blue-600 hover:text-blue-700 text-xs font-medium"
                       >
-                        Edit
+                        编辑
                       </Link>
                       {article.status === "PUBLISHED" && (
                         <Link
@@ -145,7 +150,7 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
                           target="_blank"
                           className="text-gray-400 hover:text-gray-600 text-xs"
                         >
-                          View ↗
+                          查看 ↗
                         </Link>
                       )}
                       <DeleteArticleButton articleId={article.id} />
