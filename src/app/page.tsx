@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getSlotImages } from "@/lib/imageSlotUtils";
 import Layout from "@/components/layout/Layout";
 import { SITE, FACTORY } from "@/config/siteData";
 import { mainNav, type NavDropdown } from "@/config/navigation";
@@ -17,15 +18,9 @@ export const metadata: Metadata = {
   alternates: { canonical: SITE.domain },
 };
 
-const FACTORY_IMG =
+const FACTORY_IMG_FALLBACK =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
-
-const PRODUCT_IMGS: Record<string, string> = {
-  "80 × 80 mm": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&q=80",
-  "57 × 50 mm": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&q=80",
-  "57 × 40 mm": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&q=80",
-  "79 × 80 mm": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&q=80",
-};
+const PRODUCT_ROLLS_FALLBACK = "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&q=80";
 
 const testimonials = [
   { name: "Ahmed Al-Rashid", country: "🇦🇪 UAE", role: "POS Distributor", text: "Best quality thermal rolls we've sourced from China. Consistent roll length, clean print. Our customers love it.", rating: 5 },
@@ -118,7 +113,14 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function HomePage() {
+export default async function HomePage() {
+  // 从数据库读取绑定的图片，未绑定时使用 fallback
+  const imgs = await getSlotImages([
+    { slot: "home:hero", fallback: FACTORY_IMG_FALLBACK },
+    { slot: "home:product-rolls", fallback: PRODUCT_ROLLS_FALLBACK },
+  ]);
+  const FACTORY_IMG = imgs["home:hero"];
+  const PRODUCT_ROLLS_IMG = imgs["home:product-rolls"];
   const waBase = `${SITE.whatsappUrl}?text=`;
   const waGeneral = `${waBase}${encodeURIComponent(
     "Hello, I need quotation for thermal paper rolls. Please send me price and MOQ."
@@ -224,7 +226,7 @@ export default function HomePage() {
                 {/* Product image */}
                 <div className="relative h-40 bg-slate-100 overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&q=80"
+                    src={PRODUCT_ROLLS_IMG}
                     alt={`${size} thermal paper rolls`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"

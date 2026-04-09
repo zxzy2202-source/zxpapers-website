@@ -5,6 +5,7 @@ import { SITE } from "@/config/siteData";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight, Shield, Printer, Package, Palette, Award, Lock, MessageSquare, Phone } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: "OEM Thermal Paper | Custom Printing & Labels",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.domain}/oem` },
 };
 
-const FACTORY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
+const OEM_FACTORY_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
 
 const services = [
   { icon: Printer, title: "Custom Printing & Specifications", desc: "Print your logo, brand colors, promotional messages, or QR codes on thermal paper rolls and labels.", href: "/oem/custom-printing" },
@@ -51,7 +52,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function OEMPage() {
+export default async function OEMPage() {
+  const oemHeroImg = await getSlotImage("oem:hero", OEM_FACTORY_IMG_FB);
   return (
     <Layout>
       <script
@@ -60,7 +62,7 @@ export default function OEMPage() {
       />
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
-        bgImage="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp"
+        bgImage={oemHeroImg}
         overlayDir="left"
         overlayOpacity={50}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "OEM Services" }]}

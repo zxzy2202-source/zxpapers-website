@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getSlotImages } from "@/lib/imageSlotUtils";
 import Layout from "@/components/layout/Layout";
 import { FACTORY, SITE } from "@/config/siteData";
 import {
@@ -29,8 +30,8 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.domain}/about` },
 };
 
-const FACTORY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-aerial-overview-Ck4AoJiKqjGKsLxnYqGRbU.webp";
-const FACTORY_LINE_IMG = "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80";
+const FACTORY_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-aerial-overview-Ck4AoJiKqjGKsLxnYqGRbU.webp";
+const FACTORY_LINE_IMG_FB = "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80";
 
 const milestones = [
   { year: "2009", event: `Founded in Xi'an, Shaanxi, China with 2 production lines`, color: "bg-blue-500" },
@@ -86,7 +87,13 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function AboutPage() {
+export default async function AboutPage() {
+  const imgs = await getSlotImages([
+    { slot: "about:factory-aerial", fallback: FACTORY_IMG_FB },
+    { slot: "about:factory-line", fallback: FACTORY_LINE_IMG_FB },
+  ]);
+  const FACTORY_IMG = imgs["about:factory-aerial"];
+  const FACTORY_LINE_IMG = imgs["about:factory-line"];
   return (
     <Layout>
       <script

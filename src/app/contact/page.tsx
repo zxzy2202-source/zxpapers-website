@@ -3,6 +3,7 @@ import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 import {
   Phone, Mail, MapPin, Clock, MessageSquare, Package,
   CheckCircle, ArrowRight, Zap, Globe, Shield,
@@ -54,7 +55,10 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function ContactPage() {
+const CONTACT_HERO_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
+
+export default async function ContactPage() {
+  const contactHeroImg = await getSlotImage("contact:hero", CONTACT_HERO_FB);
   return (
     <Layout>
       <script
@@ -63,7 +67,7 @@ export default function ContactPage() {
       />
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
-        bgImage="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp"
+        bgImage={contactHeroImg}
         overlayDir="center"
         overlayOpacity={50}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact Us" }]}

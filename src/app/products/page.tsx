@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getSlotImages } from "@/lib/imageSlotUtils";
 import Layout from "@/components/layout/Layout";
 import { ArrowRight, Package, Tag, Archive, Droplets, MessageSquare, Phone } from "lucide-react";
 import { paperRollSizes, labelSizes, canLabelSizes, detergentLabelSizes } from "@/config/navigation";
@@ -12,12 +13,14 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.domain}/products` },
 };
 
-const ROLLS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
-const LABELS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
-const CAN_LABELS_IMG = "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80";
-const DETERGENT_LABELS_IMG = "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=400&q=80";
+const ROLLS_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
+const LABELS_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
+const CAN_LABELS_IMG_FB = "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80";
+const DETERGENT_LABELS_IMG_FB = "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=400&q=80";
+const HERO_IMG_FB = "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=1400&q=80";
 
-const productCategories = [
+// productCategories 在函数内动态生成，使用从数据库读取的图片
+const buildProductCategories = (imgs: Record<string, string>) => ([
   {
     id: "thermal-rolls",
     icon: Package,
@@ -30,7 +33,7 @@ const productCategories = [
     hoverText: "group-hover:text-blue-700",
     title: "Thermal Paper Rolls",
     subtitle: "POS receipts, ATM, kiosk, and parking ticket rolls",
-    image: ROLLS_IMG,
+    image: imgs["products:thermal-rolls"],
     variants: [
       { title: "Blank Thermal Paper Rolls", desc: "Standard white thermal paper rolls for all POS and receipt printers. BPA-free, high image clarity.", href: "/products/thermal-paper-rolls/blank" },
       { title: "Custom Printed Thermal Rolls", desc: "Rolls with your logo, brand colors, or promotional messages pre-printed. OEM available.", href: "/products/thermal-paper-rolls/custom-printed" },
@@ -50,7 +53,7 @@ const productCategories = [
     hoverText: "group-hover:text-amber-700",
     title: "Thermal Labels",
     subtitle: "Shipping labels, barcode labels, product labels",
-    image: LABELS_IMG,
+    image: imgs["products:thermal-labels"],
     variants: [
       { title: "Blank Thermal Labels", desc: "Direct thermal labels for shipping, inventory, and barcode printing. Compatible with all major printers.", href: "/products/thermal-labels/blank" },
       { title: "Custom Printed Thermal Labels", desc: "Pre-printed labels with your brand, logo, or product information. Private label available.", href: "/products/thermal-labels/custom-printed" },
@@ -70,7 +73,7 @@ const productCategories = [
     hoverText: "group-hover:text-emerald-700",
     title: "Can Labels",
     subtitle: "Beverage, food, pet food, and industrial can labels",
-    image: CAN_LABELS_IMG,
+    image: imgs["products:can-labels"],
     variants: [
       { title: "Blank Can Labels", desc: "Moisture-resistant, food-safe blank can labels. Full-wrap and partial-wrap options for all standard can sizes.", href: "/products/can-labels/blank" },
       { title: "Custom Printed Can Labels", desc: "Full-color printed can labels with your brand design. Suitable for beverages, food products, and industrial cans.", href: "/products/can-labels/custom-printed" },
@@ -90,7 +93,7 @@ const productCategories = [
     hoverText: "group-hover:text-violet-700",
     title: "Detergent Labels",
     subtitle: "Laundry detergent, dish soap, and household cleaner labels",
-    image: DETERGENT_LABELS_IMG,
+    image: imgs["products:detergent-labels"],
     variants: [
       { title: "Blank Detergent Labels", desc: "Water-resistant, chemical-resistant blank labels for detergent bottles, cleaning products, and household chemicals.", href: "/products/detergent-labels/blank" },
       { title: "Custom Printed Detergent Labels", desc: "GHS-compliant printed labels with your brand, hazard pictograms, and product information. OEM available.", href: "/products/detergent-labels/custom-printed" },
@@ -98,7 +101,7 @@ const productCategories = [
     sizes: detergentLabelSizes,
     sizeHref: (slug: string) => `/products/detergent-labels/${slug}`,
   },
-];
+]);
 
 
 const breadcrumbSchema = {
@@ -119,7 +122,15 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const imgs = await getSlotImages([
+    { slot: "products:hero", fallback: HERO_IMG_FB },
+    { slot: "products:thermal-rolls", fallback: ROLLS_IMG_FB },
+    { slot: "products:thermal-labels", fallback: LABELS_IMG_FB },
+    { slot: "products:can-labels", fallback: CAN_LABELS_IMG_FB },
+    { slot: "products:detergent-labels", fallback: DETERGENT_LABELS_IMG_FB },
+  ]);
+  const productCategories = buildProductCategories(imgs);
   return (
     <Layout>
       <script
@@ -128,7 +139,7 @@ export default function ProductsPage() {
       />
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
-        bgImage="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=1400&q=80"
+        bgImage={imgs["products:hero"]}
         overlayDir="left"
         overlayOpacity={50}
         minHeight="min-h-[400px]"
