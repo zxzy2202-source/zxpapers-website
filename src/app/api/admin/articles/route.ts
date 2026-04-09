@@ -11,11 +11,14 @@ export async function GET(request: NextRequest) {
 
   const { searchParams } = new URL(request.url);
   const status = searchParams.get("status");
+  const category = searchParams.get("category");
   const page = parseInt(searchParams.get("page") || "1");
   const limit = parseInt(searchParams.get("limit") || "20");
   const skip = (page - 1) * limit;
 
-  const where = status ? { status } : {};
+  const where: Record<string, string> = {};
+  if (status) where.status = status;
+  if (category) where.category = category;
 
   const [articles, total] = await Promise.all([
     prisma.article.findMany({
@@ -29,6 +32,7 @@ export async function GET(request: NextRequest) {
         slug: true,
         excerpt: true,
         category: true,
+        tags: true,
         status: true,
         coverImage: true,
         publishedAt: true,
@@ -58,7 +62,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const {
       title, slug, excerpt, content, category,
-      status, coverImage, metaTitle, metaDesc,
+      tags, status, coverImage, metaTitle, metaDesc, keywords,
     } = body;
 
     if (!title || !slug || !content) {
@@ -70,9 +74,12 @@ export async function POST(request: NextRequest) {
 
     const article = await prisma.article.create({
       data: {
-        title, slug, excerpt, content, category,
+        title, slug, excerpt, content,
+        category: category || "INDUSTRY_INSIGHTS",
+        tags: tags || "",
         status: status || "DRAFT",
         coverImage, metaTitle, metaDesc,
+        keywords: keywords || "",
         publishedAt: status === "PUBLISHED" ? new Date() : null,
       },
     });

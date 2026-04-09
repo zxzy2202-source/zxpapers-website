@@ -36,7 +36,7 @@ export async function PUT(
   const body = await request.json();
   const {
     title, slug, excerpt, content, category,
-    status, coverImage, metaTitle, metaDesc,
+    tags, status, coverImage, metaTitle, metaDesc, keywords,
   } = body;
 
   const existing = await prisma.article.findUnique({ where: { id } });
@@ -47,8 +47,11 @@ export async function PUT(
   const article = await prisma.article.update({
     where: { id },
     data: {
-      title, slug, excerpt, content, category,
+      title, slug, excerpt, content,
+      category: category || existing.category,
+      tags: tags ?? existing.tags,
       status, coverImage, metaTitle, metaDesc,
+      keywords: keywords ?? existing.keywords,
       publishedAt:
         status === "PUBLISHED" && !existing.publishedAt
           ? new Date()

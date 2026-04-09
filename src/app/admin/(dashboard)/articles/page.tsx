@@ -9,6 +9,10 @@ interface PageProps {
 const CATEGORY_LABELS: Record<string, string> = {
   INDUSTRY_INSIGHTS: "行业资讯",
   PRODUCT_GUIDES: "产品指南",
+  COMPANY_NEWS: "公司动态",
+  TECHNICAL_TIPS: "技术干货",
+  CASE_STUDIES: "案例分析",
+  MARKET_TRENDS: "市场趋势",
 };
 
 const STATUS_LABELS: Record<string, string> = {
@@ -65,6 +69,10 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
           { label: "草稿", href: "/admin/articles?status=DRAFT" },
           { label: "行业资讯", href: "/admin/articles?category=INDUSTRY_INSIGHTS" },
           { label: "产品指南", href: "/admin/articles?category=PRODUCT_GUIDES" },
+          { label: "公司动态", href: "/admin/articles?category=COMPANY_NEWS" },
+          { label: "技术干货", href: "/admin/articles?category=TECHNICAL_TIPS" },
+          { label: "案例分析", href: "/admin/articles?category=CASE_STUDIES" },
+          { label: "市场趋势", href: "/admin/articles?category=MARKET_TRENDS" },
         ].map((tab) => {
           const isActive =
             tab.href === "/admin/articles"
