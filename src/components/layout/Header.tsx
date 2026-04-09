@@ -28,6 +28,43 @@ const BADGE_COLORS_DARK: Record<string, string> = {
   purple: "bg-purple-500/20 text-purple-300",
 };
 
+function splitNavIcon(label: string) {
+  const match = label.match(/^((?:\p{Regional_Indicator}{2}|\p{Extended_Pictographic}(?:\uFE0F)?))\s+(.+)$/u);
+  return {
+    icon: match?.[1] ?? null,
+    text: match?.[2] ?? label,
+  };
+}
+
+function NavLabelWithIcon({
+  label,
+  textClassName = "",
+  iconClassName = "",
+}: {
+  label: string;
+  textClassName?: string;
+  iconClassName?: string;
+}) {
+  const { icon, text } = splitNavIcon(label);
+
+  if (!icon) {
+    return <span className={textClassName}>{text}</span>;
+  }
+
+  return (
+    <span className="flex items-center gap-2 min-w-0">
+      <span
+        className={`inline-flex items-center justify-center text-[1.05em] leading-none flex-shrink-0 ${iconClassName}`}
+        style={{ fontFamily: '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif' }}
+        aria-hidden="true"
+      >
+        {icon}
+      </span>
+      <span className={textClassName}>{text}</span>
+    </span>
+  );
+}
+
 export default function Header() {
   const [mobileOpen, setMobileOpen]         = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -152,7 +189,7 @@ export default function Header() {
                                 className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors"
                                 role="menuitem"
                               >
-                                {sub.label}
+                                <NavLabelWithIcon label={sub.label} />
                               </Link>
                             ))}
                             {/* CTA panel */}
@@ -181,9 +218,10 @@ export default function Header() {
                                   href={rg.regionHref}
                                   className="flex items-center gap-2 mb-2 group"
                                 >
-                                  <span className="text-sm font-bold text-slate-800 group-hover:text-blue-700 transition-colors">
-                                    {rg.region}
-                                  </span>
+                                  <NavLabelWithIcon
+                                    label={rg.region}
+                                    textClassName="text-sm font-bold text-slate-800 group-hover:text-blue-700 transition-colors"
+                                  />
                                   {rg.badge && (
                                     <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-semibold ${BADGE_COLORS[rg.badgeColor ?? "amber"] ?? BADGE_COLORS.amber}`}>
                                       {rg.badge}
@@ -199,9 +237,9 @@ export default function Header() {
                                       className="flex items-center justify-between py-1.5 px-2 rounded-lg text-sm text-slate-600 hover:bg-amber-50 hover:text-amber-700 transition-colors group"
                                       role="menuitem"
                                     >
-                                      <span className="flex items-center gap-2">
+                                      <span className="flex items-center gap-2 min-w-0">
                                         <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-amber-400 transition-colors flex-shrink-0" />
-                                        {country.label}
+                                        <NavLabelWithIcon label={country.label} textClassName="truncate" />
                                       </span>
                                       {country.badge && (
                                         <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-semibold whitespace-nowrap ml-1 ${BADGE_COLORS[country.badgeColor ?? "amber"] ?? BADGE_COLORS.amber}`}>
