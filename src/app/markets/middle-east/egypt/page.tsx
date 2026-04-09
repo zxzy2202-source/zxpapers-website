@@ -1,9 +1,20 @@
-"use client";
+import type { Metadata } from "next";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { ArrowRight, CheckCircle, Ship, Clock, Package, MessageSquare, Award, TrendingUp, MapPin, Truck } from "lucide-react";
 import { SITE } from "@/config/siteData";
+
+export const metadata: Metadata = {
+  title: "Thermal Paper Rolls Supplier Egypt | Bulk POS Rolls | ZhixinPaper",
+  description: "Factory-direct thermal paper rolls for Egypt distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001. CIF Alexandria & Port Said. Meeza card compatible. MOQ 1 carton.",
+  alternates: { canonical: `${SITE.domain}/markets/middle-east/egypt` },
+  openGraph: {
+    title: "Thermal Paper Rolls Supplier Egypt | ZhixinPaper",
+    description: "Factory-direct thermal paper rolls for Egypt. Meeza card compatible. CIF Alexandria. BPA-free, ISO 9001.",
+    type: "website",
+  },
+};
 
 const products = [
   { size: "80 × 80 mm", badge: "#1 in Egypt", badgeColor: "bg-amber-100 text-amber-800", href: "/products/thermal-rolls/80x80mm", desc: "Standard POS roll for Egyptian banks, supermarkets, and retail chains. Compatible with all POS brands used in Carrefour Egypt, Spinneys, and major Egyptian banks (CIB, NBE, Banque Misr).", specs: ["Core: 12mm / 13mm", "Length: 60m / 80m", "GSM: 65–80g", "BPA-free"], moq: "1 carton (50 rolls)", use: "Banks, supermarkets, retail POS" },

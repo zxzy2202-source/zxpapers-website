@@ -1,9 +1,20 @@
-"use client";
+import type { Metadata } from "next";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { ArrowRight, CheckCircle, Ship, MessageSquare, Award, TrendingUp, MapPin } from "lucide-react";
 import { SITE } from "@/config/siteData";
+
+export const metadata: Metadata = {
+  title: "Thermal Paper Rolls Supplier Turkey | Bulk POS Rolls | ZhixinPaper",
+  description: "Factory-direct thermal paper rolls for Turkey distributors. 80x80mm, 80x70mm, 57x50mm, BPA-free, ISO 9001. CIF Istanbul. EU-standard sizes available. MOQ 1 carton.",
+  alternates: { canonical: `${SITE.domain}/markets/middle-east/turkey` },
+  openGraph: {
+    title: "Thermal Paper Rolls Supplier Turkey | ZhixinPaper",
+    description: "Factory-direct thermal paper rolls for Turkey. EU-standard sizes. CIF Istanbul. BPA-free, ISO 9001.",
+    type: "website",
+  },
+};
 
 const products = [
   { size: "80 × 80 mm", badge: "#1 in Turkey", badgeColor: "bg-amber-100 text-amber-800", href: "/products/thermal-rolls/80x80mm", desc: "Standard POS roll for Turkish retail chains, banks, and supermarkets. Compatible with Ingenico, Verifone, and Ingenico terminals used by Migros, BIM, A101, and Turkish banks.", specs: ["Core: 12mm / 13mm", "Length: 60m / 80m", "GSM: 65–80g", "BPA-free"], moq: "1 carton (50 rolls)", use: "Retail POS, banking, supermarkets" },

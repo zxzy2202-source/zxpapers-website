@@ -1,4 +1,4 @@
-"use client";
+import type { Metadata } from "next";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import InquiryForm from "@/components/shared/InquiryForm";
@@ -8,6 +8,17 @@ import {
   Banknote, Truck, Factory,
 } from "lucide-react";
 import { SITE, CERTIFICATIONS } from "@/config/siteData";
+
+export const metadata: Metadata = {
+  title: "Thermal Paper Rolls Supplier Saudi Arabia | Bulk POS | ZhixinPaper",
+  description: "Factory-direct thermal paper rolls for Saudi Arabia distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001. CIF Jeddah & Dammam. SABER support. MOQ 1 carton.",
+  alternates: { canonical: `${SITE.domain}/markets/middle-east/saudi-arabia` },
+  openGraph: {
+    title: "Thermal Paper Rolls Supplier Saudi Arabia | ZhixinPaper",
+    description: "Factory-direct thermal paper rolls for KSA. CIF Jeddah & Dammam. SABER support. BPA-free, ISO 9001.",
+    type: "website",
+  },
+};
 
 const products = [
   {

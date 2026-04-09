@@ -29,6 +29,13 @@ export const metadata: Metadata = {
     default: `${SITE.name} | ${SITE.tagline}`,
     template: `%s | ${SITE.name}`,
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   description:
     "ISO 9001 certified manufacturer of thermal paper rolls and labels. OEM/private label, BPA-free, FSC certified. MOQ 1,000 rolls. Serving 80+ countries.",
   keywords: [
@@ -87,25 +94,56 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${SITE.domain}/#organization`,
   name: SITE.name,
   url: SITE.domain,
-  logo: `${SITE.domain}/logo.png`,
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE.domain}/og-default.png`,
+    width: 1200,
+    height: 630,
+  },
+  description: "ISO 9001 certified manufacturer of thermal paper rolls and labels. OEM/private label, BPA-free, FSC certified. Serving 80+ countries since 2009.",
+  foundingDate: "2009",
+  numberOfEmployees: { "@type": "QuantitativeValue", value: 200 },
   contactPoint: [
     {
       "@type": "ContactPoint",
       telephone: SITE.phone,
       contactType: "sales",
       availableLanguage: ["English", "Chinese"],
+      areaServed: "Worldwide",
     },
   ],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Building 15, Phase 1 Zone 2, Ronghao Industrial Park",
+    streetAddress: "Building 15, Phase 1 Zone 2, Ronghao Industrial Park, Gaoling District",
     addressLocality: "Xi'an",
     addressRegion: "Shaanxi",
+    postalCode: "710200",
     addressCountry: "CN",
   },
-  sameAs: [],
+  sameAs: [
+    "https://www.linkedin.com/company/zhixinpaper",
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE.domain}/#website`,
+  url: SITE.domain,
+  name: SITE.name,
+  description: "ISO 9001 certified thermal paper rolls and labels manufacturer. Factory direct, OEM available.",
+  publisher: { "@id": `${SITE.domain}/#organization` },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE.domain}/products?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default function RootLayout({
@@ -119,6 +157,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body>{children}</body>

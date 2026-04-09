@@ -1,4 +1,3 @@
-"use client";
 import type { Metadata } from "next";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
@@ -9,6 +8,17 @@ import {
   Banknote, Truck, Factory, ChevronRight,
 } from "lucide-react";
 import { SITE, CERTIFICATIONS } from "@/config/siteData";
+
+export const metadata: Metadata = {
+  title: "Thermal Paper Rolls Supplier UAE | Bulk POS Rolls | ZhixinPaper",
+  description: "Factory-direct thermal paper rolls for UAE distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001 certified. Fast shipping to Dubai, Abu Dhabi, Sharjah. MOQ 1 carton.",
+  alternates: { canonical: `${SITE.domain}/markets/middle-east/uae` },
+  openGraph: {
+    title: "Thermal Paper Rolls Supplier UAE | ZhixinPaper",
+    description: "Factory-direct thermal paper rolls for UAE. 80x80mm, 57x50mm, BPA-free. Fast shipping to Dubai & Abu Dhabi.",
+    type: "website",
+  },
+};
 
 const products = [
   {

@@ -12,7 +12,7 @@ import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
   title: "Contact Us | Get a Free Quote Within 24h",
-  description: `Contact ${SITE.name} for thermal paper rolls and labels quotes. Response within ${SITE.responseTime}. WhatsApp, phone, email, and OEM partnership inquiries welcome. Factory in Xi'an, China.`,
+  description: `Contact ${SITE.name} for thermal paper rolls and labels quotes. Response within ${SITE.responseTime}. WhatsApp, email, or phone. OEM inquiries welcome. Factory in Xi'an, China.`,
   openGraph: {
     title: `Contact ${SITE.name} | Get a Quote Within 24 Hours`,
     description: `WhatsApp, email, or phone — we respond within ${SITE.responseTime}. Free samples available. OEM inquiries welcome.`,

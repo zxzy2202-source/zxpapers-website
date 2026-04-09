@@ -1,4 +1,3 @@
-"use client";
 import type { Metadata } from "next";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
@@ -9,6 +8,17 @@ import {
   Banknote, Truck, Factory, ChevronRight,
 } from "lucide-react";
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
+
+export const metadata: Metadata = {
+  title: "Thermal Paper Supplier Middle East | UAE, Saudi, Egypt | ZhixinPaper",
+  description: "Factory-direct thermal paper rolls for Middle East distributors. Serving UAE, Saudi Arabia, Egypt, Turkey. BPA-free, ISO 9001. CIF pricing available. MOQ 1 carton.",
+  alternates: { canonical: `${SITE.domain}/markets/middle-east` },
+  openGraph: {
+    title: "Thermal Paper Supplier Middle East | ZhixinPaper",
+    description: "Factory-direct thermal paper rolls for UAE, Saudi Arabia, Egypt & Turkey. BPA-free, ISO 9001. CIF pricing.",
+    type: "website",
+  },
+};
 
 const countries = [
   {
