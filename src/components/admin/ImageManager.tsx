@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 interface ImageItem {
@@ -10,6 +10,16 @@ interface ImageItem {
   alt?: string | null;
   page?: string | null;
   size?: number | null;
+}
+
+interface UploadTask {
+  id: string;
+  file: File;
+  preview: string;
+  status: "pending" | "uploading" | "success" | "error";
+  progress: number;
+  error?: string;
+  result?: ImageItem;
 }
 
 interface Props {
@@ -23,18 +33,26 @@ function formatSize(bytes?: number | null): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-export default function ImageManager({ images }: Props) {
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"];
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
+export default function ImageManager({ images: initialImages }: Props) {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const replaceInputRef = useRef<HTMLInputElement>(null);
+  const dropZoneRef = useRef<HTMLDivElement>(null);
 
+  const [images, setImages] = useState<ImageItem[]>(initialImages);
   const [search, setSearch] = useState("");
   const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
-  const [uploading, setUploading] = useState(false);
-  const [uploadAlt, setUploadAlt] = useState("");
-  const [uploadPage, setUploadPage] = useState("");
   const [replaceTarget, setReplaceTarget] = useState<ImageItem | null>(null);
-  const [error, setError] = useState("");
+  const [globalError, setGlobalError] = useState("");
+
+  // 批量上传队列
+  const [uploadQueue, setUploadQueue] = useState<UploadTask[]>([]);
+  const [isDragging, setIsDragging] = useState(false);
+  const [showUploadPanel, setShowUploadPanel] = useState(false);
+  const uploadingRef = useRef(false);
 
   const filtered = images.filter(
     (img) =>
@@ -43,17 +61,61 @@ export default function ImageManager({ images }: Props) {
       (img.alt || "").toLowerCase().includes(search.toLowerCase())
   );
 
-  async function handleUpload(file: File, isReplace = false) {
-    setUploading(true);
-    setError("");
+  // 将文件添加到上传队列
+  const addFilesToQueue = useCallback((files: File[]) => {
+    const validFiles: UploadTask[] = [];
+    const errors: string[] = [];
 
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("alt", uploadAlt);
-    formData.append("page", uploadPage);
-    if (isReplace && replaceTarget) {
-      formData.append("replaceId", replaceTarget.id);
+    for (const file of files) {
+      if (!ALLOWED_TYPES.includes(file.type)) {
+        errors.push(`${file.name}：不支持的格式（仅支持 JPG/PNG/WebP/GIF/SVG）`);
+        continue;
+      }
+      if (file.size > MAX_FILE_SIZE) {
+        errors.push(`${file.name}：文件超过 10MB 限制`);
+        continue;
+      }
+      validFiles.push({
+        id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+        file,
+        preview: URL.createObjectURL(file),
+        status: "pending",
+        progress: 0,
+      });
     }
+
+    if (errors.length > 0) {
+      setGlobalError(errors.join("；"));
+    }
+
+    if (validFiles.length > 0) {
+      setUploadQueue((prev) => [...prev, ...validFiles]);
+      setShowUploadPanel(true);
+    }
+  }, []);
+
+  // 上传单个文件（带进度模拟）
+  const uploadSingleFile = useCallback(async (task: UploadTask): Promise<ImageItem | null> => {
+    const formData = new FormData();
+    formData.append("file", task.file);
+    formData.append("alt", "");
+    formData.append("page", "");
+
+    // 更新状态为上传中
+    setUploadQueue((prev) =>
+      prev.map((t) => (t.id === task.id ? { ...t, status: "uploading", progress: 10 } : t))
+    );
+
+    // 模拟进度（实际 fetch 不支持上传进度，用 XHR 可以）
+    const progressInterval = setInterval(() => {
+      setUploadQueue((prev) =>
+        prev.map((t) =>
+          t.id === task.id && t.status === "uploading" && t.progress < 85
+            ? { ...t, progress: t.progress + 15 }
+            : t
+        )
+      );
+    }, 300);
 
     try {
       const res = await fetch("/api/admin/images", {
@@ -61,31 +123,156 @@ export default function ImageManager({ images }: Props) {
         body: formData,
       });
 
+      clearInterval(progressInterval);
+
       if (!res.ok) {
         const data = await res.json();
-        setError(data.error || "上传失败");
-        return;
+        setUploadQueue((prev) =>
+          prev.map((t) =>
+            t.id === task.id
+              ? { ...t, status: "error", progress: 0, error: data.error || "上传失败" }
+              : t
+          )
+        );
+        return null;
       }
 
-      setUploadAlt("");
-      setUploadPage("");
-      setReplaceTarget(null);
-      setSelectedImage(null);
-      router.refresh();
+      const data = await res.json();
+      setUploadQueue((prev) =>
+        prev.map((t) =>
+          t.id === task.id
+            ? { ...t, status: "success", progress: 100, result: data.image }
+            : t
+        )
+      );
+      return data.image as ImageItem;
     } catch {
-      setError("网络错误，请重试。");
-    } finally {
-      setUploading(false);
+      clearInterval(progressInterval);
+      setUploadQueue((prev) =>
+        prev.map((t) =>
+          t.id === task.id
+            ? { ...t, status: "error", progress: 0, error: "网络错误，请重试" }
+            : t
+        )
+      );
+      return null;
+    }
+  }, []);
+
+  // 自动处理队列中的 pending 任务（并发数 = 2）
+  useEffect(() => {
+    const pendingTasks = uploadQueue.filter((t) => t.status === "pending");
+    const uploadingCount = uploadQueue.filter((t) => t.status === "uploading").length;
+
+    if (pendingTasks.length === 0 || uploadingCount >= 2) return;
+
+    const toStart = pendingTasks.slice(0, 2 - uploadingCount);
+    toStart.forEach((task) => {
+      uploadSingleFile(task).then((result) => {
+        if (result) {
+          setImages((prev) => [result, ...prev]);
+        }
+      });
+    });
+  }, [uploadQueue, uploadSingleFile]);
+
+  // 拖拽事件处理
+  const handleDragEnter = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  }, []);
+
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (dropZoneRef.current && !dropZoneRef.current.contains(e.relatedTarget as Node)) {
+      setIsDragging(false);
+    }
+  }, []);
+
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  }, []);
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragging(false);
+      setGlobalError("");
+
+      const files = Array.from(e.dataTransfer.files).filter((f) =>
+        f.type.startsWith("image/")
+      );
+      if (files.length > 0) {
+        addFilesToQueue(files);
+      }
+    },
+    [addFilesToQueue]
+  );
+
+  // 替换图片（单文件）
+  async function handleReplace(file: File) {
+    if (!replaceTarget) return;
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("replaceId", replaceTarget.id);
+
+    try {
+      const res = await fetch("/api/admin/images", {
+        method: "POST",
+        body: formData,
+      });
+      if (res.ok) {
+        setReplaceTarget(null);
+        setSelectedImage(null);
+        router.refresh();
+      } else {
+        const data = await res.json();
+        setGlobalError(data.error || "替换失败");
+      }
+    } catch {
+      setGlobalError("网络错误，请重试");
     }
   }
+
+  // 清除已完成/失败的任务
+  const clearFinished = () => {
+    setUploadQueue((prev) => prev.filter((t) => t.status === "pending" || t.status === "uploading"));
+  };
+
+  // 重试失败的任务
+  const retryTask = (taskId: string) => {
+    setUploadQueue((prev) =>
+      prev.map((t) => (t.id === taskId ? { ...t, status: "pending", progress: 0, error: undefined } : t))
+    );
+  };
+
+  const successCount = uploadQueue.filter((t) => t.status === "success").length;
+  const errorCount = uploadQueue.filter((t) => t.status === "error").length;
+  const pendingOrUploadingCount = uploadQueue.filter(
+    (t) => t.status === "pending" || t.status === "uploading"
+  ).length;
 
   return (
     <div className="space-y-4">
       {/* Top Bar */}
       <div className="flex items-center gap-3">
         <div className="flex-1 relative">
-          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          <svg
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
           </svg>
           <input
             type="text"
@@ -96,45 +283,259 @@ export default function ImageManager({ images }: Props) {
           />
         </div>
         <button
-          onClick={() => fileInputRef.current?.click()}
+          onClick={() => {
+            setGlobalError("");
+            fileInputRef.current?.click();
+          }}
           className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+            />
           </svg>
-          上传图片
+          批量上传
         </button>
         <input
           ref={fileInputRef}
           type="file"
           accept="image/*"
+          multiple
           className="hidden"
           onChange={(e) => {
-            const file = e.target.files?.[0];
-            if (file) handleUpload(file);
+            const files = Array.from(e.target.files || []);
+            if (files.length > 0) addFilesToQueue(files);
             e.target.value = "";
           }}
         />
       </div>
 
-      {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-red-700 text-sm">
-          {error}
-        </div>
-      )}
-
-      {uploading && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg px-4 py-3 text-blue-700 text-sm flex items-center gap-2">
-          <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+      {/* 全局错误提示 */}
+      {globalError && (
+        <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-red-700 text-sm flex items-start gap-2">
+          <svg className="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          上传中...
+          <span>{globalError}</span>
+          <button onClick={() => setGlobalError("")} className="ml-auto text-red-400 hover:text-red-600">✕</button>
         </div>
       )}
 
+      {/* 拖拽上传区域 */}
+      <div
+        ref={dropZoneRef}
+        onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+        onClick={() => fileInputRef.current?.click()}
+        className={`relative border-2 border-dashed rounded-xl py-8 px-6 text-center cursor-pointer transition-all select-none ${
+          isDragging
+            ? "border-blue-500 bg-blue-50 scale-[1.01]"
+            : "border-gray-200 bg-gray-50 hover:border-blue-400 hover:bg-blue-50/50"
+        }`}
+      >
+        <div className="flex flex-col items-center gap-2 pointer-events-none">
+          <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors ${isDragging ? "bg-blue-100" : "bg-white border border-gray-200"}`}>
+            <svg className={`w-6 h-6 ${isDragging ? "text-blue-500" : "text-gray-400"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+          </div>
+          {isDragging ? (
+            <p className="text-blue-600 font-medium text-sm">松开鼠标即可上传</p>
+          ) : (
+            <>
+              <p className="text-gray-600 text-sm font-medium">拖拽图片到此处，或点击选择文件</p>
+              <p className="text-gray-400 text-xs">支持 JPG、PNG、WebP、GIF、SVG，单文件最大 10MB，可同时选择多张</p>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* 上传队列面板 */}
+      {uploadQueue.length > 0 && (
+        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          {/* 面板头部 */}
+          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-gray-50">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setShowUploadPanel(!showUploadPanel)}
+                className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+              >
+                <svg
+                  className={`w-4 h-4 transition-transform ${showUploadPanel ? "" : "-rotate-90"}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+                上传队列
+              </button>
+              <div className="flex items-center gap-2 text-xs">
+                {pendingOrUploadingCount > 0 && (
+                  <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">
+                    {pendingOrUploadingCount} 待上传
+                  </span>
+                )}
+                {successCount > 0 && (
+                  <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
+                    {successCount} 成功
+                  </span>
+                )}
+                {errorCount > 0 && (
+                  <span className="bg-red-100 text-red-700 px-2 py-0.5 rounded-full">
+                    {errorCount} 失败
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              {(successCount > 0 || errorCount > 0) && pendingOrUploadingCount === 0 && (
+                <button
+                  onClick={clearFinished}
+                  className="text-xs text-gray-500 hover:text-gray-700 px-2 py-1 rounded hover:bg-gray-100 transition-colors"
+                >
+                  清除已完成
+                </button>
+              )}
+              {errorCount > 0 && (
+                <button
+                  onClick={() => {
+                    uploadQueue
+                      .filter((t) => t.status === "error")
+                      .forEach((t) => retryTask(t.id));
+                  }}
+                  className="text-xs text-blue-600 hover:text-blue-700 px-2 py-1 rounded hover:bg-blue-50 transition-colors"
+                >
+                  全部重试
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* 队列列表 */}
+          {showUploadPanel && (
+            <div className="divide-y divide-gray-50 max-h-72 overflow-y-auto">
+              {uploadQueue.map((task) => (
+                <div key={task.id} className="flex items-center gap-3 px-4 py-3">
+                  {/* 预览图 */}
+                  <div className="w-10 h-10 rounded-lg overflow-hidden bg-gray-100 shrink-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={task.preview}
+                      alt={task.file.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* 文件信息 + 进度 */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <p className="text-sm text-gray-700 truncate max-w-[200px]">{task.file.name}</p>
+                      <span className="text-xs text-gray-400 shrink-0">{formatSize(task.file.size)}</span>
+                    </div>
+
+                    {task.status === "pending" && (
+                      <p className="text-xs text-gray-400">等待上传...</p>
+                    )}
+
+                    {task.status === "uploading" && (
+                      <div className="space-y-1">
+                        <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                          <div
+                            className="bg-blue-500 h-1.5 rounded-full transition-all duration-300"
+                            style={{ width: `${task.progress}%` }}
+                          />
+                        </div>
+                        <p className="text-xs text-blue-600">上传中 {task.progress}%</p>
+                      </div>
+                    )}
+
+                    {task.status === "success" && (
+                      <p className="text-xs text-green-600 flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        上传成功
+                      </p>
+                    )}
+
+                    {task.status === "error" && (
+                      <p className="text-xs text-red-600 flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                        {task.error || "上传失败"}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* 操作按钮 */}
+                  <div className="shrink-0">
+                    {task.status === "uploading" && (
+                      <svg className="animate-spin w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                    )}
+                    {task.status === "success" && (
+                      <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                    {task.status === "error" && (
+                      <button
+                        onClick={() => retryTask(task.id)}
+                        className="text-xs text-blue-600 hover:text-blue-700 px-2 py-1 rounded hover:bg-blue-50 transition-colors border border-blue-200"
+                      >
+                        重试
+                      </button>
+                    )}
+                    {task.status === "pending" && (
+                      <button
+                        onClick={() =>
+                          setUploadQueue((prev) => prev.filter((t) => t.id !== task.id))
+                        }
+                        className="text-gray-400 hover:text-gray-600 p-1 rounded hover:bg-gray-100 transition-colors"
+                        title="从队列移除"
+                      >
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* 总体进度条（有任务进行时显示） */}
+          {pendingOrUploadingCount > 0 && (
+            <div className="px-4 py-2 bg-blue-50 border-t border-blue-100">
+              <div className="flex items-center justify-between text-xs text-blue-600 mb-1">
+                <span>正在上传 {uploadQueue.length - pendingOrUploadingCount} / {uploadQueue.length}</span>
+                <span>{Math.round(((uploadQueue.length - pendingOrUploadingCount) / uploadQueue.length) * 100)}%</span>
+              </div>
+              <div className="w-full bg-blue-100 rounded-full h-1.5 overflow-hidden">
+                <div
+                  className="bg-blue-500 h-1.5 rounded-full transition-all duration-500"
+                  style={{
+                    width: `${((uploadQueue.length - pendingOrUploadingCount) / uploadQueue.length) * 100}%`,
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* 图片网格 + 详情面板 */}
       <div className="flex gap-4">
-        {/* Image Grid */}
         <div className="flex-1">
           {filtered.length === 0 ? (
             <div className="bg-white rounded-xl border border-gray-200 py-16 text-center text-gray-400">
@@ -177,7 +578,7 @@ export default function ImageManager({ images }: Props) {
           )}
         </div>
 
-        {/* Detail Panel */}
+        {/* 详情面板 */}
         {selectedImage && (
           <div className="w-64 shrink-0 bg-white rounded-xl border border-gray-200 p-4 space-y-4 self-start sticky top-4">
             <div className="aspect-video bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center">
@@ -211,6 +612,14 @@ export default function ImageManager({ images }: Props) {
             </div>
 
             <div className="flex flex-col gap-2 pt-1">
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(selectedImage.path);
+                }}
+                className="w-full text-center text-sm text-gray-600 border border-gray-200 rounded-lg py-1.5 hover:bg-gray-50 transition-colors"
+              >
+                复制路径 📋
+              </button>
               <a
                 href={selectedImage.path}
                 target="_blank"
@@ -233,7 +642,7 @@ export default function ImageManager({ images }: Props) {
         )}
       </div>
 
-      {/* Hidden replace input */}
+      {/* 隐藏的替换文件输入 */}
       <input
         ref={replaceInputRef}
         type="file"
@@ -241,7 +650,7 @@ export default function ImageManager({ images }: Props) {
         className="hidden"
         onChange={(e) => {
           const file = e.target.files?.[0];
-          if (file && replaceTarget) handleUpload(file, true);
+          if (file && replaceTarget) handleReplace(file);
           e.target.value = "";
         }}
       />
