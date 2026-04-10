@@ -65,9 +65,13 @@ export async function ensureDbSchema() {
     globalForPrisma.dbInitialized = true;
   } catch (error) {
     const msg = String(error);
-    if (!msg.includes("already exists") && !msg.includes("duplicate")) {
-      console.error("[ensureDbSchema] Error:", error);
+    // 忽略「列/索引已存在」类错误（幂等操作的正常情况）
+    if (msg.includes("already exists") || msg.includes("duplicate")) {
+      // 这类错误说明表结构已存在，视为初始化成功
+      globalForPrisma.dbInitialized = true;
+    } else {
+      // 真正的错误：不标记为已初始化，下次请求会重试
+      console.error("[ensureDbSchema] Fatal error, will retry on next request:", error);
     }
-    globalForPrisma.dbInitialized = true;
   }
 }

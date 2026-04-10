@@ -1,5 +1,6 @@
 import { del } from "@vercel/blob";
 import { prisma, ensureDbSchema } from "@/lib/prisma";
+import { type Prisma } from "@prisma/client";
 import {
   buildImageSlotSeedData,
   getLegacySlotKey,
@@ -46,7 +47,11 @@ export interface ImageSlotStats {
   coveredPages: number;
 }
 
-function mapSlotRecord(record: any): ImageSlotListItem {
+type SlotRecordWithImage = Prisma.ImageSlotRecordGetPayload<{
+  include: { imageAsset: true };
+}>;
+
+function mapSlotRecord(record: SlotRecordWithImage): ImageSlotListItem {
   return {
     id: record.id,
     slotKey: record.slotKey,
@@ -287,4 +292,62 @@ export async function resolveManagedSlotPath(slot: string) {
   });
 
   return legacyImage?.path || "";
+}
+
+/**
+ * 批量获取多个 slot 的图片路径（优化版）
+ * 将 N 次数据库查询合并为 2 次，显著降低首页等多槽位页面的数据库压力
+ */
+export async function resolveMultipleSlotPaths(
+  slots: string[]
+): Promise<Record<string, string>> {
+  const normalizedSlots = slots.map(normalizeSlotKey);
+
+  // 一次性批量查询所有槽位记录
+  const slotRecords = await prisma.imageSlotRecord.findMany({
+    where: { slotKey: { in: normalizedSlots } },
+    include: { imageAsset: { select: { path: true } } },
+  });
+
+  const result: Record<string, string> = {};
+  const missingSlots: string[] = [];
+
+  // 建立 slotKey -> path 映射
+  const slotMap = new Map(
+    slotRecords.map((r) => [r.slotKey, r.imageAsset?.path || ""])
+  );
+
+  for (const normalized of normalizedSlots) {
+    const path = slotMap.get(normalized);
+    if (path) {
+      result[normalized] = path;
+    } else {
+      missingSlots.push(normalized);
+    }
+  }
+
+  // 对未命中的槽位，批量查询旧版 legacy key
+  if (missingSlots.length > 0) {
+    const legacyKeys = missingSlots.map(getLegacySlotKey);
+    const legacyImages = await prisma.imageAsset.findMany({
+      where: { page: { in: legacyKeys } },
+      orderBy: { updatedAt: "desc" },
+      select: { path: true, page: true },
+    });
+
+    // 取每个 legacy key 的最新图片
+    const legacyMap = new Map<string, string>();
+    for (const img of legacyImages) {
+      if (img.page && !legacyMap.has(img.page)) {
+        legacyMap.set(img.page, img.path);
+      }
+    }
+
+    for (const normalized of missingSlots) {
+      const legacyKey = getLegacySlotKey(normalized);
+      result[normalized] = legacyMap.get(legacyKey) || "";
+    }
+  }
+
+  return result;
 }
