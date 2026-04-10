@@ -267,6 +267,7 @@ export default async function HomePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 bg-[#25D366] hover:bg-[#20b858] text-white rounded-xl flex items-center justify-center transition-colors flex-shrink-0"
+                    aria-label={`WhatsApp inquiry for ${size} thermal paper rolls`}
                     title="WhatsApp"
                   >
                     <Phone className="w-4 h-4" />
@@ -353,6 +354,7 @@ export default async function HomePage() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-6 h-6 bg-[#25D366] hover:bg-[#20b858] text-white rounded-md flex items-center justify-center transition-colors"
+                            aria-label={`WhatsApp inquiry for ${sz.label}`}
                             title="WhatsApp"
                           >
                             <Phone className="w-3 h-3" />

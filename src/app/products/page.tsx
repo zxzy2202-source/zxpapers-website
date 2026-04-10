@@ -177,7 +177,7 @@ export default async function ProductsPage() {
               <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 mb-8`}>
                 {cat.variants.map((p) => (
                   <Link key={p.href} href={p.href} className={`group flex gap-4 p-6 bg-white border border-slate-200 ${cat.accentColor} rounded-2xl hover:shadow-lg transition-all duration-300`}>
-                    <img src={cat.image} alt={p.title} className="w-24 h-24 object-cover rounded-xl flex-shrink-0" />
+                    <img src={cat.image} alt={p.title} className="w-24 h-24 object-cover rounded-xl flex-shrink-0" width={96} height={96} loading="lazy" />
                     <div className="flex-1">
                       <h3 className={`font-bold text-slate-900 mb-1 ${cat.hoverText} transition-colors`} style={{ fontFamily: "Sora, sans-serif" }}>{p.title}</h3>
                       <p className="text-sm text-slate-600 leading-relaxed mb-3">{p.desc}</p>

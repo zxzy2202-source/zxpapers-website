@@ -11,8 +11,8 @@ import {
 import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
-  title: "About ZhixinPaper | Thermal Paper Manufacturer Since 2009",
-  description: "ZhixinPaper: ISO 9001 & FSC certified thermal paper manufacturer in Xi'an, China. 10,000sqm factory, 20 production lines, serving 50+ countries. OEM welcome.",
+  title: "About ZhixinPaper | Thermal Paper Manufacturer",
+  description: "ISO 9001 & FSC certified thermal paper manufacturer in Xi'an, China. 10,000sqm factory, 20 production lines, 50+ countries.",
   openGraph: {
     title: `About Us | Thermal Paper Manufacturer Since ${SITE.founded}`,
     description: "ZhixinPaper: Founded 2009 in Xi'an, China. 10,000sqm facility, 20 production lines, 50+ countries served.",

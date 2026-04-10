@@ -109,7 +109,7 @@ export default function Footer() {
 
           {/* Products & OEM */}
           <div>
-            <h4 className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2">Products</h4>
+            <div className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2" role="heading" aria-level={3}>Products</div>
             <ul className="space-y-2 text-sm mb-6">
               {[
                 { label: "All Products", href: "/products" },
@@ -130,7 +130,7 @@ export default function Footer() {
               ))}
             </ul>
 
-            <h4 className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2">OEM Services</h4>
+            <div className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2" role="heading" aria-level={3}>OEM Services</div>
             <ul className="space-y-2 text-sm">
               {[
                 { label: "OEM Overview", href: "/oem" },
@@ -153,7 +153,7 @@ export default function Footer() {
 
           {/* Popular Sizes */}
           <div>
-            <h4 className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2">Popular Sizes</h4>
+            <div className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2" role="heading" aria-level={3}>Popular Sizes</div>
             <div className="mb-5">
               <p className="text-[10px] text-amber-500/70 uppercase tracking-widest mb-2.5 font-medium">Thermal Paper Rolls</p>
               <ul className="space-y-2 text-sm">
@@ -192,7 +192,7 @@ export default function Footer() {
 
           {/* Markets */}
           <div>
-            <h4 className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2">Markets</h4>
+            <div className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2" role="heading" aria-level={3}>Markets</div>
             <ul className="space-y-2 text-sm mb-6">
               {[
                 { label: "🌍 Africa Overview", href: "/markets/africa" },
@@ -212,7 +212,7 @@ export default function Footer() {
               ))}
             </ul>
 
-            <h4 className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2">Company</h4>
+            <div className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2" role="heading" aria-level={3}>Company</div>
             <ul className="space-y-2 text-sm">
               {[
                 { label: "About Us", href: "/about" },
@@ -233,7 +233,7 @@ export default function Footer() {
 
           {/* Support */}
           <div>
-            <h4 className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2">Support</h4>
+            <div className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2" role="heading" aria-level={3}>Support</div>
             <ul className="space-y-2 text-sm mb-6">
               {[
                 { label: "Contact Us", href: "/contact" },

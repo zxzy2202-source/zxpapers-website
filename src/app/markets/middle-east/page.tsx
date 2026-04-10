@@ -10,13 +10,22 @@ import {
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Supplier Middle East | UAE, Saudi, Egypt | ZhixinPaper",
-  description: "Factory-direct thermal paper rolls for Middle East distributors. Serving UAE, Saudi Arabia, Egypt, Turkey. BPA-free, ISO 9001. CIF pricing available. MOQ 1 carton.",
+  title: "Thermal Paper Supplier Middle East | ZhixinPaper",
+  description: "Factory-direct thermal paper rolls for Middle East. Serving UAE, Saudi Arabia, Egypt, Turkey. BPA-free, ISO 9001. CIF pricing.",
   alternates: { canonical: `${SITE.domain}/markets/middle-east` },
   openGraph: {
     title: "Thermal Paper Supplier Middle East | ZhixinPaper",
     description: "Factory-direct thermal paper rolls for UAE, Saudi Arabia, Egypt & Turkey. BPA-free, ISO 9001. CIF pricing.",
     type: "website",
+    images: [
+      {
+        url: "https://www.zxpapers.com/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "ZhixinPaper | Thermal Paper Supplier Middle East",
+        type: "image/png",
+      },
+    ],
   },
 };
 
