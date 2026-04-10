@@ -43,6 +43,21 @@ export async function ensureDbSchema() {
     await prisma.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS "Article" ("id" TEXT NOT NULL PRIMARY KEY, "title" TEXT NOT NULL, "slug" TEXT NOT NULL, "excerpt" TEXT, "content" TEXT NOT NULL, "category" TEXT NOT NULL DEFAULT 'INDUSTRY_INSIGHTS', "status" TEXT NOT NULL DEFAULT 'DRAFT', "coverImage" TEXT, "tags" TEXT DEFAULT '', "metaTitle" TEXT, "metaDesc" TEXT, "keywords" TEXT, "publishedAt" DATETIME, "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, "updatedAt" DATETIME NOT NULL)`);
     await prisma.$executeRawUnsafe(`CREATE UNIQUE INDEX IF NOT EXISTS "Article_slug_key" ON "Article"("slug")`);
     await prisma.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS "ImageAsset" ("id" TEXT NOT NULL PRIMARY KEY, "filename" TEXT NOT NULL, "originalName" TEXT, "path" TEXT NOT NULL, "alt" TEXT, "page" TEXT, "label" TEXT, "tags" TEXT, "mimeType" TEXT, "storageType" TEXT NOT NULL DEFAULT 'local', "source" TEXT NOT NULL DEFAULT 'admin', "width" INTEGER, "height" INTEGER, "size" INTEGER, "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, "updatedAt" DATETIME NOT NULL)`);
+    // 为旧版ImageAsset表添加可能缺失的列（幂等，忽略already exists错误）
+    const alterColumns = [
+      `ALTER TABLE "ImageAsset" ADD COLUMN "originalName" TEXT`,
+      `ALTER TABLE "ImageAsset" ADD COLUMN "label" TEXT`,
+      `ALTER TABLE "ImageAsset" ADD COLUMN "tags" TEXT`,
+      `ALTER TABLE "ImageAsset" ADD COLUMN "mimeType" TEXT`,
+      `ALTER TABLE "ImageAsset" ADD COLUMN "storageType" TEXT NOT NULL DEFAULT 'local'`,
+      `ALTER TABLE "ImageAsset" ADD COLUMN "source" TEXT NOT NULL DEFAULT 'admin'`,
+      `ALTER TABLE "ImageAsset" ADD COLUMN "width" INTEGER`,
+      `ALTER TABLE "ImageAsset" ADD COLUMN "height" INTEGER`,
+      `ALTER TABLE "ImageAsset" ADD COLUMN "size" INTEGER`,
+    ];
+    for (const sql of alterColumns) {
+      try { await prisma.$executeRawUnsafe(sql); } catch { /* column already exists, ignore */ }
+    }
     await prisma.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS "ImageSlotRecord" ("id" TEXT NOT NULL PRIMARY KEY, "slotKey" TEXT NOT NULL, "pageKey" TEXT NOT NULL, "pageName" TEXT NOT NULL, "pagePath" TEXT NOT NULL, "sectionKey" TEXT NOT NULL, "sectionName" TEXT NOT NULL, "slotName" TEXT NOT NULL, "label" TEXT NOT NULL, "description" TEXT, "aspectRatio" TEXT NOT NULL DEFAULT '16:9', "sortOrder" INTEGER NOT NULL DEFAULT 0, "isActive" INTEGER NOT NULL DEFAULT 1, "imageAssetId" TEXT, "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, "updatedAt" DATETIME NOT NULL, FOREIGN KEY ("imageAssetId") REFERENCES "ImageAsset" ("id") ON DELETE SET NULL ON UPDATE CASCADE)`);
     await prisma.$executeRawUnsafe(`CREATE UNIQUE INDEX IF NOT EXISTS "ImageSlotRecord_slotKey_key" ON "ImageSlotRecord"("slotKey")`);
     await prisma.$executeRawUnsafe(`CREATE INDEX IF NOT EXISTS "ImageSlotRecord_pageKey_sortOrder_idx" ON "ImageSlotRecord"("pageKey", "sortOrder")`);
