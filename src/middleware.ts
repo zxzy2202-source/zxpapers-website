@@ -8,10 +8,12 @@ export async function middleware(req: NextRequest) {
   const isApiAuth = req.nextUrl.pathname.startsWith("/api/auth");
   const isApiAdmin = req.nextUrl.pathname.startsWith("/api/admin");
   const isApiSeed = req.nextUrl.pathname === "/api/admin/seed" || req.nextUrl.pathname === "/api/admin/seed/";
+  const isApiMigrate = req.nextUrl.pathname === "/api/admin/migrate-image-paths" || req.nextUrl.pathname === "/api/admin/migrate-image-paths/";
 
-  // 放行认证 API 和 seed 初始化 API
+  // 放行认证 API、seed 初始化 API 和临时迁移 API（迁移完成后删除）
   if (isApiAuth) return NextResponse.next();
   if (isApiSeed) return NextResponse.next();
+  if (isApiMigrate) return NextResponse.next();
 
   // 验证 JWT token（轻量级，不依赖 Prisma）
   // NextAuth v5 使用 JWE 加密，salt 默认为 cookieName
