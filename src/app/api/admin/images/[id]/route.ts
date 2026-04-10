@@ -73,7 +73,8 @@ export async function DELETE(
       return NextResponse.json({ error: "图片不存在" }, { status: 404 });
     }
 
-    if (deleted.path?.startsWith("/uploads/")) {
+    // 兼容新版路径 /uploads/images/ 和旧版路径 /images/uploads/
+    if (deleted.path?.startsWith("/uploads/") || deleted.path?.startsWith("/images/uploads/")) {
       const filePath = path.join(process.cwd(), "public", deleted.path.replace(/^\//, ""));
       await fs.unlink(filePath).catch(() => null);
     }

@@ -52,9 +52,9 @@ async function processSingleFile(
   const timestamp = Date.now();
   const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, "_");
   const filename = `${timestamp}-${safeName}`;
-  const uploadDir = path.join(process.cwd(), "public", "images", "uploads");
+  const uploadDir = path.join(process.cwd(), "public", "uploads", "images");
   const filePath = path.join(uploadDir, filename);
-  const publicPath = `/images/uploads/${filename}`;
+  const publicPath = `/uploads/images/${filename}`;
 
   // 确保目录存在
   await mkdir(uploadDir, { recursive: true });
