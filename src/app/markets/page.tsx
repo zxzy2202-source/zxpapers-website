@@ -3,6 +3,8 @@ import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import { SITE } from "@/config/siteData";
 
+import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Global Markets | Thermal Paper Supplier",
   description: "ZhixinPaper supplies thermal paper rolls to 80+ countries. Dedicated market pages for Africa (Nigeria, Kenya, South Africa, Ghana), Southeast Asia.",
@@ -37,12 +39,12 @@ const regions = [
       { label: "Countries", value: "6+" },
     ],
     countries: [
-      { flag: "🇳🇬", name: "Nigeria",      href: "/markets/africa/nigeria",      badge: "15M+ POS" },
-      { flag: "🇰🇪", name: "Kenya",        href: "/markets/africa/kenya",        badge: "M-Pesa Hub" },
-      { flag: "🇿🇦", name: "South Africa", href: "/markets/africa/south-africa", badge: "Premium Market" },
-      { flag: "🇬🇭", name: "Ghana",        href: "/markets/africa/ghana",        badge: "West Africa" },
-      { flag: "🇪🇹", name: "Ethiopia",     href: "/markets/africa/ethiopia",     badge: "Fast Growing" },
-      { flag: "🇹🇿", name: "Tanzania",     href: "/markets/africa/tanzania",     badge: "Re-export Hub" },
+      { code: "NG" as CountryCode, name: "Nigeria",      href: "/markets/africa/nigeria",      badge: "15M+ POS" },
+      { code: "KE" as CountryCode, name: "Kenya",        href: "/markets/africa/kenya",        badge: "M-Pesa Hub" },
+      { code: "ZA" as CountryCode, name: "South Africa", href: "/markets/africa/south-africa", badge: "Premium Market" },
+      { code: "GH" as CountryCode, name: "Ghana",        href: "/markets/africa/ghana",        badge: "West Africa" },
+      { code: "ET" as CountryCode, name: "Ethiopia",     href: "/markets/africa/ethiopia",     badge: "Fast Growing" },
+      { code: "TZ" as CountryCode, name: "Tanzania",     href: "/markets/africa/tanzania",     badge: "Re-export Hub" },
     ],
     color: "from-amber-500 to-orange-600",
     bgColor: "bg-amber-50",
@@ -60,12 +62,12 @@ const regions = [
       { label: "Countries", value: "6+" },
     ],
     countries: [
-      { flag: "🇹🇭", name: "Thailand",     href: "/markets/southeast-asia/thailand",     badge: "Key Market" },
-      { flag: "🇮🇩", name: "Indonesia",    href: "/markets/southeast-asia/indonesia",    badge: "8M+ POS" },
-      { flag: "🇻🇳", name: "Vietnam",      href: "/markets/southeast-asia/vietnam",      badge: "Fast Growing" },
-      { flag: "🇵🇭", name: "Philippines",  href: "/markets/southeast-asia/philippines",  badge: "GCash Hub" },
-      { flag: "🇲🇾", name: "Malaysia",     href: "/markets/southeast-asia/malaysia",     badge: "ASEAN Hub" },
-      { flag: "🇸🇬", name: "Singapore",    href: "/markets/southeast-asia/singapore",    badge: "Re-export Hub" },
+      { code: "TH" as CountryCode, name: "Thailand",     href: "/markets/southeast-asia/thailand",     badge: "Key Market" },
+      { code: "ID" as CountryCode, name: "Indonesia",    href: "/markets/southeast-asia/indonesia",    badge: "8M+ POS" },
+      { code: "VN" as CountryCode, name: "Vietnam",      href: "/markets/southeast-asia/vietnam",      badge: "Fast Growing" },
+      { code: "PH" as CountryCode, name: "Philippines",  href: "/markets/southeast-asia/philippines",  badge: "GCash Hub" },
+      { code: "MY" as CountryCode, name: "Malaysia",     href: "/markets/southeast-asia/malaysia",     badge: "ASEAN Hub" },
+      { code: "SG" as CountryCode, name: "Singapore",    href: "/markets/southeast-asia/singapore",    badge: "Re-export Hub" },
     ],
     color: "from-blue-500 to-indigo-600",
     bgColor: "bg-blue-50",
@@ -83,10 +85,10 @@ const regions = [
       { label: "Countries", value: "10+" },
     ],
     countries: [
-      { flag: "🇦🇪", name: "UAE",          href: "/markets/middle-east-africa", badge: "Premium" },
-      { flag: "🇸🇦", name: "Saudi Arabia", href: "/markets/middle-east-africa", badge: "High Volume" },
-      { flag: "🇪🇬", name: "Egypt",        href: "/markets/middle-east-africa", badge: "North Africa" },
-      { flag: "🇹🇷", name: "Turkey",       href: "/markets/middle-east-africa", badge: "Bridge Market" },
+      { code: "AE" as CountryCode, name: "UAE",          href: "/markets/middle-east-africa", badge: "Premium" },
+      { code: "SA" as CountryCode, name: "Saudi Arabia", href: "/markets/middle-east-africa", badge: "High Volume" },
+      { code: "EG" as CountryCode, name: "Egypt",        href: "/markets/middle-east-africa", badge: "North Africa" },
+      { code: "TR" as CountryCode, name: "Turkey",       href: "/markets/middle-east-africa", badge: "Bridge Market" },
     ],
     color: "from-purple-500 to-violet-600",
     bgColor: "bg-purple-50",
@@ -179,7 +181,7 @@ export default function MarketsPage() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
                   {region.countries.map((c) => (
                     <Link key={c.name} href={c.href} className="bg-white rounded-xl p-3 text-center hover:shadow-md transition-shadow border border-gray-100 hover:border-blue-300 group">
-                      <div className="text-2xl mb-1">{c.flag}</div>
+                      <div className="mb-1"><CountryFlag code={c.code} label={c.name} className="w-8 h-auto mx-auto" /></div>
                       <div className="text-sm font-bold text-[#0F2B5B] group-hover:text-blue-600">{c.name}</div>
                       <div className="text-xs text-gray-400 mt-0.5">{c.badge}</div>
                     </Link>

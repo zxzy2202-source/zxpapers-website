@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 
+import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Supplier Middle East | ZhixinPaper",
   description: "Factory-direct thermal paper rolls for Middle East. Serving UAE, Saudi Arabia, Egypt, Turkey. BPA-free, ISO 9001. CIF pricing.",
@@ -31,37 +33,37 @@ export const metadata: Metadata = {
 
 const countries = [
   {
-    flag: "🇦🇪", name: "UAE", href: "/markets/middle-east/uae",
+    code: "AE" as CountryCode, name: "UAE", href: "/markets/middle-east/uae",
     badge: "Premium Market", badgeColor: "bg-amber-100 text-amber-800",
     port: "Jebel Ali (JAFZA)", days: "18–22",
     terminals: "3M+", highlight: "Re-export hub for GCC & Africa",
   },
   {
-    flag: "🇸🇦", name: "Saudi Arabia", href: "/markets/middle-east/saudi-arabia",
+    code: "SA" as CountryCode, name: "Saudi Arabia", href: "/markets/middle-east/saudi-arabia",
     badge: "Largest Market", badgeColor: "bg-blue-100 text-blue-800",
     port: "Jeddah Islamic Port", days: "20–25",
     terminals: "5M+", highlight: "Vision 2030 retail expansion",
   },
   {
-    flag: "🇪🇬", name: "Egypt", href: "/markets/middle-east/egypt",
+    code: "EG" as CountryCode, name: "Egypt", href: "/markets/middle-east/egypt",
     badge: "High Volume", badgeColor: "bg-green-100 text-green-800",
     port: "Alexandria / Port Said", days: "15–20",
     terminals: "4M+", highlight: "Largest Arab population market",
   },
   {
-    flag: "🇹🇷", name: "Turkey", href: "/markets/middle-east/turkey",
+    code: "TR" as CountryCode, name: "Turkey", href: "/markets/middle-east/turkey",
     badge: "Bridge Market", badgeColor: "bg-purple-100 text-purple-800",
     port: "Istanbul / Mersin", days: "18–22",
     terminals: "3.5M+", highlight: "EU-standard quality demand",
   },
   {
-    flag: "🇶🇦", name: "Qatar", href: "/markets/middle-east",
+    code: "QA" as CountryCode, name: "Qatar", href: "/markets/middle-east",
     badge: "High Value", badgeColor: "bg-amber-100 text-amber-800",
     port: "Hamad Port", days: "20–24",
     terminals: "500K+", highlight: "Premium hospitality sector",
   },
   {
-    flag: "🇰🇼", name: "Kuwait", href: "/markets/middle-east",
+    code: "KW" as CountryCode, name: "Kuwait", href: "/markets/middle-east",
     badge: "Stable Demand", badgeColor: "bg-blue-100 text-blue-800",
     port: "Shuwaikh Port", days: "20–24",
     terminals: "600K+", highlight: "Banking & retail POS",
@@ -295,14 +297,14 @@ export default function MiddleEastPage() {
                 </div>
                 <div className="space-y-3">
                   {[
-                    { flag: "🇦🇪", name: "UAE", badge: "Re-export Hub", badgeColor: "bg-amber-500/30 text-amber-200", terminals: "3M+", days: "18–22d", port: "Jebel Ali", href: "/markets/middle-east/uae" },
-                    { flag: "🇸🇦", name: "Saudi Arabia", badge: "Largest Market", badgeColor: "bg-blue-500/30 text-blue-200", terminals: "5M+", days: "20–25d", port: "Jeddah", href: "/markets/middle-east/saudi-arabia" },
-                    { flag: "🇪🇬", name: "Egypt", badge: "Fastest Route", badgeColor: "bg-green-500/30 text-green-200", terminals: "4M+", days: "15–20d", port: "Alexandria", href: "/markets/middle-east/egypt" },
-                    { flag: "🇹🇷", name: "Turkey", badge: "EU Standard", badgeColor: "bg-purple-500/30 text-purple-200", terminals: "3.5M+", days: "18–22d", port: "Istanbul", href: "/markets/middle-east/turkey" },
+                    { code: "AE" as CountryCode, name: "UAE", badge: "Re-export Hub", badgeColor: "bg-amber-500/30 text-amber-200", terminals: "3M+", days: "18–22d", port: "Jebel Ali", href: "/markets/middle-east/uae" },
+                    { code: "SA" as CountryCode, name: "Saudi Arabia", badge: "Largest Market", badgeColor: "bg-blue-500/30 text-blue-200", terminals: "5M+", days: "20–25d", port: "Jeddah", href: "/markets/middle-east/saudi-arabia" },
+                    { code: "EG" as CountryCode, name: "Egypt", badge: "Fastest Route", badgeColor: "bg-green-500/30 text-green-200", terminals: "4M+", days: "15–20d", port: "Alexandria", href: "/markets/middle-east/egypt" },
+                    { code: "TR" as CountryCode, name: "Turkey", badge: "EU Standard", badgeColor: "bg-purple-500/30 text-purple-200", terminals: "3.5M+", days: "18–22d", port: "Istanbul", href: "/markets/middle-east/turkey" },
                   ].map((c) => (
                     <Link key={c.name} href={c.href}
                       className="group flex items-center gap-3 bg-white/5 hover:bg-white/12 border border-white/10 hover:border-amber-400/40 rounded-xl px-4 py-3 transition-all">
-                      <span className="text-2xl flex-shrink-0">{c.flag}</span>
+                      <CountryFlag code={c.code} label={c.name} className="w-6 h-auto" />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <span className="font-bold text-white text-sm">{c.name}</span>
@@ -346,7 +348,7 @@ export default function MiddleEastPage() {
                 className="group border border-gray-200 rounded-2xl p-6 hover:border-blue-400 hover:shadow-lg transition-all">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <span className="text-3xl">{c.flag}</span>
+                    <CountryFlag code={c.code} label={c.name} className="w-6 h-auto" />
                     <div>
                       <h3 className="font-bold text-[#0F2B5B] group-hover:text-blue-600 transition-colors">{c.name}</h3>
                       <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${c.badgeColor}`}>{c.badge}</span>

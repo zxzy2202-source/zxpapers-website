@@ -12,6 +12,8 @@ import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 import PageHero from "@/components/shared/PageHero";
 import Image from "next/image";
 
+import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Supplier | Middle East & Africa",
   description:
@@ -45,7 +47,7 @@ const ROLLS_IMG =
 
 const countries = [
   {
-    flag: "🇦🇪",
+    code: "AE" as CountryCode,
     country: "United Arab Emirates",
     city: "Dubai / Abu Dhabi",
     port: "Jebel Ali Port (JAFZA)",
@@ -59,7 +61,7 @@ const countries = [
     highlight: true,
   },
   {
-    flag: "🇸🇦",
+    code: "SA" as CountryCode,
     country: "Saudi Arabia",
     city: "Riyadh / Jeddah",
     port: "Jeddah Islamic Port / King Abdulaziz Port",
@@ -73,7 +75,7 @@ const countries = [
     highlight: false,
   },
   {
-    flag: "🇳🇬",
+    code: "NG" as CountryCode,
     country: "Nigeria",
     city: "Lagos / Abuja",
     port: "Apapa Port / Tin Can Island Port",
@@ -87,7 +89,7 @@ const countries = [
     highlight: true,
   },
   {
-    flag: "🇰🇪",
+    code: "KE" as CountryCode,
     country: "Kenya",
     city: "Nairobi / Mombasa",
     port: "Mombasa Port",
@@ -101,7 +103,7 @@ const countries = [
     highlight: false,
   },
   {
-    flag: "🇪🇬",
+    code: "EG" as CountryCode,
     country: "Egypt",
     city: "Cairo / Alexandria",
     port: "Alexandria Port / Damietta Port",
@@ -115,7 +117,7 @@ const countries = [
     highlight: false,
   },
   {
-    flag: "🇿🇦",
+    code: "ZA" as CountryCode,
     country: "South Africa",
     city: "Johannesburg / Cape Town",
     port: "Durban Port / Cape Town Port",
@@ -129,7 +131,7 @@ const countries = [
     highlight: false,
   },
   {
-    flag: "🇬🇭",
+    code: "GH" as CountryCode,
     country: "Ghana",
     city: "Accra / Kumasi",
     port: "Tema Port",
@@ -143,7 +145,7 @@ const countries = [
     highlight: false,
   },
   {
-    flag: "🇹🇿",
+    code: "TZ" as CountryCode,
     country: "Tanzania",
     city: "Dar es Salaam",
     port: "Dar es Salaam Port",
@@ -535,7 +537,7 @@ export default function MiddleEastAfricaPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {countries.map(({ flag, country, city, port, transit, market, popular, posTerminals, annualDemand, highlight }) => (
+            {countries.map(({ code, country, city, port, transit, market, popular, posTerminals, annualDemand, highlight }) => (
               <div
                 key={country}
                 className={`rounded-2xl p-6 transition-all duration-300 hover:shadow-lg border-2 ${
@@ -545,7 +547,7 @@ export default function MiddleEastAfricaPage() {
                 }`}
               >
                 <div className="flex items-start justify-between mb-3">
-                  <span className="text-4xl">{flag}</span>
+                  <CountryFlag code={code} label={country} className="w-10 h-auto" />
                   {highlight && (
                     <span className="bg-amber-500 text-slate-900 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
                       <Star className="w-3 h-3" /> Key Market

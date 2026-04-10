@@ -3,6 +3,8 @@ import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import { SITE } from "@/config/siteData";
+import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
+
 import {
   MessageSquare, Phone, CheckCircle, ArrowRight,
   Package, Ship, Clock, Globe, Star, TrendingUp,
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
 
 const countries = [
   {
-    flag: "🇹🇭",
+    code: "TH" as CountryCode,
     name: "Thailand",
     slug: "thailand",
     port: "Laem Chabang",
@@ -43,7 +45,7 @@ const countries = [
     topSize: "80×80mm",
   },
   {
-    flag: "🇮🇩",
+    code: "ID" as CountryCode,
     name: "Indonesia",
     slug: "indonesia",
     port: "Tanjung Priok (Jakarta)",
@@ -55,7 +57,7 @@ const countries = [
     topSize: "57×50mm",
   },
   {
-    flag: "🇻🇳",
+    code: "VN" as CountryCode,
     name: "Vietnam",
     slug: "vietnam",
     port: "Cat Lai (Ho Chi Minh)",
@@ -67,7 +69,7 @@ const countries = [
     topSize: "80×80mm",
   },
   {
-    flag: "🇵🇭",
+    code: "PH" as CountryCode,
     name: "Philippines",
     slug: "philippines",
     port: "Manila (MICT)",
@@ -79,7 +81,7 @@ const countries = [
     topSize: "57×50mm",
   },
   {
-    flag: "🇲🇾",
+    code: "MY" as CountryCode,
     name: "Malaysia",
     slug: "malaysia",
     port: "Port Klang",
@@ -91,7 +93,7 @@ const countries = [
     topSize: "80×80mm",
   },
   {
-    flag: "🇸🇬",
+    code: "SG" as CountryCode,
     name: "Singapore",
     slug: "singapore",
     port: "Singapore PSA",
@@ -145,42 +147,42 @@ const logistics = [
     port: "Laem Chabang",
     transit: "12–16 days",
     incoterm: "FOB / CIF",
-    icon: "🇹🇭",
+    code: "TH" as CountryCode,
   },
   {
     country: "Indonesia",
     port: "Tanjung Priok",
     transit: "14–18 days",
     incoterm: "FOB / CIF",
-    icon: "🇮🇩",
+    code: "ID" as CountryCode,
   },
   {
     country: "Vietnam",
     port: "Cat Lai",
     transit: "10–14 days",
     incoterm: "FOB / CIF",
-    icon: "🇻🇳",
+    code: "VN" as CountryCode,
   },
   {
     country: "Philippines",
     port: "Manila MICT",
     transit: "12–16 days",
     incoterm: "FOB / CIF",
-    icon: "🇵🇭",
+    code: "PH" as CountryCode,
   },
   {
     country: "Malaysia",
     port: "Port Klang",
     transit: "10–14 days",
     incoterm: "FOB / CIF",
-    icon: "🇲🇾",
+    code: "MY" as CountryCode,
   },
   {
     country: "Singapore",
     port: "PSA Singapore",
     transit: "8–12 days",
     incoterm: "FOB / CIF",
-    icon: "🇸🇬",
+    code: "SG" as CountryCode,
   },
 ];
 
@@ -292,7 +294,7 @@ export default function SoutheastAsiaPage() {
               <div key={c.slug} className="bg-white border border-slate-200 hover:border-green-300 hover:shadow-lg rounded-2xl p-6 transition-all duration-300 group">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <span className="text-3xl">{c.flag}</span>
+                    <CountryFlag code={c.code} label={c.name} className="w-6 h-auto" />
                     <div>
                       <h3 className="font-sora font-extrabold text-slate-900 text-lg">{c.name}</h3>
                       <p className="text-xs text-slate-500">{c.port}</p>
@@ -401,7 +403,7 @@ export default function SoutheastAsiaPage() {
                 {logistics.map((l, i) => (
                   <tr key={l.country} className={i % 2 === 0 ? "bg-white" : "bg-slate-50"}>
                     <td className="px-6 py-4 font-semibold text-slate-900">
-                      <span className="mr-2">{l.icon}</span>{l.country}
+                      <span className="mr-2 inline-flex"><CountryFlag code={l.code} label={l.country} className="w-5 h-auto" /></span>{l.country}
                     </td>
                     <td className="px-6 py-4 text-slate-600">{l.port}</td>
                     <td className="px-6 py-4">

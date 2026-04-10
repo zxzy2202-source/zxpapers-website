@@ -8,6 +8,7 @@ import {
   Banknote, Truck, Factory, ChevronRight,
 } from "lucide-react";
 import { SITE, CERTIFICATIONS } from "@/config/siteData";
+import { CountryFlag } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
   title: "Thermal Paper Rolls Supplier UAE | Bulk POS Rolls | ZhixinPaper",
@@ -147,7 +148,7 @@ export default function UAEPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-block bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
-                🇦🇪 UAE Market
+                <CountryFlag code="AE" label="UAE" className="w-5 inline-block align-middle" /> UAE Market
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
                 Thermal Paper Rolls<br />

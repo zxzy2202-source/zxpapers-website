@@ -3,6 +3,8 @@ import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import { SITE } from "@/config/siteData";
 
+import { CountryFlag } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Supplier Ethiopia | Addis Ababa",
   description: "Factory-direct thermal paper rolls for Ethiopia. CIF Djibouti port, 20–28 days delivery. 57×50mm and 80×80mm for CBE Birr, Telebirr POS terminals. L/C accepted.",
@@ -86,7 +88,7 @@ export default function EthiopiaPage() {
           <nav className="text-sm text-blue-300 mb-4">
             <Link href="/" className="hover:text-white">Home</Link> &rsaquo; <Link href="/markets" className="hover:text-white">Markets</Link> &rsaquo; <Link href="/markets/africa" className="hover:text-white">Africa</Link> &rsaquo; <span className="text-white">Ethiopia</span>
           </nav>
-          <div className="inline-block bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">🇪🇹 Ethiopia Market</div>
+          <div className="inline-block bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide"><CountryFlag code="ET" label="Ethiopia" className="w-5 inline-block align-middle" /> Ethiopia Market</div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
             Thermal Paper Rolls<br /><span className="text-amber-400">Supplier for Ethiopia</span>
           </h1>

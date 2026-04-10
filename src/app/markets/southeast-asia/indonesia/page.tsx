@@ -88,7 +88,7 @@ export default function IndonesiaPage() {
           { label: "Southeast Asia", href: "/markets/southeast-asia" },
           { label: "Indonesia" },
         ]}
-        badge={{ text: "🇮🇩 Indonesia Market", color: "green" }}
+        badge={{ text: "Indonesia Market", color: "green" }}
         eyebrow="Thermal Paper Supplier for Indonesia"
         title={<>Thermal Paper Rolls<br /><span className="text-amber-400">Supplier for Indonesia</span></>}
         subtitle="Factory-direct supply to Indonesian distributors and wholesalers. CIF Tanjung Priok pricing, FORM E available. 57×50mm and 80×80mm in stock."

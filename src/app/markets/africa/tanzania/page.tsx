@@ -3,6 +3,8 @@ import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import { SITE } from "@/config/siteData";
 
+import { CountryFlag } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Supplier Tanzania | East Africa",
   description: "Factory-direct thermal paper rolls for Tanzania. CIF Dar es Salaam port, 18–25 days delivery. M-Pesa & Airtel Money POS compatible. East Africa re-export hub.",
@@ -86,7 +88,7 @@ export default function TanzaniaPage() {
           <nav className="text-sm text-blue-300 mb-4">
             <Link href="/" className="hover:text-white">Home</Link> &rsaquo; <Link href="/markets" className="hover:text-white">Markets</Link> &rsaquo; <Link href="/markets/africa" className="hover:text-white">Africa</Link> &rsaquo; <span className="text-white">Tanzania</span>
           </nav>
-          <div className="inline-block bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">🇹🇿 Tanzania Market</div>
+          <div className="inline-block bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide"><CountryFlag code="TZ" label="Tanzania" className="w-5 inline-block align-middle" /> Tanzania Market</div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
             Thermal Paper Rolls<br /><span className="text-amber-400">Supplier for Tanzania</span>
           </h1>

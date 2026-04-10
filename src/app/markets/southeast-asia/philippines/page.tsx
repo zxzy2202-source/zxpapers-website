@@ -88,7 +88,7 @@ export default function PhilippinesPage() {
           { label: "Southeast Asia", href: "/markets/southeast-asia" },
           { label: "Philippines" },
         ]}
-        badge={{ text: "🇵🇭 Philippines Market", color: "green" }}
+        badge={{ text: "Philippines Market", color: "green" }}
         eyebrow="Thermal Paper Supplier for Philippines"
         title={<>Thermal Paper Rolls<br /><span className="text-amber-400">Supplier for Philippines</span></>}
         subtitle="Factory-direct supply to Filipino distributors and wholesalers. CIF Manila MICT pricing, FORM E available. 57×50mm and 80×80mm in stock."

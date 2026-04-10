@@ -196,10 +196,10 @@ export default function Footer() {
             <ul className="space-y-2 text-sm mb-6">
               {[
                 { label: "🌍 Africa Overview", href: "/markets/africa" },
-                { label: "🇳🇬 Nigeria", href: "/markets/africa/nigeria" },
-                { label: "🇰🇪 Kenya", href: "/markets/africa/kenya" },
-                { label: "🇿🇦 South Africa", href: "/markets/africa/south-africa" },
-                { label: "🇬🇭 Ghana", href: "/markets/africa/ghana" },
+                { label: "Nigeria", href: "/markets/africa/nigeria" },
+                { label: "Kenya", href: "/markets/africa/kenya" },
+                { label: "South Africa", href: "/markets/africa/south-africa" },
+                { label: "Ghana", href: "/markets/africa/ghana" },
                 { label: "🌙 Middle East & Africa", href: "/markets/middle-east-africa" },
                 { label: "🌏 Southeast Asia", href: "/markets/southeast-asia" },
               ].map((item) => (

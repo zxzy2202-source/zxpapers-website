@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import { SITE, CERTIFICATIONS } from "@/config/siteData";
 
+import { CountryFlag } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Rolls Supplier Saudi Arabia | Bulk POS | ZhixinPaper",
   description: "Factory-direct thermal paper rolls for Saudi Arabia distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001. CIF Jeddah & Dammam. SABER support. MOQ 1 carton.",
@@ -111,7 +113,7 @@ export default function SaudiArabiaPage() {
           </nav>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-block bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">🇸🇦 Saudi Arabia — Largest GCC Market</div>
+              <div className="inline-block bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide"><CountryFlag code="SA" label="Saudi Arabia" className="w-5 inline-block align-middle" /> Saudi Arabia — Largest GCC Market</div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Thermal Paper Rolls<br /><span className="text-amber-400">Supplier for Saudi Arabia</span></h1>
               <p className="text-xl text-blue-100 mb-6 max-w-xl">Factory-direct supply for Saudi distributors. CIF Jeddah & Dammam. SABER documentation support. Arabic OEM packaging. L/C accepted.</p>
               <div className="flex flex-wrap gap-2 mb-8">

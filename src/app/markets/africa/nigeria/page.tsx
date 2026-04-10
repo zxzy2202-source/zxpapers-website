@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 
+import { CountryFlag } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Supplier Nigeria | Lagos",
   description:
@@ -151,7 +153,7 @@ export default function NigeriaPage() {
             <ChevronRight className="w-4 h-4" />
             <Link href="/markets/africa" className="hover:text-white transition-colors">Africa</Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-white font-medium">🇳🇬 Nigeria</span>
+            <span className="text-white font-medium"><CountryFlag code="NG" label="Nigeria" className="w-5 inline-block align-middle" /> Nigeria</span>
           </nav>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -432,7 +434,7 @@ export default function NigeriaPage() {
       {/* ── Final CTA ─────────────────────────────────────────────────── */}
       <section className="py-16 bg-[#0A1F44]">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="text-5xl mb-4">🇳🇬</div>
+          <div className="text-5xl mb-4"><CountryFlag code="NG" label="Nigeria" className="w-12 h-auto" /></div>
           <h2 className="text-3xl font-black text-white mb-4">
             Nigeria&apos;s 15M+ POS Terminals Need Paper. Be the Supplier.
           </h2>

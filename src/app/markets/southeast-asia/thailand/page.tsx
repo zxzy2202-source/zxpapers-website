@@ -88,7 +88,7 @@ export default function ThailandPage() {
           { label: "Southeast Asia", href: "/markets/southeast-asia" },
           { label: "Thailand" },
         ]}
-        badge={{ text: "🇹🇭 Thailand Market", color: "green" }}
+        badge={{ text: "Thailand Market", color: "green" }}
         eyebrow="Thermal Paper Supplier for Thailand"
         title={<>Thermal Paper Rolls<br /><span className="text-amber-400">Supplier for Thailand</span></>}
         subtitle="Factory-direct supply to Thai distributors and wholesalers. CIF Laem Chabang pricing, FORM E available, OEM supported. 80×80mm and 57×50mm in stock."

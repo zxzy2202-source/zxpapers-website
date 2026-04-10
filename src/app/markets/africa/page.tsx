@@ -11,6 +11,8 @@ import {
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 import PageHero from "@/components/shared/PageHero";
 
+import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Supplier Africa | Bulk Direct",
   description:
@@ -42,7 +44,7 @@ export const metadata: Metadata = {
 
 const countries = [
   {
-    flag: "🇳🇬",
+    code: "NG" as CountryCode,
     country: "Nigeria",
     slug: "nigeria",
     city: "Lagos / Abuja",
@@ -59,7 +61,7 @@ const countries = [
     badgeColor: "amber",
   },
   {
-    flag: "🇰🇪",
+    code: "KE" as CountryCode,
     country: "Kenya",
     slug: "kenya",
     city: "Nairobi / Mombasa",
@@ -76,7 +78,7 @@ const countries = [
     badgeColor: "green",
   },
   {
-    flag: "🇿🇦",
+    code: "ZA" as CountryCode,
     country: "South Africa",
     slug: "south-africa",
     city: "Johannesburg / Cape Town",
@@ -93,7 +95,7 @@ const countries = [
     badgeColor: "blue",
   },
   {
-    flag: "🇬🇭",
+    code: "GH" as CountryCode,
     country: "Ghana",
     slug: "ghana",
     city: "Accra / Kumasi",
@@ -110,7 +112,7 @@ const countries = [
     badgeColor: "purple",
   },
   {
-    flag: "🇹🇿",
+    code: "TZ" as CountryCode,
     country: "Tanzania",
     slug: "tanzania",
     city: "Dar es Salaam",
@@ -127,7 +129,7 @@ const countries = [
     badgeColor: "",
   },
   {
-    flag: "🇪🇹",
+    code: "ET" as CountryCode,
     country: "Ethiopia",
     slug: "ethiopia",
     city: "Addis Ababa",
@@ -383,7 +385,7 @@ export default function AfricaMarketPage() {
                   </span>
                 )}
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-4xl">{c.flag}</span>
+                  <CountryFlag code={c.code} label={c.country} className="w-8 h-auto" />
                   <div>
                     <h3 className="text-lg font-bold text-[#0A1F44]">{c.country}</h3>
                     <p className="text-sm text-slate-500 flex items-center gap-1">

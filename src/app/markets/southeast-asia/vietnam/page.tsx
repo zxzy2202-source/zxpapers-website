@@ -88,7 +88,7 @@ export default function VietnamPage() {
           { label: "Southeast Asia", href: "/markets/southeast-asia" },
           { label: "Vietnam" },
         ]}
-        badge={{ text: "🇻🇳 Vietnam Market", color: "green" }}
+        badge={{ text: "Vietnam Market", color: "green" }}
         eyebrow="Thermal Paper Supplier for Vietnam"
         title={<>Thermal Paper Rolls<br /><span className="text-amber-400">Supplier for Vietnam</span></>}
         subtitle="Factory-direct supply to Vietnamese distributors and wholesalers. CIF Cat Lai / Hai Phong pricing, FORM E available. 80×80mm and 57×50mm in stock."

@@ -88,7 +88,7 @@ export default function MalaysiaPage() {
           { label: "Southeast Asia", href: "/markets/southeast-asia" },
           { label: "Malaysia" },
         ]}
-        badge={{ text: "🇲🇾 Malaysia Market", color: "green" }}
+        badge={{ text: "Malaysia Market", color: "green" }}
         eyebrow="Thermal Paper Supplier for Malaysia"
         title={<>Thermal Paper Rolls<br /><span className="text-amber-400">Supplier for Malaysia</span></>}
         subtitle="Factory-direct supply to Malaysian distributors and wholesalers. CIF Port Klang pricing, FORM E available. 80×80mm and 57×50mm in stock. ASEAN re-export supported."

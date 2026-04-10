@@ -1,11 +1,15 @@
 // ZhixinPaper Navigation Configuration
 // Design: Global Trade Authority — B2B thermal paper manufacturer
 
+import type { CountryCode } from "@/components/ui/country-flag";
+
 export interface NavItem {
   label: string;
   href: string;
   badge?: string;
   badgeColor?: string;
+  /** ISO 3166-1 alpha-2 code for SVG country flag rendering */
+  countryCode?: CountryCode;
 }
 
 export interface NavSizeGroup {
@@ -16,6 +20,7 @@ export interface NavSizeGroup {
 export interface NavRegionGroup {
   region: string;
   regionHref: string;
+  regionIcon?: string;
   badge?: string;
   badgeColor?: string;
   countries: NavItem[];
@@ -122,43 +127,46 @@ export const mainNav: (NavItem | NavDropdown)[] = [
     ],
     regionGroups: [
       {
-        region: "🌍 Africa",
+        region: "Africa",
+        regionIcon: "🌍",
         regionHref: "/markets/africa",
         badge: "Hot",
         badgeColor: "amber",
         countries: [
-          { label: "🇳🇬 Nigeria",      href: "/markets/africa/nigeria",      badge: "15M+ POS",   badgeColor: "green" },
-          { label: "🇰🇪 Kenya",        href: "/markets/africa/kenya" },
-          { label: "🇿🇦 South Africa", href: "/markets/africa/south-africa" },
-          { label: "🇬🇭 Ghana",        href: "/markets/africa/ghana" },
-          { label: "🇪🇹 Ethiopia",     href: "/markets/africa/ethiopia" },
-          { label: "🇹🇿 Tanzania",     href: "/markets/africa/tanzania",     badge: "Re-export",  badgeColor: "green" },
+          { label: "Nigeria",      href: "/markets/africa/nigeria",      countryCode: "NG", badge: "15M+ POS",   badgeColor: "green" },
+          { label: "Kenya",        href: "/markets/africa/kenya",        countryCode: "KE" },
+          { label: "South Africa", href: "/markets/africa/south-africa", countryCode: "ZA" },
+          { label: "Ghana",        href: "/markets/africa/ghana",        countryCode: "GH" },
+          { label: "Ethiopia",     href: "/markets/africa/ethiopia",     countryCode: "ET" },
+          { label: "Tanzania",     href: "/markets/africa/tanzania",     countryCode: "TZ", badge: "Re-export",  badgeColor: "green" },
         ],
       },
       {
-        region: "🌙 Middle East",
+        region: "Middle East",
+        regionIcon: "🌙",
         regionHref: "/markets/middle-east",
         badge: "Growing",
         badgeColor: "blue",
         countries: [
-          { label: "🇦🇪 UAE",           href: "/markets/middle-east/uae",          badge: "3M+ POS",   badgeColor: "amber" },
-          { label: "🇸🇦 Saudi Arabia",  href: "/markets/middle-east/saudi-arabia", badge: "5M+ POS",   badgeColor: "amber" },
-          { label: "🇪🇬 Egypt",         href: "/markets/middle-east/egypt" },
-          { label: "🇹🇷 Turkey",        href: "/markets/middle-east/turkey" },
+          { label: "UAE",           href: "/markets/middle-east/uae",          countryCode: "AE", badge: "3M+ POS",   badgeColor: "amber" },
+          { label: "Saudi Arabia",  href: "/markets/middle-east/saudi-arabia", countryCode: "SA", badge: "5M+ POS",   badgeColor: "amber" },
+          { label: "Egypt",         href: "/markets/middle-east/egypt",        countryCode: "EG" },
+          { label: "Turkey",        href: "/markets/middle-east/turkey",       countryCode: "TR" },
         ],
       },
       {
-        region: "🌏 Southeast Asia",
+        region: "Southeast Asia",
+        regionIcon: "🌏",
         regionHref: "/markets/southeast-asia",
         badge: "New",
         badgeColor: "green",
         countries: [
-          { label: "🇹🇭 Thailand",     href: "/markets/southeast-asia/thailand" },
-          { label: "🇮🇩 Indonesia",    href: "/markets/southeast-asia/indonesia",   badge: "8M+ POS",   badgeColor: "blue" },
-          { label: "🇻🇳 Vietnam",      href: "/markets/southeast-asia/vietnam" },
-          { label: "🇵🇭 Philippines",  href: "/markets/southeast-asia/philippines" },
-          { label: "🇲🇾 Malaysia",     href: "/markets/southeast-asia/malaysia" },
-          { label: "🇸🇬 Singapore",    href: "/markets/southeast-asia/singapore",   badge: "ASEAN Hub", badgeColor: "blue" },
+          { label: "Thailand",     href: "/markets/southeast-asia/thailand",     countryCode: "TH" },
+          { label: "Indonesia",    href: "/markets/southeast-asia/indonesia",    countryCode: "ID", badge: "8M+ POS",   badgeColor: "blue" },
+          { label: "Vietnam",      href: "/markets/southeast-asia/vietnam",      countryCode: "VN" },
+          { label: "Philippines",  href: "/markets/southeast-asia/philippines",  countryCode: "PH" },
+          { label: "Malaysia",     href: "/markets/southeast-asia/malaysia",     countryCode: "MY" },
+          { label: "Singapore",    href: "/markets/southeast-asia/singapore",    countryCode: "SG", badge: "ASEAN Hub", badgeColor: "blue" },
         ],
       },
     ],

@@ -9,6 +9,7 @@ import { MessageSquare, Phone, Package, CheckCircle, ArrowRight,
 } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import Image from "next/image";
+import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
   title: "Thermal Paper Rolls Supplier for Bulk Orders",
@@ -24,9 +25,9 @@ const FACTORY_IMG_FALLBACK =
 const PRODUCT_ROLLS_FALLBACK = "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&q=80";
 
 const testimonials = [
-  { name: "Ahmed Al-Rashid", country: "🇦🇪 UAE", role: "POS Distributor", text: "Best quality thermal rolls we've sourced from China. Consistent roll length, clean print. Our customers love it.", rating: 5 },
-  { name: "Chukwuemeka Obi", country: "🇳🇬 Nigeria", role: "Wholesale Trader", text: "Fast container loading and all export documents ready. Made our import process very smooth.", rating: 5 },
-  { name: "Somchai Wongkamol", country: "🇹🇭 Thailand", role: "Retail Chain Buyer", text: "OEM packaging with our brand logo. Exactly what we needed. Will order again.", rating: 5 },
+  { name: "Ahmed Al-Rashid", country: "UAE", countryCode: "AE" as CountryCode, role: "POS Distributor", text: "Best quality thermal rolls we've sourced from China. Consistent roll length, clean print. Our customers love it.", rating: 5 },
+  { name: "Chukwuemeka Obi", country: "Nigeria", countryCode: "NG" as CountryCode, role: "Wholesale Trader", text: "Fast container loading and all export documents ready. Made our import process very smooth.", rating: 5 },
+  { name: "Somchai Wongkamol", country: "Thailand", countryCode: "TH" as CountryCode, role: "Retail Chain Buyer", text: "OEM packaging with our brand logo. Exactly what we needed. Will order again.", rating: 5 },
 ];
 
 // ── 从导航配置中取出 Products 的 sizeGroups ──
@@ -456,7 +457,7 @@ export default async function HomePage() {
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">What Buyers Say</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map(({ name, country, role, text, rating }) => (
+            {testimonials.map(({ name, country, countryCode, role, text, rating }) => (
               <div key={name} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-1 mb-4">
                   {Array.from({ length: rating }).map((_, i) => (
@@ -470,7 +471,7 @@ export default async function HomePage() {
                   </div>
                   <div>
                     <div className="font-bold text-slate-900 text-sm">{name}</div>
-                    <div className="text-xs text-slate-400">{role} · {country}</div>
+                    <div className="text-xs text-slate-400 flex items-center gap-1">{role} · <CountryFlag code={countryCode} label={country} className="w-4" /> {country}</div>
                   </div>
                 </div>
               </div>
@@ -591,19 +592,19 @@ export default async function HomePage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { flag: "🇹🇿", country: "Tanzania",     compliance: "TRA Compliant",   href: "/markets/africa/tanzania" },
-                { flag: "🇸🇦", country: "Saudi Arabia",  compliance: "ZATCA Compliant", href: "/markets/middle-east/saudi-arabia" },
-                { flag: "🇳🇬", country: "Nigeria",       compliance: "FIRS Compliant",  href: "/markets/africa/nigeria" },
-                { flag: "🇦🇪", country: "UAE",           compliance: "VAT Compliant",   href: "/markets/middle-east/uae" },
-                { flag: "🇹🇭", country: "Thailand",      compliance: "PromptPay QR",    href: "/markets/southeast-asia/thailand" },
-                { flag: "🇮🇩", country: "Indonesia",     compliance: "QRIS Compliant",  href: "/markets/southeast-asia/indonesia" },
-              ].map(({ flag, country, compliance, href }) => (
+                { code: "TZ" as CountryCode, country: "Tanzania",     compliance: "TRA Compliant",   href: "/markets/africa/tanzania" },
+                { code: "SA" as CountryCode, country: "Saudi Arabia",  compliance: "ZATCA Compliant", href: "/markets/middle-east/saudi-arabia" },
+                { code: "NG" as CountryCode, country: "Nigeria",       compliance: "FIRS Compliant",  href: "/markets/africa/nigeria" },
+                { code: "AE" as CountryCode, country: "UAE",           compliance: "VAT Compliant",   href: "/markets/middle-east/uae" },
+                { code: "TH" as CountryCode, country: "Thailand",      compliance: "PromptPay QR",    href: "/markets/southeast-asia/thailand" },
+                { code: "ID" as CountryCode, country: "Indonesia",     compliance: "QRIS Compliant",  href: "/markets/southeast-asia/indonesia" },
+              ].map(({ code, country, compliance, href }) => (
                 <Link
                   key={country}
                   href={href}
                   className="bg-slate-50 border border-slate-200 hover:border-amber-300 hover:bg-amber-50 rounded-xl p-4 transition-all duration-200 group"
                 >
-                  <div className="text-2xl mb-2">{flag}</div>
+                  <div className="mb-2"><CountryFlag code={code} label={country} className="w-8 h-auto" /></div>
                   <div className="font-bold text-slate-900 text-sm group-hover:text-amber-700">{country}</div>
                   <div className="text-xs text-slate-500 mt-1">{compliance}</div>
                 </Link>

@@ -56,11 +56,11 @@ const printingSpecs: [string, string][] = [
 ];
 
 const complianceItems = [
-  { region: "🇹🇿 Tanzania",     standard: "TRA (Tanzania Revenue Authority)",  detail: "Pre-printed TRA logo + TPIN number on every roll. Compliant with ETR receipt requirements." },
-  { region: "🇸🇦 Saudi Arabia", standard: "ZATCA e-Invoicing",                 detail: "ZATCA QR code (Phase 2 compliant) printed on thermal rolls. Arabic + English bilingual layout." },
-  { region: "🇳🇬 Nigeria",      standard: "FIRS ETR (Electronic Tax Receipt)",  detail: "FIRS ETR logo + TIN number pre-printed. Compatible with approved POS terminal brands." },
-  { region: "🇦🇪 UAE / Egypt",  standard: "VAT Compliance",                    detail: "VAT TRN number and 'Tax Invoice' text pre-printed in Arabic + English." },
-  { region: "🇰🇪 Kenya",        standard: "KRA TIMS",                           detail: "KRA TIMS-compliant receipt rolls with required header/footer text pre-printed." },
+  { region: "Tanzania",     standard: "TRA (Tanzania Revenue Authority)",  detail: "Pre-printed TRA logo + TPIN number on every roll. Compliant with ETR receipt requirements." },
+  { region: "Saudi Arabia", standard: "ZATCA e-Invoicing",                 detail: "ZATCA QR code (Phase 2 compliant) printed on thermal rolls. Arabic + English bilingual layout." },
+  { region: "Nigeria",      standard: "FIRS ETR (Electronic Tax Receipt)",  detail: "FIRS ETR logo + TIN number pre-printed. Compatible with approved POS terminal brands." },
+  { region: "UAE / Egypt",  standard: "VAT Compliance",                    detail: "VAT TRN number and 'Tax Invoice' text pre-printed in Arabic + English." },
+  { region: "Kenya",        standard: "KRA TIMS",                           detail: "KRA TIMS-compliant receipt rolls with required header/footer text pre-printed." },
   { region: "🌏 Southeast Asia", standard: "Country-specific POS compliance",  detail: "PromptPay QR (Thailand), QRIS (Indonesia), BIR-compliant receipts (Philippines)." },
 ];
 

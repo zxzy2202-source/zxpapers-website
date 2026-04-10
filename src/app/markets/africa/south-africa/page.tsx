@@ -8,6 +8,8 @@ import {
 } from "lucide-react";
 import { SITE, CERTIFICATIONS } from "@/config/siteData";
 
+import { CountryFlag } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Supplier South Africa | Durban",
   description:
@@ -145,7 +147,7 @@ export default function SouthAfricaPage() {
             <ChevronRight className="w-4 h-4" />
             <Link href="/markets/africa" className="hover:text-white transition-colors">Africa</Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-white font-medium">🇿🇦 South Africa</span>
+            <span className="text-white font-medium"><CountryFlag code="ZA" label="South Africa" className="w-5 inline-block align-middle" /> South Africa</span>
           </nav>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -367,7 +369,7 @@ export default function SouthAfricaPage() {
       {/* ── Final CTA ─────────────────────────────────────────────────── */}
       <section className="py-16 bg-[#0A1F44]">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="text-5xl mb-4">🇿🇦</div>
+          <div className="text-5xl mb-4"><CountryFlag code="ZA" label="South Africa" className="w-12 h-auto" /></div>
           <h2 className="text-3xl font-black text-white mb-4">
             South Africa&apos;s Premium Retail Market Deserves Premium Paper.
           </h2>

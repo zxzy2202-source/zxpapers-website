@@ -5,6 +5,8 @@ import InquiryForm from "@/components/shared/InquiryForm";
 import { ArrowRight, CheckCircle, Ship, MessageSquare, Award, TrendingUp, MapPin } from "lucide-react";
 import { SITE } from "@/config/siteData";
 
+import { CountryFlag } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Rolls Supplier Turkey | Bulk POS Rolls | ZhixinPaper",
   description: "Factory-direct thermal paper rolls for Turkey distributors. 80x80mm, 80x70mm, 57x50mm, BPA-free, ISO 9001. CIF Istanbul. EU-standard sizes available. MOQ 1 carton.",
@@ -82,7 +84,7 @@ export default function TurkeyPage() {
           </nav>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-block bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">🇹🇷 Turkey — EU-Standard Quality</div>
+              <div className="inline-block bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide"><CountryFlag code="TR" label="Turkey" className="w-5 inline-block align-middle" /> Turkey — EU-Standard Quality</div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Thermal Paper Rolls<br /><span className="text-amber-400">Supplier for Turkey</span></h1>
               <p className="text-xl text-blue-100 mb-6 max-w-xl">Factory-direct supply for Turkish distributors. CIF Istanbul & Mersin. EU-standard quality. EUR.1 certificate available. L/C accepted.</p>
               <div className="flex flex-wrap gap-2 mb-8">

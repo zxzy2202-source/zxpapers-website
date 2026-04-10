@@ -8,6 +8,8 @@ import {
 } from "lucide-react";
 import { SITE } from "@/config/siteData";
 
+import { CountryFlag } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Supplier Ghana | Accra",
   description:
@@ -145,7 +147,7 @@ export default function GhanaPage() {
             <ChevronRight className="w-4 h-4" />
             <Link href="/markets/africa" className="hover:text-white transition-colors">Africa</Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-white font-medium">🇬🇭 Ghana</span>
+            <span className="text-white font-medium"><CountryFlag code="GH" label="Ghana" className="w-5 inline-block align-middle" /> Ghana</span>
           </nav>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -364,7 +366,7 @@ export default function GhanaPage() {
       {/* ── Final CTA ─────────────────────────────────────────────────── */}
       <section className="py-16 bg-[#0A1F44]">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="text-5xl mb-4">🇬🇭</div>
+          <div className="text-5xl mb-4"><CountryFlag code="GH" label="Ghana" className="w-12 h-auto" /></div>
           <h2 className="text-3xl font-black text-white mb-4">
             Ghana&apos;s Mobile Money Revolution Needs Paper. Supply It.
           </h2>

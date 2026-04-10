@@ -5,6 +5,8 @@ import InquiryForm from "@/components/shared/InquiryForm";
 import { ArrowRight, CheckCircle, Ship, Clock, Package, MessageSquare, Award, TrendingUp, MapPin, Truck } from "lucide-react";
 import { SITE } from "@/config/siteData";
 
+import { CountryFlag } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Rolls Supplier Egypt | Bulk POS Rolls | ZhixinPaper",
   description: "Factory-direct thermal paper rolls for Egypt distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001. CIF Alexandria & Port Said. Meeza card compatible. MOQ 1 carton.",
@@ -82,7 +84,7 @@ export default function EgyptPage() {
           </nav>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-block bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">🇪🇬 Egypt — Fastest Route from China</div>
+              <div className="inline-block bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide"><CountryFlag code="EG" label="Egypt" className="w-5 inline-block align-middle" /> Egypt — Fastest Route from China</div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Thermal Paper Rolls<br /><span className="text-amber-400">Supplier for Egypt</span></h1>
               <p className="text-xl text-blue-100 mb-6 max-w-xl">Factory-direct supply for Egyptian distributors. CIF Alexandria & Port Said. ACID number support. Arabic OEM packaging. L/C accepted.</p>
               <div className="flex flex-wrap gap-2 mb-8">

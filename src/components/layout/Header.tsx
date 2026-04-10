@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, Phone, Mail, Package, ArrowRight } from "lucide-react";
-import { mainNav, type NavDropdown, type NavRegionGroup } from "@/config/navigation";
+import { mainNav, type NavItem, type NavDropdown, type NavRegionGroup } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
-
-type NavItem = { label: string; href: string; badge?: string };
+import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 
 function isDropdown(item: NavItem | NavDropdown): item is NavDropdown {
   return "items" in item;
@@ -28,41 +27,39 @@ const BADGE_COLORS_DARK: Record<string, string> = {
   purple: "bg-purple-500/20 text-purple-300",
 };
 
-function splitNavIcon(label: string) {
-  const match = label.match(/^((?:\p{Regional_Indicator}{2}|\p{Extended_Pictographic}(?:\uFE0F)?))\s+(.+)$/u);
-  return {
-    icon: match?.[1] ?? null,
-    text: match?.[2] ?? label,
-  };
-}
-
+/** Render a nav label with an optional SVG country flag or emoji icon */
 function NavLabelWithIcon({
   label,
+  countryCode,
+  icon,
   textClassName = "",
-  iconClassName = "",
 }: {
   label: string;
+  countryCode?: CountryCode;
+  icon?: string;
   textClassName?: string;
-  iconClassName?: string;
 }) {
-  const { icon, text } = splitNavIcon(label);
-
-  if (!icon) {
-    return <span className={textClassName}>{text}</span>;
+  if (countryCode) {
+    return (
+      <span className="flex items-center gap-2 min-w-0">
+        <CountryFlag code={countryCode} label={label} />
+        <span className={textClassName}>{label}</span>
+      </span>
+    );
   }
 
-  return (
-    <span className="flex items-center gap-2 min-w-0">
-      <span
-        className={`inline-flex items-center justify-center text-[1.05em] leading-none flex-shrink-0 ${iconClassName}`}
-        style={{ fontFamily: '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif' }}
-        aria-hidden="true"
-      >
-        {icon}
+  if (icon) {
+    return (
+      <span className="flex items-center gap-2 min-w-0">
+        <span className="inline-flex items-center justify-center text-[1.05em] leading-none flex-shrink-0" aria-hidden="true">
+          {icon}
+        </span>
+        <span className={textClassName}>{label}</span>
       </span>
-      <span className={textClassName}>{text}</span>
-    </span>
-  );
+    );
+  }
+
+  return <span className={textClassName}>{label}</span>;
 }
 
 export default function Header() {
@@ -189,7 +186,7 @@ export default function Header() {
                                 className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors"
                                 role="menuitem"
                               >
-                                <NavLabelWithIcon label={sub.label} />
+                                <NavLabelWithIcon label={sub.label} countryCode={sub.countryCode} />
                               </Link>
                             ))}
                             {/* CTA panel */}
@@ -220,6 +217,7 @@ export default function Header() {
                                 >
                                   <NavLabelWithIcon
                                     label={rg.region}
+                                    icon={rg.regionIcon}
                                     textClassName="text-sm font-bold text-slate-800 group-hover:text-blue-700 transition-colors"
                                   />
                                   {rg.badge && (
@@ -238,8 +236,12 @@ export default function Header() {
                                       role="menuitem"
                                     >
                                       <span className="flex items-center gap-2 min-w-0">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-amber-400 transition-colors flex-shrink-0" />
-                                        <NavLabelWithIcon label={country.label} textClassName="truncate" />
+                                        {country.countryCode ? (
+                                          <CountryFlag code={country.countryCode} label={country.label} className="w-5" />
+                                        ) : (
+                                          <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-amber-400 transition-colors flex-shrink-0" />
+                                        )}
+                                        <span className="truncate">{country.label}</span>
                                       </span>
                                       {country.badge && (
                                         <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-semibold whitespace-nowrap ml-1 ${BADGE_COLORS[country.badgeColor ?? "amber"] ?? BADGE_COLORS.amber}`}>
@@ -435,6 +437,7 @@ export default function Header() {
                             {(item as NavDropdown).regionGroups!.map((rg: NavRegionGroup) => (
                               <div key={rg.region}>
                                 <div className="px-3 text-[10px] font-bold text-amber-400/80 uppercase tracking-wider mb-1 flex items-center gap-2">
+                                  {rg.regionIcon && <span aria-hidden="true">{rg.regionIcon}</span>}
                                   {rg.region}
                                   {rg.badge && (
                                     <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-semibold ${BADGE_COLORS_DARK[rg.badgeColor ?? "amber"] ?? BADGE_COLORS_DARK.amber}`}>
@@ -449,7 +452,11 @@ export default function Header() {
                                     className="flex items-center justify-between px-3 py-1.5 text-sm text-slate-300 hover:text-amber-400 transition-colors"
                                   >
                                     <span className="flex items-center gap-2">
-                                      <span className="w-1 h-1 rounded-full bg-amber-400/60 flex-shrink-0" />
+                                      {country.countryCode ? (
+                                        <CountryFlag code={country.countryCode} label={country.label} className="w-4" />
+                                      ) : (
+                                        <span className="w-1 h-1 rounded-full bg-amber-400/60 flex-shrink-0" />
+                                      )}
                                       {country.label}
                                     </span>
                                     {country.badge && (

@@ -3,6 +3,8 @@ import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import { SITE } from "@/config/siteData";
 
+import { CountryFlag } from "@/components/ui/country-flag";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Supplier Singapore | ASEAN Hub",
   description: "Factory-direct thermal paper rolls for Singapore. CIF Singapore port, 10–14 days delivery. PayNow & NETS POS compatible. ASEAN re-distribution hub.",
@@ -86,7 +88,7 @@ export default function SingaporePage() {
           <nav className="text-sm text-blue-300 mb-4">
             <Link href="/" className="hover:text-white">Home</Link> &rsaquo; <Link href="/markets" className="hover:text-white">Markets</Link> &rsaquo; <Link href="/markets/southeast-asia" className="hover:text-white">Southeast Asia</Link> &rsaquo; <span className="text-white">Singapore</span>
           </nav>
-          <div className="inline-block bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">🇸🇬 Singapore Market</div>
+          <div className="inline-block bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide"><CountryFlag code="SG" label="Singapore" className="w-5 inline-block align-middle" /> Singapore Market</div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
             Thermal Paper Rolls<br /><span className="text-amber-400">Supplier for Singapore</span>
           </h1>
