@@ -1,3 +1,4 @@
+import { del } from "@vercel/blob";
 import { prisma, ensureDbSchema } from "@/lib/prisma";
 import {
   buildImageSlotSeedData,
@@ -219,11 +220,18 @@ export async function clearSlotImage(slotKey: string) {
     throw new Error("槽位不存在");
   }
 
-  if (existing.imageAssetId) {
-    await prisma.imageAsset.update({
-      where: { id: existing.imageAssetId },
-      data: { page: null, updatedAt: new Date() },
-    });
+  if (existing.imageAsset) {
+    const blobUrl = existing.imageAsset.path;
+    // 如果是 Blob URL（https://...vercel-storage.com/...），则删除 Blob 文件
+    if (blobUrl && blobUrl.startsWith("https://") && blobUrl.includes("vercel-storage.com")) {
+      try {
+        await del(blobUrl);
+      } catch (e) {
+        console.warn("Failed to delete blob file:", e);
+      }
+    }
+    // 删除数据库中的图片记录
+    await prisma.imageAsset.delete({ where: { id: existing.imageAsset.id } });
   }
 
   const updated = await prisma.imageSlotRecord.update({

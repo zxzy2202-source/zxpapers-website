@@ -1,5 +1,4 @@
-import fs from "node:fs/promises";
-import path from "node:path";
+import { put } from "@vercel/blob";
 import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
@@ -10,8 +9,6 @@ import { normalizeSlotKey } from "@/config/imageSlots";
 interface RouteContext {
   params: Promise<{ slotKey: string }>;
 }
-
-const uploadDir = path.join(process.cwd(), "public", "uploads", "images");
 
 export async function POST(request: NextRequest, context: RouteContext) {
   const session = await auth();
@@ -31,30 +28,35 @@ export async function POST(request: NextRequest, context: RouteContext) {
     }
 
     const slotRecord = await ensureSlotRecord(normalized);
-    const bytes = Buffer.from(await file.arrayBuffer());
+
     const safeBaseName = (file.name || "image")
       .replace(/\.[^.]+$/, "")
       .replace(/[^a-zA-Z0-9-_]+/g, "-")
       .replace(/^-+|-+$/g, "")
       .toLowerCase() || "image";
 
-    await fs.mkdir(uploadDir, { recursive: true });
-
     const filename = `${Date.now()}-${randomUUID()}-${safeBaseName}.webp`;
-    const outputPath = path.join(uploadDir, filename);
-    await fs.writeFile(outputPath, bytes);
+    const blobPath = `uploads/images/${filename}`;
+
+    // 上传到 Vercel Blob（持久化存储，Serverless 友好）
+    const blob = await put(blobPath, file, {
+      access: "public",
+      contentType: file.type || "image/webp",
+    });
+
+    const bytes = Buffer.from(await file.arrayBuffer());
 
     const imageAsset = await prisma.imageAsset.create({
       data: {
         filename,
         originalName: file.name,
-        path: `/uploads/images/${filename}`,
+        path: blob.url,           // 使用 Blob 的公开 URL 作为路径
         alt: typeof formData.get("alt") === "string" ? String(formData.get("alt")).trim() || null : null,
         label: slotRecord.label,
         page: slotRecord.slotKey,
         tags: `${slotRecord.pageKey},${slotRecord.sectionKey},${slotRecord.slotName}`,
         mimeType: file.type || "image/webp",
-        storageType: "local",
+        storageType: "blob",
         source: "image-slot-admin",
         width: null,
         height: null,
