@@ -56,5 +56,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
   },
-  secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "zxpapers-admin-secret-2024",
+  secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
 });

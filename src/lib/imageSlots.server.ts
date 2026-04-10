@@ -247,12 +247,24 @@ export async function deleteImageAssetCompletely(imageAssetId: string) {
   const image = await prisma.imageAsset.findUnique({ where: { id: imageAssetId } });
   if (!image) return null;
 
+  // 解除所有槽位绑定
   await prisma.imageSlotRecord.updateMany({
     where: { imageAssetId },
     data: { imageAssetId: null },
   });
 
+  // 删除数据库记录
   await prisma.imageAsset.delete({ where: { id: imageAssetId } });
+
+  // 删除 Vercel Blob 中的物理文件（如果是 Blob URL）
+  if (image.path && image.path.startsWith("https://") && image.path.includes("vercel-storage.com")) {
+    try {
+      await del(image.path);
+    } catch (e) {
+      console.warn("[deleteImageAssetCompletely] Failed to delete blob file:", e);
+    }
+  }
+
   return image;
 }
 

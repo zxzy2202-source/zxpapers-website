@@ -73,7 +73,8 @@ export async function DELETE(
       return NextResponse.json({ error: "图片不存在" }, { status: 404 });
     }
 
-    // 兼容新版路径 /uploads/images/ 和旧版路径 /images/uploads/
+    // 兼容本地文件路径（旧版上传）：/uploads/images/ 或 /images/uploads/
+    // 注：Blob URL（https://...vercel-storage.com/...）已由 deleteImageAssetCompletely 服务层统一处理
     if (deleted.path?.startsWith("/uploads/") || deleted.path?.startsWith("/images/uploads/")) {
       const filePath = path.join(process.cwd(), "public", deleted.path.replace(/^\//, ""));
       await fs.unlink(filePath).catch(() => null);
