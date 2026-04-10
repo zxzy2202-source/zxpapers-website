@@ -54,14 +54,45 @@ model Article {
 
 // 图片资源
 model ImageAsset {
-  id        String   @id @default(cuid())
-  filename  String
-  path      String
-  alt       String?
-  page      String?
-  width     Int?
-  height    Int?
-  size      Int?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String            @id @default(cuid())
+  filename      String
+  originalName  String?
+  path          String
+  alt           String?
+  page          String?
+  label         String?
+  tags          String?
+  mimeType      String?
+  storageType   String            @default("local")
+  source        String            @default("admin")
+  width         Int?
+  height        Int?
+  size          Int?
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  slotBindings  ImageSlotRecord[]
+}
+
+// 图片槽位记录（Page / Section / Slot）
+model ImageSlotRecord {
+  id            String      @id @default(cuid())
+  slotKey       String      @unique
+  pageKey       String
+  pageName      String
+  pagePath      String
+  sectionKey    String
+  sectionName   String
+  slotName      String
+  label         String
+  description   String?
+  aspectRatio   String      @default("16:9")
+  sortOrder     Int         @default(0)
+  isActive      Boolean     @default(true)
+  imageAssetId  String?
+  imageAsset    ImageAsset? @relation(fields: [imageAssetId], references: [id], onDelete: SetNull)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([pageKey, sortOrder])
+  @@index([imageAssetId])
 }

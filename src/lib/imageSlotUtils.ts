@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { resolveManagedSlotPath } from "@/lib/imageSlots.server";
 
 /**
  * 根据 slot 标识符获取已绑定的图片路径
@@ -9,12 +9,8 @@ export async function getSlotImage(
   fallback: string = ""
 ): Promise<string> {
   try {
-    const image = await prisma.imageAsset.findFirst({
-      where: { page: slot },
-      orderBy: { updatedAt: "desc" },
-      select: { path: true },
-    });
-    return image?.path || fallback;
+    const path = await resolveManagedSlotPath(slot);
+    return path || fallback;
   } catch {
     return fallback;
   }
@@ -27,23 +23,12 @@ export async function getSlotImage(
 export async function getSlotImages(
   slots: { slot: string; fallback: string }[]
 ): Promise<Record<string, string>> {
-  const slotKeys = slots.map((s) => s.slot);
-  try {
-    const images = await prisma.imageAsset.findMany({
-      where: { page: { in: slotKeys } },
-      orderBy: { updatedAt: "desc" },
-      select: { page: true, path: true },
-    });
+  const entries = await Promise.all(
+    slots.map(async ({ slot, fallback }) => {
+      const path = await getSlotImage(slot, fallback);
+      return [slot, path] as const;
+    })
+  );
 
-    // 每个 slot 取最新的一张
-    const result: Record<string, string> = {};
-    for (const { slot, fallback } of slots) {
-      const found = images.find((img) => img.page === slot);
-      result[slot] = found?.path || fallback;
-    }
-    return result;
-  } catch {
-    // 出错时全部使用 fallback
-    return Object.fromEntries(slots.map(({ slot, fallback }) => [slot, fallback]));
-  }
+  return Object.fromEntries(entries);
 }
