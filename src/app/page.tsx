@@ -271,6 +271,7 @@ export default async function HomePage() {
                     title="WhatsApp"
                   >
                     <Phone className="w-4 h-4" />
+                    <span className="sr-only">WhatsApp</span>
                   </a>
                 </div>
                 </div>
@@ -358,6 +359,7 @@ export default async function HomePage() {
                             title="WhatsApp"
                           >
                             <Phone className="w-3 h-3" />
+                            <span className="sr-only">WhatsApp</span>
                           </a>
                         </div>
                       </div>
