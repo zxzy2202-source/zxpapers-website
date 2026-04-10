@@ -1,23 +1,24 @@
 /**
  * 临时迁移 API：将 ImageAsset.path 从 /images/uploads/ 统一迁移到 /uploads/images/
- * 此文件在迁移完成后应删除。
+ * 此文件在迁移完成后应立即删除。
+ *
+ * 认证方式：通过 X-Migrate-Token 请求头传递一次性密钥
  */
-import { NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function POST() {
-  const session = await auth();
-  if (!session) {
+// 一次性迁移密钥（迁移完成后删除整个文件）
+const MIGRATE_TOKEN = "zxpapers-migrate-2026-c0bae54f";
+
+export async function POST(request: NextRequest) {
+  const token = request.headers.get("x-migrate-token");
+  if (token !== MIGRATE_TOKEN) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    // 查找所有使用旧版路径的记录
     const oldRecords = await prisma.imageAsset.findMany({
-      where: {
-        path: { startsWith: "/images/uploads/" },
-      },
+      where: { path: { startsWith: "/images/uploads/" } },
       select: { id: true, filename: true, path: true },
     });
 
