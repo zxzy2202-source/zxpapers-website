@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { prisma, ensureDbSchema } from "@/lib/prisma";
 import {
   buildImageSlotSeedData,
   getLegacySlotKey,
@@ -80,6 +80,7 @@ function mapSlotRecord(record: any): ImageSlotListItem {
 }
 
 export async function initializeImageSlots() {
+  await ensureDbSchema();
   const seedData = buildImageSlotSeedData();
 
   for (const slot of seedData) {

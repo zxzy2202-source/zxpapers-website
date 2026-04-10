@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { prisma, ensureDbSchema } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
 // POST /api/admin/seed - 初始化管理员账号（只能运行一次）
 export async function POST(request: NextRequest) {
+  // 确保数据库表结构存在
+  await ensureDbSchema();
   // 安全检查：只在开发环境或首次设置时允许
   const existing = await prisma.admin.count();
   if (existing > 0) {
