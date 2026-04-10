@@ -6,6 +6,7 @@ import { ArrowRight, Package, Tag, Archive, Droplets, MessageSquare, Phone } fro
 import { paperRollSizes, labelSizes, canLabelSizes, detergentLabelSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
 import PageHero from "@/components/shared/PageHero";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Thermal Paper Rolls, Labels & Can Labels",
@@ -169,7 +170,7 @@ export default async function ProductsPage() {
                   <Icon className={`w-5 h-5 ${cat.iconColor}`} />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-extrabold text-slate-900" style={{ fontFamily: "Sora, sans-serif" }}>{cat.title}</h2>
+                  <h2 className="font-sora text-2xl font-extrabold text-slate-900">{cat.title}</h2>
                   <p className="text-slate-500 text-sm">{cat.subtitle}</p>
                 </div>
               </div>
@@ -177,9 +178,9 @@ export default async function ProductsPage() {
               <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 mb-8`}>
                 {cat.variants.map((p) => (
                   <Link key={p.href} href={p.href} className={`group flex gap-4 p-6 bg-white border border-slate-200 ${cat.accentColor} rounded-2xl hover:shadow-lg transition-all duration-300`}>
-                    <img src={cat.image} alt={p.title} className="w-24 h-24 object-cover rounded-xl flex-shrink-0" width={96} height={96} loading="lazy" />
+                    <Image src={cat.image} alt={p.title} className="w-24 h-24 object-cover rounded-xl flex-shrink-0" width={96} height={96}  sizes="96px" />
                     <div className="flex-1">
-                      <h3 className={`font-bold text-slate-900 mb-1 ${cat.hoverText} transition-colors`} style={{ fontFamily: "Sora, sans-serif" }}>{p.title}</h3>
+                      <h3 className={`font-sora font-bold text-slate-900 mb-1 ${cat.hoverText} transition-colors`}>{p.title}</h3>
                       <p className="text-sm text-slate-600 leading-relaxed mb-3">{p.desc}</p>
                       <span className={`inline-flex items-center gap-1 text-sm ${cat.linkColor} font-semibold`}>View Details <ArrowRight className="w-3.5 h-3.5" /></span>
                     </div>
@@ -188,11 +189,11 @@ export default async function ProductsPage() {
               </div>
 
               <div>
-                <h3 className="text-base font-bold text-slate-700 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Popular Sizes</h3>
+                <h3 className="font-sora text-base font-bold text-slate-700 mb-4">Popular Sizes</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
                   {cat.sizes.map((size) => (
                     <Link key={size.slug} href={cat.sizeHref(size.slug)} className={`group flex flex-col items-center p-4 bg-white border border-slate-200 ${cat.accentColor} hover:bg-slate-50 rounded-xl transition-all duration-200 text-center`}>
-                      <div className={`font-bold text-slate-800 ${cat.hoverText} text-sm mb-1`} style={{ fontFamily: "Sora, sans-serif" }}>{size.label}</div>
+                      <div className={`font-sora font-bold text-slate-800 ${cat.hoverText} text-sm mb-1`}>{size.label}</div>
                       {size.badge
                         ? <span className={`text-[10px] ${cat.badgeBg} ${cat.badgeText} px-2 py-0.5 rounded-full font-medium`}>{size.badge}</span>
                         : <span className="text-[10px] text-slate-400">{size.markets}</span>

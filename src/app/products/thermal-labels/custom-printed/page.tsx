@@ -5,6 +5,7 @@ import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight, Package, Ruler, ShieldCheck, Truck, Clock, Star, MessageSquare, Thermometer, Snowflake, Layers, Printer } from "lucide-react";
 import { labelSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Custom Printed Thermal Labels | OEM Labels",
@@ -219,14 +220,14 @@ export default function CustomPrintedLabelsPage() {
 
             {/* Hero */}
             <div className="flex flex-col sm:flex-row gap-6">
-              <img src={LABELS_IMG} alt="Custom Printed Thermal Labels" className="w-full sm:w-72 h-52 object-cover rounded-2xl flex-shrink-0 shadow-md" />
+              <Image src={LABELS_IMG} alt="Custom Printed Thermal Labels" className="w-full sm:w-72 h-52 object-cover rounded-2xl flex-shrink-0 shadow-md"  width={288} height={208} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               <div>
                 <div className="flex flex-wrap gap-2 mb-3">
                   {["Custom Logo", "Pantone Matching", "4 Adhesive Grades", "OEM / Private Label"].map((tag) => (
                     <span key={tag} className="text-xs bg-amber-50 text-amber-700 border border-amber-200 px-3 py-1 rounded-full font-medium">{tag}</span>
                   ))}
                 </div>
-                <h1 className="text-3xl font-extrabold text-slate-900 mb-3 leading-tight" style={{ fontFamily: "Sora, sans-serif" }}>Custom Printed Thermal Labels</h1>
+                <h1 className="font-sora text-3xl font-extrabold text-slate-900 mb-3 leading-tight">Custom Printed Thermal Labels</h1>
                 <p className="text-slate-600 leading-relaxed mb-5">Pre-printed thermal labels with your brand, logo, barcode, or regulatory data — combined with the adhesive grade that matches your application environment. From standard shipping labels to high-temperature automotive tags and cryogenic lab vial labels, we manufacture to your exact specification with a free design proof included.</p>
 
                 {/* Quick stats */}
@@ -237,7 +238,7 @@ export default function CustomPrintedLabelsPage() {
                     { val: "4-Color", unit: "Flexo Print" },
                   ].map(({ val, unit }) => (
                     <div key={unit} className="bg-slate-50 border border-slate-200 rounded-xl p-3 text-center">
-                      <div className="text-xl font-extrabold text-amber-600" style={{ fontFamily: "Sora, sans-serif" }}>{val}</div>
+                      <div className="font-sora text-xl font-extrabold text-amber-600">{val}</div>
                       <div className="text-xs text-slate-500 mt-0.5">{unit}</div>
                     </div>
                   ))}
@@ -247,7 +248,7 @@ export default function CustomPrintedLabelsPage() {
 
             {/* Adhesive Types */}
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-2" style={{ fontFamily: "Sora, sans-serif" }}>Adhesive Types</h2>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-2">Adhesive Types</h2>
               <p className="text-sm text-slate-500 mb-5">All adhesive grades are available with custom printing. Select the grade that matches your application environment — we'll print your design on top.</p>
               <div className="space-y-4">
                 {adhesiveTypes.map(({ icon, name, temp, peel, best, desc, tags }) => (
@@ -255,7 +256,7 @@ export default function CustomPrintedLabelsPage() {
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0 w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center border border-slate-200">{icon}</div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-slate-900 text-base mb-1" style={{ fontFamily: "Sora, sans-serif" }}>{name}</h3>
+                        <h3 className="font-sora font-bold text-slate-900 text-base mb-1">{name}</h3>
                         <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-slate-500 mb-3">
                           <span><span className="font-semibold text-slate-700">Temp Range:</span> {temp}</span>
                           <span><span className="font-semibold text-slate-700">Peel Strength:</span> {peel}</span>
@@ -277,14 +278,14 @@ export default function CustomPrintedLabelsPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Printer className="w-5 h-5 text-amber-600" />
-                <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: "Sora, sans-serif" }}>Printing Capabilities</h2>
+                <h2 className="font-sora text-xl font-bold text-slate-900">Printing Capabilities</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {printingCapabilities.map(({ title, icon, desc }) => (
                   <div key={title} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:border-amber-300 transition-colors">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-lg">{icon}</span>
-                      <span className="font-bold text-slate-900 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>{title}</span>
+                      <span className="font-sora font-bold text-slate-900 text-sm">{title}</span>
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed">{desc}</p>
                   </div>
@@ -294,7 +295,7 @@ export default function CustomPrintedLabelsPage() {
 
             {/* Key Benefits */}
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Key Benefits</h2>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">Key Benefits</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   "4 adhesive grades covering –196°C to 180°C environments",
@@ -315,7 +316,7 @@ export default function CustomPrintedLabelsPage() {
 
             {/* Printing Specifications */}
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Printing Specifications</h2>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">Printing Specifications</h2>
               <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                 <table className="w-full text-sm">
                   <tbody>
@@ -334,7 +335,7 @@ export default function CustomPrintedLabelsPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Ruler className="w-5 h-5 text-amber-600" />
-                <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: "Sora, sans-serif" }}>Label Specifications</h2>
+                <h2 className="font-sora text-xl font-bold text-slate-900">Label Specifications</h2>
               </div>
               <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                 <table className="w-full text-sm">
@@ -355,7 +356,7 @@ export default function CustomPrintedLabelsPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Truck className="w-5 h-5 text-amber-600" />
-                <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: "Sora, sans-serif" }}>Packaging & Shipping</h2>
+                <h2 className="font-sora text-xl font-bold text-slate-900">Packaging & Shipping</h2>
               </div>
               <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                 <table className="w-full text-sm">
@@ -375,7 +376,7 @@ export default function CustomPrintedLabelsPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <ShieldCheck className="w-5 h-5 text-amber-600" />
-                <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: "Sora, sans-serif" }}>Quality & Compliance</h2>
+                <h2 className="font-sora text-xl font-bold text-slate-900">Quality & Compliance</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
@@ -389,7 +390,7 @@ export default function CustomPrintedLabelsPage() {
                   <div key={name} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
                     <div className="flex items-center gap-2 mb-2">
                       <ShieldCheck className="w-4 h-4 text-green-500 flex-shrink-0" />
-                      <span className="font-bold text-slate-900 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>{name}</span>
+                      <span className="font-sora font-bold text-slate-900 text-sm">{name}</span>
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed">{desc}</p>
                   </div>
@@ -401,13 +402,13 @@ export default function CustomPrintedLabelsPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Ruler className="w-5 h-5 text-amber-600" />
-                <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: "Sora, sans-serif" }}>Available Sizes</h2>
+                <h2 className="font-sora text-xl font-bold text-slate-900">Available Sizes</h2>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {labelSizes.map((size) => (
                   <Link key={size.slug} href={`/products/thermal-labels/${size.slug}`} className="group flex items-center justify-between p-4 bg-white border border-slate-200 hover:border-amber-400 hover:bg-amber-50 rounded-xl transition-all duration-200 shadow-sm">
                     <div>
-                      <div className="font-semibold text-slate-800 group-hover:text-amber-700 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>{size.label}</div>
+                      <div className="font-sora font-semibold text-slate-800 group-hover:text-amber-700 text-sm">{size.label}</div>
                       {size.badge && <span className="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-medium">{size.badge}</span>}
                     </div>
                     <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-amber-500 group-hover:translate-x-1 transition-all" />
@@ -421,12 +422,12 @@ export default function CustomPrintedLabelsPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <MessageSquare className="w-5 h-5 text-amber-600" />
-                <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: "Sora, sans-serif" }}>Frequently Asked Questions</h2>
+                <h2 className="font-sora text-xl font-bold text-slate-900">Frequently Asked Questions</h2>
               </div>
               <div className="space-y-3">
                 {faqs.map(({ q, a }) => (
                   <div key={q} className="bg-slate-50 border border-slate-200 rounded-xl p-5">
-                    <h3 className="font-semibold text-slate-900 mb-2 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>{q}</h3>
+                    <h3 className="font-sora font-semibold text-slate-900 mb-2 text-sm">{q}</h3>
                     <p className="text-sm text-slate-600 leading-relaxed">{a}</p>
                   </div>
                 ))}
@@ -451,14 +452,14 @@ export default function CustomPrintedLabelsPage() {
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                   <span className="text-xs text-green-600 font-semibold">Online — Responding within 12h</span>
                 </div>
-                <h3 className="text-lg font-extrabold text-slate-900 mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Request Custom Quote</h3>
+                <h3 className="font-sora text-lg font-extrabold text-slate-900 mb-1">Request Custom Quote</h3>
                 <p className="text-sm text-slate-500 mb-5">Tell us your size, adhesive grade, print colors, and quantity. We'll send a quote with a free design proof within 24 hours.</p>
                 <InquiryForm compact />
               </div>
 
               {/* Sample CTA */}
               <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5">
-                <h4 className="font-bold text-slate-900 text-sm mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Free Printed Sample</h4>
+                <h4 className="font-sora font-bold text-slate-900 text-sm mb-1">Free Printed Sample</h4>
                 <p className="text-xs text-slate-600 mb-3">Get a printed sample with your logo in 5–7 business days. Verify color accuracy, adhesion, and print quality before bulk production.</p>
                 <Link href="/contact" className="inline-flex items-center gap-1.5 text-sm text-amber-700 font-semibold hover:text-amber-900">
                   Request Sample <ArrowRight className="w-3.5 h-3.5" />
@@ -467,7 +468,7 @@ export default function CustomPrintedLabelsPage() {
 
               {/* Adhesive grade quick select */}
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5">
-                <h4 className="font-bold text-slate-900 text-sm mb-3" style={{ fontFamily: "Sora, sans-serif" }}>Adhesive Grade Quick Guide</h4>
+                <h4 className="font-sora font-bold text-slate-900 text-sm mb-3">Adhesive Grade Quick Guide</h4>
                 <div className="space-y-2.5">
                   {[
                     { grade: "Permanent", range: "–20°C to 80°C", color: "text-amber-700 bg-amber-50" },
@@ -485,7 +486,7 @@ export default function CustomPrintedLabelsPage() {
 
               {/* Key order info */}
               <div className="bg-white border border-slate-200 rounded-2xl p-5 space-y-3">
-                <h4 className="font-bold text-slate-900 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>Order at a Glance</h4>
+                <h4 className="font-sora font-bold text-slate-900 text-sm">Order at a Glance</h4>
                 {[
                   { icon: Package, label: "MOQ", val: "1,000 rolls" },
                   { icon: Clock, label: "Lead Time", val: "15–20 days" },
@@ -503,7 +504,7 @@ export default function CustomPrintedLabelsPage() {
 
               {/* Certifications */}
               <div className="bg-white border border-slate-200 rounded-2xl p-5">
-                <h4 className="font-bold text-slate-900 text-sm mb-3" style={{ fontFamily: "Sora, sans-serif" }}>Certifications</h4>
+                <h4 className="font-sora font-bold text-slate-900 text-sm mb-3">Certifications</h4>
                 <div className="space-y-2">
                   {["ISO 9001:2015", "FSC Certified", "BPA-Free Inks", "RoHS / REACH", "FDA Compliant", "GHS / SDS Ready"].map((cert) => (
                     <div key={cert} className="flex items-center gap-2 text-sm text-slate-700">

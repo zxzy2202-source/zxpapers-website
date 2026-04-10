@@ -8,6 +8,7 @@ import { MessageSquare, Phone, Package, CheckCircle, ArrowRight,
   Ship, Zap, Tag, ChevronRight, Star, Globe, Users, Award, Factory as FactoryIcon, Printer,
 } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Thermal Paper Rolls Supplier for Bulk Orders",
@@ -225,14 +226,13 @@ export default async function HomePage() {
               >
                 {/* Product image */}
                 <div className="relative h-40 bg-slate-100 overflow-hidden">
-                  <img
+                  <Image
                     src={PRODUCT_ROLLS_IMG}
                     alt={`${size} thermal paper rolls`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
                     width={400}
                     height={160}
-                  />
+                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                   <span className={`absolute top-3 right-3 text-xs font-bold text-white px-3 py-1 rounded-full shadow-md ${badgeColor}`}>{badge}</span>
                 </div>
                 <div className="p-6 flex flex-col flex-1">
@@ -529,14 +529,13 @@ export default async function HomePage() {
             </div>
 
             <div className="relative">
-              <img
+              <Image
                 src={FACTORY_IMG}
                 alt="Container loading thermal paper rolls"
                 className="w-full rounded-2xl shadow-2xl"
-                loading="lazy"
                 width={600}
                 height={400}
-              />
+               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               <div className="absolute -bottom-5 -right-5 bg-amber-500 text-slate-900 rounded-xl shadow-xl p-5 text-center">
                 <div className="text-2xl font-extrabold">{FACTORY.productionLines}</div>
                 <div className="text-xs font-bold">Production Lines</div>

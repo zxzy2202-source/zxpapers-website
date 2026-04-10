@@ -5,6 +5,7 @@ import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { detergentLabelSizes, DETERGENT_LABELS_IMG } from "../detergent-labels-data";
 import { SITE } from "@/config/siteData";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Custom Printed Detergent Labels | OEM Labels",
@@ -99,10 +100,10 @@ export default function CustomPrintedDetergentLabelsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2 space-y-10">
             <div className="flex flex-col sm:flex-row gap-6">
-              <img src={DETERGENT_LABELS_IMG} alt="Custom Printed Detergent Labels" className="w-full sm:w-64 h-48 object-cover rounded-2xl flex-shrink-0" />
+              <Image src={DETERGENT_LABELS_IMG} alt="Custom Printed Detergent Labels" className="w-full sm:w-64 h-48 object-cover rounded-2xl flex-shrink-0"  width={256} height={192} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               <div>
                 <span className="inline-block bg-sky-100 text-sky-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">Detergent Labels</span>
-                <h1 className="text-3xl font-extrabold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>Custom Printed Detergent Labels</h1>
+                <h1 className="font-sora text-3xl font-extrabold text-slate-900 mb-3">Custom Printed Detergent Labels</h1>
                 <p className="text-slate-600 leading-relaxed mb-4">
                   Full-color custom printed labels for detergent, cleaning, and household chemical products.
                   CMYK and Pantone color matching on water-resistant BOPP, PE, or vinyl substrates.
@@ -118,7 +119,7 @@ export default function CustomPrintedDetergentLabelsPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Key Benefits</h2>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">Key Benefits</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   "Up to 8-color CMYK + Pantone spot color printing",
@@ -138,7 +139,7 @@ export default function CustomPrintedDetergentLabelsPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Applications</h2>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">Applications</h2>
               <div className="flex flex-wrap gap-2">
                 {["Laundry Detergent Brands", "Dish Soap Brands", "Bathroom Cleaners", "Kitchen Cleaners", "Fabric Care", "Bleach & Disinfectant", "Hotel Amenities", "Private Label"].map((app) => (
                   <span key={app} className="bg-sky-50 text-sky-700 text-sm px-4 py-2 rounded-lg font-medium">{app}</span>
@@ -147,12 +148,12 @@ export default function CustomPrintedDetergentLabelsPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Available Sizes</h2>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">Available Sizes</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {detergentLabelSizes.map((size) => (
                   <Link key={size.slug} href={`/products/detergent-labels/${size.slug}`} className="group flex items-center justify-between p-4 bg-white border border-slate-200 hover:border-sky-300 hover:bg-sky-50 rounded-xl transition-all duration-200">
                     <div>
-                      <div className="font-semibold text-slate-800 group-hover:text-sky-700 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>{size.label}</div>
+                      <div className="font-sora font-semibold text-slate-800 group-hover:text-sky-700 text-sm">{size.label}</div>
                       {size.badge && <span className="text-[10px] bg-sky-100 text-sky-700 px-2 py-0.5 rounded-full font-medium">{size.badge}</span>}
                     </div>
                     <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-sky-500 group-hover:translate-x-1 transition-all" />
@@ -164,7 +165,7 @@ export default function CustomPrintedDetergentLabelsPage() {
 
           <div className="lg:col-span-1">
             <div className="sticky top-28 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900 mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Get a Quote</h3>
+              <h3 className="font-sora text-lg font-bold text-slate-900 mb-1">Get a Quote</h3>
               <p className="text-sm text-slate-500 mb-5">Response within 12 hours</p>
               <InquiryForm compact />
             </div>

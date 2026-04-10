@@ -51,7 +51,7 @@ export default function PackagingPage() {
           <div className="text-amber-400 text-sm font-semibold mb-3">
             <Link href="/oem" className="hover:underline">OEM</Link> / Packaging
           </div>
-          <h1 className="text-4xl font-extrabold mb-3" style={{ fontFamily: "Sora, sans-serif" }}>Packaging &amp; Private Label</h1>
+          <h1 className="font-sora text-4xl font-extrabold mb-3">Packaging &amp; Private Label</h1>
           <p className="text-slate-300 max-w-xl">Complete private label solutions — from custom box design to branded packaging.</p>
         </div>
       </div>
@@ -60,7 +60,7 @@ export default function PackagingPage() {
           <div className="lg:col-span-2 space-y-8">
             <p className="text-slate-600 leading-relaxed">Build your own brand with our private label packaging service. We design and produce custom boxes, sleeves, and labels with your brand identity. Perfect for distributors who want to sell under their own brand.</p>
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Packaging Options</h2>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">Packaging Options</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {["Individual roll shrink wrap with custom label", "Box packaging (10/50/100 rolls per box)", "Display box for retail shelf placement", "Custom sleeve packaging", "Bulk poly bag packaging", "Eco-friendly kraft paper packaging"].map((b) => (
                   <div key={b} className="flex items-start gap-2.5 text-sm text-slate-700">
@@ -69,13 +69,13 @@ export default function PackagingPage() {
                 ))}
               </div>
             </div>
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3.5 rounded-xl transition-all text-sm" style={{ fontFamily: "Sora, sans-serif" }}>
+            <Link href="/contact" className="font-sora inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3.5 rounded-xl transition-all text-sm">
               Request Packaging Quote <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           <div>
             <div className="sticky top-28 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900 mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Get a Quote</h3>
+              <h3 className="font-sora text-lg font-bold text-slate-900 mb-1">Get a Quote</h3>
               <p className="text-sm text-slate-500 mb-5">Response within 12 hours</p>
               <InquiryForm productName="Packaging & Private Label" compact />
             </div>

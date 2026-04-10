@@ -280,7 +280,7 @@ export default function SoutheastAsiaPage() {
         <div className="container">
           <div className="text-center mb-10">
             <span className="inline-block bg-green-100 text-green-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-3">6 Key Markets</span>
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>
+            <h2 className="font-sora text-3xl font-extrabold text-slate-900 mb-3">
               Southeast Asia Market Overview
             </h2>
             <p className="text-slate-500 max-w-2xl mx-auto">
@@ -294,7 +294,7 @@ export default function SoutheastAsiaPage() {
                   <div className="flex items-center gap-3">
                     <span className="text-3xl">{c.flag}</span>
                     <div>
-                      <h3 className="font-extrabold text-slate-900 text-lg" style={{ fontFamily: "Sora, sans-serif" }}>{c.name}</h3>
+                      <h3 className="font-sora font-extrabold text-slate-900 text-lg">{c.name}</h3>
                       <p className="text-xs text-slate-500">{c.port}</p>
                     </div>
                   </div>
@@ -332,7 +332,7 @@ export default function SoutheastAsiaPage() {
         <div className="container">
           <div className="text-center mb-10">
             <span className="inline-block bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-3">Popular Products</span>
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>
+            <h2 className="font-sora text-3xl font-extrabold text-slate-900 mb-3">
               Best-Selling Products in SEA
             </h2>
             <p className="text-slate-500 max-w-2xl mx-auto">
@@ -343,7 +343,7 @@ export default function SoutheastAsiaPage() {
             {products.map((p) => (
               <div key={p.name} className="bg-white border border-slate-200 hover:border-amber-300 hover:shadow-lg rounded-2xl p-6 transition-all duration-300 flex flex-col">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-bold text-slate-900 text-base leading-tight" style={{ fontFamily: "Sora, sans-serif" }}>{p.name}</h3>
+                  <h3 className="font-sora font-bold text-slate-900 text-base leading-tight">{p.name}</h3>
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ml-2 ${p.badgeColor}`}>{p.badge}</span>
                 </div>
                 <p className="text-sm text-slate-600 leading-relaxed mb-4 flex-1">{p.desc}</p>
@@ -379,7 +379,7 @@ export default function SoutheastAsiaPage() {
         <div className="container">
           <div className="text-center mb-10">
             <span className="inline-block bg-blue-100 text-blue-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-3">Shipping & Logistics</span>
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>
+            <h2 className="font-sora text-3xl font-extrabold text-slate-900 mb-3">
               CIF Shipping to All SEA Ports
             </h2>
             <p className="text-slate-500 max-w-2xl mx-auto">
@@ -427,7 +427,7 @@ export default function SoutheastAsiaPage() {
         <div className="container">
           <div className="text-center mb-10">
             <span className="inline-block bg-purple-100 text-purple-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-3">Why Choose Us</span>
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>
+            <h2 className="font-sora text-3xl font-extrabold text-slate-900 mb-3">
               Why SEA Distributors Choose ZhixinPaper
             </h2>
           </div>
@@ -437,7 +437,7 @@ export default function SoutheastAsiaPage() {
                 <div className="w-11 h-11 bg-green-100 rounded-xl flex items-center justify-center mb-4">
                   <Icon className="w-5 h-5 text-green-600" />
                 </div>
-                <h3 className="font-bold text-slate-900 mb-2" style={{ fontFamily: "Sora, sans-serif" }}>{title}</h3>
+                <h3 className="font-sora font-bold text-slate-900 mb-2">{title}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
               </div>
             ))}
@@ -450,14 +450,14 @@ export default function SoutheastAsiaPage() {
         <div className="container max-w-3xl">
           <div className="text-center mb-10">
             <span className="inline-block bg-amber-100 text-amber-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-3">FAQ</span>
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>
+            <h2 className="font-sora text-3xl font-extrabold text-slate-900 mb-3">
               Common Questions from SEA Buyers
             </h2>
           </div>
           <div className="space-y-4">
             {faqs.map((faq) => (
               <div key={faq.q} className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
-                <h3 className="font-bold text-slate-900 mb-2 flex items-start gap-2" style={{ fontFamily: "Sora, sans-serif" }}>
+                <h3 className="font-sora font-bold text-slate-900 mb-2 flex items-start gap-2">
                   <span className="text-green-500 mt-0.5 flex-shrink-0">Q.</span>{faq.q}
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed pl-5">{faq.a}</p>
@@ -470,7 +470,7 @@ export default function SoutheastAsiaPage() {
       {/* ── CTA ───────────────────────────────────────────────────── */}
       <section className="bg-[#0F2B5B] text-white py-16">
         <div className="container text-center">
-          <h2 className="text-3xl font-extrabold mb-4" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h2 className="font-sora text-3xl font-extrabold mb-4">
             Ready to Source Thermal Paper for Southeast Asia?
           </h2>
           <p className="text-slate-300 mb-8 max-w-xl mx-auto">
@@ -480,7 +480,7 @@ export default function SoutheastAsiaPage() {
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-amber-500/30"
-              style={{ fontFamily: "Sora, sans-serif" }}
+
             >
               <MessageSquare className="w-5 h-5" /> Send Inquiry
             </Link>
@@ -489,7 +489,7 @@ export default function SoutheastAsiaPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-green-500/30"
-              style={{ fontFamily: "Sora, sans-serif" }}
+
             >
               <Phone className="w-5 h-5" /> WhatsApp Us
             </a>

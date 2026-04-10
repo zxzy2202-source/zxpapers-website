@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import { SITE } from "@/config/siteData";
+import Image from "next/image";
 import {
   CheckCircle, ArrowRight, Package, Award, Globe,
   Phone, MessageSquare, Ship, Zap,
@@ -138,14 +139,14 @@ export default function SizeDetailPage({
 
             {/* Product image */}
             <div>
-              <img
+              <Image
                 src={productImage}
                 alt={fullTitle}
                 className="w-full rounded-2xl shadow-2xl"
                 loading="eager"
                 width={600}
                 height={400}
-              />
+               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
             </div>
           </div>
         </div>
@@ -212,14 +213,13 @@ export default function SizeDetailPage({
                     {applications.map(({ name, image, description: appDesc }) => (
                       <div key={name} className="group bg-white border border-slate-200 hover:border-amber-300 rounded-xl overflow-hidden hover:shadow-md transition-all duration-200">
                         <div className="aspect-video overflow-hidden">
-                          <img
+                          <Image
                             src={image}
                             alt={name}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            loading="lazy"
                             width={300}
                             height={200}
-                          />
+                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                         </div>
                         <div className="p-3">
                           <div className="font-semibold text-slate-900 text-xs mb-1">{name}</div>

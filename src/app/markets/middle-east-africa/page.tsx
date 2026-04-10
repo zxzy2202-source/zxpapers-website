@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 import PageHero from "@/components/shared/PageHero";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Thermal Paper Supplier | Middle East & Africa",
@@ -713,14 +714,13 @@ export default function MiddleEastAfricaPage() {
 
             <div className="space-y-6">
               <div className="relative">
-                <img
+                <Image
                   src={FACTORY_IMG}
                   alt="ZhixinPaper factory for Middle East Africa"
                   className="w-full rounded-2xl shadow-2xl"
-                  loading="lazy"
                   width={600}
                   height={400}
-                />
+                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                 <div className="absolute -bottom-5 -right-5 bg-white rounded-xl shadow-xl p-5 border border-slate-100">
                   <div className="text-2xl font-extrabold text-[#0A1F44]">{FACTORY.annualOutput}</div>
                   <div className="text-xs text-slate-500">Rolls Produced Per Year</div>

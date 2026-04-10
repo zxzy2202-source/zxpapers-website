@@ -57,7 +57,7 @@ export default function CaseStudiesPage() {
           <div className="text-amber-400 text-sm font-semibold mb-3">
             <Link href="/oem" className="hover:underline">OEM</Link> / Case Studies
           </div>
-          <h1 className="text-4xl font-extrabold mb-3" style={{ fontFamily: "Sora, sans-serif" }}>OEM Case Studies</h1>
+          <h1 className="font-sora text-4xl font-extrabold mb-3">OEM Case Studies</h1>
           <p className="text-slate-300 max-w-xl">Real results from global clients who trust ZhixinPaper for their OEM thermal paper needs.</p>
         </div>
       </div>
@@ -72,7 +72,7 @@ export default function CaseStudiesPage() {
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-xs bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full font-medium">{c.region}</span>
-                    <h3 className="font-bold text-slate-900" style={{ fontFamily: "Sora, sans-serif" }}>{c.client}</h3>
+                    <h3 className="font-sora font-bold text-slate-900">{c.client}</h3>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                     <div><div className="font-semibold text-slate-700 mb-1">Challenge</div><div className="text-slate-600">{c.challenge}</div></div>
@@ -87,7 +87,7 @@ export default function CaseStudiesPage() {
         <div className="bg-slate-50 rounded-3xl p-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>Ready to Be Our Next Success Story?</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-3">Ready to Be Our Next Success Story?</h2>
               <p className="text-slate-600 mb-6">Join 2,000+ global clients who trust ZhixinPaper for their OEM thermal paper needs. Tell us your requirements and we&apos;ll respond within 12 hours.</p>
               <ul className="space-y-2 mb-6">
                 {["Free design proof within 24 hours", "MOQ 1,000 rolls — flexible for new clients", "CIF delivery to 80+ countries", "Dedicated OEM account manager"].map((item) => (
@@ -96,7 +96,7 @@ export default function CaseStudiesPage() {
                   </li>
                 ))}
               </ul>
-              <Link href="/contact/oem-partnership" className="inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-6 py-3 rounded-xl transition-all text-sm" style={{ fontFamily: "Sora, sans-serif" }}>
+              <Link href="/contact/oem-partnership" className="font-sora inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-6 py-3 rounded-xl transition-all text-sm">
                 View OEM Partnership Page <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

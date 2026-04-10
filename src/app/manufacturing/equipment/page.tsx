@@ -99,7 +99,7 @@ export default function EquipmentPage() {
             </div>
             <span className="text-amber-400 text-sm font-semibold uppercase tracking-wider">Production Equipment</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
             State-of-the-Art<br /><span className="text-amber-400">Manufacturing Equipment</span>
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl">
@@ -112,7 +112,7 @@ export default function EquipmentPage() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[{ value: "12", label: "Production Lines" }, { value: "50,000 m²", label: "Factory Area" }, { value: "500M+", label: "Rolls/Year Capacity" }, { value: "24/7", label: "Operation" }].map(({ value, label }) => (
             <div key={label} className="bg-slate-50 rounded-2xl p-5 text-center">
-              <div className="text-2xl font-extrabold text-[#0F2B5B]" style={{ fontFamily: "Sora, sans-serif" }}>{value}</div>
+              <div className="font-sora text-2xl font-extrabold text-[#0F2B5B]">{value}</div>
               <div className="text-xs text-slate-500 mt-1">{label}</div>
             </div>
           ))}
@@ -125,7 +125,7 @@ export default function EquipmentPage() {
                 <Icon className="w-5 h-5 text-blue-600" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: "Sora, sans-serif" }}>{title}</h2>
+                <h2 className="font-sora text-xl font-bold text-slate-900">{title}</h2>
                 <p className="text-sm text-slate-500">{desc}</p>
               </div>
             </div>
@@ -133,7 +133,7 @@ export default function EquipmentPage() {
               {equipment.map(({ name, count, specs, highlight }) => (
                 <div key={name} className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex items-start justify-between gap-2 mb-3">
-                    <h3 className="font-bold text-slate-900 text-sm leading-snug" style={{ fontFamily: "Sora, sans-serif" }}>{name}</h3>
+                    <h3 className="font-sora font-bold text-slate-900 text-sm leading-snug">{name}</h3>
                     <span className="flex-shrink-0 text-xs bg-blue-50 text-blue-700 font-semibold px-2.5 py-1 rounded-full">{count}</span>
                   </div>
                   <p className="text-xs text-slate-500 leading-relaxed mb-3 font-mono">{specs}</p>
@@ -149,10 +149,10 @@ export default function EquipmentPage() {
 
         <div className="bg-slate-50 rounded-3xl p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <h2 className="text-2xl font-extrabold text-slate-900 mb-2" style={{ fontFamily: "Sora, sans-serif" }}>Interested in a Factory Visit?</h2>
+            <h2 className="font-sora text-2xl font-extrabold text-slate-900 mb-2">Interested in a Factory Visit?</h2>
             <p className="text-slate-600 text-sm max-w-lg">We welcome qualified buyers and distributors to visit our facility. Virtual factory tours are also available via video call.</p>
           </div>
-          <Link href="/contact" className="flex-shrink-0 inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap" style={{ fontFamily: "Sora, sans-serif" }}>
+          <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
             Schedule a Visit <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

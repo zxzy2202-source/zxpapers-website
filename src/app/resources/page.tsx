@@ -53,7 +53,7 @@ export default function ResourcesPage() {
       <div className="bg-[#0F2B5B] text-white py-14">
         <div className="container">
           <div className="text-amber-400 text-sm font-semibold mb-3">Resource Center</div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
             Thermal Paper<br /><span className="text-amber-400">Knowledge Hub</span>
           </h1>
           <p className="text-slate-300 max-w-2xl text-lg">Comprehensive guides, technical knowledge, and market insights for thermal paper buyers, distributors, and OEM partners worldwide.</p>
@@ -75,7 +75,7 @@ export default function ResourcesPage() {
                       <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${c.badge}`}>{tag}</span>
                       <span className="text-xs text-slate-400 flex items-center gap-1"><Clock className="w-3 h-3" /> {readTime} read</span>
                     </div>
-                    <h2 className="text-lg font-bold text-slate-900 group-hover:text-blue-700 transition-colors" style={{ fontFamily: "Sora, sans-serif" }}>{title}</h2>
+                    <h2 className="font-sora text-lg font-bold text-slate-900 group-hover:text-blue-700 transition-colors">{title}</h2>
                   </div>
                 </div>
                 <p className="text-slate-600 text-sm leading-relaxed mb-4">{desc}</p>
@@ -89,10 +89,10 @@ export default function ResourcesPage() {
 
         <div className="bg-slate-50 rounded-3xl p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <h2 className="text-2xl font-extrabold text-slate-900 mb-2" style={{ fontFamily: "Sora, sans-serif" }}>Ready to Source Thermal Paper?</h2>
+            <h2 className="font-sora text-2xl font-extrabold text-slate-900 mb-2">Ready to Source Thermal Paper?</h2>
             <p className="text-slate-600 text-sm max-w-lg">Get a free quote from our OEM team. We respond within 12 hours with pricing, samples, and technical specifications.</p>
           </div>
-          <Link href="/contact" className="flex-shrink-0 inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap" style={{ fontFamily: "Sora, sans-serif" }}>
+          <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
             Get Free Quote <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

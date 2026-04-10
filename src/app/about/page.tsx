@@ -9,6 +9,7 @@ import {
   Clock, BarChart3, Layers, Phone,
 } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About ZhixinPaper | Thermal Paper Manufacturer",
@@ -193,14 +194,13 @@ export default async function AboutPage() {
             </div>
           </div>
           <div className="space-y-4">
-            <img
+            <Image
               src={FACTORY_IMG}
               alt={`${SITE.name} Factory Aerial View — Xi'an, China`}
               className="w-full rounded-2xl shadow-xl object-cover"
-              loading="lazy"
               width={640}
               height={427}
-            />
+             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
             <div className="grid grid-cols-2 gap-4">
               {[
                 { value: FACTORY.area, label: "Factory Floor Area" },
@@ -246,14 +246,13 @@ export default async function AboutPage() {
             ))}
           </div>
           <div className="mt-10">
-            <img
+            <Image
               src={FACTORY_LINE_IMG}
               alt="ZhixinPaper Production Line"
               className="w-full rounded-2xl shadow-lg object-cover max-h-72"
-              loading="lazy"
               width={1200}
               height={400}
-            />
+             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
           </div>
         </div>
       </div>

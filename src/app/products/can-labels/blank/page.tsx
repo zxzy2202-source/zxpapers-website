@@ -5,6 +5,7 @@ import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { canLabelSizes, CAN_LABELS_IMG } from "../can-labels-data";
 import { SITE } from "@/config/siteData";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Blank Can Labels | Unprinted Full-Wrap",
@@ -100,18 +101,18 @@ export default function BlankCanLabelsPage() {
           <div className="lg:col-span-2 space-y-10">
 
             <div className="flex flex-col sm:flex-row gap-6">
-              <img
+              <Image
                 src={CAN_LABELS_IMG}
                 alt="Blank Can Labels"
                 className="w-full sm:w-64 h-48 object-cover rounded-2xl flex-shrink-0"
-              />
+               width={256} height={192} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               <div>
                 <span className="inline-block bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">
                   Can Labels
                 </span>
                 <h1
                   className="text-3xl font-extrabold text-slate-900 mb-3"
-                  style={{ fontFamily: "Sora, sans-serif" }}
+
                 >
                   Blank Can Labels
                 </h1>
@@ -131,7 +132,7 @@ export default function BlankCanLabelsPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">
                 Key Benefits
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -154,7 +155,7 @@ export default function BlankCanLabelsPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">
                 Applications
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -167,7 +168,7 @@ export default function BlankCanLabelsPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">
                 Available Sizes
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -178,7 +179,7 @@ export default function BlankCanLabelsPage() {
                     className="group flex items-center justify-between p-4 bg-white border border-slate-200 hover:border-amber-300 hover:bg-amber-50 rounded-xl transition-all duration-200"
                   >
                     <div>
-                      <div className="font-semibold text-slate-800 group-hover:text-amber-700 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>
+                      <div className="font-sora font-semibold text-slate-800 group-hover:text-amber-700 text-sm">
                         {size.label}
                       </div>
                       {size.badge && (
@@ -197,7 +198,7 @@ export default function BlankCanLabelsPage() {
 
           <div className="lg:col-span-1">
             <div className="sticky top-28 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900 mb-1" style={{ fontFamily: "Sora, sans-serif" }}>
+              <h3 className="font-sora text-lg font-bold text-slate-900 mb-1">
                 Get a Quote
               </h3>
               <p className="text-sm text-slate-500 mb-5">Response within 12 hours</p>

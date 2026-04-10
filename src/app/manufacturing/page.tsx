@@ -8,6 +8,7 @@ import {
   MessageSquare, Phone,
 } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: `Manufacturing Capabilities | ISO 9001 Thermal Paper Factory`,
@@ -180,10 +181,10 @@ export default function ManufacturingPage() {
               </div>
             </div>
             <div className="space-y-4">
-              <img src={IMG_COATING} alt="Thermal Paper Coating Production Line"
-                className="w-full rounded-2xl shadow-xl object-cover" loading="lazy" width={640} height={427} />
-              <img src={IMG_AERIAL} alt="Factory Aerial View"
-                className="w-full rounded-2xl shadow-lg object-cover max-h-48" loading="lazy" width={640} height={200} />
+              <Image src={IMG_COATING} alt="Thermal Paper Coating Production Line"
+                className="w-full rounded-2xl shadow-xl object-cover" width={640} height={427}  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+              <Image src={IMG_AERIAL} alt="Factory Aerial View"
+                className="w-full rounded-2xl shadow-lg object-cover max-h-48" width={640} height={200}  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
             </div>
           </div>
         </div>

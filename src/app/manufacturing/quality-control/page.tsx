@@ -70,7 +70,7 @@ export default function QualityControlPage() {
             </div>
             <span className="text-amber-400 text-sm font-semibold uppercase tracking-wider">Quality Management</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
             6-Stage Quality<br /><span className="text-amber-400">Control System</span>
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl">
@@ -85,7 +85,7 @@ export default function QualityControlPage() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[{ value: "6", label: "QC Stages" }, { value: "99.8%", label: "Pass Rate" }, { value: "100%", label: "Batch Traced" }, { value: "ISO 9001", label: "Certified" }].map(({ value, label }) => (
                 <div key={label} className="bg-slate-50 rounded-2xl p-4 text-center">
-                  <div className="text-2xl font-extrabold text-[#0F2B5B]" style={{ fontFamily: "Sora, sans-serif" }}>{value}</div>
+                  <div className="font-sora text-2xl font-extrabold text-[#0F2B5B]">{value}</div>
                   <div className="text-xs text-slate-500 mt-1">{label}</div>
                 </div>
               ))}
@@ -102,7 +102,7 @@ export default function QualityControlPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-xs font-bold text-blue-400 bg-blue-50 px-2 py-0.5 rounded-full">Stage {step}</span>
-                      <h3 className="font-bold text-slate-900 text-base" style={{ fontFamily: "Sora, sans-serif" }}>{title}</h3>
+                      <h3 className="font-sora font-bold text-slate-900 text-base">{title}</h3>
                     </div>
                     <p className="text-slate-600 text-sm leading-relaxed mb-3">{desc}</p>
                     <div className="flex flex-wrap gap-2">
@@ -118,7 +118,7 @@ export default function QualityControlPage() {
             </div>
 
             <div className="bg-slate-50 rounded-2xl p-7">
-              <h2 className="text-xl font-bold text-slate-900 mb-5" style={{ fontFamily: "Sora, sans-serif" }}>Laboratory & Test Equipment</h2>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-5">Laboratory & Test Equipment</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {["Basis weight tester (Mettler Toledo)", "Moisture analyzer (Sartorius)", "Spectrophotometer (X-Rite)", "Thermal print test station", "Accelerated aging chamber", "Tensile strength tester", "Optical microscope (200x)", "BPA/BPS chemical analyzer"].map((eq) => (
                   <div key={eq} className="flex items-center gap-2 text-sm text-slate-700">
@@ -140,7 +140,7 @@ export default function QualityControlPage() {
 
           <div>
             <div className="sticky top-28 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900 mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Request QC Report</h3>
+              <h3 className="font-sora text-lg font-bold text-slate-900 mb-1">Request QC Report</h3>
               <p className="text-sm text-slate-500 mb-5">Get a sample Certificate of Conformance for your evaluation.</p>
               <InquiryForm productName="Quality Control Report" compact />
             </div>

@@ -5,6 +5,7 @@ import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { canLabelSizes, CAN_LABELS_IMG } from "./can-labels-data";
 import { SITE } from "@/config/siteData";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Can Labels Manufacturer | Custom & Blank",
@@ -65,18 +66,18 @@ export default function CanLabelsPage() {
 
             {/* Hero */}
             <div className="flex flex-col sm:flex-row gap-6">
-              <img
+              <Image
                 src={CAN_LABELS_IMG}
                 alt="Can Labels"
                 className="w-full sm:w-64 h-48 object-cover rounded-2xl flex-shrink-0"
-              />
+               width={256} height={192} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               <div>
                 <span className="inline-block bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">
                   Can Labels
                 </span>
                 <h1
                   className="text-3xl font-extrabold text-slate-900 mb-3"
-                  style={{ fontFamily: "Sora, sans-serif" }}
+
                 >
                   Can Labels
                 </h1>
@@ -99,7 +100,7 @@ export default function CanLabelsPage() {
             <div>
               <h2
                 className="text-xl font-bold text-slate-900 mb-4"
-                style={{ fontFamily: "Sora, sans-serif" }}
+
               >
                 Product Variants
               </h2>
@@ -111,7 +112,7 @@ export default function CanLabelsPage() {
                   <div className="flex items-center justify-between">
                     <span
                       className="font-bold text-slate-800 group-hover:text-amber-700"
-                      style={{ fontFamily: "Sora, sans-serif" }}
+
                     >
                       Blank Can Labels
                     </span>
@@ -129,7 +130,7 @@ export default function CanLabelsPage() {
                   <div className="flex items-center justify-between">
                     <span
                       className="font-bold text-slate-800 group-hover:text-amber-700"
-                      style={{ fontFamily: "Sora, sans-serif" }}
+
                     >
                       Custom Printed Can Labels
                     </span>
@@ -147,7 +148,7 @@ export default function CanLabelsPage() {
             <div>
               <h2
                 className="text-xl font-bold text-slate-900 mb-4"
-                style={{ fontFamily: "Sora, sans-serif" }}
+
               >
                 Key Benefits
               </h2>
@@ -174,7 +175,7 @@ export default function CanLabelsPage() {
             <div>
               <h2
                 className="text-xl font-bold text-slate-900 mb-4"
-                style={{ fontFamily: "Sora, sans-serif" }}
+
               >
                 Applications
               </h2>
@@ -202,7 +203,7 @@ export default function CanLabelsPage() {
             <div>
               <h2
                 className="text-xl font-bold text-slate-900 mb-4"
-                style={{ fontFamily: "Sora, sans-serif" }}
+
               >
                 Popular Can Sizes
               </h2>
@@ -216,7 +217,7 @@ export default function CanLabelsPage() {
                     <div>
                       <div
                         className="font-semibold text-slate-800 group-hover:text-amber-700 text-sm"
-                        style={{ fontFamily: "Sora, sans-serif" }}
+
                       >
                         {size.label}
                       </div>
@@ -236,7 +237,7 @@ export default function CanLabelsPage() {
             <div>
               <h2
                 className="text-xl font-bold text-slate-900 mb-4"
-                style={{ fontFamily: "Sora, sans-serif" }}
+
               >
                 Standard Specifications
               </h2>
@@ -276,7 +277,7 @@ export default function CanLabelsPage() {
             <div className="sticky top-28 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
               <h3
                 className="text-lg font-bold text-slate-900 mb-1"
-                style={{ fontFamily: "Sora, sans-serif" }}
+
               >
                 Get a Quote
               </h3>

@@ -74,7 +74,7 @@ export default function CertificationsPage() {
             </div>
             <span className="text-amber-400 text-sm font-semibold uppercase tracking-wider">Compliance & Certifications</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
             Industry Certifications<br /><span className="text-amber-400">& Compliance</span>
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl">
@@ -106,7 +106,7 @@ export default function CertificationsPage() {
                     <Icon className={`w-6 h-6 ${c.text}`} />
                   </div>
                   <div>
-                    <h3 className="font-extrabold text-slate-900 text-lg" style={{ fontFamily: "Sora, sans-serif" }}>{name}</h3>
+                    <h3 className="font-sora font-extrabold text-slate-900 text-lg">{name}</h3>
                     <p className="text-xs text-slate-500 mt-0.5">{scope}</p>
                   </div>
                 </div>
@@ -129,10 +129,10 @@ export default function CertificationsPage() {
 
         <div className="bg-[#0F2B5B] rounded-3xl p-10 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <h2 className="text-2xl font-extrabold mb-2" style={{ fontFamily: "Sora, sans-serif" }}>Need Copies of Our Certificates?</h2>
+            <h2 className="font-sora text-2xl font-extrabold mb-2">Need Copies of Our Certificates?</h2>
             <p className="text-slate-300 text-sm max-w-lg">All certificates are available upon request. We can provide original scans, translated versions, or notarized copies for import/customs requirements.</p>
           </div>
-          <Link href="/contact" className="flex-shrink-0 inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap" style={{ fontFamily: "Sora, sans-serif" }}>
+          <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
             Request Certificates <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

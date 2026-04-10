@@ -53,7 +53,7 @@ export default function ProductKnowledgePage() {
             <span className="text-slate-500">·</span>
             <span className="text-slate-400 text-xs flex items-center gap-1"><Clock className="w-3 h-3" /> 14 min read</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold mb-3 max-w-3xl leading-tight" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h1 className="font-sora text-3xl sm:text-4xl font-extrabold mb-3 max-w-3xl leading-tight">
             Thermal Paper Explained:<br /><span className="text-amber-400">A Complete Technical Guide</span>
           </h1>
           <p className="text-slate-300 max-w-2xl text-base">How thermal paper works at the chemistry level, the real differences between grades, how to select the right paper for your printer and environment, and what causes premature image fading — with practical guidance for buyers and distributors.</p>
@@ -66,12 +66,12 @@ export default function ProductKnowledgePage() {
 
             {/* Section 1 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>How Thermal Paper Works</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">How Thermal Paper Works</h2>
               <p className="text-slate-600 leading-relaxed mb-4">Thermal paper contains a heat-sensitive coating on one side. When a thermal print head applies heat to specific points, a chemical reaction turns those areas dark — creating text, barcodes, or graphics without ink or ribbons. This is why thermal printing is so reliable and low-maintenance: there are no ink cartridges to replace, no ribbons to jam, and no nozzles to clog.</p>
               <p className="text-slate-600 leading-relaxed mb-4">The coating contains three key components: a leuco dye (colorless), a developer (acid), and a sensitizer. Heat melts the sensitizer, allowing the dye and developer to react and produce a dark image. The reaction is essentially irreversible under normal conditions, which is why thermal prints are stable once cooled — but also why they are vulnerable to heat, chemicals, and UV light, which can trigger the same reaction unintentionally.</p>
               <p className="text-slate-600 leading-relaxed mb-4">Understanding this chemistry is essential for selecting the right paper grade and advising your customers on proper storage. A receipt left on a car dashboard in summer sun will fade within hours — not because the paper is defective, but because the ambient temperature has exceeded the coating's activation threshold.</p>
               <div className="bg-slate-50 rounded-2xl p-6 mt-4">
-                <h3 className="font-bold text-slate-900 mb-3 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>Key Components of Thermal Coating</h3>
+                <h3 className="font-sora font-bold text-slate-900 mb-3 text-sm">Key Components of Thermal Coating</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {[
                     { name: "Leuco Dye", role: "Color-forming agent", detail: "Colorless until activated by heat. Turns dark (usually black or blue) upon reaction. The specific dye formulation determines the print color and density." },
@@ -79,7 +79,7 @@ export default function ProductKnowledgePage() {
                     { name: "Sensitizer", role: "Melting agent", detail: "Lowers the activation temperature, enabling printing at standard thermal head temperatures (60–80°C). Also affects print speed and energy efficiency." },
                   ].map(({ name, role, detail }) => (
                     <div key={name} className="bg-white rounded-xl p-4 border border-slate-200">
-                      <div className="font-bold text-blue-700 text-sm mb-1" style={{ fontFamily: "Sora, sans-serif" }}>{name}</div>
+                      <div className="font-sora font-bold text-blue-700 text-sm mb-1">{name}</div>
                       <div className="text-xs text-slate-500 mb-2">{role}</div>
                       <div className="text-xs text-slate-600 leading-relaxed">{detail}</div>
                     </div>
@@ -90,7 +90,7 @@ export default function ProductKnowledgePage() {
 
             {/* Section 2 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Thermal Paper Grades: What the Differences Actually Mean</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Thermal Paper Grades: What the Differences Actually Mean</h2>
               <p className="text-slate-600 leading-relaxed mb-5">The thermal paper market uses several grade designations — Standard, BPA-Free, Phenol-Free, Premium — but these terms are not always used consistently by different manufacturers. Here is a precise breakdown of what each grade means in terms of chemistry, performance, and appropriate use cases.</p>
               <div className="overflow-hidden border border-slate-200 rounded-2xl mb-5">
                 <table className="w-full text-sm">
@@ -126,7 +126,7 @@ export default function ProductKnowledgePage() {
 
             {/* Section 3 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Key Specifications Explained</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Key Specifications Explained</h2>
               <p className="text-slate-600 leading-relaxed mb-5">Thermal paper specifications are often listed as a series of numbers that can be confusing without context. Here is what each parameter means and why it matters for your specific application.</p>
               <div className="space-y-4">
                 {[
@@ -138,7 +138,7 @@ export default function ProductKnowledgePage() {
                   { term: "Optical Density", def: "A measure of print darkness, typically expressed as OD (optical density). A value of 1.0 means the printed area absorbs 90% of incident light. OD ≥1.0 is the minimum for reliable barcode scanning. Premium grades achieve OD 1.2–1.4, which produces visually darker, crisper prints that scan reliably even on worn barcode readers." },
                 ].map(({ term, def }) => (
                   <div key={term} className="p-5 bg-white border border-slate-100 rounded-xl shadow-sm">
-                    <div className="font-bold text-slate-900 text-sm mb-2" style={{ fontFamily: "Sora, sans-serif" }}>{term}</div>
+                    <div className="font-sora font-bold text-slate-900 text-sm mb-2">{term}</div>
                     <div className="text-sm text-slate-600 leading-relaxed">{def}</div>
                   </div>
                 ))}
@@ -147,7 +147,7 @@ export default function ProductKnowledgePage() {
 
             {/* Section 4 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>What Causes Thermal Image Fading — and How to Prevent It</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">What Causes Thermal Image Fading — and How to Prevent It</h2>
               <p className="text-slate-600 leading-relaxed mb-5">Premature image fading is the most common quality complaint in the thermal paper industry, and it is almost always caused by environmental factors rather than paper defects. Understanding these factors allows you to advise customers on proper storage and select the appropriate grade for their environment.</p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
                 {[
@@ -159,7 +159,7 @@ export default function ProductKnowledgePage() {
                     <div className={`w-9 h-9 ${color.split(" ")[1]} rounded-lg flex items-center justify-center mb-3`}>
                       <Icon className={`w-5 h-5 ${color.split(" ")[0]}`} />
                     </div>
-                    <div className="font-bold text-slate-900 text-sm mb-2" style={{ fontFamily: "Sora, sans-serif" }}>{title}</div>
+                    <div className="font-sora font-bold text-slate-900 text-sm mb-2">{title}</div>
                     <div className="text-xs text-slate-600 leading-relaxed">{desc}</div>
                   </div>
                 ))}
@@ -168,7 +168,7 @@ export default function ProductKnowledgePage() {
                 <div className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-bold text-green-900 text-sm mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Storage Best Practices</div>
+                    <div className="font-sora font-bold text-green-900 text-sm mb-1">Storage Best Practices</div>
                     <p className="text-sm text-green-800 leading-relaxed">Store unused rolls in original packaging at 15–25°C, 40–65% relative humidity, away from direct sunlight. Do not store near solvents, adhesives, or cleaning products. For long-term archival storage of printed receipts, use polypropylene (not PVC) sleeves or folders. These precautions can extend actual image life to match or exceed the stated specification.</p>
                   </div>
                 </div>
@@ -177,7 +177,7 @@ export default function ProductKnowledgePage() {
 
             {/* Section 5 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Printer Compatibility: Matching Paper to Machine</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Printer Compatibility: Matching Paper to Machine</h2>
               <p className="text-slate-600 leading-relaxed mb-4">Not all thermal paper works equally well in all printers. The print head temperature, print speed, and paper path geometry of each printer model interact with the paper's coating sensitivity, basis weight, and surface smoothness. Using the wrong paper can result in light prints, frequent jams, or accelerated print head wear.</p>
               <p className="text-slate-600 leading-relaxed mb-4">The key matching parameters are: paper sensitivity (the temperature at which the coating activates), paper smoothness (Bekk smoothness, measured in seconds), and paper stiffness (related to basis weight). High-speed printers (printing at 250mm/second or faster) require more sensitive paper than low-speed printers, because the print head contacts each point for a shorter time.</p>
               <div className="overflow-hidden border border-slate-200 rounded-2xl mb-4">
@@ -213,7 +213,7 @@ export default function ProductKnowledgePage() {
 
             {/* Section 6 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Common Size Guide</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Common Size Guide</h2>
               <p className="text-slate-600 leading-relaxed mb-5">Paper width is the most critical dimension — it must match your printer exactly. Length and roll diameter are more flexible, as most printers can accommodate a range of roll lengths. The following guide covers the most common sizes across global markets.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
                 {[
@@ -227,7 +227,7 @@ export default function ProductKnowledgePage() {
                   <div key={size} className="flex items-start gap-3 p-4 bg-slate-50 rounded-xl">
                     <Tag className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <div className="font-bold text-slate-900 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>{size}</div>
+                      <div className="font-sora font-bold text-slate-900 text-sm">{size}</div>
                       <div className="text-xs text-slate-600 mt-1">{use}</div>
                     </div>
                   </div>
@@ -237,14 +237,14 @@ export default function ProductKnowledgePage() {
 
             {/* Section 7 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Thermal Labels vs. Thermal Paper Rolls: Key Differences</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Thermal Labels vs. Thermal Paper Rolls: Key Differences</h2>
               <p className="text-slate-600 leading-relaxed mb-4">Thermal labels and thermal paper rolls share the same printing technology but differ significantly in substrate, adhesive, and application requirements. Understanding these differences is essential for distributors who supply both POS and logistics customers.</p>
               <p className="text-slate-600 leading-relaxed mb-4">Thermal labels use a face stock (the printable layer), an adhesive layer, and a release liner. The face stock can be paper (for indoor, short-term applications) or synthetic film (polyethylene, polypropylene, or polyester, for outdoor, moisture-resistant, or long-term applications). The adhesive can be permanent, removable, or freezer-grade (for cold-chain logistics labels that must adhere at -20°C).</p>
               <p className="text-slate-600 leading-relaxed mb-4">The most important specification for labels is the adhesive type relative to the application surface. Paper labels on corrugated cardboard boxes require a different adhesive formulation than labels on glass bottles, plastic containers, or metal surfaces. Specifying the wrong adhesive is the most common cause of label failure in the field.</p>
               <div className="flex items-start gap-3 p-5 bg-amber-50 border border-amber-200 rounded-xl">
                 <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="font-bold text-amber-900 text-sm mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Common Labeling Mistake</div>
+                  <div className="font-sora font-bold text-amber-900 text-sm mb-1">Common Labeling Mistake</div>
                   <p className="text-sm text-amber-800 leading-relaxed">Using standard paper labels in refrigerated environments causes the adhesive to fail and labels to fall off. For cold-chain applications (refrigerated or frozen storage), always specify freezer-grade adhesive labels, which maintain adhesion at temperatures as low as -20°C. We offer freezer-grade versions of all our standard label sizes.</p>
                 </div>
               </div>
@@ -252,7 +252,7 @@ export default function ProductKnowledgePage() {
 
             {/* Section 8 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Sustainability and Environmental Considerations</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Sustainability and Environmental Considerations</h2>
               <p className="text-slate-600 leading-relaxed mb-4">Thermal paper sustainability is a growing concern among buyers, particularly in European markets where environmental procurement criteria are increasingly common. The key sustainability dimensions are: fiber sourcing, chemical content, and recyclability.</p>
               <p className="text-slate-600 leading-relaxed mb-4">FSC (Forest Stewardship Council) certification confirms that the paper fiber originates from responsibly managed forests. We offer FSC-certified paper across our BPA-Free and Phenol-Free product lines. For buyers with sustainability procurement requirements, we can provide FSC chain-of-custody documentation.</p>
               <p className="text-slate-600 leading-relaxed mb-4">Recyclability is complicated by the thermal coating. Standard thermal paper with BPA is not accepted in most paper recycling streams because the BPA contaminates the recycled pulp. Phenol-Free thermal paper is more widely accepted in recycling programs, and several European municipalities now specifically require Phenol-Free paper for this reason. Synthetic thermal labels (polyester or polyethylene base) are generally not recyclable through standard paper streams and should be disposed of as general waste or through specialist recycling programs.</p>
@@ -263,12 +263,12 @@ export default function ProductKnowledgePage() {
 
           <div className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-              <h3 className="text-base font-bold text-slate-900 mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Get a Free Quote</h3>
+              <h3 className="font-sora text-base font-bold text-slate-900 mb-1">Get a Free Quote</h3>
               <p className="text-xs text-slate-500 mb-4">12-hour response guaranteed</p>
               <InquiryForm compact />
             </div>
             <div className="bg-slate-50 rounded-2xl p-5">
-              <h4 className="text-sm font-bold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>Related Resources</h4>
+              <h4 className="font-sora text-sm font-bold text-slate-900 mb-3">Related Resources</h4>
               <ul className="space-y-2">
                 {[{ label: "Product Specifications", href: "/specifications" }, { label: "Blank Thermal Rolls", href: "/products/thermal-paper-rolls/blank" }, { label: "Thermal Labels", href: "/products/thermal-labels/blank" }, { label: "OEM Guide", href: "/resources/oem-guide" }, { label: "FAQ", href: "/faq" }].map(({ label, href }) => (
                   <li key={href}><Link href={href} className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"><ChevronRight className="w-3.5 h-3.5 flex-shrink-0" />{label}</Link></li>

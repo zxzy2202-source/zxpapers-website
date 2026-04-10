@@ -162,7 +162,7 @@ export default function CustomPrintingPage() {
           <div className="text-amber-400 text-sm font-semibold mb-3">
             <Link href="/oem" className="hover:underline">OEM Services</Link> / Custom Printing
           </div>
-          <h1 className="text-4xl font-extrabold mb-4 leading-tight" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h1 className="font-sora text-4xl font-extrabold mb-4 leading-tight">
             OEM Custom Printing<br />on Thermal Paper Rolls &amp; Labels
           </h1>
           <p className="text-slate-300 max-w-2xl mb-6">Turn every receipt into a brand touchpoint. Full-color flexographic printing with Pantone matching, QR codes, multilingual layouts, and regulatory compliance printing for Africa, Middle East, and Southeast Asia.</p>
@@ -194,14 +194,14 @@ export default function CustomPrintingPage() {
             <div>
               <div className="flex items-center gap-2 mb-5">
                 <Layers className="w-5 h-5 text-amber-600" />
-                <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: "Sora, sans-serif" }}>What We Can Print</h2>
+                <h2 className="font-sora text-xl font-bold text-slate-900">What We Can Print</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {printCapabilities.map(({ icon, title, desc }) => (
                   <div key={title} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:border-amber-300 transition-colors">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-lg">{icon}</span>
-                      <span className="font-bold text-slate-900 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>{title}</span>
+                      <span className="font-sora font-bold text-slate-900 text-sm">{title}</span>
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed">{desc}</p>
                   </div>
@@ -213,7 +213,7 @@ export default function CustomPrintingPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Printer className="w-5 h-5 text-amber-600" />
-                <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: "Sora, sans-serif" }}>Printing Specifications</h2>
+                <h2 className="font-sora text-xl font-bold text-slate-900">Printing Specifications</h2>
               </div>
               <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                 <table className="w-full text-sm">
@@ -231,13 +231,13 @@ export default function CustomPrintingPage() {
 
             {/* Regional Compliance */}
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-5" style={{ fontFamily: "Sora, sans-serif" }}>Regional Regulatory Compliance Printing</h2>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-5">Regional Regulatory Compliance Printing</h2>
               <p className="text-sm text-slate-600 mb-5 leading-relaxed">We support pre-printed compliance text and logos for tax receipt regulations across Africa, the Middle East, and Southeast Asia.</p>
               <div className="space-y-3">
                 {complianceItems.map(({ region, standard, detail }) => (
                   <div key={region} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
-                      <span className="font-bold text-slate-900 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>{region}</span>
+                      <span className="font-sora font-bold text-slate-900 text-sm">{region}</span>
                       <span className="text-xs bg-blue-50 text-blue-700 border border-blue-100 rounded-full px-3 py-0.5 font-medium">{standard}</span>
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed">{detail}</p>
@@ -248,15 +248,15 @@ export default function CustomPrintingPage() {
 
             {/* Order Process */}
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-5" style={{ fontFamily: "Sora, sans-serif" }}>How to Order Custom Printed Rolls</h2>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-5">How to Order Custom Printed Rolls</h2>
               <div className="relative">
                 <div className="hidden sm:block absolute left-[28px] top-8 bottom-8 w-0.5 bg-amber-200" />
                 <div className="space-y-4">
                   {orderSteps.map(({ step, title, desc }) => (
                     <div key={step} className="flex gap-4 items-start">
-                      <div className="relative z-10 flex-shrink-0 w-14 h-14 rounded-full bg-amber-600 text-white flex items-center justify-center font-extrabold text-sm shadow-md" style={{ fontFamily: "Sora, sans-serif" }}>{step}</div>
+                      <div className="font-sora relative z-10 flex-shrink-0 w-14 h-14 rounded-full bg-amber-600 text-white flex items-center justify-center font-extrabold text-sm shadow-md">{step}</div>
                       <div className="flex-1 bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                        <div className="font-bold text-slate-900 text-sm mb-1" style={{ fontFamily: "Sora, sans-serif" }}>{title}</div>
+                        <div className="font-sora font-bold text-slate-900 text-sm mb-1">{title}</div>
                         <p className="text-xs text-slate-600 leading-relaxed">{desc}</p>
                       </div>
                     </div>
@@ -267,7 +267,7 @@ export default function CustomPrintingPage() {
 
             {/* Why ZhixinPaper */}
             <div>
-              <h2 className="text-xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Why Choose ZhixinPaper for OEM Printing?</h2>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">Why Choose ZhixinPaper for OEM Printing?</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   "ISO 9001:2015 certified printing facility",
@@ -307,13 +307,13 @@ export default function CustomPrintingPage() {
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                   <span className="text-xs text-green-600 font-semibold">Online — Responding within 12h</span>
                 </div>
-                <h3 className="text-lg font-extrabold text-slate-900 mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Get a Custom Print Quote</h3>
+                <h3 className="font-sora text-lg font-extrabold text-slate-900 mb-1">Get a Custom Print Quote</h3>
                 <p className="text-sm text-slate-500 mb-5">Tell us your size, quantity, colors, and artwork. We will reply with pricing and a free design proof.</p>
                 <InquiryForm productName="Custom Printing" compact />
               </div>
 
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-3">
-                <h4 className="font-bold text-slate-900 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>Order at a Glance</h4>
+                <h4 className="font-sora font-bold text-slate-900 text-sm">Order at a Glance</h4>
                 {[
                   { icon: Package,     label: "MOQ",          val: "1,000 rolls" },
                   { icon: Clock,       label: "Lead Time",    val: "10–20 days" },
@@ -328,7 +328,7 @@ export default function CustomPrintingPage() {
               </div>
 
               <div className="bg-white border border-slate-200 rounded-2xl p-5">
-                <h4 className="font-bold text-slate-900 text-sm mb-3" style={{ fontFamily: "Sora, sans-serif" }}>Certifications</h4>
+                <h4 className="font-sora font-bold text-slate-900 text-sm mb-3">Certifications</h4>
                 <div className="space-y-2">
                   {["ISO 9001:2015", "FSC Certified", "BPA-Free Inks", "RoHS / REACH", "FDA Compliant"].map((cert) => (
                     <div key={cert} className="flex items-center gap-2 text-sm text-slate-700">
@@ -339,7 +339,7 @@ export default function CustomPrintingPage() {
               </div>
 
               <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5">
-                <h4 className="font-bold text-slate-900 text-sm mb-3" style={{ fontFamily: "Sora, sans-serif" }}>Compliance Printing</h4>
+                <h4 className="font-sora font-bold text-slate-900 text-sm mb-3">Compliance Printing</h4>
                 <div className="space-y-2">
                   {["TRA (Tanzania)", "ZATCA (Saudi Arabia)", "FIRS (Nigeria)", "KRA TIMS (Kenya)", "VAT (UAE / Egypt)", "Arabic bilingual"].map((item) => (
                     <div key={item} className="flex items-center gap-2 text-xs text-slate-700">

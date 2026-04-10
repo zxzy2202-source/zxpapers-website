@@ -108,14 +108,14 @@ export default function IndonesiaPage() {
       <section className="bg-white py-16">
         <div className="container">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>Popular Products for Indonesia</h2>
+            <h2 className="font-sora text-3xl font-extrabold text-slate-900 mb-3">Popular Products for Indonesia</h2>
             <p className="text-slate-500 max-w-xl mx-auto">Most-ordered thermal paper products by Indonesian distributors and e-commerce logistics providers.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((p) => (
               <div key={p.name} className="bg-white border border-slate-200 hover:border-green-300 hover:shadow-lg rounded-2xl p-6 transition-all duration-300 flex flex-col">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-bold text-slate-900 text-base leading-tight" style={{ fontFamily: "Sora, sans-serif" }}>{p.name}</h3>
+                  <h3 className="font-sora font-bold text-slate-900 text-base leading-tight">{p.name}</h3>
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 whitespace-nowrap ml-2">{p.badge}</span>
                 </div>
                 <p className="text-sm text-slate-600 leading-relaxed mb-4 flex-1">{p.desc}</p>
@@ -132,7 +132,7 @@ export default function IndonesiaPage() {
       <section className="bg-slate-50 py-16">
         <div className="container max-w-3xl">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>Shipping to Indonesia</h2>
+            <h2 className="font-sora text-3xl font-extrabold text-slate-900 mb-3">Shipping to Indonesia</h2>
           </div>
           <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
             {[
@@ -158,12 +158,12 @@ export default function IndonesiaPage() {
       <section className="bg-white py-16">
         <div className="container max-w-3xl">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>FAQ — Indonesia Buyers</h2>
+            <h2 className="font-sora text-3xl font-extrabold text-slate-900 mb-3">FAQ — Indonesia Buyers</h2>
           </div>
           <div className="space-y-4">
             {faqs.map((faq) => (
               <div key={faq.q} className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
-                <h3 className="font-bold text-slate-900 mb-2 flex items-start gap-2" style={{ fontFamily: "Sora, sans-serif" }}>
+                <h3 className="font-sora font-bold text-slate-900 mb-2 flex items-start gap-2">
                   <span className="text-green-500 mt-0.5 flex-shrink-0">Q.</span>{faq.q}
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed pl-5">{faq.a}</p>
@@ -175,13 +175,13 @@ export default function IndonesiaPage() {
 
       <section className="bg-[#0F2B5B] text-white py-16">
         <div className="container text-center">
-          <h2 className="text-3xl font-extrabold mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Get CIF Tanjung Priok Pricing Today</h2>
+          <h2 className="font-sora text-3xl font-extrabold mb-4">Get CIF Tanjung Priok Pricing Today</h2>
           <p className="text-slate-300 mb-8 max-w-xl mx-auto">Send us your required sizes and quantity. We'll reply with a full price list within 24 hours.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5" style={{ fontFamily: "Sora, sans-serif" }}>
+            <Link href="/contact" className="font-sora inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5">
               <MessageSquare className="w-5 h-5" /> Send Inquiry
             </Link>
-            <a href={`${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I am a distributor in Indonesia. Please send me your thermal paper price list and CIF Tanjung Priok rates.")}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5" style={{ fontFamily: "Sora, sans-serif" }}>
+            <a href={`${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I am a distributor in Indonesia. Please send me your thermal paper price list and CIF Tanjung Priok rates.")}`} target="_blank" rel="noopener noreferrer" className="font-sora inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5">
               <Phone className="w-5 h-5" /> WhatsApp Us
             </a>
           </div>

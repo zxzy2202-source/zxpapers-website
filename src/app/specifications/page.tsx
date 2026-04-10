@@ -64,7 +64,7 @@ export default function SpecificationsPage() {
       <div className="bg-[#0F2B5B] text-white py-14">
         <div className="container">
           <div className="text-amber-400 text-sm font-semibold mb-3">Technical Reference</div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
             Product <span className="text-amber-400">Specifications</span>
           </h1>
           <p className="text-slate-300 max-w-2xl text-lg">Complete technical specifications for all thermal paper rolls and labels. Use this reference to select the right product for your application.</p>
@@ -74,7 +74,7 @@ export default function SpecificationsPage() {
       <div className="container py-14 space-y-14">
         {/* Thermal Paper Rolls */}
         <section>
-          <h2 className="text-2xl font-bold text-slate-900 mb-6" style={{ fontFamily: "Sora, sans-serif" }}>Thermal Paper Rolls — Standard Specifications</h2>
+          <h2 className="font-sora text-2xl font-bold text-slate-900 mb-6">Thermal Paper Rolls — Standard Specifications</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm border border-slate-200 rounded-2xl overflow-hidden">
               <thead className="bg-[#0F2B5B] text-white">
@@ -104,7 +104,7 @@ export default function SpecificationsPage() {
 
         {/* Thermal Labels */}
         <section>
-          <h2 className="text-2xl font-bold text-slate-900 mb-6" style={{ fontFamily: "Sora, sans-serif" }}>Thermal Labels — Standard Specifications</h2>
+          <h2 className="font-sora text-2xl font-bold text-slate-900 mb-6">Thermal Labels — Standard Specifications</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm border border-slate-200 rounded-2xl overflow-hidden">
               <thead className="bg-[#0F2B5B] text-white">
@@ -134,11 +134,11 @@ export default function SpecificationsPage() {
 
         {/* Coating Grades */}
         <section>
-          <h2 className="text-2xl font-bold text-slate-900 mb-6" style={{ fontFamily: "Sora, sans-serif" }}>Coating Grades</h2>
+          <h2 className="font-sora text-2xl font-bold text-slate-900 mb-6">Coating Grades</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {coatingGrades.map(({ grade, dev, life, use, bgClass, borderClass, titleClass }) => (
               <div key={grade} className={`${bgClass} border ${borderClass} rounded-2xl p-6`}>
-                <div className={`text-lg font-extrabold ${titleClass} mb-2`} style={{ fontFamily: "Sora, sans-serif" }}>{grade}</div>
+                <div className={`font-sora text-lg font-extrabold ${titleClass} mb-2`}>{grade}</div>
                 <div className="text-xs text-slate-500 mb-1">Developer: <strong className="text-slate-700">{dev}</strong></div>
                 <div className="text-xs text-slate-500 mb-1">Image Life: <strong className="text-slate-700">{life}</strong></div>
                 <div className="text-xs text-slate-500">Best For: <strong className="text-slate-700">{use}</strong></div>
@@ -149,10 +149,10 @@ export default function SpecificationsPage() {
 
         <div className="bg-slate-50 rounded-3xl p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <h2 className="text-2xl font-extrabold text-slate-900 mb-2" style={{ fontFamily: "Sora, sans-serif" }}>Need Custom Specifications?</h2>
+            <h2 className="font-sora text-2xl font-extrabold text-slate-900 mb-2">Need Custom Specifications?</h2>
             <p className="text-slate-600 text-sm max-w-lg">We manufacture to any specification. Contact our technical team with your requirements for a custom quote.</p>
           </div>
-          <Link href="/contact" className="flex-shrink-0 inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap" style={{ fontFamily: "Sora, sans-serif" }}>
+          <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
             Request Custom Specs <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

@@ -53,7 +53,7 @@ export default function OEMGuidePage() {
             <span className="text-slate-500">·</span>
             <span className="text-slate-400 text-xs flex items-center gap-1"><Clock className="w-3 h-3" /> 15 min read</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold mb-3 max-w-3xl leading-tight" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h1 className="font-sora text-3xl sm:text-4xl font-extrabold mb-3 max-w-3xl leading-tight">
             The Complete Guide to<br /><span className="text-amber-400">Thermal Paper OEM Manufacturing</span>
           </h1>
           <p className="text-slate-300 max-w-2xl text-base">Everything a distributor or brand owner needs to know about sourcing custom thermal paper rolls and labels — from MOQ and sampling to private label packaging, quality control, and avoiding the most common sourcing pitfalls.</p>
@@ -66,7 +66,7 @@ export default function OEMGuidePage() {
 
             {/* Section 1 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>What Is Thermal Paper OEM Manufacturing?</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">What Is Thermal Paper OEM Manufacturing?</h2>
               <p className="text-slate-600 leading-relaxed mb-4">OEM (Original Equipment Manufacturer) in the thermal paper industry means a factory produces rolls or labels to your exact specifications — your size, your coating formula, your packaging, your brand. You sell under your own label; we manufacture behind the scenes.</p>
               <p className="text-slate-600 leading-relaxed mb-4">This model is used by distributors, office supply brands, retail chains, and logistics companies worldwide to build proprietary product lines without owning a factory. The global thermal paper market was valued at approximately USD 4.2 billion in 2023 and is projected to grow at a CAGR of 5.1% through 2030, driven by expanding e-commerce logistics, food delivery, and cashless payment adoption. For distributors, OEM manufacturing is the most efficient path to capturing margin in this growing market.</p>
               <p className="text-slate-600 leading-relaxed mb-4">Unlike trading companies that resell generic stock, a true OEM partnership gives you product differentiation: your brand on the packaging, your specifications in the formulation, and your pricing power in the market. Retailers and end-users who reorder by brand name become loyal to your product, not to the underlying factory.</p>
@@ -78,7 +78,7 @@ export default function OEMGuidePage() {
                 ].map(({ icon: Icon, title, desc }) => (
                   <div key={title} className="bg-blue-50 rounded-xl p-5 text-center">
                     <Icon className="w-7 h-7 text-blue-600 mx-auto mb-2" />
-                    <div className="font-bold text-slate-900 text-sm mb-1" style={{ fontFamily: "Sora, sans-serif" }}>{title}</div>
+                    <div className="font-sora font-bold text-slate-900 text-sm mb-1">{title}</div>
                     <div className="text-xs text-slate-600">{desc}</div>
                   </div>
                 ))}
@@ -87,7 +87,7 @@ export default function OEMGuidePage() {
 
             {/* Section 2 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Step-by-Step OEM Process</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Step-by-Step OEM Process</h2>
               <p className="text-slate-600 leading-relaxed mb-5">Understanding the full OEM workflow before you begin prevents delays and miscommunication. A well-managed OEM project from inquiry to first delivery typically takes 25–35 days. Here is what each stage involves:</p>
               <div className="space-y-4">
                 {[
@@ -99,9 +99,9 @@ export default function OEMGuidePage() {
                   { step: "06", title: "Shipping & Documentation", desc: "We handle export documentation (CO, packing list, invoice, BL). DDP, FOB, CIF, and EXW terms available. For EU customers, we provide REACH compliance documentation. For US customers, FDA 21 CFR 176.170 compliance letters are available on request." },
                 ].map(({ step, title, desc }) => (
                   <div key={step} className="flex gap-4 p-5 bg-white border border-slate-100 rounded-xl shadow-sm">
-                    <div className="w-10 h-10 bg-[#0F2B5B] text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0" style={{ fontFamily: "Sora, sans-serif" }}>{step}</div>
+                    <div className="font-sora w-10 h-10 bg-[#0F2B5B] text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0">{step}</div>
                     <div>
-                      <div className="font-bold text-slate-900 text-sm mb-1" style={{ fontFamily: "Sora, sans-serif" }}>{title}</div>
+                      <div className="font-sora font-bold text-slate-900 text-sm mb-1">{title}</div>
                       <div className="text-sm text-slate-600 leading-relaxed">{desc}</div>
                     </div>
                   </div>
@@ -111,7 +111,7 @@ export default function OEMGuidePage() {
 
             {/* Section 3 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>MOQ, Lead Times & Pricing</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">MOQ, Lead Times & Pricing</h2>
               <p className="text-slate-600 leading-relaxed mb-5">One of the most common questions from new OEM buyers is: "What is the minimum order quantity?" The answer depends on the complexity of your specification. Standard sizes with stock paper have lower MOQs; fully custom formulations require larger runs to justify setup costs.</p>
               <div className="overflow-hidden border border-slate-200 rounded-2xl mb-5">
                 <table className="w-full text-sm">
@@ -145,7 +145,7 @@ export default function OEMGuidePage() {
 
             {/* Section 4 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Common OEM Customization Options</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Common OEM Customization Options</h2>
               <p className="text-slate-600 leading-relaxed mb-5">The range of customization available in modern thermal paper manufacturing is broader than most buyers realize. Beyond simple size changes, you can specify the chemistry of the coating, the feel of the paper, and every detail of the packaging presentation.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
                 {["Custom width (20mm–1,200mm) and length", "Core diameter: 12mm, 25mm, 38mm, 50mm", "Paper weight: 48gsm, 55gsm, 58gsm, 65gsm, 80gsm", "Coating: Standard, BPA-Free, Phenol-Free, Premium", "Color: White, Yellow, Pink, Blue, Green base paper", "Custom printing: Logo, text, security features", "Packaging: Shrink wrap, polybag, box, display", "Labeling: Barcode, QR code, serial number"].map((opt) => (
@@ -159,7 +159,7 @@ export default function OEMGuidePage() {
 
             {/* Section 5 - Deep Article Content */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>How to Evaluate a Thermal Paper OEM Supplier</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">How to Evaluate a Thermal Paper OEM Supplier</h2>
               <p className="text-slate-600 leading-relaxed mb-4">Choosing the wrong OEM partner is one of the most expensive mistakes a distributor can make. A bad batch of thermal paper that fades within months, or rolls that jam in your customers' printers, can destroy a distribution relationship built over years. Here is a systematic framework for evaluating suppliers before committing to a production order.</p>
 
               <div className="space-y-5">
@@ -168,7 +168,7 @@ export default function OEMGuidePage() {
                     <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                       <FileText className="w-4 h-4 text-blue-600" />
                     </div>
-                    <div className="font-bold text-slate-900 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>1. Verify Certifications — and Their Scope</div>
+                    <div className="font-sora font-bold text-slate-900 text-sm">1. Verify Certifications — and Their Scope</div>
                   </div>
                   <p className="text-sm text-slate-600 leading-relaxed">ISO 9001 certification is the baseline, but confirm that the certificate covers the specific product lines you are ordering. Some factories hold ISO 9001 for their administrative processes only, not their manufacturing lines. Request the certificate number and verify it on the issuing body's website (Bureau Veritas, SGS, TÜV Rheinland). For BPA-free claims, require a third-party lab test report (SGS or Intertek) dated within the past 12 months — not just a supplier declaration.</p>
                 </div>
@@ -178,7 +178,7 @@ export default function OEMGuidePage() {
                     <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
                       <ShieldCheck className="w-4 h-4 text-green-600" />
                     </div>
-                    <div className="font-bold text-slate-900 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>2. Request a Factory Audit or Video Tour</div>
+                    <div className="font-sora font-bold text-slate-900 text-sm">2. Request a Factory Audit or Video Tour</div>
                   </div>
                   <p className="text-sm text-slate-600 leading-relaxed">A legitimate factory will welcome a video tour or third-party audit. Look for: slitting machines with automatic tension control (critical for consistent roll diameter), climate-controlled storage for raw paper stock (humidity above 70% degrades thermal coating), and a dedicated QC lab with optical density meters and caliper gauges. If a supplier refuses any form of factory verification, treat this as a serious red flag.</p>
                 </div>
@@ -188,7 +188,7 @@ export default function OEMGuidePage() {
                     <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
                       <AlertTriangle className="w-4 h-4 text-amber-600" />
                     </div>
-                    <div className="font-bold text-slate-900 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>3. Test Samples Under Real-World Conditions</div>
+                    <div className="font-sora font-bold text-slate-900 text-sm">3. Test Samples Under Real-World Conditions</div>
                   </div>
                   <p className="text-sm text-slate-600 leading-relaxed">Never approve samples tested only in ideal conditions. If your customers operate kitchen printers near fryers, test the sample at 40°C with grease exposure. If you supply outdoor kiosk operators, test at -10°C. Run the sample through 500 receipts continuously to check for jamming. Store a printed receipt in a wallet for 30 days alongside a credit card (plasticizer migration is a common cause of image fading). Only approve samples that pass all conditions relevant to your end-use environment.</p>
                 </div>
@@ -198,7 +198,7 @@ export default function OEMGuidePage() {
                     <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
                       <DollarSign className="w-4 h-4 text-purple-600" />
                     </div>
-                    <div className="font-bold text-slate-900 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>4. Understand Total Cost of Ownership</div>
+                    <div className="font-sora font-bold text-slate-900 text-sm">4. Understand Total Cost of Ownership</div>
                   </div>
                   <p className="text-sm text-slate-600 leading-relaxed">The unit price per roll is only one component of your total sourcing cost. Factor in: freight (thermal paper is bulky and heavy — a 20-foot container holds approximately 800,000 standard 80mm rolls), import duties (HS code 4809.90 applies in most markets, with duty rates ranging from 0% in free trade agreement countries to 12% in some markets), warehousing costs, and the cost of customer complaints from substandard product. A supplier quoting 8% below market price but with inconsistent quality can easily cost you more than the savings in returns and lost accounts.</p>
                 </div>
@@ -207,7 +207,7 @@ export default function OEMGuidePage() {
 
             {/* Section 6 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Regional Market Considerations for OEM Buyers</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Regional Market Considerations for OEM Buyers</h2>
               <p className="text-slate-600 leading-relaxed mb-4">Thermal paper specifications are not universal. The dominant printer brands, paper sizes, and regulatory requirements vary significantly by region. Sourcing a product optimized for one market and selling it in another is a common and costly mistake.</p>
 
               <div className="overflow-hidden border border-slate-200 rounded-2xl">
@@ -243,7 +243,7 @@ export default function OEMGuidePage() {
 
             {/* Section 7 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Private Label Packaging: Building a Brand That Sells</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Private Label Packaging: Building a Brand That Sells</h2>
               <p className="text-slate-600 leading-relaxed mb-4">Private label packaging is where OEM manufacturing transitions from a cost exercise to a brand-building strategy. The packaging of a thermal paper roll is the primary touchpoint between your brand and the end customer — a restaurant manager, a retail store owner, or a warehouse supervisor who reorders by brand name when they run out.</p>
               <p className="text-slate-600 leading-relaxed mb-4">Effective thermal paper packaging communicates three things at a glance: the paper size (width × length × core diameter), the key quality claims (BPA-free, image life, compatibility), and the reorder information (your website, phone number, or QR code). Packaging that omits any of these elements loses reorder opportunities.</p>
               <p className="text-slate-600 leading-relaxed mb-4">We offer four packaging formats: individual shrink wrap (lowest cost, suitable for bulk buyers), individual polybag with header card (retail-ready, allows hanging display), custom printed box (premium presentation, ideal for branded gift sets or hospitality supply), and display counter box (holds 10–50 rolls, designed for retail shelf placement). Each format has different MOQ implications and per-unit costs, which our team will detail in your quote.</p>
@@ -252,7 +252,7 @@ export default function OEMGuidePage() {
 
             {/* Section 8 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Quality Assurance: What to Expect and Demand</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Quality Assurance: What to Expect and Demand</h2>
               <p className="text-slate-600 leading-relaxed mb-4">Quality in thermal paper manufacturing is multidimensional. A roll can pass a visual inspection and still fail in the field due to coating inconsistency, dimensional variation, or chemical incompatibility with specific printer models. Here is what a rigorous QA process should include:</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
@@ -264,7 +264,7 @@ export default function OEMGuidePage() {
                   { title: "Packaging Integrity", desc: "Drop test (1.2m onto concrete), compression test (200kg for 24 hours), and moisture barrier test for shrink-wrap packaging." },
                 ].map(({ title, desc }) => (
                   <div key={title} className="p-4 bg-slate-50 rounded-xl">
-                    <div className="font-bold text-slate-900 text-sm mb-2" style={{ fontFamily: "Sora, sans-serif" }}>{title}</div>
+                    <div className="font-sora font-bold text-slate-900 text-sm mb-2">{title}</div>
                     <div className="text-xs text-slate-600 leading-relaxed">{desc}</div>
                   </div>
                 ))}
@@ -274,13 +274,13 @@ export default function OEMGuidePage() {
 
             {/* Section 9 */}
             <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Shipping, Logistics & Import Planning</h2>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Shipping, Logistics & Import Planning</h2>
               <p className="text-slate-600 leading-relaxed mb-4">Thermal paper is classified as non-hazardous cargo and ships without special restrictions. However, its bulk-to-value ratio makes logistics planning critical to maintaining competitive landed costs. A 20-foot container can hold approximately 800,000 standard 80mm rolls (depending on packaging format), making full-container loads the most cost-efficient option for established distributors.</p>
               <p className="text-slate-600 leading-relaxed mb-4">For new buyers or smaller initial orders, we consolidate shipments with other customers to offer LCL (Less than Container Load) rates. Transit times from our Guangdong facility are typically 18–22 days to European ports, 20–28 days to US East Coast ports, and 14–18 days to Southeast Asian ports.</p>
               <div className="flex items-start gap-3 p-5 bg-blue-50 rounded-xl">
                 <Truck className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="font-bold text-slate-900 text-sm mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Incoterms We Support</div>
+                  <div className="font-sora font-bold text-slate-900 text-sm mb-1">Incoterms We Support</div>
                   <p className="text-sm text-slate-600">EXW (factory gate), FOB (Shenzhen or Guangzhou port), CIF (cost + insurance + freight to destination port), DDP (delivered duty paid, including customs clearance). For first-time buyers, we recommend FOB as it gives you control over freight while keeping the factory responsible for export clearance.</p>
                 </div>
               </div>
@@ -291,7 +291,7 @@ export default function OEMGuidePage() {
               <div className="flex items-start gap-3">
                 <Lightbulb className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="font-bold text-amber-900 mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Ready to Start Your OEM Project?</div>
+                  <div className="font-sora font-bold text-amber-900 mb-1">Ready to Start Your OEM Project?</div>
                   <p className="text-sm text-amber-800 mb-3">Contact our OEM team with your specifications. We will respond within 12 hours with a detailed quote and sample timeline. No commitment required for samples.</p>
                   <Link href="/contact/oem-partnership" className="inline-flex items-center gap-2 text-sm font-bold text-amber-700 hover:text-amber-900">
                     Start OEM Partnership <ArrowRight className="w-4 h-4" />
@@ -303,12 +303,12 @@ export default function OEMGuidePage() {
 
           <div className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-              <h3 className="text-base font-bold text-slate-900 mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Get a Free Quote</h3>
+              <h3 className="font-sora text-base font-bold text-slate-900 mb-1">Get a Free Quote</h3>
               <p className="text-xs text-slate-500 mb-4">12-hour response guaranteed</p>
               <InquiryForm compact />
             </div>
             <div className="bg-slate-50 rounded-2xl p-5">
-              <h4 className="text-sm font-bold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>Related Resources</h4>
+              <h4 className="font-sora text-sm font-bold text-slate-900 mb-3">Related Resources</h4>
               <ul className="space-y-2">
                 {[{ label: "OEM Services Overview", href: "/oem" }, { label: "Custom Printing & Specs", href: "/oem/custom-printing" }, { label: "Packaging & Private Label", href: "/oem/packaging" }, { label: "IP Protection & NDA", href: "/oem/ip-protection" }, { label: "OEM Case Studies", href: "/oem/case-studies" }].map(({ label, href }) => (
                   <li key={href}><Link href={href} className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"><ChevronRight className="w-3.5 h-3.5 flex-shrink-0" />{label}</Link></li>

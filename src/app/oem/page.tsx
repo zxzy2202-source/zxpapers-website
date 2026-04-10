@@ -95,7 +95,7 @@ export default async function OEMPage() {
                 <div className="w-12 h-12 bg-blue-100 group-hover:bg-blue-600 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300">
                   <Icon className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="font-bold text-slate-900 mb-2" style={{ fontFamily: "Sora, sans-serif" }}>{title}</h3>
+                <h3 className="font-sora font-bold text-slate-900 mb-2">{title}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed mb-3">{desc}</p>
                 <span className="inline-flex items-center gap-1 text-sm text-blue-600 font-semibold">
                   Learn More <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -113,9 +113,9 @@ export default async function OEMPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {process.map(({ step, title, desc }) => (
               <div key={step} className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-[#0F2B5B] text-white rounded-xl flex items-center justify-center font-extrabold text-sm" style={{ fontFamily: "Sora, sans-serif" }}>{step}</div>
+                <div className="font-sora flex-shrink-0 w-12 h-12 bg-[#0F2B5B] text-white rounded-xl flex items-center justify-center font-extrabold text-sm">{step}</div>
                 <div>
-                  <h3 className="font-bold text-slate-900 mb-1 text-sm" style={{ fontFamily: "Sora, sans-serif" }}>{title}</h3>
+                  <h3 className="font-sora font-bold text-slate-900 mb-1 text-sm">{title}</h3>
                   <p className="text-sm text-slate-600">{desc}</p>
                 </div>
               </div>
@@ -145,7 +145,7 @@ export default async function OEMPage() {
             </ul>
           </div>
           <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
-            <h3 className="text-xl font-bold text-slate-900 mb-2" style={{ fontFamily: "Sora, sans-serif" }}>Start Your OEM Partnership</h3>
+            <h3 className="font-sora text-xl font-bold text-slate-900 mb-2">Start Your OEM Partnership</h3>
             <p className="text-sm text-slate-500 mb-6">Tell us about your requirements and we will prepare a customized proposal.</p>
             <InquiryForm productName="OEM Partnership Inquiry" compact />
           </div>

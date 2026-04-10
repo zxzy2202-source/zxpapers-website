@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight, Package, Globe, ShieldCheck, Tag, BarChart3, Printer, ChevronRight, Clock } from "lucide-react";
 import { SITE } from "@/config/siteData";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Application Cases | Retail & Logistics",
@@ -137,7 +138,7 @@ export default function ApplicationCasesPage() {
             <span className="text-slate-500">·</span>
             <span className="text-slate-400 text-xs flex items-center gap-1"><Clock className="w-3 h-3" /> 16 min read</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold mb-3" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h1 className="font-sora text-3xl sm:text-4xl font-extrabold mb-3">
             Thermal Paper Applications<br /><span className="text-amber-400">Across Industries</span>
           </h1>
           <p className="text-slate-300 max-w-2xl text-base">From retail POS to hospital wristbands — an in-depth guide to how thermal paper products serve 6 major industries, with specific requirements, product recommendations, volume benchmarks, and the technical details that matter for procurement decisions.</p>
@@ -158,14 +159,14 @@ export default function ApplicationCasesPage() {
               <article key={industry} className="border-b border-slate-100 pb-16 last:border-0">
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start mb-6">
                   <div className="lg:col-span-2">
-                    <img src={image} alt={industry} className="w-full h-56 object-cover rounded-2xl shadow-md" />
+                    <Image src={image} alt={industry} className="w-full h-56 object-cover rounded-2xl shadow-md"  width={400} height={224} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                   </div>
                   <div className="lg:col-span-3">
                     <div className="flex items-center gap-3 mb-3">
                       <div className={`w-10 h-10 ${c.bg} rounded-xl flex items-center justify-center`}>
                         <Icon className={`w-5 h-5 ${c.text}`} />
                       </div>
-                      <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: "Sora, sans-serif" }}>{industry}</h2>
+                      <h2 className="font-sora text-xl font-bold text-slate-900">{industry}</h2>
                     </div>
                     <p className="text-slate-600 text-sm leading-relaxed mb-4">{desc}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
@@ -192,7 +193,7 @@ export default function ApplicationCasesPage() {
                 </div>
                 {/* Deep article content */}
                 <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-                  <h3 className="text-base font-bold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>In-Depth: Sourcing for {industry}</h3>
+                  <h3 className="font-sora text-base font-bold text-slate-900 mb-3">In-Depth: Sourcing for {industry}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{detail}</p>
                 </div>
               </article>
@@ -202,7 +203,7 @@ export default function ApplicationCasesPage() {
 
         {/* Procurement Framework */}
         <div className="max-w-3xl mt-12 mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>A Universal Procurement Framework for Thermal Paper</h2>
+          <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">A Universal Procurement Framework for Thermal Paper</h2>
           <p className="text-slate-600 leading-relaxed mb-4">Regardless of the specific industry, a rigorous procurement process for thermal paper should follow the same fundamental steps. The most common and costly mistakes in thermal paper sourcing — ordering the wrong grade, discovering incompatibility after a large purchase, or receiving inconsistent quality across batches — are all preventable with a structured approach.</p>
           <div className="space-y-4">
             {[
@@ -213,9 +214,9 @@ export default function ApplicationCasesPage() {
               { step: "5", title: "Establish Quality Benchmarks", desc: "Define minimum acceptable optical density, dimensional tolerances, and image life. Request batch Certificate of Conformance documentation with each shipment, and retain a reference sample for comparison against future batches." },
             ].map(({ step, title, desc }) => (
               <div key={step} className="flex gap-4 p-5 bg-white border border-slate-100 rounded-xl shadow-sm">
-                <div className="w-9 h-9 bg-[#0F2B5B] text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0" style={{ fontFamily: "Sora, sans-serif" }}>{step}</div>
+                <div className="font-sora w-9 h-9 bg-[#0F2B5B] text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0">{step}</div>
                 <div>
-                  <div className="font-bold text-slate-900 text-sm mb-1" style={{ fontFamily: "Sora, sans-serif" }}>{title}</div>
+                  <div className="font-sora font-bold text-slate-900 text-sm mb-1">{title}</div>
                   <div className="text-sm text-slate-600 leading-relaxed">{desc}</div>
                 </div>
               </div>
@@ -228,22 +229,22 @@ export default function ApplicationCasesPage() {
           <div className="lg:col-span-2">
             <div className="bg-[#0F2B5B] rounded-3xl p-10 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
-                <h2 className="text-2xl font-extrabold mb-2" style={{ fontFamily: "Sora, sans-serif" }}>Don&apos;t See Your Industry?</h2>
+                <h2 className="font-sora text-2xl font-extrabold mb-2">Don&apos;t See Your Industry?</h2>
                 <p className="text-slate-300 text-sm max-w-lg">We serve 30+ industries. Contact us with your application requirements and we will recommend the right product and specifications within 12 hours.</p>
               </div>
-              <Link href="/contact" className="flex-shrink-0 inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap" style={{ fontFamily: "Sora, sans-serif" }}>
+              <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
                 Contact Our Team <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
           </div>
           <div className="space-y-5">
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-              <h3 className="text-base font-bold text-slate-900 mb-1" style={{ fontFamily: "Sora, sans-serif" }}>Get a Free Quote</h3>
+              <h3 className="font-sora text-base font-bold text-slate-900 mb-1">Get a Free Quote</h3>
               <p className="text-xs text-slate-500 mb-4">12-hour response guaranteed</p>
               <InquiryForm compact />
             </div>
             <div className="bg-slate-50 rounded-2xl p-5">
-              <h4 className="text-sm font-bold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>Related Resources</h4>
+              <h4 className="font-sora text-sm font-bold text-slate-900 mb-3">Related Resources</h4>
               <ul className="space-y-2">
                 {[{ label: "Product Knowledge Guide", href: "/resources/product-knowledge" }, { label: "OEM Guide", href: "/resources/oem-guide" }, { label: "Blank Thermal Rolls", href: "/products/thermal-paper-rolls/blank" }, { label: "Thermal Labels", href: "/products/thermal-labels/blank" }].map(({ label, href }) => (
                   <li key={href}><Link href={href} className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"><ChevronRight className="w-3.5 h-3.5 flex-shrink-0" />{label}</Link></li>

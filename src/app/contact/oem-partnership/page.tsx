@@ -50,7 +50,7 @@ export default function OEMPartnershipPage() {
             <span className="text-slate-500">·</span>
             <span className="text-amber-400 text-xs font-bold uppercase tracking-wider">OEM Partnership</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
             Start Your<br /><span className="text-amber-400">OEM Partnership</span>
           </h1>
           <p className="text-slate-300 max-w-2xl text-lg">Tell us your requirements and we will respond within 12 hours with a detailed quote, sample timeline, and NDA for your review.</p>
@@ -61,14 +61,14 @@ export default function OEMPartnershipPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2">
             <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
-              <h2 className="text-xl font-bold text-slate-900 mb-6" style={{ fontFamily: "Sora, sans-serif" }}>OEM Partnership Inquiry</h2>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-6">OEM Partnership Inquiry</h2>
               <InquiryForm />
             </div>
           </div>
 
           <div className="space-y-6">
             <div className="bg-blue-50 rounded-2xl p-6">
-              <h3 className="font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>What Happens Next?</h3>
+              <h3 className="font-sora font-bold text-slate-900 mb-4">What Happens Next?</h3>
               <div className="space-y-3">
                 {[
                   { step: "01", text: "We review your inquiry and sign an NDA within 2 hours" },
@@ -77,7 +77,7 @@ export default function OEMPartnershipPage() {
                   { step: "04", text: "Sample production begins within 3–5 business days" },
                 ].map(({ step, text }) => (
                   <div key={step} className="flex items-start gap-3">
-                    <div className="w-7 h-7 bg-[#0F2B5B] text-white rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ fontFamily: "Sora, sans-serif" }}>{step}</div>
+                    <div className="font-sora w-7 h-7 bg-[#0F2B5B] text-white rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0">{step}</div>
                     <p className="text-sm text-slate-700 leading-relaxed">{text}</p>
                   </div>
                 ))}
@@ -85,7 +85,7 @@ export default function OEMPartnershipPage() {
             </div>
 
             <div className="bg-white border border-slate-200 rounded-2xl p-6">
-              <h3 className="font-bold text-slate-900 mb-4" style={{ fontFamily: "Sora, sans-serif" }}>Contact Directly</h3>
+              <h3 className="font-sora font-bold text-slate-900 mb-4">Contact Directly</h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-sm text-slate-700">
                   <Mail className="w-4 h-4 text-blue-500" />
@@ -103,7 +103,7 @@ export default function OEMPartnershipPage() {
             </div>
 
             <div className="bg-slate-50 rounded-2xl p-5">
-              <h4 className="text-sm font-bold text-slate-900 mb-3" style={{ fontFamily: "Sora, sans-serif" }}>OEM Capabilities</h4>
+              <h4 className="font-sora text-sm font-bold text-slate-900 mb-3">OEM Capabilities</h4>
               <ul className="space-y-2">
                 {["MOQ from 1,000 rolls", "Custom sizes and coating grades", "Private label packaging", "Free design support", "NDA protection", "ISO 9001 certified production"].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-sm text-slate-700">
