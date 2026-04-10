@@ -73,7 +73,7 @@ export default function WhatsAppFAB() {
             ))}
           </div>
 
-          <div className="px-4 pb-4">
+          <div className="px-4 pb-4 space-y-2">
             <a
               href={buildUrl("Hello, I am interested in thermal paper rolls.\nPlease send me price and MOQ.")}
               target="_blank"
@@ -84,6 +84,12 @@ export default function WhatsAppFAB() {
               <Phone className="w-4 h-4" />
               Open WhatsApp
             </a>
+            <div className="flex items-center justify-center gap-2 w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 text-xs text-slate-500">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-[#07C160] flex-shrink-0" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.306A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.117l-.292-.174-3.03.796.808-2.96-.19-.303A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.406-5.884c-.242-.121-1.43-.706-1.652-.786-.222-.081-.383-.121-.545.121-.161.242-.624.786-.765.948-.14.161-.282.181-.524.06-.242-.12-1.02-.376-1.943-1.198-.718-.64-1.203-1.431-1.344-1.673-.14-.242-.015-.373.106-.493.108-.108.242-.282.363-.423.12-.14.16-.242.242-.403.08-.161.04-.302-.02-.423-.061-.12-.545-1.314-.747-1.798-.196-.472-.396-.408-.545-.415l-.464-.008c-.161 0-.423.06-.645.302-.222.242-.847.828-.847 2.02 0 1.19.867 2.34.988 2.502.12.161 1.706 2.604 4.134 3.651.578.25 1.029.398 1.38.51.58.184 1.108.158 1.525.096.465-.069 1.43-.585 1.632-1.15.201-.564.201-1.047.14-1.149-.06-.1-.222-.161-.464-.282z"/>
+              </svg>
+              <span>WeChat: <strong className="text-slate-700">{SITE.wechat}</strong></span>
+            </div>
           </div>
         </div>
       )}

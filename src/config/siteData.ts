@@ -11,6 +11,7 @@ export const SITE = {
   phone: "+86 158 9176 6700",
   whatsapp: "+86 180 9211 7618",
   whatsappUrl: "https://wa.me/8618092117618",
+  wechat: "+86 158 9176 6700",
   address: "Building 15, Phase 1 Zone 2, Ronghao Industrial Park, Gaoling District, Xi'an, Shaanxi, China",
   businessHours: "Mon–Fri 9:00–18:00 (GMT+8)",
   founded: "2009",
