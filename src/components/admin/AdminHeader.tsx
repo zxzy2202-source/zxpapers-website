@@ -1,6 +1,8 @@
 "use client";
 
 import { signOut } from "next-auth/react";
+import { LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface AdminHeaderProps {
   user?: {
@@ -30,15 +32,15 @@ export default function AdminHeader({ user }: AdminHeaderProps) {
         </div>
 
         {/* Sign Out */}
-        <button
+        <Button
+          variant="ghost"
+          size="sm"
           onClick={() => signOut({ callbackUrl: "/admin/login" })}
-          className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-red-600 transition-colors px-3 py-1.5 rounded-lg hover:bg-red-50"
+          className="text-gray-500 hover:text-red-600 hover:bg-red-50"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-          </svg>
+          <LogOut className="w-4 h-4" />
           退出登录
-        </button>
+        </Button>
       </div>
     </header>
   );

@@ -11,6 +11,26 @@ import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 import { TextStyle } from "@tiptap/extension-text-style";
 import { Color } from "@tiptap/extension-text-style";
+import { AlertCircle, ImageIcon, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface ArticleData {
   id?: string;
@@ -258,25 +278,21 @@ export default function ArticleEditor({ article }: Props) {
         {/* Title + Slug + Excerpt */}
         <div className="bg-white rounded-xl border border-gray-200 p-5 space-y-4">
           <div>
-            <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1.5">
-              标题 *
-            </label>
-            <input
+            <Label className="text-xs uppercase tracking-wide text-gray-500">标题 *</Label>
+            <Input
               type="text"
               value={title}
               onChange={(e) => handleTitleChange(e.target.value)}
               placeholder="输入文章标题..."
-              className="w-full text-xl font-semibold text-gray-900 border-0 outline-none placeholder-gray-300 bg-transparent"
+              className="mt-1.5 text-xl font-semibold border-0 shadow-none focus-visible:ring-0 px-0 bg-transparent"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1.5">
-              URL Slug *
-            </label>
-            <div className="flex items-center gap-2">
+            <Label className="text-xs uppercase tracking-wide text-gray-500">URL Slug *</Label>
+            <div className="flex items-center gap-2 mt-1.5">
               <span className="text-gray-400 text-sm">/resources/</span>
-              <input
+              <Input
                 type="text"
                 value={slug}
                 onChange={(e) => {
@@ -284,21 +300,19 @@ export default function ArticleEditor({ article }: Props) {
                   setSlugManuallyEdited(true);
                 }}
                 placeholder="article-slug"
-                className="flex-1 text-sm text-blue-600 border-0 outline-none bg-transparent"
+                className="flex-1 text-sm text-blue-600 border-0 shadow-none focus-visible:ring-0 px-0 bg-transparent"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1.5">
-              摘要
-            </label>
-            <textarea
+            <Label className="text-xs uppercase tracking-wide text-gray-500">摘要</Label>
+            <Textarea
               value={excerpt}
               onChange={(e) => setExcerpt(e.target.value)}
               rows={2}
               placeholder="文章简短描述（将显示在列表页和 SEO 描述中）..."
-              className="w-full text-sm text-gray-700 border border-gray-200 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              className="mt-1.5 resize-none"
             />
           </div>
         </div>
@@ -316,7 +330,7 @@ export default function ArticleEditor({ article }: Props) {
                   : "text-gray-500 hover:text-gray-700"
               }`}
             >
-              ✏️ 编辑内容
+              编辑内容
             </button>
             <button
               onClick={() => setActiveTab("seo")}
@@ -327,7 +341,7 @@ export default function ArticleEditor({ article }: Props) {
                   : "text-gray-500 hover:text-gray-700"
               }`}
             >
-              🔍 SEO 预览
+              SEO 预览
             </button>
           </div>
 
@@ -338,66 +352,66 @@ export default function ArticleEditor({ article }: Props) {
                 <div className="flex flex-wrap gap-1 px-3 py-2 border-b border-gray-100 bg-gray-50">
                   {/* Text formatting */}
                   <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
-                    <button title="加粗 (Ctrl+B)" onClick={() => editor.chain().focus().toggleBold().run()} type="button"
-                      className={`px-2 py-1 rounded text-xs font-bold transition-colors ${editor.isActive("bold") ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>B</button>
-                    <button title="斜体 (Ctrl+I)" onClick={() => editor.chain().focus().toggleItalic().run()} type="button"
-                      className={`px-2 py-1 rounded text-xs italic transition-colors ${editor.isActive("italic") ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>I</button>
-                    <button title="下划线 (Ctrl+U)" onClick={() => editor.chain().focus().toggleUnderline().run()} type="button"
-                      className={`px-2 py-1 rounded text-xs underline transition-colors ${editor.isActive("underline") ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>U</button>
-                    <button title="删除线" onClick={() => editor.chain().focus().toggleStrike().run()} type="button"
-                      className={`px-2 py-1 rounded text-xs line-through transition-colors ${editor.isActive("strike") ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>S</button>
-                    <button title="行内代码" onClick={() => editor.chain().focus().toggleCode().run()} type="button"
-                      className={`px-2 py-1 rounded text-xs font-mono transition-colors ${editor.isActive("code") ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>{"`"}</button>
+                    <Button variant="ghost" size="sm" title="加粗 (Ctrl+B)" onClick={() => editor.chain().focus().toggleBold().run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs font-bold ${editor.isActive("bold") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>B</Button>
+                    <Button variant="ghost" size="sm" title="斜体 (Ctrl+I)" onClick={() => editor.chain().focus().toggleItalic().run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs italic ${editor.isActive("italic") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>I</Button>
+                    <Button variant="ghost" size="sm" title="下划线 (Ctrl+U)" onClick={() => editor.chain().focus().toggleUnderline().run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs underline ${editor.isActive("underline") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>U</Button>
+                    <Button variant="ghost" size="sm" title="删除线" onClick={() => editor.chain().focus().toggleStrike().run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs line-through ${editor.isActive("strike") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>S</Button>
+                    <Button variant="ghost" size="sm" title="行内代码" onClick={() => editor.chain().focus().toggleCode().run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs font-mono ${editor.isActive("code") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>{"`"}</Button>
                   </div>
 
                   {/* Headings */}
                   <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
-                    <button title="一级标题" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} type="button"
-                      className={`px-2 py-1 rounded text-xs font-medium transition-colors ${editor.isActive("heading", { level: 1 }) ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>H1</button>
-                    <button title="二级标题" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} type="button"
-                      className={`px-2 py-1 rounded text-xs font-medium transition-colors ${editor.isActive("heading", { level: 2 }) ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>H2</button>
-                    <button title="三级标题" onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} type="button"
-                      className={`px-2 py-1 rounded text-xs font-medium transition-colors ${editor.isActive("heading", { level: 3 }) ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>H3</button>
+                    <Button variant="ghost" size="sm" title="一级标题" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs font-medium ${editor.isActive("heading", { level: 1 }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>H1</Button>
+                    <Button variant="ghost" size="sm" title="二级标题" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs font-medium ${editor.isActive("heading", { level: 2 }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>H2</Button>
+                    <Button variant="ghost" size="sm" title="三级标题" onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs font-medium ${editor.isActive("heading", { level: 3 }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>H3</Button>
                   </div>
 
                   {/* Lists */}
                   <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
-                    <button title="无序列表" onClick={() => editor.chain().focus().toggleBulletList().run()} type="button"
-                      className={`px-2 py-1 rounded text-xs transition-colors ${editor.isActive("bulletList") ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>≡</button>
-                    <button title="有序列表" onClick={() => editor.chain().focus().toggleOrderedList().run()} type="button"
-                      className={`px-2 py-1 rounded text-xs transition-colors ${editor.isActive("orderedList") ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>1.</button>
-                    <button title="引用块" onClick={() => editor.chain().focus().toggleBlockquote().run()} type="button"
-                      className={`px-2 py-1 rounded text-xs transition-colors ${editor.isActive("blockquote") ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>&ldquo;</button>
-                    <button title="代码块" onClick={() => editor.chain().focus().toggleCodeBlock().run()} type="button"
-                      className={`px-2 py-1 rounded text-xs font-mono transition-colors ${editor.isActive("codeBlock") ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>{"{}"}</button>
+                    <Button variant="ghost" size="sm" title="无序列表" onClick={() => editor.chain().focus().toggleBulletList().run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs ${editor.isActive("bulletList") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="无序列表">≡</Button>
+                    <Button variant="ghost" size="sm" title="有序列表" onClick={() => editor.chain().focus().toggleOrderedList().run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs ${editor.isActive("orderedList") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="有序列表">1.</Button>
+                    <Button variant="ghost" size="sm" title="引用块" onClick={() => editor.chain().focus().toggleBlockquote().run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs ${editor.isActive("blockquote") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="引用块">&ldquo;</Button>
+                    <Button variant="ghost" size="sm" title="代码块" onClick={() => editor.chain().focus().toggleCodeBlock().run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs font-mono ${editor.isActive("codeBlock") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="代码块">{"{}"}</Button>
                   </div>
 
                   {/* Align */}
                   <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
-                    <button title="左对齐" onClick={() => editor.chain().focus().setTextAlign("left").run()} type="button"
-                      className={`px-2 py-1 rounded text-xs transition-colors ${editor.isActive({ textAlign: "left" }) ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>⬅</button>
-                    <button title="居中" onClick={() => editor.chain().focus().setTextAlign("center").run()} type="button"
-                      className={`px-2 py-1 rounded text-xs transition-colors ${editor.isActive({ textAlign: "center" }) ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>☰</button>
-                    <button title="右对齐" onClick={() => editor.chain().focus().setTextAlign("right").run()} type="button"
-                      className={`px-2 py-1 rounded text-xs transition-colors ${editor.isActive({ textAlign: "right" }) ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>➡</button>
+                    <Button variant="ghost" size="sm" title="左对齐" onClick={() => editor.chain().focus().setTextAlign("left").run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs ${editor.isActive({ textAlign: "left" }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="左对齐">⬅</Button>
+                    <Button variant="ghost" size="sm" title="居中" onClick={() => editor.chain().focus().setTextAlign("center").run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs ${editor.isActive({ textAlign: "center" }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="居中对齐">☰</Button>
+                    <Button variant="ghost" size="sm" title="右对齐" onClick={() => editor.chain().focus().setTextAlign("right").run()} type="button"
+                      className={`px-2 py-1 h-auto text-xs ${editor.isActive({ textAlign: "right" }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="右对齐">➡</Button>
                   </div>
 
                   {/* Insert */}
                   <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
-                    <button title="插入链接" onClick={insertLink} type="button"
-                      className={`px-2 py-1 rounded text-xs transition-colors ${editor.isActive("link") ? "bg-blue-100 text-blue-700" : "text-gray-600 hover:bg-gray-200"}`}>🔗</button>
-                    <button title="从图片库插入图片" onClick={() => openImagePicker("editor")} type="button"
-                      className="px-2 py-1 rounded text-xs text-gray-600 hover:bg-gray-200 transition-colors">🖼️</button>
-                    <button title="分割线" onClick={() => editor.chain().focus().setHorizontalRule().run()} type="button"
-                      className="px-2 py-1 rounded text-xs text-gray-600 hover:bg-gray-200 transition-colors">—</button>
+                    <Button variant="ghost" size="sm" title="插入链接" onClick={insertLink} type="button"
+                      className={`px-2 py-1 h-auto text-xs ${editor.isActive("link") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="插入链接">🔗</Button>
+                    <Button variant="ghost" size="sm" title="从图片库插入图片" onClick={() => openImagePicker("editor")} type="button"
+                      className="px-2 py-1 h-auto text-xs text-gray-600" aria-label="插入图片">🖼️</Button>
+                    <Button variant="ghost" size="sm" title="分割线" onClick={() => editor.chain().focus().setHorizontalRule().run()} type="button"
+                      className="px-2 py-1 h-auto text-xs text-gray-600" aria-label="分割线">—</Button>
                   </div>
 
                   {/* Undo/Redo */}
                   <div className="flex gap-0.5 ml-auto">
-                    <button title="撤销 (Ctrl+Z)" onClick={() => editor.chain().focus().undo().run()} type="button"
-                      className="px-2 py-1 rounded text-xs text-gray-600 hover:bg-gray-200">↩</button>
-                    <button title="重做 (Ctrl+Y)" onClick={() => editor.chain().focus().redo().run()} type="button"
-                      className="px-2 py-1 rounded text-xs text-gray-600 hover:bg-gray-200">↪</button>
+                    <Button variant="ghost" size="sm" title="撤销 (Ctrl+Z)" onClick={() => editor.chain().focus().undo().run()} type="button"
+                      className="px-2 py-1 h-auto text-xs text-gray-600" aria-label="撤销">↩</Button>
+                    <Button variant="ghost" size="sm" title="重做 (Ctrl+Y)" onClick={() => editor.chain().focus().redo().run()} type="button"
+                      className="px-2 py-1 h-auto text-xs text-gray-600" aria-label="重做">↪</Button>
                   </div>
                 </div>
               )}
@@ -423,10 +437,10 @@ export default function ArticleEditor({ article }: Props) {
                 </div>
                 <div className="flex gap-4 mt-2 text-xs">
                   <span className={titleLen > 60 ? "text-red-500 font-medium" : "text-gray-400"}>
-                    标题：{titleLen}/60 字符 {titleLen > 60 ? "⚠️ 过长" : titleLen < 30 ? "⚠️ 偏短" : "✅"}
+                    标题：{titleLen}/60 字符 {titleLen > 60 ? "⚠ 过长" : titleLen < 30 ? "⚠ 偏短" : "✓"}
                   </span>
                   <span className={descLen > 160 ? "text-red-500 font-medium" : "text-gray-400"}>
-                    描述：{descLen}/160 字符 {descLen > 160 ? "⚠️ 过长" : descLen < 80 ? "⚠️ 偏短" : "✅"}
+                    描述：{descLen}/160 字符 {descLen > 160 ? "⚠ 过长" : descLen < 80 ? "⚠ 偏短" : "✓"}
                   </span>
                 </div>
               </div>
@@ -434,16 +448,16 @@ export default function ArticleEditor({ article }: Props) {
               {/* SEO Fields */}
               <div className="space-y-4">
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                  <Label className="text-xs">
                     Meta 标题
                     <span className="text-gray-400 font-normal ml-1">（留空则使用文章标题）</span>
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     type="text"
                     value={metaTitle}
                     onChange={(e) => setMetaTitle(e.target.value)}
                     placeholder={title || "SEO 页面标题..."}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="mt-1.5"
                   />
                   <div className="flex justify-between mt-1">
                     <p className="text-xs text-gray-400">建议 30-60 字符</p>
@@ -452,16 +466,16 @@ export default function ArticleEditor({ article }: Props) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1.5">
+                  <Label className="text-xs">
                     Meta 描述
                     <span className="text-gray-400 font-normal ml-1">（留空则使用摘要）</span>
-                  </label>
-                  <textarea
+                  </Label>
+                  <Textarea
                     value={metaDesc}
                     onChange={(e) => setMetaDesc(e.target.value)}
                     rows={3}
                     placeholder={excerpt || "SEO 页面描述..."}
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+                    className="mt-1.5 resize-none"
                   />
                   <div className="flex justify-between mt-1">
                     <p className="text-xs text-gray-400">建议 80-160 字符</p>
@@ -470,13 +484,13 @@ export default function ArticleEditor({ article }: Props) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1.5">关键词</label>
-                  <input
+                  <Label className="text-xs">关键词</Label>
+                  <Input
                     type="text"
                     value={keywords}
                     onChange={(e) => setKeywords(e.target.value)}
                     placeholder="thermal paper, label rolls, receipt paper..."
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="mt-1.5"
                   />
                   <p className="text-xs text-gray-400 mt-1">多个关键词用英文逗号分隔</p>
                 </div>
@@ -498,7 +512,7 @@ export default function ArticleEditor({ article }: Props) {
                   ].map((item) => (
                     <div key={item.label} className="flex items-center gap-2 text-sm">
                       <span className={item.ok ? "text-green-500" : "text-gray-300"}>
-                        {item.ok ? "✅" : "○"}
+                        {item.ok ? "✓" : "○"}
                       </span>
                       <span className={item.ok ? "text-gray-700" : "text-gray-400"}>{item.label}</span>
                     </div>
@@ -517,38 +531,41 @@ export default function ArticleEditor({ article }: Props) {
           <h3 className="text-sm font-semibold text-gray-900">发布设置</h3>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-red-700 text-xs">
+            <div className="bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-red-700 text-xs flex items-center gap-1.5">
+              <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
               {error}
             </div>
           )}
 
           <div>
-            <label className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1.5">状态</label>
-            <select
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
-            >
-              <option value="DRAFT">草稿</option>
-              <option value="PUBLISHED">已发布</option>
-            </select>
+            <Label className="text-xs uppercase tracking-wide text-gray-500">状态</Label>
+            <Select value={status} onValueChange={setStatus}>
+              <SelectTrigger className="mt-1.5">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="DRAFT">草稿</SelectItem>
+                <SelectItem value="PUBLISHED">已发布</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="flex flex-col gap-2 pt-1">
-            <button
+            <Button
               onClick={() => handleSave("PUBLISHED")}
               disabled={saving}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white text-sm font-medium py-2 rounded-lg transition-colors"
+              className="w-full"
             >
-              {saving ? "保存中..." : "发布文章"}
-            </button>
-            <button
+              {saving ? <><Loader2 className="animate-spin" /> 保存中...</> : "发布文章"}
+            </Button>
+            <Button
               onClick={() => handleSave("DRAFT")}
               disabled={saving}
-              className="w-full bg-white hover:bg-gray-50 text-gray-700 text-sm font-medium py-2 rounded-lg border border-gray-200 transition-colors"
+              variant="outline"
+              className="w-full"
             >
               保存为草稿
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -579,38 +596,42 @@ export default function ArticleEditor({ article }: Props) {
           <h3 className="text-sm font-semibold text-gray-900">标签</h3>
           <div className="flex flex-wrap gap-1.5 min-h-[32px]">
             {tags.map((tag) => (
-              <span
+              <Badge
                 key={tag}
-                className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full border border-blue-100"
+                variant="secondary"
+                className="bg-blue-50 text-blue-700 border-blue-100 hover:bg-blue-100"
               >
                 {tag}
                 <button
                   onClick={() => removeTag(tag)}
                   type="button"
-                  className="text-blue-400 hover:text-blue-700 leading-none"
+                  className="ml-1 text-blue-400 hover:text-blue-700 leading-none"
+                  aria-label={`移除标签 ${tag}`}
                 >
                   ×
                 </button>
-              </span>
+              </Badge>
             ))}
           </div>
           <div className="flex gap-2">
-            <input
+            <Input
               type="text"
               value={tagInput}
               onChange={(e) => setTagInput(e.target.value)}
               onKeyDown={handleTagKeyDown}
               placeholder="输入标签，按回车添加..."
-              className="flex-1 border border-gray-200 rounded-lg px-3 py-1.5 text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
+              className="flex-1"
             />
-            <button
+            <Button
               onClick={() => addTag(tagInput)}
               type="button"
               disabled={!tagInput.trim()}
-              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 disabled:opacity-50 text-gray-700 text-sm rounded-lg transition-colors"
+              variant="secondary"
+              size="sm"
+              className="px-3"
             >
               添加
-            </button>
+            </Button>
           </div>
           <p className="text-xs text-gray-400">最多 10 个标签，按回车或逗号分隔</p>
         </div>
@@ -619,21 +640,24 @@ export default function ArticleEditor({ article }: Props) {
         <div className="bg-white rounded-xl border border-gray-200 p-5 space-y-3">
           <h3 className="text-sm font-semibold text-gray-900">封面图片</h3>
           <div className="flex gap-2">
-            <input
+            <Input
               type="text"
               value={coverImage}
               onChange={(e) => setCoverImage(e.target.value)}
               placeholder="/images/article-cover.jpg"
-              className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 outline-none"
+              className="flex-1"
             />
-            <button
+            <Button
               onClick={() => openImagePicker("cover")}
               type="button"
-              title="从图片库选择"
-              className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm rounded-lg transition-colors whitespace-nowrap"
+              variant="secondary"
+              size="sm"
+              className="whitespace-nowrap"
+              aria-label="从图片库选择封面"
             >
-              🖼️ 选择
-            </button>
+              <ImageIcon className="w-4 h-4 mr-1" />
+              选择
+            </Button>
           </div>
           {coverImage && (
             // eslint-disable-next-line @next/next/no-img-element
@@ -649,83 +673,74 @@ export default function ArticleEditor({ article }: Props) {
         </div>
       </div>
 
-      {/* Image Picker Modal */}
-      {showImagePicker && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[80vh] flex flex-col">
-            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-              <h3 className="text-base font-semibold text-gray-900">
-                {imagePickerTarget === "cover" ? "选择封面图片" : "插入图片"}
-              </h3>
-              <button
-                onClick={() => setShowImagePicker(false)}
-                type="button"
-                className="text-gray-400 hover:text-gray-700 text-xl leading-none"
-              >
-                ×
-              </button>
-            </div>
+      {/* Image Picker Modal - using shadcn Dialog */}
+      <Dialog open={showImagePicker} onOpenChange={setShowImagePicker}>
+        <DialogContent className="max-w-3xl max-h-[80vh] flex flex-col">
+          <DialogHeader>
+            <DialogTitle>
+              {imagePickerTarget === "cover" ? "选择封面图片" : "插入图片"}
+            </DialogTitle>
+          </DialogHeader>
 
-            <div className="px-5 py-3 border-b border-gray-100">
-              <input
-                type="text"
-                value={imageSearch}
-                onChange={(e) => setImageSearch(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && loadImages()}
-                placeholder="搜索图片文件名..."
-                className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-              />
-            </div>
-
-            <div className="flex-1 overflow-y-auto p-5">
-              {loadingImages ? (
-                <div className="flex items-center justify-center h-32 text-gray-400 text-sm">加载中...</div>
-              ) : images.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-32 text-gray-400">
-                  <span className="text-3xl mb-2">🖼️</span>
-                  <span className="text-sm">暂无图片，请先在图片管理中上传</span>
-                </div>
-              ) : (
-                <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
-                  {images.map((img) => (
-                    <button
-                      key={img.id}
-                      onClick={() => selectImage(img)}
-                      type="button"
-                      className="group relative aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-blue-500 transition-all"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={img.path}
-                        alt={img.alt || img.filename}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = "/placeholder-image.png";
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-end">
-                        <span className="w-full px-2 py-1 text-xs text-white bg-black/60 truncate opacity-0 group-hover:opacity-100 transition-opacity">
-                          {img.filename}
-                        </span>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className="px-5 py-3 border-t border-gray-100 flex justify-end">
-              <button
-                onClick={() => setShowImagePicker(false)}
-                type="button"
-                className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 border border-gray-200 rounded-lg"
-              >
-                取消
-              </button>
-            </div>
+          <div className="py-3 border-b border-gray-100">
+            <Input
+              type="text"
+              value={imageSearch}
+              onChange={(e) => setImageSearch(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && loadImages()}
+              placeholder="搜索图片文件名..."
+            />
           </div>
-        </div>
-      )}
+
+          <div className="flex-1 overflow-y-auto py-4">
+            {loadingImages ? (
+              <div className="flex items-center justify-center h-32 text-gray-400 text-sm">
+                <Loader2 className="animate-spin mr-2" /> 加载中...
+              </div>
+            ) : images.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-32 text-gray-400">
+                <ImageIcon className="w-8 h-8 mb-2" />
+                <span className="text-sm">暂无图片，请先在图片管理中上传</span>
+              </div>
+            ) : (
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                {images.map((img) => (
+                  <button
+                    key={img.id}
+                    onClick={() => selectImage(img)}
+                    type="button"
+                    className="group relative aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-blue-500 transition-all"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={img.path}
+                      alt={img.alt || img.filename}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = "/placeholder-image.png";
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-end">
+                      <span className="w-full px-2 py-1 text-xs text-white bg-black/60 truncate opacity-0 group-hover:opacity-100 transition-opacity">
+                        {img.filename}
+                      </span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <DialogFooter>
+            <Button
+              onClick={() => setShowImagePicker(false)}
+              variant="outline"
+            >
+              取消
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

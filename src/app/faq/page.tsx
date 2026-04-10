@@ -1,9 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
-import { ChevronDown, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const productFAQs = [
   { q: "What is the minimum order quantity (MOQ)?", a: "Our standard MOQ is 1,000 rolls for blank thermal paper rolls and 5,000 labels for thermal labels. For custom/OEM orders, MOQ may vary depending on specifications. Contact us for small trial orders." },
@@ -22,25 +27,6 @@ const oemFAQs = [
   { q: "Can you help with packaging design?", a: "Yes, our in-house design team can create custom packaging designs including box design, label artwork, and brand identity. We provide design proofs for approval before production. Design fees may apply for complex projects." },
   { q: "How do you ensure product quality for OEM orders?", a: "Every OEM order goes through our multi-stage quality control process: incoming material inspection, in-process quality checks, finished product inspection, and pre-shipment sampling. We provide quality inspection reports and batch traceability documentation." },
 ];
-
-function FAQItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border border-slate-200 rounded-xl overflow-hidden">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <button className="w-full flex items-center justify-between p-5 text-left hover:bg-slate-50 transition-colors" onClick={() => setOpen(!open)}>
-        <span className="font-semibold text-slate-900 text-sm pr-4" style={{ fontFamily: "Sora, sans-serif" }}>{q}</span>
-        <ChevronDown className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform ${open ? "rotate-180" : ""}`} />
-      </button>
-      {open && (
-        <div className="px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">{a}</div>
-      )}
-    </div>
-  );
-}
 
 
 const breadcrumbSchema = {
@@ -61,12 +47,17 @@ const breadcrumbSchema = {
     }
   ]
 };
+
 export default function FAQPage() {
   return (
     <Layout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <div className="bg-[#0F2B5B] text-white py-16">
         <div className="container">
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4" style={{ fontFamily: "Sora, sans-serif" }}>
+          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 font-sora">
             Frequently Asked <span className="text-amber-400">Questions</span>
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl">
@@ -77,23 +68,49 @@ export default function FAQPage() {
 
       <div className="container py-16 max-w-4xl">
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-6" style={{ fontFamily: "Sora, sans-serif" }}>Product FAQ</h2>
-          <div className="space-y-3">
-            {productFAQs.map((faq) => <FAQItem key={faq.q} {...faq} />)}
-          </div>
+          <h2 className="text-2xl font-bold text-slate-900 mb-6 font-sora">Product FAQ</h2>
+          <Accordion type="single" collapsible className="space-y-3">
+            {productFAQs.map((faq, i) => (
+              <AccordionItem
+                key={faq.q}
+                value={`product-${i}`}
+                className="border border-slate-200 rounded-xl overflow-hidden px-5"
+              >
+                <AccordionTrigger className="text-left font-semibold text-slate-900 text-sm font-sora hover:no-underline">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-slate-600 leading-relaxed">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
 
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-6" style={{ fontFamily: "Sora, sans-serif" }}>OEM Cooperation FAQ</h2>
-          <div className="space-y-3">
-            {oemFAQs.map((faq) => <FAQItem key={faq.q} {...faq} />)}
-          </div>
+          <h2 className="text-2xl font-bold text-slate-900 mb-6 font-sora">OEM Cooperation FAQ</h2>
+          <Accordion type="single" collapsible className="space-y-3">
+            {oemFAQs.map((faq, i) => (
+              <AccordionItem
+                key={faq.q}
+                value={`oem-${i}`}
+                className="border border-slate-200 rounded-xl overflow-hidden px-5"
+              >
+                <AccordionTrigger className="text-left font-semibold text-slate-900 text-sm font-sora hover:no-underline">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-slate-600 leading-relaxed">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
 
         <div className="bg-blue-50 border border-blue-100 rounded-2xl p-8 text-center">
-          <h3 className="text-xl font-bold text-slate-900 mb-2" style={{ fontFamily: "Sora, sans-serif" }}>Still Have Questions?</h3>
+          <h3 className="text-xl font-bold text-slate-900 mb-2 font-sora">Still Have Questions?</h3>
           <p className="text-slate-600 mb-5">Our team is ready to answer any specific questions about your requirements.</p>
-          <Link href="/contact" className="inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3 rounded-xl transition-all" style={{ fontFamily: "Sora, sans-serif" }}>
+          <Link href="/contact" className="btn-navy font-sora">
             Contact Us <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

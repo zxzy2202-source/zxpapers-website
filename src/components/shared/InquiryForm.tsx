@@ -2,6 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Send, CheckCircle, Loader2, AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 interface InquiryFormProps {
   productName?: string;
@@ -122,12 +126,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
     }
   };
 
-  const inputClass = (field: string) =>
-    `w-full px-3 py-2.5 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-colors ${
-      errors[field]
-        ? "border-red-400 focus:ring-red-400 bg-red-50"
-        : "border-slate-200 focus:ring-blue-500"
-    }`;
+  const errorInputClass = "border-red-400 focus-visible:ring-red-400 bg-red-50";
 
   if (status === "success") {
     return (
@@ -137,12 +136,13 @@ export default function InquiryForm({ productName, compact, initialMessage, form
         </div>
         <h3 className="font-bold text-slate-900 mb-1 text-lg">Inquiry Sent!</h3>
         <p className="text-sm text-slate-500 mb-4">We&apos;ll respond within 12 hours.</p>
-        <button
+        <Button
+          variant="link"
           onClick={() => setStatus("idle")}
-          className="text-xs text-blue-600 hover:text-blue-800 underline transition-colors"
+          className="text-xs"
         >
           Send another inquiry
-        </button>
+        </Button>
       </div>
     );
   }
@@ -169,68 +169,82 @@ export default function InquiryForm({ productName, compact, initialMessage, form
 
       <div className={compact ? "space-y-2.5" : "grid grid-cols-1 sm:grid-cols-2 gap-3"}>
         <div>
-          <input
+          <Label htmlFor="inquiry-name" className="sr-only">Your Name</Label>
+          <Input
+            id="inquiry-name"
             type="text"
             name="name"
             placeholder="Your Name *"
             required
-            className={inputClass("name")}
+            className={errors.name ? errorInputClass : ""}
           />
           {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
         </div>
         <div>
-          <input
+          <Label htmlFor="inquiry-email" className="sr-only">Email Address</Label>
+          <Input
+            id="inquiry-email"
             type="email"
             name="email"
             placeholder="Email Address *"
             required
-            className={inputClass("email")}
+            className={errors.email ? errorInputClass : ""}
           />
           {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
         </div>
       </div>
 
-      <input
-        type="text"
-        name="company"
-        placeholder="Company Name"
-        className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-      />
+      <div>
+        <Label htmlFor="inquiry-company" className="sr-only">Company Name</Label>
+        <Input
+          id="inquiry-company"
+          type="text"
+          name="company"
+          placeholder="Company Name"
+        />
+      </div>
 
       <div>
-        <input
+        <Label htmlFor="inquiry-country" className="sr-only">Country / Region</Label>
+        <Input
+          id="inquiry-country"
           type="text"
           name="country"
           placeholder="Country / Region *"
           required
-          className={inputClass("country")}
+          className={errors.country ? errorInputClass : ""}
         />
         {errors.country && <p className="text-xs text-red-500 mt-1">{errors.country}</p>}
       </div>
 
-      <input
-        type="tel"
-        name="phone"
-        placeholder="Phone / WhatsApp (optional)"
-        className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-      />
+      <div>
+        <Label htmlFor="inquiry-phone" className="sr-only">Phone / WhatsApp</Label>
+        <Input
+          id="inquiry-phone"
+          type="tel"
+          name="phone"
+          placeholder="Phone / WhatsApp (optional)"
+        />
+      </div>
 
       <div>
-        <textarea
+        <Label htmlFor="inquiry-message" className="sr-only">Message</Label>
+        <Textarea
           ref={messageRef}
+          id="inquiry-message"
           name="message"
           rows={compact ? 3 : 4}
           placeholder={`Message${productName ? ` about ${productName}` : ""} — quantity, size, customization...`}
-          className={`${inputClass("message")} resize-none`}
+          className={`resize-none ${errors.message ? errorInputClass : ""}`}
           defaultValue={initialMessage || ""}
         />
         {errors.message && <p className="text-xs text-red-500 mt-1">{errors.message}</p>}
       </div>
 
-      <button
+      <Button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 disabled:bg-amber-300 disabled:cursor-not-allowed text-slate-900 font-bold text-sm py-3 rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-500/30"
+        className="w-full bg-amber-500 hover:bg-amber-400 disabled:bg-amber-300 text-slate-900 font-bold text-sm py-3 h-auto rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-500/30"
       >
         {status === "submitting" ? (
           <>
@@ -243,7 +257,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
             Send Inquiry
           </>
         )}
-      </button>
+      </Button>
       <p className="text-xs text-slate-400 text-center">Response within 12 hours · NDA available · No spam</p>
     </form>
   );
