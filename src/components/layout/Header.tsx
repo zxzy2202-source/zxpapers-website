@@ -114,30 +114,30 @@ export default function Header() {
         <div className="container flex items-center justify-between h-16">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 flex-shrink-0" aria-label="Zhi Xin Paper - Home">
+          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 mr-4" aria-label="Zhi Xin Paper - Home">
             <Image
               src="/images/logo.png"
               alt="Zhi Xin Paper"
-              width={48}
-              height={48}
-              className="h-10 w-auto object-contain"
+              width={40}
+              height={40}
+              className="h-9 w-auto object-contain"
               priority
             />
             <div className="flex flex-col leading-tight">
-              <span className="text-white font-bold text-lg tracking-wide">ZhixinPaper</span>
-              <span className="text-amber-400 text-[10px] font-semibold tracking-widest uppercase">Thermal Solutions Since 2009</span>
+              <span className="text-white font-bold text-base tracking-wide whitespace-nowrap">ZhixinPaper</span>
+              <span className="text-amber-400 text-[9px] font-semibold tracking-widest uppercase whitespace-nowrap">Thermal Solutions Since 2009</span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
             {mainNav.map((item) => {
               if (!isDropdown(item)) {
                 return (
                   <Link
                     key={(item as NavItem).href}
                     href={(item as NavItem).href}
-                    className={`px-3 py-2 text-sm font-medium transition-colors rounded-md hover:bg-white/5 ${
+                    className={`px-2.5 py-2 text-sm font-medium transition-colors rounded-md hover:bg-white/5 whitespace-nowrap ${
                       pathname === (item as NavItem).href ? "text-amber-400" : "text-slate-200 hover:text-amber-400"
                     }`}
                   >
@@ -157,7 +157,7 @@ export default function Header() {
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <button
-                    className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-200 hover:text-amber-400 transition-colors rounded-md hover:bg-white/5"
+                    className="flex items-center gap-1 px-2.5 py-2 text-sm font-medium text-slate-200 hover:text-amber-400 transition-colors rounded-md hover:bg-white/5 whitespace-nowrap"
                     aria-expanded={activeDropdown === item.label}
                     aria-haspopup="true"
                   >
@@ -369,10 +369,10 @@ export default function Header() {
           </div>
 
           {/* CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0 ml-2">
             <Link
               href="/contact"
-              className="bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold text-sm px-5 py-2.5 rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-500/30"
+              className="bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold text-sm px-4 py-2 rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-500/30 whitespace-nowrap"
             >
               Get a Quote
             </Link>
