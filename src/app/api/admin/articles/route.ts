@@ -72,15 +72,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate status
+    const VALID_STATUSES = ["DRAFT", "PUBLISHED"];
+    const finalStatus = VALID_STATUSES.includes(status) ? status : "DRAFT";
+
+    // Check slug uniqueness
+    const existing = await prisma.article.findUnique({ where: { slug } });
+    if (existing) {
+      return NextResponse.json(
+        { error: "Slug already exists. Please use a different URL slug." },
+        { status: 409 }
+      );
+    }
+
     const article = await prisma.article.create({
       data: {
         title, slug, excerpt, content,
         category: category || "INDUSTRY_INSIGHTS",
         tags: tags || "",
-        status: status || "DRAFT",
+        status: finalStatus,
         coverImage, metaTitle, metaDesc,
         keywords: keywords || "",
-        publishedAt: status === "PUBLISHED" ? new Date() : null,
+        publishedAt: finalStatus === "PUBLISHED" ? new Date() : null,
       },
     });
 

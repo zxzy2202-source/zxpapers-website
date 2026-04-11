@@ -11,7 +11,15 @@ import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 import { TextStyle } from "@tiptap/extension-text-style";
 import { Color } from "@tiptap/extension-text-style";
-import { AlertCircle, ImageIcon, Loader2 } from "lucide-react";
+import {
+  AlertCircle, ImageIcon, Loader2,
+  Bold, Italic, Underline as UnderlineIcon, Strikethrough, Code,
+  Heading1, Heading2, Heading3,
+  List, ListOrdered, Quote, Braces,
+  AlignLeft, AlignCenter, AlignRight,
+  Link as LinkIcon, Minus, Undo2, Redo2,
+} from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -195,12 +203,20 @@ export default function ArticleEditor({ article }: Props) {
     }
   }
 
-  // Insert link
-  function insertLink() {
-    const url = prompt("请输入链接地址：");
-    if (url) {
-      editor?.chain().focus().setLink({ href: url }).run();
-    }
+  // Insert link dialog state
+  const [showLinkDialog, setShowLinkDialog] = useState(false);
+  const [linkUrl, setLinkUrl] = useState("");
+
+  function openLinkDialog() {
+    setLinkUrl(editor?.getAttributes("link").href || "");
+    setShowLinkDialog(true);
+  }
+
+  function confirmInsertLink() {
+    if (!linkUrl.trim()) return;
+    editor?.chain().focus().setLink({ href: linkUrl }).run();
+    setShowLinkDialog(false);
+    setLinkUrl("");
   }
 
   async function handleSave(publishStatus?: string) {
@@ -253,6 +269,9 @@ export default function ArticleEditor({ article }: Props) {
 
       if (finalStatus !== status) setStatus(finalStatus);
 
+      const successMsg = finalStatus === "PUBLISHED" ? "文章已发布" : "草稿已保存";
+      toast.success(successMsg, { description: title });
+
       if (!isEditing && data.article?.id) {
         router.push(`/admin/articles/${data.article.id}`);
       } else {
@@ -260,6 +279,7 @@ export default function ArticleEditor({ article }: Props) {
       }
     } catch {
       setError("网络错误，请重试。");
+      toast.error("保存失败", { description: "请检查网络连接后重试" });
     } finally {
       setSaving(false);
     }
@@ -353,65 +373,64 @@ export default function ArticleEditor({ article }: Props) {
                   {/* Text formatting */}
                   <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
                     <Button variant="ghost" size="sm" title="加粗 (Ctrl+B)" onClick={() => editor.chain().focus().toggleBold().run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs font-bold ${editor.isActive("bold") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>B</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive("bold") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Bold className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="斜体 (Ctrl+I)" onClick={() => editor.chain().focus().toggleItalic().run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs italic ${editor.isActive("italic") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>I</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive("italic") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Italic className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="下划线 (Ctrl+U)" onClick={() => editor.chain().focus().toggleUnderline().run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs underline ${editor.isActive("underline") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>U</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive("underline") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><UnderlineIcon className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="删除线" onClick={() => editor.chain().focus().toggleStrike().run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs line-through ${editor.isActive("strike") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>S</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive("strike") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Strikethrough className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="行内代码" onClick={() => editor.chain().focus().toggleCode().run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs font-mono ${editor.isActive("code") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>{"`"}</Button>
-                  </div>
+                      className={`px-2 py-1 h-auto ${editor.isActive("code") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Code className="w-3.5 h-3.5" /></Button>                  </div>
 
                   {/* Headings */}
                   <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
                     <Button variant="ghost" size="sm" title="一级标题" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs font-medium ${editor.isActive("heading", { level: 1 }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>H1</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive("heading", { level: 1 }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Heading1 className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="二级标题" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs font-medium ${editor.isActive("heading", { level: 2 }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>H2</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive("heading", { level: 2 }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Heading2 className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="三级标题" onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs font-medium ${editor.isActive("heading", { level: 3 }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}>H3</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive("heading", { level: 3 }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Heading3 className="w-3.5 h-3.5" /></Button>
                   </div>
 
                   {/* Lists */}
                   <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
                     <Button variant="ghost" size="sm" title="无序列表" onClick={() => editor.chain().focus().toggleBulletList().run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs ${editor.isActive("bulletList") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="无序列表">≡</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive("bulletList") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="无序列表"><List className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="有序列表" onClick={() => editor.chain().focus().toggleOrderedList().run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs ${editor.isActive("orderedList") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="有序列表">1.</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive("orderedList") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="有序列表"><ListOrdered className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="引用块" onClick={() => editor.chain().focus().toggleBlockquote().run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs ${editor.isActive("blockquote") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="引用块">&ldquo;</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive("blockquote") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="引用块"><Quote className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="代码块" onClick={() => editor.chain().focus().toggleCodeBlock().run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs font-mono ${editor.isActive("codeBlock") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="代码块">{"{}"}</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive("codeBlock") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="代码块"><Braces className="w-3.5 h-3.5" /></Button>
                   </div>
 
                   {/* Align */}
                   <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
                     <Button variant="ghost" size="sm" title="左对齐" onClick={() => editor.chain().focus().setTextAlign("left").run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs ${editor.isActive({ textAlign: "left" }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="左对齐">⬅</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive({ textAlign: "left" }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="左对齐"><AlignLeft className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="居中" onClick={() => editor.chain().focus().setTextAlign("center").run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs ${editor.isActive({ textAlign: "center" }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="居中对齐">☰</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive({ textAlign: "center" }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="居中对齐"><AlignCenter className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="右对齐" onClick={() => editor.chain().focus().setTextAlign("right").run()} type="button"
-                      className={`px-2 py-1 h-auto text-xs ${editor.isActive({ textAlign: "right" }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="右对齐">➡</Button>
+                      className={`px-2 py-1 h-auto ${editor.isActive({ textAlign: "right" }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="右对齐"><AlignRight className="w-3.5 h-3.5" /></Button>
                   </div>
 
                   {/* Insert */}
                   <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
-                    <Button variant="ghost" size="sm" title="插入链接" onClick={insertLink} type="button"
-                      className={`px-2 py-1 h-auto text-xs ${editor.isActive("link") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="插入链接">🔗</Button>
+                    <Button variant="ghost" size="sm" title="插入链接" onClick={openLinkDialog} type="button"
+                      className={`px-2 py-1 h-auto ${editor.isActive("link") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="插入链接"><LinkIcon className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="从图片库插入图片" onClick={() => openImagePicker("editor")} type="button"
-                      className="px-2 py-1 h-auto text-xs text-gray-600" aria-label="插入图片">🖼️</Button>
+                      className="px-2 py-1 h-auto text-gray-600" aria-label="插入图片"><ImageIcon className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="分割线" onClick={() => editor.chain().focus().setHorizontalRule().run()} type="button"
-                      className="px-2 py-1 h-auto text-xs text-gray-600" aria-label="分割线">—</Button>
+                      className="px-2 py-1 h-auto text-gray-600" aria-label="分割线"><Minus className="w-3.5 h-3.5" /></Button>
                   </div>
 
                   {/* Undo/Redo */}
                   <div className="flex gap-0.5 ml-auto">
                     <Button variant="ghost" size="sm" title="撤销 (Ctrl+Z)" onClick={() => editor.chain().focus().undo().run()} type="button"
-                      className="px-2 py-1 h-auto text-xs text-gray-600" aria-label="撤销">↩</Button>
+                      className="px-2 py-1 h-auto text-gray-600" aria-label="撤销"><Undo2 className="w-3.5 h-3.5" /></Button>
                     <Button variant="ghost" size="sm" title="重做 (Ctrl+Y)" onClick={() => editor.chain().focus().redo().run()} type="button"
-                      className="px-2 py-1 h-auto text-xs text-gray-600" aria-label="重做">↪</Button>
+                      className="px-2 py-1 h-auto text-gray-600" aria-label="重做"><Redo2 className="w-3.5 h-3.5" /></Button>
                   </div>
                 </div>
               )}
@@ -672,6 +691,33 @@ export default function ArticleEditor({ article }: Props) {
           )}
         </div>
       </div>
+
+      {/* Link Insert Dialog */}
+      <Dialog open={showLinkDialog} onOpenChange={setShowLinkDialog}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>插入链接</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3 py-2">
+            <div>
+              <Label className="text-xs text-gray-500">链接地址 *</Label>
+              <Input
+                type="url"
+                value={linkUrl}
+                onChange={(e) => setLinkUrl(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && confirmInsertLink()}
+                placeholder="https://example.com"
+                className="mt-1.5"
+                autoFocus
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowLinkDialog(false)}>取消</Button>
+            <Button onClick={confirmInsertLink} disabled={!linkUrl.trim()}>插入链接</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Image Picker Modal - using shadcn Dialog */}
       <Dialog open={showImagePicker} onOpenChange={setShowImagePicker}>

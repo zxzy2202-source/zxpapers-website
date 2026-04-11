@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import AdminHeader from "@/components/admin/AdminHeader";
+import { Toaster } from "@/components/ui/sonner";
 
 export default async function AdminDashboardLayout({
   children,
@@ -26,6 +27,8 @@ export default async function AdminDashboardLayout({
           {children}
         </main>
       </div>
+
+      <Toaster />
     </div>
   );
 }
