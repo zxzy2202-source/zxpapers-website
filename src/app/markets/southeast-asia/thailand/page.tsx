@@ -36,7 +36,7 @@ const products = [
 const faqs = [
   { q: "Do you ship CIF to Laem Chabang?", a: "Yes. We provide CIF Laem Chabang pricing. Transit time is approximately 12–16 days from Shenzhen." },
   { q: "Can I get FORM E for Thailand?", a: "Yes. We provide FORM E (ASEAN-China FTA Certificate of Origin) to help reduce import duties." },
-  { q: "What is the MOQ for Thailand orders?", a: "MOQ is flexible — from 1 carton for samples to full 20ft container orders." },
+  { q: "What is the MOQ for Thailand orders?", a: "MOQ is flexible — from 1 pallet to full 20ft container orders." },
   { q: "Do you have a Thai-speaking sales contact?", a: "Our sales team communicates in English. WhatsApp is the fastest way to get a response." },
 ];
 

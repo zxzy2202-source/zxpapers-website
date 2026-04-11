@@ -45,7 +45,7 @@ const products = [
     badgeColor: "bg-amber-100 text-amber-800",
     desc: "Standard POS roll for MTN MoMo agents, GCB Bank, Ecobank, and Fidelity Bank terminals. The most popular size across Ghana's mobile money and banking sector.",
     specs: ["Core: 12mm / 13mm", "Length: 50m / 60m / 80m", "GSM: 55–65g"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
     use: "MTN MoMo agents, banks, retail",
   },
   {
@@ -55,7 +55,7 @@ const products = [
     badgeColor: "bg-blue-100 text-blue-800",
     desc: "Compact roll for handheld POS terminals used by market traders, street vendors, and mobile money agents across Accra, Kumasi, and Takoradi.",
     specs: ["Core: 12mm / 13mm", "Length: 40m / 50m", "GSM: 55–65g"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
     use: "Market traders, mobile agents",
   },
   {
@@ -65,7 +65,7 @@ const products = [
     badgeColor: "bg-green-100 text-green-800",
     desc: "Wide format for Shoprite Ghana, Palace Mall, and hotel/restaurant POS systems. Growing demand from Ghana's expanding formal retail sector.",
     specs: ["Core: 12mm / 13mm", "Length: 80m / 100m", "GSM: 65–80g"],
-    moq: "1 carton (24 rolls)",
+    moq: "1 pallet",
     use: "Supermarkets, hotels, restaurants",
   },
 ];

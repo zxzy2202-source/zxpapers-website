@@ -69,15 +69,15 @@ export default async function OEMPage() {
         badge={{ text: "Private Label & OEM", color: "purple" }}
         eyebrow="Custom Thermal Paper Manufacturing"
         title={<>OEM Thermal Paper<br /><span className="text-amber-400">Private Label Solutions</span></>}
-        subtitle="Build your own brand with our factory. Custom logo, packaging, and core printing. MOQ from 1 carton. NDA available. 2,000+ OEM clients worldwide."
-        trustBadges={["Custom Logo & Packaging", "NDA Available", "MOQ from 1 Carton", "ISO 9001", "BPA-Free"]}
+        subtitle="Build your own brand with our factory. Custom logo, packaging, and core printing. MOQ from 1 pallet. NDA available. 2,000+ OEM clients worldwide."
+        trustBadges={["Custom Logo & Packaging", "NDA Available", "MOQ from 1 Pallet", "ISO 9001", "BPA-Free"]}
         ctas={[
           { label: "Start OEM Project", href: "/contact", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
           { label: "WhatsApp OEM Team", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I'm interested in OEM / private label thermal paper. Please send me details.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
         ]}
         stats={[
           { value: "2,000+", label: "OEM Clients" },
-          { value: "MOQ 1 Carton", label: "Low Minimum" },
+          { value: "MOQ 1 Pallet", label: "Low Minimum" },
           { value: "7–14 Days", label: "Sample Lead Time" },
           { value: "NDA", label: "IP Protection" },
         ]}

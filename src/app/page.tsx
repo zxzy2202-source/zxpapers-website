@@ -157,7 +157,7 @@ export default async function HomePage() {
           { label: "WhatsApp Us", href: waGeneral, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
         ]}
         stats={[
-          { value: "MOQ 1 Carton", label: "Low Minimum Order" },
+          { value: "MOQ 1 Pallet", label: "Low Minimum Order" },
           { value: "Sample 3–5 Days", label: "Fast Sample Delivery" },
           { value: "FCL 3–5 Days", label: "Container Loading" },
           { value: "24h Reply", label: "Quote Response" },

@@ -45,7 +45,7 @@ const products = [
     badgeColor: "bg-amber-100 text-amber-800",
     desc: "Standard POS roll for South African supermarkets, banks, and restaurants. Compatible with Nedbank, FNB, Standard Bank, and Absa POS terminals. Used by Pick n Pay, Checkers, and Woolworths.",
     specs: ["Core: 12mm / 13mm", "Length: 80m / 100m", "GSM: 65–80g", "Width tolerance: ±0.5mm"],
-    moq: "1 carton (24 rolls)",
+    moq: "1 pallet",
     use: "Supermarkets, banks, restaurants",
   },
   {
@@ -55,7 +55,7 @@ const products = [
     badgeColor: "bg-blue-100 text-blue-800",
     desc: "Widely used by mobile POS operators, informal traders, and small businesses across Johannesburg, Cape Town, and Durban.",
     specs: ["Core: 12mm / 13mm", "Length: 50m / 60m / 80m", "GSM: 55–65g", "Width tolerance: ±0.5mm"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
     use: "Mobile POS, small business",
   },
   {
@@ -65,7 +65,7 @@ const products = [
     badgeColor: "bg-purple-100 text-purple-800",
     desc: "ATM receipt paper for Absa, Nedbank, FNB, and Standard Bank ATMs. High image retention for compliance and record-keeping requirements.",
     specs: ["Core: 12mm / 13mm", "Length: 80m / 100m", "GSM: 65–80g", "Width tolerance: ±0.5mm"],
-    moq: "1 carton (24 rolls)",
+    moq: "1 pallet",
     use: "ATMs, kiosks, banking",
   },
 ];

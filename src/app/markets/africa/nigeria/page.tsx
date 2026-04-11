@@ -46,7 +46,7 @@ const products = [
     badgeColor: "bg-amber-100 text-amber-800",
     desc: "The most popular POS roll in Nigeria. Fits Ingenico, Verifone, VeriFone VX520, and most CBN-approved POS terminals used by mobile money agents and banks.",
     specs: ["Core: 12mm / 13mm", "Length: 50m / 60m / 80m", "GSM: 55–65g", "Width tolerance: ±0.5mm"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
     use: "Mobile money agents, banks, retail POS",
   },
   {
@@ -56,7 +56,7 @@ const products = [
     badgeColor: "bg-blue-100 text-blue-800",
     desc: "Compact roll for handheld POS terminals. Widely used by market traders, street vendors, and mobile payment agents across Lagos, Abuja, and Port Harcourt.",
     specs: ["Core: 12mm / 13mm", "Length: 40m / 50m", "GSM: 55–65g", "Width tolerance: ±0.5mm"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
     use: "Handheld POS, mobile agents",
   },
   {
@@ -66,7 +66,7 @@ const products = [
     badgeColor: "bg-green-100 text-green-800",
     desc: "Wide format roll for supermarket checkout counters, bank tellers, and restaurant POS systems. Used by Shoprite, Spar, and major Nigerian supermarket chains.",
     specs: ["Core: 12mm / 13mm", "Length: 80m / 100m", "GSM: 65–80g", "Width tolerance: ±0.5mm"],
-    moq: "1 carton (24 rolls)",
+    moq: "1 pallet",
     use: "Supermarkets, bank tellers, restaurants",
   },
 ];

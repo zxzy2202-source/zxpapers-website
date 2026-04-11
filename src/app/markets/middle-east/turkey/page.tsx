@@ -9,7 +9,7 @@ import { CountryFlag } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
   title: "Thermal Paper Rolls Supplier Turkey | Bulk POS Rolls | ZhixinPaper",
-  description: "Factory-direct thermal paper rolls for Turkey distributors. 80x80mm, 80x70mm, 57x50mm, BPA-free, ISO 9001. CIF Istanbul. EU-standard sizes available. MOQ 1 carton.",
+  description: "Factory-direct thermal paper rolls for Turkey distributors. 80x80mm, 80x70mm, 57x50mm, BPA-free, ISO 9001. CIF Istanbul. EU-standard sizes available. MOQ 1 pallet.",
   alternates: { canonical: `${SITE.domain}/markets/middle-east/turkey` },
   openGraph: {
     title: "Thermal Paper Rolls Supplier Turkey | ZhixinPaper",
@@ -19,9 +19,9 @@ export const metadata: Metadata = {
 };
 
 const products = [
-  { size: "80 × 80 mm", badge: "#1 in Turkey", badgeColor: "bg-amber-100 text-amber-800", href: "/products/thermal-rolls/80x80mm", desc: "Standard POS roll for Turkish retail chains, banks, and supermarkets. Compatible with Ingenico, Verifone, and Ingenico terminals used by Migros, BIM, A101, and Turkish banks.", specs: ["Core: 12mm / 13mm", "Length: 60m / 80m", "GSM: 65–80g", "BPA-free"], moq: "1 carton (50 rolls)", use: "Retail POS, banking, supermarkets" },
-  { size: "80 × 70 mm", badge: "EU Standard", badgeColor: "bg-blue-100 text-blue-800", href: "/products/thermal-rolls/80x70mm", desc: "European-standard size widely used in Turkish retail chains with European POS equipment. Ideal for buyers who also export to EU countries.", specs: ["Core: 12mm / 13mm", "Length: 70m / 80m", "GSM: 65–80g", "BPA-free"], moq: "1 carton (50 rolls)", use: "EU-standard POS, export to Europe" },
-  { size: "57 × 50 mm", badge: "Mobile POS", badgeColor: "bg-green-100 text-green-800", href: "/products/thermal-rolls/57x50mm", desc: "Most popular for mobile POS terminals used by Turkish food delivery services (Yemeksepeti, Getir) and taxi companies.", specs: ["Core: 12mm / 13mm", "Length: 50m / 60m", "GSM: 55–65g", "BPA-free"], moq: "1 carton (50 rolls)", use: "Food delivery, taxis, mobile POS" },
+  { size: "80 × 80 mm", badge: "#1 in Turkey", badgeColor: "bg-amber-100 text-amber-800", href: "/products/thermal-rolls/80x80mm", desc: "Standard POS roll for Turkish retail chains, banks, and supermarkets. Compatible with Ingenico, Verifone, and Ingenico terminals used by Migros, BIM, A101, and Turkish banks.", specs: ["Core: 12mm / 13mm", "Length: 60m / 80m", "GSM: 65–80g", "BPA-free"], moq: "1 pallet", use: "Retail POS, banking, supermarkets" },
+  { size: "80 × 70 mm", badge: "EU Standard", badgeColor: "bg-blue-100 text-blue-800", href: "/products/thermal-rolls/80x70mm", desc: "European-standard size widely used in Turkish retail chains with European POS equipment. Ideal for buyers who also export to EU countries.", specs: ["Core: 12mm / 13mm", "Length: 70m / 80m", "GSM: 65–80g", "BPA-free"], moq: "1 pallet", use: "EU-standard POS, export to Europe" },
+  { size: "57 × 50 mm", badge: "Mobile POS", badgeColor: "bg-green-100 text-green-800", href: "/products/thermal-rolls/57x50mm", desc: "Most popular for mobile POS terminals used by Turkish food delivery services (Yemeksepeti, Getir) and taxi companies.", specs: ["Core: 12mm / 13mm", "Length: 50m / 60m", "GSM: 55–65g", "BPA-free"], moq: "1 pallet", use: "Food delivery, taxis, mobile POS" },
   { size: "4\" × 6\" Labels", badge: "E-commerce", badgeColor: "bg-purple-100 text-purple-800", href: "/products/thermal-labels/4x6in", desc: "Shipping labels for Trendyol, Hepsiburada, and Turkish logistics companies (Yurtiçi Kargo, MNG Kargo, Aras Kargo).", specs: ["Size: 4\" × 6\"", "Core: 1\" / 3\"", "Adhesive: Permanent", "BPA-free"], moq: "1 roll (500 labels)", use: "E-commerce, logistics" },
 ];
 

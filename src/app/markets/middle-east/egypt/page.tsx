@@ -9,7 +9,7 @@ import { CountryFlag } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
   title: "Thermal Paper Rolls Supplier Egypt | Bulk POS Rolls | ZhixinPaper",
-  description: "Factory-direct thermal paper rolls for Egypt distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001. CIF Alexandria & Port Said. Meeza card compatible. MOQ 1 carton.",
+  description: "Factory-direct thermal paper rolls for Egypt distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001. CIF Alexandria & Port Said. Meeza card compatible. MOQ 1 pallet.",
   alternates: { canonical: `${SITE.domain}/markets/middle-east/egypt` },
   openGraph: {
     title: "Thermal Paper Rolls Supplier Egypt | ZhixinPaper",
@@ -19,10 +19,10 @@ export const metadata: Metadata = {
 };
 
 const products = [
-  { size: "80 × 80 mm", badge: "#1 in Egypt", badgeColor: "bg-amber-100 text-amber-800", href: "/products/thermal-rolls/80x80mm", desc: "Standard POS roll for Egyptian banks, supermarkets, and retail chains. Compatible with all POS brands used in Carrefour Egypt, Spinneys, and major Egyptian banks (CIB, NBE, Banque Misr).", specs: ["Core: 12mm / 13mm", "Length: 60m / 80m", "GSM: 65–80g", "BPA-free"], moq: "1 carton (50 rolls)", use: "Banks, supermarkets, retail POS" },
-  { size: "57 × 50 mm", badge: "Meeza Card", badgeColor: "bg-blue-100 text-blue-800", href: "/products/thermal-rolls/57x50mm", desc: "Most popular for Meeza payment card terminals and mobile POS. Widely used by Egyptian pharmacies, kiosks, and small retailers.", specs: ["Core: 12mm / 13mm", "Length: 50m / 60m", "GSM: 55–65g", "BPA-free"], moq: "1 carton (50 rolls)", use: "Meeza terminals, pharmacies, kiosks" },
+  { size: "80 × 80 mm", badge: "#1 in Egypt", badgeColor: "bg-amber-100 text-amber-800", href: "/products/thermal-rolls/80x80mm", desc: "Standard POS roll for Egyptian banks, supermarkets, and retail chains. Compatible with all POS brands used in Carrefour Egypt, Spinneys, and major Egyptian banks (CIB, NBE, Banque Misr).", specs: ["Core: 12mm / 13mm", "Length: 60m / 80m", "GSM: 65–80g", "BPA-free"], moq: "1 pallet", use: "Banks, supermarkets, retail POS" },
+  { size: "57 × 50 mm", badge: "Meeza Card", badgeColor: "bg-blue-100 text-blue-800", href: "/products/thermal-rolls/57x50mm", desc: "Most popular for Meeza payment card terminals and mobile POS. Widely used by Egyptian pharmacies, kiosks, and small retailers.", specs: ["Core: 12mm / 13mm", "Length: 50m / 60m", "GSM: 55–65g", "BPA-free"], moq: "1 pallet", use: "Meeza terminals, pharmacies, kiosks" },
   { size: "4\" × 6\" Labels", badge: "E-commerce", badgeColor: "bg-green-100 text-green-800", href: "/products/thermal-labels/4x6in", desc: "Shipping labels for Jumia Egypt, Noon.com, and Egyptian logistics companies. Compatible with Zebra and TSC label printers.", specs: ["Size: 4\" × 6\"", "Core: 1\" / 3\"", "Adhesive: Permanent", "BPA-free"], moq: "1 roll (500 labels)", use: "E-commerce, logistics, warehousing" },
-  { size: "57 × 40 mm", badge: "Compact POS", badgeColor: "bg-purple-100 text-purple-800", href: "/products/thermal-rolls/57x40mm", desc: "Compact roll for handheld POS terminals used in Egyptian food courts, cafeterias, and street vendors.", specs: ["Core: 12mm / 13mm", "Length: 40m / 50m", "GSM: 55–65g", "BPA-free"], moq: "1 carton (50 rolls)", use: "Food courts, street vendors, compact POS" },
+  { size: "57 × 40 mm", badge: "Compact POS", badgeColor: "bg-purple-100 text-purple-800", href: "/products/thermal-rolls/57x40mm", desc: "Compact roll for handheld POS terminals used in Egyptian food courts, cafeterias, and street vendors.", specs: ["Core: 12mm / 13mm", "Length: 40m / 50m", "GSM: 55–65g", "BPA-free"], moq: "1 pallet", use: "Food courts, street vendors, compact POS" },
 ];
 
 const faqs = [

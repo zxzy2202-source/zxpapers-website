@@ -36,7 +36,7 @@ const products = [
 const faqs = [
   { q: "Do you ship CIF to Ho Chi Minh City?", a: "Yes. We provide CIF Cat Lai (Ho Chi Minh) pricing. Transit time is approximately 10–14 days from Shenzhen." },
   { q: "Can I get FORM E for Vietnam?", a: "Yes. FORM E (ASEAN-China FTA Certificate of Origin) is available to help reduce import duties." },
-  { q: "What is the MOQ for Vietnam orders?", a: "MOQ is flexible — from 1 carton for samples to full 20ft container orders." },
+  { q: "What is the MOQ for Vietnam orders?", a: "MOQ is flexible — from 1 pallet to full 20ft container orders." },
   { q: "Do you ship to Hanoi as well?", a: "Yes. We can ship to Hai Phong port (for Hanoi) or Cat Lai (for Ho Chi Minh City). Please specify your preferred port." },
 ];
 

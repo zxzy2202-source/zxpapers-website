@@ -104,7 +104,7 @@ export default function Header() {
             <span className="text-slate-600">|</span>
             <span>Global Shipping</span>
             <span className="text-slate-600">|</span>
-            <span>MOQ 1 Carton</span>
+            <span>MOQ 1 Pallet</span>
           </div>
         </div>
       </div>

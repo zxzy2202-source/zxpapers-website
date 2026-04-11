@@ -13,7 +13,7 @@ import { CountryFlag } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
   title: "Thermal Paper Rolls Supplier Saudi Arabia | Bulk POS | ZhixinPaper",
-  description: "Factory-direct thermal paper rolls for Saudi Arabia distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001. CIF Jeddah & Dammam. SABER support. MOQ 1 carton.",
+  description: "Factory-direct thermal paper rolls for Saudi Arabia distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001. CIF Jeddah & Dammam. SABER support. MOQ 1 pallet.",
   alternates: { canonical: `${SITE.domain}/markets/middle-east/saudi-arabia` },
   openGraph: {
     title: "Thermal Paper Rolls Supplier Saudi Arabia | ZhixinPaper",
@@ -28,14 +28,14 @@ const products = [
     href: "/products/thermal-rolls/80x80mm",
     desc: "Standard POS roll for Saudi retail chains, hypermarkets, and banking terminals. Compatible with all POS brands used in Panda, Carrefour, Danube, and Saudi banks.",
     specs: ["Core: 12mm / 13mm", "Length: 60m / 80m", "GSM: 65–80g", "BPA-free"],
-    moq: "1 carton (50 rolls)", use: "Hypermarkets, banking, retail POS",
+    moq: "1 pallet", use: "Hypermarkets, banking, retail POS",
   },
   {
     size: "57 × 50 mm", badge: "SADAD / STC Pay", badgeColor: "bg-blue-100 text-blue-800",
     href: "/products/thermal-rolls/57x50mm",
     desc: "Most popular for SADAD payment terminals, STC Pay, and mobile POS. Widely used by Saudi Aramco service stations and convenience stores.",
     specs: ["Core: 12mm / 13mm", "Length: 50m / 60m", "GSM: 55–65g", "BPA-free"],
-    moq: "1 carton (50 rolls)", use: "SADAD terminals, petrol stations, convenience",
+    moq: "1 pallet", use: "SADAD terminals, petrol stations, convenience",
   },
   {
     size: "4\" × 6\" Labels", badge: "E-commerce", badgeColor: "bg-green-100 text-green-800",
@@ -49,7 +49,7 @@ const products = [
     href: "/products/thermal-rolls/57x40mm",
     desc: "Compact roll for handheld POS terminals used in Saudi food courts, cafeterias, and quick-service restaurants.",
     specs: ["Core: 12mm / 13mm", "Length: 40m / 50m", "GSM: 55–65g", "BPA-free"],
-    moq: "1 carton (50 rolls)", use: "Food courts, QSR, compact POS",
+    moq: "1 pallet", use: "Food courts, QSR, compact POS",
   },
 ];
 

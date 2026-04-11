@@ -194,7 +194,7 @@ const popularProducts = [
     badgeColor: "amber",
     desc: "Standard POS roll for mobile money agents, banks, and retail. Fits most Ingenico, Verifone, and local POS terminals.",
     specs: ["Core: 12mm / 13mm", "Length: 50m / 60m / 80m", "GSM: 55–65g"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
   },
   {
     size: "57 × 40 mm",
@@ -203,7 +203,7 @@ const popularProducts = [
     badgeColor: "blue",
     desc: "Compact roll for handheld POS terminals and mobile payment devices. Widely used by street vendors and market traders.",
     specs: ["Core: 12mm / 13mm", "Length: 40m / 50m", "GSM: 55–65g"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
   },
   {
     size: "80 × 80 mm",
@@ -212,7 +212,7 @@ const popularProducts = [
     badgeColor: "green",
     desc: "Wide format roll for supermarket checkout counters, bank tellers, and restaurant POS systems.",
     specs: ["Core: 12mm / 13mm", "Length: 80m / 100m", "GSM: 65–80g"],
-    moq: "1 carton (24 rolls)",
+    moq: "1 pallet",
   },
   {
     size: "79 × 80 mm",
@@ -221,7 +221,7 @@ const popularProducts = [
     badgeColor: "purple",
     desc: "ATM and kiosk receipt paper. High image retention, suitable for long-term record keeping.",
     specs: ["Core: 12mm / 13mm", "Length: 80m / 100m", "GSM: 65–80g"],
-    moq: "1 carton (24 rolls)",
+    moq: "1 pallet",
   },
 ];
 
@@ -237,7 +237,7 @@ const logistics = [
 const faqs = [
   {
     q: "What is the minimum order quantity (MOQ)?",
-    a: "MOQ is 1 carton for standard sizes. For container orders, we offer the best pricing. Sample orders (1–5 rolls) are available for quality testing.",
+    a: "MOQ is 1 pallet for standard sizes. For container orders, we offer the best pricing. Sample orders (1–5 rolls) are available for quality testing.",
   },
   {
     q: "Do you offer CIF pricing to African ports?",

@@ -45,7 +45,7 @@ const products = [
     badgeColor: "bg-amber-100 text-amber-800",
     desc: "Standard POS roll for M-Pesa agents, Equity Bank, KCB, and Co-operative Bank terminals. The most widely used size across Kenya's mobile money ecosystem.",
     specs: ["Core: 12mm / 13mm", "Length: 50m / 60m / 80m", "GSM: 55–65g"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
     use: "M-Pesa agents, banks, retail",
   },
   {
@@ -55,7 +55,7 @@ const products = [
     badgeColor: "bg-blue-100 text-blue-800",
     desc: "Compact roll for handheld POS devices. Used by mobile money agents, matatu conductors, and market traders across Nairobi, Mombasa, and upcountry.",
     specs: ["Core: 12mm / 13mm", "Length: 40m / 50m", "GSM: 55–65g"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
     use: "Mobile agents, handheld POS",
   },
   {
@@ -65,7 +65,7 @@ const products = [
     badgeColor: "bg-green-100 text-green-800",
     desc: "Wide format for Naivas, Quickmart, Carrefour Kenya, and hotel/restaurant POS systems. High image retention for long-term record keeping.",
     specs: ["Core: 12mm / 13mm", "Length: 80m / 100m", "GSM: 65–80g"],
-    moq: "1 carton (24 rolls)",
+    moq: "1 pallet",
     use: "Supermarkets, hotels, restaurants",
   },
 ];
@@ -85,7 +85,7 @@ const kenyaFaqs = [
   },
   {
     q: "What is the MOQ for a first order to Kenya?",
-    a: "MOQ is 1 carton for standard sizes. For your first order, we recommend LCL (less than container load) to test quality and market. Full container orders (20ft or 40ft FCL) get the best pricing.",
+    a: "MOQ is 1 pallet for standard sizes. For your first order, we recommend LCL (less than container load) to test quality and market. Full container orders (20ft or 40ft FCL) get the best pricing.",
   },
   {
     q: "Do you offer KEBS (Kenya Bureau of Standards) compliant products?",

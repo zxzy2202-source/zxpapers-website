@@ -12,7 +12,7 @@ import { CountryFlag } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
   title: "Thermal Paper Rolls Supplier UAE | Bulk POS Rolls | ZhixinPaper",
-  description: "Factory-direct thermal paper rolls for UAE distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001 certified. Fast shipping to Dubai, Abu Dhabi, Sharjah. MOQ 1 carton.",
+  description: "Factory-direct thermal paper rolls for UAE distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001 certified. Fast shipping to Dubai, Abu Dhabi, Sharjah. MOQ 1 pallet.",
   alternates: { canonical: `${SITE.domain}/markets/middle-east/uae` },
   openGraph: {
     title: "Thermal Paper Rolls Supplier UAE | ZhixinPaper",
@@ -27,7 +27,7 @@ const products = [
     href: "/products/thermal-rolls/80x80mm",
     desc: "Standard POS roll for UAE retail chains, supermarkets, and banking terminals. Compatible with Ingenico, Verifone, PAX, and all major POS brands used in Carrefour, Lulu, and Spinneys.",
     specs: ["Core: 12mm / 13mm", "Length: 60m / 80m", "GSM: 65–80g", "BPA-free"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
     use: "Retail POS, banking, hospitality",
   },
   {
@@ -35,7 +35,7 @@ const products = [
     href: "/products/thermal-rolls/57x50mm",
     desc: "Most popular for Talabat, Deliveroo, Careem, and mobile POS terminals. Widely used by UAE food delivery riders and mobile payment agents.",
     specs: ["Core: 12mm / 13mm", "Length: 50m / 60m", "GSM: 55–65g", "BPA-free"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
     use: "Food delivery, mobile POS, taxis",
   },
   {
@@ -51,7 +51,7 @@ const products = [
     href: "/products/thermal-rolls/80x70mm",
     desc: "Used in UAE hotels, restaurants, and HORECA sector. Compatible with European POS equipment widely used in UAE's premium hospitality sector.",
     specs: ["Core: 12mm / 13mm", "Length: 70m / 80m", "GSM: 65–80g", "BPA-free"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
     use: "Hotels, restaurants, HORECA",
   },
 ];

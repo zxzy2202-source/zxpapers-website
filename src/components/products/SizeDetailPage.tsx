@@ -190,7 +190,7 @@ export default function SizeDetailPage({
                   {[
                     { icon: Ship,        title: "20ft & 40ft FCL",       desc: "Container loading available for bulk orders" },
                     { icon: Zap,         title: "15–25 Days Delivery",   desc: "Fast sea freight to most major ports" },
-                    { icon: CheckCircle, title: "MOQ: Flexible",         desc: "1 carton for samples, full container for bulk" },
+                    { icon: CheckCircle, title: "MOQ: 1 Pallet",          desc: "1 pallet minimum order, full container for bulk" },
                   ].map(({ icon: Icon, title, desc }) => (
                     <div key={title} className="flex gap-3">
                       <div className="w-9 h-9 bg-amber-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">

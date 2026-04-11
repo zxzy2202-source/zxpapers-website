@@ -136,7 +136,7 @@ const products = [
     badge: "Private Label",
     badgeColor: "bg-purple-500 text-white",
     desc: "Custom logo, packaging, and core printing for distributors building their own brand in SEA markets.",
-    specs: ["MOQ: 1 carton", "NDA available", "7–14 day samples"],
+    specs: ["MOQ: 1 pallet", "NDA available", "7–14 day samples"],
     href: "/oem",
   },
 ];
@@ -198,7 +198,7 @@ const whyUs = [
 const faqs = [
   {
     q: "What is the MOQ for Southeast Asia orders?",
-    a: "MOQ is flexible — from 1 carton for samples to full 20ft container orders. We accommodate both small distributors and large wholesalers.",
+    a: "MOQ is flexible — from 1 pallet to full 20ft container orders. We accommodate both small distributors and large wholesalers.",
   },
   {
     q: "Do you provide CIF pricing to SEA ports?",

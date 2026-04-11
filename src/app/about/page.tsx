@@ -58,7 +58,7 @@ const capabilities = [
   { icon: Zap, title: `${FACTORY.productionLines} Production Lines`, desc: "High-speed slitting, coating, and packaging lines running 24/7 to meet bulk order demands." },
   { icon: BarChart3, title: FACTORY.annualOutputLabel, desc: "Annual production capacity ensures we never miss a delivery deadline, even for large container orders." },
   { icon: Layers, title: "Full Vertical Integration", desc: "From raw paper coating to finished packaging — everything done in-house for quality control." },
-  { icon: Package, title: "OEM & Private Label", desc: "Custom logo, packaging design, and core printing for your brand. MOQ from 1 carton." },
+  { icon: Package, title: "OEM & Private Label", desc: "Custom logo, packaging design, and core printing for your brand. MOQ from 1 pallet." },
   { icon: Truck, title: `FCL Ready in ${FACTORY.fclLoadingLabel}`, desc: "Warehouse stock for all popular sizes. 20ft & 40ft container loading available year-round." },
 ];
 

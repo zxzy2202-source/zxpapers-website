@@ -76,14 +76,14 @@ const products = [
     href: "/products/thermal-rolls/80x80mm",
     desc: "Standard POS roll for UAE, Saudi, and GCC retail chains. Compatible with Ingenico, Verifone, PAX, and all major POS brands.",
     specs: ["Core: 12mm / 13mm", "Length: 60m / 80m", "GSM: 65–80g", "BPA-free"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
   },
   {
     size: "57 × 50 mm", badge: "High Demand", badgeColor: "bg-blue-100 text-blue-800",
     href: "/products/thermal-rolls/57x50mm",
     desc: "Most popular size for mobile POS, food delivery, and banking terminals across the Middle East.",
     specs: ["Core: 12mm / 13mm", "Length: 50m / 60m", "GSM: 55–65g", "BPA-free"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
   },
   {
     size: "4\" × 6\" Labels", badge: "E-commerce", badgeColor: "bg-green-100 text-green-800",
@@ -97,7 +97,7 @@ const products = [
     href: "/products/thermal-rolls/80x70mm",
     desc: "European-standard size widely used in Turkish and Egyptian retail chains with European POS equipment.",
     specs: ["Core: 12mm / 13mm", "Length: 70m / 80m", "GSM: 65–80g", "BPA-free"],
-    moq: "1 carton (50 rolls)",
+    moq: "1 pallet",
   },
 ];
 

@@ -281,7 +281,7 @@ const processSteps = [
 const faqs = [
   {
     q: "What is the minimum order quantity (MOQ)?",
-    a: "MOQ is 1 carton for standard sizes (50–100 rolls per carton). For container orders, we offer the best factory pricing.",
+    a: "MOQ is 1 pallet for standard sizes. For container orders, we offer the best factory pricing.",
   },
   {
     q: "Do you provide samples before bulk orders?",
