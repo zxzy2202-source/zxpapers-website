@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Trash2, Loader2 } from "lucide-react";
 
 export default function DeleteArticleButton({ articleId }: { articleId: string }) {
   const router = useRouter();
@@ -11,8 +13,15 @@ export default function DeleteArticleButton({ articleId }: { articleId: string }
   async function handleDelete() {
     setDeleting(true);
     try {
-      await fetch(`/api/admin/articles/${articleId}`, { method: "DELETE" });
+      const res = await fetch(`/api/admin/articles/${articleId}`, { method: "DELETE" });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "删除失败，请重试");
+        return;
+      }
       router.refresh();
+    } catch {
+      alert("网络错误，请重试");
     } finally {
       setDeleting(false);
       setConfirming(false);
@@ -22,29 +31,43 @@ export default function DeleteArticleButton({ articleId }: { articleId: string }
   if (confirming) {
     return (
       <span className="flex items-center gap-1">
-        <button
+        <Button
+          variant="destructive"
+          size="sm"
           onClick={handleDelete}
           disabled={deleting}
-          className="text-red-600 hover:text-red-700 text-xs font-medium"
+          className="h-6 px-2 text-xs"
         >
-          {deleting ? "..." : "确认删除"}
-        </button>
-        <button
+          {deleting ? (
+            <>
+              <Loader2 className="w-3 h-3 animate-spin mr-1" />
+              删除中
+            </>
+          ) : (
+            "确认删除"
+          )}
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
           onClick={() => setConfirming(false)}
-          className="text-gray-400 hover:text-gray-600 text-xs"
+          className="h-6 px-2 text-xs text-muted-foreground"
         >
           取消
-        </button>
+        </Button>
       </span>
     );
   }
 
   return (
-    <button
+    <Button
+      variant="ghost"
+      size="sm"
       onClick={() => setConfirming(true)}
-      className="text-gray-300 hover:text-red-500 text-xs transition-colors"
+      className="h-6 px-2 text-xs text-muted-foreground hover:text-destructive"
     >
+      <Trash2 className="w-3 h-3 mr-1" />
       删除
-    </button>
+    </Button>
   );
 }

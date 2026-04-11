@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Loader2, Check } from "lucide-react";
 
 interface Props {
   inquiryId: string;
@@ -21,23 +25,28 @@ export default function InquiryStatusActions({ inquiryId, currentStatus, notes: 
   const [notes, setNotes] = useState(initialNotes);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSave() {
     setSaving(true);
     setSaved(false);
-
+    setError(null);
     try {
       const res = await fetch(`/api/admin/inquiries/${inquiryId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status, notes }),
       });
-
-      if (res.ok) {
-        setSaved(true);
-        router.refresh();
-        setTimeout(() => setSaved(false), 2000);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error || "保存失败，请重试");
+        return;
       }
+      setSaved(true);
+      router.refresh();
+      setTimeout(() => setSaved(false), 2000);
+    } catch {
+      setError("网络错误，请重试");
     } finally {
       setSaving(false);
     }
@@ -55,60 +64,57 @@ export default function InquiryStatusActions({ inquiryId, currentStatus, notes: 
 
       {/* Status Buttons */}
       <div>
-        <p className="text-xs text-gray-400 mb-2 uppercase tracking-wide">状态</p>
+        <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wide">状态</p>
         <div className="flex gap-2">
           {STATUSES.map((s) => (
-            <button
+            <Badge
               key={s.value}
-              onClick={() => setStatus(s.value)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium border-2 transition-all ${
+              variant={status === s.value ? "default" : "outline"}
+              className={`cursor-pointer px-4 py-1.5 text-sm font-medium border-2 transition-all ${
                 status === s.value
                   ? statusColors[s.value]
                   : "border-gray-200 text-gray-500 hover:border-gray-300"
               }`}
+              onClick={() => setStatus(s.value)}
             >
               {s.label}
-            </button>
+            </Badge>
           ))}
         </div>
       </div>
 
       {/* Notes */}
       <div>
-        <p className="text-xs text-gray-400 mb-2 uppercase tracking-wide">内部备注</p>
-        <textarea
+        <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wide">内部备注</p>
+        <Textarea
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           rows={3}
           placeholder="添加关于此询盘的内部备注..."
-          className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none"
+          className="resize-none"
         />
       </div>
 
+      {/* Error Message */}
+      {error && (
+        <p className="text-sm text-destructive">{error}</p>
+      )}
+
       {/* Save Button */}
       <div className="flex items-center gap-3">
-        <button
-          onClick={handleSave}
-          disabled={saving}
-          className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white text-sm font-medium px-5 py-2 rounded-lg transition-colors flex items-center gap-2"
-        >
+        <Button onClick={handleSave} disabled={saving}>
           {saving ? (
             <>
-              <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-              </svg>
+              <Loader2 className="w-4 h-4 animate-spin mr-2" />
               保存中...
             </>
           ) : (
             "保存更改"
           )}
-        </button>
+        </Button>
         {saved && (
           <span className="text-sm text-green-600 flex items-center gap-1">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
+            <Check className="w-4 h-4" />
             已保存！
           </span>
         )}

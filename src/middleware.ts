@@ -9,9 +9,13 @@ export async function middleware(req: NextRequest) {
   const isApiAdmin = req.nextUrl.pathname.startsWith("/api/admin");
   const isApiSeed = req.nextUrl.pathname === "/api/admin/seed" || req.nextUrl.pathname === "/api/admin/seed/";
 
-  // 放行认证 API 和 seed 初始化 API
+  // 放行认证 API
   if (isApiAuth) return NextResponse.next();
-  if (isApiSeed) return NextResponse.next();
+
+  // Seed API 仅在开发环境放行，生产环境需要认证
+  if (isApiSeed && process.env.NODE_ENV === "development") {
+    return NextResponse.next();
+  }
 
   // 验证 JWT token（轻量级，不依赖 Prisma）
   // NextAuth v5 使用 JWE 加密，salt 默认为 cookieName

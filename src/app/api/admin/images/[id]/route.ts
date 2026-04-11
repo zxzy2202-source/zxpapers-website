@@ -77,7 +77,14 @@ export async function DELETE(
     // 注：Blob URL（https://...vercel-storage.com/...）已由 deleteImageAssetCompletely 服务层统一处理
     if (deleted.path?.startsWith("/uploads/") || deleted.path?.startsWith("/images/uploads/")) {
       const filePath = path.join(process.cwd(), "public", deleted.path.replace(/^\//, ""));
-      await fs.unlink(filePath).catch(() => null);
+      // Path traversal 防护：确保解析后的绝对路径仍在 public 目录内
+      const publicDir = path.join(process.cwd(), "public");
+      const resolvedPath = path.resolve(filePath);
+      if (resolvedPath.startsWith(publicDir)) {
+        await fs.unlink(resolvedPath).catch(() => null);
+      } else {
+        console.warn(`[images DELETE] Blocked path traversal attempt: ${deleted.path}`);
+      }
     }
 
     return NextResponse.json({ success: true });
