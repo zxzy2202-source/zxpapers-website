@@ -114,15 +114,19 @@ export default function Header() {
         <div className="container flex items-center justify-between h-16">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center flex-shrink-0" aria-label="Zhi Xin Paper - Home">
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0" aria-label="Zhi Xin Paper - Home">
             <Image
               src="/images/logo.png"
               alt="Zhi Xin Paper"
-              width={120}
-              height={120}
+              width={48}
+              height={48}
               className="h-10 w-auto object-contain"
               priority
             />
+            <div className="flex flex-col leading-tight">
+              <span className="text-white font-bold text-lg tracking-wide">ZhixinPaper</span>
+              <span className="text-amber-400 text-[10px] font-semibold tracking-widest uppercase">Thermal Solutions Since 2009</span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}
