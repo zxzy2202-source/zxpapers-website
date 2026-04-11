@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
-  Package, Mail, Phone, MapPin, Globe, Shield, Award,
+  Mail, Phone, MapPin, Globe, Shield, Award,
   MessageSquare, Clock, ChevronRight,
 } from "lucide-react";
 import { paperRollSizes, labelSizes } from "@/config/navigation";
@@ -41,16 +42,14 @@ export default function Footer() {
 
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 mb-5">
-              <div className="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center">
-                <Package className="w-5 h-5 text-slate-900" />
-              </div>
-              <div>
-                <div className="font-extrabold text-xl text-white leading-tight">
-                  Zhixin<span className="text-amber-400">Paper</span>
-                </div>
-                <div className="text-[10px] text-slate-500 uppercase tracking-widest">Thermal Paper Manufacturer</div>
-              </div>
+            <Link href="/" className="flex items-center mb-5" aria-label="Zhi Xin Paper - Home">
+              <Image
+                src="/images/logo.png"
+                alt="Zhi Xin Paper"
+                width={140}
+                height={140}
+                className="h-12 w-auto object-contain brightness-0 invert"
+              />
             </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-xs">
@@ -275,9 +274,13 @@ export default function Footer() {
       <div className="border-t border-white/5">
         <div className="container flex flex-col sm:flex-row items-center justify-between py-5 gap-3 text-xs text-slate-500">
           <div className="flex items-center gap-2">
-            <div className="w-5 h-5 bg-amber-500 rounded flex items-center justify-center">
-              <Package className="w-3 h-3 text-slate-900" />
-            </div>
+            <Image
+              src="/images/logo.png"
+              alt="Zhi Xin Paper"
+              width={20}
+              height={20}
+              className="h-5 w-auto object-contain brightness-0 invert opacity-60"
+            />
             <p>© {currentYear} ZhixinPaper. All rights reserved. | Factory in Xi&apos;an, Shaanxi, China</p>
           </div>
           <div className="flex items-center gap-5">

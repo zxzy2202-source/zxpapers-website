@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, Phone, Mail, Package, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Mail, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import { mainNav, type NavItem, type NavDropdown, type NavRegionGroup } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
 import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
@@ -113,16 +114,15 @@ export default function Header() {
         <div className="container flex items-center justify-between h-16">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-            <div className="w-9 h-9 bg-amber-500 rounded-lg flex items-center justify-center">
-              <Package className="w-5 h-5 text-slate-900" />
-            </div>
-            <div>
-              <div className="font-extrabold text-lg leading-tight">
-                Zhixin<span className="text-amber-400">Paper</span>
-              </div>
-              <div className="text-[10px] text-slate-400 leading-tight tracking-wide uppercase">Thermal Paper Manufacturer</div>
-            </div>
+          <Link href="/" className="flex items-center flex-shrink-0" aria-label="Zhi Xin Paper - Home">
+            <Image
+              src="/images/logo.png"
+              alt="Zhi Xin Paper"
+              width={120}
+              height={120}
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}
