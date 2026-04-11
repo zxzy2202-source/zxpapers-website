@@ -4,7 +4,7 @@ import { SITE } from "@/config/siteData";
 import Image from "next/image";
 import {
   CheckCircle, ArrowRight, Package, Award, Globe,
-  Phone, MessageSquare, Ship, Zap,
+  Phone, MessageSquare, Ship, Zap, Layers,
 } from "lucide-react";
 
 export interface ApplicationItem {
@@ -16,6 +16,27 @@ export interface ApplicationItem {
 interface SpecRow {
   label: string;
   value: string;
+}
+
+export interface PalletInfo {
+  /** 每箱卷数 */
+  rollsPerBox: number;
+  /** 每托箱数 */
+  boxesPerPallet: number;
+  /** 单托总卷数 */
+  rollsPerPallet: number;
+  /** 单托重量 (kg) */
+  weightKg: number;
+  /** 托盘尺寸描述，如 "105×120×180 cm" */
+  palletDim: string;
+  /** 20ft 集装箱可装托数 */
+  palletsPer20ft: number;
+  /** 40ft 集装箱可装托数 */
+  palletsPer40ft: number;
+  /** 20ft 集装箱总卷数 */
+  rollsPer20ft: number;
+  /** 40ft 集装箱总卷数 */
+  rollsPer40ft: number;
 }
 
 interface SizeDetailPageProps {
@@ -31,6 +52,7 @@ interface SizeDetailPageProps {
   productImage: string;
   parentPath?: string;
   parentLabel?: string;
+  palletInfo?: PalletInfo;
 }
 
 const TYPE_LABELS: Record<string, { parent: string; parentPath: string }> = {
@@ -51,6 +73,7 @@ export default function SizeDetailPage({
   productImage,
   parentPath,
   parentLabel,
+  palletInfo,
 }: SizeDetailPageProps) {
   const typeInfo = TYPE_LABELS[type] ?? TYPE_LABELS.rolls;
   const resolvedParentPath  = parentPath  ?? typeInfo.parentPath;
@@ -204,6 +227,78 @@ export default function SizeDetailPage({
                   ))}
                 </div>
               </div>
+
+              {/* Pallet Ordering Plan */}
+              {palletInfo && (
+                <div className="border border-blue-100 rounded-2xl overflow-hidden">
+                  <div className="bg-[#0F2B5B] px-6 py-4 flex items-center gap-3">
+                    <div className="w-8 h-8 bg-amber-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Layers className="w-4 h-4 text-amber-400" />
+                    </div>
+                    <div>
+                      <h2 className="text-base font-extrabold text-white">Pallet Ordering Plan</h2>
+                      <p className="text-xs text-slate-400">MOQ 1 pallet · Factory-direct pricing</p>
+                    </div>
+                  </div>
+                  <div className="bg-white p-6">
+                    {/* Key pallet stats */}
+                    <div className="grid grid-cols-3 gap-4 mb-6">
+                      <div className="text-center bg-slate-50 rounded-xl p-4">
+                        <div className="text-2xl font-extrabold text-[#0F2B5B]">{palletInfo.rollsPerPallet.toLocaleString()}</div>
+                        <div className="text-xs text-slate-500 mt-1">Rolls / Pallet</div>
+                        <div className="text-[10px] text-slate-400 mt-0.5">{palletInfo.rollsPerBox} rolls/box · {palletInfo.boxesPerPallet} boxes</div>
+                      </div>
+                      <div className="text-center bg-slate-50 rounded-xl p-4">
+                        <div className="text-2xl font-extrabold text-[#0F2B5B]">{palletInfo.weightKg.toLocaleString()}</div>
+                        <div className="text-xs text-slate-500 mt-1">kg / Pallet</div>
+                        <div className="text-[10px] text-slate-400 mt-0.5">Gross weight</div>
+                      </div>
+                      <div className="text-center bg-slate-50 rounded-xl p-4">
+                        <div className="text-lg font-extrabold text-[#0F2B5B] leading-tight">{palletInfo.palletDim}</div>
+                        <div className="text-xs text-slate-500 mt-1">Pallet Size</div>
+                        <div className="text-[10px] text-slate-400 mt-0.5">L × W × H</div>
+                      </div>
+                    </div>
+
+                    {/* Container loading */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
+                        <div className="flex items-center gap-2 mb-3">
+                          <Ship className="w-4 h-4 text-blue-600" />
+                          <span className="text-sm font-bold text-blue-900">20ft Container</span>
+                        </div>
+                        <div className="space-y-1.5">
+                          <div className="flex justify-between text-sm">
+                            <span className="text-slate-500">Pallets</span>
+                            <span className="font-bold text-slate-800">~{palletInfo.palletsPer20ft} pallets</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span className="text-slate-500">Total Rolls</span>
+                            <span className="font-bold text-blue-700">~{palletInfo.rollsPer20ft.toLocaleString()} rolls</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-amber-50 border border-amber-100 rounded-xl p-4">
+                        <div className="flex items-center gap-2 mb-3">
+                          <Ship className="w-4 h-4 text-amber-600" />
+                          <span className="text-sm font-bold text-amber-900">40ft Container</span>
+                        </div>
+                        <div className="space-y-1.5">
+                          <div className="flex justify-between text-sm">
+                            <span className="text-slate-500">Pallets</span>
+                            <span className="font-bold text-slate-800">~{palletInfo.palletsPer40ft} pallets</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span className="text-slate-500">Total Rolls</span>
+                            <span className="font-bold text-amber-700">~{palletInfo.rollsPer40ft.toLocaleString()} rolls</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-[10px] text-slate-400 mt-3">* Container estimates based on volume. Actual loading may vary by packing method.</p>
+                  </div>
+                </div>
+              )}
 
               {/* Applications */}
               {applications.length > 0 && (

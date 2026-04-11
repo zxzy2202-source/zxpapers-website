@@ -97,6 +97,19 @@ export default function Page() {
         applications={apps2x1}
         markets={["Americas", "Global"]}
         productImage={LABELS_IMG}
+        palletInfo={
+          {
+            rollsPerBox: 70,
+            boxesPerPallet: 36,
+            rollsPerPallet: 2520,
+            weightKg: 576,
+            palletDim: "80×80×180 cm",
+            palletsPer20ft: 21,
+            palletsPer40ft: 47,
+            rollsPer20ft: 52920,
+            rollsPer40ft: 118440,
+          }
+        }
       />
     </>
   );
