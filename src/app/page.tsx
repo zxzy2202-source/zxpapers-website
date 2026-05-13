@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getSlotImages } from "@/lib/imageSlotUtils";
 import Layout from "@/components/layout/Layout";
 import { SITE, FACTORY } from "@/config/siteData";
 import { mainNav, type NavDropdown } from "@/config/navigation";
 import { MessageSquare, Phone, Package, CheckCircle, ArrowRight,
-  Ship, Zap, Tag, Star, Globe, Users, Award, Factory as FactoryIcon, Printer, Layers, Scissors, ClipboardCheck,
+  Ship, Zap, Tag, Globe, Users, Award, Factory as FactoryIcon, Printer, Layers, Scissors, ClipboardCheck,
 } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
@@ -49,31 +50,81 @@ const HERO_SLIDE_2 =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
 const HERO_SLIDE_3 =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
+const THERMAL_LABELS_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
 
 const testimonials = [
+  {
+    name: "U.S. POS Distributor",
+    country: "United States",
+    countryCode: "US" as CountryCode,
+    role: "80x80mm Receipt Rolls",
+    text: "The carton labels, roll length, and paper brightness stayed consistent across repeat shipments. That made our retail POS accounts easier to support.",
+    channel: "WhatsApp",
+    time: "10:24",
+  },
+  {
+    name: "Canada Label Buyer",
+    country: "Canada",
+    countryCode: "CA" as CountryCode,
+    role: "4x6 Shipping Labels",
+    text: "The 4x6 thermal labels worked well for courier and warehouse printing. Adhesive, roll packing, and barcode print quality were stable.",
+    channel: "WhatsApp",
+    time: "14:08",
+  },
+  {
+    name: "UK Retail Supplier",
+    country: "United Kingdom",
+    countryCode: "GB" as CountryCode,
+    role: "57x50mm POS Rolls",
+    text: "The roll diameter and core size matched our POS printer requirements. Documentation and carton marks were clear for repeat imports.",
+    channel: "WhatsApp",
+    time: "09:42",
+  },
+  {
+    name: "Germany Office Supplier",
+    country: "Germany",
+    countryCode: "DE" as CountryCode,
+    role: "Phenol-Free Thermal Paper",
+    text: "The phenol-free paper option helped us meet customer requirements. Sample confirmation before bulk order reduced quality risk.",
+    channel: "WhatsApp",
+    time: "11:16",
+  },
+  {
+    name: "France Packaging Buyer",
+    country: "France",
+    countryCode: "FR" as CountryCode,
+    role: "Custom Thermal Labels",
+    text: "Artwork checking and label specifications were confirmed before production. The finished labels matched our private-label packing plan.",
+    channel: "WhatsApp",
+    time: "15:27",
+  },
+  {
+    name: "Australia POS Wholesaler",
+    country: "Australia",
+    countryCode: "AU" as CountryCode,
+    role: "Mixed POS Roll Pallets",
+    text: "Mixed sizes were packed clearly by SKU. It helped our warehouse receive and distribute 57mm and 80mm rolls without confusion.",
+    channel: "WhatsApp",
+    time: "13:51",
+  },
+  {
+    name: "Netherlands Importer",
+    country: "Netherlands",
+    countryCode: "NL" as CountryCode,
+    role: "Barcode Thermal Labels",
+    text: "Barcode print quality stayed sharp, and the label rolls arrived with good edge cutting. The packing list matched our order lines.",
+    channel: "WhatsApp",
+    time: "16:20",
+  },
   {
     name: "UAE POS Distributor",
     country: "UAE",
     countryCode: "AE" as CountryCode,
-    role: "80x80mm & 57x50mm Receipt Rolls",
-    text: "The roll width, diameter, and carton packing stayed consistent across repeat shipments. That helped us reduce customer complaints from restaurant and retail POS accounts.",
-    rating: 5,
-  },
-  {
-    name: "Nigeria Wholesale Importer",
-    country: "Nigeria",
-    countryCode: "NG" as CountryCode,
-    role: "Mixed-Size Container Orders",
-    text: "They confirmed SKU labels, carton marks, packing list, and container loading details before shipment. The documentation was clear for customs clearance.",
-    rating: 5,
-  },
-  {
-    name: "Thailand Retail Chain Buyer",
-    country: "Thailand",
-    countryCode: "TH" as CountryCode,
     role: "OEM Printed Receipt Rolls",
     text: "Our branded receipt artwork and carton design were checked before mass production. The final rolls matched our store requirements and were easy to distribute.",
-    rating: 5,
+    channel: "WeChat",
+    time: "16:35",
   },
 ];
 
@@ -197,6 +248,22 @@ const popularSizes = [
     desc: "Custom logo labels with stable adhesive, clean printing, and export-ready packaging.",
   },
   {
+    size: "4x3 Thermal Labels",
+    label: "Warehouse / Carton Labels",
+    badge: "Inventory",
+    badgeTone: "purple",
+    href: "/products/thermal-labels/4x3in",
+    desc: "Larger direct thermal labels for warehouse bins, carton identification, FBA prep, and product shelf labeling.",
+  },
+  {
+    size: "2x4 Thermal Labels",
+    label: "Shipping / Product Labels",
+    badge: "Fast Moving",
+    badgeTone: "blue",
+    href: "/products/thermal-labels/2x4in",
+    desc: "Compact logistics and product labels for parcel sorting, SKU identification, barcode printing, and retail workflows.",
+  },
+  {
     size: "Blank Thermal Rolls",
     label: "Bulk Wholesale Supply",
     badge: "Bulk Supply",
@@ -214,15 +281,31 @@ const popularSizes = [
   },
 ];
 
-const homepagePopularSizes = [
-  popularSizes[0],
-  popularSizes[1],
-  popularSizes[2],
-  popularSizes[3],
-  popularSizes.find((item) => item.size === "Blank Thermal Labels")!,
-  popularSizes.find((item) => item.size === "4x6 Shipping Labels")!,
-  popularSizes.find((item) => item.size === "Barcode Thermal Labels")!,
-  popularSizes.find((item) => item.size === "Custom Printed Labels")!,
+const homepageProductGroups = [
+  {
+    title: "Thermal Paper Rolls",
+    description: "Fast-moving receipt roll products for POS, mobile printers, restaurants, retail chains, banking, kiosks, and OEM receipt programs.",
+    items: [
+      popularSizes.find((item) => item.size === "POS Receipt Rolls")!,
+      popularSizes.find((item) => item.size === "Portable/Mobile Printer Rolls")!,
+      popularSizes.find((item) => item.size === "Phenol Free Thermal Paper")!,
+      popularSizes.find((item) => item.size === "Custom Printed Rolls")!,
+      popularSizes.find((item) => item.size === "ATM & Banking Rolls")!,
+      popularSizes.find((item) => item.size === "Blank Thermal Rolls")!,
+    ],
+  },
+  {
+    title: "Thermal Labels",
+    description: "Direct thermal label products for shipping, barcode, inventory, warehouse, product identification, and private-label packaging buyers.",
+    items: [
+      popularSizes.find((item) => item.size === "Blank Thermal Labels")!,
+      popularSizes.find((item) => item.size === "4x6 Shipping Labels")!,
+      popularSizes.find((item) => item.size === "Barcode Thermal Labels")!,
+      popularSizes.find((item) => item.size === "Custom Printed Labels")!,
+      popularSizes.find((item) => item.size === "4x3 Thermal Labels")!,
+      popularSizes.find((item) => item.size === "2x4 Thermal Labels")!,
+    ],
+  },
 ];
 
 const COMMON_PRODUCT_SPECS: Record<string, string[]> = {
@@ -290,6 +373,16 @@ const COMMON_PRODUCT_SPECS: Record<string, string[]> = {
     "3 x 2 in - Product Packaging Labels",
     "4 x 6 in - Logistics & Carton Labels",
   ],
+  "4x3 Thermal Labels": [
+    "4 x 3 in - Carton & Warehouse Labels",
+    "Direct Thermal - Barcode Compatible",
+    "Roll Packing with Custom Core Options",
+  ],
+  "2x4 Thermal Labels": [
+    "2 x 4 in - Product & Parcel Labels",
+    "Direct Thermal - No Ribbon Required",
+    "Custom Adhesive and Perforation Available",
+  ],
   "Blank Thermal Rolls": [
     "57mm x 50mm - Standard POS Supply",
     "80mm x 80mm - Restaurant & Retail POS",
@@ -300,6 +393,15 @@ const COMMON_PRODUCT_SPECS: Record<string, string[]> = {
     "80mm x 80mm - Retail Brand Receipts",
     "Custom Length - Campaign & Loyalty Printing",
   ],
+};
+
+const PRODUCT_SHOWCASE_IMAGES: Record<string, string> = {
+  "Blank Thermal Labels": THERMAL_LABELS_IMG,
+  "4x6 Shipping Labels": THERMAL_LABELS_IMG,
+  "Barcode Thermal Labels": THERMAL_LABELS_IMG,
+  "Custom Printed Labels": THERMAL_LABELS_IMG,
+  "4x3 Thermal Labels": THERMAL_LABELS_IMG,
+  "2x4 Thermal Labels": THERMAL_LABELS_IMG,
 };
 
 const customerProblems = [
@@ -349,31 +451,13 @@ const customerProblems = [
     solutions: ["Custom carton, label, shrink wrap, and core printing", "Barcode and SKU label support", "Retail-ready or wholesale packing plans"],
   },
   {
-    title: "Supplier Cannot Deliver on Time",
-    label: "Supply Stability",
+    title: "Shipment or Documents Are Delayed",
+    label: "Delivery & Export Support",
     badge: "Delay Risk",
     badgeTone: "green",
     href: "/contact",
-    desc: "Late shipments before peak season can break distributor commitments and create stockouts for key accounts.",
-    solutions: ["Production schedule confirmed before deposit", "Fast-moving sizes supported by regular capacity", "Container loading plan shared before shipment"],
-  },
-  {
-    title: "Import Documents Are Delayed",
-    label: "Export Support",
-    badge: "Customs Risk",
-    badgeTone: "amber",
-    href: "/contact",
-    desc: "Missing or late export documents can slow customs clearance and add unnecessary warehouse costs.",
-    solutions: ["Commercial invoice and packing list prepared clearly", "CO, test report, and shipping documents supported", "Carton marks aligned with import requirements"],
-  },
-  {
-    title: "No Stable Supplier for Repeat Orders",
-    label: "Long-Term Supply",
-    badge: "Repeat Order",
-    badgeTone: "purple",
-    href: "/contact",
-    desc: "Changing suppliers frequently makes quality, packaging, price, and lead time difficult to control.",
-    solutions: ["Repeat specifications saved for future orders", "Bulk order and mixed-size pallet support", "Factory-direct communication for faster decisions"],
+    desc: "Late production, unclear loading plans, or missing export documents can delay customs clearance and create stockouts.",
+    solutions: ["Production schedule confirmed before deposit", "Container loading plan shared before shipment", "Invoice, packing list, CO, and carton marks supported"],
   },
 ];
 
@@ -599,70 +683,97 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {homepagePopularSizes.map(({ size, label, badge, badgeTone, href, desc }) => (
-              <article
-                key={size}
-                className="group overflow-hidden border border-slate-200 rounded-lg bg-white flex flex-col shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-[#0F2B5B]/40 hover:shadow-lg"
-              >
-                <div
-                  className="relative h-32 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${HERO_SLIDE_3})` }}
-                  aria-hidden="true"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-slate-950/10 to-transparent" />
-                  <span className={`absolute right-4 top-4 text-[10px] font-semibold px-2.5 py-1 rounded-full border ${BADGE_COLORS[badgeTone] ?? BADGE_COLORS.amber}`}>
-                    {badge}
-                  </span>
-                  <div className="absolute bottom-4 left-4 flex h-10 w-10 items-center justify-center rounded-md border border-white/20 bg-white/90 transition-colors group-hover:bg-[#0F2B5B]">
-                    <Package className="w-4 h-4 text-[#0F2B5B] transition-colors group-hover:text-white" />
+          <div className="space-y-12">
+            {homepageProductGroups.map(({ title, description, items }) => (
+              <div key={title}>
+                <div className="mb-5 flex flex-col gap-2 border-b border-slate-200 pb-4 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900">{title}</h3>
+                    <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">{description}</p>
                   </div>
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#0F2B5B]">6 Products</span>
                 </div>
 
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="min-h-[3.25rem] text-[1.35rem] font-semibold tracking-[-0.02em] leading-tight text-slate-900 mb-2">
-                    <Link href={href} className="transition-colors group-hover:text-[#0F2B5B]">
-                      {size}
-                    </Link>
-                  </h3>
-                  <p className="text-xs text-slate-500 font-semibold uppercase tracking-[0.14em] mb-4">{label}</p>
-                  <p className="text-sm text-slate-600 leading-relaxed mb-5 flex-1">{desc}</p>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {items.map(({ size, label, badge, badgeTone, href, desc }) => {
+                    const productImage = PRODUCT_SHOWCASE_IMAGES[size] ?? HERO_SLIDE_3;
+                    const productType = title === "Thermal Labels" ? "thermal labels" : "thermal paper rolls";
 
-                  <div className="mb-6">
-                    <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Common Specifications</div>
-                    <ul className="space-y-2">
-                      {(COMMON_PRODUCT_SPECS[size] ?? ["Custom size available"]).map((t) => (
-                        <li
-                          key={t}
-                          className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium leading-relaxed text-slate-700"
+                    return (
+                      <article
+                        key={size}
+                        className="group overflow-hidden border border-slate-200 rounded-lg bg-white flex flex-col shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-[#0F2B5B]/40 hover:shadow-lg"
+                      >
+                        <Link
+                          href={href}
+                          className="relative block aspect-[4/3] overflow-hidden bg-slate-100"
+                          aria-label={`View ${size} specifications`}
                         >
-                          {t}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                          <Image
+                            src={productImage}
+                            alt={`${size} product display for wholesale ${productType} buyers`}
+                            fill
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-slate-950/5 to-transparent" />
+                          <span className={`absolute right-4 top-4 text-[10px] font-semibold px-2.5 py-1 rounded-full border ${BADGE_COLORS[badgeTone] ?? BADGE_COLORS.amber}`}>
+                            {badge}
+                          </span>
+                          <div className="absolute bottom-4 left-4 flex h-10 w-10 items-center justify-center rounded-md border border-white/20 bg-white/90 transition-colors group-hover:bg-[#0F2B5B]">
+                            <Package className="w-4 h-4 text-[#0F2B5B] transition-colors group-hover:text-white" />
+                          </div>
+                        </Link>
 
-                  <div className="flex gap-2">
-                    <Link
-                      href={href}
-                      className="flex-1 text-center bg-[#0F2B5B] hover:bg-[#12346d] text-white text-sm font-semibold py-2.5 rounded-md transition-colors"
-                    >
-                      View Specs
-                    </Link>
-                    <a
-                      href={`${waBase}${encodeURIComponent(`Hello, I need quotation for ${size} thermal paper rolls. Please send me price and MOQ.`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 border border-slate-200 hover:border-[#0F2B5B] text-slate-700 hover:text-[#0F2B5B] rounded-md flex items-center justify-center transition-colors flex-shrink-0"
-                      aria-label={`WhatsApp inquiry for ${size} thermal paper rolls`}
-                      title="WhatsApp"
-                    >
-                      <Phone className="w-4 h-4" />
-                      <span className="sr-only">WhatsApp</span>
-                    </a>
-                  </div>
+                        <div className="flex flex-1 flex-col p-5">
+                          <h4 className="min-h-[3.25rem] text-[1.35rem] font-semibold tracking-[-0.02em] leading-tight text-slate-900 mb-2">
+                            <Link href={href} className="transition-colors group-hover:text-[#0F2B5B]">
+                              {size}
+                            </Link>
+                          </h4>
+                          <p className="text-xs text-slate-500 font-semibold uppercase tracking-[0.14em] mb-4">{label}</p>
+                          <p className="text-sm text-slate-600 leading-relaxed mb-5 flex-1">{desc}</p>
+
+                          <div className="mb-6">
+                            <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Common Specifications</div>
+                            <ul className="space-y-2">
+                              {(COMMON_PRODUCT_SPECS[size] ?? ["Custom size available"]).map((t) => (
+                                <li
+                                  key={t}
+                                  className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium leading-relaxed text-slate-700"
+                                >
+                                  {t}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div className="flex gap-2">
+                            <Link
+                              href={`/contact?product=${encodeURIComponent(size)}`}
+                              className="inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-slate-300 px-3 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:border-[#0F2B5B] hover:text-[#0F2B5B]"
+                            >
+                              <MessageSquare className="w-4 h-4" />
+                              Leave Message
+                            </Link>
+                            <a
+                              href={`${waBase}${encodeURIComponent(`Hello, I need quotation for ${size} ${productType}. Please send me price and MOQ.`)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-green-600 px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-green-500"
+                              aria-label={`WhatsApp inquiry for ${size}`}
+                              title="WhatsApp"
+                            >
+                              <Phone className="w-4 h-4" />
+                              WhatsApp
+                            </a>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
                 </div>
-              </article>
+              </div>
             ))}
           </div>
 
@@ -720,7 +831,7 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {customerProblems.map(({ title, label, badge, badgeTone, href, desc, solutions }) => (
               <div
                 key={title}
@@ -1026,32 +1137,54 @@ export default async function HomePage() {
               Buyers usually care less about generic praise and more about repeat-order consistency, export documents, carton marks, OEM printing, and predictable delivery.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {testimonials.map(({ name, country, countryCode, role, text, rating }) => (
-              <article key={name} className="bg-white rounded-lg p-6 border border-slate-200">
-                <div className="mb-4 flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-1" aria-label={`${rating} out of 5 rating`}>
-                    {Array.from({ length: rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
-                    ))}
+          <div className="relative overflow-hidden">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-slate-50 to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-slate-50 to-transparent" />
+            <div className="feedback-carousel-track flex w-max gap-5">
+              {[...testimonials, ...testimonials].map(({ name, country, countryCode, role, text, channel, time }, index) => {
+              const isWeChat = channel === "WeChat";
+
+              return (
+                <article key={`${name}-${index}`} className="w-[320px] flex-shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm sm:w-[360px]">
+                  <div className={`px-4 py-3 text-white ${isWeChat ? "bg-[#16A34A]" : "bg-[#075E54]"}`}>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex min-w-0 items-center gap-3">
+                        <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-white/18 text-sm font-semibold">
+                          {name.charAt(0)}
+                        </div>
+                        <div className="min-w-0">
+                          <div className="truncate text-sm font-semibold">{name}</div>
+                          <div className="truncate text-[11px] text-white/75">{role}</div>
+                        </div>
+                      </div>
+                      <span className="rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-semibold">{channel}</span>
+                    </div>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600">
-                    <CountryFlag code={countryCode} label={country} className="w-4" />
-                    {country}
-                  </span>
-                </div>
-                <p className="text-slate-700 text-sm leading-relaxed mb-6">&ldquo;{text}&rdquo;</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[#0A1F44] rounded-md flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
-                    {name.charAt(0)}
+
+                  <div className="bg-[#E7F0EA] p-4">
+                    <div className="mb-3 flex items-center justify-between text-[11px] font-semibold text-slate-500">
+                      <span className="inline-flex items-center gap-1.5">
+                        <CountryFlag code={countryCode} label={country} className="w-4" />
+                        {country}
+                      </span>
+                      <span>{time}</span>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="max-w-[92%] rounded-lg rounded-tl-sm bg-white px-4 py-3 text-sm leading-relaxed text-slate-800 shadow-sm">
+                        {text}
+                        <div className="mt-2 text-right text-[10px] font-medium text-slate-400">{time}</div>
+                      </div>
+                      <div className={`ml-auto max-w-[82%] rounded-lg rounded-tr-sm px-4 py-3 text-sm font-medium leading-relaxed shadow-sm ${isWeChat ? "bg-[#95EC69] text-slate-900" : "bg-[#DCF8C6] text-slate-900"}`}>
+                        Thanks. We will keep the same specs and packing plan for your repeat order.
+                        <div className="mt-2 text-right text-[10px] font-medium text-slate-500">Delivered</div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="font-semibold text-slate-900 text-sm">{name}</div>
-                    <div className="text-xs text-slate-500">{role}</div>
-                  </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
+            </div>
           </div>
         </div>
       </section>

@@ -141,3 +141,26 @@
   animation: fadeUp 0.6s ease 0.3s forwards;
   opacity: 0;
 }
+
+@keyframes feedbackCarousel {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.feedback-carousel-track {
+  animation: feedbackCarousel 48s linear infinite;
+}
+
+.feedback-carousel-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feedback-carousel-track {
+    animation: none;
+  }
+}
