@@ -1,21 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Sora, Inter } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/config/siteData";
-
-const sora = Sora({
-  subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-  variable: "--font-sora",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-inter",
-  display: "swap",
-});
+import Script from "next/script";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -103,7 +89,8 @@ const organizationSchema = {
     width: 1200,
     height: 630,
   },
-  description: "ISO 9001 certified manufacturer of thermal paper rolls and labels. OEM/private label, BPA-free, FSC certified. Serving 80+ countries since 2009.",
+  description:
+    "ISO 9001 certified manufacturer of thermal paper rolls and labels. OEM/private label, BPA-free, FSC certified. Serving 80+ countries since 2009.",
   foundingDate: "2009",
   numberOfEmployees: { "@type": "QuantitativeValue", value: 200 },
   contactPoint: [
@@ -117,15 +104,14 @@ const organizationSchema = {
   ],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Building 15, Phase 1 Zone 2, Ronghao Industrial Park, Gaoling District",
+    streetAddress:
+      "Building 15, Phase 1 Zone 2, Ronghao Industrial Park, Gaoling District",
     addressLocality: "Xi'an",
     addressRegion: "Shaanxi",
     postalCode: "710200",
     addressCountry: "CN",
   },
-  sameAs: [
-    "https://www.linkedin.com/company/zhixinpaper",
-  ],
+  sameAs: ["https://www.linkedin.com/company/zhixinpaper"],
 };
 
 const websiteSchema = {
@@ -134,7 +120,8 @@ const websiteSchema = {
   "@id": `${SITE.domain}/#website`,
   url: SITE.domain,
   name: SITE.name,
-  description: "ISO 9001 certified thermal paper rolls and labels manufacturer. Factory direct, OEM available.",
+  description:
+    "ISO 9001 certified thermal paper rolls and labels manufacturer. Factory direct, OEM available.",
   publisher: { "@id": `${SITE.domain}/#organization` },
   potentialAction: {
     "@type": "SearchAction",
@@ -152,18 +139,37 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sora.variable} ${inter.variable}`}>
+    <html lang="en">
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* WUUNU SNIPPET - DON'T CHANGE THIS (START) */}
+        {process.env.NODE_ENV !== "production" && (
+          <>
+            <Script id="wuunu-ws" strategy="afterInteractive">
+              {`window.__WUUNU_WS__ = "http://127.0.0.1:59064/?token=467b21eba87a0389416f6eef2842f5674abbd83143c90e2b";`}
+            </Script>
+            <Script
+              id="wuunu-widget"
+              src="https://cdn.jsdelivr.net/npm/@wuunu/widget@0.1.22"
+              strategy="afterInteractive"
+              crossOrigin="anonymous"
+            />
+          </>
+        )}
+        {/* WUUNU SNIPPET - DON'T CHANGE THIS (END) */}
+      </body>
     </html>
   );
 }

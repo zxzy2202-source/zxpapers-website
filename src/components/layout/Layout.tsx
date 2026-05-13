@@ -12,12 +12,12 @@ export default function Layout({ children }: LayoutProps) {
       {/* Skip Navigation — accessible shortcut for keyboard / screen-reader users */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-amber-500 focus:text-slate-900 focus:font-bold focus:px-6 focus:py-3 focus:rounded-xl focus:shadow-2xl focus:outline-none"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-[#0F2B5B] focus:text-white focus:font-semibold focus:px-5 focus:py-3 focus:rounded-md focus:shadow-lg focus:outline-none"
       >
         Skip to main content
       </a>
       <Header />
-      <main id="main-content" className="flex-1 pt-[88px]">{children}</main>
+      <main id="main-content" className="flex-1 pt-[92px]">{children}</main>
       <Footer />
       <WhatsAppFAB />
     </div>

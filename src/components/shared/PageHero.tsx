@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { ReactNode } from "react";
-import { ArrowRight, MessageSquare, Phone } from "lucide-react";
+import Image from "next/image";
+import { ReactNode, useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 export interface HeroBadge {
   icon?: ReactNode;
@@ -32,6 +33,10 @@ export interface HeroBreadcrumb {
 export interface PageHeroProps {
   /** Background image URL */
   bgImage?: string;
+  /** Background image carousel URLs */
+  bgImages?: string[];
+  /** Carousel interval in milliseconds */
+  bgCarouselInterval?: number;
   /** Overlay gradient direction: left (default) | center | right */
   overlayDir?: "left" | "center" | "right";
   /** Overlay opacity 0–100 */
@@ -72,6 +77,8 @@ const badgeColors = {
 
 export default function PageHero({
   bgImage,
+  bgImages,
+  bgCarouselInterval = 5000,
   overlayDir = "left",
   overlayOpacity = 50,
   badge,
@@ -87,70 +94,119 @@ export default function PageHero({
   minHeight = "min-h-[520px]",
   className = "",
 }: PageHeroProps) {
-  // 优化后的渐变遮罩：左侧文字区保持可读性，右侧快速淡出让背景图透出
-  const leftOpacity = Math.min(overlayOpacity + 25, 95);   // 文字区更不透明，确保可读性
-  const midOpacity = Math.round(overlayOpacity * 0.6);     // 中间过渡区
-  const rightOpacity = Math.round(overlayOpacity * 0.15);  // 右侧几乎完全透明，背景图清晰可见
+  const heroImages = (bgImages?.length ? bgImages : bgImage ? [bgImage] : []).filter(Boolean);
+  const hasCarousel = heroImages.length > 1;
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotionPreference = () => setReduceMotion(media.matches);
+
+    updateMotionPreference();
+    media.addEventListener("change", updateMotionPreference);
+
+    return () => media.removeEventListener("change", updateMotionPreference);
+  }, []);
+
+  useEffect(() => {
+    if (!hasCarousel || isPaused || reduceMotion) return;
+
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % heroImages.length);
+    }, bgCarouselInterval);
+
+    return () => window.clearInterval(timer);
+  }, [bgCarouselInterval, hasCarousel, heroImages.length, isPaused, reduceMotion]);
+
+  const baseOpacity = Math.max(0.5, Math.min(overlayOpacity / 100, 0.9));
+  const strong = Math.min(baseOpacity + 0.22, 0.96);
+  const medium = Math.min(baseOpacity + 0.05, 0.82);
+  const light = Math.max(baseOpacity - 0.38, 0.08);
 
   const overlayGradient =
     overlayDir === "center"
-      ? `from-[#0F2B5B]/${leftOpacity} via-[#0F2B5B]/${midOpacity} to-[#0F2B5B]/${leftOpacity}`
+      ? `linear-gradient(90deg, rgba(7,17,36,${medium}) 0%, rgba(7,17,36,${strong}) 50%, rgba(7,17,36,${medium}) 100%)`
       : overlayDir === "right"
-      ? `from-[#0F2B5B]/${rightOpacity} via-[#0F2B5B]/${midOpacity} to-[#0F2B5B]/${leftOpacity}`
-      : `from-[#0F2B5B]/${leftOpacity} via-[#0F2B5B]/${midOpacity} to-[#0F2B5B]/${rightOpacity}`;
+      ? `linear-gradient(90deg, rgba(7,17,36,${light}) 0%, rgba(7,17,36,${medium}) 45%, rgba(7,17,36,${strong}) 100%)`
+      : `linear-gradient(90deg, rgba(7,17,36,${strong}) 0%, rgba(7,17,36,${medium}) 44%, rgba(7,17,36,${light}) 100%)`;
+
+  const statsGridClass =
+    !stats || stats.length <= 1
+      ? "sm:grid-cols-1"
+      : stats.length === 2
+      ? "sm:grid-cols-2"
+      : stats.length === 3
+      ? "sm:grid-cols-3"
+      : "sm:grid-cols-4";
 
   return (
     <div
-      className={`relative bg-[#0F2B5B] text-white overflow-hidden ${minHeight} flex items-center ${className}`}
+      className={`relative bg-[#091629] text-white overflow-hidden border-b border-slate-200 ${minHeight} flex items-center ${className}`}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
     >
-      {/* Background image */}
-      {bgImage && (
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${bgImage})` }}
-        />
+      {/* Background image / carousel */}
+      {heroImages.length > 0 && (
+        <div className="absolute inset-0">
+          {heroImages.map((image, index) => (
+            <div
+              key={`${image}-${index}`}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                index === activeSlide ? "opacity-100" : "opacity-0"
+              }`}
+              aria-hidden={index !== activeSlide}
+            >
+              <Image
+                src={image}
+                alt=""
+                fill
+                priority={index === 0}
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </div>
       )}
 
-      {/* Main gradient overlay — strong on text side, fades to transparent */}
-      <div className={`absolute inset-0 bg-gradient-to-r ${overlayGradient}`} />
+      <div className="absolute inset-0" style={{ background: overlayGradient }} />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,17,36,0.08)_0%,rgba(7,17,36,0.22)_100%)]" />
 
-      {/* Bottom vignette — adds depth and grounds the content */}
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0F2B5B]/40 to-transparent pointer-events-none" />
-
-      {/* Top vignette — subtle darkening at top edge */}
-      <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#0F2B5B]/30 to-transparent pointer-events-none" />
-
-      {/* Subtle dot grid pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, #ffffff 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
-
-      {/* Decorative glow — increased visibility */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-400/15 rounded-full blur-3xl pointer-events-none" />
-
-      {/* Accent line at top */}
-      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-amber-500 via-amber-400/60 to-transparent pointer-events-none" />
+      {hasCarousel && (
+        <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              onClick={() => setActiveSlide(index)}
+              className={`h-2 rounded-full border border-white/40 transition-all duration-200 ${
+                index === activeSlide ? "w-7 bg-amber-400" : "w-2 bg-white/40 hover:bg-white/70"
+              }`}
+              aria-label={`Show hero image ${index + 1}`}
+              aria-current={index === activeSlide ? "true" : undefined}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Content */}
       <div className="relative w-full">
-        <div className="container py-16 sm:py-20">
-          <div className={`grid ${rightSlot ? "grid-cols-1 lg:grid-cols-2 gap-12" : "grid-cols-1"} items-center`}>
+        <div className="container py-16 sm:py-24">
+          <div className={`grid ${rightSlot ? "grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16" : "grid-cols-1"} items-center`}>
             {/* Left: text content */}
-            <div className={rightSlot ? "max-w-xl" : "max-w-3xl"}>
+            <div className={rightSlot ? "max-w-2xl" : "max-w-3xl"}>
               {/* Breadcrumbs */}
               {breadcrumbs && breadcrumbs.length > 0 && (
                 <nav className="flex items-center gap-1.5 text-sm text-slate-400 mb-5">
                   {breadcrumbs.map((crumb, i) => (
                     <span key={i} className="flex items-center gap-1.5">
-                      {i > 0 && <span className="text-slate-600">/</span>}
+                      {i > 0 && <span className="text-slate-500">/</span>}
                       {crumb.href ? (
-                        <Link href={crumb.href} className="hover:text-white transition-colors">
+                        <Link href={crumb.href} className="hover:text-slate-100 transition-colors">
                           {crumb.label}
                         </Link>
                       ) : (
@@ -164,7 +220,7 @@ export default function PageHero({
               {/* Badge */}
               {badge && (
                 <div
-                  className={`inline-flex items-center gap-2 text-sm font-medium px-4 py-1.5 rounded-full mb-5 border ${
+                  className={`inline-flex items-center gap-2 text-sm font-medium px-4 py-1.5 rounded-md mb-5 border ${
                     badgeColors[badge.color ?? "amber"]
                   }`}
                 >
@@ -176,15 +232,15 @@ export default function PageHero({
               {/* Eyebrow */}
               {eyebrow && (
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-0.5 bg-amber-400" />
-                  <span className="text-amber-400 text-xs font-bold uppercase tracking-[0.2em]">
+                  <div className="w-10 h-px bg-amber-400" />
+                  <span className="text-amber-300 text-[11px] font-semibold uppercase tracking-[0.22em]">
                     {eyebrow}
                   </span>
                 </div>
               )}
 
               {/* Title */}
-              <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
+              <h1 className="max-w-full text-[2.25rem] sm:text-[3.5rem] lg:text-[4.15rem] font-semibold tracking-normal sm:tracking-[-0.03em] leading-[1.06] sm:leading-[1.02] mb-5 text-white">
                 {typeof title === "string" && titleHighlight ? (
                   <>
                     {title.split(titleHighlight)[0]}
@@ -198,20 +254,20 @@ export default function PageHero({
 
               {/* Subtitle */}
               {subtitle && (
-                <p className="text-lg text-slate-300 leading-relaxed mb-6 max-w-xl">
+                <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-7 max-w-2xl">
                   {subtitle}
                 </p>
               )}
 
               {/* Trust badges */}
               {trustBadges && trustBadges.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2.5 mb-7">
                   {trustBadges.map((badge) => (
                     <span
                       key={badge}
-                      className="inline-flex items-center gap-1.5 text-xs font-medium bg-white/10 border border-white/20 text-slate-200 px-3 py-1.5 rounded-full backdrop-blur-sm"
+                      className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] bg-white/5 border border-white/15 text-slate-200 px-3 py-2 rounded-md"
                     >
-                      <span className="w-1.5 h-1.5 bg-green-400 rounded-full" />
+                      <span className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
                       {badge}
                     </span>
                   ))}
@@ -220,17 +276,17 @@ export default function PageHero({
 
               {/* CTAs */}
               {ctas && ctas.length > 0 && (
-                <div className="flex flex-wrap gap-3 mb-8">
+                <div className="flex flex-col min-[420px]:flex-row min-[420px]:flex-wrap gap-3 mb-8">
                   {ctas.map((cta) => {
                     const base =
-                      "inline-flex items-center gap-2 font-bold px-7 py-3.5 rounded-xl transition-all duration-200 text-sm";
+                      "inline-flex items-center justify-center gap-2 font-semibold px-5 sm:px-6 py-3 rounded-md transition-colors duration-200 text-sm";
                     const variants = {
                       primary:
-                        "bg-amber-500 hover:bg-amber-400 text-slate-900 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:-translate-y-0.5",
+                        "bg-amber-500 hover:bg-amber-400 text-slate-950",
                       whatsapp:
-                        "bg-green-500 hover:bg-green-400 text-white shadow-lg shadow-green-500/30 hover:shadow-green-500/50 hover:-translate-y-0.5",
+                        "bg-[#225d47] hover:bg-[#2b775a] text-white border border-white/10",
                       outline:
-                        "border-2 border-white/30 hover:border-white/60 text-white hover:bg-white/10 backdrop-blur-sm hover:-translate-y-0.5",
+                        "border border-white/25 hover:border-white/45 text-white hover:bg-white/8",
                     };
                     return cta.external ? (
                       <a
@@ -261,17 +317,17 @@ export default function PageHero({
 
               {/* Stats */}
               {stats && stats.length > 0 && (
-                <div className={`grid grid-cols-2 sm:grid-cols-${Math.min(stats.length, 4)} gap-3`}>
+                <div className={`grid grid-cols-1 min-[380px]:grid-cols-2 ${statsGridClass} gap-3`}>
                   {stats.map(({ value, label, sub }) => (
                     <div
                       key={label}
-                      className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-center hover:bg-white/15 transition-colors"
+                      className="min-w-0 border border-white/12 bg-black/20 rounded-md px-4 py-4 text-left"
                     >
-                      <div className="text-xl sm:text-2xl font-extrabold text-amber-400 mb-0.5">
+                      <div className="text-base sm:text-xl font-semibold text-white mb-1">
                         {value}
                       </div>
-                      <div className="text-xs text-slate-300 font-medium">{label}</div>
-                      {sub && <div className="text-[10px] text-slate-500 mt-0.5">{sub}</div>}
+                      <div className="text-[10px] sm:text-[11px] text-slate-300 font-semibold uppercase tracking-[0.08em] sm:tracking-[0.14em]">{label}</div>
+                      {sub && <div className="text-[11px] text-slate-500 mt-1">{sub}</div>}
                     </div>
                   ))}
                 </div>
@@ -280,7 +336,7 @@ export default function PageHero({
 
             {/* Right: visual slot */}
             {rightSlot && (
-              <div className="hidden lg:flex items-center justify-center">
+              <div className="hidden lg:flex items-center justify-end">
                 {rightSlot}
               </div>
             )}

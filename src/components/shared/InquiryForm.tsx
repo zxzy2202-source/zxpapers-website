@@ -130,16 +130,16 @@ export default function InquiryForm({ productName, compact, initialMessage, form
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center justify-center py-8 text-center">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-          <CheckCircle className="w-8 h-8 text-green-500" />
+      <div className="flex flex-col items-center justify-center py-8 text-center border border-slate-200 rounded-lg bg-slate-50">
+        <div className="w-14 h-14 bg-white border border-slate-200 rounded-md flex items-center justify-center mb-4">
+          <CheckCircle className="w-7 h-7 text-amber-500" />
         </div>
-        <h3 className="font-bold text-slate-900 mb-1 text-lg">Inquiry Sent!</h3>
-        <p className="text-sm text-slate-500 mb-4">We&apos;ll respond within 12 hours.</p>
+        <h3 className="font-semibold text-slate-900 mb-1 text-lg">Inquiry Sent</h3>
+        <p className="text-sm text-slate-600 mb-4">We&apos;ll respond within 12 hours.</p>
         <Button
           variant="link"
           onClick={() => setStatus("idle")}
-          className="text-xs"
+          className="text-xs text-[#0F2B5B]"
         >
           Send another inquiry
         </Button>
@@ -152,10 +152,10 @@ export default function InquiryForm({ productName, compact, initialMessage, form
       ref={formRef}
       onSubmit={handleSubmit}
       noValidate
-      className={`space-y-3 transition-all duration-300 ${highlighted ? "ring-2 ring-amber-400 rounded-xl p-3" : ""}`}
+      className={`space-y-3 transition-all duration-300 ${highlighted ? "ring-2 ring-[#0F2B5B] rounded-md p-3 bg-slate-50" : ""}`}
     >
       {!compact && (
-        <h3 className="text-lg font-bold text-slate-900 mb-4">
+        <h3 className="text-lg font-semibold tracking-[-0.02em] text-slate-900 mb-4">
           Get a Free Quote
         </h3>
       )}
@@ -244,7 +244,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
       <Button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full bg-amber-500 hover:bg-amber-400 disabled:bg-amber-300 text-slate-900 font-bold text-sm py-3 h-auto rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-500/30"
+        className="w-full bg-[#0F2B5B] hover:bg-[#12346d] disabled:bg-slate-300 text-white font-semibold text-sm py-3 h-auto rounded-md transition-colors duration-200"
       >
         {status === "submitting" ? (
           <>
@@ -258,7 +258,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
           </>
         )}
       </Button>
-      <p className="text-xs text-slate-400 text-center">Response within 12 hours · NDA available · No spam</p>
+      <p className="text-xs text-slate-500 text-center">Response within 12 hours · NDA available · No spam</p>
     </form>
   );
 }

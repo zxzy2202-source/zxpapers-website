@@ -33,24 +33,25 @@ export const metadata: Metadata = {
 
 const FACTORY_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-aerial-overview-Ck4AoJiKqjGKsLxnYqGRbU.webp";
 const FACTORY_LINE_IMG_FB = "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80";
+const FACTORY_AERIAL_VIDEO = "/videos/factory-aerial-overview.mp4";
 
 const milestones = [
-  { year: "2009", event: `Founded in Xi'an, Shaanxi, China with 2 production lines`, color: "bg-blue-500" },
-  { year: "2011", event: "Achieved ISO 9001:2015 certification", color: "bg-green-500" },
-  { year: "2013", event: "Expanded facility to 20,000 m² and added 8 production lines", color: "bg-amber-500" },
-  { year: "2015", event: "Launched BPA-free product line — first in region", color: "bg-purple-500" },
-  { year: "2018", event: "Achieved FSC certification and entered European & African markets", color: "bg-teal-500" },
-  { year: "2020", event: `Reached ${FACTORY.oemClients} OEM clients globally`, color: "bg-orange-500" },
-  { year: "2023", event: `Expanded to ${FACTORY.productionLines} production lines, ${FACTORY.annualOutput} rolls/year capacity`, color: "bg-red-500" },
+  { year: "2009", event: `Founded in Xi'an, Shaanxi, China with 2 production lines` },
+  { year: "2011", event: "Achieved ISO 9001:2015 certification" },
+  { year: "2013", event: "Expanded facility to 20,000 m² and added 8 production lines" },
+  { year: "2015", event: "Launched BPA-free product line — first in region" },
+  { year: "2018", event: "Achieved FSC certification and entered European & African markets" },
+  { year: "2020", event: `Reached ${FACTORY.oemClients} OEM clients globally` },
+  { year: "2023", event: `Expanded to ${FACTORY.productionLines} production lines, ${FACTORY.annualOutput} rolls/year capacity` },
 ];
 
 const certifications = [
-  { name: "ISO 9001:2015", desc: "Quality Management System", icon: Shield, color: "text-blue-600 bg-blue-50" },
-  { name: "FSC Certified", desc: "Forest Stewardship Council", icon: Award, color: "text-green-600 bg-green-50" },
-  { name: "BPA-Free", desc: "Safe & Eco-Friendly Coating", icon: CheckCircle, color: "text-teal-600 bg-teal-50" },
-  { name: "CE Marking", desc: "European Conformity", icon: Star, color: "text-purple-600 bg-purple-50" },
-  { name: "RoHS Compliant", desc: "Hazardous Substance Free", icon: Shield, color: "text-orange-600 bg-orange-50" },
-  { name: "SGS Tested", desc: "Third-Party Lab Verified", icon: Award, color: "text-red-600 bg-red-50" },
+  { name: "ISO 9001:2015", desc: "Quality Management System", icon: Shield },
+  { name: "FSC Certified", desc: "Forest Stewardship Council", icon: Award },
+  { name: "BPA-Free", desc: "Safe & Eco-Friendly Coating", icon: CheckCircle },
+  { name: "CE Marking", desc: "European Conformity", icon: Star },
+  { name: "RoHS Compliant", desc: "Hazardous Substance Free", icon: Shield },
+  { name: "SGS Tested", desc: "Third-Party Lab Verified", icon: Award },
 ];
 
 const capabilities = [
@@ -122,7 +123,7 @@ export default async function AboutPage() {
         ]}
         rightSlot={
           <div className="w-full max-w-sm space-y-4">
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 shadow-xl">
+            <div className="bg-white/10 border border-white/20 rounded-lg p-5">
               <div className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-4">Factory at a Glance</div>
               <div className="space-y-3">
                 {[
@@ -134,7 +135,7 @@ export default async function AboutPage() {
                 ].map(({ icon: Icon, label, value }) => (
                   <div key={label} className="flex items-center justify-between py-1.5 border-b border-white/10 last:border-0">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                      <div className="w-7 h-7 bg-amber-500/20 rounded-md flex items-center justify-center">
                         <Icon className="w-3.5 h-3.5 text-amber-400" />
                       </div>
                       <span className="text-xs text-slate-300">{label}</span>
@@ -146,9 +147,9 @@ export default async function AboutPage() {
             </div>
             <div className="grid grid-cols-3 gap-2">
               {["ISO 9001", "FSC", "BPA-Free"].map((cert) => (
-                <div key={cert} className="bg-green-500/20 border border-green-500/30 rounded-xl p-2.5 text-center">
-                  <CheckCircle className="w-4 h-4 text-green-400 mx-auto mb-1" />
-                  <div className="text-green-300 font-bold text-xs">{cert}</div>
+                <div key={cert} className="bg-white/10 border border-white/15 rounded-md p-2.5 text-center">
+                  <CheckCircle className="w-4 h-4 text-amber-400 mx-auto mb-1" />
+                  <div className="text-slate-100 font-bold text-xs">{cert}</div>
                 </div>
               ))}
             </div>
@@ -160,8 +161,8 @@ export default async function AboutPage() {
       <div className="container py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 text-blue-600 text-sm font-semibold uppercase tracking-widest mb-4">
-              <div className="w-8 h-0.5 bg-blue-600" />
+            <div className="inline-flex items-center gap-2 text-[#0F2B5B] text-sm font-semibold uppercase tracking-widest mb-4">
+              <div className="w-8 h-0.5 bg-[#0F2B5B]" />
               Our Story
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 leading-tight">
@@ -187,20 +188,25 @@ export default async function AboutPage() {
                 "L/C, T/T, and flexible payment terms accepted",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
                   <span className="text-slate-700 text-sm">{item}</span>
                 </div>
               ))}
             </div>
           </div>
           <div className="space-y-4">
-            <Image
-              src={FACTORY_IMG}
-              alt={`${SITE.name} Factory Aerial View — Xi'an, China`}
-              className="w-full rounded-2xl shadow-xl object-cover"
-              width={640}
-              height={427}
-             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+            <video
+              className="aspect-[640/427] w-full rounded-lg border border-slate-200 object-cover"
+              poster={FACTORY_IMG}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label={`${SITE.name} factory aerial video tour in Xi'an, China`}
+            >
+              <source src={FACTORY_AERIAL_VIDEO} type="video/mp4" />
+            </video>
             <div className="grid grid-cols-2 gap-4">
               {[
                 { value: FACTORY.area, label: "Factory Floor Area" },
@@ -208,7 +214,7 @@ export default async function AboutPage() {
                 { value: FACTORY.annualOutput, label: "Annual Output" },
                 { value: `${FACTORY.countriesServed}+`, label: "Countries Served" },
               ].map(({ value, label }) => (
-                <div key={label} className="bg-[#0F2B5B] text-white rounded-xl p-4 text-center">
+                <div key={label} className="bg-[#0F2B5B] text-white rounded-md p-4 text-center">
                   <div className="text-2xl font-extrabold text-amber-400 mb-1">{value}</div>
                   <div className="text-xs text-slate-300">{label}</div>
                 </div>
@@ -222,10 +228,10 @@ export default async function AboutPage() {
       <div className="bg-slate-50 py-20">
         <div className="container">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 text-blue-600 text-sm font-semibold uppercase tracking-widest mb-4">
-              <div className="w-8 h-0.5 bg-blue-600" />
+            <div className="inline-flex items-center gap-2 text-[#0F2B5B] text-sm font-semibold uppercase tracking-widest mb-4">
+              <div className="w-8 h-0.5 bg-[#0F2B5B]" />
               Manufacturing Capabilities
-              <div className="w-8 h-0.5 bg-blue-600" />
+              <div className="w-8 h-0.5 bg-[#0F2B5B]" />
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
               Built for Bulk Orders
@@ -236,8 +242,8 @@ export default async function AboutPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {capabilities.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-0.5 transition-all">
-                <div className="w-12 h-12 bg-[#0F2B5B]/10 rounded-xl flex items-center justify-center mb-4">
+              <div key={title} className="bg-white rounded-lg p-6 border border-slate-200 hover:border-[#0F2B5B] transition-colors">
+                <div className="w-12 h-12 bg-slate-50 border border-slate-200 rounded-md flex items-center justify-center mb-4">
                   <Icon className="w-6 h-6 text-[#0F2B5B]" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2">{title}</h3>
@@ -249,7 +255,7 @@ export default async function AboutPage() {
             <Image
               src={FACTORY_LINE_IMG}
               alt="ZhixinPaper Production Line"
-              className="w-full rounded-2xl shadow-lg object-cover max-h-72"
+              className="w-full rounded-lg border border-slate-200 object-cover max-h-72"
               width={1200}
               height={400}
              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
@@ -260,10 +266,10 @@ export default async function AboutPage() {
       {/* ── Certifications ───────────────────────────────────────── */}
       <div className="container py-20">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 text-blue-600 text-sm font-semibold uppercase tracking-widest mb-4">
-            <div className="w-8 h-0.5 bg-blue-600" />
+          <div className="inline-flex items-center gap-2 text-[#0F2B5B] text-sm font-semibold uppercase tracking-widest mb-4">
+            <div className="w-8 h-0.5 bg-[#0F2B5B]" />
             Quality & Compliance
-            <div className="w-8 h-0.5 bg-blue-600" />
+            <div className="w-8 h-0.5 bg-[#0F2B5B]" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
             Certifications &amp; Standards
@@ -273,9 +279,9 @@ export default async function AboutPage() {
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {certifications.map(({ name, desc, icon: Icon, color }) => (
-            <div key={name} className="text-center p-5 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3 ${color}`}>
+          {certifications.map(({ name, desc, icon: Icon }) => (
+            <div key={name} className="text-center p-5 bg-white rounded-lg border border-slate-200 hover:border-[#0F2B5B] transition-colors">
+              <div className="w-12 h-12 rounded-md flex items-center justify-center mx-auto mb-3 bg-slate-50 border border-slate-200 text-[#0F2B5B]">
                 <Icon className="w-6 h-6" />
               </div>
               <div className="font-bold text-slate-900 text-sm mb-1">{name}</div>
@@ -302,15 +308,15 @@ export default async function AboutPage() {
             {/* Center line */}
             <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-white/10 hidden lg:block" />
             <div className="space-y-8">
-              {milestones.map(({ year, event, color }, i) => (
+              {milestones.map(({ year, event }, i) => (
                 <div key={year} className={`flex items-center gap-8 ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"}`}>
                   <div className={`flex-1 ${i % 2 === 0 ? "lg:text-right" : "lg:text-left"}`}>
-                    <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-5 inline-block max-w-sm">
+                    <div className="bg-white/10 border border-white/10 rounded-lg p-5 inline-block max-w-sm">
                       <div className="font-extrabold text-amber-400 text-xl mb-2">{year}</div>
                       <p className="text-slate-300 text-sm leading-relaxed">{event}</p>
                     </div>
                   </div>
-                  <div className={`w-5 h-5 ${color} rounded-full border-4 border-[#0F2B5B] shadow-lg flex-shrink-0 hidden lg:block ring-2 ring-white/20`} />
+                  <div className="w-5 h-5 bg-amber-400 rounded-full border-4 border-[#0F2B5B] flex-shrink-0 hidden lg:block ring-2 ring-white/20" />
                   <div className="flex-1 hidden lg:block" />
                 </div>
               ))}
@@ -322,10 +328,10 @@ export default async function AboutPage() {
       {/* ── Why Choose Us ────────────────────────────────────────── */}
       <div className="container py-20">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 text-blue-600 text-sm font-semibold uppercase tracking-widest mb-4">
-            <div className="w-8 h-0.5 bg-blue-600" />
+          <div className="inline-flex items-center gap-2 text-[#0F2B5B] text-sm font-semibold uppercase tracking-widest mb-4">
+            <div className="w-8 h-0.5 bg-[#0F2B5B]" />
             Why Buyers Choose Us
-            <div className="w-8 h-0.5 bg-blue-600" />
+            <div className="w-8 h-0.5 bg-[#0F2B5B]" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
             The Trusted Choice for Distributors
@@ -333,8 +339,8 @@ export default async function AboutPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {whyUs.map(({ icon: Icon, stat, label, desc }) => (
-            <div key={label} className="text-center p-8 bg-gradient-to-br from-[#0F2B5B] to-[#1a3a6b] text-white rounded-2xl">
-              <div className="w-14 h-14 bg-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <div key={label} className="text-center p-8 bg-[#0F2B5B] text-white rounded-lg">
+              <div className="w-14 h-14 bg-amber-500/20 rounded-md flex items-center justify-center mx-auto mb-4">
                 <Icon className="w-7 h-7 text-amber-400" />
               </div>
               <div className="text-3xl font-extrabold text-amber-400 mb-1">{stat}</div>
@@ -346,24 +352,24 @@ export default async function AboutPage() {
       </div>
 
       {/* ── CTA ──────────────────────────────────────────────────── */}
-      <div className="bg-amber-500 py-16">
+      <div className="bg-[#0A1F44] py-16">
         <div className="container text-center">
-          <h2 className="text-3xl font-extrabold text-slate-900 mb-4">
+          <h2 className="text-3xl font-extrabold text-white mb-4">
             Ready to Start a Partnership?
           </h2>
-          <p className="text-slate-800 mb-8 max-w-xl mx-auto text-lg">
+          <p className="text-slate-300 mb-8 max-w-xl mx-auto text-lg">
             Join {FACTORY.oemClients} clients who trust {SITE.name} for their thermal paper needs.
             Get a quote within 24 hours.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact"
-              className="inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1a3a6b] text-white font-bold px-8 py-4 rounded-xl transition-colors text-base">
+              className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-8 py-4 rounded-md transition-colors text-base">
               Send Inquiry Now <ArrowRight className="w-5 h-5" />
             </Link>
             <a href={`${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I'd like to discuss a partnership for thermal paper rolls.")}`}
               target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-900 font-bold px-8 py-4 rounded-xl transition-colors text-base">
-              <MessageSquare className="w-5 h-5 text-green-600" />
+              className="inline-flex items-center gap-2 border border-white/25 bg-white/10 hover:bg-white/15 text-white font-bold px-8 py-4 rounded-md transition-colors text-base">
+              <MessageSquare className="w-5 h-5 text-amber-400" />
               WhatsApp Us
             </a>
           </div>

@@ -7,6 +7,8 @@
 
 @layer base {
   :root {
+    --font-inter: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-sora: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -26,7 +28,7 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 217 73% 21%;
-    --radius: 0.5rem;
+    --radius: 0.375rem;
   }
 
   html {
@@ -52,31 +54,31 @@
   }
 
   .section-title {
-    @apply text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight;
+    @apply text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 leading-tight;
     font-family: var(--font-sora), 'Sora', sans-serif;
   }
 
   .section-subtitle {
-    @apply text-slate-500 mt-3 text-base leading-relaxed;
+    @apply text-slate-600 mt-3 text-base leading-relaxed;
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-7 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl;
+    @apply inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-6 py-3 rounded-md transition-colors duration-200;
     font-family: var(--font-sora), 'Sora', sans-serif;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 border-2 border-white/40 text-white hover:bg-white/10 font-semibold px-7 py-3.5 rounded-xl transition-all duration-200;
+    @apply inline-flex items-center gap-2 border border-slate-300 text-slate-900 hover:bg-slate-50 font-semibold px-6 py-3 rounded-md transition-colors duration-200;
     font-family: var(--font-sora), 'Sora', sans-serif;
   }
 
   .btn-navy {
-    @apply inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg text-sm;
+    @apply inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#12346d] text-white font-semibold px-6 py-3 rounded-md transition-colors duration-200 text-sm;
     font-family: var(--font-sora), 'Sora', sans-serif;
   }
 
   .btn-amber {
-    @apply inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg text-sm;
+    @apply inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-6 py-3 rounded-md transition-colors duration-200 text-sm;
     font-family: var(--font-sora), 'Sora', sans-serif;
   }
 
@@ -89,7 +91,7 @@
   }
 
   .card-hover {
-    @apply bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
+    @apply bg-white border border-slate-200 rounded-lg transition-colors duration-200;
   }
 
   .badge-amber {
@@ -101,7 +103,7 @@
   }
 
   .section-label {
-    @apply inline-flex items-center gap-2 text-blue-600 text-sm font-semibold uppercase tracking-wider mb-3;
+    @apply inline-flex items-center gap-2 text-[#0F2B5B] text-sm font-semibold uppercase tracking-[0.18em] mb-3;
   }
 
   /* 统一 Sora 字体工具类，替代内联 style */

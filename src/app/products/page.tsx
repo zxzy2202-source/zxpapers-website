@@ -25,13 +25,6 @@ const buildProductCategories = (imgs: Record<string, string>) => ([
   {
     id: "thermal-rolls",
     icon: Package,
-    iconBg: "bg-blue-100",
-    iconColor: "text-blue-600",
-    accentColor: "hover:border-blue-300",
-    linkColor: "text-blue-600",
-    badgeBg: "bg-blue-100",
-    badgeText: "text-blue-700",
-    hoverText: "group-hover:text-blue-700",
     title: "Thermal Paper Rolls",
     subtitle: "POS receipts, ATM, kiosk, and parking ticket rolls",
     image: imgs["products:thermal-rolls"],
@@ -45,13 +38,6 @@ const buildProductCategories = (imgs: Record<string, string>) => ([
   {
     id: "thermal-labels",
     icon: Tag,
-    iconBg: "bg-amber-100",
-    iconColor: "text-amber-600",
-    accentColor: "hover:border-amber-300",
-    linkColor: "text-amber-600",
-    badgeBg: "bg-amber-100",
-    badgeText: "text-amber-700",
-    hoverText: "group-hover:text-amber-700",
     title: "Thermal Labels",
     subtitle: "Shipping labels, barcode labels, product labels",
     image: imgs["products:thermal-labels"],
@@ -65,13 +51,6 @@ const buildProductCategories = (imgs: Record<string, string>) => ([
   {
     id: "can-labels",
     icon: Archive,
-    iconBg: "bg-emerald-100",
-    iconColor: "text-emerald-600",
-    accentColor: "hover:border-emerald-300",
-    linkColor: "text-emerald-600",
-    badgeBg: "bg-emerald-100",
-    badgeText: "text-emerald-700",
-    hoverText: "group-hover:text-emerald-700",
     title: "Can Labels",
     subtitle: "Beverage, food, pet food, and industrial can labels",
     image: imgs["products:can-labels"],
@@ -85,13 +64,6 @@ const buildProductCategories = (imgs: Record<string, string>) => ([
   {
     id: "detergent-labels",
     icon: Droplets,
-    iconBg: "bg-violet-100",
-    iconColor: "text-violet-600",
-    accentColor: "hover:border-violet-300",
-    linkColor: "text-violet-600",
-    badgeBg: "bg-violet-100",
-    badgeText: "text-violet-700",
-    hoverText: "group-hover:text-violet-700",
     title: "Detergent Labels",
     subtitle: "Laundry detergent, dish soap, and household cleaner labels",
     image: imgs["products:detergent-labels"],
@@ -166,36 +138,36 @@ export default async function ProductsPage() {
           return (
             <div key={cat.id}>
               <div className="flex items-center gap-3 mb-6">
-                <div className={`w-10 h-10 ${cat.iconBg} rounded-xl flex items-center justify-center`}>
-                  <Icon className={`w-5 h-5 ${cat.iconColor}`} />
+                <div className="w-10 h-10 bg-slate-50 border border-slate-200 rounded-md flex items-center justify-center">
+                  <Icon className="w-5 h-5 text-[#0F2B5B]" />
                 </div>
                 <div>
-                  <h2 className="font-sora text-2xl font-extrabold text-slate-900">{cat.title}</h2>
-                  <p className="text-slate-500 text-sm">{cat.subtitle}</p>
+                  <h2 className="font-sora text-2xl font-semibold tracking-[-0.03em] text-slate-900">{cat.title}</h2>
+                  <p className="text-slate-600 text-sm">{cat.subtitle}</p>
                 </div>
               </div>
 
               <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 mb-8`}>
                 {cat.variants.map((p) => (
-                  <Link key={p.href} href={p.href} className={`group flex gap-4 p-6 bg-white border border-slate-200 ${cat.accentColor} rounded-2xl hover:shadow-lg transition-all duration-300`}>
-                    <Image src={cat.image} alt={p.title} className="w-24 h-24 object-cover rounded-xl flex-shrink-0" width={96} height={96}  sizes="96px" />
+                  <Link key={p.href} href={p.href} className="group flex gap-4 p-6 bg-white border border-slate-200 hover:border-[#0F2B5B] rounded-lg transition-colors duration-200">
+                    <Image src={cat.image} alt={p.title} className="w-24 h-24 object-cover rounded-md flex-shrink-0 border border-slate-100" width={96} height={96}  sizes="96px" />
                     <div className="flex-1">
-                      <h3 className={`font-sora font-bold text-slate-900 mb-1 ${cat.hoverText} transition-colors`}>{p.title}</h3>
+                      <h3 className="font-sora font-semibold tracking-[-0.02em] text-slate-900 mb-1 group-hover:text-[#0F2B5B] transition-colors">{p.title}</h3>
                       <p className="text-sm text-slate-600 leading-relaxed mb-3">{p.desc}</p>
-                      <span className={`inline-flex items-center gap-1 text-sm ${cat.linkColor} font-semibold`}>View Details <ArrowRight className="w-3.5 h-3.5" /></span>
+                      <span className="inline-flex items-center gap-1 text-sm text-[#0F2B5B] font-semibold">View Details <ArrowRight className="w-3.5 h-3.5" /></span>
                     </div>
                   </Link>
                 ))}
               </div>
 
               <div>
-                <h3 className="font-sora text-base font-bold text-slate-700 mb-4">Popular Sizes</h3>
+                <h3 className="font-sora text-base font-semibold text-slate-800 mb-4">Popular Sizes</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
                   {cat.sizes.map((size) => (
-                    <Link key={size.slug} href={cat.sizeHref(size.slug)} className={`group flex flex-col items-center p-4 bg-white border border-slate-200 ${cat.accentColor} hover:bg-slate-50 rounded-xl transition-all duration-200 text-center`}>
-                      <div className={`font-sora font-bold text-slate-800 ${cat.hoverText} text-sm mb-1`}>{size.label}</div>
+                    <Link key={size.slug} href={cat.sizeHref(size.slug)} className="group flex flex-col items-center p-4 bg-white border border-slate-200 hover:border-[#0F2B5B] hover:bg-slate-50 rounded-md transition-colors duration-200 text-center">
+                      <div className="font-sora font-semibold text-slate-800 group-hover:text-[#0F2B5B] text-sm mb-1">{size.label}</div>
                       {size.badge
-                        ? <span className={`text-[10px] ${cat.badgeBg} ${cat.badgeText} px-2 py-0.5 rounded-full font-medium`}>{size.badge}</span>
+                        ? <span className="text-[10px] bg-amber-100 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full font-medium">{size.badge}</span>
                         : <span className="text-[10px] text-slate-400">{size.markets}</span>
                       }
                     </Link>

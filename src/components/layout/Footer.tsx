@@ -11,9 +11,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#060f24] text-slate-300">
+    <footer className="bg-[#071325] text-slate-300">
       {/* ── Trust bar ────────────────────────────────────────────── */}
-      <div className="border-b border-white/5 bg-[#0a1f44]">
+      <div className="border-b border-white/10 bg-[#0b1f42]">
         <div className="container py-5">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             {[
@@ -23,8 +23,8 @@ export default function Footer() {
               { icon: Clock, label: "15+ Years", sub: "Manufacturing Experience" },
             ].map(({ icon: Icon, label, sub }) => (
               <div key={label} className="flex items-center gap-3 justify-center">
-                <div className="w-9 h-9 bg-amber-500/15 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-4.5 h-4.5 text-amber-400" />
+                <div className="w-9 h-9 bg-white/8 rounded-md flex items-center justify-center flex-shrink-0 border border-white/10">
+                  <Icon className="w-4.5 h-4.5 text-amber-300" />
                 </div>
                 <div className="text-left">
                   <div className="text-white text-sm font-semibold leading-tight">{label}</div>
@@ -60,22 +60,22 @@ export default function Footer() {
             {/* Contact info */}
             <div className="space-y-3 text-sm mb-6">
               <a href={`tel:${SITE.phone.replace(/\s/g, "")}`}
-                className="flex items-center gap-3 text-slate-400 hover:text-amber-400 transition-colors group">
-                <div className="w-8 h-8 bg-white/5 group-hover:bg-amber-500/10 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors">
-                  <Phone className="w-3.5 h-3.5 text-amber-500" />
+                className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors group">
+                <div className="w-8 h-8 bg-white/5 group-hover:bg-white/10 rounded-md flex items-center justify-center flex-shrink-0 transition-colors border border-white/5">
+                  <Phone className="w-3.5 h-3.5 text-amber-300" />
                 </div>
                 {SITE.phone}
               </a>
               <a href={`${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a quote for thermal paper rolls.")}`}
                 target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-3 text-slate-400 hover:text-green-400 transition-colors group">
-                <div className="w-8 h-8 bg-white/5 group-hover:bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors">
-                  <MessageSquare className="w-3.5 h-3.5 text-green-500" />
+                className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors group">
+                <div className="w-8 h-8 bg-white/5 group-hover:bg-white/10 rounded-md flex items-center justify-center flex-shrink-0 transition-colors border border-white/5">
+                  <MessageSquare className="w-3.5 h-3.5 text-amber-300" />
                 </div>
                 WhatsApp: {SITE.whatsapp}
               </a>
               <div className="flex items-center gap-3 text-slate-400 group">
-                <div className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 bg-white/5 rounded-md flex items-center justify-center flex-shrink-0 border border-white/5">
                   <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-[#07C160]" aria-hidden="true">
                     <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.306A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.117l-.292-.174-3.03.796.808-2.96-.19-.303A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.406-5.884c-.242-.121-1.43-.706-1.652-.786-.222-.081-.383-.121-.545.121-.161.242-.624.786-.765.948-.14.161-.282.181-.524.06-.242-.12-1.02-.376-1.943-1.198-.718-.64-1.203-1.431-1.344-1.673-.14-.242-.015-.373.106-.493.108-.108.242-.282.363-.423.12-.14.16-.242.242-.403.08-.161.04-.302-.02-.423-.061-.12-.545-1.314-.747-1.798-.196-.472-.396-.408-.545-.415l-.464-.008c-.161 0-.423.06-.645.302-.222.242-.847.828-.847 2.02 0 1.19.867 2.34.988 2.502.12.161 1.706 2.604 4.134 3.651.578.25 1.029.398 1.38.51.58.184 1.108.158 1.525.096.465-.069 1.43-.585 1.632-1.15.201-.564.201-1.047.14-1.149-.06-.1-.222-.161-.464-.282z"/>
                   </svg>
@@ -83,15 +83,15 @@ export default function Footer() {
                 WeChat: {SITE.wechat}
               </div>
               <a href={`mailto:${SITE.email}`}
-                className="flex items-center gap-3 text-slate-400 hover:text-amber-400 transition-colors group">
-                <div className="w-8 h-8 bg-white/5 group-hover:bg-amber-500/10 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors">
-                  <Mail className="w-3.5 h-3.5 text-amber-500" />
+                className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors group">
+                <div className="w-8 h-8 bg-white/5 group-hover:bg-white/10 rounded-md flex items-center justify-center flex-shrink-0 transition-colors border border-white/5">
+                  <Mail className="w-3.5 h-3.5 text-amber-300" />
                 </div>
                 {SITE.email}
               </a>
               <div className="flex items-start gap-3 text-slate-400">
-                <div className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <MapPin className="w-3.5 h-3.5 text-amber-500" />
+                <div className="w-8 h-8 bg-white/5 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 border border-white/5">
+                  <MapPin className="w-3.5 h-3.5 text-amber-300" />
                 </div>
                 <span className="text-xs leading-relaxed">{SITE.address}</span>
               </div>
@@ -100,7 +100,7 @@ export default function Footer() {
             {/* WhatsApp CTA */}
             <a href={`${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a quote for thermal paper rolls.")}`}
               target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors w-full justify-center">
+              className="inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#12346d] text-white text-sm font-semibold px-4 py-2.5 rounded-md transition-colors w-full justify-center">
               <MessageSquare className="w-4 h-4" />
               WhatsApp for Quick Quote
             </a>
@@ -108,7 +108,7 @@ export default function Footer() {
 
           {/* Products & OEM */}
           <div>
-            <div className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2" role="heading" aria-level={3}>Products</div>
+            <div className="text-white font-semibold text-xs mb-4 uppercase tracking-[0.18em] border-b border-white/10 pb-2" role="heading" aria-level={3}>Products</div>
             <ul className="space-y-2 text-sm mb-6">
               {[
                 { label: "All Products", href: "/products" },
@@ -121,15 +121,15 @@ export default function Footer() {
               ].map((item) => (
                 <li key={item.href}>
                   <Link href={item.href}
-                    className="text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 group">
-                    <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-amber-500 transition-colors" />
+                    className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                    <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-amber-300 transition-colors" />
                     {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
 
-            <div className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2" role="heading" aria-level={3}>OEM Services</div>
+            <div className="text-white font-semibold text-xs mb-4 uppercase tracking-[0.18em] border-b border-white/10 pb-2" role="heading" aria-level={3}>OEM Services</div>
             <ul className="space-y-2 text-sm">
               {[
                 { label: "OEM Overview", href: "/oem" },
@@ -141,8 +141,8 @@ export default function Footer() {
               ].map((item) => (
                 <li key={item.href}>
                   <Link href={item.href}
-                    className="text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 group">
-                    <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-amber-500 transition-colors" />
+                    className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                    <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-amber-300 transition-colors" />
                     {item.label}
                   </Link>
                 </li>
@@ -152,18 +152,18 @@ export default function Footer() {
 
           {/* Popular Sizes */}
           <div>
-            <div className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2" role="heading" aria-level={3}>Popular Sizes</div>
+            <div className="text-white font-semibold text-xs mb-4 uppercase tracking-[0.18em] border-b border-white/10 pb-2" role="heading" aria-level={3}>Popular Sizes</div>
             <div className="mb-5">
-              <p className="text-[10px] text-amber-500/70 uppercase tracking-widest mb-2.5 font-medium">Thermal Paper Rolls</p>
+              <p className="text-[10px] text-amber-300/80 uppercase tracking-[0.18em] mb-2.5 font-medium">Thermal Paper Rolls</p>
               <ul className="space-y-2 text-sm">
                 {paperRollSizes.map((size) => (
                   <li key={size.slug}>
                     <Link href={`/products/thermal-rolls/${size.slug}`}
-                      className="text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 group">
-                      <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-amber-500 transition-colors" />
+                      className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                      <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-amber-300 transition-colors" />
                       {size.label}
                       {size.badge && (
-                        <span className="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-medium ml-1">{size.badge}</span>
+                        <span className="text-[9px] bg-white/8 text-amber-300 px-1.5 py-0.5 rounded font-medium ml-1 border border-white/8">{size.badge}</span>
                       )}
                     </Link>
                   </li>
@@ -171,16 +171,16 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <p className="text-[10px] text-amber-500/70 uppercase tracking-widest mb-2.5 font-medium">Thermal Labels</p>
+              <p className="text-[10px] text-amber-300/80 uppercase tracking-[0.18em] mb-2.5 font-medium">Thermal Labels</p>
               <ul className="space-y-2 text-sm">
                 {labelSizes.slice(0, 5).map((size) => (
                   <li key={size.slug}>
                     <Link href={`/products/thermal-labels/${size.slug}`}
-                      className="text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 group">
-                      <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-amber-500 transition-colors" />
+                      className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                      <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-amber-300 transition-colors" />
                       {size.label}
                       {size.badge && (
-                        <span className="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-medium ml-1">{size.badge}</span>
+                        <span className="text-[9px] bg-white/8 text-amber-300 px-1.5 py-0.5 rounded font-medium ml-1 border border-white/8">{size.badge}</span>
                       )}
                     </Link>
                   </li>
@@ -191,7 +191,7 @@ export default function Footer() {
 
           {/* Markets */}
           <div>
-            <div className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2" role="heading" aria-level={3}>Markets</div>
+            <div className="text-white font-semibold text-xs mb-4 uppercase tracking-[0.18em] border-b border-white/10 pb-2" role="heading" aria-level={3}>Markets</div>
             <ul className="space-y-2 text-sm mb-6">
               {[
                 { label: "🌍 Africa Overview", href: "/markets/africa" },
@@ -204,14 +204,14 @@ export default function Footer() {
               ].map((item) => (
                 <li key={item.href}>
                   <Link href={item.href}
-                    className="text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 group text-sm">
+                    className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 group text-sm">
                     {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
 
-            <div className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2" role="heading" aria-level={3}>Company</div>
+            <div className="text-white font-semibold text-xs mb-4 uppercase tracking-[0.18em] border-b border-white/10 pb-2" role="heading" aria-level={3}>Company</div>
             <ul className="space-y-2 text-sm">
               {[
                 { label: "About Us", href: "/about" },
@@ -221,8 +221,8 @@ export default function Footer() {
               ].map((item) => (
                 <li key={item.href}>
                   <Link href={item.href}
-                    className="text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 group">
-                    <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-amber-500 transition-colors" />
+                    className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                    <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-amber-300 transition-colors" />
                     {item.label}
                   </Link>
                 </li>
@@ -232,7 +232,7 @@ export default function Footer() {
 
           {/* Support */}
           <div>
-            <div className="text-white font-bold text-xs mb-4 uppercase tracking-widest border-b border-white/10 pb-2" role="heading" aria-level={3}>Support</div>
+            <div className="text-white font-semibold text-xs mb-4 uppercase tracking-[0.18em] border-b border-white/10 pb-2" role="heading" aria-level={3}>Support</div>
             <ul className="space-y-2 text-sm mb-6">
               {[
                 { label: "Contact Us", href: "/contact" },
@@ -244,8 +244,8 @@ export default function Footer() {
               ].map((item) => (
                 <li key={item.href}>
                   <Link href={item.href}
-                    className="text-slate-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 group">
-                    <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-amber-500 transition-colors" />
+                    className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 group">
+                    <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-amber-300 transition-colors" />
                     {item.label}
                   </Link>
                 </li>
@@ -253,9 +253,9 @@ export default function Footer() {
             </ul>
 
             {/* Business hours */}
-            <div className="bg-white/5 rounded-xl p-4 border border-white/5">
+            <div className="bg-white/5 rounded-lg p-4 border border-white/10">
               <div className="flex items-center gap-2 mb-2">
-                <Clock className="w-4 h-4 text-amber-400" />
+                <Clock className="w-4 h-4 text-amber-300" />
                 <span className="text-white text-xs font-semibold">Business Hours</span>
               </div>
               <div className="text-xs text-slate-400 space-y-1">

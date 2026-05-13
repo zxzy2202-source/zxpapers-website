@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
   },
 
   images: {
+    // Keep local previews reliable when the dev server cannot proxy remote images.
+    // Production still uses Next image optimization.
+    unoptimized: process.env.NODE_ENV === "development",
     remotePatterns: [
       {
         protocol: "https",

@@ -87,20 +87,20 @@ export default async function ContactPage() {
         ]}
       />
       {/* ── WhatsApp Priority Banner ─────────────────────────────── */}
-      <div className="bg-green-600 py-4">
+      <div className="bg-[#0A1F44] py-4 border-t border-white/10">
         <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3 text-white">
-            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-amber-500/15 border border-amber-400/30 rounded-md flex items-center justify-center">
               <MessageSquare className="w-5 h-5" />
             </div>
             <div>
               <div className="font-bold text-base">Fastest Response: WhatsApp</div>
-              <div className="text-green-100 text-sm">Typically replies within 30 minutes · 7 days/week</div>
+              <div className="text-slate-300 text-sm">Typically replies within 30 minutes · 7 days/week</div>
             </div>
           </div>
           <a href={`${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a quote for thermal paper rolls. Please send me pricing and MOQ.")}`}
             target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white text-green-700 font-bold px-6 py-3 rounded-xl hover:bg-green-50 transition-colors whitespace-nowrap">
+            className="inline-flex items-center gap-2 bg-white text-[#0F2B5B] font-bold px-6 py-3 rounded-md hover:bg-slate-100 transition-colors whitespace-nowrap">
             <MessageSquare className="w-5 h-5" />
             WhatsApp: {SITE.whatsapp}
           </a>
@@ -114,24 +114,24 @@ export default async function ContactPage() {
           {/* Left sidebar */}
           <div className="space-y-6">
             {/* Contact info card */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+            <div className="bg-white border border-slate-200 rounded-lg p-6">
               <h2 className="text-base font-bold text-slate-900 mb-5 flex items-center gap-2">
-                <div className="w-6 h-6 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <Phone className="w-3.5 h-3.5 text-blue-600" />
+                <div className="w-6 h-6 bg-slate-50 border border-slate-200 rounded-md flex items-center justify-center">
+                  <Phone className="w-3.5 h-3.5 text-[#0F2B5B]" />
                 </div>
                 Contact Information
               </h2>
               <div className="space-y-4">
                 {[
-                  { icon: Phone, label: "Phone", value: SITE.phone, href: `tel:${SITE.phone.replace(/\s/g, "")}`, color: "bg-blue-100 text-blue-600" },
-                  { icon: MessageSquare, label: "WhatsApp", value: SITE.whatsapp, href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a quote for thermal paper rolls.")}`, color: "bg-green-100 text-green-600" },
-                  { icon: MessageSquare, label: "WeChat", value: SITE.wechat, href: null, color: "bg-[#07C160]/10 text-[#07C160]" },
-                  { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}`, color: "bg-amber-100 text-amber-600" },
-                  { icon: MapPin, label: "Address", value: SITE.address, href: null, color: "bg-red-100 text-red-600" },
-                  { icon: Clock, label: "Business Hours", value: SITE.businessHours, href: null, color: "bg-purple-100 text-purple-600" },
-                ].map(({ icon: Icon, label, value, href, color }) => (
+                  { icon: Phone, label: "Phone", value: SITE.phone, href: `tel:${SITE.phone.replace(/\s/g, "")}` },
+                  { icon: MessageSquare, label: "WhatsApp", value: SITE.whatsapp, href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a quote for thermal paper rolls.")}` },
+                  { icon: MessageSquare, label: "WeChat", value: SITE.wechat, href: null },
+                  { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
+                  { icon: MapPin, label: "Address", value: SITE.address, href: null },
+                  { icon: Clock, label: "Business Hours", value: SITE.businessHours, href: null },
+                ].map(({ icon: Icon, label, value, href }) => (
                   <div key={label} className="flex items-start gap-3">
-                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${color}`}>
+                    <div className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0 bg-slate-50 border border-slate-200 text-[#0F2B5B]">
                       {label === "WeChat" ? (
                         <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
                           <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.306A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.117l-.292-.174-3.03.796.808-2.96-.19-.303A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.406-5.884c-.242-.121-1.43-.706-1.652-.786-.222-.081-.383-.121-.545.121-.161.242-.624.786-.765.948-.14.161-.282.181-.524.06-.242-.12-1.02-.376-1.943-1.198-.718-.64-1.203-1.431-1.344-1.673-.14-.242-.015-.373.106-.493.108-.108.242-.282.363-.423.12-.14.16-.242.242-.403.08-.161.04-.302-.02-.423-.061-.12-.545-1.314-.747-1.798-.196-.472-.396-.408-.545-.415l-.464-.008c-.161 0-.423.06-.645.302-.222.242-.847.828-.847 2.02 0 1.19.867 2.34.988 2.502.12.161 1.706 2.604 4.134 3.651.578.25 1.029.398 1.38.51.58.184 1.108.158 1.525.096.465-.069 1.43-.585 1.632-1.15.201-.564.201-1.047.14-1.149-.06-.1-.222-.161-.464-.282z"/>
@@ -145,7 +145,7 @@ export default async function ContactPage() {
                       {href ? (
                         <a href={href} target={href.startsWith("http") ? "_blank" : undefined}
                           rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="text-sm font-medium text-slate-800 hover:text-blue-600 transition-colors break-all">
+                          className="text-sm font-medium text-slate-800 hover:text-[#0F2B5B] transition-colors break-all">
                           {value}
                         </a>
                       ) : (
@@ -158,15 +158,15 @@ export default async function ContactPage() {
             </div>
 
             {/* Response time visual */}
-            <div className="bg-gradient-to-br from-[#0F2B5B] to-[#1a3a6b] text-white rounded-2xl p-6">
+            <div className="bg-[#0F2B5B] text-white rounded-lg p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Zap className="w-5 h-5 text-amber-400" />
                 <span className="font-bold text-base">Response Guarantee</span>
               </div>
               <div className="space-y-3">
                 {[
-                  { channel: "WhatsApp", time: "< 30 min", color: "bg-green-500", width: "w-[15%]" },
-                  { channel: "WeChat", time: "< 30 min", color: "bg-[#07C160]", width: "w-[15%]" },
+                  { channel: "WhatsApp", time: "< 30 min", color: "bg-amber-400", width: "w-[15%]" },
+                  { channel: "WeChat", time: "< 30 min", color: "bg-amber-400", width: "w-[15%]" },
                   { channel: "Email", time: "< 12 hours", color: "bg-amber-500", width: "w-[50%]" },
                   { channel: "Inquiry Form", time: "< 24 hours", color: "bg-blue-500", width: "w-full" },
                 ].map(({ channel, time, color, width }) => (
@@ -184,7 +184,7 @@ export default async function ContactPage() {
             </div>
 
             {/* Quick links */}
-            <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+            <div className="bg-slate-50 rounded-lg p-5 border border-slate-200">
               <h3 className="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wide">Quick Links</h3>
               <div className="space-y-2.5">
                 {[
@@ -194,7 +194,7 @@ export default async function ContactPage() {
                   { icon: Globe, label: "Africa Market Info", href: "/markets/africa" },
                 ].map(({ icon: Icon, label, href }) => (
                   <Link key={href} href={href}
-                    className="flex items-center gap-2.5 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors group">
+                    className="flex items-center gap-2.5 text-sm text-[#0F2B5B] hover:text-slate-900 font-medium transition-colors group">
                     <Icon className="w-4 h-4 flex-shrink-0" />
                     {label}
                     <ArrowRight className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -206,9 +206,9 @@ export default async function ContactPage() {
 
           {/* Inquiry form */}
           <div className="lg:col-span-2">
-            <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+            <div className="bg-white border border-slate-200 rounded-lg p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-amber-100 border border-amber-200 rounded-md flex items-center justify-center">
                   <Mail className="w-5 h-5 text-amber-600" />
                 </div>
                 <div>
@@ -220,16 +220,16 @@ export default async function ContactPage() {
             </div>
 
             {/* FAQ preview */}
-            <div className="mt-8 bg-slate-50 rounded-2xl p-6 border border-slate-100">
+            <div className="mt-8 bg-slate-50 rounded-lg p-6 border border-slate-200">
               <h3 className="font-bold text-slate-900 mb-5 flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-blue-600" />
+                <MessageSquare className="w-5 h-5 text-[#0F2B5B]" />
                 Frequently Asked Questions
               </h3>
               <div className="space-y-4">
                 {faqs.map(({ q, a }) => (
-                  <div key={q} className="bg-white rounded-xl p-4 border border-slate-100">
+                  <div key={q} className="bg-white rounded-md p-4 border border-slate-200">
                     <div className="font-semibold text-slate-900 text-sm mb-1.5 flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
                       {q}
                     </div>
                     <p className="text-slate-500 text-sm leading-relaxed pl-6">{a}</p>
@@ -237,7 +237,7 @@ export default async function ContactPage() {
                 ))}
               </div>
               <Link href="/faq"
-                className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm font-semibold mt-4 transition-colors">
+                className="inline-flex items-center gap-2 text-[#0F2B5B] hover:text-slate-900 text-sm font-semibold mt-4 transition-colors">
                 View all FAQs <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

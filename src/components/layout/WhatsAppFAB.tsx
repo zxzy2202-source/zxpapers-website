@@ -33,26 +33,24 @@ export default function WhatsAppFAB() {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {/* Quick message panel */}
       {open && (
-        <div className="bg-white rounded-2xl shadow-2xl border border-slate-100 w-72 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200">
+        <div className="bg-white rounded-lg shadow-xl border border-slate-200 w-72 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200">
           {/* Header */}
-          <div className="bg-[#25D366] px-4 py-3 flex items-center gap-3">
-            <div className="w-9 h-9 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-              <Phone className="w-4 h-4 text-white" />
+          <div className="bg-[#0F2B5B] px-4 py-3 flex items-center gap-3">
+            <div className="w-9 h-9 bg-white/10 rounded-md flex items-center justify-center flex-shrink-0">
+              <MessageSquare className="w-4 h-4 text-amber-300" />
             </div>
             <div>
-              <div className="text-white font-bold text-sm">ZhixinPaper</div>
-              <div className="text-green-100 text-xs">Typically replies in minutes</div>
+              <div className="text-white font-semibold text-sm">ZhixinPaper Sales</div>
+              <div className="text-slate-300 text-xs">WhatsApp and WeChat support</div>
             </div>
           </div>
 
-          {/* Chat bubble */}
-          <div className="px-4 py-4 bg-[#ECE5DD]">
-            <div className="bg-white rounded-xl rounded-tl-none px-3 py-2.5 shadow-sm max-w-[90%]">
+          <div className="px-4 py-4 bg-slate-50 border-b border-slate-200">
+            <div className="bg-white rounded-md px-3 py-3 border border-slate-200 max-w-[92%]">
               <p className="text-sm text-slate-700 leading-relaxed">
-                Hi! 👋 How can we help you today?<br />
-                Choose a quick message below or type your own.
+                Need pricing, MOQ, or OEM details? Choose a quick message below and we&apos;ll open the chat with the request filled in.
               </p>
-              <div className="text-xs text-slate-400 mt-1 text-right">ZhixinPaper</div>
+              <div className="text-xs text-slate-400 mt-2">Sales desk</div>
             </div>
           </div>
 
@@ -64,10 +62,10 @@ export default function WhatsAppFAB() {
                 href={buildUrl(text)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 w-full text-left bg-slate-50 hover:bg-green-50 hover:border-green-300 border border-slate-200 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-700 transition-all duration-150"
+                className="flex items-center gap-2 w-full text-left bg-slate-50 hover:bg-white hover:border-[#0F2B5B] border border-slate-200 rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors duration-150"
                 onClick={() => setOpen(false)}
               >
-                <MessageSquare className="w-3.5 h-3.5 text-[#25D366] flex-shrink-0" />
+                <MessageSquare className="w-3.5 h-3.5 text-[#0F2B5B] flex-shrink-0" />
                 {label}
               </a>
             ))}
@@ -78,13 +76,13 @@ export default function WhatsAppFAB() {
               href={buildUrl("Hello, I am interested in thermal paper rolls.\nPlease send me price and MOQ.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#20b858] text-white font-extrabold py-3 rounded-xl text-sm transition-colors"
+              className="flex items-center justify-center gap-2 w-full bg-[#0F2B5B] hover:bg-[#12346d] text-white font-semibold py-3 rounded-md text-sm transition-colors"
               onClick={() => setOpen(false)}
             >
               <Phone className="w-4 h-4" />
               Open WhatsApp
             </a>
-            <div className="flex items-center justify-center gap-2 w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 text-xs text-slate-500">
+            <div className="flex items-center justify-center gap-2 w-full bg-slate-50 border border-slate-200 rounded-md py-2.5 text-xs text-slate-500">
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-[#07C160] flex-shrink-0" aria-hidden="true">
                 <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.306A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.117l-.292-.174-3.03.796.808-2.96-.19-.303A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.406-5.884c-.242-.121-1.43-.706-1.652-.786-.222-.081-.383-.121-.545.121-.161.242-.624.786-.765.948-.14.161-.282.181-.524.06-.242-.12-1.02-.376-1.943-1.198-.718-.64-1.203-1.431-1.344-1.673-.14-.242-.015-.373.106-.493.108-.108.242-.282.363-.423.12-.14.16-.242.242-.403.08-.161.04-.302-.02-.423-.061-.12-.545-1.314-.747-1.798-.196-.472-.396-.408-.545-.415l-.464-.008c-.161 0-.423.06-.645.302-.222.242-.847.828-.847 2.02 0 1.19.867 2.34.988 2.502.12.161 1.706 2.604 4.134 3.651.578.25 1.029.398 1.38.51.58.184 1.108.158 1.525.096.465-.069 1.43-.585 1.632-1.15.201-.564.201-1.047.14-1.149-.06-.1-.222-.161-.464-.282z"/>
               </svg>
@@ -98,10 +96,10 @@ export default function WhatsAppFAB() {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close WhatsApp chat" : "Chat on WhatsApp"}
-        className={`w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 ${
+        className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-colors duration-200 ${
           open
             ? "bg-slate-700 hover:bg-slate-600"
-            : "bg-[#25D366] hover:bg-[#20b858]"
+            : "bg-[#0F2B5B] hover:bg-[#12346d]"
         }`}
       >
         {open ? (
@@ -116,7 +114,7 @@ export default function WhatsAppFAB() {
 
       {/* Pulse ring when closed */}
       {!open && (
-        <span className="absolute bottom-0 right-0 w-14 h-14 rounded-full bg-[#25D366] opacity-40 animate-ping pointer-events-none" />
+        <span className="absolute bottom-0 right-0 w-14 h-14 rounded-full bg-[#0F2B5B] opacity-20 animate-ping pointer-events-none" />
       )}
     </div>
   );
