@@ -10,6 +10,9 @@ import { SITE, CERTIFICATIONS } from "@/config/siteData";
 
 import { CountryFlag } from "@/components/ui/country-flag";
 
+const SOUTH_AFRICA_LANDMARK_IMG =
+  "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=1600&q=80";
+
 export const metadata: Metadata = {
   title: "Thermal Paper Supplier South Africa | Durban",
   description:
@@ -136,11 +139,31 @@ export default function SouthAfricaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative bg-gradient-to-br from-[#0A1F44] via-[#0d2a5e] to-[#1a3a6e] text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #007A4D 0%, transparent 50%), radial-gradient(circle at 80% 20%, #FFB612 0%, transparent 40%)" }} />
+      <section className="relative bg-[#0A1F44] text-white overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-[center_35%] opacity-70 lg:bg-[center_42%] lg:opacity-78"
+          style={{ backgroundImage: `url(${SOUTH_AFRICA_LANDMARK_IMG})` }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-[#06152d]/72 lg:bg-transparent"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-[#06152d] via-[#07172f]/94 to-[#07172f]/28"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-[#06152d]/80 via-transparent to-[#06152d]/25"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 opacity-12 mix-blend-screen"
+          style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #007A4D 0%, transparent 48%), radial-gradient(circle at 82% 20%, #FFB612 0%, transparent 42%)" }}
+          aria-hidden="true"
+        />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-          <nav className="flex items-center gap-2 text-blue-200 text-sm mb-8 flex-wrap">
+          <nav className="flex items-center gap-2 text-blue-100 text-sm mb-8 flex-wrap drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)]">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" />
             <Link href="/markets" className="hover:text-white transition-colors">Markets</Link>
@@ -151,8 +174,8 @@ export default function SouthAfricaPage() {
           </nav>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-yellow-500/20 border border-yellow-400/30 rounded-full px-4 py-2 mb-6">
+            <div className="drop-shadow-[0_3px_12px_rgba(0,0,0,0.8)]">
+              <div className="inline-flex items-center gap-2 bg-[#06152d]/55 border border-yellow-400/40 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
                 <TrendingUp className="w-4 h-4 text-yellow-400" />
                 <span className="text-yellow-300 text-sm font-medium">Africa&apos;s Most Developed Retail Market — 10M+ POS Terminals</span>
               </div>
@@ -160,7 +183,7 @@ export default function SouthAfricaPage() {
                 Thermal Paper Rolls<br />
                 <span className="text-amber-400">Supplier for South Africa</span>
               </h1>
-              <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+              <p className="text-xl text-white/92 mb-8 leading-relaxed">
                 Premium factory-direct supply for South African distributors.
                 CIF pricing to <strong className="text-white">Port of Durban</strong> and Cape Town.
                 SADC gateway for Zimbabwe, Zambia, Mozambique, and beyond.
@@ -168,7 +191,7 @@ export default function SouthAfricaPage() {
 
               <div className="flex flex-wrap gap-3 mb-8">
                 {["CIF Durban / Cape Town", "Premium Quality", "ISO 9001", "BPA-Free", "SADC CO Available", "ATM Compatible"].map((b) => (
-                  <span key={b} className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 rounded-full px-3 py-1.5 text-sm text-blue-100">
+                  <span key={b} className="inline-flex items-center gap-1.5 bg-[#06152d]/55 border border-white/25 rounded-full px-3 py-1.5 text-sm text-white backdrop-blur-sm">
                     <CheckCircle className="w-3.5 h-3.5 text-green-400" />
                     {b}
                   </span>
@@ -199,10 +222,10 @@ export default function SouthAfricaPage() {
                 { value: "6+", label: "SADC Countries", icon: "🗺️" },
                 { value: "2hr", label: "Quote Response", icon: "⚡" },
               ].map((stat) => (
-                <div key={stat.label} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 text-center">
+                <div key={stat.label} className="bg-[#06152d]/68 backdrop-blur-md border border-white/25 rounded-2xl p-5 text-center shadow-xl shadow-black/20">
                   <div className="text-3xl mb-1">{stat.icon}</div>
                   <div className="text-2xl font-bold text-amber-400">{stat.value}</div>
-                  <div className="text-blue-200 text-sm mt-1">{stat.label}</div>
+                  <div className="text-white/85 text-sm mt-1">{stat.label}</div>
                 </div>
               ))}
             </div>

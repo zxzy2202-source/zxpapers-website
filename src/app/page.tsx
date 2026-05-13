@@ -49,7 +49,6 @@ const HERO_SLIDE_2 =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
 const HERO_SLIDE_3 =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
-const PRINTING_SLITTING_VIDEO = "/videos/printing-slitting-line.mp4";
 
 const testimonials = [
   {
@@ -932,18 +931,12 @@ export default async function HomePage() {
               </p>
 
               <div className="mt-8 overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
-                <video
-                  className="aspect-[4/3] w-full object-cover"
-                  poster={HERO_SLIDE_2}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
+                <div
+                  className="aspect-[4/3] w-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${HERO_SLIDE_2})` }}
                   aria-label="Thermal paper printing, slitting, and converting line"
-                >
-                  <source src={PRINTING_SLITTING_VIDEO} type="video/mp4" />
-                </video>
+                  role="img"
+                />
                 <div className="grid grid-cols-2 gap-px bg-slate-200">
                   {[
                     { label: "Production Lines", value: FACTORY.productionLines },
