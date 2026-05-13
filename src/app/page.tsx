@@ -751,7 +751,7 @@ export default async function HomePage() {
                           <div className="flex gap-2">
                             <Link
                               href={`/contact?product=${encodeURIComponent(size)}`}
-                              className="inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-slate-300 px-3 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:border-[#0F2B5B] hover:text-[#0F2B5B]"
+                              className="inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-blue-700 bg-blue-700 px-3 py-2.5 text-sm font-semibold text-[#F8FAFC] transition-colors hover:border-blue-800 hover:bg-blue-800 hover:text-[#F8FAFC]"
                             >
                               <MessageSquare className="w-4 h-4" />
                               Leave Message
