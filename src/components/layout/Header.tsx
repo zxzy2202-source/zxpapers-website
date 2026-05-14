@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, type FocusEvent, type KeyboardEvent } from "react";
+import { useState, useEffect, useRef, type FocusEvent, type KeyboardEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, Phone, Mail, ArrowRight } from "lucide-react";
@@ -67,7 +67,28 @@ export default function Header() {
   const [mobileOpen, setMobileOpen]         = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled]             = useState(false);
+  const closeTimerRef = useRef<number | null>(null);
   const pathname = usePathname();
+
+  const cancelDropdownClose = () => {
+    if (closeTimerRef.current) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  };
+
+  const openDropdown = (label: string) => {
+    cancelDropdownClose();
+    setActiveDropdown(label);
+  };
+
+  const scheduleDropdownClose = () => {
+    cancelDropdownClose();
+    closeTimerRef.current = window.setTimeout(() => {
+      setActiveDropdown(null);
+      closeTimerRef.current = null;
+    }, 220);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -78,6 +99,7 @@ export default function Header() {
   useEffect(() => {
     setMobileOpen(false);
     setActiveDropdown(null);
+    cancelDropdownClose();
   }, [pathname]);
 
   useEffect(() => {
@@ -85,15 +107,21 @@ export default function Header() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    return () => cancelDropdownClose();
+  }, []);
+
   const handleDropdownBlur = (event: FocusEvent<HTMLDivElement>) => {
     if (!event.currentTarget.contains(event.relatedTarget)) {
       setActiveDropdown(null);
+      cancelDropdownClose();
     }
   };
 
   const handleDropdownKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Escape") {
       setActiveDropdown(null);
+      cancelDropdownClose();
     }
   };
 
@@ -166,9 +194,9 @@ export default function Header() {
               return (
                 <div
                   key={item.label}
-                  className="relative"
-                  onMouseEnter={() => setActiveDropdown(item.label)}
-                  onMouseLeave={() => setActiveDropdown(null)}
+                  className="relative flex h-[68px] items-center"
+                  onMouseEnter={() => openDropdown(item.label)}
+                  onMouseLeave={scheduleDropdownClose}
                   onBlur={handleDropdownBlur}
                   onKeyDown={handleDropdownKeyDown}
                 >
@@ -177,8 +205,11 @@ export default function Header() {
                     className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-700 hover:text-[#0F2B5B] transition-colors rounded-md hover:bg-slate-50 whitespace-nowrap"
                     aria-expanded={activeDropdown === item.label}
                     aria-haspopup="true"
-                    onClick={() => setActiveDropdown(activeDropdown === item.label ? null : item.label)}
-                    onFocus={() => setActiveDropdown(item.label)}
+                    onClick={() => {
+                      cancelDropdownClose();
+                      setActiveDropdown(activeDropdown === item.label ? null : item.label);
+                    }}
+                    onFocus={() => openDropdown(item.label)}
                   >
                     {item.label}
                     <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === item.label ? "rotate-180" : ""}`} />
@@ -186,13 +217,15 @@ export default function Header() {
 
                   {activeDropdown === item.label && (
                     <div
-                      className="absolute top-full left-0 mt-1 bg-white rounded-md shadow-lg border border-slate-200 overflow-hidden z-50"
+                      className="absolute top-full left-0 bg-white rounded-md shadow-xl border border-slate-200 overflow-hidden z-50"
                       style={{
                         minWidth: hasRegionGroups ? "860px" : hasSizeGroups ? "920px" : (item.featured ? "580px" : "220px"),
                         // For Markets menu, align to avoid going off-screen
                         ...(hasRegionGroups ? { left: "50%", transform: "translateX(-50%)" } : {}),
                       }}
                       role="menu"
+                      onMouseEnter={cancelDropdownClose}
+                      onMouseLeave={scheduleDropdownClose}
                     >
                       {/* ── Markets Mega Menu: three-column region layout ── */}
                       {hasRegionGroups ? (
@@ -206,7 +239,7 @@ export default function Header() {
                               <Link
                                 key={sub.href}
                                 href={sub.href}
-                                className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors"
+                                className="flex items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors"
                                 role="menuitem"
                               >
                                 <NavLabelWithIcon label={sub.label} countryCode={sub.countryCode} />
@@ -255,7 +288,7 @@ export default function Header() {
                                     <Link
                                       key={country.href}
                                       href={country.href}
-                                      className="flex items-center justify-between py-1.5 px-2 rounded-md text-sm text-slate-600 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors group"
+                                      className="flex items-center justify-between py-2 px-2 rounded-md text-sm text-slate-600 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors group"
                                       role="menuitem"
                                     >
                                       <span className="flex items-center gap-2 min-w-0">
@@ -297,7 +330,7 @@ export default function Header() {
                               <Link
                                 key={sub.href}
                                 href={sub.href}
-                                className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors whitespace-nowrap"
+                                className="flex items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors whitespace-nowrap"
                                 role="menuitem"
                               >
                                 {sub.label}
@@ -321,7 +354,7 @@ export default function Header() {
                                       <Link
                                         key={sz.href + sz.label}
                                         href={sz.href}
-                                        className="flex items-center justify-between py-1.5 px-2 rounded-md text-sm text-slate-700 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors group whitespace-nowrap"
+                                        className="flex items-center justify-between py-2 px-2 rounded-md text-sm text-slate-700 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors group whitespace-nowrap"
                                         role="menuitem"
                                       >
                                         <span className="flex items-center gap-2 whitespace-nowrap">
@@ -362,7 +395,7 @@ export default function Header() {
                                 <Link
                                   key={feat.href}
                                   href={feat.href}
-                                  className="flex items-center justify-between px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors group"
+                                  className="flex items-center justify-between px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors group"
                                   role="menuitem"
                                 >
                                   <span className="flex items-center gap-2">
@@ -450,7 +483,7 @@ export default function Header() {
                           <Link
                             key={sub.href + sub.label}
                             href={sub.href}
-                            className="block px-3 py-2 text-sm text-slate-600 hover:text-[#0F2B5B] transition-colors"
+                            className="block px-3 py-2.5 text-sm text-slate-600 hover:text-[#0F2B5B] transition-colors"
                           >
                             {sub.label}
                           </Link>
@@ -474,7 +507,7 @@ export default function Header() {
                                   <Link
                                     key={country.href}
                                     href={country.href}
-                                    className="flex items-center justify-between px-3 py-1.5 text-sm text-slate-600 hover:text-[#0F2B5B] transition-colors"
+                                    className="flex items-center justify-between px-3 py-2.5 text-sm text-slate-600 hover:text-[#0F2B5B] transition-colors"
                                   >
                                     <span className="flex items-center gap-2">
                                       {country.countryCode ? (
@@ -511,7 +544,7 @@ export default function Header() {
                                   <Link
                                     key={sz.href + sz.label}
                                     href={sz.href}
-                                    className="flex items-center justify-between px-3 py-1.5 text-sm text-slate-600 hover:text-[#0F2B5B] transition-colors"
+                                    className="flex items-center justify-between px-3 py-2.5 text-sm text-slate-600 hover:text-[#0F2B5B] transition-colors"
                                   >
                                     <span className="flex items-center gap-2">
                                       <span className="w-1 h-1 rounded-full bg-[#0F2B5B]/60 flex-shrink-0" />
