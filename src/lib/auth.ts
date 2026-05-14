@@ -15,16 +15,36 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       async authorize(credentials) {
         if (!credentials?.username || !credentials?.password) return null;
 
-        const admin = await prisma.admin.findUnique({
-          where: { username: credentials.username as string },
-        });
+        const username = credentials.username as string;
+        const password = credentials.password as string;
+        const fallbackUsername = process.env.ADMIN_USERNAME?.trim();
+        const fallbackPasswordHash = process.env.ADMIN_PASSWORD_HASH?.trim();
+
+        if (fallbackUsername && fallbackPasswordHash && username === fallbackUsername) {
+          const isFallbackValid = await bcrypt.compare(password, fallbackPasswordHash);
+
+          if (isFallbackValid) {
+            return {
+              id: "env-admin",
+              name: "Admin",
+              email: fallbackUsername,
+            };
+          }
+        }
+
+        let admin;
+        try {
+          admin = await prisma.admin.findUnique({
+            where: { username },
+          });
+        } catch (error) {
+          console.error("[auth] Admin lookup failed:", error);
+          return null;
+        }
 
         if (!admin) return null;
 
-        const isValid = await bcrypt.compare(
-          credentials.password as string,
-          admin.password
-        );
+        const isValid = await bcrypt.compare(password, admin.password);
 
         if (!isValid) return null;
 

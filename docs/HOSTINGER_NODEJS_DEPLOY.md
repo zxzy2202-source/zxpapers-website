@@ -51,6 +51,7 @@ Optional but recommended:
 - `AI_ARTICLE_MODEL`
 - `AI_ARTICLE_REASONING_EFFORT`
 - `ALLOW_LOCAL_FILE_UPLOADS=true`
+- `ADMIN_USERNAME` and `ADMIN_PASSWORD_HASH` for emergency admin login if the database admin table is unavailable
 - `BLOB_READ_WRITE_TOKEN`
 - `ANTHROPIC_API_KEY`
 - `ANTHROPIC_BASE_URL`
@@ -85,6 +86,7 @@ If the password contains special characters, URL-encode it before placing it int
 - In production, `/api/admin/seed` requires `SEED_ADMIN_TOKEN` and automatically disables itself after the first admin is created.
 - If Claude credentials are not set, ALT generation falls back to rule-based generation.
 - AI article generation requires a working `OPENAI_API_KEY`.
+- Emergency admin login uses `ADMIN_USERNAME` plus a bcrypt `ADMIN_PASSWORD_HASH`. Remove these variables after the database admin account is working.
 
 ## Current admin URL pattern
 
