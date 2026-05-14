@@ -2,6 +2,9 @@
   "name": "thermalrollpro",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "20.x || 22.x"
+  },
   "scripts": {
     "dev": "next dev --port ${PORT:-3001}",
     "build": "prisma generate && next build",

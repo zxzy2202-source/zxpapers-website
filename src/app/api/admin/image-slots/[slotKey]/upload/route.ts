@@ -14,6 +14,8 @@ interface RouteContext {
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"];
+const allowLocalFileUploads =
+  process.env.ALLOW_LOCAL_FILE_UPLOADS === "true" || process.env.NODE_ENV !== "production";
 
 export async function POST(request: NextRequest, context: RouteContext) {
   const session = await auth();
@@ -63,6 +65,13 @@ export async function POST(request: NextRequest, context: RouteContext) {
       storedPath = blob.url;
       storageType = "blob";
     } else {
+      if (!allowLocalFileUploads) {
+        return NextResponse.json(
+          { error: "生产环境未配置 BLOB_READ_WRITE_TOKEN，已禁用本地上传存储" },
+          { status: 500 }
+        );
+      }
+
       const uploadDir = path.join(process.cwd(), "public", "uploads", "images");
       const filePath = path.join(uploadDir, filename);
       await mkdir(uploadDir, { recursive: true });
