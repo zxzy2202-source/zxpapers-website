@@ -8,12 +8,19 @@ export async function middleware(req: NextRequest) {
   const isApiAuth = req.nextUrl.pathname.startsWith("/api/auth");
   const isApiAdmin = req.nextUrl.pathname.startsWith("/api/admin");
   const isApiSeed = req.nextUrl.pathname === "/api/admin/seed" || req.nextUrl.pathname === "/api/admin/seed/";
+  const isApiPasswordReset =
+    req.nextUrl.pathname === "/api/admin/reset-password" ||
+    req.nextUrl.pathname === "/api/admin/reset-password/";
 
   // 放行认证 API
   if (isApiAuth) return NextResponse.next();
 
   // Seed API 单独由路由层使用初始化令牌控制
   if (isApiSeed) {
+    return NextResponse.next();
+  }
+
+  if (isApiPasswordReset) {
     return NextResponse.next();
   }
 
