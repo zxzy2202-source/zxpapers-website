@@ -6,6 +6,6 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: "file:./prisma/admin.db",
+    url: process.env.DATABASE_URL || "mysql://root:password@127.0.0.1:3306/zxpapers",
   },
 });

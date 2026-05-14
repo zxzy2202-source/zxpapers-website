@@ -15,7 +15,7 @@ interface RouteContext {
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"];
 const allowLocalFileUploads =
-  process.env.ALLOW_LOCAL_FILE_UPLOADS === "true" || process.env.NODE_ENV !== "production";
+  process.env.ALLOW_LOCAL_FILE_UPLOADS !== "false";
 
 export async function POST(request: NextRequest, context: RouteContext) {
   const session = await auth();
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest, context: RouteContext) {
     } else {
       if (!allowLocalFileUploads) {
         return NextResponse.json(
-          { error: "生产环境未配置 BLOB_READ_WRITE_TOKEN，已禁用本地上传存储" },
+          { error: "当前环境已禁用本地文件上传，请启用 Hostinger 文件存储或配置对象存储" },
           { status: 500 }
         );
       }

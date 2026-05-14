@@ -1,26 +1,24 @@
 # Hostinger Node.js Hosting Deployment
 
-This project can run on Hostinger Node.js Hosting, but production should not rely on local SQLite or local uploaded files.
+This project is prepared for Hostinger Business Web Hosting with:
+
+- Hostinger MySQL
+- Hostinger File Manager / local uploaded files
 
 ## Recommended production setup
 
 - Runtime: Node.js `20.x` or `22.x`
 - Deploy source: GitHub repository
-- Database: Turso/libSQL
-- Upload storage: object storage via `BLOB_READ_WRITE_TOKEN`
+- Database: Hostinger MySQL
+- Upload storage: Hostinger local file storage
 
-## Why not use local SQLite on Hostinger Node.js Hosting
+## Database strategy
 
-This app defaults to:
+This app now targets MySQL in production. Use the MySQL credentials from hPanel and build:
 
-- `DATABASE_URL=file:./prisma/admin.db`
-- local image uploads in `public/uploads`
+- `DATABASE_URL=mysql://DB_USER:DB_PASSWORD@HOST:3306/DB_NAME`
 
-That is acceptable for local development, but not recommended for managed Node.js hosting because:
-
-- the database file is not stored in Git
-- local files may not behave like durable storage across redeploys
-- a fresh deployment can start with an empty backend
+Use the exact MySQL host, database name, username, and password from your Hostinger panel.
 
 ## hPanel deployment settings
 
@@ -44,7 +42,6 @@ Minimum required:
 - `NEXTAUTH_SECRET`
 - `NEXTAUTH_URL`
 - `DATABASE_URL`
-- `TURSO_AUTH_TOKEN` if using Turso
 - `OPENAI_API_KEY` if you want AI article generation
 
 Optional but recommended:
@@ -52,19 +49,21 @@ Optional but recommended:
 - `OPENAI_BASE_URL`
 - `AI_ARTICLE_MODEL`
 - `AI_ARTICLE_REASONING_EFFORT`
+- `ALLOW_LOCAL_FILE_UPLOADS=true`
 - `BLOB_READ_WRITE_TOKEN`
-- `ALLOW_LOCAL_FILE_UPLOADS=false`
 - `ANTHROPIC_API_KEY`
 - `ANTHROPIC_BASE_URL`
 
-## Turso setup
+## Hostinger MySQL values
 
-Recommended database target:
+From hPanel collect:
 
-- `DATABASE_URL=libsql://...`
-- `TURSO_AUTH_TOKEN=...`
+- database host
+- database name
+- database username
+- database password
 
-This project already supports libSQL/Turso in the Prisma adapter layer.
+If the password contains special characters, URL-encode it before placing it into `DATABASE_URL`.
 
 ## First deploy checklist
 
@@ -79,7 +78,9 @@ This project already supports libSQL/Turso in the Prisma adapter layer.
 
 ## Important notes
 
-- On Hostinger production, keep `ALLOW_LOCAL_FILE_UPLOADS=false` and set `BLOB_READ_WRITE_TOKEN` for durable uploads.
+- This setup is designed to use Hostinger local file storage, so keep `ALLOW_LOCAL_FILE_UPLOADS=true`.
+- Uploaded files are saved into `public/uploads`.
+- `BLOB_READ_WRITE_TOKEN` is optional and only needed if you later switch to object storage.
 - If Claude credentials are not set, ALT generation falls back to rule-based generation.
 - AI article generation requires a working `OPENAI_API_KEY`.
 
