@@ -170,6 +170,33 @@ export default function ImageManager({ initialData }: ImageManagerProps) {
     }
   }
 
+  async function restoreLegacyHomeImages() {
+    setLoading(true);
+    setMessage("正在恢复旧首页图片...");
+    try {
+      const response = await fetch("/api/admin/image-slots/bootstrap-legacy-home", { method: "POST" });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "恢复失败");
+
+      const parts = [
+        `已恢复 ${result.restoredBindings || 0} 个槽位`,
+        `新建资源 ${result.createdAssets || 0} 个`,
+        `复用资源 ${result.reusedAssets || 0} 个`,
+      ];
+
+      if (Array.isArray(result.missingFiles) && result.missingFiles.length > 0) {
+        parts.push(`缺少文件 ${result.missingFiles.length} 个`);
+      }
+
+      setMessage(parts.join("，"));
+      await refresh();
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "恢复失败");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -308,6 +335,15 @@ export default function ImageManager({ initialData }: ImageManagerProps) {
             disabled={loading}
           >
             初始化全部槽位
+          </button>
+        </div>
+        <div className="mt-3">
+          <button
+            onClick={() => void restoreLegacyHomeImages()}
+            className="rounded-xl border border-blue-200 px-4 py-2 text-sm font-medium text-blue-700"
+            disabled={loading}
+          >
+            恢复旧首页图片
           </button>
         </div>
         {message ? <p className="mt-3 text-sm text-blue-700">{message}</p> : null}
