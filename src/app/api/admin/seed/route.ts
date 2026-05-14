@@ -18,7 +18,28 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { username, password, name } = body;
+    const { username, password, name, seedToken } = body;
+
+    if (process.env.NODE_ENV === "production") {
+      const expectedToken = process.env.SEED_ADMIN_TOKEN?.trim();
+      const providedToken =
+        request.headers.get("x-seed-token")?.trim() ||
+        (typeof seedToken === "string" ? seedToken.trim() : "");
+
+      if (!expectedToken) {
+        return NextResponse.json(
+          { error: "SEED_ADMIN_TOKEN is not configured" },
+          { status: 500 }
+        );
+      }
+
+      if (providedToken !== expectedToken) {
+        return NextResponse.json(
+          { error: "Invalid seed token" },
+          { status: 401 }
+        );
+      }
+    }
 
     if (!username || !password) {
       return NextResponse.json(

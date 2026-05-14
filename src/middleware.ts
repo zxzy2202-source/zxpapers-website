@@ -12,8 +12,8 @@ export async function middleware(req: NextRequest) {
   // 放行认证 API
   if (isApiAuth) return NextResponse.next();
 
-  // Seed API 仅在开发环境放行，生产环境需要认证
-  if (isApiSeed && process.env.NODE_ENV === "development") {
+  // Seed API 单独由路由层使用初始化令牌控制
+  if (isApiSeed) {
     return NextResponse.next();
   }
 

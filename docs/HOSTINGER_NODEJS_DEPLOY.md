@@ -41,6 +41,7 @@ Minimum required:
 - `AUTH_SECRET`
 - `NEXTAUTH_SECRET`
 - `NEXTAUTH_URL`
+- `SEED_ADMIN_TOKEN`
 - `DATABASE_URL`
 - `OPENAI_API_KEY` if you want AI article generation
 
@@ -73,7 +74,7 @@ If the password contains special characters, URL-encode it before placing it int
 4. Set Node.js version to `20.x` or `22.x`.
 5. Import environment variables.
 6. Deploy the app.
-7. Open `/api/admin/seed` once only if you need to create the first admin in a new empty database and you are in a controlled setup.
+7. Send a `POST` request to `/api/admin/seed` once with `username`, `password`, `name`, and `seedToken`.
 8. Log in to `/admin/login`.
 
 ## Important notes
@@ -81,6 +82,7 @@ If the password contains special characters, URL-encode it before placing it int
 - This setup is designed to use Hostinger local file storage, so keep `ALLOW_LOCAL_FILE_UPLOADS=true`.
 - Uploaded files are saved into `public/uploads`.
 - `BLOB_READ_WRITE_TOKEN` is optional and only needed if you later switch to object storage.
+- In production, `/api/admin/seed` requires `SEED_ADMIN_TOKEN` and automatically disables itself after the first admin is created.
 - If Claude credentials are not set, ALT generation falls back to rule-based generation.
 - AI article generation requires a working `OPENAI_API_KEY`.
 
