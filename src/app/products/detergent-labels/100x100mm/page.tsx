@@ -99,6 +99,7 @@ export default function Page() {
         applications={apps100x100}
         markets={["Global", "Americas", "Europe"]}
         productImage={DETERGENT_LABELS_IMG}
+        productImageSlot="detergent-labels"
       />
     </>
   );

@@ -4,6 +4,7 @@ import Link from "next/link";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { ArrowRight, CheckCircle, Ship, MessageSquare, Award, TrendingUp, MapPin } from "lucide-react";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 import { CountryFlag } from "@/components/ui/country-flag";
 
@@ -64,8 +65,13 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function TurkeyPage() {
+export default async function TurkeyPage() {
   const waMsg = encodeURIComponent("Hello, I am a thermal paper distributor in Turkey. Please send me your CIF Istanbul price list and MOQ for 80×80mm and 80×70mm rolls.");
+  const heroImage = await getSlotImage(
+    "markets:turkey-hero",
+    "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1400&q=60"
+  );
+
   return (
     <Layout>
       <script
@@ -73,7 +79,7 @@ export default function TurkeyPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <section className="relative bg-gradient-to-br from-[#0F2B5B] via-[#1a3a6e] to-[#0d2347] text-white py-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1400&q=60')", backgroundSize: "cover", backgroundPosition: "center" }} />
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url('${heroImage}')`, backgroundSize: "cover", backgroundPosition: "center" }} />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F2B5B]/80 to-transparent" />
         <div className="relative max-w-6xl mx-auto">
           <nav className="text-sm text-blue-300 mb-4 flex items-center gap-1 flex-wrap">

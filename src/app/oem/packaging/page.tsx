@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: "Private Label Packaging | Custom Branding",
@@ -38,7 +39,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function PackagingPage() {
+export default async function PackagingPage() {
+  const heroImage = await getSlotImage("oem:packaging-hero", IMG);
   return (
     <Layout>
       <script
@@ -46,7 +48,7 @@ export default function PackagingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="relative bg-[#0F2B5B] text-white py-14 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${IMG})` }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${heroImage})` }} />
         <div className="relative container">
           <div className="text-amber-400 text-sm font-semibold mb-3">
             <Link href="/oem" className="hover:underline">OEM</Link> / Packaging

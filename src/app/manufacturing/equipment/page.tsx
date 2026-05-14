@@ -3,6 +3,7 @@ import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import { CheckCircle, Cpu, ArrowRight, Microscope, Settings, Wind } from "lucide-react";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: "Manufacturing Equipment | German & Japanese",
@@ -80,7 +81,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function EquipmentPage() {
+export default async function EquipmentPage() {
+  const equipmentHeroImage = await getSlotImage("manufacturing:equipment-hero", IMG_EQUIPMENT);
   return (
     <Layout>
       <script
@@ -88,7 +90,7 @@ export default function EquipmentPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="relative bg-[#0F2B5B] text-white py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${IMG_EQUIPMENT})` }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${equipmentHeroImage})` }} />
         <div className="relative container">
           <div className="text-amber-400 text-sm font-semibold mb-3">
             <Link href="/manufacturing" className="hover:underline">Manufacturing</Link> / Equipment

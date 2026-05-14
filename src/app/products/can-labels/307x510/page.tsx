@@ -99,6 +99,7 @@ export default function Page() {
         applications={apps307x510}
         markets={["Global", "Americas"]}
         productImage={CAN_LABELS_IMG}
+        productImageSlot="can-labels"
       />
     </>
   );

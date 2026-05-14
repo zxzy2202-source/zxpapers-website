@@ -25,9 +25,13 @@ export async function middleware(req: NextRequest) {
     console.error("[middleware] AUTH_SECRET is not configured");
     return NextResponse.json({ error: "Server misconfiguration" }, { status: 500 });
   }
-  const isSecure = req.nextUrl.protocol === "https:" || process.env.NODE_ENV === "production";
-  const cookieName = isSecure ? "__Secure-authjs.session-token" : "authjs.session-token";
-  const token = await getToken({ req, secret, cookieName, salt: cookieName });
+  const cookieNames = ["authjs.session-token", "__Secure-authjs.session-token"];
+  let token = null;
+
+  for (const cookieName of cookieNames) {
+    token = await getToken({ req, secret, cookieName, salt: cookieName });
+    if (token) break;
+  }
   const isAuthenticated = !!token;
 
   // 保护 admin API 路由

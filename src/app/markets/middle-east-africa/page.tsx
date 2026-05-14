@@ -11,6 +11,7 @@ import {
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 import PageHero from "@/components/shared/PageHero";
 import Image from "next/image";
+import { getSlotImages } from "@/lib/imageSlotUtils";
 
 import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 
@@ -332,7 +333,12 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function MiddleEastAfricaPage() {
+export default async function MiddleEastAfricaPage() {
+  const imgs = await getSlotImages([
+    { slot: "markets:middle-east-africa-hero", fallback: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1400&q=80" },
+    { slot: "oem:factory", fallback: FACTORY_IMG },
+    { slot: "products:thermal-rolls", fallback: ROLLS_IMG },
+  ]);
   return (
     <Layout>
       <script
@@ -341,7 +347,7 @@ export default function MiddleEastAfricaPage() {
       />
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
-        bgImage="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1400&q=80"
+        bgImage={imgs["markets:middle-east-africa-hero"]}
         overlayDir="left"
         overlayOpacity={50}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Markets", href: "/markets" }, { label: "Middle East & Africa" }]}
@@ -717,7 +723,7 @@ export default function MiddleEastAfricaPage() {
             <div className="space-y-6">
               <div className="relative">
                 <Image
-                  src={FACTORY_IMG}
+                  src={imgs["oem:factory"]}
                   alt="ZhixinPaper factory for Middle East Africa"
                   className="w-full rounded-2xl shadow-2xl"
                   width={600}

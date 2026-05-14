@@ -2,6 +2,7 @@ import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import { SITE } from "@/config/siteData";
 import Image from "next/image";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 import {
   CheckCircle, ArrowRight, Package, Award, Globe,
   Phone, MessageSquare, Ship, Zap, Layers,
@@ -11,7 +12,14 @@ export interface ApplicationItem {
   name: string;
   image: string;
   description: string;
+  slotKey?: string;
 }
+
+export type ProductImageSlot =
+  | "thermal-rolls"
+  | "thermal-labels"
+  | "can-labels"
+  | "detergent-labels";
 
 interface SpecRow {
   label: string;
@@ -50,6 +58,7 @@ interface SizeDetailPageProps {
   applications: ApplicationItem[];
   markets?: string[];
   productImage: string;
+  productImageSlot?: ProductImageSlot;
   parentPath?: string;
   parentLabel?: string;
   palletInfo?: PalletInfo;
@@ -60,7 +69,14 @@ const TYPE_LABELS: Record<string, { parent: string; parentPath: string }> = {
   labels: { parent: "Thermal Labels",      parentPath: "/products/blank-thermal-labels" },
 };
 
-export default function SizeDetailPage({
+const PRODUCT_IMAGE_SLOT_KEYS: Record<ProductImageSlot, string> = {
+  "thermal-rolls": "thermal-rolls:hero",
+  "thermal-labels": "thermal-labels:hero",
+  "can-labels": "can-labels:hero",
+  "detergent-labels": "detergent-labels:hero",
+};
+
+export default async function SizeDetailPage({
   type,
   sizeLabel,
   slug,
@@ -71,6 +87,7 @@ export default function SizeDetailPage({
   applications,
   markets = [],
   productImage,
+  productImageSlot,
   parentPath,
   parentLabel,
   palletInfo,
@@ -78,6 +95,15 @@ export default function SizeDetailPage({
   const typeInfo = TYPE_LABELS[type] ?? TYPE_LABELS.rolls;
   const resolvedParentPath  = parentPath  ?? typeInfo.parentPath;
   const resolvedParentLabel = parentLabel ?? typeInfo.parent;
+  const resolvedProductImage = productImageSlot
+    ? await getSlotImage(PRODUCT_IMAGE_SLOT_KEYS[productImageSlot], productImage)
+    : productImage;
+  const applicationImages = await Promise.all(
+    applications.map(async (item) => ({
+      ...item,
+      resolvedImage: item.slotKey ? await getSlotImage(item.slotKey, item.image) : item.image,
+    }))
+  );
 
   const waText = encodeURIComponent(
     `Hello, I need quotation for ${fullTitle}.\nQuantity: __ cartons / container\nDestination: __`
@@ -163,7 +189,7 @@ export default function SizeDetailPage({
             {/* Product image */}
             <div>
               <Image
-                src={productImage}
+                src={resolvedProductImage}
                 alt={fullTitle}
                 className="w-full rounded-lg border border-white/15"
                 loading="eager"
@@ -305,11 +331,11 @@ export default function SizeDetailPage({
                 <div>
                   <h2 className="text-xl font-extrabold text-slate-900 mb-5">Applications</h2>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                    {applications.map(({ name, image, description: appDesc }) => (
+                    {applicationImages.map(({ name, resolvedImage, description: appDesc }) => (
                       <div key={name} className="group bg-white border border-slate-200 hover:border-[#0F2B5B] rounded-md overflow-hidden transition-colors duration-200">
                         <div className="aspect-video overflow-hidden">
                           <Image
-                            src={image}
+                            src={resolvedImage}
                             alt={name}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             width={300}

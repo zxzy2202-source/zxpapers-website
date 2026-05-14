@@ -3,6 +3,7 @@ import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 import { MessageSquare, Phone, CheckCircle, ArrowRight, Package, Ship, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -71,7 +72,12 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function ThailandPage() {
+export default async function ThailandPage() {
+  const heroImage = await getSlotImage(
+    "markets:thailand-hero",
+    "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1400&q=80"
+  );
+
   return (
     <Layout>
       <script
@@ -79,7 +85,7 @@ export default function ThailandPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <PageHero
-        bgImage="https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1400&q=80"
+        bgImage={heroImage}
         overlayDir="left"
         overlayOpacity={50}
         breadcrumbs={[

@@ -6,6 +6,7 @@ import { CheckCircle, ArrowRight } from "lucide-react";
 import { detergentLabelSizes, DETERGENT_LABELS_IMG } from "./detergent-labels-data";
 import { SITE } from "@/config/siteData";
 import Image from "next/image";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: "Detergent Labels Manufacturer | Custom Labels",
@@ -39,7 +40,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function DetergentLabelsPage() {
+export default async function DetergentLabelsPage() {
+  const detergentLabelsImage = await getSlotImage("detergent-labels:hero", DETERGENT_LABELS_IMG);
   return (
     <Layout>
       <script
@@ -64,7 +66,7 @@ export default function DetergentLabelsPage() {
 
             {/* Hero */}
             <div className="flex flex-col sm:flex-row gap-6">
-              <Image src={DETERGENT_LABELS_IMG} alt="Detergent Labels" className="w-full sm:w-64 h-48 object-cover rounded-2xl flex-shrink-0"  width={256} height={192} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+              <Image src={detergentLabelsImage} alt="Detergent Labels" className="w-full sm:w-64 h-48 object-cover rounded-2xl flex-shrink-0"  width={256} height={192} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               <div>
                 <span className="inline-block bg-sky-100 text-sky-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">Detergent Labels</span>
                 <h1 className="font-sora text-3xl font-extrabold text-slate-900 mb-3">Detergent &amp; Cleaning Product Labels</h1>

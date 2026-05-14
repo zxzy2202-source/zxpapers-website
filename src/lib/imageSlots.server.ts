@@ -1,4 +1,6 @@
 import { del } from "@vercel/blob";
+import { unlink } from "node:fs/promises";
+import path from "node:path";
 import { prisma, ensureDbSchema } from "@/lib/prisma";
 import { type Prisma } from "@prisma/client";
 import {
@@ -233,6 +235,16 @@ export async function clearSlotImage(slotKey: string) {
         await del(blobUrl);
       } catch (e) {
         console.warn("Failed to delete blob file:", e);
+      }
+    }
+    // 如果是本地上传文件，则删除 public 目录中的文件
+    if (blobUrl?.startsWith("/uploads/") || blobUrl?.startsWith("/images/uploads/")) {
+      const relativePath = blobUrl.startsWith("/") ? blobUrl.slice(1) : blobUrl;
+      const localPath = path.join(process.cwd(), "public", relativePath.replace(/^images\//, ""));
+      try {
+        await unlink(localPath);
+      } catch (e) {
+        console.warn("Failed to delete local slot image:", e);
       }
     }
     // 删除数据库中的图片记录

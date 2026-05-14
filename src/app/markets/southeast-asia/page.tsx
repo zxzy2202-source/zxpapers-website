@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import { SITE } from "@/config/siteData";
 import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 import {
   MessageSquare, Phone, CheckCircle, ArrowRight,
@@ -247,7 +248,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function SoutheastAsiaPage() {
+export default async function SoutheastAsiaPage() {
+  const heroImage = await getSlotImage("markets:southeast-asia-hero", "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1400&q=80");
   return (
     <Layout>
       <script
@@ -256,7 +258,7 @@ export default function SoutheastAsiaPage() {
       />
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
-        bgImage="https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1400&q=80"
+        bgImage={heroImage}
         overlayDir="left"
         overlayOpacity={50}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Markets", href: "/markets" }, { label: "Southeast Asia" }]}

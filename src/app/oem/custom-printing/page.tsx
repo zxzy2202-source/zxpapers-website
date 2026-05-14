@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight, Printer, Package, Clock, ShieldCheck, Layers, Star } from "lucide-react";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: "OEM Custom Printing | Thermal Rolls & Labels",
@@ -145,7 +146,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function CustomPrintingPage() {
+export default async function CustomPrintingPage() {
+  const heroImage = await getSlotImage("oem:custom-printing-hero", IMG);
   return (
     <Layout>
       <script
@@ -157,7 +159,7 @@ export default function CustomPrintingPage() {
 
       {/* Hero */}
       <div className="relative bg-[#0F2B5B] text-white py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${IMG})` }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${heroImage})` }} />
         <div className="relative container">
           <div className="text-amber-400 text-sm font-semibold mb-3">
             <Link href="/oem" className="hover:underline">OEM Services</Link> / Custom Printing

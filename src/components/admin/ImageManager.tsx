@@ -230,7 +230,8 @@ export default function ImageManager({ initialData }: ImageManagerProps) {
       const response = await fetch(`/api/admin/image-slots/${encodeURIComponent(selectedSlot.slotKey)}/alt`, { method: "POST" });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "生成失败");
-      setMessage(`Alt 已更新：${result.alt}`);
+      const providerLabel = result.provider === "claude" ? "Claude" : "规则生成";
+      setMessage(result.warning ? `${result.warning}：${result.alt}` : `Alt 已更新（${providerLabel}）：${result.alt}`);
       await refresh();
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "生成 Alt 失败");
@@ -428,7 +429,7 @@ export default function ImageManager({ initialData }: ImageManagerProps) {
                     上传到当前槽位
                   </button>
                   <button onClick={() => void generateAlt()} disabled={loading || !selectedSlot.image} className="rounded-xl border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 disabled:opacity-50">
-                    用 Claude 生成 Alt
+                    智能生成 Alt
                   </button>
                   <button onClick={() => void clearSlot()} disabled={loading || !selectedSlot.image} className="rounded-xl border border-red-200 px-4 py-2 text-sm font-medium text-red-600 disabled:opacity-50">
                     删除当前图片

@@ -18,6 +18,7 @@ import {
   List, ListOrdered, Quote, Braces,
   AlignLeft, AlignCenter, AlignRight,
   Link as LinkIcon, Minus, Undo2, Redo2,
+  Sparkles,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -102,8 +103,13 @@ export default function ArticleEditor({ article }: Props) {
   const [metaDesc, setMetaDesc] = useState(article?.metaDesc ?? "");
   const [keywords, setKeywords] = useState(article?.keywords ?? "");
   const [saving, setSaving] = useState(false);
+  const [generatingAi, setGeneratingAi] = useState(false);
   const [error, setError] = useState("");
   const [slugManuallyEdited, setSlugManuallyEdited] = useState(isEditing);
+  const [showAiDialog, setShowAiDialog] = useState(false);
+  const [aiTopic, setAiTopic] = useState(article?.title ?? "");
+  const [aiBrief, setAiBrief] = useState("");
+  const [aiKeywords, setAiKeywords] = useState(article?.keywords ?? "");
 
   // Image picker modal
   const [showImagePicker, setShowImagePicker] = useState(false);
@@ -116,6 +122,7 @@ export default function ArticleEditor({ article }: Props) {
   const [activeTab, setActiveTab] = useState<"write" | "seo">("write");
 
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       StarterKit,
       Link.configure({ openOnClick: false }),
@@ -217,6 +224,53 @@ export default function ArticleEditor({ article }: Props) {
     editor?.chain().focus().setLink({ href: linkUrl }).run();
     setShowLinkDialog(false);
     setLinkUrl("");
+  }
+
+  async function generateAiDraft() {
+    if (!aiTopic.trim()) {
+      setError("请先填写 AI 生成主题");
+      return;
+    }
+
+    setError("");
+    setGeneratingAi(true);
+
+    try {
+      const res = await fetch("/api/admin/articles/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          topic: aiTopic,
+          brief: aiBrief,
+          keywords: aiKeywords,
+          category,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "AI 生成失败");
+        return;
+      }
+
+      const nextArticle = data.article;
+      setTitle(nextArticle.title || "");
+      setSlug(nextArticle.slug || "");
+      setSlugManuallyEdited(false);
+      setExcerpt(nextArticle.excerpt || "");
+      setMetaTitle(nextArticle.metaTitle || "");
+      setMetaDesc(nextArticle.metaDesc || "");
+      setKeywords(nextArticle.keywords || "");
+      setTags(Array.isArray(nextArticle.tags) ? nextArticle.tags : []);
+      editor?.commands.setContent(nextArticle.content || "");
+      setActiveTab("write");
+      setShowAiDialog(false);
+      toast.success("AI 草稿已生成", { description: nextArticle.title });
+    } catch {
+      setError("AI 生成失败，请稍后重试");
+    } finally {
+      setGeneratingAi(false);
+    }
   }
 
   async function handleSave(publishStatus?: string) {
@@ -547,7 +601,19 @@ export default function ArticleEditor({ article }: Props) {
       <div className="space-y-4">
         {/* Publish */}
         <div className="bg-white rounded-xl border border-gray-200 p-5 space-y-4">
-          <h3 className="text-sm font-semibold text-gray-900">发布设置</h3>
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-gray-900">发布设置</h3>
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              onClick={() => setShowAiDialog(true)}
+              className="whitespace-nowrap"
+            >
+              <Sparkles className="w-4 h-4 mr-1" />
+              AI 生成草稿
+            </Button>
+          </div>
 
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-red-700 text-xs flex items-center gap-1.5">
@@ -783,6 +849,55 @@ export default function ArticleEditor({ article }: Props) {
               variant="outline"
             >
               取消
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showAiDialog} onOpenChange={setShowAiDialog}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>AI 生成文章草稿</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-2">
+            <div>
+              <Label className="text-xs text-gray-500">文章主题 *</Label>
+              <Input
+                value={aiTopic}
+                onChange={(e) => setAiTopic(e.target.value)}
+                placeholder="例如：Thermal Paper Supplier UAE Buying Guide"
+                className="mt-1.5"
+              />
+            </div>
+            <div>
+              <Label className="text-xs text-gray-500">内容方向 / 补充要求</Label>
+              <Textarea
+                value={aiBrief}
+                onChange={(e) => setAiBrief(e.target.value)}
+                rows={4}
+                placeholder="例如：重点写进口商采购注意事项、常见规格、MOQ、出口包装、UAE 市场需求和 SEO 转化结构。"
+                className="mt-1.5 resize-none"
+              />
+            </div>
+            <div>
+              <Label className="text-xs text-gray-500">SEO 关键词</Label>
+              <Input
+                value={aiKeywords}
+                onChange={(e) => setAiKeywords(e.target.value)}
+                placeholder="thermal paper uae, pos paper rolls dubai, thermal receipt rolls supplier"
+                className="mt-1.5"
+              />
+            </div>
+            <p className="text-xs text-gray-400">
+              将按当前分类生成完整草稿，并覆盖标题、摘要、正文、SEO 字段和标签。
+            </p>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowAiDialog(false)} disabled={generatingAi}>
+              取消
+            </Button>
+            <Button onClick={() => void generateAiDraft()} disabled={generatingAi || !aiTopic.trim()}>
+              {generatingAi ? <><Loader2 className="animate-spin" /> 生成中...</> : <><Sparkles className="w-4 h-4 mr-1" />开始生成</>}
             </Button>
           </DialogFooter>
         </DialogContent>

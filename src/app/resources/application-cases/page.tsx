@@ -5,6 +5,7 @@ import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight, Package, Globe, ShieldCheck, Tag, BarChart3, Printer, ChevronRight, Clock } from "lucide-react";
 import { SITE } from "@/config/siteData";
 import Image from "next/image";
+import { getSlotImages } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: "Application Cases | Retail & Logistics",
@@ -18,6 +19,7 @@ const appCases = [
     industry: "Retail & POS",
     icon: Package,
     color: "blue",
+    slot: "resources:application-cases-retail-pos",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80",
     desc: "From supermarkets to boutique stores, thermal paper receipts are the backbone of retail POS systems worldwide. The global retail POS printer market processes an estimated 300 billion receipts annually, with thermal printing accounting for over 95% of all receipt output.",
     detail: "Retail environments place demanding requirements on thermal paper. High-volume checkout lanes print continuously for 8–12 hours per day, requiring paper with consistent coating density to maintain print quality across the full roll. Paper that prints darkly at the start of a roll but fades toward the end — a sign of inconsistent coating application — is a common complaint in high-volume retail. The paper must also be compatible with the wide range of printer models deployed across a retail estate, from legacy Epson TM-T88III units installed 15 years ago to the latest high-speed models. For EU retailers, BPA-free paper is now mandatory under Regulation (EU) 2016/2235, which banned BPA in thermal paper from January 2020. Retailers sourcing from non-EU suppliers should verify BPA-free compliance with third-party lab test reports, not just supplier declarations.",
@@ -30,6 +32,7 @@ const appCases = [
     industry: "Food Service & Restaurants",
     icon: Printer,
     color: "amber",
+    slot: "resources:application-cases-food-service",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80",
     desc: "Kitchen order printers and customer receipt printers in restaurants require paper that performs reliably in high-heat, high-humidity environments — conditions that are uniquely challenging for thermal paper chemistry.",
     detail: "The food service environment is one of the most demanding for thermal paper. Kitchen printers operate near cooking equipment where ambient temperatures can reach 40–50°C, and steam from commercial kitchens creates humidity levels of 80–90%. Standard thermal paper begins to fog (develop a gray background) at sustained temperatures above 60°C, making heat-resistant formulations essential. For customer-facing receipt printers, BPA-free paper is increasingly required by major restaurant chains as part of their corporate sustainability commitments. The paper must also be compatible with the wide range of kitchen printer models used in the industry, including Epson TM-U220 (impact printer, not thermal) and Epson TM-T88 (thermal). Distributors supplying restaurant chains should verify compatibility with both printer types, as many chains use a mix. Food delivery platforms have also created a new demand segment: thermal paper for order confirmation receipts printed at restaurant partner locations, which requires reliable performance in the full range of restaurant environments.",
@@ -42,6 +45,7 @@ const appCases = [
     industry: "Logistics & E-Commerce Shipping Labels",
     icon: Globe,
     color: "green",
+    slot: "resources:application-cases-logistics",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80",
     desc: "Shipping labels must produce scannable barcodes that survive the entire logistics journey — from warehouse to doorstep — through temperature extremes, moisture, and physical abrasion.",
     detail: "The e-commerce logistics boom has made thermal shipping labels one of the fastest-growing segments in the thermal paper market. Global parcel volumes exceeded 160 billion in 2022 and are projected to reach 260 billion by 2027, with each parcel requiring at least one thermal label. The barcode scanning requirements for logistics labels are more stringent than for POS receipts: labels must scan reliably at conveyor belt speeds of 2–3 meters per second, often under poor lighting conditions, and must remain scannable after exposure to rain, condensation, and physical handling. This requires optical density ≥1.2 (versus ≥1.0 for standard receipts) and a coating formulation that resists smearing when wet. The adhesive specification is equally critical: labels must adhere firmly to corrugated cardboard, polybag mailers, and rigid plastic containers — three surfaces with very different adhesive requirements. For cold-chain logistics (refrigerated or frozen shipments), freezer-grade adhesive is essential. Standard adhesive fails at temperatures below 5°C, causing labels to peel off in transit.",
@@ -54,6 +58,7 @@ const appCases = [
     industry: "Healthcare & Pharmacy",
     icon: ShieldCheck,
     color: "teal",
+    slot: "resources:application-cases-healthcare",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80",
     desc: "Patient wristbands, prescription labels, and specimen tracking labels require phenol-free paper with long image life, chemical resistance, and compliance with healthcare regulatory standards.",
     detail: "Healthcare is the most specification-sensitive application for thermal labels. Patient wristband labels must remain readable for the duration of a hospital stay — potentially 30+ days — while exposed to water, disinfectants, and physical abrasion. Prescription labels must maintain barcode scannability for the full shelf life of the medication, which can be 2–5 years. Specimen tracking labels in diagnostic laboratories must withstand exposure to chemical reagents, centrifuge forces, and temperature cycling between -80°C (frozen storage) and room temperature. These requirements drive demand for synthetic face stock (polyester or polypropylene) rather than paper, and for phenol-free coating chemistry to comply with hospital procurement policies that restrict bisphenol compounds in patient-contact materials. The FDA's 21 CFR 176.170 regulation governs paper materials in food contact applications and is often cited by healthcare procurement as a baseline compliance requirement. For EU healthcare buyers, REACH compliance documentation is required. We provide full compliance documentation packages for healthcare customers, including material safety data sheets, migration test reports, and certificate of conformance.",
@@ -66,6 +71,7 @@ const appCases = [
     industry: "Parking & Transportation",
     icon: Tag,
     color: "purple",
+    slot: "resources:application-cases-parking",
     image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=600&q=80",
     desc: "Parking tickets, transit passes, and toll receipts need compact rolls with reliable performance in outdoor kiosk environments — including extreme temperatures, UV exposure, and moisture.",
     detail: "Parking and transportation kiosks operate in outdoor environments that expose thermal paper to the full range of weather conditions. In northern climates, paper must perform at temperatures as low as -20°C; in Middle Eastern markets, kiosk temperatures can reach 60°C in direct summer sunlight. UV exposure from sunlight degrades standard thermal coatings within hours, making UV-resistant formulations essential for outdoor applications. The compact core size (12mm) used in most parking kiosk printers is a specific requirement that many standard paper suppliers cannot accommodate — most commercial thermal paper is produced on 25mm cores. We maintain dedicated production lines for 12mm core paper to serve this market. Transit applications (bus and rail ticket printers) have additional requirements: the paper must be compatible with magnetic stripe encoding for some legacy ticketing systems, and the printed barcode must remain scannable through the plastic window of a ticket validator. This requires a specific combination of optical density, surface smoothness, and dimensional stability.",
@@ -78,6 +84,7 @@ const appCases = [
     industry: "Banking & Financial Services",
     icon: BarChart3,
     color: "indigo",
+    slot: "resources:application-cases-banking",
     image: "https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=600&q=80",
     desc: "ATM receipts, credit card terminals, and bank teller printers require high-quality paper with long archival life — financial records must remain legible for regulatory compliance periods of 5–10 years.",
     detail: "Banking and financial services applications have the most stringent archival requirements of any thermal paper use case. ATM receipts and credit card transaction records are subject to regulatory retention requirements that vary by jurisdiction — typically 5–7 years in most markets, up to 10 years for certain transaction types. This requires premium-grade paper with image life specifications that match or exceed the retention period. The paper must also be compatible with the specific printer models used in banking infrastructure: Verifone and Ingenico payment terminals use US-standard paper sizes (2¼\" × 50′), while bank teller printers typically use 80mm rolls. ATM receipt printers are a specialized category with very specific requirements for paper stiffness (the paper must feed reliably through the ATM's paper path without jamming) and print density (ATM receipts are often read in poor lighting conditions). For banking customers, we provide premium-grade paper with certified image life of 10+ years, tested to ANSI/AIIM MS23 standards for document preservation. We also provide batch-level traceability documentation to support compliance audits.",
@@ -122,7 +129,11 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function ApplicationCasesPage() {
+export default async function ApplicationCasesPage() {
+  const caseImages = await getSlotImages(
+    appCases.map(({ slot, image }) => ({ slot, fallback: image }))
+  );
+
   return (
     <Layout>
       <script
@@ -153,13 +164,13 @@ export default function ApplicationCasesPage() {
         </div>
 
         <div className="space-y-16">
-          {appCases.map(({ industry, icon: Icon, color, image, desc, detail, products, keyReq, clients, volumes }) => {
+          {appCases.map(({ industry, icon: Icon, color, slot, image, desc, detail, products, keyReq, clients, volumes }) => {
             const c = appColorMap[color];
             return (
               <article key={industry} className="border-b border-slate-100 pb-16 last:border-0">
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start mb-6">
                   <div className="lg:col-span-2">
-                    <Image src={image} alt={industry} className="w-full h-56 object-cover rounded-2xl shadow-md"  width={400} height={224} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+                    <Image src={caseImages[slot] || image} alt={industry} className="w-full h-56 object-cover rounded-2xl shadow-md"  width={400} height={224} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                   </div>
                   <div className="lg:col-span-3">
                     <div className="flex items-center gap-3 mb-3">

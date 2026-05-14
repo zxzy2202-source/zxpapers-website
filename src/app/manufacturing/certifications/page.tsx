@@ -3,6 +3,7 @@ import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import { CheckCircle, Shield, Award, ArrowRight, FileCheck, Leaf, Globe, Zap } from "lucide-react";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: "Certifications | ISO 9001 FSC BPA-Free RoHS",
@@ -55,7 +56,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function CertificationsPage() {
+export default async function CertificationsPage() {
+  const certificationsHeroImage = await getSlotImage("manufacturing:certifications-hero", IMG_CERTIFICATIONS);
   return (
     <Layout>
       <script
@@ -63,7 +65,7 @@ export default function CertificationsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="relative bg-[#0F2B5B] text-white py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${IMG_CERTIFICATIONS})` }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${certificationsHeroImage})` }} />
         <div className="relative container">
           <div className="text-amber-400 text-sm font-semibold mb-3">
             <Link href="/manufacturing" className="hover:underline">Manufacturing</Link> / Certifications

@@ -31,41 +31,41 @@ export const detergentLabelSizes = [
 
 // ── Application arrays per size ───────────────────────────────────────────
 export const apps90x120: ApplicationItem[] = [
-  { name: "Laundry Detergent Bottles",  image: APP_IMAGES.laundry,   description: "Front panel label for standard 500ml–1L laundry detergent bottles." },
-  { name: "Dish Soap Bottles",          image: APP_IMAGES.dishwash,  description: "Primary branding label for dish soap and dishwashing liquid." },
-  { name: "Hand Soap Dispensers",       image: APP_IMAGES.handsoap,  description: "Front-facing label for pump-style hand soap dispensers." },
-  { name: "Fabric Softener",            image: APP_IMAGES.fabric,    description: "Brand label for fabric softener and conditioner bottles." },
-  { name: "Retail Shelf Display",       image: APP_IMAGES.retail,    description: "High-impact front label for retail shelf visibility." },
+  { name: "Laundry Detergent Bottles",  image: APP_IMAGES.laundry,   slotKey: "detergent-labels:applications:laundry", description: "Front panel label for standard 500ml–1L laundry detergent bottles." },
+  { name: "Dish Soap Bottles",          image: APP_IMAGES.dishwash,  slotKey: "detergent-labels:applications:dishwash", description: "Primary branding label for dish soap and dishwashing liquid." },
+  { name: "Hand Soap Dispensers",       image: APP_IMAGES.handsoap,  slotKey: "detergent-labels:applications:handsoap", description: "Front-facing label for pump-style hand soap dispensers." },
+  { name: "Fabric Softener",            image: APP_IMAGES.fabric,    slotKey: "detergent-labels:applications:fabric", description: "Brand label for fabric softener and conditioner bottles." },
+  { name: "Retail Shelf Display",       image: APP_IMAGES.retail,    slotKey: "detergent-labels:applications:retail", description: "High-impact front label for retail shelf visibility." },
 ];
 
 export const apps80x150: ApplicationItem[] = [
-  { name: "Tall Detergent Bottles",     image: APP_IMAGES.laundry,   description: "Full-height label for 750ml–1.5L tall-format detergent bottles." },
-  { name: "Bathroom Cleaners",          image: APP_IMAGES.bathroom,  description: "Tall label for spray-style bathroom and tile cleaners." },
-  { name: "Kitchen Cleaners",           image: APP_IMAGES.kitchen,   description: "Vertical label for kitchen degreaser and surface cleaner bottles." },
-  { name: "Industrial Cleaners",        image: APP_IMAGES.industrial, description: "Professional-grade cleaning product labeling." },
-  { name: "Hotel Amenity Bottles",      image: APP_IMAGES.hotel,     description: "Premium tall labels for hotel and hospitality cleaning supplies." },
+  { name: "Tall Detergent Bottles",     image: APP_IMAGES.laundry,   slotKey: "detergent-labels:applications:laundry", description: "Full-height label for 750ml–1.5L tall-format detergent bottles." },
+  { name: "Bathroom Cleaners",          image: APP_IMAGES.bathroom,  slotKey: "detergent-labels:applications:bathroom", description: "Tall label for spray-style bathroom and tile cleaners." },
+  { name: "Kitchen Cleaners",           image: APP_IMAGES.kitchen,   slotKey: "detergent-labels:applications:kitchen", description: "Vertical label for kitchen degreaser and surface cleaner bottles." },
+  { name: "Industrial Cleaners",        image: APP_IMAGES.industrial, slotKey: "detergent-labels:applications:industrial", description: "Professional-grade cleaning product labeling." },
+  { name: "Hotel Amenity Bottles",      image: APP_IMAGES.hotel,     slotKey: "detergent-labels:applications:hotel", description: "Premium tall labels for hotel and hospitality cleaning supplies." },
 ];
 
 export const apps100x100: ApplicationItem[] = [
-  { name: "Laundry Pods Containers",    image: APP_IMAGES.laundry,   description: "Square label for laundry pod tubs and containers." },
-  { name: "Powder Detergent Boxes",     image: APP_IMAGES.laundry,   description: "Front panel label for powder detergent cartons and boxes." },
-  { name: "Multi-Surface Cleaners",     image: APP_IMAGES.cleaner,   description: "Square label for all-purpose and multi-surface cleaners." },
-  { name: "Dishwasher Tablets",         image: APP_IMAGES.dishwash,  description: "Container label for dishwasher tablet packaging." },
-  { name: "Private Label Brands",       image: APP_IMAGES.retail,    description: "Square format for private label and store-brand cleaning products." },
+  { name: "Laundry Pods Containers",    image: APP_IMAGES.laundry,   slotKey: "detergent-labels:applications:laundry", description: "Square label for laundry pod tubs and containers." },
+  { name: "Powder Detergent Boxes",     image: APP_IMAGES.laundry,   slotKey: "detergent-labels:applications:laundry", description: "Front panel label for powder detergent cartons and boxes." },
+  { name: "Multi-Surface Cleaners",     image: APP_IMAGES.cleaner,   slotKey: "detergent-labels:applications:cleaner", description: "Square label for all-purpose and multi-surface cleaners." },
+  { name: "Dishwasher Tablets",         image: APP_IMAGES.dishwash,  slotKey: "detergent-labels:applications:dishwash", description: "Container label for dishwasher tablet packaging." },
+  { name: "Private Label Brands",       image: APP_IMAGES.retail,    slotKey: "detergent-labels:applications:retail", description: "Square format for private label and store-brand cleaning products." },
 ];
 
 export const apps70x200: ApplicationItem[] = [
-  { name: "Wrap-Around Bottles",        image: APP_IMAGES.laundry,   description: "Full wrap-around label for cylindrical detergent bottles." },
-  { name: "Bleach Bottles",             image: APP_IMAGES.cleaner,   description: "Chemical-resistant wrap label for bleach and disinfectant bottles." },
-  { name: "Floor Cleaners",             image: APP_IMAGES.cleaner,   description: "Wrap-around label for floor cleaner and mopping solution bottles." },
-  { name: "Fabric Care Products",       image: APP_IMAGES.fabric,    description: "Full-wrap label for stain remover and fabric care bottles." },
-  { name: "Industrial Containers",      image: APP_IMAGES.industrial, description: "Wrap label for large-format industrial cleaning containers." },
+  { name: "Wrap-Around Bottles",        image: APP_IMAGES.laundry,   slotKey: "detergent-labels:applications:laundry", description: "Full wrap-around label for cylindrical detergent bottles." },
+  { name: "Bleach Bottles",             image: APP_IMAGES.cleaner,   slotKey: "detergent-labels:applications:cleaner", description: "Chemical-resistant wrap label for bleach and disinfectant bottles." },
+  { name: "Floor Cleaners",             image: APP_IMAGES.cleaner,   slotKey: "detergent-labels:applications:cleaner", description: "Wrap-around label for floor cleaner and mopping solution bottles." },
+  { name: "Fabric Care Products",       image: APP_IMAGES.fabric,    slotKey: "detergent-labels:applications:fabric", description: "Full-wrap label for stain remover and fabric care bottles." },
+  { name: "Industrial Containers",      image: APP_IMAGES.industrial, slotKey: "detergent-labels:applications:industrial", description: "Wrap label for large-format industrial cleaning containers." },
 ];
 
 export const apps120x80: ApplicationItem[] = [
-  { name: "Back Panel Labels",          image: APP_IMAGES.laundry,   description: "Ingredient list and regulatory information back label." },
-  { name: "Safety & Compliance",        image: APP_IMAGES.cleaner,   description: "GHS hazard communication and safety instruction labels." },
-  { name: "Bilingual Labels",           image: APP_IMAGES.retail,    description: "Dual-language back labels for export and cross-border markets." },
-  { name: "Dosage Instructions",        image: APP_IMAGES.dishwash,  description: "Detailed dosage and usage instruction labels." },
-  { name: "QR Code & Traceability",     image: APP_IMAGES.industrial, description: "Back label with QR code for product traceability and authentication." },
+  { name: "Back Panel Labels",          image: APP_IMAGES.laundry,   slotKey: "detergent-labels:applications:laundry", description: "Ingredient list and regulatory information back label." },
+  { name: "Safety & Compliance",        image: APP_IMAGES.cleaner,   slotKey: "detergent-labels:applications:cleaner", description: "GHS hazard communication and safety instruction labels." },
+  { name: "Bilingual Labels",           image: APP_IMAGES.retail,    slotKey: "detergent-labels:applications:retail", description: "Dual-language back labels for export and cross-border markets." },
+  { name: "Dosage Instructions",        image: APP_IMAGES.dishwash,  slotKey: "detergent-labels:applications:dishwash", description: "Detailed dosage and usage instruction labels." },
+  { name: "QR Code & Traceability",     image: APP_IMAGES.industrial, slotKey: "detergent-labels:applications:industrial", description: "Back label with QR code for product traceability and authentication." },
 ];

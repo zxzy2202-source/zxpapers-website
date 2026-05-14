@@ -31,41 +31,41 @@ export const canLabelSizes = [
 
 // ── Application arrays per size ───────────────────────────────────────────
 export const apps211x400: ApplicationItem[] = [
-  { name: "Craft Beer Cans",       image: APP_IMAGES.beverage,  description: "Standard 12 oz slim-can label for craft breweries and beverage brands." },
-  { name: "Energy Drinks",         image: APP_IMAGES.beverage,  description: "High-contrast printing for energy drink branding and compliance text." },
-  { name: "Carbonated Beverages",  image: APP_IMAGES.beverage,  description: "Moisture-resistant labels for chilled carbonated drinks." },
-  { name: "Canned Vegetables",     image: APP_IMAGES.vegetable, description: "Food-safe labels for canned vegetable products." },
-  { name: "Retail Shelf Display",  image: APP_IMAGES.retail,    description: "Vibrant CMYK printing for eye-catching retail shelf presence." },
+  { name: "Craft Beer Cans",       image: APP_IMAGES.beverage,  slotKey: "can-labels:applications:beverage", description: "Standard 12 oz slim-can label for craft breweries and beverage brands." },
+  { name: "Energy Drinks",         image: APP_IMAGES.beverage,  slotKey: "can-labels:applications:beverage", description: "High-contrast printing for energy drink branding and compliance text." },
+  { name: "Carbonated Beverages",  image: APP_IMAGES.beverage,  slotKey: "can-labels:applications:beverage", description: "Moisture-resistant labels for chilled carbonated drinks." },
+  { name: "Canned Vegetables",     image: APP_IMAGES.vegetable, slotKey: "can-labels:applications:vegetable", description: "Food-safe labels for canned vegetable products." },
+  { name: "Retail Shelf Display",  image: APP_IMAGES.retail,    slotKey: "can-labels:applications:retail", description: "Vibrant CMYK printing for eye-catching retail shelf presence." },
 ];
 
 export const apps211x603: ApplicationItem[] = [
-  { name: "Tall Beverage Cans",    image: APP_IMAGES.beverage,  description: "16 oz tall-can standard for premium beverages and hard seltzers." },
-  { name: "Sparkling Water",       image: APP_IMAGES.beverage,  description: "Clean, minimalist labels for sparkling water and health drinks." },
-  { name: "Cocktail Mixers",       image: APP_IMAGES.beverage,  description: "Premium label printing for RTD cocktail and mixer brands." },
-  { name: "Protein Shakes",        image: APP_IMAGES.food,      description: "Durable labels for nutrition and protein drink cans." },
-  { name: "Specialty Beverages",   image: APP_IMAGES.beverage,  description: "Custom tall-can labels for limited edition and seasonal releases." },
+  { name: "Tall Beverage Cans",    image: APP_IMAGES.beverage,  slotKey: "can-labels:applications:beverage", description: "16 oz tall-can standard for premium beverages and hard seltzers." },
+  { name: "Sparkling Water",       image: APP_IMAGES.beverage,  slotKey: "can-labels:applications:beverage", description: "Clean, minimalist labels for sparkling water and health drinks." },
+  { name: "Cocktail Mixers",       image: APP_IMAGES.beverage,  slotKey: "can-labels:applications:beverage", description: "Premium label printing for RTD cocktail and mixer brands." },
+  { name: "Protein Shakes",        image: APP_IMAGES.food,      slotKey: "can-labels:applications:food", description: "Durable labels for nutrition and protein drink cans." },
+  { name: "Specialty Beverages",   image: APP_IMAGES.beverage,  slotKey: "can-labels:applications:beverage", description: "Custom tall-can labels for limited edition and seasonal releases." },
 ];
 
 export const apps300x407: ApplicationItem[] = [
-  { name: "Canned Tomatoes",       image: APP_IMAGES.vegetable, description: "Standard #2 can label for tomato and vegetable products." },
-  { name: "Canned Seafood",        image: APP_IMAGES.seafood,   description: "Moisture-resistant labels for tuna, sardines, and seafood cans." },
-  { name: "Canned Soups",          image: APP_IMAGES.food,      description: "Full-wrap labels for soup and stew cans with ingredient compliance." },
-  { name: "Pet Food Cans",         image: APP_IMAGES.pet_food,  description: "Durable labels for wet pet food in standard #2 cans." },
-  { name: "Food Service Cans",     image: APP_IMAGES.canning,   description: "Institutional food service labeling for bulk canned goods." },
+  { name: "Canned Tomatoes",       image: APP_IMAGES.vegetable, slotKey: "can-labels:applications:vegetable", description: "Standard #2 can label for tomato and vegetable products." },
+  { name: "Canned Seafood",        image: APP_IMAGES.seafood,   slotKey: "can-labels:applications:seafood", description: "Moisture-resistant labels for tuna, sardines, and seafood cans." },
+  { name: "Canned Soups",          image: APP_IMAGES.food,      slotKey: "can-labels:applications:food", description: "Full-wrap labels for soup and stew cans with ingredient compliance." },
+  { name: "Pet Food Cans",         image: APP_IMAGES.pet_food,  slotKey: "can-labels:applications:pet-food", description: "Durable labels for wet pet food in standard #2 cans." },
+  { name: "Food Service Cans",     image: APP_IMAGES.canning,   slotKey: "can-labels:applications:canning", description: "Institutional food service labeling for bulk canned goods." },
 ];
 
 export const apps307x510: ApplicationItem[] = [
-  { name: "Canned Fruit",          image: APP_IMAGES.food,      description: "Wide-body labels for peach, pineapple, and mixed fruit cans." },
-  { name: "Canned Beans",          image: APP_IMAGES.vegetable, description: "Full-wrap labels for kidney beans, chickpeas, and legume cans." },
-  { name: "Industrial Lubricants", image: APP_IMAGES.industrial, description: "Chemical-resistant labels for lubricant and grease cans." },
-  { name: "Paint Cans",            image: APP_IMAGES.paint,     description: "Solvent-resistant labels for paint and coating product cans." },
-  { name: "Canned Meat",           image: APP_IMAGES.food,      description: "Food-safe labels for corned beef, spam, and processed meat cans." },
+  { name: "Canned Fruit",          image: APP_IMAGES.food,      slotKey: "can-labels:applications:food", description: "Wide-body labels for peach, pineapple, and mixed fruit cans." },
+  { name: "Canned Beans",          image: APP_IMAGES.vegetable, slotKey: "can-labels:applications:vegetable", description: "Full-wrap labels for kidney beans, chickpeas, and legume cans." },
+  { name: "Industrial Lubricants", image: APP_IMAGES.industrial, slotKey: "can-labels:applications:industrial", description: "Chemical-resistant labels for lubricant and grease cans." },
+  { name: "Paint Cans",            image: APP_IMAGES.paint,     slotKey: "can-labels:applications:paint", description: "Solvent-resistant labels for paint and coating product cans." },
+  { name: "Canned Meat",           image: APP_IMAGES.food,      slotKey: "can-labels:applications:food", description: "Food-safe labels for corned beef, spam, and processed meat cans." },
 ];
 
 export const apps401x700: ApplicationItem[] = [
-  { name: "Large Food Cans",       image: APP_IMAGES.canning,   description: "#10 large-format can labels for institutional and food service use." },
-  { name: "Chemical Drums",        image: APP_IMAGES.chemical,  description: "GHS-compliant labels for chemical and industrial product containers." },
-  { name: "Paint & Coatings",      image: APP_IMAGES.paint,     description: "Large-format labels for 1-gallon paint and coating cans." },
-  { name: "Industrial Containers", image: APP_IMAGES.industrial, description: "Durable labels for industrial fluid and lubricant containers." },
-  { name: "Bulk Food Packaging",   image: APP_IMAGES.food,      description: "Large-format labels for bulk food and catering supply cans." },
+  { name: "Large Food Cans",       image: APP_IMAGES.canning,   slotKey: "can-labels:applications:canning", description: "#10 large-format can labels for institutional and food service use." },
+  { name: "Chemical Drums",        image: APP_IMAGES.chemical,  slotKey: "can-labels:applications:chemical", description: "GHS-compliant labels for chemical and industrial product containers." },
+  { name: "Paint & Coatings",      image: APP_IMAGES.paint,     slotKey: "can-labels:applications:paint", description: "Large-format labels for 1-gallon paint and coating cans." },
+  { name: "Industrial Containers", image: APP_IMAGES.industrial, slotKey: "can-labels:applications:industrial", description: "Durable labels for industrial fluid and lubricant containers." },
+  { name: "Bulk Food Packaging",   image: APP_IMAGES.food,      slotKey: "can-labels:applications:food", description: "Large-format labels for bulk food and catering supply cans." },
 ];

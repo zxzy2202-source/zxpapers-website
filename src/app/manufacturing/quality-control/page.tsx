@@ -3,6 +3,7 @@ import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 import {
   CheckCircle, Shield, ArrowRight,
   ClipboardCheck, Microscope, BarChart3, RefreshCw,
@@ -51,7 +52,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function QualityControlPage() {
+export default async function QualityControlPage() {
+  const qcHeroImage = await getSlotImage("manufacturing:quality-hero", IMG_QC_LAB);
   return (
     <Layout>
       <script
@@ -59,7 +61,7 @@ export default function QualityControlPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="relative bg-[#0F2B5B] text-white py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${IMG_QC_LAB})` }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${qcHeroImage})` }} />
         <div className="relative container">
           <div className="text-amber-400 text-sm font-semibold mb-3">
             <Link href="/manufacturing" className="hover:underline">Manufacturing</Link> / Quality Control

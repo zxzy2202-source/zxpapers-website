@@ -22,50 +22,50 @@ export const APP_IMAGES = {
 };
 
 export const apps4x6: ApplicationItem[] = [
-  { name: "E-commerce Shipping",  image: APP_IMAGES.ecommerce,   description: "The global standard label for online order fulfillment." },
-  { name: "Amazon FBA",           image: APP_IMAGES.amazon,      description: "Compliant with Amazon FBA label requirements." },
-  { name: "UPS / FedEx / DHL",    image: APP_IMAGES.shipping,    description: "Accepted by all major international carriers." },
-  { name: "USPS Priority Mail",   image: APP_IMAGES.logistics,   description: "Standard format for USPS domestic shipping labels." },
-  { name: "Warehouse Logistics",  image: APP_IMAGES.warehouse,   description: "High-volume label printing in distribution centers." },
-  { name: "3PL Fulfillment",      image: APP_IMAGES.logistics,   description: "Third-party logistics and fulfillment center use." },
+  { name: "E-commerce Shipping",  image: APP_IMAGES.ecommerce,   slotKey: "thermal-labels:applications:ecommerce", description: "The global standard label for online order fulfillment." },
+  { name: "Amazon FBA",           image: APP_IMAGES.amazon,      slotKey: "thermal-labels:applications:amazon", description: "Compliant with Amazon FBA label requirements." },
+  { name: "UPS / FedEx / DHL",    image: APP_IMAGES.shipping,    slotKey: "thermal-labels:applications:shipping", description: "Accepted by all major international carriers." },
+  { name: "USPS Priority Mail",   image: APP_IMAGES.logistics,   slotKey: "thermal-labels:applications:logistics", description: "Standard format for USPS domestic shipping labels." },
+  { name: "Warehouse Logistics",  image: APP_IMAGES.warehouse,   slotKey: "thermal-labels:applications:warehouse", description: "High-volume label printing in distribution centers." },
+  { name: "3PL Fulfillment",      image: APP_IMAGES.logistics,   slotKey: "thermal-labels:applications:logistics", description: "Third-party logistics and fulfillment center use." },
 ];
 
 export const apps100x150: ApplicationItem[] = [
-  { name: "International Shipping", image: APP_IMAGES.crossborder, description: "Metric equivalent of 4x6 for global logistics." },
-  { name: "E-commerce",             image: APP_IMAGES.ecommerce,   description: "Online retail order shipping labels." },
-  { name: "Logistics",              image: APP_IMAGES.logistics,   description: "Carrier and freight logistics labeling." },
-  { name: "Warehouse Management",   image: APP_IMAGES.warehouse,   description: "WMS-integrated label printing in warehouses." },
-  { name: "Cross-border Trade",     image: APP_IMAGES.crossborder, description: "Labels for international customs and trade compliance." },
+  { name: "International Shipping", image: APP_IMAGES.crossborder, slotKey: "thermal-labels:applications:crossborder", description: "Metric equivalent of 4x6 for global logistics." },
+  { name: "E-commerce",             image: APP_IMAGES.ecommerce,   slotKey: "thermal-labels:applications:ecommerce", description: "Online retail order shipping labels." },
+  { name: "Logistics",              image: APP_IMAGES.logistics,   slotKey: "thermal-labels:applications:logistics", description: "Carrier and freight logistics labeling." },
+  { name: "Warehouse Management",   image: APP_IMAGES.warehouse,   slotKey: "thermal-labels:applications:warehouse", description: "WMS-integrated label printing in warehouses." },
+  { name: "Cross-border Trade",     image: APP_IMAGES.crossborder, slotKey: "thermal-labels:applications:crossborder", description: "Labels for international customs and trade compliance." },
 ];
 
 export const apps2x1: ApplicationItem[] = [
-  { name: "Barcode Labels",         image: APP_IMAGES.barcode,   description: "Product barcode printing for retail and inventory." },
-  { name: "Inventory Tags",         image: APP_IMAGES.inventory, description: "Stock and asset tracking in warehouses." },
-  { name: "Retail Price Tags",      image: APP_IMAGES.retail,    description: "Shelf and product price labeling in retail stores." },
-  { name: "Product Identification", image: APP_IMAGES.product,   description: "SKU and product ID labels for manufacturing." },
-  { name: "Asset Tracking",         image: APP_IMAGES.asset,     description: "IT asset and equipment tracking labels." },
+  { name: "Barcode Labels",         image: APP_IMAGES.barcode,   slotKey: "thermal-labels:applications:barcode", description: "Product barcode printing for retail and inventory." },
+  { name: "Inventory Tags",         image: APP_IMAGES.inventory, slotKey: "thermal-labels:applications:inventory", description: "Stock and asset tracking in warehouses." },
+  { name: "Retail Price Tags",      image: APP_IMAGES.retail,    slotKey: "thermal-labels:applications:retail", description: "Shelf and product price labeling in retail stores." },
+  { name: "Product Identification", image: APP_IMAGES.product,   slotKey: "thermal-labels:applications:product", description: "SKU and product ID labels for manufacturing." },
+  { name: "Asset Tracking",         image: APP_IMAGES.asset,     slotKey: "thermal-labels:applications:asset", description: "IT asset and equipment tracking labels." },
 ];
 
 export const apps4x4: ApplicationItem[] = [
-  { name: "Product Packaging",  image: APP_IMAGES.packaging, description: "Large format product labels for retail packaging." },
-  { name: "Food Labeling",      image: APP_IMAGES.food,      description: "Food-safe labels for packaged food products." },
-  { name: "Large Barcodes",     image: APP_IMAGES.barcode,   description: "2D and large barcode labels for scanning accuracy." },
-  { name: "Shipping Labels",    image: APP_IMAGES.shipping,  description: "Square shipping labels for bulky or square packages." },
-  { name: "Compliance Labels",  image: APP_IMAGES.product,   description: "Regulatory compliance and warning labels." },
+  { name: "Product Packaging",  image: APP_IMAGES.packaging, slotKey: "thermal-labels:applications:packaging", description: "Large format product labels for retail packaging." },
+  { name: "Food Labeling",      image: APP_IMAGES.food,      slotKey: "thermal-labels:applications:food", description: "Food-safe labels for packaged food products." },
+  { name: "Large Barcodes",     image: APP_IMAGES.barcode,   slotKey: "thermal-labels:applications:barcode", description: "2D and large barcode labels for scanning accuracy." },
+  { name: "Shipping Labels",    image: APP_IMAGES.shipping,  slotKey: "thermal-labels:applications:shipping", description: "Square shipping labels for bulky or square packages." },
+  { name: "Compliance Labels",  image: APP_IMAGES.product,   slotKey: "thermal-labels:applications:product", description: "Regulatory compliance and warning labels." },
 ];
 
 export const apps3x1: ApplicationItem[] = [
-  { name: "Product Labels",  image: APP_IMAGES.product,  description: "Versatile product labels for retail and manufacturing." },
-  { name: "Shelf Tags",      image: APP_IMAGES.retail,   description: "Retail shelf edge labels and price tags." },
-  { name: "Pharmacy Labels", image: APP_IMAGES.pharmacy, description: "Prescription and OTC medication labeling." },
-  { name: "Food Service",    image: APP_IMAGES.food,     description: "Food date and content labels for food service." },
-  { name: "Small Item ID",   image: APP_IMAGES.barcode,  description: "Small item identification and tracking labels." },
+  { name: "Product Labels",  image: APP_IMAGES.product,  slotKey: "thermal-labels:applications:product", description: "Versatile product labels for retail and manufacturing." },
+  { name: "Shelf Tags",      image: APP_IMAGES.retail,   slotKey: "thermal-labels:applications:retail", description: "Retail shelf edge labels and price tags." },
+  { name: "Pharmacy Labels", image: APP_IMAGES.pharmacy, slotKey: "thermal-labels:applications:pharmacy", description: "Prescription and OTC medication labeling." },
+  { name: "Food Service",    image: APP_IMAGES.food,     slotKey: "thermal-labels:applications:food", description: "Food date and content labels for food service." },
+  { name: "Small Item ID",   image: APP_IMAGES.barcode,  slotKey: "thermal-labels:applications:barcode", description: "Small item identification and tracking labels." },
 ];
 
 export const apps101x152: ApplicationItem[] = [
-  { name: "European E-commerce",   image: APP_IMAGES.europe,      description: "A6 format standard for European online retailers." },
-  { name: "DPD / DHL Europe",      image: APP_IMAGES.shipping,    description: "Carrier-compliant labels for European parcel services." },
-  { name: "Hermes / Evri",         image: APP_IMAGES.logistics,   description: "Compatible with Hermes/Evri UK shipping labels." },
-  { name: "Cross-border Shipping", image: APP_IMAGES.crossborder, description: "International shipping labels for EU cross-border trade." },
-  { name: "Logistics",             image: APP_IMAGES.warehouse,   description: "European warehouse and logistics labeling." },
+  { name: "European E-commerce",   image: APP_IMAGES.europe,      slotKey: "thermal-labels:applications:europe", description: "A6 format standard for European online retailers." },
+  { name: "DPD / DHL Europe",      image: APP_IMAGES.shipping,    slotKey: "thermal-labels:applications:shipping", description: "Carrier-compliant labels for European parcel services." },
+  { name: "Hermes / Evri",         image: APP_IMAGES.logistics,   slotKey: "thermal-labels:applications:logistics", description: "Compatible with Hermes/Evri UK shipping labels." },
+  { name: "Cross-border Shipping", image: APP_IMAGES.crossborder, slotKey: "thermal-labels:applications:crossborder", description: "International shipping labels for EU cross-border trade." },
+  { name: "Logistics",             image: APP_IMAGES.warehouse,   slotKey: "thermal-labels:applications:warehouse", description: "European warehouse and logistics labeling." },
 ];

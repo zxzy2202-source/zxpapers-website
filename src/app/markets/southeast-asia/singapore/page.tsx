@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 import { CountryFlag } from "@/components/ui/country-flag";
 
@@ -73,8 +74,13 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function SingaporePage() {
+export default async function SingaporePage() {
   const whatsappMsg = encodeURIComponent("Hello, I am a thermal paper distributor in Singapore. Please send me your price list and MOQ. CIF Singapore port.");
+  const heroImage = await getSlotImage(
+    "markets:singapore-hero",
+    "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1400&q=60"
+  );
+
   return (
     <Layout>
       <script
@@ -83,7 +89,7 @@ export default function SingaporePage() {
       />
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-[#0F2B5B] via-[#1a3a6e] to-[#0d2347] text-white py-20 px-4">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1400&q=60')", backgroundSize: "cover", backgroundPosition: "center" }} />
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url('${heroImage}')`, backgroundSize: "cover", backgroundPosition: "center" }} />
         <div className="relative max-w-6xl mx-auto">
           <nav className="text-sm text-blue-300 mb-4">
             <Link href="/" className="hover:text-white">Home</Link> &rsaquo; <Link href="/markets" className="hover:text-white">Markets</Link> &rsaquo; <Link href="/markets/southeast-asia" className="hover:text-white">Southeast Asia</Link> &rsaquo; <span className="text-white">Singapore</span>

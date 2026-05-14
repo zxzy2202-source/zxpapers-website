@@ -7,6 +7,7 @@ import {
   MessageSquare, TrendingUp, ChevronRight,
 } from "lucide-react";
 import { SITE, CERTIFICATIONS } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 import { CountryFlag } from "@/components/ui/country-flag";
 
@@ -127,9 +128,13 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function SouthAfricaPage() {
+export default async function SouthAfricaPage() {
   const whatsappMsg = encodeURIComponent(
     "Hello, I am a distributor in South Africa. I need thermal paper rolls.\nSize needed: 80×80mm / 57×50mm / 79×80mm\nQuantity: ___ cartons\nDestination: Durban / Cape Town\nPlease send CIF price list."
+  );
+  const heroImage = await getSlotImage(
+    "markets:south-africa-hero",
+    SOUTH_AFRICA_LANDMARK_IMG
   );
 
   return (
@@ -142,7 +147,7 @@ export default function SouthAfricaPage() {
       <section className="relative bg-[#0A1F44] text-white overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-[center_35%] opacity-70 lg:bg-[center_42%] lg:opacity-78"
-          style={{ backgroundImage: `url(${SOUTH_AFRICA_LANDMARK_IMG})` }}
+          style={{ backgroundImage: `url(${heroImage})` }}
           aria-hidden="true"
         />
         <div

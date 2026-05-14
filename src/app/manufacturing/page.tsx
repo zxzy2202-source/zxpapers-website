@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import Image from "next/image";
+import { getSlotImages } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: `Manufacturing Capabilities | ISO 9001 Thermal Paper Factory`,
@@ -84,7 +85,12 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function ManufacturingPage() {
+export default async function ManufacturingPage() {
+  const imgs = await getSlotImages([
+    { slot: "manufacturing:hero", fallback: "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-aerial-overview-Ck4AoJiKqjGKsLxnYqGRbU.webp" },
+    { slot: "manufacturing:facility-aerial", fallback: IMG_AERIAL },
+    { slot: "manufacturing:facility-line", fallback: IMG_COATING },
+  ]);
   const waUrl = `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I'd like to learn more about your manufacturing capabilities and request a factory audit.")}`;
 
   return (
@@ -95,7 +101,7 @@ export default function ManufacturingPage() {
       />
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
-        bgImage="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-aerial-overview-Ck4AoJiKqjGKsLxnYqGRbU.webp"
+        bgImage={imgs["manufacturing:hero"]}
         overlayDir="left"
         overlayOpacity={50}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Manufacturing" }]}
@@ -181,9 +187,9 @@ export default function ManufacturingPage() {
               </div>
             </div>
             <div className="space-y-4">
-              <Image src={IMG_COATING} alt="Thermal Paper Coating Production Line"
+              <Image src={imgs["manufacturing:facility-line"]} alt="Thermal Paper Coating Production Line"
                 className="w-full rounded-2xl shadow-xl object-cover" width={640} height={427}  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
-              <Image src={IMG_AERIAL} alt="Factory Aerial View"
+              <Image src={imgs["manufacturing:facility-aerial"]} alt="Factory Aerial View"
                 className="w-full rounded-2xl shadow-lg object-cover max-h-48" width={640} height={200}  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
             </div>
           </div>

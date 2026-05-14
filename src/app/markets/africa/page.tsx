@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 import PageHero from "@/components/shared/PageHero";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 
@@ -304,7 +305,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function AfricaMarketPage() {
+export default async function AfricaMarketPage() {
+  const heroImage = await getSlotImage("markets:africa-hero", "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1400&q=80");
   const whatsappMsg = encodeURIComponent(
     "Hello, I am a distributor in Africa interested in thermal paper rolls. Please send me your price list and MOQ.\nDestination: ___\nQuantity: ___ cartons/container"
   );
@@ -317,7 +319,7 @@ export default function AfricaMarketPage() {
       />
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
-        bgImage="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1400&q=80"
+        bgImage={heroImage}
         overlayDir="left"
         overlayOpacity={50}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Markets", href: "/markets" }, { label: "Africa" }]}

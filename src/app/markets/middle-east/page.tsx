@@ -8,6 +8,7 @@ import {
   Banknote, Truck, Factory, ChevronRight,
 } from "lucide-react";
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 
@@ -185,7 +186,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function MiddleEastPage() {
+export default async function MiddleEastPage() {
+  const heroImage = await getSlotImage("markets:middle-east-hero", "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80");
   const waMsg = encodeURIComponent(
     "Hello, I am a thermal paper distributor in the Middle East. Please send me your CIF price list and MOQ for 80×80mm and 57×50mm rolls."
   );
@@ -201,7 +203,7 @@ export default function MiddleEastPage() {
         {/* Full background image with strong gradient overlay */}
         <div className="absolute inset-0"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80')",
+            backgroundImage: `url(${heroImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center 30%",
           }} />

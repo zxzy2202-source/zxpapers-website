@@ -1,3 +1,4 @@
+import { normalizeSlotKey } from "@/config/imageSlots";
 import { resolveManagedSlotPath, resolveMultipleSlotPaths } from "@/lib/imageSlots.server";
 
 /**
@@ -32,7 +33,7 @@ export async function getSlotImages(
 
     const result: Record<string, string> = {};
     for (const { slot, fallback } of slots) {
-      result[slot] = pathMap[slot] || fallback;
+      result[slot] = pathMap[normalizeSlotKey(slot)] || fallback;
     }
     return result;
   } catch {

@@ -98,6 +98,7 @@ export default function Page() {
         applications={apps4x6}
         markets={["Global", "Americas", "Europe"]}
         productImage={LABELS_IMG}
+        productImageSlot="thermal-labels"
         palletInfo={
           {
             rollsPerBox: 12,

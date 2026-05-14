@@ -1,58 +1,85 @@
 "use client";
 
-import * as Flags3x2 from "country-flag-icons/react/3x2";
+import aeFlag from "country-flag-icons/string/3x2/AE";
+import auFlag from "country-flag-icons/string/3x2/AU";
+import caFlag from "country-flag-icons/string/3x2/CA";
+import deFlag from "country-flag-icons/string/3x2/DE";
+import egFlag from "country-flag-icons/string/3x2/EG";
+import etFlag from "country-flag-icons/string/3x2/ET";
+import frFlag from "country-flag-icons/string/3x2/FR";
+import gbFlag from "country-flag-icons/string/3x2/GB";
+import ghFlag from "country-flag-icons/string/3x2/GH";
+import idFlag from "country-flag-icons/string/3x2/ID";
+import keFlag from "country-flag-icons/string/3x2/KE";
+import kwFlag from "country-flag-icons/string/3x2/KW";
+import myFlag from "country-flag-icons/string/3x2/MY";
+import ngFlag from "country-flag-icons/string/3x2/NG";
+import nlFlag from "country-flag-icons/string/3x2/NL";
+import phFlag from "country-flag-icons/string/3x2/PH";
+import qaFlag from "country-flag-icons/string/3x2/QA";
+import saFlag from "country-flag-icons/string/3x2/SA";
+import sgFlag from "country-flag-icons/string/3x2/SG";
+import thFlag from "country-flag-icons/string/3x2/TH";
+import trFlag from "country-flag-icons/string/3x2/TR";
+import tzFlag from "country-flag-icons/string/3x2/TZ";
+import usFlag from "country-flag-icons/string/3x2/US";
+import vnFlag from "country-flag-icons/string/3x2/VN";
+import zaFlag from "country-flag-icons/string/3x2/ZA";
 import { cn } from "@/lib/utils";
 
-/** ISO 3166-1 alpha-2 country codes we use across the site */
 export type CountryCode =
-  | "NG" | "KE" | "ZA" | "GH" | "ET" | "TZ"   // Africa
-  | "AE" | "SA" | "EG" | "TR" | "QA" | "KW"     // Middle East
-  | "TH" | "ID" | "VN" | "PH" | "MY" | "SG";   // Southeast Asia
+  | "NG" | "KE" | "ZA" | "GH" | "ET" | "TZ"
+  | "AE" | "SA" | "EG" | "TR" | "QA" | "KW"
+  | "TH" | "ID" | "VN" | "PH" | "MY" | "SG"
+  | "US" | "CA" | "GB" | "DE" | "FR" | "AU" | "NL";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-const flagComponents: Record<CountryCode, React.ComponentType<any>> = {
-  NG: Flags3x2.NG,
-  KE: Flags3x2.KE,
-  ZA: Flags3x2.ZA,
-  GH: Flags3x2.GH,
-  ET: Flags3x2.ET,
-  TZ: Flags3x2.TZ,
-  AE: Flags3x2.AE,
-  SA: Flags3x2.SA,
-  EG: Flags3x2.EG,
-  TR: Flags3x2.TR,
-  QA: Flags3x2.QA,
-  KW: Flags3x2.KW,
-  TH: Flags3x2.TH,
-  ID: Flags3x2.ID,
-  VN: Flags3x2.VN,
-  PH: Flags3x2.PH,
-  MY: Flags3x2.MY,
-  SG: Flags3x2.SG,
+const flagMarkup: Record<CountryCode, string> = {
+  NG: ngFlag,
+  KE: keFlag,
+  ZA: zaFlag,
+  GH: ghFlag,
+  ET: etFlag,
+  TZ: tzFlag,
+  AE: aeFlag,
+  SA: saFlag,
+  EG: egFlag,
+  TR: trFlag,
+  QA: qaFlag,
+  KW: kwFlag,
+  TH: thFlag,
+  ID: idFlag,
+  VN: vnFlag,
+  PH: phFlag,
+  MY: myFlag,
+  SG: sgFlag,
+  US: usFlag,
+  CA: caFlag,
+  GB: gbFlag,
+  DE: deFlag,
+  FR: frFlag,
+  AU: auFlag,
+  NL: nlFlag,
 };
 
 interface CountryFlagProps {
   code: CountryCode;
   className?: string;
-  /** Accessible label; defaults to country code */
   label?: string;
 }
 
-/**
- * Renders an SVG country flag that displays consistently across all platforms
- * (including Windows, which does not render emoji flags).
- *
- * Default size: 20×14px (3:2 aspect ratio), override with className.
- */
 export function CountryFlag({ code, className, label }: CountryFlagProps) {
-  const Flag = flagComponents[code];
-  if (!Flag) return null;
+  const svg = flagMarkup[code];
+  if (!svg) return null;
 
   return (
-    <Flag
-      className={cn("inline-block w-5 h-auto rounded-[2px] flex-shrink-0 shadow-[0_0_0_0.5px_rgba(0,0,0,0.1)]", className)}
+    <span
+      className={cn(
+        "inline-block w-5 flex-shrink-0 overflow-hidden rounded-[2px] shadow-[0_0_0_0.5px_rgba(0,0,0,0.1)] [&_svg]:block [&_svg]:h-auto [&_svg]:w-full",
+        className
+      )}
       aria-label={label ?? code}
       role="img"
+      dangerouslySetInnerHTML={{ __html: svg }}
     />
   );
 }

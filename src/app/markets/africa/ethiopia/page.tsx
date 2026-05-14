@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 import { CountryFlag } from "@/components/ui/country-flag";
 
@@ -73,8 +74,13 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function EthiopiaPage() {
+export default async function EthiopiaPage() {
   const whatsappMsg = encodeURIComponent("Hello, I am a thermal paper distributor in Ethiopia. Please send me your price list and MOQ for 57×50mm and 80×80mm rolls. CIF Djibouti.");
+  const heroImage = await getSlotImage(
+    "markets:ethiopia-hero",
+    "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1400&q=60"
+  );
+
   return (
     <Layout>
       <script
@@ -83,7 +89,7 @@ export default function EthiopiaPage() {
       />
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-[#0F2B5B] via-[#1a3a6e] to-[#0d2347] text-white py-20 px-4">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1400&q=60')", backgroundSize: "cover", backgroundPosition: "center" }} />
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url('${heroImage}')`, backgroundSize: "cover", backgroundPosition: "center" }} />
         <div className="relative max-w-6xl mx-auto">
           <nav className="text-sm text-blue-300 mb-4">
             <Link href="/" className="hover:text-white">Home</Link> &rsaquo; <Link href="/markets" className="hover:text-white">Markets</Link> &rsaquo; <Link href="/markets/africa" className="hover:text-white">Africa</Link> &rsaquo; <span className="text-white">Ethiopia</span>

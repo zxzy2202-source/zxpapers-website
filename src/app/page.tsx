@@ -528,8 +528,14 @@ export default async function HomePage() {
   // 从数据库读取绑定的图片，未绑定时使用 fallback
   const imgs = await getSlotImages([
     { slot: "home:hero", fallback: FACTORY_IMG_FALLBACK },
+    { slot: "home:hero-slide-2", fallback: HERO_SLIDE_2 },
+    { slot: "home:hero-slide-3", fallback: HERO_SLIDE_3 },
+    { slot: "home:product-labels", fallback: THERMAL_LABELS_IMG },
   ]);
   const FACTORY_IMG = imgs["home:hero"];
+  const HERO_IMG_2 = imgs["home:hero-slide-2"];
+  const HERO_IMG_3 = imgs["home:hero-slide-3"];
+  const THERMAL_LABELS_CARD_IMG = imgs["home:product-labels"];
   const waBase = `${SITE.whatsappUrl}?text=`;
   const waGeneral = `${waBase}${encodeURIComponent(
     "Hello, I need quotation for thermal paper rolls. Please send me price and MOQ."
@@ -547,7 +553,7 @@ export default async function HomePage() {
 
       {/* ① HERO */}
       <PageHero
-        bgImages={[FACTORY_IMG, HERO_SLIDE_2, HERO_SLIDE_3]}
+        bgImages={[FACTORY_IMG, HERO_IMG_2, HERO_IMG_3]}
         bgCarouselInterval={4500}
         overlayDir="left"
         overlayOpacity={50}
@@ -696,7 +702,14 @@ export default async function HomePage() {
 
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {items.map(({ size, label, badge, badgeTone, href, desc }) => {
-                    const productImage = PRODUCT_SHOWCASE_IMAGES[size] ?? HERO_SLIDE_3;
+                    const productImage = (size === "Blank Thermal Labels" ||
+                      size === "4x6 Shipping Labels" ||
+                      size === "Barcode Thermal Labels" ||
+                      size === "Custom Printed Labels" ||
+                      size === "4x3 Thermal Labels" ||
+                      size === "2x4 Thermal Labels")
+                      ? THERMAL_LABELS_CARD_IMG
+                      : PRODUCT_SHOWCASE_IMAGES[size] ?? HERO_IMG_3;
                     const productType = title === "Thermal Labels" ? "thermal labels" : "thermal paper rolls";
 
                     return (
@@ -1044,7 +1057,7 @@ export default async function HomePage() {
               <div className="mt-8 overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
                 <div
                   className="aspect-[4/3] w-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${HERO_SLIDE_2})` }}
+                  style={{ backgroundImage: `url(${HERO_IMG_2})` }}
                   aria-label="Thermal paper printing, slitting, and converting line"
                   role="img"
                 />

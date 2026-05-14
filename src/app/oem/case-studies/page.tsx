@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { ArrowRight, Globe, Package, Star } from "lucide-react";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: "OEM Case Studies | Global Client Stories",
@@ -44,7 +45,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function CaseStudiesPage() {
+export default async function CaseStudiesPage() {
+  const heroImage = await getSlotImage("oem:case-studies-hero", IMG);
   return (
     <Layout>
       <script
@@ -52,7 +54,7 @@ export default function CaseStudiesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="relative bg-[#0F2B5B] text-white py-14 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${IMG})` }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${heroImage})` }} />
         <div className="relative container">
           <div className="text-amber-400 text-sm font-semibold mb-3">
             <Link href="/oem" className="hover:underline">OEM</Link> / Case Studies
