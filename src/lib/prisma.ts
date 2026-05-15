@@ -4,9 +4,42 @@ import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
   dbInitialized: boolean;
+  processGuardsInstalled: boolean;
 };
 
+/**
+ * Install process-level guards so that a background MariaDB pool error
+ * (e.g. lost TCP connection, server restart, idle timeout) cannot kill
+ * the entire Next.js Node process. Without these, an unhandled 'error'
+ * event from the mariadb pool's internal EventEmitter brings the
+ * application down and Hostinger restarts it in a crash loop.
+ */
+function installProcessGuards() {
+  if (globalForPrisma.processGuardsInstalled) return;
+  globalForPrisma.processGuardsInstalled = true;
+
+  process.on("unhandledRejection", (reason) => {
+    console.error("[process] unhandledRejection (suppressed):", reason);
+  });
+
+  process.on("uncaughtException", (err) => {
+    const message = err && (err as Error).message ? (err as Error).message : String(err);
+    // Swallow MariaDB / pool / Prisma transient errors instead of crashing.
+    if (
+      /pool|mariadb|connection|ECONNRESET|ETIMEDOUT|ECONNREFUSED|EPIPE|read ECONN|write ECONN/i.test(
+        message,
+      )
+    ) {
+      console.error("[process] uncaughtException (db, suppressed):", message);
+      return;
+    }
+    console.error("[process] uncaughtException:", err);
+  });
+}
+
 function createPrismaClient() {
+  installProcessGuards();
+
   const databaseUrl =
     process.env.DATABASE_URL || "mysql://root:password@127.0.0.1:3306/zxpapers";
   const parsed = new URL(databaseUrl);
@@ -17,7 +50,12 @@ function createPrismaClient() {
     user: decodeURIComponent(parsed.username),
     password: decodeURIComponent(parsed.password),
     database: parsed.pathname.replace(/^\//, ""),
-    connectionLimit: 5,
+    connectionLimit: 3,
+    // Keep connections short-lived so Hostinger's MariaDB idle timeout
+    // does not leave dead sockets in the pool.
+    idleTimeout: 30,
+    acquireTimeout: 8000,
+    connectTimeout: 8000,
   });
 
   return new PrismaClient({ adapter });
@@ -25,7 +63,9 @@ function createPrismaClient() {
 
 export const prisma = globalForPrisma.prisma ?? createPrismaClient();
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+// Always cache the singleton to avoid creating a new pool on every hot
+// import in production serverless-style environments.
+globalForPrisma.prisma = prisma;
 
 /**
  * Ensure MySQL schema exists in environments where Prisma migrations are not executed.
