@@ -10,7 +10,7 @@ interface PageProps {
 export default async function EditArticlePage({ params }: PageProps) {
   const { id } = await params;
 
-  const article = await prisma.article.findUnique({ where: { id } });
+  const article = await prisma.article.findUnique({ where: { id } }).catch(() => null);
 
   if (!article) notFound();
 
