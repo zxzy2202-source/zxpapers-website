@@ -12,11 +12,12 @@ export async function GET(request: NextRequest) {
   const pageKey = searchParams.get("page") || "all";
   const keyword = searchParams.get("keyword") || "";
 
-  await initializeImageSlots();
-  const data = await listImageSlots({ pageKey, keyword });
-
-  return NextResponse.json({
-    success: true,
-    ...data,
-  });
+  try {
+    await initializeImageSlots();
+    const data = await listImageSlots({ pageKey, keyword });
+    return NextResponse.json({ success: true, ...data });
+  } catch (error) {
+    console.error("Error loading image slots:", error);
+    return NextResponse.json({ error: "Database error" }, { status: 503 });
+  }
 }
