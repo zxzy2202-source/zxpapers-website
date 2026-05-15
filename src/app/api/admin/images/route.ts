@@ -19,16 +19,21 @@ export async function GET(request: NextRequest) {
   const limit = parseInt(searchParams.get("limit") || "30");
   const skip = (page - 1) * limit;
 
-  const [images, total] = await Promise.all([
-    prisma.imageAsset.findMany({
-      orderBy: { createdAt: "desc" },
-      skip,
-      take: limit,
-    }),
-    prisma.imageAsset.count(),
-  ]);
+  try {
+    const [images, total] = await Promise.all([
+      prisma.imageAsset.findMany({
+        orderBy: { createdAt: "desc" },
+        skip,
+        take: limit,
+      }),
+      prisma.imageAsset.count(),
+    ]);
 
-  return NextResponse.json({ images, total, page });
+    return NextResponse.json({ images, total, page });
+  } catch (error) {
+    console.error("Error fetching images:", error);
+    return NextResponse.json({ error: "Database error" }, { status: 503 });
+  }
 }
 
 // 处理单个文件上传，返回 ImageAsset 记录
