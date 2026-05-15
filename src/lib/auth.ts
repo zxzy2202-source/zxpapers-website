@@ -33,38 +33,45 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.username || !credentials?.password) return null;
+        try {
+          if (!credentials?.username || !credentials?.password) return null;
 
-        const username = (credentials.username as string).trim();
-        const password = credentials.password as string;
+          const username = (credentials.username as string).trim();
+          const password = credentials.password as string;
 
-        const adminUsername = process.env.ADMIN_USERNAME?.trim();
-        const adminPassword = process.env.ADMIN_PASSWORD;
-        const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH?.trim();
+          const adminUsername = process.env.ADMIN_USERNAME?.trim();
+          const adminPassword = process.env.ADMIN_PASSWORD?.trim();
+          const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH?.trim();
 
-        if (!adminUsername || (!adminPassword && !adminPasswordHash)) {
-          console.error(
-            "[auth] 未配置 ADMIN_USERNAME / ADMIN_PASSWORD，无法登录。请在 Hostinger 环境变量里设置。",
-          );
+          if (!adminUsername) {
+            console.error("[auth] 未配置 ADMIN_USERNAME");
+            return null;
+          }
+
+          if (!safeEqual(username, adminUsername)) return null;
+
+          let passwordValid = false;
+
+          if (adminPasswordHash && adminPasswordHash.startsWith("$2")) {
+            try {
+              passwordValid = await bcrypt.compare(password, adminPasswordHash);
+            } catch {
+              console.error("[auth] bcrypt.compare 失败，回退到明文比较");
+              passwordValid = false;
+            }
+          }
+
+          if (!passwordValid && adminPassword) {
+            passwordValid = safeEqual(password, adminPassword);
+          }
+
+          if (!passwordValid) return null;
+
+          return { id: "env-admin", name: "Admin", email: adminUsername };
+        } catch (err) {
+          console.error("[auth] authorize 异常:", err);
           return null;
         }
-
-        if (!safeEqual(username, adminUsername)) return null;
-
-        let passwordValid = false;
-        if (adminPasswordHash) {
-          passwordValid = await bcrypt.compare(password, adminPasswordHash);
-        } else if (adminPassword) {
-          passwordValid = safeEqual(password, adminPassword);
-        }
-
-        if (!passwordValid) return null;
-
-        return {
-          id: "env-admin",
-          name: "Admin",
-          email: adminUsername,
-        };
       },
     }),
   ],
