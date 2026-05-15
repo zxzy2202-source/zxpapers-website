@@ -16,7 +16,7 @@ const statusLabels: Record<string, string> = {
 export default async function InquiryDetailPage({ params }: PageProps) {
   const { id } = await params;
 
-  const inquiry = await prisma.inquiry.findUnique({ where: { id } });
+  const inquiry = await prisma.inquiry.findUnique({ where: { id } }).catch(() => null);
 
   if (!inquiry) notFound();
 
