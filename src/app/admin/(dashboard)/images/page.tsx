@@ -1,9 +1,19 @@
 import ImageManager from "@/components/admin/ImageManager";
 import { initializeImageSlots, listImageSlots } from "@/lib/imageSlots.server";
+import { IMAGE_SLOT_PAGES } from "@/config/imageSlots";
 
 export default async function ImagesPage() {
-  await initializeImageSlots();
-  const data = await listImageSlots({ pageKey: "all", keyword: "" });
+  let data: Awaited<ReturnType<typeof listImageSlots>> = {
+    slots: [],
+    stats: { totalSlots: 0, uploadedCount: 0, emptyCount: 0, coveredPages: 0 },
+    pages: IMAGE_SLOT_PAGES,
+  };
+  try {
+    await initializeImageSlots();
+    data = await listImageSlots({ pageKey: "all", keyword: "" });
+  } catch (error) {
+    console.error("Error loading image slots:", error);
+  }
 
   return (
     <div className="space-y-5">
