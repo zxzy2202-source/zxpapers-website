@@ -38,14 +38,14 @@ export default async function InquiriesPage({ searchParams }: PageProps) {
       take: pageSize,
     }),
     prisma.inquiry.count({ where }),
-  ]);
+  ]).catch(() => [[], 0] as const);
 
   const totalPages = Math.ceil(total / pageSize);
 
   const statusCounts = await prisma.inquiry.groupBy({
     by: ["status"],
     _count: true,
-  });
+  }).catch(() => []);
 
   const countMap: Record<string, number> = {};
   statusCounts.forEach((s) => {
