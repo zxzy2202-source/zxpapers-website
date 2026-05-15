@@ -20,35 +20,40 @@ export async function GET(request: NextRequest) {
   if (status) where.status = status;
   if (category) where.category = category;
 
-  const [articles, total] = await Promise.all([
-    prisma.article.findMany({
-      where,
-      orderBy: { createdAt: "desc" },
-      skip,
-      take: limit,
-      select: {
-        id: true,
-        title: true,
-        slug: true,
-        excerpt: true,
-        category: true,
-        tags: true,
-        status: true,
-        coverImage: true,
-        publishedAt: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-    }),
-    prisma.article.count({ where }),
-  ]);
+  try {
+    const [articles, total] = await Promise.all([
+      prisma.article.findMany({
+        where,
+        orderBy: { createdAt: "desc" },
+        skip,
+        take: limit,
+        select: {
+          id: true,
+          title: true,
+          slug: true,
+          excerpt: true,
+          category: true,
+          tags: true,
+          status: true,
+          coverImage: true,
+          publishedAt: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+      }),
+      prisma.article.count({ where }),
+    ]);
 
-  return NextResponse.json({
-    articles,
-    total,
-    page,
-    totalPages: Math.ceil(total / limit),
-  });
+    return NextResponse.json({
+      articles,
+      total,
+      page,
+      totalPages: Math.ceil(total / limit),
+    });
+  } catch (error) {
+    console.error("Error fetching articles:", error);
+    return NextResponse.json({ error: "Database error" }, { status: 503 });
+  }
 }
 
 // POST /api/admin/articles - 创建文章
