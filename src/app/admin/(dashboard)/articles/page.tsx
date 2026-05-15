@@ -75,7 +75,7 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
     prisma.article.count({ where }),
     prisma.article.count({ where: { status: "PUBLISHED" } }),
     prisma.article.count({ where: { status: "DRAFT" } }),
-  ]);
+  ]).catch(() => [[], 0, 0, 0] as const);
 
   const activeKey = status || category || "all";
 
