@@ -17,22 +17,27 @@ export async function GET(request: NextRequest) {
 
   const where = status ? { status } : {};
 
-  const [inquiries, total] = await Promise.all([
-    prisma.inquiry.findMany({
-      where,
-      orderBy: { createdAt: "desc" },
-      skip,
-      take: limit,
-    }),
-    prisma.inquiry.count({ where }),
-  ]);
+  try {
+    const [inquiries, total] = await Promise.all([
+      prisma.inquiry.findMany({
+        where,
+        orderBy: { createdAt: "desc" },
+        skip,
+        take: limit,
+      }),
+      prisma.inquiry.count({ where }),
+    ]);
 
-  return NextResponse.json({
-    inquiries,
-    total,
-    page,
-    totalPages: Math.ceil(total / limit),
-  });
+    return NextResponse.json({
+      inquiries,
+      total,
+      page,
+      totalPages: Math.ceil(total / limit),
+    });
+  } catch (error) {
+    console.error("Error fetching inquiries:", error);
+    return NextResponse.json({ error: "Database error" }, { status: 503 });
+  }
 }
 
 // POST /api/admin/inquiries - 创建询盘（来自前台表单）
