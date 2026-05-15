@@ -23,19 +23,27 @@ function LoginForm() {
     setError("");
     setLoading(true);
 
-    const result = await signIn("credentials", {
-      username,
-      password,
-      redirect: false,
-    });
+    try {
+      const timeout = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error("timeout")), 15000)
+      );
+      const result = await Promise.race([
+        signIn("credentials", { username, password, redirect: false }),
+        timeout,
+      ]);
 
-    setLoading(false);
+      setLoading(false);
 
-    if (result?.error) {
-      setError("用户名或密码错误");
-    } else {
-      router.push(callbackUrl);
-      router.refresh();
+      if (result?.error) {
+        setError("用户名或密码错误");
+      } else {
+        router.push(callbackUrl);
+        router.refresh();
+      }
+    } catch (err) {
+      setLoading(false);
+      const msg = err instanceof Error ? err.message : "";
+      setError(msg === "timeout" ? "登录超时，请稍后重试" : "用户名或密码错误");
     }
   }
 
