@@ -2,22 +2,29 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
 async function getStats() {
-  const [totalInquiries, newInquiries, totalArticles, publishedArticles] =
-    await Promise.all([
-      prisma.inquiry.count(),
-      prisma.inquiry.count({ where: { status: "NEW" } }),
-      prisma.article.count(),
-      prisma.article.count({ where: { status: "PUBLISHED" } }),
-    ]);
-
-  return { totalInquiries, newInquiries, totalArticles, publishedArticles };
+  try {
+    const [totalInquiries, newInquiries, totalArticles, publishedArticles] =
+      await Promise.all([
+        prisma.inquiry.count(),
+        prisma.inquiry.count({ where: { status: "NEW" } }),
+        prisma.article.count(),
+        prisma.article.count({ where: { status: "PUBLISHED" } }),
+      ]);
+    return { totalInquiries, newInquiries, totalArticles, publishedArticles };
+  } catch {
+    return { totalInquiries: 0, newInquiries: 0, totalArticles: 0, publishedArticles: 0 };
+  }
 }
 
 async function getRecentInquiries() {
-  return prisma.inquiry.findMany({
-    orderBy: { createdAt: "desc" },
-    take: 5,
-  });
+  try {
+    return await prisma.inquiry.findMany({
+      orderBy: { createdAt: "desc" },
+      take: 5,
+    });
+  } catch {
+    return [];
+  }
 }
 
 const statusLabels: Record<string, string> = {
