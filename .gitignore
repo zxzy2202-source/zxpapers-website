@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.env
+.env.local
+.env.production
+*.log
+.DS_Store
+dist/
+out/
+
+/src/generated/prisma
+*.db
+prisma/admin.db
