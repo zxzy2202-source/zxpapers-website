@@ -1,7 +1,27 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { prisma } from "./prisma";
 import bcrypt from "bcryptjs";
+
+/**
+ * 后台登录：纯环境变量方式，不依赖数据库。
+ *
+ * 在 Hostinger 面板的「环境变量」里配置：
+ *   ADMIN_USERNAME       管理员用户名
+ *   ADMIN_PASSWORD       管理员密码（明文，想改密码直接在面板里改这一项）
+ *   ADMIN_PASSWORD_HASH  可选：bcrypt 哈希密码。设置了就优先用它，否则用 ADMIN_PASSWORD
+ *
+ * 改密码：登录 Hostinger 面板 → 环境变量 → 修改 ADMIN_PASSWORD → 重新部署即可。
+ */
+
+/** 定长比较，避免计时攻击 */
+function safeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return result === 0;
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
@@ -15,43 +35,35 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       async authorize(credentials) {
         if (!credentials?.username || !credentials?.password) return null;
 
-        const username = credentials.username as string;
+        const username = (credentials.username as string).trim();
         const password = credentials.password as string;
-        const fallbackUsername = process.env.ADMIN_USERNAME?.trim();
-        const fallbackPasswordHash = process.env.ADMIN_PASSWORD_HASH?.trim();
 
-        if (fallbackUsername && fallbackPasswordHash && username === fallbackUsername) {
-          const isFallbackValid = await bcrypt.compare(password, fallbackPasswordHash);
+        const adminUsername = process.env.ADMIN_USERNAME?.trim();
+        const adminPassword = process.env.ADMIN_PASSWORD;
+        const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH?.trim();
 
-          if (isFallbackValid) {
-            return {
-              id: "env-admin",
-              name: "Admin",
-              email: fallbackUsername,
-            };
-          }
-        }
-
-        let admin;
-        try {
-          admin = await prisma.admin.findUnique({
-            where: { username },
-          });
-        } catch (error) {
-          console.error("[auth] Admin lookup failed:", error);
+        if (!adminUsername || (!adminPassword && !adminPasswordHash)) {
+          console.error(
+            "[auth] 未配置 ADMIN_USERNAME / ADMIN_PASSWORD，无法登录。请在 Hostinger 环境变量里设置。",
+          );
           return null;
         }
 
-        if (!admin) return null;
+        if (!safeEqual(username, adminUsername)) return null;
 
-        const isValid = await bcrypt.compare(password, admin.password);
+        let passwordValid = false;
+        if (adminPasswordHash) {
+          passwordValid = await bcrypt.compare(password, adminPasswordHash);
+        } else if (adminPassword) {
+          passwordValid = safeEqual(password, adminPassword);
+        }
 
-        if (!isValid) return null;
+        if (!passwordValid) return null;
 
         return {
-          id: admin.id,
-          name: admin.name,
-          email: admin.username,
+          id: "env-admin",
+          name: "Admin",
+          email: adminUsername,
         };
       },
     }),
