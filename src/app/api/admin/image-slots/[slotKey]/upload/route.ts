@@ -3,7 +3,7 @@ import { randomUUID } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { getAdminSession } from "@/lib/session";
 import { ensureSlotRecord, bindImageToSlot } from "@/lib/imageSlots.server";
 import { prisma } from "@/lib/prisma";
 import { normalizeSlotKey } from "@/config/imageSlots";
@@ -18,7 +18,7 @@ const allowLocalFileUploads =
   process.env.ALLOW_LOCAL_FILE_UPLOADS !== "false";
 
 export async function POST(request: NextRequest, context: RouteContext) {
-  const session = await auth();
+  const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

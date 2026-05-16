@@ -5,6 +5,7 @@ import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight, Package, Ruler, ShieldCheck, Truck, Clock, Star, MessageSquare } from "lucide-react";
 import { paperRollSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.domain}/products/thermal-paper-rolls/blank` },
 };
 
-const ROLLS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
+const ROLLS_IMG_FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
 
 const specs = [
   { label: "Paper Width",       value: "57mm / 80mm / Custom (±0.5mm)" },
@@ -117,7 +118,8 @@ const productSchema = {
   },
   "url": "https://www.zhixinpaper.com/products/thermal-paper-rolls/blank"
 };
-export default function BlankThermalRollsPage() {
+export default async function BlankThermalRollsPage() {
+  const ROLLS_IMG = await getSlotImage("thermal-paper-rolls:blank-hero", ROLLS_IMG_FALLBACK);
   return (
     <Layout>
       <script

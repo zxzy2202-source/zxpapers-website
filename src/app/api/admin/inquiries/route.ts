@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { getAdminSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 
 // GET /api/admin/inquiries - 获取询盘列表
 export async function GET(request: NextRequest) {
-  const session = await auth();
+  const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

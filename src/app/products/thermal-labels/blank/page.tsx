@@ -5,6 +5,7 @@ import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight, Package, Ruler, ShieldCheck, Truck, Clock, Star, MessageSquare, Thermometer, Snowflake, Layers } from "lucide-react";
 import { labelSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.domain}/products/thermal-labels/blank` },
 };
 
-const LABELS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
+const LABELS_IMG_FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
 
 const adhesiveTypes = [
   {
@@ -159,7 +160,8 @@ const productSchema = {
   },
   "url": "https://www.zhixinpaper.com/products/thermal-labels/blank"
 };
-export default function BlankThermalLabelsPage() {
+export default async function BlankThermalLabelsPage() {
+  const LABELS_IMG = await getSlotImage("thermal-labels:blank-hero", LABELS_IMG_FALLBACK);
   return (
     <Layout>
       <script

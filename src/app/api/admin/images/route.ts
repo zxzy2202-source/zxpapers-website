@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { getAdminSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
@@ -9,7 +9,7 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
 // GET /api/admin/images - 获取图片列表
 export async function GET(request: NextRequest) {
-  const session = await auth();
+  const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -99,7 +99,7 @@ async function processSingleFile(
 
 // POST /api/admin/images - 上传图片（支持单文件和批量）
 export async function POST(request: NextRequest) {
-  const session = await auth();
+  const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

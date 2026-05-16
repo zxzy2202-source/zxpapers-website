@@ -531,11 +531,13 @@ export default async function HomePage() {
     { slot: "home:hero-slide-2", fallback: HERO_SLIDE_2 },
     { slot: "home:hero-slide-3", fallback: HERO_SLIDE_3 },
     { slot: "home:product-labels", fallback: THERMAL_LABELS_IMG },
+    { slot: "home:product-rolls", fallback: HERO_SLIDE_3 },
   ]);
   const FACTORY_IMG = imgs["home:hero"];
   const HERO_IMG_2 = imgs["home:hero-slide-2"];
   const HERO_IMG_3 = imgs["home:hero-slide-3"];
   const THERMAL_LABELS_CARD_IMG = imgs["home:product-labels"];
+  const THERMAL_ROLLS_CARD_IMG = imgs["home:product-rolls"];
   const waBase = `${SITE.whatsappUrl}?text=`;
   const waGeneral = `${waBase}${encodeURIComponent(
     "Hello, I need quotation for thermal paper rolls. Please send me price and MOQ."
@@ -709,7 +711,7 @@ export default async function HomePage() {
                       size === "4x3 Thermal Labels" ||
                       size === "2x4 Thermal Labels")
                       ? THERMAL_LABELS_CARD_IMG
-                      : PRODUCT_SHOWCASE_IMAGES[size] ?? HERO_IMG_3;
+                      : PRODUCT_SHOWCASE_IMAGES[size] ?? THERMAL_ROLLS_CARD_IMG;
                     const productType = title === "Thermal Labels" ? "thermal labels" : "thermal paper rolls";
 
                     return (

@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { getAdminSession } from "@/lib/session";
 import { initializeImageSlots } from "@/lib/imageSlots.server";
 
 export async function POST() {
-  const session = await auth();
+  const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

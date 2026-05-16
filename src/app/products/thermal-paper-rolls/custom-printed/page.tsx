@@ -5,6 +5,7 @@ import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight, Package, Printer, ShieldCheck, Truck, Clock, Star, MessageSquare, Layers, Zap } from "lucide-react";
 import { paperRollSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
   },
 };
 
-const ROLLS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
+const ROLLS_IMG_FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
 
 const printingSpecs = [
   { label: "Print Method",       value: "Flexographic printing (up to 4 colors)" },
@@ -196,7 +197,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function CustomPrintedRollsPage() {
+export default async function CustomPrintedRollsPage() {
+  const ROLLS_IMG = await getSlotImage("thermal-paper-rolls:custom-hero", ROLLS_IMG_FALLBACK);
   return (
     <Layout>
       <script

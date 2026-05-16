@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { getAdminSession } from "@/lib/session";
 
 const CATEGORY_LABELS: Record<string, string> = {
   INDUSTRY_INSIGHTS: "Industry Insights",
@@ -51,7 +51,7 @@ function extractResponseText(data: any): string {
 }
 
 export async function POST(request: NextRequest) {
-  const session = await auth();
+  const session = await getAdminSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

@@ -1,7 +1,6 @@
 "use client";
 
 import { Suspense, useState } from "react";
-import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AlertCircle, Loader2, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -24,26 +23,28 @@ function LoginForm() {
     setLoading(true);
 
     try {
-      const timeout = new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error("timeout")), 15000)
-      );
-      const result = await Promise.race([
-        signIn("credentials", { username, password, redirect: false }),
-        timeout,
-      ]);
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 15000);
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+        signal: controller.signal,
+      });
+      clearTimeout(timer);
 
       setLoading(false);
 
-      if (result?.error) {
-        setError("用户名或密码错误");
-      } else {
+      if (res.ok) {
         router.push(callbackUrl);
         router.refresh();
+      } else {
+        setError("用户名或密码错误");
       }
     } catch (err) {
       setLoading(false);
       const msg = err instanceof Error ? err.message : "";
-      setError(msg === "timeout" ? "登录超时，请稍后重试" : "用户名或密码错误");
+      setError(msg.includes("abort") ? "登录超时，请稍后重试" : "用户名或密码错误");
     }
   }
 

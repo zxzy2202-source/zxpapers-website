@@ -1,59 +1,54 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getToken } from "next-auth/jwt";
+import { COOKIE_NAME } from "@/lib/session";
+
+async function verifyHmac(token: string, secret: string): Promise<boolean> {
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+  const sig = await crypto.subtle.sign("HMAC", key, encoder.encode("admin-session-v1"));
+  const expected = Array.from(new Uint8Array(sig))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+
+  if (token.length !== expected.length) return false;
+  // constant-time compare
+  let d = 0;
+  for (let i = 0; i < token.length; i++) {
+    d |= token.charCodeAt(i) ^ expected.charCodeAt(i);
+  }
+  return d === 0;
+}
 
 export async function middleware(req: NextRequest) {
-  const isAdminRoute = req.nextUrl.pathname.startsWith("/admin");
-  const isLoginPage = req.nextUrl.pathname === "/admin/login" || req.nextUrl.pathname === "/admin/login/";
-  const isApiAuth = req.nextUrl.pathname.startsWith("/api/auth");
-  const isApiAdmin = req.nextUrl.pathname.startsWith("/api/admin");
-  const isApiSeed = req.nextUrl.pathname === "/api/admin/seed" || req.nextUrl.pathname === "/api/admin/seed/";
-  const isApiPasswordReset =
-    req.nextUrl.pathname === "/api/admin/reset-password" ||
-    req.nextUrl.pathname === "/api/admin/reset-password/";
+  const { pathname } = req.nextUrl;
 
-  // 放行认证 API
+  const isAdminRoute = pathname.startsWith("/admin");
+  const isLoginPage = pathname === "/admin/login" || pathname === "/admin/login/";
+  const isApiAuth = pathname.startsWith("/api/auth");
+  const isApiAdmin = pathname.startsWith("/api/admin");
+
   if (isApiAuth) return NextResponse.next();
 
-  // Seed API 单独由路由层使用初始化令牌控制
-  if (isApiSeed) {
-    return NextResponse.next();
-  }
+  const secret = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET || "dev-secret";
+  const token = req.cookies.get(COOKIE_NAME)?.value;
+  const isAuthenticated = token ? await verifyHmac(token, secret) : false;
 
-  if (isApiPasswordReset) {
-    return NextResponse.next();
-  }
-
-  // 验证 JWT token（轻量级，不依赖 Prisma）
-  // NextAuth v5 使用 JWE 加密，salt 默认为 cookieName
-  // 生产环境（HTTPS）使用 __Secure-authjs.session-token
-  const secret = process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET;
-  if (!secret) {
-    console.error("[middleware] AUTH_SECRET is not configured");
-    return NextResponse.json({ error: "Server misconfiguration" }, { status: 500 });
-  }
-  const cookieNames = ["authjs.session-token", "__Secure-authjs.session-token"];
-  let token = null;
-
-  for (const cookieName of cookieNames) {
-    token = await getToken({ req, secret, cookieName, salt: cookieName });
-    if (token) break;
-  }
-  const isAuthenticated = !!token;
-
-  // 保护 admin API 路由
   if (isApiAdmin && !isAuthenticated) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // 如果是 admin 路由且未登录，重定向到登录页
   if (isAdminRoute && !isLoginPage && !isAuthenticated) {
     const loginUrl = new URL("/admin/login", req.url);
-    loginUrl.searchParams.set("callbackUrl", req.nextUrl.pathname);
+    loginUrl.searchParams.set("callbackUrl", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  // 如果已登录且访问登录页，重定向到 dashboard
   if (isLoginPage && isAuthenticated) {
     return NextResponse.redirect(new URL("/admin", req.url));
   }
