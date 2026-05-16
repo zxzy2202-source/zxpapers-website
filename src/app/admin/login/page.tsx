@@ -12,7 +12,6 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/admin";
 
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,7 +27,7 @@ function LoginForm() {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ password }),
         signal: controller.signal,
       });
       clearTimeout(timer);
@@ -39,12 +38,12 @@ function LoginForm() {
         router.push(callbackUrl);
         router.refresh();
       } else {
-        setError("用户名或密码错误");
+        setError("密码错误");
       }
     } catch (err) {
       setLoading(false);
       const msg = err instanceof Error ? err.message : "";
-      setError(msg.includes("abort") ? "登录超时，请稍后重试" : "用户名或密码错误");
+      setError(msg.includes("abort") ? "登录超时，请稍后重试" : "密码错误");
     }
   }
 
@@ -57,19 +56,6 @@ function LoginForm() {
             {error}
           </div>
         )}
-
-        <div className="space-y-1.5">
-          <Label htmlFor="username">用户名</Label>
-          <Input
-            id="username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            autoComplete="username"
-            placeholder="请输入用户名"
-          />
-        </div>
 
         <div className="space-y-1.5">
           <Label htmlFor="password">密码</Label>

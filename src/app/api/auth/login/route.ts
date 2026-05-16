@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHmac } from "crypto";
+import bcrypt from "bcryptjs";
 import { COOKIE_NAME, generateToken, MAX_AGE } from "@/lib/session";
 
 function safeEqual(a: string, b: string): boolean {
@@ -12,19 +12,34 @@ function safeEqual(a: string, b: string): boolean {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { username, password } = body as { username?: string; password?: string };
+    const { password } = body as { password?: string };
 
-    const adminUsername = process.env.ADMIN_USERNAME || "admin";
-    const adminPassword = process.env.ADMIN_PASSWORD || "";
+    const adminPassword = process.env.ADMIN_PASSWORD?.trim() || "";
+    const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH?.trim() || "";
 
-    if (!username || !password) {
-      return NextResponse.json({ error: "Missing credentials" }, { status: 400 });
+    if (!password) {
+      return NextResponse.json({ error: "Missing password" }, { status: 400 });
     }
 
-    const usernameOk = safeEqual(username, adminUsername);
-    const passwordOk = safeEqual(password, adminPassword);
+    if (!adminPassword && !adminPasswordHash) {
+      return NextResponse.json({ error: "Admin password is not configured" }, { status: 500 });
+    }
 
-    if (!usernameOk || !passwordOk) {
+    let passwordOk = false;
+
+    if (adminPasswordHash.startsWith("$2")) {
+      try {
+        passwordOk = await bcrypt.compare(password, adminPasswordHash);
+      } catch (error) {
+        console.error("[auth/login] bcrypt compare failed:", error);
+      }
+    }
+
+    if (!passwordOk && adminPassword) {
+      passwordOk = safeEqual(password, adminPassword);
+    }
+
+    if (!passwordOk) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 

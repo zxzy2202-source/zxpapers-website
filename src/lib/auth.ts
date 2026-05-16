@@ -6,7 +6,6 @@ import bcrypt from "bcryptjs";
  * 后台登录：纯环境变量方式，不依赖数据库。
  *
  * 在 Hostinger 面板的「环境变量」里配置：
- *   ADMIN_USERNAME       管理员用户名
  *   ADMIN_PASSWORD       管理员密码（明文，想改密码直接在面板里改这一项）
  *   ADMIN_PASSWORD_HASH  可选：bcrypt 哈希密码。设置了就优先用它，否则用 ADMIN_PASSWORD
  *
@@ -29,26 +28,21 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Credentials({
       name: "credentials",
       credentials: {
-        username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         try {
-          if (!credentials?.username || !credentials?.password) return null;
+          if (!credentials?.password) return null;
 
-          const username = (credentials.username as string).trim();
           const password = credentials.password as string;
 
-          const adminUsername = process.env.ADMIN_USERNAME?.trim();
           const adminPassword = process.env.ADMIN_PASSWORD?.trim();
           const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH?.trim();
 
-          if (!adminUsername) {
-            console.error("[auth] 未配置 ADMIN_USERNAME");
+          if (!adminPassword && !adminPasswordHash) {
+            console.error("[auth] 未配置 ADMIN_PASSWORD 或 ADMIN_PASSWORD_HASH");
             return null;
           }
-
-          if (!safeEqual(username, adminUsername)) return null;
 
           let passwordValid = false;
 
@@ -67,7 +61,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
           if (!passwordValid) return null;
 
-          return { id: "env-admin", name: "Admin", email: adminUsername };
+          return { id: "env-admin", name: "Admin" };
         } catch (err) {
           console.error("[auth] authorize 异常:", err);
           return null;

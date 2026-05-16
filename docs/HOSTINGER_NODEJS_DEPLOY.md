@@ -51,7 +51,7 @@ Optional but recommended:
 - `AI_ARTICLE_MODEL`
 - `AI_ARTICLE_REASONING_EFFORT`
 - `ALLOW_LOCAL_FILE_UPLOADS=true`
-- `ADMIN_USERNAME` and `ADMIN_PASSWORD_HASH` for emergency admin login if the database admin table is unavailable
+- `ADMIN_PASSWORD` or `ADMIN_PASSWORD_HASH` for password-only admin login
 - `BLOB_READ_WRITE_TOKEN`
 - `ANTHROPIC_API_KEY`
 - `ANTHROPIC_BASE_URL`
@@ -75,18 +75,16 @@ If the password contains special characters, URL-encode it before placing it int
 4. Set Node.js version to `20.x` or `22.x`.
 5. Import environment variables.
 6. Deploy the app.
-7. Send a `POST` request to `/api/admin/seed` once with `username`, `password`, `name`, and `seedToken`.
-8. Log in to `/admin/login`.
+7. Log in to `/admin/login` with the configured admin password.
 
 ## Important notes
 
 - This setup is designed to use Hostinger local file storage, so keep `ALLOW_LOCAL_FILE_UPLOADS=true`.
 - Uploaded files are saved into `public/uploads`.
 - `BLOB_READ_WRITE_TOKEN` is optional and only needed if you later switch to object storage.
-- In production, `/api/admin/seed` requires `SEED_ADMIN_TOKEN` and automatically disables itself after the first admin is created.
 - If Claude credentials are not set, ALT generation falls back to rule-based generation.
 - AI article generation requires a working `OPENAI_API_KEY`.
-- Emergency admin login uses `ADMIN_USERNAME` plus a bcrypt `ADMIN_PASSWORD_HASH`. Remove these variables after the database admin account is working.
+- Admin login is password-only and uses `ADMIN_PASSWORD`, or `ADMIN_PASSWORD_HASH` if you prefer a bcrypt hash.
 
 ## Current admin URL pattern
 
