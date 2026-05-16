@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/session";
-import { initializeImageSlots, listImageSlots } from "@/lib/imageSlots.server";
+import { listImageSlots } from "@/lib/imageSlots.server";
 
 export async function GET(request: NextRequest) {
   const session = await getAdminSession();
@@ -13,7 +13,6 @@ export async function GET(request: NextRequest) {
   const keyword = searchParams.get("keyword") || "";
 
   try {
-    await initializeImageSlots();
     const data = await listImageSlots({ pageKey, keyword });
     return NextResponse.json({ success: true, ...data });
   } catch (error) {

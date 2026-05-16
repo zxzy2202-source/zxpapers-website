@@ -2,7 +2,7 @@ import { del } from "@vercel/blob";
 import { stat, unlink } from "node:fs/promises";
 import path from "node:path";
 import { prisma, ensureDbSchema } from "@/lib/prisma";
-import { type Prisma } from "@prisma/client";
+import { type ImageSlotRecord, type Prisma } from "@prisma/client";
 import {
   buildImageSlotSeedData,
   getLegacySlotKey,
@@ -50,7 +50,37 @@ export interface ImageSlotStats {
 }
 
 type SlotRecordWithImage = Prisma.ImageSlotRecordGetPayload<{
-  include: { imageAsset: true };
+  select: {
+    id: true;
+    slotKey: true;
+    pageKey: true;
+    pageName: true;
+    pagePath: true;
+    sectionKey: true;
+    sectionName: true;
+    slotName: true;
+    label: true;
+    description: true;
+    aspectRatio: true;
+    sortOrder: true;
+    isActive: true;
+    imageAssetId: true;
+    imageAsset: {
+      select: {
+        id: true;
+        filename: true;
+        originalName: true;
+        path: true;
+        alt: true;
+        label: true;
+        size: true;
+        mimeType: true;
+        width: true;
+        height: true;
+        updatedAt: true;
+      };
+    };
+  };
 }>;
 
 type LegacyHomeImageBinding = {
@@ -133,28 +163,97 @@ function mapSlotRecord(record: SlotRecordWithImage): ImageSlotListItem {
   };
 }
 
+function slotMatchesSeed(
+  record: Pick<
+    ImageSlotRecord,
+    | "pageKey"
+    | "pageName"
+    | "pagePath"
+    | "sectionKey"
+    | "sectionName"
+    | "slotName"
+    | "label"
+    | "description"
+    | "aspectRatio"
+    | "sortOrder"
+  >,
+  seed: ReturnType<typeof buildImageSlotSeedData>[number],
+) {
+  return (
+    record.pageKey === seed.pageKey &&
+    record.pageName === seed.pageName &&
+    record.pagePath === seed.pagePath &&
+    record.sectionKey === seed.sectionKey &&
+    record.sectionName === seed.sectionName &&
+    record.slotName === seed.slotName &&
+    record.label === seed.label &&
+    record.description === seed.description &&
+    record.aspectRatio === seed.aspectRatio &&
+    record.sortOrder === seed.sortOrder
+  );
+}
+
 export async function initializeImageSlots() {
   await ensureDbSchema();
   const seedData = buildImageSlotSeedData();
+  const existing = await prisma.imageSlotRecord.findMany({
+    select: {
+      slotKey: true,
+      pageKey: true,
+      pageName: true,
+      pagePath: true,
+      sectionKey: true,
+      sectionName: true,
+      slotName: true,
+      label: true,
+      description: true,
+      aspectRatio: true,
+      sortOrder: true,
+    },
+  });
+
+  const existingMap = new Map(existing.map((record) => [record.slotKey, record]));
+  const missing: ReturnType<typeof buildImageSlotSeedData> = [];
+  const updates: Promise<unknown>[] = [];
 
   for (const slot of seedData) {
-    await prisma.imageSlotRecord.upsert({
-      where: { slotKey: slot.slotKey },
-      create: slot,
-      update: {
-        pageKey: slot.pageKey,
-        pageName: slot.pageName,
-        pagePath: slot.pagePath,
-        sectionKey: slot.sectionKey,
-        sectionName: slot.sectionName,
-        slotName: slot.slotName,
-        label: slot.label,
-        description: slot.description,
-        aspectRatio: slot.aspectRatio,
-        sortOrder: slot.sortOrder,
-        isActive: true,
-      },
+    const current = existingMap.get(slot.slotKey);
+    if (!current) {
+      missing.push(slot);
+      continue;
+    }
+
+    if (!slotMatchesSeed(current, slot)) {
+      updates.push(
+        prisma.imageSlotRecord.update({
+          where: { slotKey: slot.slotKey },
+          data: {
+            pageKey: slot.pageKey,
+            pageName: slot.pageName,
+            pagePath: slot.pagePath,
+            sectionKey: slot.sectionKey,
+            sectionName: slot.sectionName,
+            slotName: slot.slotName,
+            label: slot.label,
+            description: slot.description,
+            aspectRatio: slot.aspectRatio,
+            sortOrder: slot.sortOrder,
+            isActive: true,
+          },
+        }),
+      );
+    }
+  }
+
+  if (missing.length > 0) {
+    await prisma.imageSlotRecord.createMany({
+      data: missing,
+      skipDuplicates: true,
     });
+  }
+
+  if (updates.length > 0) {
+    await Promise.all(updates);
   }
 
   await bootstrapLegacyHomeImages();
@@ -167,37 +266,77 @@ export async function listImageSlots(params?: {
   keyword?: string | null;
 }) {
   const keyword = params?.keyword?.trim() || "";
+  const lowerKeyword = keyword.toLowerCase();
+  const where: Prisma.ImageSlotRecordWhereInput = {};
+  if (params?.pageKey && params.pageKey !== "all") {
+    where.pageKey = params.pageKey;
+  }
 
-  const all = await prisma.imageSlotRecord.findMany({
-    orderBy: [{ sortOrder: "asc" }, { pageKey: "asc" }],
-    include: { imageAsset: true },
-  });
+  const [all, statRows] = await Promise.all([
+    prisma.imageSlotRecord.findMany({
+      where,
+      orderBy: [{ sortOrder: "asc" }, { pageKey: "asc" }],
+      select: {
+        id: true,
+        slotKey: true,
+        pageKey: true,
+        pageName: true,
+        pagePath: true,
+        sectionKey: true,
+        sectionName: true,
+        slotName: true,
+        label: true,
+        description: true,
+        aspectRatio: true,
+        sortOrder: true,
+        isActive: true,
+        imageAssetId: true,
+        imageAsset: {
+          select: {
+            id: true,
+            filename: true,
+            originalName: true,
+            path: true,
+            alt: true,
+            label: true,
+            size: true,
+            mimeType: true,
+            width: true,
+            height: true,
+            updatedAt: true,
+          },
+        },
+      },
+    }),
+    prisma.imageSlotRecord.findMany({
+      select: { imageAssetId: true, pageKey: true },
+    }),
+  ]);
 
-  const filtered = all.filter((record) => {
-    const matchPage = !params?.pageKey || params.pageKey === "all" || record.pageKey === params.pageKey;
-    if (!matchPage) return false;
-    if (!keyword) return true;
-    const haystack = [
-      record.slotKey,
-      record.pageName,
-      record.pagePath,
-      record.sectionName,
-      record.label,
-      record.description || "",
-      record.imageAsset?.filename || "",
-      record.imageAsset?.alt || "",
-      record.imageAsset?.label || "",
-    ]
-      .join(" ")
-      .toLowerCase();
-    return haystack.includes(keyword.toLowerCase());
-  });
+  const filtered = keyword
+    ? all.filter((record) => {
+        const haystack = [
+          record.slotKey,
+          record.pageName,
+          record.pagePath,
+          record.sectionName,
+          record.label,
+          record.description || "",
+          record.imageAsset?.filename || "",
+          record.imageAsset?.alt || "",
+          record.imageAsset?.label || "",
+        ]
+          .join(" ")
+          .toLowerCase();
+        return haystack.includes(lowerKeyword);
+      })
+    : all;
 
   const stats: ImageSlotStats = {
-    totalSlots: all.length,
-    uploadedCount: all.filter((record) => !!record.imageAssetId).length,
-    emptyCount: all.filter((record) => !record.imageAssetId).length,
-    coveredPages: new Set(all.filter((record) => !!record.imageAssetId).map((record) => record.pageKey)).size,
+    totalSlots: statRows.length,
+    uploadedCount: statRows.filter((record) => !!record.imageAssetId).length,
+    emptyCount: statRows.filter((record) => !record.imageAssetId).length,
+    coveredPages: new Set(statRows.filter((record) => !!record.imageAssetId).map((record) => record.pageKey)).size,
   };
 
   return {

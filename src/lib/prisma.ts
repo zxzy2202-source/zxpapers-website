@@ -198,6 +198,24 @@ export async function ensureDbSchema() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     `);
 
+    const indexStatements = [
+      "ALTER TABLE `Inquiry` ADD INDEX `Inquiry_status_createdAt_idx` (`status`, `createdAt`)",
+      "ALTER TABLE `Inquiry` ADD INDEX `Inquiry_createdAt_idx` (`createdAt`)",
+      "ALTER TABLE `Article` ADD INDEX `Article_status_updatedAt_idx` (`status`, `updatedAt`)",
+      "ALTER TABLE `Article` ADD INDEX `Article_category_updatedAt_idx` (`category`, `updatedAt`)",
+      "ALTER TABLE `Article` ADD INDEX `Article_updatedAt_idx` (`updatedAt`)",
+      "ALTER TABLE `ImageAsset` ADD INDEX `ImageAsset_createdAt_idx` (`createdAt`)",
+      "ALTER TABLE `ImageAsset` ADD INDEX `ImageAsset_page_updatedAt_idx` (`page`, `updatedAt`)",
+    ];
+
+    for (const sql of indexStatements) {
+      try {
+        await prisma.$executeRawUnsafe(sql);
+      } catch {
+        // Index already exists on upgraded databases.
+      }
+    }
+
     globalForPrisma.dbInitialized = true;
   } catch (error) {
     console.error("[ensureDbSchema] Fatal error, will retry on next request:", error);

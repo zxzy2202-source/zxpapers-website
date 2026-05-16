@@ -30,6 +30,9 @@ model Inquiry {
   notes     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([status, createdAt])
+  @@index([createdAt])
 }
 
 // 文章
@@ -49,6 +52,10 @@ model Article {
   publishedAt DateTime?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+
+  @@index([status, updatedAt])
+  @@index([category, updatedAt])
+  @@index([updatedAt])
 }
 
 // 图片资源
@@ -70,6 +77,9 @@ model ImageAsset {
   createdAt     DateTime          @default(now())
   updatedAt     DateTime          @updatedAt
   slotBindings  ImageSlotRecord[]
+
+  @@index([createdAt])
+  @@index([page, updatedAt])
 }
 
 // 图片槽位记录（Page / Section / Slot）

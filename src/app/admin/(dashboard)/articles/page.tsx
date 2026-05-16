@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface PageProps {
-  searchParams: Promise<{ status?: string; category?: string; q?: string }>;
+  searchParams: Promise<{ status?: string; category?: string; q?: string; page?: string }>;
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -46,6 +46,8 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
   const status = params.status;
   const category = params.category;
   const q = params.q?.trim();
+  const pageSize = 20;
+  const page = Math.max(1, parseInt(params.page || "1", 10) || 1);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const where: Record<string, any> = {};
@@ -62,6 +64,8 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
     prisma.article.findMany({
       where,
       orderBy: { updatedAt: "desc" },
+      skip: (page - 1) * pageSize,
+      take: pageSize,
       select: {
         id: true,
         title: true,
@@ -78,6 +82,24 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
   ]).catch(() => [[], 0, 0, 0] as const);
 
   const activeKey = status || category || "all";
+  const totalPages = Math.ceil(total / pageSize);
+
+  const pageHref = (nextPage: number) => {
+    const nextParams = new URLSearchParams();
+    if (status) nextParams.set("status", status);
+    if (category) nextParams.set("category", category);
+    if (q) nextParams.set("q", q);
+    nextParams.set("page", String(nextPage));
+    return `/admin/articles?${nextParams.toString()}`;
+  };
+
+  const filterHref = (tabHref: string) => {
+    const [pathname, query = ""] = tabHref.split("?");
+    const nextParams = new URLSearchParams(query);
+    if (q) nextParams.set("q", q);
+    const queryString = nextParams.toString();
+    return queryString ? `${pathname}?${queryString}` : pathname;
+  };
 
   return (
     <div className="space-y-5">
@@ -123,7 +145,7 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
             return (
               <Link
                 key={tab.key}
-                href={q ? `${tab.href}&q=${encodeURIComponent(q)}` : tab.href}
+                href={filterHref(tab.href)}
                 className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-colors ${
                   isActive
                     ? "bg-blue-600 text-white"
@@ -222,11 +244,25 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
         )}
       </div>
 
-      {/* Pagination hint when results are truncated */}
-      {total > 50 && (
-        <p className="text-xs text-gray-400 text-center">
-          显示最新 {articles.length} 篇，共 {total} 篇。使用搜索或筛选缩小范围。
-        </p>
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-gray-500">
+            第 {page} 页，共 {totalPages} 页
+          </p>
+          <div className="flex gap-2">
+            {page > 1 && (
+              <Button asChild variant="outline" size="sm">
+                <Link href={pageHref(page - 1)}>上一页</Link>
+              </Button>
+            )}
+            {page < totalPages && (
+              <Button asChild variant="outline" size="sm">
+                <Link href={pageHref(page + 1)}>下一页</Link>
+              </Button>
+            )}
+          </div>
+        </div>
       )}
     </div>
   );
