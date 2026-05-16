@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { memo, useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useEditor, EditorContent } from "@tiptap/react";
+import { useEditor, useEditorState, EditorContent, type Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
@@ -85,6 +85,162 @@ const CATEGORIES = [
   { value: "MARKET_TRENDS", label: "市场趋势" },
 ];
 
+interface ToolbarProps {
+  editor: Editor;
+  onOpenLinkDialog: () => void;
+  onOpenImagePicker: () => void;
+}
+
+const TOOLBAR_BUTTON_BASE = "px-2 py-1 h-auto";
+const TOOLBAR_BUTTON_IDLE = "text-gray-600";
+const TOOLBAR_BUTTON_ACTIVE = "bg-blue-100 text-blue-700";
+
+const ToolbarButton = memo(function ToolbarButton({
+  title,
+  active = false,
+  ariaLabel,
+  onMouseDown,
+  children,
+}: {
+  title: string;
+  active?: boolean;
+  ariaLabel?: string;
+  onMouseDown: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <Button
+      variant="ghost"
+      size="sm"
+      title={title}
+      type="button"
+      aria-label={ariaLabel}
+      onMouseDown={onMouseDown}
+      className={`${TOOLBAR_BUTTON_BASE} ${active ? TOOLBAR_BUTTON_ACTIVE : TOOLBAR_BUTTON_IDLE}`}
+    >
+      {children}
+    </Button>
+  );
+});
+
+const EditorToolbar = memo(function EditorToolbar({
+  editor,
+  onOpenLinkDialog,
+  onOpenImagePicker,
+}: ToolbarProps) {
+  const state = useEditorState({
+    editor,
+    selector: ({ editor: currentEditor }) => ({
+      bold: currentEditor?.isActive("bold") ?? false,
+      italic: currentEditor?.isActive("italic") ?? false,
+      underline: currentEditor?.isActive("underline") ?? false,
+      strike: currentEditor?.isActive("strike") ?? false,
+      code: currentEditor?.isActive("code") ?? false,
+      heading1: currentEditor?.isActive("heading", { level: 1 }) ?? false,
+      heading2: currentEditor?.isActive("heading", { level: 2 }) ?? false,
+      heading3: currentEditor?.isActive("heading", { level: 3 }) ?? false,
+      bulletList: currentEditor?.isActive("bulletList") ?? false,
+      orderedList: currentEditor?.isActive("orderedList") ?? false,
+      blockquote: currentEditor?.isActive("blockquote") ?? false,
+      codeBlock: currentEditor?.isActive("codeBlock") ?? false,
+      alignLeft: currentEditor?.isActive({ textAlign: "left" }) ?? false,
+      alignCenter: currentEditor?.isActive({ textAlign: "center" }) ?? false,
+      alignRight: currentEditor?.isActive({ textAlign: "right" }) ?? false,
+      link: currentEditor?.isActive("link") ?? false,
+    }),
+  });
+
+  function handleToolbarMouseDown(
+    event: React.MouseEvent<HTMLButtonElement>,
+    action: () => void
+  ) {
+    event.preventDefault();
+    action();
+  }
+
+  return (
+    <div className="flex flex-wrap gap-1 px-3 py-2 border-b border-gray-100 bg-gray-50">
+      <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
+        <ToolbarButton title="加粗 (Ctrl+B)" active={state.bold} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().toggleBold().run())}>
+          <Bold className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="斜体 (Ctrl+I)" active={state.italic} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().toggleItalic().run())}>
+          <Italic className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="下划线 (Ctrl+U)" active={state.underline} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().toggleUnderline().run())}>
+          <UnderlineIcon className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="删除线" active={state.strike} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().toggleStrike().run())}>
+          <Strikethrough className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="行内代码" active={state.code} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().toggleCode().run())}>
+          <Code className="w-3.5 h-3.5" />
+        </ToolbarButton>
+      </div>
+
+      <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
+        <ToolbarButton title="一级标题" active={state.heading1} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().toggleHeading({ level: 1 }).run())}>
+          <Heading1 className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="二级标题" active={state.heading2} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().toggleHeading({ level: 2 }).run())}>
+          <Heading2 className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="三级标题" active={state.heading3} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().toggleHeading({ level: 3 }).run())}>
+          <Heading3 className="w-3.5 h-3.5" />
+        </ToolbarButton>
+      </div>
+
+      <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
+        <ToolbarButton title="无序列表" ariaLabel="无序列表" active={state.bulletList} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().toggleBulletList().run())}>
+          <List className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="有序列表" ariaLabel="有序列表" active={state.orderedList} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().toggleOrderedList().run())}>
+          <ListOrdered className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="引用块" ariaLabel="引用块" active={state.blockquote} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().toggleBlockquote().run())}>
+          <Quote className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="代码块" ariaLabel="代码块" active={state.codeBlock} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().toggleCodeBlock().run())}>
+          <Braces className="w-3.5 h-3.5" />
+        </ToolbarButton>
+      </div>
+
+      <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
+        <ToolbarButton title="左对齐" ariaLabel="左对齐" active={state.alignLeft} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().setTextAlign("left").run())}>
+          <AlignLeft className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="居中" ariaLabel="居中对齐" active={state.alignCenter} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().setTextAlign("center").run())}>
+          <AlignCenter className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="右对齐" ariaLabel="右对齐" active={state.alignRight} onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().setTextAlign("right").run())}>
+          <AlignRight className="w-3.5 h-3.5" />
+        </ToolbarButton>
+      </div>
+
+      <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
+        <ToolbarButton title="插入链接" ariaLabel="插入链接" active={state.link} onMouseDown={(event) => handleToolbarMouseDown(event, onOpenLinkDialog)}>
+          <LinkIcon className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="从图片库插入图片" ariaLabel="插入图片" onMouseDown={(event) => handleToolbarMouseDown(event, onOpenImagePicker)}>
+          <ImageIcon className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="分割线" ariaLabel="分割线" onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().setHorizontalRule().run())}>
+          <Minus className="w-3.5 h-3.5" />
+        </ToolbarButton>
+      </div>
+
+      <div className="flex gap-0.5 ml-auto">
+        <ToolbarButton title="撤销 (Ctrl+Z)" ariaLabel="撤销" onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().undo().run())}>
+          <Undo2 className="w-3.5 h-3.5" />
+        </ToolbarButton>
+        <ToolbarButton title="重做 (Ctrl+Y)" ariaLabel="重做" onMouseDown={(event) => handleToolbarMouseDown(event, () => editor.chain().focus().redo().run())}>
+          <Redo2 className="w-3.5 h-3.5" />
+        </ToolbarButton>
+      </div>
+    </div>
+  );
+});
+
 export default function ArticleEditor({ article }: Props) {
   const router = useRouter();
   const isEditing = !!article?.id;
@@ -123,6 +279,7 @@ export default function ArticleEditor({ article }: Props) {
 
   const editor = useEditor({
     immediatelyRender: false,
+    shouldRerenderOnTransaction: false,
     extensions: [
       StarterKit,
       Link.configure({ openOnClick: false }),
@@ -421,72 +578,12 @@ export default function ArticleEditor({ article }: Props) {
 
           {activeTab === "write" && (
             <>
-              {/* Toolbar */}
               {editor && (
-                <div className="flex flex-wrap gap-1 px-3 py-2 border-b border-gray-100 bg-gray-50">
-                  {/* Text formatting */}
-                  <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
-                    <Button variant="ghost" size="sm" title="加粗 (Ctrl+B)" onClick={() => editor.chain().focus().toggleBold().run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("bold") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Bold className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="斜体 (Ctrl+I)" onClick={() => editor.chain().focus().toggleItalic().run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("italic") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Italic className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="下划线 (Ctrl+U)" onClick={() => editor.chain().focus().toggleUnderline().run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("underline") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><UnderlineIcon className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="删除线" onClick={() => editor.chain().focus().toggleStrike().run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("strike") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Strikethrough className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="行内代码" onClick={() => editor.chain().focus().toggleCode().run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("code") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Code className="w-3.5 h-3.5" /></Button>                  </div>
-
-                  {/* Headings */}
-                  <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
-                    <Button variant="ghost" size="sm" title="一级标题" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("heading", { level: 1 }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Heading1 className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="二级标题" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("heading", { level: 2 }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Heading2 className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="三级标题" onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("heading", { level: 3 }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`}><Heading3 className="w-3.5 h-3.5" /></Button>
-                  </div>
-
-                  {/* Lists */}
-                  <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
-                    <Button variant="ghost" size="sm" title="无序列表" onClick={() => editor.chain().focus().toggleBulletList().run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("bulletList") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="无序列表"><List className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="有序列表" onClick={() => editor.chain().focus().toggleOrderedList().run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("orderedList") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="有序列表"><ListOrdered className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="引用块" onClick={() => editor.chain().focus().toggleBlockquote().run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("blockquote") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="引用块"><Quote className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="代码块" onClick={() => editor.chain().focus().toggleCodeBlock().run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("codeBlock") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="代码块"><Braces className="w-3.5 h-3.5" /></Button>
-                  </div>
-
-                  {/* Align */}
-                  <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
-                    <Button variant="ghost" size="sm" title="左对齐" onClick={() => editor.chain().focus().setTextAlign("left").run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive({ textAlign: "left" }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="左对齐"><AlignLeft className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="居中" onClick={() => editor.chain().focus().setTextAlign("center").run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive({ textAlign: "center" }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="居中对齐"><AlignCenter className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="右对齐" onClick={() => editor.chain().focus().setTextAlign("right").run()} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive({ textAlign: "right" }) ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="右对齐"><AlignRight className="w-3.5 h-3.5" /></Button>
-                  </div>
-
-                  {/* Insert */}
-                  <div className="flex gap-0.5 border-r border-gray-200 pr-2 mr-1">
-                    <Button variant="ghost" size="sm" title="插入链接" onClick={openLinkDialog} type="button"
-                      className={`px-2 py-1 h-auto ${editor.isActive("link") ? "bg-blue-100 text-blue-700" : "text-gray-600"}`} aria-label="插入链接"><LinkIcon className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="从图片库插入图片" onClick={() => openImagePicker("editor")} type="button"
-                      className="px-2 py-1 h-auto text-gray-600" aria-label="插入图片"><ImageIcon className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="分割线" onClick={() => editor.chain().focus().setHorizontalRule().run()} type="button"
-                      className="px-2 py-1 h-auto text-gray-600" aria-label="分割线"><Minus className="w-3.5 h-3.5" /></Button>
-                  </div>
-
-                  {/* Undo/Redo */}
-                  <div className="flex gap-0.5 ml-auto">
-                    <Button variant="ghost" size="sm" title="撤销 (Ctrl+Z)" onClick={() => editor.chain().focus().undo().run()} type="button"
-                      className="px-2 py-1 h-auto text-gray-600" aria-label="撤销"><Undo2 className="w-3.5 h-3.5" /></Button>
-                    <Button variant="ghost" size="sm" title="重做 (Ctrl+Y)" onClick={() => editor.chain().focus().redo().run()} type="button"
-                      className="px-2 py-1 h-auto text-gray-600" aria-label="重做"><Redo2 className="w-3.5 h-3.5" /></Button>
-                  </div>
-                </div>
+                <EditorToolbar
+                  editor={editor}
+                  onOpenLinkDialog={openLinkDialog}
+                  onOpenImagePicker={() => openImagePicker("editor")}
+                />
               )}
 
               {/* Editor Content */}
