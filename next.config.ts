@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
 
+const disableImageOptimization =
+  process.env.NEXT_IMAGE_UNOPTIMIZED !== "false";
+
 const nextConfig: NextConfig = {
   // output: "export" removed — admin backend requires server-side API routes (NextAuth, Prisma)
   trailingSlash: true,
@@ -23,9 +26,10 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    // Keep local previews reliable when the dev server cannot proxy remote images.
-    // Production still uses Next image optimization.
-    unoptimized: process.env.NODE_ENV === "development",
+    // Hostinger shared Node.js is slow at first-hit image proxying/sharp
+    // transforms. The site already uses optimized WebP/PNG assets, so serve
+    // them directly unless explicitly re-enabled with NEXT_IMAGE_UNOPTIMIZED=false.
+    unoptimized: disableImageOptimization,
     remotePatterns: [
       {
         protocol: "https",

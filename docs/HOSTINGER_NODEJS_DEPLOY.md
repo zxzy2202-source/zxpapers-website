@@ -51,6 +51,7 @@ Optional but recommended:
 - `AI_ARTICLE_MODEL`
 - `AI_ARTICLE_REASONING_EFFORT`
 - `ALLOW_LOCAL_FILE_UPLOADS=true`
+- `NEXT_IMAGE_UNOPTIMIZED=true` on Hostinger shared Node.js. This avoids slow first-hit `/_next/image` processing by Node/sharp; the site already uses optimized WebP/PNG assets.
 - `ADMIN_PASSWORD` or `ADMIN_PASSWORD_HASH` for password-only admin login
 - `BLOB_READ_WRITE_TOKEN`
 - `ANTHROPIC_API_KEY`

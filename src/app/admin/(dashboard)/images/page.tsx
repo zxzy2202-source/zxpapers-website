@@ -2,6 +2,8 @@ import ImageManager from "@/components/admin/ImageManager";
 import { listImageSlots } from "@/lib/imageSlots.server";
 import { IMAGE_SLOT_PAGES } from "@/config/imageSlots";
 
+export const dynamic = "force-dynamic";
+
 export default async function ImagesPage() {
   let data: Awaited<ReturnType<typeof listImageSlots>> = {
     slots: [],
