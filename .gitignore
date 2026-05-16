@@ -7,6 +7,8 @@ node_modules/
 .DS_Store
 dist/
 out/
+*.tsbuildinfo
+docs/awesome-design-md/
 
 /src/generated/prisma
 *.db
