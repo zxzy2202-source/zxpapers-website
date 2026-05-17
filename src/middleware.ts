@@ -75,7 +75,6 @@ export async function middleware(req: NextRequest) {
   const token = req.cookies.get(COOKIE_NAME)?.value;
   const isAuthenticated = token ? await verifyEdgeToken(token) : false;
 
-
   if (isAdminRoute && !isLoginPage && !isAuthenticated) {
     const loginUrl = new URL("/admin/login", req.url);
     loginUrl.searchParams.set("callbackUrl", pathname);
