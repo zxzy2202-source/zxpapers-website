@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/session";
+import { loadAiRelayConfig } from "@/lib/aiConfig";
+import { ensureDbSchema } from "@/lib/prisma";
 
 const CATEGORY_LABELS: Record<string, string> = {
   INDUSTRY_INSIGHTS: "Industry Insights",
@@ -17,15 +19,6 @@ function slugify(text: string): string {
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
     .replace(/^-+|-+$/g, "");
-}
-
-function getAiConfig() {
-  return {
-    apiKey: process.env.OPENAI_API_KEY || "",
-    baseUrl: (process.env.OPENAI_BASE_URL || "https://api.openai.com/v1").replace(/\/$/, ""),
-    model: process.env.AI_ARTICLE_MODEL || "gpt-5.5",
-    reasoningEffort: process.env.AI_ARTICLE_REASONING_EFFORT || "high",
-  };
 }
 
 function extractResponseText(data: any): string {
@@ -67,7 +60,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "请填写文章主题" }, { status: 400 });
     }
 
-    const { apiKey, baseUrl, model, reasoningEffort } = getAiConfig();
+    await ensureDbSchema();
+    const { apiKey, baseUrl, model, reasoningEffort } = await loadAiRelayConfig();
     if (!apiKey) {
       return NextResponse.json({ error: "未配置 OPENAI_API_KEY" }, { status: 500 });
     }

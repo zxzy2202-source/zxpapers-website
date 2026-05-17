@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Home, MessageSquare, FileText, ImageIcon, ExternalLink, Shield } from "lucide-react";
+import { Home, MessageSquare, FileText, ImageIcon, ExternalLink, Shield, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
@@ -11,6 +11,7 @@ const navItems = [
   { href: "/admin/inquiries", label: "询盘管理", icon: MessageSquare },
   { href: "/admin/articles", label: "文章管理", icon: FileText },
   { href: "/admin/images", label: "图片管理", icon: ImageIcon },
+  { href: "/admin/settings", label: "系统设置", icon: Settings },
 ];
 
 export default function AdminSidebar() {

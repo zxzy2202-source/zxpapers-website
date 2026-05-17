@@ -105,3 +105,10 @@ model ImageSlotRecord {
   @@index([pageKey, sortOrder])
   @@index([imageAssetId])
 }
+
+model SystemConfig {
+  key       String   @id
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
