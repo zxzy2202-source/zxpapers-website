@@ -198,6 +198,16 @@ export async function ensureDbSchema() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     `);
 
+
+    await prisma.$executeRawUnsafe(`
+      CREATE TABLE IF NOT EXISTS \`SystemConfig\` (
+        \`key\` VARCHAR(191) NOT NULL,
+        \`value\` LONGTEXT NOT NULL,
+        \`createdAt\` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+        \`updatedAt\` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+        PRIMARY KEY (\`key\`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    `);
     const indexStatements = [
       "ALTER TABLE `Inquiry` ADD INDEX `Inquiry_status_createdAt_idx` (`status`, `createdAt`)",
       "ALTER TABLE `Inquiry` ADD INDEX `Inquiry_createdAt_idx` (`createdAt`)",
