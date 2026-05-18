@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getSlotImages } from "@/lib/imageSlotUtils";
+import { getSiteSettings } from "@/lib/sanity";
 import Layout from "@/components/layout/Layout";
 import { SITE, FACTORY } from "@/config/siteData";
 import { mainNav, type NavDropdown } from "@/config/navigation";
@@ -525,17 +526,21 @@ const breadcrumbSchema = {
   ]
 };
 export default async function HomePage() {
-  // 从数据库读取绑定的图片，未绑定时使用 fallback
-  const imgs = await getSlotImages([
-    { slot: "home:hero", fallback: FACTORY_IMG_FALLBACK },
-    { slot: "home:hero-slide-2", fallback: HERO_SLIDE_2 },
-    { slot: "home:hero-slide-3", fallback: HERO_SLIDE_3 },
-    { slot: "home:product-labels", fallback: THERMAL_LABELS_IMG },
-    { slot: "home:product-rolls", fallback: HERO_SLIDE_3 },
+  const [imgs, settings] = await Promise.all([
+    getSlotImages([
+      { slot: "home:hero", fallback: FACTORY_IMG_FALLBACK },
+      { slot: "home:hero-slide-2", fallback: HERO_SLIDE_2 },
+      { slot: "home:hero-slide-3", fallback: HERO_SLIDE_3 },
+      { slot: "home:product-labels", fallback: THERMAL_LABELS_IMG },
+      { slot: "home:product-rolls", fallback: HERO_SLIDE_3 },
+    ]),
+    getSiteSettings(),
   ]);
-  const FACTORY_IMG = imgs["home:hero"];
-  const HERO_IMG_2 = imgs["home:hero-slide-2"];
-  const HERO_IMG_3 = imgs["home:hero-slide-3"];
+
+  const banners = settings.heroBanners ?? [];
+  const FACTORY_IMG = banners[0]?.url || imgs["home:hero"];
+  const HERO_IMG_2 = banners[1]?.url || imgs["home:hero-slide-2"];
+  const HERO_IMG_3 = banners[2]?.url || imgs["home:hero-slide-3"];
   const THERMAL_LABELS_CARD_IMG = imgs["home:product-labels"];
   const THERMAL_ROLLS_CARD_IMG = imgs["home:product-rolls"];
   const waBase = `${SITE.whatsappUrl}?text=`;

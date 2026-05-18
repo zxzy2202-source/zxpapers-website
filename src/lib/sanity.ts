@@ -65,6 +65,17 @@ export async function getAllPosts(): Promise<SanityPost[]> {
   );
 }
 
+export interface SiteSettings {
+  heroBanners?: Array<{ url: string; alt?: string }>;
+}
+
+export async function getSiteSettings(): Promise<SiteSettings> {
+  const data = await sanityClient.fetch(
+    `*[_type == "siteSettings"][0]{ heroBanners }`
+  );
+  return data ?? {};
+}
+
 export async function getPostBySlug(slug: string): Promise<SanityPost | null> {
   return sanityClient.fetch(
     `*[_type == "post" && slug.current == $slug][0] {
