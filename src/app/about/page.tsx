@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.domain}/about` },
 };
 
-const FACTORY_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-aerial-overview-Ck4AoJiKqjGKsLxnYqGRbU.webp";
+const FACTORY_IMG_FB = "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80";
 const FACTORY_LINE_IMG_FB = "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80";
 const FACTORY_AERIAL_VIDEO = "/videos/factory-aerial-overview.mp4";
 
