@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Brand: Global Trade Authority ── */
+/* Primary: Deep Navy #0F2B5B | Accent: Amber #F59E0B | Body: Inter | Display: Sora */
+
+@layer base {
+  :root {
+    --font-inter: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-sora: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 217 73% 21%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 217 73% 21%;
+    --radius: 0.375rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-inter), 'Inter', sans-serif;
+    @apply bg-background text-foreground;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
+
+@layer components {
+  .container {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1280px;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 leading-tight;
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+
+  .section-subtitle {
+    @apply text-slate-600 mt-3 text-base leading-relaxed;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-6 py-3 rounded-md transition-colors duration-200;
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 border border-slate-300 text-slate-900 hover:bg-slate-50 font-semibold px-6 py-3 rounded-md transition-colors duration-200;
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+
+  .btn-navy {
+    @apply inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#12346d] text-white font-semibold px-6 py-3 rounded-md transition-colors duration-200 text-sm;
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+
+  .btn-amber {
+    @apply inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-6 py-3 rounded-md transition-colors duration-200 text-sm;
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+
+  .page-hero {
+    @apply relative py-16 bg-[#0F2B5B] text-white overflow-hidden;
+  }
+
+  .page-hero-content {
+    @apply relative container;
+  }
+
+  .card-hover {
+    @apply bg-white border border-slate-200 rounded-lg transition-colors duration-200;
+  }
+
+  .badge-amber {
+    @apply text-xs bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full font-semibold;
+  }
+
+  .badge-navy {
+    @apply text-xs bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full font-semibold;
+  }
+
+  .section-label {
+    @apply inline-flex items-center gap-2 text-[#0F2B5B] text-sm font-semibold uppercase tracking-[0.18em] mb-3;
+  }
+
+  /* 统一 Sora 字体工具类，替代内联 style */
+  .font-sora {
+    font-family: var(--font-sora), 'Sora', sans-serif;
+  }
+}
+
+/* Lightbox overlay */
+.lightbox-overlay {
+  @apply fixed inset-0 bg-black/90 z-[100] flex items-center justify-center;
+}
+
+/* Fade animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.animate-fade-up-delay-1 {
+  animation: fadeUp 0.6s ease 0.1s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fadeUp 0.6s ease 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fadeUp 0.6s ease 0.3s forwards;
+  opacity: 0;
+}
+
+@keyframes feedbackCarousel {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.feedback-carousel-track {
+  animation: feedbackCarousel 48s linear infinite;
+}
+
+.feedback-carousel-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feedback-carousel-track {
+    animation: none;
+  }
+}
