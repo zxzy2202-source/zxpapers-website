@@ -7,6 +7,14 @@ export const sanityClient = createClient({
   useCdn: true,
 });
 
+// ⚡ 无缓存客户端，用于站点设置等实时性要求高的数据
+const sanityClientNoCache = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
+  apiVersion: "2024-01-01",
+  useCdn: false, // 不用 CDN，保证每次拿到最新数据
+});
+
 export interface SanityProduct {
   _id: string;
   name: string;
@@ -70,7 +78,7 @@ export interface SiteSettings {
 }
 
 export async function getSiteSettings(): Promise<SiteSettings> {
-  const data = await sanityClient.fetch(
+  const data = await sanityClientNoCache.fetch(
     `*[_type == "siteSettings"][0]{ heroBanners }`
   );
   return data ?? {};
