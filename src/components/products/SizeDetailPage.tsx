@@ -3,6 +3,7 @@ import Layout from "@/components/layout/Layout";
 import { SITE } from "@/config/siteData";
 import Image from "next/image";
 import { getSlotImage } from "@/lib/imageSlotUtils";
+import type { SlotKey } from "@/config/imageSlots";
 import {
   CheckCircle, ArrowRight, Package, Award, Globe,
   Phone, MessageSquare, Ship, Zap, Layers,
@@ -69,7 +70,7 @@ const TYPE_LABELS: Record<string, { parent: string; parentPath: string }> = {
   labels: { parent: "Thermal Labels",      parentPath: "/products/blank-thermal-labels" },
 };
 
-const PRODUCT_IMAGE_SLOT_KEYS: Record<ProductImageSlot, string> = {
+const PRODUCT_IMAGE_SLOT_KEYS: Record<ProductImageSlot, SlotKey> = {
   "thermal-rolls": "thermal-rolls:hero",
   "thermal-labels": "thermal-labels:hero",
   "can-labels": "can-labels:hero",
@@ -101,7 +102,9 @@ export default async function SizeDetailPage({
   const applicationImages = await Promise.all(
     applications.map(async (item) => ({
       ...item,
-      resolvedImage: item.slotKey ? await getSlotImage(item.slotKey, item.image) : item.image,
+      resolvedImage: item.slotKey
+        ? await getSlotImage(item.slotKey as SlotKey, item.image)
+        : item.image,
     }))
   );
 

@@ -81,6 +81,7 @@ export default async function PostPage({ params }: PostPageProps) {
                 src={r2Image(post.cover)}
                 alt={post.title}
                 fill
+                sizes="(max-width: 768px) 100vw, 800px"
                 className="object-cover"
                 priority
               />

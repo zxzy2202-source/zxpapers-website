@@ -6,6 +6,7 @@ import { CheckCircle, ArrowRight, Package, Globe, ShieldCheck, Tag, BarChart3, P
 import { SITE } from "@/config/siteData";
 import Image from "next/image";
 import { getSlotImages } from "@/lib/imageSlotUtils";
+import type { SlotKey } from "@/config/imageSlots";
 
 export const metadata: Metadata = {
   title: "Application Cases | Retail & Logistics",
@@ -93,7 +94,7 @@ const appCases = [
     clients: "Banks, credit unions, payment terminal distributors, ATM operators, financial services firms",
     volumes: "10,000–150,000 rolls/month",
   },
-];
+] as const;
 
 const appColorMap: Record<string, { bg: string; text: string; badge: string }> = {
   blue:   { bg: "bg-blue-50",   text: "text-blue-700",   badge: "bg-blue-100 text-blue-700" },
@@ -131,7 +132,10 @@ const breadcrumbSchema = {
 };
 export default async function ApplicationCasesPage() {
   const caseImages = await getSlotImages(
-    appCases.map(({ slot, image }) => ({ slot, fallback: image }))
+    appCases.map(({ slot, image }) => ({
+      slot: slot as SlotKey,
+      fallback: image,
+    })),
   );
 
   return (
