@@ -14,7 +14,9 @@ import PageHero from "@/components/shared/PageHero";
 import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
-...
+  title: "Thermal Paper Rolls & Labels Manufacturer | Zhixin Paper",
+  description: "Direct factory supplier of premium thermal paper rolls, POS receipt rolls, and custom thermal labels. Bulk wholesale pricing and OEM services for global distributors.",
+  alternates: { canonical: SITE.domain },
 };
 
 export const revalidate = 60; // 每一分钟自动刷新一次内容
