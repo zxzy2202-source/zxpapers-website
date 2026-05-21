@@ -14,37 +14,10 @@ import PageHero from "@/components/shared/PageHero";
 import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier for Bulk Orders",
-  description:
-    "Factory direct thermal paper rolls for bulk orders. 57×40, 57×50, 80×80, 79×80mm in stock. OEM packaging, fast container loading, 15–25 days delivery.",
-  keywords:
-    "thermal paper rolls supplier, bulk thermal paper, thermal paper wholesale, 80x80 thermal paper, 57x50 thermal paper, OEM thermal paper, thermal paper factory",
-  alternates: { canonical: SITE.domain },
-  openGraph: {
-    type: "website",
-    url: SITE.domain,
-    siteName: SITE.name,
-    title: "Thermal Paper Rolls Supplier for Bulk Orders",
-    description:
-      "Factory direct thermal paper rolls for bulk orders. 57×40, 57×50, 80×80, 79×80mm in stock. OEM packaging, fast container loading, 15–25 days delivery.",
-    images: [
-      {
-        url: `${SITE.domain}/og-default.png`,
-        width: 1200,
-        height: 630,
-        alt: "ZhixinPaper thermal paper rolls factory and bulk supply",
-        type: "image/png",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Thermal Paper Rolls Supplier for Bulk Orders",
-    description:
-      "Factory direct thermal paper rolls for bulk orders. 57×40, 57×50, 80×80, 79×80mm in stock. OEM packaging, fast container loading, 15–25 days delivery.",
-    images: [`${SITE.domain}/og-default.png`],
-  },
+...
 };
+
+export const revalidate = 60; // 每一分钟自动刷新一次内容
 
 const FACTORY_IMG_FALLBACK =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
@@ -539,9 +512,16 @@ export default async function HomePage() {
   ]);
 
   const banners = settings.heroBanners ?? [];
-  const FACTORY_IMG = r2Image(banners[0]?.url || imgs["home:hero"]);
-  const HERO_IMG_2 = r2Image(banners[1]?.url || imgs["home:hero-slide-2"]);
-  const HERO_IMG_3 = r2Image(banners[2]?.url || imgs["home:hero-slide-3"]);
+  const FACTORY_IMG = r2Image(banners[0]?.url || "home:hero");
+  const HERO_IMG_2 = r2Image(banners[1]?.url || "home:hero-slide-2");
+  const HERO_IMG_3 = r2Image(banners[2]?.url || "home:hero-slide-3");
+
+  // 如果后台没传图，才使用 imgs 里的占位符
+  const finalHeroImages = [
+    banners[0]?.url ? r2Image(banners[0].url) : imgs["home:hero"],
+    banners[1]?.url ? r2Image(banners[1].url) : imgs["home:hero-slide-2"],
+    banners[2]?.url ? r2Image(banners[2].url) : imgs["home:hero-slide-3"],
+  ];
   const THERMAL_LABELS_CARD_IMG = r2Image(imgs["home:product-labels"]);
   const THERMAL_ROLLS_CARD_IMG = r2Image(imgs["home:product-rolls"]);
   const waBase = `${SITE.whatsappUrl}?text=`;
@@ -561,7 +541,7 @@ export default async function HomePage() {
 
       {/* ① HERO */}
       <PageHero
-        bgImages={[FACTORY_IMG, HERO_IMG_2, HERO_IMG_3]}
+        bgImages={finalHeroImages}
         bgCarouselInterval={4500}
         overlayDir="left"
         overlayOpacity={50}
