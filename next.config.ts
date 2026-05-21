@@ -24,6 +24,16 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  // 图片中转逻辑：将本地 /r2-assets/ 请求转发到 Cloudflare R2
+  async rewrites() {
+    return [
+      {
+        source: "/r2-assets/:path*",
+        destination: "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev/:path*",
+      },
+    ];
+  },
+
   images: {
     unoptimized: disableImageOptimization,
     remotePatterns: [
