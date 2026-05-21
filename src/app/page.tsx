@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getSlotImages } from "@/lib/imageSlotUtils";
 import { getSiteSettings } from "@/lib/sanity";
+import { r2Image } from "@/lib/r2";
 import Layout from "@/components/layout/Layout";
 import { SITE, FACTORY } from "@/config/siteData";
 import { mainNav, type NavDropdown } from "@/config/navigation";
@@ -538,11 +539,11 @@ export default async function HomePage() {
   ]);
 
   const banners = settings.heroBanners ?? [];
-  const FACTORY_IMG = banners[0]?.url || imgs["home:hero"];
-  const HERO_IMG_2 = banners[1]?.url || imgs["home:hero-slide-2"];
-  const HERO_IMG_3 = banners[2]?.url || imgs["home:hero-slide-3"];
-  const THERMAL_LABELS_CARD_IMG = imgs["home:product-labels"];
-  const THERMAL_ROLLS_CARD_IMG = imgs["home:product-rolls"];
+  const FACTORY_IMG = r2Image(banners[0]?.url || imgs["home:hero"]);
+  const HERO_IMG_2 = r2Image(banners[1]?.url || imgs["home:hero-slide-2"]);
+  const HERO_IMG_3 = r2Image(banners[2]?.url || imgs["home:hero-slide-3"]);
+  const THERMAL_LABELS_CARD_IMG = r2Image(imgs["home:product-labels"]);
+  const THERMAL_ROLLS_CARD_IMG = r2Image(imgs["home:product-rolls"]);
   const waBase = `${SITE.whatsappUrl}?text=`;
   const waGeneral = `${waBase}${encodeURIComponent(
     "Hello, I need quotation for thermal paper rolls. Please send me price and MOQ."

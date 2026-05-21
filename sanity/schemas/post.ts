@@ -1,4 +1,5 @@
 import { defineType, defineField, defineArrayMember } from "sanity";
+import { R2ImageInput } from "../../src/components/admin/R2ImageInput";
 
 export const post = defineType({
   name: "post",
@@ -27,8 +28,11 @@ export const post = defineType({
     defineField({
       name: "coverImage",
       title: "Cover Image (R2 path)",
-      description: "e.g. blog/thermal-paper-guide.webp",
+      description: "Upload image to R2 or paste path",
       type: "string",
+      components: {
+        input: R2ImageInput
+      }
     }),
     defineField({
       name: "body",

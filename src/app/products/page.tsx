@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getSlotImages } from "@/lib/imageSlotUtils";
+import { r2Image } from "@/lib/r2";
 import Layout from "@/components/layout/Layout";
 import { ArrowRight, Package, Tag, Archive, Droplets, MessageSquare, Phone } from "lucide-react";
 import { paperRollSizes, labelSizes, canLabelSizes, detergentLabelSizes } from "@/config/navigation";
@@ -27,7 +28,7 @@ const buildProductCategories = (imgs: Record<string, string>) => ([
     icon: Package,
     title: "Thermal Paper Rolls",
     subtitle: "POS receipts, ATM, kiosk, and parking ticket rolls",
-    image: imgs["products:thermal-rolls"],
+    image: r2Image(imgs["products:thermal-rolls"]),
     variants: [
       { title: "Blank Thermal Paper Rolls", desc: "Standard white thermal paper rolls for all POS and receipt printers. BPA-free, high image clarity.", href: "/products/thermal-paper-rolls/blank" },
       { title: "Custom Printed Thermal Rolls", desc: "Rolls with your logo, brand colors, or promotional messages pre-printed. OEM available.", href: "/products/thermal-paper-rolls/custom-printed" },
@@ -40,7 +41,7 @@ const buildProductCategories = (imgs: Record<string, string>) => ([
     icon: Tag,
     title: "Thermal Labels",
     subtitle: "Shipping labels, barcode labels, product labels",
-    image: imgs["products:thermal-labels"],
+    image: r2Image(imgs["products:thermal-labels"]),
     variants: [
       { title: "Blank Thermal Labels", desc: "Direct thermal labels for shipping, inventory, and barcode printing. Compatible with all major printers.", href: "/products/thermal-labels/blank" },
       { title: "Custom Printed Thermal Labels", desc: "Pre-printed labels with your brand, logo, or product information. Private label available.", href: "/products/thermal-labels/custom-printed" },
@@ -53,7 +54,7 @@ const buildProductCategories = (imgs: Record<string, string>) => ([
     icon: Archive,
     title: "Can Labels",
     subtitle: "Beverage, food, pet food, and industrial can labels",
-    image: imgs["products:can-labels"],
+    image: r2Image(imgs["products:can-labels"]),
     variants: [
       { title: "Blank Can Labels", desc: "Moisture-resistant, food-safe blank can labels. Full-wrap and partial-wrap options for all standard can sizes.", href: "/products/can-labels/blank" },
       { title: "Custom Printed Can Labels", desc: "Full-color printed can labels with your brand design. Suitable for beverages, food products, and industrial cans.", href: "/products/can-labels/custom-printed" },
@@ -66,7 +67,7 @@ const buildProductCategories = (imgs: Record<string, string>) => ([
     icon: Droplets,
     title: "Detergent Labels",
     subtitle: "Laundry detergent, dish soap, and household cleaner labels",
-    image: imgs["products:detergent-labels"],
+    image: r2Image(imgs["products:detergent-labels"]),
     variants: [
       { title: "Blank Detergent Labels", desc: "Water-resistant, chemical-resistant blank labels for detergent bottles, cleaning products, and household chemicals.", href: "/products/detergent-labels/blank" },
       { title: "Custom Printed Detergent Labels", desc: "GHS-compliant printed labels with your brand, hazard pictograms, and product information. OEM available.", href: "/products/detergent-labels/custom-printed" },
@@ -112,7 +113,7 @@ export default async function ProductsPage() {
       />
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
-        bgImage={imgs["products:hero"]}
+        bgImage={r2Image(imgs["products:hero"])}
         overlayDir="left"
         overlayOpacity={50}
         minHeight="min-h-[400px]"
