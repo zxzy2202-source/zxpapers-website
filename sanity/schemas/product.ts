@@ -47,6 +47,9 @@ export const product = defineType({
           type: "string",
           components: {
             input: R2ImageInput
+          },
+          options: {
+            folder: "PRODUCTS"
           }
         })
       ],

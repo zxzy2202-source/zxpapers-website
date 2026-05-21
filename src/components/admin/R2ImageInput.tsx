@@ -2,9 +2,10 @@ import React, { useCallback, useState } from 'react'
 import { Stack, Text, Button, Flex, TextInput, Card } from '@sanity/ui'
 import { set, unset, StringInputProps } from 'sanity'
 
-export const R2ImageInput = (props: StringInputProps) => {
-  const { onChange, value = '', elementProps } = props
+export const R2ImageInput = (props: StringInputProps & { schemaType?: { options?: { folder?: string } } }) => {
+  const { onChange, value = '', elementProps, schemaType } = props
   const [uploading, setUploading] = useState(false)
+  const folder = schemaType?.options?.folder || 'uploads'
 
   const handleUpload = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -13,7 +14,7 @@ export const R2ImageInput = (props: StringInputProps) => {
     setUploading(true)
     const formData = new FormData()
     formData.append('file', file)
-    formData.append('folder', 'products')
+    formData.append('folder', folder)
 
     try {
       const response = await fetch('/api/admin/upload-r2', {

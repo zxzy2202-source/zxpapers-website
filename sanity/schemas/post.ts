@@ -32,6 +32,9 @@ export const post = defineType({
       type: "string",
       components: {
         input: R2ImageInput
+      },
+      options: {
+        folder: "BLOG"
       }
     }),
     defineField({

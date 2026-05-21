@@ -21,6 +21,9 @@ export const siteSettings = defineType({
               type: "string",
               components: {
                 input: R2ImageInput
+              },
+              options: {
+                folder: "BANNERS"
               }
             }),
             defineField({ name: "alt", title: "Alt Text", type: "string" }),
