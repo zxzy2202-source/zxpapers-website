@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SITE } from "@/config/siteData";
 import Script from "next/script";
+import { readSeo } from "@/lib/seoStore";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -9,73 +10,87 @@ export const viewport: Viewport = {
   themeColor: "#0F2B5B",
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE.domain),
-  title: {
-    default: `${SITE.name} | ${SITE.tagline}`,
-    template: `%s | ${SITE.name}`,
-  },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    apple: "/apple-touch-icon.png",
-  },
-  description:
-    "ISO 9001 certified manufacturer of thermal paper rolls and labels. OEM/private label, BPA-free, FSC certified. MOQ 1,000 rolls. Serving 80+ countries.",
-  keywords: [
-    "thermal paper rolls",
-    "thermal labels",
-    "thermal paper manufacturer",
-    "OEM thermal paper",
-    "BPA-free thermal paper",
-    "custom thermal labels",
-    "bulk thermal paper supplier",
-    "thermal paper wholesale",
-  ],
-  authors: [{ name: SITE.name, url: SITE.domain }],
-  creator: SITE.name,
-  publisher: SITE.name,
-  openGraph: {
-    type: "website",
-    siteName: SITE.name,
-    title: `${SITE.name} | ${SITE.tagline}`,
-    description:
-      "ISO 9001 certified manufacturer of thermal paper rolls and labels. OEM/private label, BPA-free, FSC certified.",
-    url: SITE.domain,
-    locale: "en_US",
-    images: [
-      {
-        url: `${SITE.domain}/og-default.png`,
-        width: 1200,
-        height: 630,
-        alt: `${SITE.name} | Thermal Paper Rolls Manufacturer`,
-        type: "image/png",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${SITE.name} | ${SITE.tagline}`,
-    description:
-      "ISO 9001 certified manufacturer of thermal paper rolls and labels. OEM/private label, BPA-free, FSC certified.",
-    images: [`${SITE.domain}/og-default.png`],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata(): Promise<Metadata> {
+  const adminSeo = await readSeo().catch(() => ({} as Awaited<ReturnType<typeof readSeo>>));
+
+  const title = adminSeo.siteTitle || `${SITE.name} | ${SITE.tagline}`;
+  const description =
+    adminSeo.siteDescription ||
+    "ISO 9001 certified manufacturer of thermal paper rolls and labels. OEM/private label, BPA-free, FSC certified. Serving 80+ countries.";
+  const keywords =
+    (adminSeo.siteKeywords?.length ? adminSeo.siteKeywords : null) || [
+      "thermal paper rolls",
+      "thermal labels",
+      "thermal paper manufacturer",
+      "OEM thermal paper",
+      "BPA-free thermal paper",
+      "custom thermal labels",
+    ];
+  const ogImageUrl = adminSeo.ogImage || `${SITE.domain}/og-default.png`;
+
+  const verificationOther: Record<string, string> = {};
+  if (adminSeo.baiduSiteVerification)
+    verificationOther["baidu-site-verification"] = adminSeo.baiduSiteVerification;
+  if (adminSeo.bingSiteVerification)
+    verificationOther["msvalidate.01"] = adminSeo.bingSiteVerification;
+
+  return {
+    ...(adminSeo.googleSiteVerification && {
+      verification: { google: adminSeo.googleSiteVerification, other: verificationOther },
+    }),
+    metadataBase: new URL(SITE.domain),
+    title: {
+      default: title,
+      template: `%s | ${SITE.name}`,
+    },
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/icon.svg", type: "image/svg+xml" },
+      ],
+      apple: "/apple-touch-icon.png",
+    },
+    description,
+    keywords,
+    authors: [{ name: SITE.name, url: SITE.domain }],
+    creator: SITE.name,
+    publisher: SITE.name,
+    openGraph: {
+      type: "website",
+      siteName: SITE.name,
+      title,
+      description,
+      url: SITE.domain,
+      locale: "en_US",
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${SITE.name} | Thermal Paper Rolls Manufacturer`,
+          type: "image/png",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImageUrl],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-  // canonical 由各子页面的 metadata.alternates.canonical 单独设置
-  // 此处不设置全局 canonical，避免覆盖子页面配置
-};
+  };
+}
 
 const organizationSchema = {
   "@context": "https://schema.org",

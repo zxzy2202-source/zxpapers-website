@@ -44,6 +44,32 @@ export default function InquiryForm({ productName, compact, initialMessage, form
   const [errors, setErrors] = useState<Record<string, string>>({});
   const messageRef = useRef<HTMLTextAreaElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const [defaultCountry, setDefaultCountry] = useState("");
+
+  useEffect(() => {
+    // Detect country from cookie set by middleware
+    const getCookie = (name: string) => {
+      if (typeof document === "undefined") return null;
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop()?.split(";").shift();
+      return null;
+    };
+
+    const countryCode = getCookie("NEXT_LOC_COUNTRY");
+    if (countryCode) {
+      // Basic mapping for common countries
+      const mapping: Record<string, string> = {
+        US: "United States", GB: "United Kingdom", CA: "Canada", AU: "Australia",
+        DE: "Germany", FR: "France", IT: "Italy", ES: "Spain", NL: "Netherlands",
+        AE: "United Arab Emirates", SA: "Saudi Arabia", TR: "Turkey",
+        TH: "Thailand", ID: "Indonesia", VN: "Vietnam", PH: "Philippines",
+        MY: "Malaysia", SG: "Singapore", IN: "India", PK: "Pakistan",
+        NG: "Nigeria", KE: "Kenya", ZA: "South Africa", EG: "Egypt",
+      };
+      setDefaultCountry(mapping[countryCode] || countryCode);
+    }
+  }, []);
 
   useEffect(() => {
     if (initialMessage && messageRef.current) {
@@ -205,6 +231,8 @@ export default function InquiryForm({ productName, compact, initialMessage, form
           name="country"
           placeholder="Country / Region *"
           required
+          defaultValue={defaultCountry}
+          key={defaultCountry} // Force re-render when defaultCountry is set
           className={errors.country ? errorInputClass : ""}
         />
         {errors.country && <p className="text-xs text-red-500 mt-1">{errors.country}</p>}

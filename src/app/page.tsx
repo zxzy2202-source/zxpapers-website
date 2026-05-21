@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getSlotImages } from "@/lib/imageSlotUtils";
-import { getSiteSettings } from "@/lib/sanity";
+import { readHero } from "@/lib/heroStore";
 import { r2Image } from "@/lib/r2";
 import Layout from "@/components/layout/Layout";
 import { SITE, FACTORY } from "@/config/siteData";
@@ -502,7 +502,7 @@ const breadcrumbSchema = {
   ]
 };
 export default async function HomePage() {
-  const [imgs, settings] = await Promise.all([
+  const [imgs, hero] = await Promise.all([
     getSlotImages([
       { slot: "home:hero", fallback: FACTORY_IMG_FALLBACK },
       { slot: "home:hero-slide-2", fallback: HERO_SLIDE_2 },
@@ -510,14 +510,10 @@ export default async function HomePage() {
       { slot: "home:product-labels", fallback: THERMAL_LABELS_IMG },
       { slot: "home:product-rolls", fallback: HERO_SLIDE_3 },
     ]),
-    getSiteSettings(),
+    readHero(),
   ]);
 
-  const banners = settings.heroBanners ?? [];
-  const FACTORY_IMG = r2Image(banners[0]?.url || "home:hero");
-  const HERO_IMG_2 = r2Image(banners[1]?.url || "home:hero-slide-2");
-  const HERO_IMG_3 = r2Image(banners[2]?.url || "home:hero-slide-3");
-
+  const banners = hero.banners ?? [];
   // 如果后台没传图，才使用 imgs 里的占位符
   const finalHeroImages = [
     banners[0]?.url ? r2Image(banners[0].url) : imgs["home:hero"],
@@ -550,24 +546,52 @@ export default async function HomePage() {
         minHeight="min-h-[580px]"
         badge={{
           icon: <Award className="w-4 h-4" />,
-          text: "Direct Thermal Paper Factory Since 2009",
+          text: hero.badgeText || "Direct Thermal Paper Factory Since 2009",
           color: "amber",
         }}
-        eyebrow="Bulk POS Rolls / OEM Packaging / Export Orders"
-        trustBadges={["ISO 9001 Certified", "BPA-Free", "FCL Ready 3–5 Days", "OEM Available"]}
-        title={
-          <>
-            Thermal Paper Rolls<br />
-            <span className="text-amber-400">
-              Supplier for<span className="hidden sm:inline"> Bulk Orders</span>
-              <span className="sm:hidden"><br />Bulk Orders</span>
-            </span>
-          </>
+        eyebrow={hero.eyebrow || "Bulk POS Rolls / OEM Packaging / Export Orders"}
+        trustBadges={
+          hero.trustBadges && hero.trustBadges.length > 0
+            ? hero.trustBadges
+            : ["ISO 9001 Certified", "BPA-Free", "FCL Ready 3–5 Days", "OEM Available"]
         }
-        subtitle={`Factory-direct thermal rolls for distributors, importers, and retail chains. Custom printing, precise slitting, export-ready packing, and fast loading from our ${FACTORY.area} facility in Xi'an, China.`}
+        title={
+          hero.titleMain || hero.titleHighlight ? (
+            <>
+              {hero.titleMain || "Thermal Paper Rolls"}
+              <br />
+              <span className="text-amber-400">
+                {hero.titleHighlight || "Supplier for Bulk Orders"}
+              </span>
+            </>
+          ) : (
+            <>
+              Thermal Paper Rolls<br />
+              <span className="text-amber-400">
+                Supplier for<span className="hidden sm:inline"> Bulk Orders</span>
+                <span className="sm:hidden"><br />Bulk Orders</span>
+              </span>
+            </>
+          )
+        }
+        subtitle={
+          hero.subtitle ||
+          `Factory-direct thermal rolls for distributors, importers, and retail chains. Custom printing, precise slitting, export-ready packing, and fast loading from our ${FACTORY.area} facility in Xi'an, China.`
+        }
         ctas={[
-          { label: "Get Quick Quote", href: "/contact", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
-          { label: "WhatsApp Us", href: waGeneral, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
+          {
+            label: hero.ctaPrimary?.label || "Get Quick Quote",
+            href: hero.ctaPrimary?.href || "/contact",
+            variant: "primary",
+            icon: <MessageSquare className="w-4 h-4" />,
+          },
+          {
+            label: hero.ctaSecondary?.label || "WhatsApp Us",
+            href: hero.ctaSecondary?.href || waGeneral,
+            variant: "whatsapp",
+            icon: <Phone className="w-4 h-4" />,
+            external: true,
+          },
         ]}
         stats={[
           { value: "MOQ 1 Pallet", label: "Low Minimum Order" },
@@ -1047,7 +1071,7 @@ export default async function HomePage() {
               <div className="mt-8 overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
                 <div
                   className="aspect-[4/3] w-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${HERO_IMG_2})` }}
+                  style={{ backgroundImage: `url(${HERO_SLIDE_2})` }}
                   aria-label="Thermal paper printing, slitting, and converting line"
                   role="img"
                 />
@@ -1244,7 +1268,7 @@ export default async function HomePage() {
             <div className="relative">
               <div
                 className="aspect-[3/2] w-full rounded-md border border-white/10 bg-cover bg-center"
-                style={{ backgroundImage: `url(${FACTORY_IMG})` }}
+                style={{ backgroundImage: `url(${FACTORY_IMG_FALLBACK})` }}
                 aria-label="Thermal paper factory loading area"
                 role="img"
               />

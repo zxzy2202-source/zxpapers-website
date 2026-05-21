@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { r2Client, R2_BUCKET_NAME, r2Configured } from "@/lib/r2";
+import { isAuthenticated } from "@/lib/auth";
 
 export async function POST(request: NextRequest) {
+  // 鉴权：必须登录后台
+  const authed = await isAuthenticated();
+  if (!authed) {
+    return NextResponse.json({ error: "未登录" }, { status: 401 });
+  }
   if (!r2Configured || !R2_BUCKET_NAME) {
     return NextResponse.json({ error: "R2 not configured" }, { status: 500 });
   }
