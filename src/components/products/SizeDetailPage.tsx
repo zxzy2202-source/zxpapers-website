@@ -13,7 +13,8 @@ export interface ApplicationItem {
   name: string;
   image: string;
   description: string;
-  slotKey?: string;
+  /** 后台可换图的槽位 key —— 必须是 imageSlots.ts 注册过的，否则 TS 报错 */
+  slotKey?: SlotKey;
 }
 
 export type ProductImageSlot =
@@ -103,7 +104,7 @@ export default async function SizeDetailPage({
     applications.map(async (item) => ({
       ...item,
       resolvedImage: item.slotKey
-        ? await getSlotImage(item.slotKey as SlotKey, item.image)
+        ? await getSlotImage(item.slotKey, item.image)
         : item.image,
     }))
   );

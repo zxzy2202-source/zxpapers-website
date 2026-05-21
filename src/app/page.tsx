@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getSlotImages } from "@/lib/imageSlotUtils";
+import type { SlotKey } from "@/config/imageSlots";
 import { readHero } from "@/lib/heroStore";
 import { r2Image } from "@/lib/r2";
 import Layout from "@/components/layout/Layout";
@@ -372,14 +373,37 @@ const COMMON_PRODUCT_SPECS: Record<string, string[]> = {
   ],
 };
 
-const PRODUCT_SHOWCASE_IMAGES: Record<string, string> = {
-  "Blank Thermal Labels": THERMAL_LABELS_IMG,
-  "4x6 Shipping Labels": THERMAL_LABELS_IMG,
-  "Barcode Thermal Labels": THERMAL_LABELS_IMG,
-  "Custom Printed Labels": THERMAL_LABELS_IMG,
-  "4x3 Thermal Labels": THERMAL_LABELS_IMG,
-  "2x4 Thermal Labels": THERMAL_LABELS_IMG,
+// 产品名 → 独立 slot key 的映射（与 imageSlots.ts 严格对齐）
+// 用于首页 ② POPULAR SIZES 区域，每个产品卡都能独立换图
+const PRODUCT_SLOT_MAP: Record<string, SlotKey> = {
+  "POS Receipt Rolls": "home:product-pos-receipt-rolls",
+  "Portable/Mobile Printer Rolls": "home:product-portable-mobile-printer-rolls",
+  "Phenol Free Thermal Paper": "home:product-phenol-free-thermal-paper",
+  "Custom Printed Rolls": "home:product-custom-printed-rolls",
+  "ATM & Banking Rolls": "home:product-atm-banking-rolls",
+  "Blank Thermal Rolls": "home:product-blank-thermal-rolls",
+  "Blank Thermal Labels": "home:product-blank-thermal-labels",
+  "4x6 Shipping Labels": "home:product-4x6-shipping-labels",
+  "Barcode Thermal Labels": "home:product-barcode-thermal-labels",
+  "Custom Printed Labels": "home:product-custom-printed-labels",
+  "4x3 Thermal Labels": "home:product-4x3-thermal-labels",
+  "2x4 Thermal Labels": "home:product-2x4-thermal-labels",
+  "Lottery & Gaming Rolls": "home:product-lottery-gaming-rolls",
+  "Colored Thermal Paper": "home:product-colored-thermal-paper",
+  "CORELESS PAPER ROLL": "home:product-coreless-paper-roll",
+  "Multi-Ply Carbonless Rolls": "home:product-multi-ply-carbonless-rolls",
+  "OEM Printed Receipts": "home:product-oem-printed-receipts",
 };
+
+// 判定产品是否为"标签类"（用于 fallback 选择 labels 还是 rolls 兜底图）
+const LABEL_PRODUCT_NAMES = new Set([
+  "Blank Thermal Labels",
+  "4x6 Shipping Labels",
+  "Barcode Thermal Labels",
+  "Custom Printed Labels",
+  "4x3 Thermal Labels",
+  "2x4 Thermal Labels",
+]);
 
 const customerProblems = [
   {
@@ -502,6 +526,12 @@ const breadcrumbSchema = {
   ]
 };
 export default async function HomePage() {
+  // 18 个产品的独立 slot —— 没传图时 labels 类回退到 home:product-labels 兜底图，rolls 类回退到 home:product-rolls 兜底图
+  const productSlotConfigs = Object.entries(PRODUCT_SLOT_MAP).map(([name, slot]) => ({
+    slot,
+    fallback: LABEL_PRODUCT_NAMES.has(name) ? THERMAL_LABELS_IMG : HERO_SLIDE_3,
+  }));
+
   const [imgs, hero] = await Promise.all([
     getSlotImages([
       { slot: "home:hero", fallback: FACTORY_IMG_FALLBACK },
@@ -509,6 +539,7 @@ export default async function HomePage() {
       { slot: "home:hero-slide-3", fallback: HERO_SLIDE_3 },
       { slot: "home:product-labels", fallback: THERMAL_LABELS_IMG },
       { slot: "home:product-rolls", fallback: HERO_SLIDE_3 },
+      ...productSlotConfigs,
     ]),
     readHero(),
   ]);
@@ -716,14 +747,12 @@ export default async function HomePage() {
 
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {items.map(({ size, label, badge, badgeTone, href, desc }) => {
-                    const productImage = (size === "Blank Thermal Labels" ||
-                      size === "4x6 Shipping Labels" ||
-                      size === "Barcode Thermal Labels" ||
-                      size === "Custom Printed Labels" ||
-                      size === "4x3 Thermal Labels" ||
-                      size === "2x4 Thermal Labels")
+                    // 优先读产品独立 slot；没设置则按类型回退到通用兜底图
+                    const slotKey = PRODUCT_SLOT_MAP[size];
+                    const fallbackImage = LABEL_PRODUCT_NAMES.has(size)
                       ? THERMAL_LABELS_CARD_IMG
-                      : PRODUCT_SHOWCASE_IMAGES[size] ?? THERMAL_ROLLS_CARD_IMG;
+                      : THERMAL_ROLLS_CARD_IMG;
+                    const productImage = (slotKey && imgs[slotKey]) || fallbackImage;
                     const productType = title === "Thermal Labels" ? "thermal labels" : "thermal paper rolls";
 
                     return (
