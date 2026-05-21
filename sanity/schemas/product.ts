@@ -1,4 +1,5 @@
 import { defineType, defineField, defineArrayMember } from "sanity";
+import { R2ImageInput } from "../../src/components/admin/R2ImageInput";
 
 export const product = defineType({
   name: "product",
@@ -39,9 +40,16 @@ export const product = defineType({
     defineField({
       name: "images",
       title: "Images (R2 URLs)",
-      description: "Paste R2 image paths, e.g. products/thermal-roll-57x30.webp",
+      description: "Upload images to R2 or paste paths",
       type: "array",
-      of: [defineArrayMember({ type: "string" })],
+      of: [
+        defineArrayMember({ 
+          type: "string",
+          components: {
+            input: R2ImageInput
+          }
+        })
+      ],
     }),
     defineField({
       name: "shortDescription",

@@ -1,4 +1,5 @@
 import { defineType, defineField, defineArrayMember } from "sanity";
+import { R2ImageInput } from "../../src/components/admin/R2ImageInput";
 
 export const siteSettings = defineType({
   name: "siteSettings",
@@ -8,13 +9,20 @@ export const siteSettings = defineType({
     defineField({
       name: "heroBanners",
       title: "Homepage Banner Images",
-      description: "Upload images to Cloudflare R2, paste the full URL here. First image is the main banner.",
+      description: "Upload images to Cloudflare R2 or paste URL. First image is the main banner.",
       type: "array",
       of: [
         defineArrayMember({
           type: "object",
           fields: [
-            defineField({ name: "url", title: "Image URL", type: "string" }),
+            defineField({ 
+              name: "url", 
+              title: "Image URL", 
+              type: "string",
+              components: {
+                input: R2ImageInput
+              }
+            }),
             defineField({ name: "alt", title: "Alt Text", type: "string" }),
           ],
           preview: {
