@@ -12,6 +12,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const corePages: MetadataRoute.Sitemap = [
     { url: `${BASE}/`, lastModified: LAST_MOD, changeFrequency: "weekly", priority: 1.0 },
     { url: `${BASE}/products`, lastModified: LAST_MOD, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/products/receipt-paper-rolls`, lastModified: LAST_MOD, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/products/bpa-free-thermal-paper`, lastModified: LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${BASE}/products/colored-thermal-paper`, lastModified: LAST_MOD, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/contact`, lastModified: LAST_MOD, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/oem`, lastModified: LAST_MOD, changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/about`, lastModified: LAST_MOD, changeFrequency: "monthly", priority: 0.8 },

@@ -4,9 +4,9 @@ import { ROLLS_IMG, apps80x80 } from "../roll-sizes-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "80×80mm Thermal Paper Rolls | Most Popular POS",
-  description: "80x80mm thermal paper rolls — the world's most popular POS receipt paper size. Premium quality, dark image, 5+ years image life. Factory direct.",
-  keywords: "80mm x 80mm thermal paper rolls, 80x80 receipt paper, POS receipt paper, thermal paper wholesale",
+  title: "80×80mm (3⅛ inch) Thermal Paper Rolls | Most Popular POS",
+  description: "80x80mm (3 1/8 inch) thermal paper rolls — the world's most popular POS receipt paper size. Premium quality, dark image, 5+ years image life. Factory direct.",
+  keywords: "80mm x 80mm thermal paper rolls, 3 1/8 inch thermal paper, 3 1/8 x 230 thermal paper, 80x80 receipt paper, POS receipt paper, thermal paper wholesale",
   alternates: { canonical: `${SITE.domain}/products/thermal-rolls/80x80mm` },
 };
 
@@ -87,6 +87,7 @@ export default function Page() {
         description="The 80mm x 80mm thermal paper roll is the world's most popular POS receipt size. Used in restaurants, retail stores, supermarkets, and hospitality worldwide. Our BPA-free 80x80 rolls deliver sharp, long-lasting prints compatible with all major POS printer brands."
         specs={[
           { label: "Width", value: "80mm (±0.5mm)" },
+          { label: "Imperial Width", value: "3⅛″ (3 1/8 inch)" },
           { label: "Roll Diameter", value: "80mm" },
           { label: "Paper Length", value: "80m / 60m / 50m" },
           { label: "Core Size", value: "12mm / 25mm" },

@@ -7,9 +7,9 @@ import { SITE } from "@/config/siteData";
 import LatestArticles from "@/components/shared/LatestArticles";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Technical Guide | Grades & Specs",
-  description: "Complete technical guide to thermal paper: how thermal printing works, BPA-free vs phenol-free grades, paper weight selection, image life factors, printer.",
-  keywords: "thermal paper guide, BPA-free thermal paper, thermal paper grades, thermal paper specifications, how thermal printing works",
+  title: "What Is Thermal Paper? Complete Guide to Grades, Specs & Uses",
+  description: "What is thermal paper? A complete guide: how thermal printing works, what thermal paper is made of, BPA-free vs phenol-free grades, paper weight, image life, cored vs coreless rolls, and common sizes.",
+  keywords: "what is thermal paper, thermal paper definition, what is thermal paper made of, how thermal printing works, thermal paper guide, BPA-free thermal paper, thermal paper grades, coreless vs cored thermal paper, how much is thermal paper",
   alternates: { canonical: `${SITE.domain}/resources/product-knowledge` },
 };
 
@@ -38,12 +38,35 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+const faqs = [
+  { q: "What is thermal paper?", a: "Thermal paper is a special fine paper coated with a heat-sensitive chemical layer. When a thermal print head applies heat, the coating turns dark to form text, barcodes, or images — so no ink, toner, or ribbon is needed. It is most commonly used for receipts, POS and cash-register rolls, and shipping labels." },
+  { q: "What is thermal paper made of?", a: "Thermal paper is made of a paper base coated with a thermal layer containing three active ingredients: a leuco dye (color former), a developer (acid), and a sensitizer (melting agent). Heat melts the sensitizer so the dye and developer react and produce a dark, stable image." },
+  { q: "Is thermal paper the same as regular paper?", a: "No. Regular paper needs ink or toner to print, while thermal paper prints using heat alone via its chemical coating. Thermal paper also only prints on the coated side, and its image can fade with heat, UV light, or chemical exposure if stored improperly." },
+  { q: "What is the difference between cored and coreless thermal paper?", a: "Cored rolls are wound on a plastic or paper tube (core) that fits the printer spindle. Coreless rolls have no inner tube — the paper is wound all the way to the center, fitting slightly more paper in the same diameter and reducing plastic waste. Coreless requires a printer that supports coreless loading." },
+  { q: "How much does thermal paper cost?", a: "Thermal paper is priced per roll and depends on size, paper weight, coating grade (standard, BPA-free, phenol-free), and order volume. Factory-direct wholesale pricing is significantly lower than retail; contact us with your size and quantity for a current quote." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": { "@type": "Answer", "text": a },
+  })),
+};
+
 export default function ProductKnowledgePage() {
   return (
     <Layout>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div className="bg-[#0F2B5B] text-white py-14">
         <div className="container">
@@ -55,15 +78,23 @@ export default function ProductKnowledgePage() {
             <span className="text-slate-400 text-xs flex items-center gap-1"><Clock className="w-3 h-3" /> 14 min read</span>
           </div>
           <h1 className="font-sora text-3xl sm:text-4xl font-extrabold mb-3 max-w-3xl leading-tight">
-            Thermal Paper Explained:<br /><span className="text-amber-400">A Complete Technical Guide</span>
+            What Is Thermal Paper?<br /><span className="text-amber-400">A Complete Technical Guide</span>
           </h1>
-          <p className="text-slate-300 max-w-2xl text-base">How thermal paper works at the chemistry level, the real differences between grades, how to select the right paper for your printer and environment, and what causes premature image fading — with practical guidance for buyers and distributors.</p>
+          <p className="text-slate-300 max-w-2xl text-base">What thermal paper is and what it&apos;s made of, how it works at the chemistry level, the real differences between grades, how to select the right paper for your printer and environment, and what causes premature image fading — with practical guidance for buyers and distributors.</p>
         </div>
       </div>
 
       <div className="container py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-10">
+
+            {/* Section 0 — Definition */}
+            <section>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">What Is Thermal Paper?</h2>
+              <p className="text-slate-600 leading-relaxed mb-4"><strong>Thermal paper is a fine paper coated with a heat-sensitive chemical layer that turns dark when heat is applied</strong> — so a thermal printer can produce text, barcodes, and images using only heat, with no ink, toner, or ribbon. It is the standard material for receipts, POS and cash-register rolls, ATM and parking tickets, and direct-thermal shipping labels.</p>
+              <p className="text-slate-600 leading-relaxed mb-4">Because it needs no consumables, thermal printing is fast, quiet, and low-maintenance, which is why it dominates point-of-sale and labeling worldwide. The trade-off is that the printed image is sensitive to heat, UV light, and certain chemicals, and the paper only prints on its coated side. Thermal rolls are supplied either <strong>cored</strong> (wound on a tube that fits the printer spindle) or <strong>coreless</strong> (no tube, fitting slightly more paper per roll and reducing plastic waste).</p>
+              <p className="text-slate-600 leading-relaxed">The rest of this guide explains how the coating works, what the grade and specification terms actually mean, how to match paper to your printer, and how to avoid premature fading. If you already know what you need, browse our <Link href="/products/receipt-paper-rolls" className="text-blue-600 hover:underline font-medium">receipt paper rolls</Link>, <Link href="/products/bpa-free-thermal-paper" className="text-blue-600 hover:underline font-medium">BPA-free thermal paper</Link>, or <Link href="/products/thermal-paper-rolls/blank" className="text-blue-600 hover:underline font-medium">blank thermal rolls</Link>.</p>
+            </section>
 
             {/* Section 1 */}
             <section>
@@ -260,6 +291,19 @@ export default function ProductKnowledgePage() {
               <p className="text-slate-600 leading-relaxed">For distributors positioning their product line as environmentally responsible, we recommend specifying FSC-certified, Phenol-Free paper and communicating this clearly on the packaging. This combination addresses both the chemical compliance and fiber sourcing dimensions of sustainability, and is increasingly used as a differentiator in competitive tender situations.</p>
             </section>
 
+            {/* FAQ */}
+            <section>
+              <h2 className="font-sora text-2xl font-bold text-slate-900 mb-4">Thermal Paper FAQ</h2>
+              <div className="space-y-3">
+                {faqs.map(({ q, a }) => (
+                  <div key={q} className="p-5 bg-slate-50 border border-slate-100 rounded-xl">
+                    <h3 className="font-sora font-bold text-slate-900 text-sm mb-2">{q}</h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">{a}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
           </div>
 
           <div className="space-y-6">
@@ -271,7 +315,7 @@ export default function ProductKnowledgePage() {
             <div className="bg-slate-50 rounded-2xl p-5">
               <h4 className="font-sora text-sm font-bold text-slate-900 mb-3">Related Resources</h4>
               <ul className="space-y-2">
-                {[{ label: "Product Specifications", href: "/specifications" }, { label: "Blank Thermal Rolls", href: "/products/thermal-paper-rolls/blank" }, { label: "Thermal Labels", href: "/products/thermal-labels/blank" }, { label: "OEM Guide", href: "/resources/oem-guide" }, { label: "FAQ", href: "/faq" }].map(({ label, href }) => (
+                {[{ label: "Receipt Paper Rolls", href: "/products/receipt-paper-rolls" }, { label: "BPA-Free Thermal Paper", href: "/products/bpa-free-thermal-paper" }, { label: "Product Specifications", href: "/specifications" }, { label: "Blank Thermal Rolls", href: "/products/thermal-paper-rolls/blank" }, { label: "Thermal Labels", href: "/products/thermal-labels/blank" }, { label: "OEM Guide", href: "/resources/oem-guide" }, { label: "FAQ", href: "/faq" }].map(({ label, href }) => (
                   <li key={href}><Link href={href} className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 transition-colors"><ChevronRight className="w-3.5 h-3.5 flex-shrink-0" />{label}</Link></li>
                 ))}
               </ul>

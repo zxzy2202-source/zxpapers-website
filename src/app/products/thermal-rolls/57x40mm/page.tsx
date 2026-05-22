@@ -4,8 +4,9 @@ import { ROLLS_IMG, apps57x40 } from "../roll-sizes-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "57×40mm Thermal Rolls | Handheld Printers",
-  description: "57mm x 40mm compact thermal paper rolls for handheld printers and mobile POS. BPA-free. MOQ 1,000 rolls.",
+  title: "57×40mm (2¼ inch) Thermal Rolls | Handheld Printers",
+  description: "57mm x 40mm (2 1/4 inch) compact thermal paper rolls for handheld printers and mobile POS. BPA-free. MOQ 1,000 rolls.",
+  keywords: "57x40mm thermal paper rolls, 2 1/4 inch thermal paper, 2 1/4 x 50 thermal paper, handheld printer paper, 57mm receipt paper",
   alternates: { canonical: `${SITE.domain}/products/thermal-rolls/57x40mm` },
 };
 
@@ -85,6 +86,7 @@ export default function Page() {
         description="The 57mm x 40mm thermal paper roll is a compact size for small portable printers and handheld devices. Ideal for mobile payment terminals and small receipt printers."
         specs={[
           { label: "Width", value: "57mm (±0.5mm)" },
+          { label: "Imperial Width", value: "2¼″ (2 1/4 inch)" },
           { label: "Roll Diameter", value: "40mm" },
           { label: "Paper Length", value: "20m / 15m" },
           { label: "Core Size", value: "12mm" },

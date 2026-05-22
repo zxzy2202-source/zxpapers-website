@@ -4,8 +4,9 @@ import { ROLLS_IMG, apps57x50 } from "../roll-sizes-data";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "57×50mm Thermal Paper Rolls | Mobile Printers",
-  description: "57mm x 50mm thermal paper rolls for mobile printers, taxi meters, and small POS terminals. BPA-free, bulk wholesale. MOQ 1,000 rolls.",
+  title: "57×50mm (2¼ inch) Thermal Paper Rolls | Mobile Printers",
+  description: "57mm x 50mm (2 1/4 inch) thermal paper rolls for mobile printers, taxi meters, and small POS terminals. BPA-free, bulk wholesale. MOQ 1,000 rolls.",
+  keywords: "57x50mm thermal paper rolls, 2 1/4 inch thermal paper, 2 1/4 x 50 thermal paper rolls, mobile printer paper, 57mm receipt paper",
   alternates: { canonical: `${SITE.domain}/products/thermal-rolls/57x50mm` },
 };
 
@@ -85,6 +86,7 @@ export default function Page() {
         description="The 57mm x 50mm thermal paper roll is widely used in portable and mobile receipt printers, small POS terminals, and taxi meters. Popular across Asia and emerging markets for its compact size and cost efficiency."
         specs={[
           { label: "Width", value: "57mm (±0.5mm)" },
+          { label: "Imperial Width", value: "2¼″ (2 1/4 inch)" },
           { label: "Roll Diameter", value: "50mm" },
           { label: "Paper Length", value: "30m / 25m" },
           { label: "Core Size", value: "12mm" },

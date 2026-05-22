@@ -43,6 +43,9 @@ export const mainNav: (NavItem | NavDropdown)[] = [
     label: "Products",
     items: [
       { label: "All Products",                    href: "/products" },
+      { label: "Receipt Paper Rolls / Cash Register", href: "/products/receipt-paper-rolls" },
+      { label: "BPA-Free Thermal Paper",           href: "/products/bpa-free-thermal-paper" },
+      { label: "Colored Thermal Paper",            href: "/products/colored-thermal-paper" },
       { label: "Blank Thermal Paper Rolls",        href: "/products/thermal-paper-rolls/blank" },
       { label: "Custom Printed Thermal Rolls",     href: "/products/thermal-paper-rolls/custom-printed" },
       { label: "Blank Thermal Labels",             href: "/products/thermal-labels/blank" },
@@ -211,6 +214,9 @@ export const canLabelSizes = [
 
 export const footerLinks = {
   products: [
+    { label: "Receipt Paper Rolls / Cash Register", href: "/products/receipt-paper-rolls" },
+    { label: "BPA-Free Thermal Paper",           href: "/products/bpa-free-thermal-paper" },
+    { label: "Colored Thermal Paper",            href: "/products/colored-thermal-paper" },
     { label: "Blank Thermal Rolls",              href: "/products/thermal-paper-rolls/blank" },
     { label: "Custom Printed Rolls",             href: "/products/thermal-paper-rolls/custom-printed" },
     { label: "Blank Thermal Labels",             href: "/products/thermal-labels/blank" },
