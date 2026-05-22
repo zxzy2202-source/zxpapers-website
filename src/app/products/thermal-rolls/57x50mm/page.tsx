@@ -56,15 +56,7 @@ const productSchema = {
     "name": "ZhixinPaper",
     "url": "https://www.zhixinpaper.com"
   },
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "ZhixinPaper"
-    }
-  },
+  "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp",
   "url": "https://www.zhixinpaper.com/products/thermal-rolls/57x50mm"
 };
 export default function Page() {

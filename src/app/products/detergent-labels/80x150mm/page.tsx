@@ -56,15 +56,7 @@ const productSchema = {
     "name": "ZhixinPaper",
     "url": "https://www.zhixinpaper.com"
   },
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "ZhixinPaper"
-    }
-  },
+  "image": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=1200&q=80",
   "url": "https://www.zhixinpaper.com/products/detergent-labels/80x150mm"
 };
 export default function Page() {

@@ -56,15 +56,7 @@ const productSchema = {
     "name": "ZhixinPaper",
     "url": "https://www.zhixinpaper.com"
   },
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "ZhixinPaper"
-    }
-  },
+  "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
   "url": "https://www.zhixinpaper.com/products/can-labels/300x407"
 };
 export default function Page() {

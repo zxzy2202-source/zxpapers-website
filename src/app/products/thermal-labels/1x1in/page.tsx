@@ -66,15 +66,7 @@ const productSchema = {
     "name": "ZhixinPaper",
     "url": "https://www.zhixinpaper.com"
   },
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "ZhixinPaper"
-    }
-  },
+  "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp",
   "url": "https://www.zhixinpaper.com/products/thermal-labels/1x1in"
 };
 export default function Page() {

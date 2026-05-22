@@ -158,12 +158,7 @@ const productJsonLd = {
   "description": "Custom printed thermal paper rolls with logo, brand colors, QR codes, and promotional messages. OEM private label manufacturing. MOQ 1,000 rolls.",
   "brand": { "@type": "Brand", "name": "ZhixinPaper" },
   "manufacturer": { "@type": "Organization", "name": "ZhixinPaper", "url": SITE.domain },
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "seller": { "@type": "Organization", "name": "ZhixinPaper" },
-  },
+  "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp",
 };
 
 
