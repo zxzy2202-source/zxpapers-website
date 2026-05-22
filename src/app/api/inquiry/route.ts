@@ -43,8 +43,10 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 3. 多渠道推送（企业微信 + 飞书 + Server 酱）— fire and forget
-    notifyAll(inquiryData).catch((e) => console.error("[inquiry:notify]", e));
+    // 3. 多渠道推送（企业微信 + 飞书 + Server 酱）
+    // 注意: Vercel Serverless 函数响应后会立刻 kill 未 await 的异步操作
+    // 所以必须 await，不能用 fire-and-forget，否则推送会丢失
+    await notifyAll(inquiryData).catch((e) => console.error("[inquiry:notify]", e));
 
     // 4. 可选：Google Sheets
     if (process.env.GOOGLE_SHEETS_WEBHOOK_URL) {
