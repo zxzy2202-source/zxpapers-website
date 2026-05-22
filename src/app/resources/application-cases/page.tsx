@@ -7,6 +7,7 @@ import { SITE } from "@/config/siteData";
 import Image from "next/image";
 import { getSlotImages } from "@/lib/imageSlotUtils";
 import type { SlotKey } from "@/config/imageSlots";
+import LatestArticles from "@/components/shared/LatestArticles";
 
 export const metadata: Metadata = {
   title: "Application Cases | Retail & Logistics",
@@ -270,6 +271,12 @@ export default async function ApplicationCasesPage() {
           </div>
         </div>
       </div>
+
+      <LatestArticles
+        category="application-cases"
+        title="Latest Application Case Studies"
+        subtitle="Real-world deployments and industry-specific lessons from our editorial team."
+      />
     </Layout>
   );
 }

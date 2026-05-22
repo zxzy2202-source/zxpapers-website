@@ -1,6 +1,10 @@
 import Link from "next/link";
-import { readAllPosts } from "@/lib/postsStore";
+import { readAllPosts, RESOURCE_CATEGORIES } from "@/lib/postsStore";
 import { Plus, FileText, Edit3, ExternalLink } from "lucide-react";
+
+const CATEGORY_LABEL: Record<string, string> = Object.fromEntries(
+  RESOURCE_CATEGORIES.map((c) => [c.value, c.label.split(" (")[0]]),
+);
 
 export const dynamic = "force-dynamic";
 
@@ -55,7 +59,14 @@ export default async function PostsPage() {
                 <tr key={post.id} className="hover:bg-slate-50">
                   <td className="px-4 py-3">
                     <div className="font-medium text-slate-900">{post.title}</div>
-                    <code className="text-xs text-slate-400">/blog/{post.slug}</code>
+                    <div className="flex items-center gap-2 mt-0.5">
+                      <code className="text-xs text-slate-400">/blog/{post.slug}</code>
+                      {post.category && (
+                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 font-medium">
+                          {CATEGORY_LABEL[post.category] || post.category}
+                        </span>
+                      )}
+                    </div>
                   </td>
                   <td className="px-4 py-3 hidden md:table-cell">
                     {post.published ? (

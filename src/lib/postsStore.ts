@@ -3,6 +3,9 @@
  * key: "posts" → 整个数组
  */
 import { getStorage } from "@/lib/storage";
+// 常量与类型从纯前端安全的 postsCategories 重新导出，保持向后兼容
+export { RESOURCE_CATEGORIES, type ResourceCategory } from "@/lib/postsCategories";
+import type { ResourceCategory } from "@/lib/postsCategories";
 
 const KEY = "posts";
 
@@ -13,6 +16,7 @@ export interface PostRecord {
   excerpt?: string;
   cover?: string;
   content: string;
+  category?: ResourceCategory;
   metaTitle?: string;
   metaDescription?: string;
   metaKeywords?: string[];
@@ -41,6 +45,16 @@ export async function getPublishedPosts(): Promise<PostRecord[]> {
   return all
     .filter((p) => p.published)
     .sort((a, b) => (b.publishedAt || "").localeCompare(a.publishedAt || ""));
+}
+
+/** 按资源分类拉已发布文章（用于 /resources/{category} 列表页） */
+export async function getPublishedPostsByCategory(
+  category: ResourceCategory,
+  limit?: number,
+): Promise<PostRecord[]> {
+  const published = await getPublishedPosts();
+  const filtered = published.filter((p) => p.category === category);
+  return typeof limit === "number" ? filtered.slice(0, limit) : filtered;
 }
 
 export async function upsertPost(
@@ -74,6 +88,7 @@ export async function upsertPost(
     excerpt: data.excerpt,
     cover: data.cover,
     content: data.content,
+    category: data.category,
     metaTitle: data.metaTitle,
     metaDescription: data.metaDescription,
     metaKeywords: data.metaKeywords,

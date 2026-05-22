@@ -534,9 +534,6 @@ export default async function HomePage() {
 
   const [imgs, hero] = await Promise.all([
     getSlotImages([
-      { slot: "home:hero", fallback: FACTORY_IMG_FALLBACK },
-      { slot: "home:hero-slide-2", fallback: HERO_SLIDE_2 },
-      { slot: "home:hero-slide-3", fallback: HERO_SLIDE_3 },
       { slot: "home:product-labels", fallback: THERMAL_LABELS_IMG },
       { slot: "home:product-rolls", fallback: HERO_SLIDE_3 },
       ...productSlotConfigs,
@@ -545,12 +542,11 @@ export default async function HomePage() {
   ]);
 
   const banners = hero.banners ?? [];
-  // 如果后台没传图，才使用 imgs 里的占位符
-  const finalHeroImages = [
-    banners[0]?.url ? r2Image(banners[0].url) : imgs["home:hero"],
-    banners[1]?.url ? r2Image(banners[1].url) : imgs["home:hero-slide-2"],
-    banners[2]?.url ? r2Image(banners[2].url) : imgs["home:hero-slide-3"],
-  ];
+  // Hero 三张 Banner 唯一数据源 = /admin/hero (banners[i])，没传则使用代码内置 fallback
+  const HERO_FALLBACKS = [FACTORY_IMG_FALLBACK, HERO_SLIDE_2, HERO_SLIDE_3];
+  const finalHeroImages = HERO_FALLBACKS.map((fb, i) =>
+    banners[i]?.url ? r2Image(banners[i]!.url) : fb,
+  );
   const THERMAL_LABELS_CARD_IMG = r2Image(imgs["home:product-labels"]);
   const THERMAL_ROLLS_CARD_IMG = r2Image(imgs["home:product-rolls"]);
   const waBase = `${SITE.whatsappUrl}?text=`;

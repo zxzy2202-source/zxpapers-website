@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Save, Upload, Eye, Trash2, AlertCircle, Check, Image as ImageIcon, Bold, Italic, Link2, List, Heading2 } from "lucide-react";
+import { RESOURCE_CATEGORIES, type ResourceCategory } from "@/lib/postsCategories";
 import type { PostRecord } from "@/lib/postsStore";
 
 interface Props {
@@ -24,6 +25,7 @@ export default function PostEditor({ initial }: Props) {
     (initial?.metaKeywords || []).join(", ")
   );
   const [published, setPublished] = useState(initial?.published ?? false);
+  const [category, setCategory] = useState<ResourceCategory | "">(initial?.category || "");
 
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -120,6 +122,7 @@ export default function PostEditor({ initial }: Props) {
         excerpt,
         cover,
         content,
+        category: category || undefined,
         metaTitle,
         metaDescription,
         metaKeywords: metaKeywordsText.split(/[,，]/).map((s) => s.trim()).filter(Boolean),
@@ -338,6 +341,24 @@ export default function PostEditor({ initial }: Props) {
           >
             <Upload size={14} /> {uploading ? "上传中..." : cover ? "替换封面" : "上传封面"}
           </button>
+        </div>
+
+        {/* 资源分类 */}
+        <div className="bg-white rounded-xl border border-slate-200 p-4">
+          <div className="text-sm font-medium text-slate-700 mb-2">📂 资源分类</div>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value as ResourceCategory | "")}
+            className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm"
+          >
+            <option value="">— 未分类（仅显示在 /blog）—</option>
+            {RESOURCE_CATEGORIES.map(({ value, label }) => (
+              <option key={value} value={value}>{label}</option>
+            ))}
+          </select>
+          <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+            选了分类后，文章会自动出现在 <code className="text-slate-600">/resources/{category || "{category}"}</code> 子页的 “Latest Articles” 区块。
+          </p>
         </div>
 
         {/* URL slug */}

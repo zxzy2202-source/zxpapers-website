@@ -9,7 +9,7 @@ import { isAuthenticated } from "@/lib/auth";
  *   {dir}/{YYYYMMDD}-{semantic-name}-{shortRand}.{ext}
  *
  * 其中 dir 优先级：
- *   1. formData.slot 提供 → 用 slot 替换 ":" 为 "-" 作为目录（如 home:hero → home-hero/）
+ *   1. formData.slot 提供 → 用 slot 替换 ":" 为 "-" 作为目录（如 home:product-labels → home-product-labels/）
  *   2. formData.folder 提供 → 用 folder 作为目录
  *   3. 默认 uploads/
  *
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
 
     const buffer = Buffer.from(await file.arrayBuffer());
 
-    // 目录：slot 优先（slot 形如 "home:hero" → "home-hero/"）
+    // 目录：slot 优先（slot 形如 "home:product-labels" → "home-product-labels/"）
     const dir = slotKey
       ? slotKey.replace(/:/g, "-")
       : folder;

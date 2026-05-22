@@ -5,7 +5,7 @@ import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { ChevronRight } from "lucide-react";
 import { SITE } from "@/config/siteData";
-import { getPublishedPosts } from "@/lib/postsStore";
+import { getPublishedPostsByCategory } from "@/lib/postsStore";
 import { r2Image } from "@/lib/r2";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default async function IndustryInsightsPage() {
-  const posts = await getPublishedPosts();
+  const posts = await getPublishedPostsByCategory("industry-insights");
 
   return (
     <Layout>
@@ -85,7 +85,7 @@ export default async function IndustryInsightsPage() {
                           )}
                         </div>
                         <h2 className="font-sora text-xl font-bold text-slate-900 mb-2 hover:text-[#0F2B5B] transition-colors">
-                          <Link href={`/resources/industry-insights/${post.slug}`}>
+                          <Link href={`/blog/${post.slug}`}>
                             {post.title}
                           </Link>
                         </h2>
@@ -94,7 +94,7 @@ export default async function IndustryInsightsPage() {
                         </p>
                       </div>
                       <Link
-                        href={`/resources/industry-insights/${post.slug}`}
+                        href={`/blog/${post.slug}`}
                         className="text-sm font-bold text-[#0F2B5B] flex items-center gap-1 hover:underline"
                       >
                         Read Full Article <ChevronRight className="w-4 h-4" />

@@ -24,9 +24,7 @@ export interface ImageSlot {
 // ⚠️ 严格保持此数组与代码中所有 getSlotImage / getSlotImages 的 slot 参数一致
 export const IMAGE_SLOTS = [
   // ===== 首页（来自 src/app/page.tsx）=====
-  { slot: "home:hero", label: "首页 主 Banner (轮播1)", page: "首页", pageUrl: "/", aspect: "16:9", description: "首屏第一张轮播图" },
-  { slot: "home:hero-slide-2", label: "首页 Banner 轮播 2", page: "首页", pageUrl: "/", aspect: "16:9", description: "首屏第二张轮播图" },
-  { slot: "home:hero-slide-3", label: "首页 Banner 轮播 3", page: "首页", pageUrl: "/", aspect: "16:9", description: "首屏第三张轮播图" },
+  // 注: 首页 3 张 Hero Banner 改在 /admin/hero 编辑（跟文案/CTA 绑定），不再单独占图片管理槽位
   { slot: "home:product-labels", label: "首页 产品板块 - 标签兜底图", page: "首页", pageUrl: "/", aspect: "4:3", description: "中段产品展示区 - 任何热敏标签产品未单独设置图时使用" },
   { slot: "home:product-rolls", label: "首页 产品板块 - 纸卷兜底图", page: "首页", pageUrl: "/", aspect: "4:3", description: "中段产品展示区 - 任何热敏纸卷产品未单独设置图时使用" },
 

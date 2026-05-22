@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { Tag, Clock, ChevronRight, Thermometer, Droplets, Sun, AlertCircle, CheckCircle } from "lucide-react";
 import { SITE } from "@/config/siteData";
+import LatestArticles from "@/components/shared/LatestArticles";
 
 export const metadata: Metadata = {
   title: "Thermal Paper Technical Guide | Grades & Specs",
@@ -279,6 +280,12 @@ export default function ProductKnowledgePage() {
           </div>
         </div>
       </div>
+
+      <LatestArticles
+        category="product-knowledge"
+        title="Latest Product Knowledge Articles"
+        subtitle="Technical deep-dives on grades, coatings, image life, and printer compatibility."
+      />
     </Layout>
   );
 }

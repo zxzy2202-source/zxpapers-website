@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight, Package, ShieldCheck, Globe, Lightbulb, Clock, ChevronRight, AlertTriangle, DollarSign, FileText, Truck } from "lucide-react";
 import { SITE } from "@/config/siteData";
+import LatestArticles from "@/components/shared/LatestArticles";
 
 export const metadata: Metadata = {
   title: "OEM Thermal Paper Guide | MOQ & Private Label",
@@ -319,6 +320,12 @@ export default function OEMGuidePage() {
           </div>
         </div>
       </div>
+
+      <LatestArticles
+        category="oem-guide"
+        title="OEM & Private Label Articles"
+        subtitle="Distributor-focused content: MOQs, packaging, sampling, lead time, and quality control."
+      />
     </Layout>
   );
 }
