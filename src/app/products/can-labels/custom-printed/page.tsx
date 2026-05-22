@@ -6,6 +6,7 @@ import { CheckCircle, ArrowRight } from "lucide-react";
 import { canLabelSizes, CAN_LABELS_IMG } from "../can-labels-data";
 import { SITE } from "@/config/siteData";
 import Image from "next/image";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: "Custom Printed Can Labels | OEM Full-Color",
@@ -71,7 +72,8 @@ const productSchema = {
   },
   "url": "https://www.zhixinpaper.com/products/can-labels/custom-printed"
 };
-export default function CustomPrintedCanLabelsPage() {
+export default async function CustomPrintedCanLabelsPage() {
+  const heroImage = await getSlotImage("can-labels:custom-hero", CAN_LABELS_IMG);
   return (
     <Layout>
       <script
@@ -102,7 +104,7 @@ export default function CustomPrintedCanLabelsPage() {
 
             <div className="flex flex-col sm:flex-row gap-6">
               <Image
-                src={CAN_LABELS_IMG}
+                src={heroImage}
                 alt="Custom Printed Can Labels"
                 className="w-full sm:w-64 h-48 object-cover rounded-2xl flex-shrink-0"
                width={256} height={192} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />

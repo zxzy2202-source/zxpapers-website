@@ -59,6 +59,9 @@ export const IMAGE_SLOTS = [
   { slot: "oem:case-studies-hero", label: "OEM 案例 顶部图", page: "OEM 案例", pageUrl: "/oem/case-studies", aspect: "16:9" },
   { slot: "oem:custom-printing-hero", label: "OEM 定制印刷 顶部图", page: "OEM 定制印刷", pageUrl: "/oem/custom-printing", aspect: "16:9" },
   { slot: "oem:packaging-hero", label: "OEM 包装 顶部图", page: "OEM 包装", pageUrl: "/oem/packaging", aspect: "16:9" },
+  { slot: "oem:design-support-hero", label: "OEM 设计支持 顶部图", page: "OEM 设计支持", pageUrl: "/oem/design-support", aspect: "16:9" },
+  { slot: "oem:ip-protection-hero", label: "OEM 知识产权保护 顶部图", page: "OEM 知识产权", pageUrl: "/oem/ip-protection", aspect: "16:9" },
+  { slot: "oem:quality-assurance-hero", label: "OEM 质量保证 顶部图", page: "OEM 质量保证", pageUrl: "/oem/quality-assurance", aspect: "16:9" },
   { slot: "oem:factory", label: "OEM 工厂图（中东非洲页用）", page: "OEM 定制", pageUrl: "/markets/middle-east-africa", aspect: "16:9", description: "在中东非洲市场页用作工厂展示" },
 
   // ===== 生产制造 =====
@@ -139,6 +142,10 @@ export const IMAGE_SLOTS = [
   { slot: "thermal-labels:custom-hero", label: "热敏标签 定制 顶部图", page: "热敏定制标签", pageUrl: "/products/thermal-labels/custom-printed", aspect: "16:9" },
   { slot: "thermal-paper-rolls:blank-hero", label: "热敏纸卷 空白 顶部图", page: "热敏空白纸卷", pageUrl: "/products/thermal-paper-rolls/blank", aspect: "16:9" },
   { slot: "thermal-paper-rolls:custom-hero", label: "热敏纸卷 定制 顶部图", page: "热敏定制纸卷", pageUrl: "/products/thermal-paper-rolls/custom-printed", aspect: "16:9" },
+  { slot: "can-labels:blank-hero", label: "罐头标签 空白 顶部图", page: "罐头空白标签", pageUrl: "/products/can-labels/blank", aspect: "16:9" },
+  { slot: "can-labels:custom-hero", label: "罐头标签 定制 顶部图", page: "罐头定制标签", pageUrl: "/products/can-labels/custom-printed", aspect: "16:9" },
+  { slot: "detergent-labels:blank-hero", label: "洗涤剂标签 空白 顶部图", page: "洗涤空白标签", pageUrl: "/products/detergent-labels/blank", aspect: "16:9" },
+  { slot: "detergent-labels:custom-hero", label: "洗涤剂标签 定制 顶部图", page: "洗涤定制标签", pageUrl: "/products/detergent-labels/custom-printed", aspect: "16:9" },
 
   // ===== 市场页面 =====
   { slot: "markets:africa-hero", label: "非洲市场 顶部图", page: "非洲市场", pageUrl: "/markets/africa", aspect: "16:9" },
@@ -146,6 +153,9 @@ export const IMAGE_SLOTS = [
   { slot: "markets:middle-east-hero", label: "中东市场 顶部图", page: "中东市场", pageUrl: "/markets/middle-east", aspect: "16:9" },
   { slot: "markets:middle-east-africa-hero", label: "中东非洲 顶部图", page: "中东非洲市场", pageUrl: "/markets/middle-east-africa", aspect: "16:9" },
   // 各国子页面 hero
+  { slot: "markets:ghana-hero", label: "加纳 顶部图", page: "加纳市场", pageUrl: "/markets/africa/ghana", aspect: "16:9" },
+  { slot: "markets:kenya-hero", label: "肯尼亚 顶部图", page: "肯尼亚市场", pageUrl: "/markets/africa/kenya", aspect: "16:9" },
+  { slot: "markets:nigeria-hero", label: "尼日利亚 顶部图", page: "尼日利亚市场", pageUrl: "/markets/africa/nigeria", aspect: "16:9" },
   { slot: "markets:ethiopia-hero", label: "埃塞俄比亚 顶部图", page: "埃塞俄比亚市场", pageUrl: "/markets/africa/ethiopia", aspect: "16:9" },
   { slot: "markets:south-africa-hero", label: "南非 顶部图", page: "南非市场", pageUrl: "/markets/africa/south-africa", aspect: "16:9" },
   { slot: "markets:tanzania-hero", label: "坦桑尼亚 顶部图", page: "坦桑尼亚市场", pageUrl: "/markets/africa/tanzania", aspect: "16:9" },

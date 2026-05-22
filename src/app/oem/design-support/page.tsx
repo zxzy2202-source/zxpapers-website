@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { SITE } from "@/config/siteData";
 import { Palette, FileImage, Layers, CheckCircle, ArrowRight, Printer } from "lucide-react";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: "OEM Design Support | Custom Artwork & Printing",
@@ -69,7 +71,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function DesignSupportPage() {
+export default async function DesignSupportPage() {
+  const heroImage = await getSlotImage("oem:design-support-hero", "");
   return (
     <Layout>
       <script
@@ -77,6 +80,12 @@ export default function DesignSupportPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="page-hero">
+        {heroImage && (
+          <div className="absolute inset-0">
+            <Image src={heroImage} alt="" fill priority sizes="100vw" className="object-cover opacity-30" />
+            <div className="absolute inset-0 bg-[#0F2B5B]/75" />
+          </div>
+        )}
         <div className="page-hero-content">
           <div className="text-xs text-amber-400 font-semibold uppercase tracking-widest mb-3">
             <Link href="/oem" className="hover:text-amber-300 transition-colors">OEM Services</Link>

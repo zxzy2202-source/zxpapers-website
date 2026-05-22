@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import {
@@ -7,6 +8,7 @@ import {
   MessageSquare, TrendingUp, MapPin, ChevronRight, Factory,
 } from "lucide-react";
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 import { CountryFlag } from "@/components/ui/country-flag";
 
@@ -124,7 +126,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export default function KenyaPage() {
+export default async function KenyaPage() {
+  const heroImage = await getSlotImage("markets:kenya-hero", "");
   const whatsappMsg = encodeURIComponent(
     "Hello, I am a distributor in Kenya. I need thermal paper rolls.\nSize needed: 57×50mm / 57×40mm / 80×80mm\nQuantity: ___ cartons\nDestination: Mombasa Port\nPlease send CIF price list."
   );
@@ -137,6 +140,12 @@ export default function KenyaPage() {
       />
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="relative bg-gradient-to-br from-[#0A1F44] via-[#0d2a5e] to-[#1a3a6e] text-white overflow-hidden">
+        {heroImage && (
+          <div className="absolute inset-0">
+            <Image src={heroImage} alt="" fill priority sizes="100vw" className="object-cover opacity-40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A1F44]/85 via-[#0d2a5e]/75 to-[#1a3a6e]/60" />
+          </div>
+        )}
         <div className="absolute inset-0 opacity-10"
           style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #006600 0%, transparent 50%), radial-gradient(circle at 80% 20%, #BB0000 0%, transparent 40%)" }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
