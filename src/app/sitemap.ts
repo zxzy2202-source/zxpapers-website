@@ -31,34 +31,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/markets/southeast-asia`, lastModified: LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
   ];
 
-  // ── Africa Country Pages (priority 0.9) ──────────────────────────────────
+  // ── Africa Country Pages (priority 0.5 — sales/trust pages, near-zero search demand) ──
   const africaPages: MetadataRoute.Sitemap = [
     "nigeria", "kenya", "ghana", "south-africa", "tanzania", "ethiopia",
   ].map((country) => ({
     url: `${BASE}/markets/africa/${country}`,
     lastModified: LAST_MOD,
     changeFrequency: "monthly" as const,
-    priority: 0.9,
+    priority: 0.5,
   }));
 
-  // ── Middle East Country Pages (priority 0.9) ─────────────────────────────
+  // ── Middle East Country Pages (priority 0.5 — sales/trust pages, near-zero search demand) ──
   const middleEastPages: MetadataRoute.Sitemap = [
     "uae", "saudi-arabia", "egypt", "turkey",
   ].map((country) => ({
     url: `${BASE}/markets/middle-east/${country}`,
     lastModified: LAST_MOD,
     changeFrequency: "monthly" as const,
-    priority: 0.9,
+    priority: 0.5,
   }));
 
-  // ── Southeast Asia Country Pages (priority 0.9) ──────────────────────────
+  // ── Southeast Asia Country Pages (priority 0.5 — sales/trust pages, near-zero search demand) ──
   const seaPages: MetadataRoute.Sitemap = [
     "thailand", "indonesia", "vietnam", "philippines", "malaysia", "singapore",
   ].map((country) => ({
     url: `${BASE}/markets/southeast-asia/${country}`,
     lastModified: LAST_MOD,
     changeFrequency: "monthly" as const,
-    priority: 0.9,
+    priority: 0.5,
   }));
 
   // ── Thermal Rolls Product Pages (priority 0.85) ───────────────────────────
