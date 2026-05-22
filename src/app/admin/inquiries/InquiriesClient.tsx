@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Mail, Phone, Building2, Globe, MessageSquare, Check, Trash2, Inbox, Filter } from "lucide-react";
 import type { InquiryRecord } from "@/lib/inquiryStore";
+import { pagePathToLabel } from "@/lib/pageLabels";
 
 export default function InquiriesClient({ initialList }: { initialList: InquiryRecord[] }) {
   const router = useRouter();
@@ -104,6 +105,15 @@ export default function InquiriesClient({ initialList }: { initialList: InquiryR
                         <Globe size={12} /> {inq.country}
                       </span>
                     )}
+                    {inq.source && (
+                      <span
+                        className="text-xs px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-100 flex items-center gap-1 max-w-[260px] truncate"
+                        title={inq.source}
+                      >
+                        <MessageSquare size={12} className="flex-shrink-0" />
+                        <span className="truncate">{pagePathToLabel(inq.source)}</span>
+                      </span>
+                    )}
                   </div>
                   <div className="text-sm text-slate-500 truncate mt-1">{inq.message}</div>
                 </div>
@@ -121,7 +131,18 @@ export default function InquiriesClient({ initialList }: { initialList: InquiryR
                     <Field icon={Phone} label="电话" value={inq.phone ? <a href={`tel:${inq.phone}`} className="text-blue-600 hover:underline">{inq.phone}</a> : "—"} />
                     <Field icon={Building2} label="公司" value={inq.company || "—"} />
                     <Field icon={Globe} label="国家" value={inq.country || "—"} />
-                    {inq.source && <Field icon={MessageSquare} label="来源页面" value={inq.source} />}
+                    {inq.source && (
+                      <Field
+                        icon={MessageSquare}
+                        label="来源页面"
+                        value={
+                          <span>
+                            <span className="font-medium text-slate-800">{pagePathToLabel(inq.source)}</span>
+                            <span className="block text-xs text-slate-400 font-mono mt-0.5">{inq.source}</span>
+                          </span>
+                        }
+                      />
+                    )}
                   </div>
                   <div className="bg-slate-50 rounded-lg p-3 mb-4">
                     <div className="text-xs text-slate-500 mb-1 font-medium">客户留言</div>

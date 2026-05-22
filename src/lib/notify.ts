@@ -2,6 +2,7 @@
  * 多渠道通知：企业微信 + 飞书 + Server 酱
  * 触发后 fire-and-forget，不阻塞主流程
  */
+import { pagePathToLabel } from "@/lib/pageLabels";
 
 interface InquiryNotifyData {
   name: string;
@@ -26,7 +27,7 @@ export async function notifyWeCom(data: InquiryNotifyData) {
     `**国家：** ${data.country || "—"}`,
     `**电话：** ${data.phone || "—"}`,
     `**主题：** ${data.subject || "—"}`,
-    `**来源：** ${data.source || "—"}`,
+    `**来源页面：** ${data.source ? `${pagePathToLabel(data.source)}\n  \`${data.source}\`` : "—"}`,
     `---`,
     `**内容：**`,
     data.message,
@@ -65,7 +66,7 @@ export async function notifyFeishu(data: InquiryNotifyData) {
         },
         { tag: "hr" },
         { tag: "div", text: { tag: "lark_md", content: `**💬 内容：**\n${data.message}` } },
-        { tag: "note", elements: [{ tag: "plain_text", content: `来源：${data.source || "网站"} · ${new Date().toLocaleString("zh-CN")}` }] },
+        { tag: "note", elements: [{ tag: "plain_text", content: `来源：${data.source ? pagePathToLabel(data.source) : "网站"} (${data.source || "—"}) · ${new Date().toLocaleString("zh-CN")}` }] },
       ],
     },
   };
@@ -92,7 +93,7 @@ export async function notifyServerChan(data: InquiryNotifyData) {
     `- **公司：** ${data.company || "—"}`,
     `- **国家：** ${data.country || "—"}`,
     `- **电话：** ${data.phone || "—"}`,
-    `- **来源：** ${data.source || "—"}`,
+    `- **来源页面：** ${data.source ? `${pagePathToLabel(data.source)}\n  \`${data.source}\`` : "—"}`,
     `\n### 💬 内容\n${data.message}`,
   ].join("\n");
   try {
