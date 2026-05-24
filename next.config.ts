@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const disableImageOptimization =
-  process.env.NODE_ENV === "production" ? false : true; // 生产环境强制开启图片压缩，开发环境关闭以加快预览
+  process.env.NEXT_IMAGE_UNOPTIMIZED !== "false"; // 默认禁用图片优化（避免外部图片源被拦截）
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
