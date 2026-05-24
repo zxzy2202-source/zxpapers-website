@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   alternates: { canonical: SITE.domain },
 };
 
-export const revalidate = 60; // 每一分钟自动刷新一次内容
+export const revalidate = 60; // 开启 60 秒缓存，极大提升加载速度，后台不再卡顿
 
 const FACTORY_IMG_FALLBACK =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
