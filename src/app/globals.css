@@ -7,8 +7,7 @@
 
 @layer base {
   :root {
-    --font-inter: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    --font-sora: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+    /* Fonts are now handled via next/font in layout.tsx */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;

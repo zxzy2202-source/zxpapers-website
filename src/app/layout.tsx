@@ -3,6 +3,19 @@ import "./globals.css";
 import { SITE } from "@/config/siteData";
 import Script from "next/script";
 import { readSeo } from "@/lib/seoStore";
+import { Inter, Sora } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -160,8 +173,10 @@ export default async function RootLayout({
   const gtmId = adminSeo.googleTagManagerId?.trim();
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
       <head>
+        {/* Preload critical assets */}
+        <link rel="preload" href="/logo.png" as="image" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
