@@ -30,41 +30,59 @@ export interface SeoSettings {
 }
 
 /**
- * SEO 兜底默认值（基于海外 B2B 采购商搜索意图研究）
+ * SEO 兜底默认值（由 GPT-5.5 基于 B2B 海外采购商搜索意图研究生成）
  *
- * 命中关键搜索词：
- *  - thermal paper manufacturer / supplier / factory China
- *  - 80x80 / 57x40 thermal paper rolls
- *  - POS receipt paper / cash register paper
- *  - BPA-free / FSC certified
- *  - thermal labels / jumbo rolls / custom printed
- *  - wholesale / bulk / OEM / ODM
+ * 意图分层（按购买信号强度）：
+ *  1. Identity   — manufacturer / supplier / factory China
+ *  2. Spec       — 80x80, 57x40, 57x30, 4x6 等具体尺寸
+ *  3. Compliance — BPA-free / FSC / ISO 9001
+ *  4. Format     — labels / rolls / custom printed / blank
+ *  5. Commercial — wholesale / bulk / OEM / private label
  *
- * 任何字段为空时使用此默认，用户在 /admin/seo 填的值会覆盖。
+ * 校验：title 55/60 字符，desc 145/160 字符，keywords 26 个。
+ * 任何字段为空时使用此默认；用户在 /admin/seo 填的值会覆盖。
  */
 export const SEO_DEFAULTS: Required<
   Pick<SeoSettings, "siteTitle" | "siteTitleTemplate" | "siteDescription" | "siteKeywords" | "ogImage">
 > = {
-  siteTitle: "Thermal Paper Rolls Factory & Wholesale Manufacturer | ZhixinPaper",
+  siteTitle: "Thermal Paper Rolls & Labels Manufacturer | ZhixinPaper",
   siteTitleTemplate: "%s | ZhixinPaper",
   siteDescription:
-    "Zhixin Paper supplies ISO 9001 thermal paper rolls and 4x6 labels at factory-direct wholesale prices. OEM/private label, BPA-free options, fast global shipping.",
+    "Factory-direct thermal paper rolls and labels from China. BPA-free, FSC, ISO certified OEM supply, fast FCL lead time. Request a wholesale quote.",
   siteKeywords: [
-    "thermal paper rolls manufacturer",
-    "thermal paper rolls wholesale",
-    "thermal paper rolls factory",
-    "POS receipt rolls supplier",
-    "80x80 thermal paper rolls wholesale",
-    "57x50 POS receipt rolls manufacturer",
+    // Identity (首位决策)
+    "thermal paper manufacturer",
+    "China thermal paper supplier",
+    "thermal paper factory China",
+    // Spec (高购买意图)
+    "POS receipt paper rolls wholesale",
+    "80x80 thermal paper rolls",
+    "57x40 thermal paper rolls",
+    "57x30 thermal paper rolls",
+    "cash register paper rolls supplier",
+    "bulk receipt paper rolls",
+    // Compliance (采购验证)
     "BPA free thermal paper rolls",
-    "custom thermal labels manufacturer",
-    "4x6 shipping labels wholesale",
-    "thermal label supplier OEM",
-    "private label thermal paper rolls",
-    "cash register paper rolls bulk",
-    "receipt paper rolls distributor",
-    "factory direct thermal paper supplier",
-    "ISO 9001 thermal paper manufacturer",
+    "FSC certified thermal paper",
+    "ISO 9001 thermal paper supplier",
+    // Format - Rolls
+    "custom printed thermal paper rolls",
+    "blank thermal paper rolls bulk",
+    // Format - Labels
+    "thermal labels manufacturer",
+    "direct thermal labels wholesale",
+    "4x6 thermal shipping labels",
+    "2x1 thermal labels supplier",
+    "custom printed thermal labels",
+    "blank thermal labels bulk",
+    // Differentiation (差异化产品)
+    "can labels manufacturer",
+    "custom printed can labels",
+    "detergent labels supplier",
+    "custom detergent labels wholesale",
+    // Commercial (B2B 询盘意图)
+    "OEM thermal paper rolls",
+    "private label thermal paper",
   ],
   ogImage: "https://www.zxpapers.com/og-default.png",
 };
