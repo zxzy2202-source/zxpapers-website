@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SITE } from "@/config/siteData";
 import Script from "next/script";
-import { readSeo } from "@/lib/seoStore";
+import { readSeo, readEffectiveSeo } from "@/lib/seoStore";
 import { Inter, Sora } from "next/font/google";
 
 const inter = Inter({
@@ -24,21 +24,14 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const adminSeo = await readSeo().catch(() => ({} as Awaited<ReturnType<typeof readSeo>>));
+  // v2.1: 使用 readEffectiveSeo，用户填的优先，空字段自动用 SEO_DEFAULTS 兜底
+  const adminSeo = await readEffectiveSeo().catch(
+    () => ({} as Awaited<ReturnType<typeof readSeo>>),
+  );
 
   const title = adminSeo.siteTitle || `${SITE.name} | ${SITE.tagline}`;
-  const description =
-    adminSeo.siteDescription ||
-    "ISO 9001 certified manufacturer of thermal paper rolls and labels. OEM/private label, BPA-free, FSC certified. Serving 80+ countries.";
-  const keywords =
-    (adminSeo.siteKeywords?.length ? adminSeo.siteKeywords : null) || [
-      "thermal paper rolls",
-      "thermal labels",
-      "thermal paper manufacturer",
-      "OEM thermal paper",
-      "BPA-free thermal paper",
-      "custom thermal labels",
-    ];
+  const description = adminSeo.siteDescription || SITE.tagline;
+  const keywords = adminSeo.siteKeywords?.length ? adminSeo.siteKeywords : undefined;
   const ogImageUrl = adminSeo.ogImage || `${SITE.domain}/og-default.png`;
 
   const verificationOther: Record<string, string> = {};
