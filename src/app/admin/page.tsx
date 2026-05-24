@@ -2,20 +2,46 @@ import Link from "next/link";
 import { Image as ImageIcon, FileText, Inbox, Search, ExternalLink, ArrowRight } from "lucide-react";
 import { IMAGE_SLOTS } from "@/config/imageSlots";
 import { readOverrides } from "@/lib/imageSlotStore";
+import { readAllPosts } from "@/lib/postsStore";
+import { readAll as readAllInquiries } from "@/lib/inquiryStore";
+import { readSeo } from "@/lib/seoStore";
+import { calculateSeoScore, getSeoScoreLevel } from "@/lib/seoScore";
 
 export const dynamic = "force-dynamic";
 
 async function getStats() {
-  const overrides = await readOverrides();
+  // v2.1: Promise.all 并发拉取，避免串行延迟
+  const [overrides, posts, inquiries, seo] = await Promise.all([
+    readOverrides(),
+    readAllPosts().catch(() => []),
+    readAllInquiries().catch(() => []),
+    readSeo().catch(() => null),
+  ]);
+
+  // 今日询盘数（按本地时间 0 点为界）
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
+  const todayInquiries = inquiries.filter(
+    (i) => new Date(i.createdAt).getTime() >= todayStart.getTime()
+  ).length;
+  const newInquiries = inquiries.filter((i) => i.status === "new").length;
+
   return {
     totalSlots: IMAGE_SLOTS.length,
     customized: Object.keys(overrides).length,
+    publishedPosts: posts.filter((p) => p.published).length,
+    totalPosts: posts.length,
+    todayInquiries,
+    newInquiries,
+    totalInquiries: inquiries.length,
+    seoScore: calculateSeoScore(seo),
   };
 }
 
 export default async function DashboardPage() {
   const stats = await getStats();
   const customRate = Math.round((stats.customized / stats.totalSlots) * 100);
+  const seoLevel = getSeoScoreLevel(stats.seoScore);
 
   const cards = [
     {
@@ -33,26 +59,26 @@ export default async function DashboardPage() {
       href: "/admin/posts",
       icon: FileText,
       color: "from-emerald-500 to-teal-500",
-      stat: "—",
-      statLabel: "文章数",
+      stat: `${stats.publishedPosts}/${stats.totalPosts}`,
+      statLabel: "已发布",
     },
     {
       title: "客户询盘",
-      desc: "查看所有客户留言",
+      desc: stats.newInquiries > 0 ? `${stats.newInquiries} 条未处理` : "查看所有客户留言",
       href: "/admin/inquiries",
       icon: Inbox,
       color: "from-amber-500 to-orange-500",
-      stat: "—",
-      statLabel: "今日询盘",
+      stat: stats.todayInquiries > 0 ? `${stats.todayInquiries}` : `${stats.totalInquiries}`,
+      statLabel: stats.todayInquiries > 0 ? "今日新增" : "累计询盘",
     },
     {
       title: "SEO 设置",
-      desc: "全站 SEO 与元数据",
+      desc: `当前评级：${seoLevel.label}`,
       href: "/admin/seo",
       icon: Search,
       color: "from-purple-500 to-pink-500",
-      stat: "92",
-      statLabel: "健康度",
+      stat: `${stats.seoScore}`,
+      statLabel: "健康度评分",
     },
   ];
 
