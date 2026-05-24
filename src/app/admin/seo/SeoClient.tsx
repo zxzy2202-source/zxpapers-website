@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Save, Check, AlertCircle, X, ExternalLink } from "lucide-react";
+import { Save, Check, AlertCircle, X, ExternalLink, Sparkles } from "lucide-react";
 import type { SeoSettings } from "@/lib/seoStore";
 
 interface Props {
@@ -52,6 +52,36 @@ export default function SeoClient({ initialSeo, notifyStatus }: Props) {
     }
   }
 
+  /** 应用 GPT-5.5 生成的默认 SEO 配置 */
+  async function applyDefaults(mode: "apply-defaults" | "merge-defaults") {
+    if (mode === "merge-defaults") {
+      if (!confirm("将完全覆盖现有的标题/描述/关键词/OG图。确定继续？")) return;
+    }
+    setSaving(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/admin/seo", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mode }),
+      });
+      if (!res.ok) {
+        const d = await res.json();
+        throw new Error(d.error || "应用默认值失败");
+      }
+      const { seo: updated } = await res.json();
+      setSeo(updated);
+      setKeywordsText((updated.siteKeywords || []).join(", "));
+      setSavedAt(Date.now());
+      router.refresh();
+      setTimeout(() => setSavedAt(null), 3000);
+    } catch (e: any) {
+      setError(e.message);
+    } finally {
+      setSaving(false);
+    }
+  }
+
   return (
     <div className="space-y-6">
       {/* 状态条 */}
@@ -68,6 +98,41 @@ export default function SeoClient({ initialSeo, notifyStatus }: Props) {
           </button>
         </div>
       )}
+
+      {/* AI 初始化卡片 */}
+      <div className="bg-gradient-to-br from-violet-50 via-blue-50 to-emerald-50 border border-violet-200 rounded-2xl p-5">
+        <div className="flex items-start gap-3">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center text-white shrink-0">
+            <Sparkles size={20} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-slate-900">AI 一键初始化 SEO 基础信息</h3>
+            <p className="text-sm text-slate-600 mt-1">
+              基于 GPT-5.5 对 B2B 海外采购商搜索意图的研究，写入专业级标题/描述/26 个高购买意图关键词。
+              <span className="font-medium text-violet-700">完成后健康度评分立即变 100。</span>
+            </p>
+            <div className="flex flex-wrap gap-2 mt-3">
+              <button
+                onClick={() => applyDefaults("apply-defaults")}
+                disabled={saving}
+                className="px-4 py-2 bg-white border border-violet-300 hover:bg-violet-50 text-violet-700 font-medium text-sm rounded-lg flex items-center gap-2 disabled:opacity-50 transition"
+              >
+                <Sparkles size={14} /> 仅填充空字段（安全）
+              </button>
+              <button
+                onClick={() => applyDefaults("merge-defaults")}
+                disabled={saving}
+                className="px-4 py-2 bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white font-medium text-sm rounded-lg flex items-center gap-2 disabled:opacity-50 transition shadow-sm"
+              >
+                <Sparkles size={14} /> 用默认值覆盖全部
+              </button>
+            </div>
+            <p className="text-xs text-slate-400 mt-2">
+              提示：「仅填充空字段」保留你已填的内容；「覆盖全部」会用 AI 默认配置替换标题/描述/关键词/OG 图。
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* 全站 SEO 基础信息 */}
       <Section title="🌐 全站 SEO 基础信息" desc="这些信息会出现在 Google 搜索结果、社交媒体分享卡片中。">
