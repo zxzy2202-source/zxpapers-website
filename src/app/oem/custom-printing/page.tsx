@@ -130,19 +130,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "OEM Services",
-      "item": "https://www.zhixinpaper.com/oem"
+      "item": "https://www.zxpapers.com/oem"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Custom Printing",
-      "item": "https://www.zhixinpaper.com/oem/custom-printing"
+      "item": "https://www.zxpapers.com/oem/custom-printing"
     }
   ]
 };

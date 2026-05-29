@@ -70,25 +70,25 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Products",
-      "item": "https://www.zhixinpaper.com/products"
+      "item": "https://www.zxpapers.com/products"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Thermal Paper Rolls",
-      "item": "https://www.zhixinpaper.com/products/thermal-paper-rolls"
+      "item": "https://www.zxpapers.com/products/thermal-paper-rolls"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "Blank",
-      "item": "https://www.zhixinpaper.com/products/thermal-paper-rolls/blank"
+      "item": "https://www.zxpapers.com/products/thermal-paper-rolls/blank"
     }
   ]
 };

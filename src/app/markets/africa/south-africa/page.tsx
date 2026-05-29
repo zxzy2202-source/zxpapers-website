@@ -106,25 +106,25 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Markets",
-      "item": "https://www.zhixinpaper.com/markets"
+      "item": "https://www.zxpapers.com/markets"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Africa",
-      "item": "https://www.zhixinpaper.com/markets/africa"
+      "item": "https://www.zxpapers.com/markets/africa"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "South Africa",
-      "item": "https://www.zhixinpaper.com/markets/africa/south-africa"
+      "item": "https://www.zxpapers.com/markets/africa/south-africa"
     }
   ]
 };

@@ -33,13 +33,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Resources",
-      "item": "https://www.zhixinpaper.com/resources"
+      "item": "https://www.zxpapers.com/resources"
     }
   ]
 };

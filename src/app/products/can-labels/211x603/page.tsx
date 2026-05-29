@@ -19,25 +19,25 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Products",
-      "item": "https://www.zhixinpaper.com/products"
+      "item": "https://www.zxpapers.com/products"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Can Labels",
-      "item": "https://www.zhixinpaper.com/products/can-labels"
+      "item": "https://www.zxpapers.com/products/can-labels"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "211×603",
-      "item": "https://www.zhixinpaper.com/products/can-labels/211x603"
+      "item": "https://www.zxpapers.com/products/can-labels/211x603"
     }
   ]
 };

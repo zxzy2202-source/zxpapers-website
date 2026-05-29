@@ -98,25 +98,25 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Markets",
-      "item": "https://www.zhixinpaper.com/markets"
+      "item": "https://www.zxpapers.com/markets"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Middle East",
-      "item": "https://www.zhixinpaper.com/markets/middle-east"
+      "item": "https://www.zxpapers.com/markets/middle-east"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "Uae",
-      "item": "https://www.zhixinpaper.com/markets/middle-east/uae"
+      "item": "https://www.zxpapers.com/markets/middle-east/uae"
     }
   ]
 };

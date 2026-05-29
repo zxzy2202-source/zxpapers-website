@@ -50,25 +50,25 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Markets",
-      "item": "https://www.zhixinpaper.com/markets"
+      "item": "https://www.zxpapers.com/markets"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Southeast Asia",
-      "item": "https://www.zhixinpaper.com/markets/southeast-asia"
+      "item": "https://www.zxpapers.com/markets/southeast-asia"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "Thailand",
-      "item": "https://www.zhixinpaper.com/markets/southeast-asia/thailand"
+      "item": "https://www.zxpapers.com/markets/southeast-asia/thailand"
     }
   ]
 };

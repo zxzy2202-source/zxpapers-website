@@ -19,25 +19,25 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Products",
-      "item": "https://www.zhixinpaper.com/products"
+      "item": "https://www.zxpapers.com/products"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Detergent Labels",
-      "item": "https://www.zhixinpaper.com/products/detergent-labels"
+      "item": "https://www.zxpapers.com/products/detergent-labels"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "80×150Mm",
-      "item": "https://www.zhixinpaper.com/products/detergent-labels/80x150mm"
+      "item": "https://www.zxpapers.com/products/detergent-labels/80x150mm"
     }
   ]
 };

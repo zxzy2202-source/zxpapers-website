@@ -36,19 +36,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Manufacturing",
-      "item": "https://www.zhixinpaper.com/manufacturing"
+      "item": "https://www.zxpapers.com/manufacturing"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Quality Control",
-      "item": "https://www.zhixinpaper.com/manufacturing/quality-control"
+      "item": "https://www.zxpapers.com/manufacturing/quality-control"
     }
   ]
 };

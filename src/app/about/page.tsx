@@ -12,18 +12,18 @@ import PageHero from "@/components/shared/PageHero";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "About ZhixinPaper | Thermal Paper Manufacturer",
+  title: "About Zhixin Paper | Thermal Paper Manufacturer",
   description: "ISO 9001 & FSC certified thermal paper manufacturer in Xi'an, China. 10,000sqm factory, 20 production lines, 50+ countries.",
   openGraph: {
     title: `About Us | Thermal Paper Manufacturer Since ${SITE.founded}`,
-    description: "ZhixinPaper: Founded 2009 in Xi'an, China. 10,000sqm facility, 20 production lines, 50+ countries served.",
+    description: "Zhixin Paper: Founded 2009 in Xi'an, China. 10,000sqm facility, 20 production lines, 50+ countries served.",
     type: "website",
     images: [
       {
         url: "https://www.zxpapers.com/og-default.png",
         width: 1200,
         height: 630,
-        alt: "ZhixinPaper | Thermal Paper Rolls Manufacturer",
+        alt: "Zhixin Paper | Thermal Paper Rolls Manufacturer",
         type: "image/png",
       },
     ],
@@ -79,15 +79,41 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "About",
-      "item": "https://www.zhixinpaper.com/about"
+      "item": "https://www.zxpapers.com/about"
     }
   ]
+};
+
+// VideoObject schema for the factory aerial tour video — fixes GSC "4 videos not indexed".
+// uploadDate is intentionally hardcoded (no dynamic Date object) to keep schema deterministic
+// across SSR / ISR rebuilds, which avoids Google flagging the page as having unstable schema.
+const videoSchema = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Zhixin Paper Factory Aerial Tour — Xi'an, China",
+  "description": "Aerial overview of Zhixin Paper's 10,000m² thermal paper manufacturing facility in Xi'an, Shaanxi, China. 20 production lines, ISO 9001 & FSC certified, serving 50+ countries.",
+  "thumbnailUrl": [
+    "https://www.zxpapers.com/og-default.png",
+  ],
+  "uploadDate": "2024-09-01T00:00:00+08:00",
+  "contentUrl": "https://www.zxpapers.com/videos/factory-aerial-overview.mp4",
+  "embedUrl": "https://www.zxpapers.com/about",
+  "duration": "PT45S",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Zhixin Paper",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.zxpapers.com/og-default.png",
+    },
+  },
+  "regionsAllowed": "US,CA,GB,DE,FR,ES,IT,NL,SA,AE,EG,ZA,NG,KE,IN,JP,KR,SG,MY,TH,VN,ID,BR,MX,AU",
 };
 export default async function AboutPage() {
   const imgs = await getSlotImages([
@@ -101,6 +127,10 @@ export default async function AboutPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
       />
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero

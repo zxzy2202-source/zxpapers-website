@@ -86,13 +86,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Products",
-      "item": "https://www.zhixinpaper.com/products"
+      "item": "https://www.zxpapers.com/products"
     }
   ]
 };

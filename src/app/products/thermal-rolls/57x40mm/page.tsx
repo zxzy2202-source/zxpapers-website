@@ -19,25 +19,25 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Products",
-      "item": "https://www.zhixinpaper.com/products"
+      "item": "https://www.zxpapers.com/products"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Thermal Rolls",
-      "item": "https://www.zhixinpaper.com/products/thermal-rolls"
+      "item": "https://www.zxpapers.com/products/thermal-rolls"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "57×40Mm",
-      "item": "https://www.zhixinpaper.com/products/thermal-rolls/57x40mm"
+      "item": "https://www.zxpapers.com/products/thermal-rolls/57x40mm"
     }
   ]
 };

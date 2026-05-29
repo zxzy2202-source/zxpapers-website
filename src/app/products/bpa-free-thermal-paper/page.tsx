@@ -43,9 +43,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.zhixinpaper.com" },
-    { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.zhixinpaper.com/products" },
-    { "@type": "ListItem", "position": 3, "name": "BPA-Free Thermal Paper", "item": "https://www.zhixinpaper.com/products/bpa-free-thermal-paper" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.zxpapers.com" },
+    { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.zxpapers.com/products" },
+    { "@type": "ListItem", "position": 3, "name": "BPA-Free Thermal Paper", "item": "https://www.zxpapers.com/products/bpa-free-thermal-paper" },
   ],
 };
 

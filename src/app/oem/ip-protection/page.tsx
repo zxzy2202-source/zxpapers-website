@@ -47,19 +47,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "OEM Services",
-      "item": "https://www.zhixinpaper.com/oem"
+      "item": "https://www.zxpapers.com/oem"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "IP Protection",
-      "item": "https://www.zhixinpaper.com/oem/ip-protection"
+      "item": "https://www.zxpapers.com/oem/ip-protection"
     }
   ]
 };

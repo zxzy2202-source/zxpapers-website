@@ -29,25 +29,25 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.zhixinpaper.com"
+      "item": "https://www.zxpapers.com"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Products",
-      "item": "https://www.zhixinpaper.com/products"
+      "item": "https://www.zxpapers.com/products"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Thermal Labels",
-      "item": "https://www.zhixinpaper.com/products/thermal-labels"
+      "item": "https://www.zxpapers.com/products/thermal-labels"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "1×1In",
-      "item": "https://www.zhixinpaper.com/products/thermal-labels/1x1in"
+      "item": "https://www.zxpapers.com/products/thermal-labels/1x1in"
     }
   ]
 };
