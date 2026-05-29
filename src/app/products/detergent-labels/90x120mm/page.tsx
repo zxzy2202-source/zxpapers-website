@@ -49,15 +49,29 @@ const productSchema = {
   "description": "90×120mm detergent labels for bottle front panels. Water-resistant BOPP, chemical-resistant adhesive. CMYK + Pantone printing. MOQ 5,000. ISO 9001 certified.",
   "brand": {
     "@type": "Brand",
-    "name": "ZhixinPaper"
+    "name": "Zhixin Paper"
   },
   "manufacturer": {
     "@type": "Organization",
-    "name": "ZhixinPaper",
-    "url": "https://www.zhixinpaper.com"
+    "name": "Zhixin Paper",
+    "url": "https://www.zxpapers.com"
   },
   "image": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=1200&q=80",
-  "url": "https://www.zhixinpaper.com/products/detergent-labels/90x120mm"
+  "url": "https://www.zxpapers.com/products/detergent-labels/90x120mm"
+,
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://www.zxpapers.com",
+    "priceCurrency": "USD",
+    "lowPrice": "0.50",
+    "highPrice": "50.00",
+    "offerCount": "100",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Zhixin Paper"
+    }
+  }
 };
 export default function Page() {
   return (

@@ -142,15 +142,29 @@ const productSchema = {
   "description": "Direct thermal labels with permanent, removable, high-temperature (-196°C to 150°C) and low-temperature adhesive options.",
   "brand": {
     "@type": "Brand",
-    "name": "ZhixinPaper"
+    "name": "Zhixin Paper"
   },
   "manufacturer": {
     "@type": "Organization",
-    "name": "ZhixinPaper",
-    "url": "https://www.zhixinpaper.com"
+    "name": "Zhixin Paper",
+    "url": "https://www.zxpapers.com"
   },
   "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp",
-  "url": "https://www.zhixinpaper.com/products/thermal-labels/blank"
+  "url": "https://www.zxpapers.com/products/thermal-labels/blank"
+,
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://www.zxpapers.com",
+    "priceCurrency": "USD",
+    "lowPrice": "0.50",
+    "highPrice": "50.00",
+    "offerCount": "100",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Zhixin Paper"
+    }
+  }
 };
 export default async function BlankThermalLabelsPage() {
   const LABELS_IMG = await getSlotImage("thermal-labels:blank-hero", LABELS_IMG_FALLBACK);

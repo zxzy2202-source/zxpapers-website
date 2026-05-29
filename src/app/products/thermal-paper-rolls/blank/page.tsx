@@ -100,15 +100,29 @@ const productSchema = {
   "description": "Factory-direct blank thermal paper rolls. BPA-free, ISO 9001 certified, FSC certified. MOQ 1,000 rolls. 57mm, 80mm and custom sizes. 7–15 day lead time.",
   "brand": {
     "@type": "Brand",
-    "name": "ZhixinPaper"
+    "name": "Zhixin Paper"
   },
   "manufacturer": {
     "@type": "Organization",
-    "name": "ZhixinPaper",
-    "url": "https://www.zhixinpaper.com"
+    "name": "Zhixin Paper",
+    "url": "https://www.zxpapers.com"
   },
   "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp",
-  "url": "https://www.zhixinpaper.com/products/thermal-paper-rolls/blank"
+  "url": "https://www.zxpapers.com/products/thermal-paper-rolls/blank"
+,
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://www.zxpapers.com",
+    "priceCurrency": "USD",
+    "lowPrice": "0.50",
+    "highPrice": "50.00",
+    "offerCount": "100",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Zhixin Paper"
+    }
+  }
 };
 export default async function BlankThermalRollsPage() {
   const ROLLS_IMG = await getSlotImage("thermal-paper-rolls:blank-hero", ROLLS_IMG_FALLBACK);

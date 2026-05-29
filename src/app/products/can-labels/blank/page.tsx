@@ -54,15 +54,29 @@ const productSchema = {
   "description": "Blank unprinted can labels in white, kraft, and clear BOPP. Food-safe adhesive, moisture-resistant, compatible with all standard can sizes. MOQ 5,000.",
   "brand": {
     "@type": "Brand",
-    "name": "ZhixinPaper"
+    "name": "Zhixin Paper"
   },
   "manufacturer": {
     "@type": "Organization",
-    "name": "ZhixinPaper",
-    "url": "https://www.zhixinpaper.com"
+    "name": "Zhixin Paper",
+    "url": "https://www.zxpapers.com"
   },
   "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-  "url": "https://www.zhixinpaper.com/products/can-labels/blank"
+  "url": "https://www.zxpapers.com/products/can-labels/blank"
+,
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://www.zxpapers.com",
+    "priceCurrency": "USD",
+    "lowPrice": "0.50",
+    "highPrice": "50.00",
+    "offerCount": "100",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Zhixin Paper"
+    }
+  }
 };
 export default async function BlankCanLabelsPage() {
   const heroImage = await getSlotImage("can-labels:blank-hero", CAN_LABELS_IMG);

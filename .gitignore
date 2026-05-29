@@ -9,5 +9,6 @@ dist/
 out/
 *.tsbuildinfo
 docs/awesome-design-md/
+docs/B2B外贸站架构方案-*.md
 
 *.db

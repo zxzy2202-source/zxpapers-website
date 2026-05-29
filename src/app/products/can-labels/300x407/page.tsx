@@ -49,15 +49,29 @@ const productSchema = {
   "description": "300×407 can labels for standard #2 food cans — tomatoes, soups, seafood, pet food. Food-safe, moisture-resistant. CMYK printing. MOQ 5,000. ISO 9001 certified.",
   "brand": {
     "@type": "Brand",
-    "name": "ZhixinPaper"
+    "name": "Zhixin Paper"
   },
   "manufacturer": {
     "@type": "Organization",
-    "name": "ZhixinPaper",
-    "url": "https://www.zhixinpaper.com"
+    "name": "Zhixin Paper",
+    "url": "https://www.zxpapers.com"
   },
   "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-  "url": "https://www.zhixinpaper.com/products/can-labels/300x407"
+  "url": "https://www.zxpapers.com/products/can-labels/300x407"
+,
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://www.zxpapers.com",
+    "priceCurrency": "USD",
+    "lowPrice": "0.50",
+    "highPrice": "50.00",
+    "offerCount": "100",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Zhixin Paper"
+    }
+  }
 };
 export default function Page() {
   return (

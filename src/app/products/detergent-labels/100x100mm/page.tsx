@@ -49,15 +49,29 @@ const productSchema = {
   "description": "100×100mm square detergent labels for pods, powder boxes, and multi-surface cleaners. Water-resistant, chemical-resistant. CMYK printing. MOQ 5,000.",
   "brand": {
     "@type": "Brand",
-    "name": "ZhixinPaper"
+    "name": "Zhixin Paper"
   },
   "manufacturer": {
     "@type": "Organization",
-    "name": "ZhixinPaper",
-    "url": "https://www.zhixinpaper.com"
+    "name": "Zhixin Paper",
+    "url": "https://www.zxpapers.com"
   },
   "image": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=1200&q=80",
-  "url": "https://www.zhixinpaper.com/products/detergent-labels/100x100mm"
+  "url": "https://www.zxpapers.com/products/detergent-labels/100x100mm"
+,
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://www.zxpapers.com",
+    "priceCurrency": "USD",
+    "lowPrice": "0.50",
+    "highPrice": "50.00",
+    "offerCount": "100",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Zhixin Paper"
+    }
+  }
 };
 export default function Page() {
   return (

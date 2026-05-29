@@ -63,10 +63,24 @@ const productSchema = {
   "@type": "Product",
   "name": "Colored Thermal Paper Rolls | Blue, Pink, Yellow & Green Receipt Paper",
   "description": "Colored thermal paper rolls and till rolls in blue, pink, yellow, green, red and pastel. Color-coded receipt paper for POS and branding. Factory direct, custom colors available.",
-  "brand": { "@type": "Brand", "name": "ZhixinPaper" },
-  "manufacturer": { "@type": "Organization", "name": "ZhixinPaper", "url": "https://www.zhixinpaper.com" },
+  "brand": { "@type": "Brand", "name": "Zhixin Paper" },
+  "manufacturer": { "@type": "Organization", "name": "Zhixin Paper", "url": "https://www.zxpapers.com" },
   "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp",
-  "url": "https://www.zhixinpaper.com/products/colored-thermal-paper",
+  "url": "https://www.zxpapers.com/products/colored-thermal-paper",
+
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://www.zxpapers.com",
+    "priceCurrency": "USD",
+    "lowPrice": "0.50",
+    "highPrice": "50.00",
+    "offerCount": "100",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Zhixin Paper"
+    }
+  }
 };
 
 const faqSchema = {

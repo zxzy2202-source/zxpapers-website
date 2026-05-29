@@ -54,15 +54,29 @@ const productSchema = {
   "description": "Blank unprinted detergent labels in BOPP, PE, and vinyl. Water-resistant, chemical-resistant. Compatible with flexo, digital, and thermal transfer.",
   "brand": {
     "@type": "Brand",
-    "name": "ZhixinPaper"
+    "name": "Zhixin Paper"
   },
   "manufacturer": {
     "@type": "Organization",
-    "name": "ZhixinPaper",
-    "url": "https://www.zhixinpaper.com"
+    "name": "Zhixin Paper",
+    "url": "https://www.zxpapers.com"
   },
   "image": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=1200&q=80",
-  "url": "https://www.zhixinpaper.com/products/detergent-labels/blank"
+  "url": "https://www.zxpapers.com/products/detergent-labels/blank"
+,
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://www.zxpapers.com",
+    "priceCurrency": "USD",
+    "lowPrice": "0.50",
+    "highPrice": "50.00",
+    "offerCount": "100",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Zhixin Paper"
+    }
+  }
 };
 export default async function BlankDetergentLabelsPage() {
   const heroImage = await getSlotImage("detergent-labels:blank-hero", DETERGENT_LABELS_IMG);

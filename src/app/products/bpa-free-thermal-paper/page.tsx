@@ -54,10 +54,24 @@ const productSchema = {
   "@type": "Product",
   "name": "BPA-Free Thermal Paper Rolls | Phenol-Free Receipt Paper",
   "description": "BPA-free and phenol-free (BPS-free) thermal paper rolls — non-toxic, eco-friendly receipt paper for EU, California, and other regulated markets. ISO 9001, MOQ 1,000 rolls.",
-  "brand": { "@type": "Brand", "name": "ZhixinPaper" },
-  "manufacturer": { "@type": "Organization", "name": "ZhixinPaper", "url": "https://www.zhixinpaper.com" },
+  "brand": { "@type": "Brand", "name": "Zhixin Paper" },
+  "manufacturer": { "@type": "Organization", "name": "Zhixin Paper", "url": "https://www.zxpapers.com" },
   "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp",
-  "url": "https://www.zhixinpaper.com/products/bpa-free-thermal-paper",
+  "url": "https://www.zxpapers.com/products/bpa-free-thermal-paper",
+
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://www.zxpapers.com",
+    "priceCurrency": "USD",
+    "lowPrice": "0.50",
+    "highPrice": "50.00",
+    "offerCount": "100",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Zhixin Paper"
+    }
+  }
 };
 
 const faqSchema = {

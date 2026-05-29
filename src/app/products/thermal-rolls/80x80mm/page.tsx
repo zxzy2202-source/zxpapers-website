@@ -46,18 +46,32 @@ const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "80mm x 80mm Thermal Paper Rolls | Most Popular POS Receipt Size",
-  "description": "80mm x 80mm thermal paper rolls — the world",
+  "description": "80mm x 80mm thermal paper rolls — premium quality, BPA-free, ISO9001 certified, factory direct from Zhixin Paper. Bulk wholesale with custom printing available.",
   "brand": {
     "@type": "Brand",
-    "name": "ZhixinPaper"
+    "name": "Zhixin Paper"
   },
   "manufacturer": {
     "@type": "Organization",
-    "name": "ZhixinPaper",
-    "url": "https://www.zhixinpaper.com"
+    "name": "Zhixin Paper",
+    "url": "https://www.zxpapers.com"
   },
   "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp",
-  "url": "https://www.zhixinpaper.com/products/thermal-rolls/80x80mm"
+  "url": "https://www.zxpapers.com/products/thermal-rolls/80x80mm"
+,
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://www.zxpapers.com",
+    "priceCurrency": "USD",
+    "lowPrice": "0.50",
+    "highPrice": "50.00",
+    "offerCount": "100",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Zhixin Paper"
+    }
+  }
 };
 export default function Page() {
   return (

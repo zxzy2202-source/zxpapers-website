@@ -1,13 +1,15 @@
 import { MetadataRoute } from "next";
 import { SITE } from "@/config/siteData";
+import { readAllPosts } from "@/lib/postsStore";
 
-// Required for Next.js static export (output: "export") mode
-export const dynamic = "force-static";
+// Dynamic so blog posts get picked up
+export const revalidate = 3600; // 1h
+export const dynamic = "force-dynamic";
 
 const BASE = SITE.domain;
-const LAST_MOD = "2026-04-07";
+const LAST_MOD = new Date().toISOString().split("T")[0];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── Core Pages (priority 1.0 / 0.9) ──────────────────────────────────────
   const corePages: MetadataRoute.Sitemap = [
     { url: `${BASE}/`, lastModified: LAST_MOD, changeFrequency: "weekly", priority: 1.0 },
@@ -112,12 +114,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "custom-printed-rolls",
     "thermal-paper-rolls/blank",
     "thermal-paper-rolls/custom-printed",
+    "linerless-labels", // NEW: 吃下 GSC 报告的 ~200 曝光 linerless 查询词
   ].map((slug) => ({
     url: `${BASE}/products/${slug}`,
     lastModified: LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
+
+  // ── Other Static Pages (priority 0.7) ─────────────────────────────────────
+  const otherPages: MetadataRoute.Sitemap = [
+    { url: `${BASE}/blog`, lastModified: LAST_MOD, changeFrequency: "weekly", priority: 0.8 },
+  ];
 
   // ── Manufacturing Sub-Pages (priority 0.7) ────────────────────────────────
   const manufacturingPages: MetadataRoute.Sitemap = [
@@ -150,6 +158,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
+  // ── Dynamic Blog Posts ────────────────────────────────────────────────────
+  let blogPages: MetadataRoute.Sitemap = [];
+  try {
+    const posts = await readAllPosts();
+    blogPages = posts
+      .filter((p) => p.published)
+      .map((p) => ({
+        url: `${BASE}/blog/${p.slug}`,
+        lastModified: p.updatedAt
+          ? new Date(p.updatedAt).toISOString().split("T")[0]
+          : LAST_MOD,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      }));
+  } catch {
+    blogPages = [];
+  }
+
   return [
     ...corePages,
     ...marketHubs,
@@ -161,8 +187,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...detergentLabelPages,
     ...canLabelPages,
     ...productCategoryPages,
+    ...otherPages,
     ...manufacturingPages,
     ...oemPages,
     ...resourcePages,
+    ...blogPages,
   ];
 }

@@ -54,15 +54,29 @@ const productSchema = {
   "description": "Custom printed detergent labels with CMYK + Pantone printing. Water-resistant, chemical-resistant, GHS compliant. Gloss/matte lamination, embossing.",
   "brand": {
     "@type": "Brand",
-    "name": "ZhixinPaper"
+    "name": "Zhixin Paper"
   },
   "manufacturer": {
     "@type": "Organization",
-    "name": "ZhixinPaper",
-    "url": "https://www.zhixinpaper.com"
+    "name": "Zhixin Paper",
+    "url": "https://www.zxpapers.com"
   },
   "image": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=1200&q=80",
-  "url": "https://www.zhixinpaper.com/products/detergent-labels/custom-printed"
+  "url": "https://www.zxpapers.com/products/detergent-labels/custom-printed"
+,
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": "https://www.zxpapers.com",
+    "priceCurrency": "USD",
+    "lowPrice": "0.50",
+    "highPrice": "50.00",
+    "offerCount": "100",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Zhixin Paper"
+    }
+  }
 };
 export default async function CustomPrintedDetergentLabelsPage() {
   const heroImage = await getSlotImage("detergent-labels:custom-hero", DETERGENT_LABELS_IMG);
