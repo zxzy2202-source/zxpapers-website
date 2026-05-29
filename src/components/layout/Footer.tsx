@@ -12,7 +12,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#071325] text-slate-300">
-      {/* ── Trust bar ────────────────────────────────────────────── */}
+      {/* 鈹€鈹€ Trust bar 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */}
       <div className="border-b border-white/10 bg-[#0b1f42]">
         <div className="container py-5">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
@@ -36,7 +36,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── Main footer ──────────────────────────────────────────── */}
+      {/* 鈹€鈹€ Main footer 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */}
       <div className="container py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
 
@@ -194,13 +194,13 @@ export default function Footer() {
             <div className="text-white font-semibold text-xs mb-4 uppercase tracking-[0.18em] border-b border-white/10 pb-2" role="heading" aria-level={3}>Markets</div>
             <ul className="space-y-2 text-sm mb-6">
               {[
-                { label: "🌍 Africa Overview", href: "/markets/africa" },
+                { label: "Africa Overview", href: "/markets/africa" },
                 { label: "Nigeria", href: "/markets/africa/nigeria" },
                 { label: "Kenya", href: "/markets/africa/kenya" },
                 { label: "South Africa", href: "/markets/africa/south-africa" },
                 { label: "Ghana", href: "/markets/africa/ghana" },
-                { label: "🌙 Middle East & Africa", href: "/markets/middle-east-africa" },
-                { label: "🌏 Southeast Asia", href: "/markets/southeast-asia" },
+                { label: "Middle East & Africa", href: "/markets/middle-east-africa" },
+                { label: "Southeast Asia", href: "/markets/southeast-asia" },
               ].map((item) => (
                 <li key={item.href}>
                   <Link href={item.href}
@@ -259,7 +259,7 @@ export default function Footer() {
                 <span className="text-white text-xs font-semibold">Business Hours</span>
               </div>
               <div className="text-xs text-slate-400 space-y-1">
-                <div>Mon–Fri: 9:00–18:00 (GMT+8)</div>
+                <div>{SITE.businessHours}</div>
                 <div className="flex items-center gap-1.5 mt-2">
                   <span className="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                   <span className="text-green-400 font-medium">WhatsApp: 7 days/week</span>
@@ -270,7 +270,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── Bottom bar ───────────────────────────────────────────── */}
+      {/* 鈹€鈹€ Bottom bar 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */}
       <div className="border-t border-white/5">
         <div className="container flex flex-col sm:flex-row items-center justify-between py-5 gap-3 text-xs text-slate-500">
           <div className="flex items-center gap-2">
@@ -281,7 +281,7 @@ export default function Footer() {
               height={20}
               className="h-5 w-auto object-contain brightness-0 invert opacity-60"
             />
-            <p>© {currentYear} ZhixinPaper. All rights reserved. | Factory in Xi&apos;an, Shaanxi, China</p>
+            <p>&copy; {currentYear} ZhixinPaper. All rights reserved. | Factory in Xi&apos;an, Shaanxi, China</p>
           </div>
           <div className="flex items-center gap-5">
             <Link href="/sitemap.xml" className="hover:text-slate-300 transition-colors">Sitemap</Link>

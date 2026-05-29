@@ -21,8 +21,7 @@ export const metadata: Metadata = {
 };
 
 
-export const revalidate = 60; // 开启 60 秒缓存，极大提升加载速度，后台不再卡顿
-
+export const revalidate = 60; // 寮€鍚?60 绉掔紦瀛橈紝鏋佸ぇ鎻愬崌鍔犺浇閫熷害锛屽悗鍙颁笉鍐嶅崱椤?
 const FACTORY_IMG_FALLBACK =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
 const HERO_SLIDE_2 =
@@ -107,13 +106,13 @@ const testimonials = [
   },
 ];
 
-// ── 从导航配置中取出 Products 的 sizeGroups ──
+// 鈹€鈹€ 浠庡鑸厤缃腑鍙栧嚭 Products 鐨?sizeGroups 鈹€鈹€
 const productsNav = mainNav.find(
   (item): item is NavDropdown => "items" in item && item.label === "Products"
 )!;
 const sizeGroups = productsNav.sizeGroups ?? [];
 
-// badge 颜色映射（与导航保持一致）
+// badge 棰滆壊鏄犲皠锛堜笌瀵艰埅淇濇寔涓€鑷达級
 const BADGE_COLORS: Record<string, string> = {
   amber:  "bg-amber-100 text-amber-700 border-amber-200",
   blue:   "bg-slate-100 text-slate-700 border-slate-200",
@@ -263,26 +262,24 @@ const popularSizes = [
 const homepageProductGroups = [
   {
     title: "Thermal Paper Rolls",
+    href: "/products/receipt-paper-rolls",
     description: "Fast-moving receipt roll products for POS, mobile printers, restaurants, retail chains, banking, kiosks, and OEM receipt programs.",
     items: [
       popularSizes.find((item) => item.size === "POS Receipt Rolls")!,
       popularSizes.find((item) => item.size === "Portable/Mobile Printer Rolls")!,
       popularSizes.find((item) => item.size === "Phenol Free Thermal Paper")!,
       popularSizes.find((item) => item.size === "Custom Printed Rolls")!,
-      popularSizes.find((item) => item.size === "ATM & Banking Rolls")!,
-      popularSizes.find((item) => item.size === "Blank Thermal Rolls")!,
     ],
   },
   {
     title: "Thermal Labels",
+    href: "/products/blank-thermal-labels",
     description: "Direct thermal label products for shipping, barcode, inventory, warehouse, product identification, and private-label packaging buyers.",
     items: [
       popularSizes.find((item) => item.size === "Blank Thermal Labels")!,
       popularSizes.find((item) => item.size === "4x6 Shipping Labels")!,
       popularSizes.find((item) => item.size === "Barcode Thermal Labels")!,
       popularSizes.find((item) => item.size === "Custom Printed Labels")!,
-      popularSizes.find((item) => item.size === "4x3 Thermal Labels")!,
-      popularSizes.find((item) => item.size === "2x4 Thermal Labels")!,
     ],
   },
 ];
@@ -374,8 +371,8 @@ const COMMON_PRODUCT_SPECS: Record<string, string[]> = {
   ],
 };
 
-// 产品名 → 独立 slot key 的映射（与 imageSlots.ts 严格对齐）
-// 用于首页 ② POPULAR SIZES 区域，每个产品卡都能独立换图
+// 浜у搧鍚?鈫?鐙珛 slot key 鐨勬槧灏勶紙涓?imageSlots.ts 涓ユ牸瀵归綈锛?
+// 鐢ㄤ簬棣栭〉 鈶?POPULAR SIZES 鍖哄煙锛屾瘡涓骇鍝佸崱閮借兘鐙珛鎹㈠浘
 const PRODUCT_SLOT_MAP: Record<string, SlotKey> = {
   "POS Receipt Rolls": "home:product-pos-receipt-rolls",
   "Portable/Mobile Printer Rolls": "home:product-portable-mobile-printer-rolls",
@@ -396,7 +393,7 @@ const PRODUCT_SLOT_MAP: Record<string, SlotKey> = {
   "OEM Printed Receipts": "home:product-oem-printed-receipts",
 };
 
-// 判定产品是否为"标签类"（用于 fallback 选择 labels 还是 rolls 兜底图）
+// 鍒ゅ畾浜у搧鏄惁涓?鏍囩绫?锛堢敤浜?fallback 閫夋嫨 labels 杩樻槸 rolls 鍏滃簳鍥撅級
 const LABEL_PRODUCT_NAMES = new Set([
   "Blank Thermal Labels",
   "4x6 Shipping Labels",
@@ -463,11 +460,25 @@ const customerProblems = [
   },
 ];
 
+const heroSnapshotMetrics = [
+  { label: "Factory Area", value: FACTORY.area },
+  { label: "Daily Output", value: FACTORY.dailyOutput },
+  { label: "Production Lines", value: FACTORY.productionLines },
+  { label: "Countries Served", value: FACTORY.countriesServed },
+];
+
+const heroFastMovingSizes = [
+  { size: "80 x 80 mm", use: "Restaurant POS" },
+  { size: "57 x 50 mm", use: "Counter POS" },
+  { size: "57 x 40 mm", use: "Mobile POS" },
+  { size: "79 x 80 mm", use: "ATM / Kiosk" },
+];
+
 const whyUs = [
   {
     icon: Tag,
     title: "Factory Direct Price",
-    desc: "No middlemen. Buy direct from our factory and save 15–30% vs. trading companies.",
+    desc: "No middlemen. Buy direct from our factory and save 15-30% vs. trading companies.",
   },
   {
     icon: FactoryIcon,
@@ -527,7 +538,7 @@ const breadcrumbSchema = {
   ]
 };
 export default async function HomePage() {
-  // 18 个产品的独立 slot —— 没传图时 labels 类回退到 home:product-labels 兜底图，rolls 类回退到 home:product-rolls 兜底图
+  // 18 涓骇鍝佺殑鐙珛 slot 鈥斺€?娌′紶鍥炬椂 labels 绫诲洖閫€鍒?home:product-labels 鍏滃簳鍥撅紝rolls 绫诲洖閫€鍒?home:product-rolls 鍏滃簳鍥?
   const productSlotConfigs = Object.entries(PRODUCT_SLOT_MAP).map(([name, slot]) => ({
     slot,
     fallback: LABEL_PRODUCT_NAMES.has(name) ? THERMAL_LABELS_IMG : HERO_SLIDE_3,
@@ -543,7 +554,7 @@ export default async function HomePage() {
   ]);
 
   const banners = hero.banners ?? [];
-  // Hero 三张 Banner 唯一数据源 = /admin/hero (banners[i])，没传则使用代码内置 fallback
+  // Hero 涓夊紶 Banner 鍞竴鏁版嵁婧?= /admin/hero (banners[i])锛屾病浼犲垯浣跨敤浠ｇ爜鍐呯疆 fallback
   const HERO_FALLBACKS = [FACTORY_IMG_FALLBACK, HERO_SLIDE_2, HERO_SLIDE_3];
   const finalHeroImages = HERO_FALLBACKS.map((fb, i) =>
     banners[i]?.url ? r2Image(banners[i]!.url) : fb,
@@ -565,7 +576,7 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* ① HERO */}
+      {/* 鈶?HERO */}
       <PageHero
         bgImages={finalHeroImages}
         bgCarouselInterval={4500}
@@ -581,7 +592,7 @@ export default async function HomePage() {
         trustBadges={
           hero.trustBadges && hero.trustBadges.length > 0
             ? hero.trustBadges
-            : ["ISO 9001 Certified", "BPA-Free", "FCL Ready 3–5 Days", "OEM Available"]
+            : ["ISO 9001 Certified", "BPA-Free", "FCL Ready 3-5 Days", "OEM Available"]
         }
         title={
           hero.titleMain || hero.titleHighlight ? (
@@ -623,38 +634,68 @@ export default async function HomePage() {
         ]}
         stats={[
           { value: "MOQ 1 Pallet", label: "Low Minimum Order" },
-          { value: "Sample 3–5 Days", label: "Fast Sample Delivery" },
-          { value: "FCL 3–5 Days", label: "Container Loading" },
+          { value: "Sample 3-5 Days", label: "Fast Sample Delivery" },
+          { value: "FCL 3-5 Days", label: "Container Loading" },
           { value: "24h Reply", label: "Quote Response" },
         ]}
-        rightSlot={
-          <div className="w-full max-w-lg border border-white/12 bg-white/5 rounded-md overflow-hidden">
-            <div className="px-6 py-5 border-b border-white/10">
-              <div className="flex items-center justify-between gap-4 mb-3">
-                <span className="text-[11px] font-semibold text-amber-300 uppercase tracking-[0.2em]">Factory Snapshot</span>
-                <span className="text-[11px] text-slate-300 border border-white/10 px-2.5 py-1 rounded-md">OEM Ready</span>
+        mobileRightSlot={
+          <div className="rounded-xl border border-white/12 bg-[#0c1c36]/95 p-4 shadow-lg backdrop-blur">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-300">Factory Snapshot</p>
+                <p className="mt-1 text-sm font-semibold text-white">Built for repeat wholesale orders.</p>
               </div>
-              <h3 className="text-[1.75rem] font-semibold tracking-[-0.03em] text-white mb-2">
+              <span className="rounded-md border border-white/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-300">
+                OEM Ready
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {heroSnapshotMetrics.map(({ label, value }) => (
+                <div key={label} className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-3">
+                  <div className="text-sm font-semibold text-white">{value}</div>
+                  <div className="mt-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">{label}</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 border-t border-white/10 pt-4">
+              <div className="mb-2 flex items-center justify-between gap-3 text-xs">
+                <span className="font-semibold uppercase tracking-[0.14em] text-slate-400">Fast-Moving Sizes</span>
+                <span className="font-medium text-white">{SITE.responseTime} quote response</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                {heroFastMovingSizes.map(({ size, use }) => (
+                  <div key={size} className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2.5">
+                    <div className="font-semibold text-white">{size}</div>
+                    <div className="mt-1 text-slate-400">{use}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        }
+        rightSlot={
+          <div className="w-full max-w-lg overflow-hidden rounded-md border border-white/12 bg-white/5">
+            <div className="border-b border-white/10 px-6 py-5">
+              <div className="mb-3 flex items-center justify-between gap-4">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-300">Factory Snapshot</span>
+                <span className="rounded-md border border-white/10 px-2.5 py-1 text-[11px] text-slate-300">OEM Ready</span>
+              </div>
+              <h3 className="mb-2 text-[1.75rem] font-semibold tracking-[-0.03em] text-white">
                 Built for repeat wholesale orders.
               </h3>
-              <p className="text-sm text-slate-300 leading-relaxed">
+              <p className="text-sm leading-relaxed text-slate-300">
                 Custom printing, precise slitting, export-ready packing, and fast loading for distributors serving retail, POS, kiosk, and ATM channels.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-px bg-white/10">
-              {[
-                { label: "Factory Area", value: FACTORY.area },
-                { label: "Daily Output", value: FACTORY.dailyOutput },
-                { label: "Production Lines", value: FACTORY.productionLines },
-                { label: "Countries Served", value: FACTORY.countriesServed },
-              ].map(({ label, value }) => (
+              {heroSnapshotMetrics.map(({ label, value }) => (
                 <div key={label} className="bg-[#0c1c36] px-5 py-4">
                   <div className="text-lg font-semibold text-white">{value}</div>
-                  <div className="text-[11px] uppercase tracking-[0.14em] text-slate-400 mt-1">{label}</div>
+                  <div className="mt-1 text-[11px] uppercase tracking-[0.14em] text-slate-400">{label}</div>
                 </div>
               ))}
             </div>
-            <div className="px-6 py-5 space-y-3 bg-[#0c1c36]/90">
+            <div className="space-y-3 bg-[#0c1c36]/90 px-6 py-5">
               <div className="flex items-center justify-between gap-4 text-sm">
                 <span className="text-slate-400">Typical quote response</span>
                 <span className="font-semibold text-white">{SITE.responseTime}</span>
@@ -663,18 +704,13 @@ export default async function HomePage() {
                 <span className="text-slate-400">Low volume entry</span>
                 <span className="font-semibold text-white">MOQ 1 pallet</span>
               </div>
-              <div className="pt-3 border-t border-white/10">
-                <div className="text-[11px] uppercase tracking-[0.16em] text-slate-400 mb-2">Core Fast-Moving Sizes</div>
+              <div className="border-t border-white/10 pt-3">
+                <div className="mb-2 text-[11px] uppercase tracking-[0.16em] text-slate-400">Core Fast-Moving Sizes</div>
                 <div className="grid grid-cols-2 gap-2">
-                  {[
-                    { size: "80 × 80 mm", use: "Restaurant POS" },
-                    { size: "57 × 50 mm", use: "Counter POS" },
-                    { size: "57 × 40 mm", use: "Mobile POS" },
-                    { size: "79 × 80 mm", use: "ATM / Kiosk" },
-                  ].map(({ size, use }) => (
-                    <div key={size} className="border border-white/10 rounded-md px-3 py-3 bg-white/[0.03]">
+                  {heroFastMovingSizes.map(({ size, use }) => (
+                    <div key={size} className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-3">
                       <div className="text-sm font-semibold text-white">{size}</div>
-                      <div className="text-[11px] text-slate-400 mt-1">{use}</div>
+                      <div className="mt-1 text-[11px] text-slate-400">{use}</div>
                     </div>
                   ))}
                 </div>
@@ -684,10 +720,10 @@ export default async function HomePage() {
         }
       />
 
-      {/* ② POPULAR SIZES — 热敏纸行业产品展示 */}
+      {/* 鈶?POPULAR SIZES 鈥?鐑晱绾歌涓氫骇鍝佸睍绀?*/}
       <section className="py-20 bg-white" aria-labelledby="popular-products-heading">
         <div className="container">
-          <div className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_420px] lg:items-end">
+          <div className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
             <div>
               <p className="text-[#0F2B5B] text-sm font-semibold uppercase tracking-[0.18em] mb-3">Most Ordered Thermal Paper Products</p>
               <h2 id="popular-products-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900">
@@ -698,7 +734,7 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Quick buying reference</p>
               <dl className="mt-4 grid grid-cols-1 gap-3">
                 {[
@@ -706,7 +742,7 @@ export default async function HomePage() {
                   { label: "Common sizes", value: "57x40mm, 57x50mm, 80x80mm, 79x80mm, custom widths" },
                   { label: "Customization", value: "OEM carton, private label, core printing, logo receipts" },
                 ].map(({ label, value }) => (
-                  <div key={label} className="grid grid-cols-[92px_1fr] gap-3 text-sm">
+                  <div key={label} className="grid grid-cols-[84px_1fr] gap-3 text-sm">
                     <dt className="font-semibold text-slate-900">{label}</dt>
                     <dd className="text-slate-600">{value}</dd>
                   </div>
@@ -715,7 +751,7 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="mb-8 grid grid-cols-2 gap-3 rounded-lg border border-slate-200 bg-slate-50 p-3 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="mb-8 grid grid-cols-2 gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3 sm:grid-cols-3 xl:grid-cols-6">
             {[
               "POS Receipt Rolls",
               "Mobile Printer Rolls",
@@ -732,19 +768,19 @@ export default async function HomePage() {
           </div>
 
           <div className="space-y-12">
-            {homepageProductGroups.map(({ title, description, items }) => (
+            {homepageProductGroups.map(({ title, href, description, items }) => (
               <div key={title}>
                 <div className="mb-5 flex flex-col gap-2 border-b border-slate-200 pb-4 sm:flex-row sm:items-end sm:justify-between">
                   <div>
                     <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900">{title}</h3>
                     <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">{description}</p>
                   </div>
-                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#0F2B5B]">6 Products</span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#0F2B5B]">Top 4 SKUs</span>
                 </div>
 
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
                   {items.map(({ size, label, badge, badgeTone, href, desc }) => {
-                    // 优先读产品独立 slot；没设置则按类型回退到通用兜底图
+                    // 浼樺厛璇讳骇鍝佺嫭绔?slot锛涙病璁剧疆鍒欐寜绫诲瀷鍥為€€鍒伴€氱敤鍏滃簳鍥?
                     const slotKey = PRODUCT_SLOT_MAP[size];
                     const fallbackImage = LABEL_PRODUCT_NAMES.has(size)
                       ? THERMAL_LABELS_CARD_IMG
@@ -755,11 +791,11 @@ export default async function HomePage() {
                     return (
                       <article
                         key={size}
-                        className="group overflow-hidden border border-slate-200 rounded-lg bg-white flex flex-col shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-[#0F2B5B]/40 hover:shadow-lg"
+                        className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-[#0F2B5B]/40 hover:shadow-lg"
                       >
                         <Link
                           href={href}
-                          className="relative block aspect-[4/3] overflow-hidden bg-slate-100"
+                          className="relative block aspect-[5/4] overflow-hidden bg-slate-100"
                           aria-label={`View ${size} specifications`}
                         >
                           <Image
@@ -779,18 +815,18 @@ export default async function HomePage() {
                         </Link>
 
                         <div className="flex flex-1 flex-col p-5">
-                          <h4 className="min-h-[3.25rem] text-[1.35rem] font-semibold tracking-[-0.02em] leading-tight text-slate-900 mb-2">
+                          <h4 className="mb-2 text-[1.25rem] font-semibold leading-tight tracking-[-0.02em] text-slate-900">
                             <Link href={href} className="transition-colors group-hover:text-[#0F2B5B]">
                               {size}
                             </Link>
                           </h4>
                           <p className="text-xs text-slate-500 font-semibold uppercase tracking-[0.14em] mb-4">{label}</p>
-                          <p className="text-sm text-slate-600 leading-relaxed mb-5 flex-1">{desc}</p>
+                          <p className="mb-5 flex-1 text-sm leading-relaxed text-slate-600">{desc}</p>
 
-                          <div className="mb-6">
-                            <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Common Specifications</div>
+                          <div className="mb-5">
+                            <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Quick Specs</div>
                             <ul className="space-y-2">
-                              {(COMMON_PRODUCT_SPECS[size] ?? ["Custom size available"]).map((t) => (
+                              {(COMMON_PRODUCT_SPECS[size] ?? ["Custom size available"]).slice(0, 2).map((t) => (
                                 <li
                                   key={t}
                                   className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium leading-relaxed text-slate-700"
@@ -801,7 +837,7 @@ export default async function HomePage() {
                             </ul>
                           </div>
 
-                          <div className="flex gap-2">
+                          <div className="flex flex-col gap-2 sm:flex-row">
                             <Link
                               href={`/contact?product=${encodeURIComponent(size)}`}
                               className="inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-blue-700 bg-blue-700 px-3 py-2.5 text-sm font-semibold text-[#F8FAFC] transition-colors hover:border-blue-800 hover:bg-blue-800 hover:text-[#F8FAFC]"
@@ -825,6 +861,15 @@ export default async function HomePage() {
                       </article>
                     );
                   })}
+                </div>
+
+                <div className="mt-5 flex justify-end">
+                  <Link
+                    href={href}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-[#0F2B5B] transition-colors hover:text-[#12346d]"
+                  >
+                    View full {title.toLowerCase()} range <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
               </div>
             ))}
@@ -859,7 +904,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ③ CUSTOMER PROBLEMS — 目标客户常见问题 */}
+      {/* 鈶?CUSTOMER PROBLEMS 鈥?鐩爣瀹㈡埛甯歌闂 */}
       <section className="py-20 bg-slate-50 border-y border-slate-200">
         <div className="container">
           <div className="text-center mb-12">
@@ -962,7 +1007,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ② FULL SIZE REFERENCE — 三列规格速查（来自导航菜单数据） */}
+      {/* 鈶?FULL SIZE REFERENCE 鈥?涓夊垪瑙勬牸閫熸煡锛堟潵鑷鑸彍鍗曟暟鎹級 */}
       <section className="py-12 bg-slate-50 border-y border-slate-200">
         <div className="container">
           <details className="group rounded-lg border border-slate-200 bg-white">
@@ -1081,7 +1126,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ②b FACTORY PROCESS */}
+      {/* 鈶 FACTORY PROCESS */}
       <section className="py-20 bg-white">
         <div className="container">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
@@ -1133,7 +1178,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ② SOCIAL PROOF — Factory numbers */}
+      {/* 鈶?SOCIAL PROOF 鈥?Factory numbers */}
       <section className="py-14 bg-[#0A1F44] text-white">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border border-white/10 rounded-md overflow-hidden">
@@ -1156,7 +1201,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ③ WHY BUYERS CHOOSE US */}
+      {/* 鈶?WHY BUYERS CHOOSE US */}
       <section className="py-20 bg-white">
         <div className="container">
           <div className="text-center mb-12">
@@ -1178,7 +1223,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ③b TESTIMONIALS */}
+      {/* 鈶 TESTIMONIALS */}
       <section className="py-16 bg-slate-50 border-y border-slate-100" aria-labelledby="buyer-feedback-heading">
         <div className="container">
           <div className="mx-auto mb-10 max-w-3xl text-center">
@@ -1242,7 +1287,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ④ CONTAINER LOADING */}
+      {/* 鈶?CONTAINER LOADING */}
       <section className="py-20 bg-[#0A1F44] text-white">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -1256,7 +1301,7 @@ export default async function HomePage() {
               <div className="space-y-4 mb-8">
                 {[
                   { icon: Ship,        text: "20ft & 40ft container loading" },
-                  { icon: Zap,         text: "Fast delivery within 15–25 days" },
+                  { icon: Zap,         text: "Fast delivery within 15-25 days" },
                   { icon: Package,     text: `FCL ready in ${FACTORY.fclLoadingDays} business days` },
                   { icon: CheckCircle, text: `Export experience to ${FACTORY.countriesServed} countries worldwide` },
                   { icon: CheckCircle, text: "Full export docs: CO, B/L, invoice, packing list" },
@@ -1307,7 +1352,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ④b CUSTOM PRINTING HIGHLIGHT */}
+      {/* 鈶 CUSTOM PRINTING HIGHLIGHT */}
       <section className="py-20 bg-white border-t border-slate-100">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -1375,7 +1420,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ⑤ FINAL CTA */}
+      {/* 鈶?FINAL CTA */}
       <section className="py-20 bg-slate-50 border-t border-slate-200">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center border border-slate-200 bg-white rounded-lg px-5 py-10 sm:px-8 sm:py-12">

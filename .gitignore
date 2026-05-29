@@ -12,3 +12,10 @@ docs/awesome-design-md/
 docs/B2B外贸站架构方案-*.md
 
 *.db
+
+# Build and IDE artifacts
+.codex-artifacts/
+build/
+llm-assistant.spec
+llm_portable_v1.zip
+portable-llm-tool/

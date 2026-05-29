@@ -10,12 +10,12 @@ const QUICK_MESSAGES = [
     text: "Hello, I am interested in thermal paper rolls.\nPlease send me price and MOQ.",
   },
   {
-    label: "80×80mm Bulk Quote",
-    text: "Hello, I need quotation for 80×80mm thermal paper rolls.\nQuantity: __ container\nDestination: __",
+    label: "80x80mm Bulk Quote",
+    text: "Hello, I need quotation for 80x80mm thermal paper rolls.\nQuantity: __ container\nDestination: __",
   },
   {
-    label: "57×50mm Bulk Quote",
-    text: "Hello, I need quotation for 57×50mm thermal paper rolls.\nQuantity: __ container\nDestination: __",
+    label: "57x50mm Bulk Quote",
+    text: "Hello, I need quotation for 57x50mm thermal paper rolls.\nQuantity: __ container\nDestination: __",
   },
   {
     label: "OEM / Private Label",
@@ -98,8 +98,8 @@ export default function WhatsAppFAB() {
         aria-label={open ? "Close WhatsApp chat" : "Chat on WhatsApp"}
         className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-colors duration-200 ${
           open
-            ? "bg-slate-700 hover:bg-slate-600"
-            : "bg-[#0F2B5B] hover:bg-[#12346d]"
+            ? "bg-[#15803D] hover:bg-[#166534]"
+            : "bg-[#16A34A] hover:bg-[#15803D]"
         }`}
       >
         {open ? (
@@ -114,7 +114,7 @@ export default function WhatsAppFAB() {
 
       {/* Pulse ring when closed */}
       {!open && (
-        <span className="absolute bottom-0 right-0 w-14 h-14 rounded-full bg-[#0F2B5B] opacity-20 animate-ping pointer-events-none" />
+        <span className="absolute bottom-0 right-0 w-14 h-14 rounded-full bg-[#16A34A] opacity-20 animate-ping pointer-events-none" />
       )}
     </div>
   );

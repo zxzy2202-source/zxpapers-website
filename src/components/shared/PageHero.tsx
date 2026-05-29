@@ -61,6 +61,8 @@ export interface PageHeroProps {
   ctas?: HeroCTA[];
   /** Right-side visual slot */
   rightSlot?: ReactNode;
+  /** Compact slot rendered below hero content on mobile/tablet */
+  mobileRightSlot?: ReactNode;
   /** Min height class */
   minHeight?: string;
   /** Extra class names */
@@ -91,6 +93,7 @@ export default function PageHero({
   stats,
   ctas,
   rightSlot,
+  mobileRightSlot,
   minHeight = "min-h-[520px]",
   className = "",
 }: PageHeroProps) {
@@ -330,6 +333,12 @@ export default function PageHero({
                       {sub && <div className="text-[11px] text-slate-500 mt-1">{sub}</div>}
                     </div>
                   ))}
+                </div>
+              )}
+
+              {mobileRightSlot && (
+                <div className="mt-6 lg:hidden">
+                  {mobileRightSlot}
                 </div>
               )}
             </div>
