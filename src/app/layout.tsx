@@ -196,6 +196,19 @@ export default async function RootLayout({
             </Script>
           </>
         )}
+        {/* OKKI (XiaoMan CRM) Tracking Script */}
+        <Script id="okki-init" strategy="afterInteractive">
+          {`
+            window.okkiConfigs = window.okkiConfigs || [];
+            function okkiAdd() { okkiConfigs.push(arguments); };
+            okkiAdd("analytics", { siteId: "68611-18549", gId: "" });
+          `}
+        </Script>
+        <Script
+          id="okki-analyze"
+          src="//tfile.xiaoman.cn/okki/analyze.js?id=68611-18549-"
+          strategy="afterInteractive"
+        />
       </head>
       <body>
         {gtmId && (
