@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const disableImageOptimization =
-  process.env.NEXT_IMAGE_UNOPTIMIZED === "true";
+  process.env.NEXT_IMAGE_UNOPTIMIZED !== "false"; // 默认禁用图片优化（避免外部图片源被拦截）
 const DEFAULT_R2_PUBLIC_URL =
   "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
 
