@@ -1,6 +1,6 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import WhatsAppFAB from "./WhatsAppFAB";
+import LazyWhatsAppFAB from "./LazyWhatsAppFAB";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,7 +19,7 @@ export default function Layout({ children }: LayoutProps) {
       <Header />
       <main id="main-content" className="flex-1 pt-[98px] sm:pt-[92px]">{children}</main>
       <Footer />
-      <WhatsAppFAB />
+      <LazyWhatsAppFAB />
     </div>
   );
 }

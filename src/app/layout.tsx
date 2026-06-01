@@ -207,15 +207,15 @@ export default async function RootLayout({
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
-            <Script id="ga-init" strategy="afterInteractive">
+            <Script id="ga-init" strategy="lazyOnload">
               {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');`}
             </Script>
           </>
         )}
         {/* OKKI (XiaoMan CRM) Tracking Script */}
-        <Script id="okki-init" strategy="afterInteractive">
+        <Script id="okki-init" strategy="lazyOnload">
           {`
             window.okkiConfigs = window.okkiConfigs || [];
             function okkiAdd() { okkiConfigs.push(arguments); };
@@ -225,7 +225,7 @@ export default async function RootLayout({
         <Script
           id="okki-analyze"
           src="//tfile.xiaoman.cn/okki/analyze.js?id=68611-18549-"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </head>
       <body>
