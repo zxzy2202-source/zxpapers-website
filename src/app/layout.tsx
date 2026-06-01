@@ -16,6 +16,9 @@ const sora = Sora({
   variable: "--font-sora",
   display: "swap",
 });
+const R2_PUBLIC_ORIGIN = (
+  process.env.NEXT_PUBLIC_R2_URL || "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev"
+).replace(/\/$/, "");
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -169,9 +172,9 @@ export default async function RootLayout({
     <html lang="en" className={`${inter.variable} ${sora.variable}`}>
       <head>
         <link rel="dns-prefetch" href="https://d2xsxph8kpxj0f.cloudfront.net" />
-        <link rel="dns-prefetch" href="https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev" />
+        <link rel="dns-prefetch" href={R2_PUBLIC_ORIGIN} />
         <link rel="preconnect" href="https://d2xsxph8kpxj0f.cloudfront.net" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev" crossOrigin="anonymous" />
+        <link rel="preconnect" href={R2_PUBLIC_ORIGIN} crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

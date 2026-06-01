@@ -2,6 +2,17 @@ import type { NextConfig } from "next";
 
 const disableImageOptimization =
   process.env.NEXT_IMAGE_UNOPTIMIZED === "true";
+const r2PublicUrl =
+  process.env.NEXT_PUBLIC_R2_URL ||
+  "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
+const r2PublicOrigin = r2PublicUrl.replace(/\/$/, "");
+const r2PublicHostname = (() => {
+  try {
+    return new URL(r2PublicOrigin).hostname;
+  } catch {
+    return "pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
+  }
+})();
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
@@ -53,7 +64,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/r2-assets/:path*",
-        destination: "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev/:path*",
+        destination: `${r2PublicOrigin}/:path*`,
       },
     ];
   },
@@ -95,7 +106,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev",
+        hostname: r2PublicHostname,
       },
       {
         protocol: "https",
