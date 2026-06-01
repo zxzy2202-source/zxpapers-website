@@ -168,8 +168,10 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable}`}>
       <head>
-        {/* Preload critical assets */}
-        <link rel="preload" href="/logo.png" as="image" />
+        <link rel="dns-prefetch" href="https://d2xsxph8kpxj0f.cloudfront.net" />
+        <link rel="dns-prefetch" href="https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev" />
+        <link rel="preconnect" href="https://d2xsxph8kpxj0f.cloudfront.net" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

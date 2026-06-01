@@ -101,7 +101,12 @@ export default function PageHero({
   const hasCarousel = heroImages.length > 1;
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -143,6 +148,7 @@ export default function PageHero({
       : stats.length === 3
       ? "sm:grid-cols-3"
       : "sm:grid-cols-4";
+  const renderedHeroImages = hasMounted && hasCarousel ? heroImages : heroImages.slice(0, 1);
 
   return (
     <div
@@ -155,24 +161,31 @@ export default function PageHero({
       {/* Background image / carousel */}
       {heroImages.length > 0 && (
         <div className="absolute inset-0">
-          {heroImages.map((image, index) => (
-            <div
-              key={`${image}-${index}`}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === activeSlide ? "opacity-100" : "opacity-0"
-              }`}
-              aria-hidden={index !== activeSlide}
-            >
-              <Image
-                src={image}
-                alt=""
-                fill
-                priority={index === 0}
-                sizes="100vw"
-                className="object-cover"
-              />
-            </div>
-          ))}
+          {renderedHeroImages.map((image, index) => {
+            const slideIndex = hasMounted && hasCarousel ? index : 0;
+
+            return (
+              <div
+                key={`${image}-${slideIndex}`}
+                className={`absolute inset-0 transition-opacity duration-1000 ${
+                  slideIndex === activeSlide ? "opacity-100" : "opacity-0"
+                }`}
+                aria-hidden={slideIndex !== activeSlide}
+              >
+                <Image
+                  src={image}
+                  alt=""
+                  fill
+                  priority={slideIndex === 0}
+                  loading={slideIndex === 0 ? "eager" : undefined}
+                  fetchPriority={slideIndex === 0 ? "high" : undefined}
+                  quality={72}
+                  sizes="100vw"
+                  className="object-cover"
+                />
+              </div>
+            );
+          })}
         </div>
       )}
 

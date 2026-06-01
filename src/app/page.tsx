@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { preload, preconnect } from "react-dom";
 import { getSlotImages } from "@/lib/imageSlotUtils";
 import type { SlotKey } from "@/config/imageSlots";
 import { readHero } from "@/lib/heroStore";
@@ -559,6 +560,15 @@ export default async function HomePage() {
   const finalHeroImages = HERO_FALLBACKS.map((fb, i) =>
     banners[i]?.url ? r2Image(banners[i]!.url) : fb,
   );
+  const primaryHeroImage = finalHeroImages[0];
+
+  if (primaryHeroImage) {
+    preload(primaryHeroImage, { as: "image", fetchPriority: "high" });
+    if (primaryHeroImage.startsWith("http")) {
+      preconnect(new URL(primaryHeroImage).origin, { crossOrigin: "anonymous" });
+    }
+  }
+
   const THERMAL_LABELS_CARD_IMG = r2Image(imgs["home:product-labels"]);
   const THERMAL_ROLLS_CARD_IMG = r2Image(imgs["home:product-rolls"]);
   const waBase = `${SITE.whatsappUrl}?text=`;

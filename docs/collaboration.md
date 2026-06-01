@@ -1,6 +1,6 @@
 # Collaboration Workflow
 
-This project uses GitHub as the shared source of truth and Hostinger auto deploys from `main`.
+This project uses GitHub as the shared source of truth and Vercel auto deploys from `main`.
 
 ## Roles
 
@@ -9,7 +9,7 @@ This project uses GitHub as the shared source of truth and Hostinger auto deploy
 
 ## Branches
 
-- `main`: production branch. Hostinger deploys this branch.
+- `main`: production branch. Vercel deploys this branch.
 - `content`: copy, SEO, product information, and page structure.
 - `design`: images, videos, layout polish, and visual styling.
 
@@ -63,13 +63,18 @@ git push
 
 5. Open a GitHub pull request into `main`.
 
-6. Merge only after preview and review. Hostinger deploys after `main` is updated.
+6. Merge only after preview and review. Vercel deploys after `main` is updated.
+
+## Vercel Notes
+
+- Keep `NEXT_IMAGE_UNOPTIMIZED` unset on Vercel unless you intentionally want to bypass `next/image` optimization.
+- Image uploads should continue to use Cloudflare R2 rather than relying on the Vercel filesystem.
+- Use Vercel preview deployments to verify major UI or SEO changes before merging.
 
 ## Rules
 
-- Do not edit files directly on Hostinger for permanent changes.
+- Do not edit files directly in the Vercel dashboard for permanent changes.
 - Do not commit `.next`, `node_modules`, local databases, or generated cache files.
 - Large images and videos should be optimized before committing.
 - If both people need to edit the same file, communicate first to avoid conflicts.
 - Keep product facts, certifications, MOQ, and delivery claims consistent across pages.
-

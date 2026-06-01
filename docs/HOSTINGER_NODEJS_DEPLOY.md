@@ -35,14 +35,18 @@ Hostinger can auto-detect the Node version from `package.json`, but set it expli
 ## Environment variables
 
 Import variables from `.env.hostinger.example`, then replace placeholders with real values.
+The repository now includes `.env.hostinger.example` for this purpose.
 
 Minimum required:
 
-- `AUTH_SECRET`
-- `NEXTAUTH_SECRET`
-- `NEXTAUTH_URL`
-- `SEED_ADMIN_TOKEN`
 - `DATABASE_URL`
+- `ADMIN_PASSWORD` or `ADMIN_PASSWORD_HASH`
+- `ADMIN_SESSION_SECRET`
+- `R2_ACCOUNT_ID`
+- `R2_ACCESS_KEY_ID`
+- `R2_SECRET_ACCESS_KEY`
+- `R2_BUCKET_NAME`
+- `NEXT_PUBLIC_R2_URL`
 - `OPENAI_API_KEY` if you want AI article generation
 
 Optional but recommended:
@@ -51,7 +55,7 @@ Optional but recommended:
 - `AI_ARTICLE_MODEL`
 - `AI_ARTICLE_REASONING_EFFORT`
 - `ALLOW_LOCAL_FILE_UPLOADS=true`
-- `NEXT_IMAGE_UNOPTIMIZED=true` on Hostinger shared Node.js. This avoids slow first-hit `/_next/image` processing by Node/sharp; the site already uses optimized WebP/PNG assets.
+- `NEXT_IMAGE_UNOPTIMIZED=true` on Hostinger shared Node.js. This avoids slow first-hit `/_next/image` processing by Node/sharp; the site already uses optimized WebP/PNG assets. Do not carry this setting over to Vercel unless you intentionally want to bypass image optimization there too.
 - `ADMIN_PASSWORD` or `ADMIN_PASSWORD_HASH` for password-only admin login
 - `BLOB_READ_WRITE_TOKEN`
 - `ANTHROPIC_API_KEY`

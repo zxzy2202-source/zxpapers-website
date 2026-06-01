@@ -160,8 +160,8 @@ export default function Header() {
               alt="Zhi Xin Paper"
               width={40}
               height={40}
+              sizes="40px"
               className="h-9 w-auto object-contain"
-              priority
             />
             <div className="flex flex-col leading-tight">
               <span className="text-slate-900 font-semibold text-base tracking-[0.01em] whitespace-nowrap">ZhixinPaper</span>
