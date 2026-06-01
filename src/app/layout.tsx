@@ -16,9 +16,22 @@ const sora = Sora({
   variable: "--font-sora",
   display: "swap",
 });
-const R2_PUBLIC_ORIGIN = (
-  process.env.NEXT_PUBLIC_R2_URL || "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev"
-).replace(/\/$/, "");
+const DEFAULT_R2_PUBLIC_ORIGIN = "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
+const R2_PUBLIC_ORIGIN = (() => {
+  try {
+    const configured = process.env.NEXT_PUBLIC_R2_URL;
+    if (!configured) return DEFAULT_R2_PUBLIC_ORIGIN;
+
+    const parsed = new URL(configured);
+    if (parsed.protocol === "http:" || parsed.protocol === "https:") {
+      return parsed.origin;
+    }
+  } catch {
+    // Ignore invalid or relative values and fall back to the known CDN origin.
+  }
+
+  return DEFAULT_R2_PUBLIC_ORIGIN;
+})();
 
 export const viewport: Viewport = {
   width: "device-width",

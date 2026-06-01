@@ -2,17 +2,29 @@ import type { NextConfig } from "next";
 
 const disableImageOptimization =
   process.env.NEXT_IMAGE_UNOPTIMIZED === "true";
-const r2PublicUrl =
-  process.env.NEXT_PUBLIC_R2_URL ||
+const DEFAULT_R2_PUBLIC_URL =
   "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
-const r2PublicOrigin = r2PublicUrl.replace(/\/$/, "");
-const r2PublicHostname = (() => {
+
+function getAbsolutePublicUrl(value: string | undefined, fallback: string) {
+  if (!value) return fallback;
+
   try {
-    return new URL(r2PublicOrigin).hostname;
+    const parsed = new URL(value);
+    if (parsed.protocol === "http:" || parsed.protocol === "https:") {
+      return parsed.origin;
+    }
   } catch {
-    return "pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
+    // Ignore invalid or relative values and fall back to the known public CDN origin.
   }
-})();
+
+  return fallback;
+}
+
+const r2PublicOrigin = getAbsolutePublicUrl(
+  process.env.NEXT_PUBLIC_R2_URL,
+  DEFAULT_R2_PUBLIC_URL,
+);
+const r2PublicHostname = new URL(r2PublicOrigin).hostname;
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
