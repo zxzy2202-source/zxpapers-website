@@ -5,9 +5,21 @@ const R2_BASE = "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
 
 export function r2Image(path: string): string {
   if (!path) return "";
+  
+  // 如果已经是正确的 CDN 地址，直接返回
+  if (path.startsWith(R2_BASE)) return path;
+
+  // 关键修复：如果路径是旧的转发地址（可能是数据库里存的绝对路径），强制转换为 CDN 地址
+  if (path.includes("/r2-assets/")) {
+    const parts = path.split("/r2-assets/");
+    const fileName = parts[parts.length - 1];
+    return `${R2_BASE}/${fileName}`;
+  }
+
+  // 如果是其他外部链接，保持原样
   if (path.startsWith("http")) return path;
   
-  // Clean path and combine with R2_BASE
+  // 相对路径处理
   const cleanPath = path.replace(/^\//, "");
   return `${R2_BASE}/${cleanPath}`;
 }

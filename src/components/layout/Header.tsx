@@ -188,7 +188,7 @@ export default function Header() {
             />
             <div className="flex flex-col leading-tight">
               <span className="text-slate-900 font-semibold text-base tracking-[0.01em] whitespace-nowrap">ZhixinPaper</span>
-              <span className="text-yellow-500 text-[9px] font-semibold tracking-[0.22em] uppercase whitespace-nowrap">Thermal Solutions Since 2009</span>
+              <span className="text-yellow-500 text-[9px] font-semibold tracking-[0.22em] uppercase whitespace-nowrap">Thermal Solutions Since 2009 v2</span>
             </div>
           </Link>
 
