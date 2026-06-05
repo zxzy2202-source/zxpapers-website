@@ -44,7 +44,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center mb-5" aria-label="Zhi Xin Paper - Home">
               <Image
-                src="/images/logo.png"
+                src="/images/logo-dark.png"
                 alt="Zhi Xin Paper"
                 width={140}
                 height={140}

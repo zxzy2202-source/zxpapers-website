@@ -538,8 +538,8 @@ const breadcrumbSchema = {
     }
   ]
 };
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// Enable ISR with 1-minute revalidation to keep content fresh while preserving performance
+export const revalidate = 60;
 
 export default async function HomePage() {
 
