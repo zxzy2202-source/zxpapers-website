@@ -538,7 +538,11 @@ const breadcrumbSchema = {
     }
   ]
 };
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function HomePage() {
+
   // 18 涓骇鍝佺殑鐙珛 slot 鈥斺€?娌′紶鍥炬椂 labels 绫诲洖閫€鍒?home:product-labels 鍏滃簳鍥撅紝rolls 绫诲洖閫€鍒?home:product-rolls 鍏滃簳鍥?
   const productSlotConfigs = Object.entries(PRODUCT_SLOT_MAP).map(([name, slot]) => ({
     slot,
