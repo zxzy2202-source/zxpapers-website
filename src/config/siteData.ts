@@ -4,6 +4,7 @@
 
 export const SITE = {
   name: "ZhixinPaper",
+  notificationLabel: "zxpapers.com",
   tagline: "Thermal Paper Rolls Direct Factory & Wholesale Supplier v2",
   domain: "https://www.zxpapers.com",
   email: "Sales@zxpapers.com",

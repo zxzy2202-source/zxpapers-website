@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
-          subject: `[${SITE.name}] New Inquiry from ${name} — ${country || "Unknown"}`,
+          subject: `[${SITE.notificationLabel || SITE.name}] New Inquiry from ${name} — ${country || "Unknown"}`,
           from_name: name,
           name,
           email,
