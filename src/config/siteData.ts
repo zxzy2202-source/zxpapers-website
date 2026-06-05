@@ -4,7 +4,7 @@
 
 export const SITE = {
   name: "ZhixinPaper",
-  tagline: "Thermal Paper Rolls Direct Factory & Wholesale Supplier",
+  tagline: "Thermal Paper Rolls Direct Factory & Wholesale Supplier v2",
   domain: "https://www.zxpapers.com",
   email: "Sales@zxpapers.com",
   phone: "+86 158 9176 6700",
