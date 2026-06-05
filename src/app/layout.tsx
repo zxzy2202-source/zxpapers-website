@@ -122,9 +122,9 @@ const organizationSchema = {
   url: SITE.domain,
   logo: {
     "@type": "ImageObject",
-    url: `${SITE.domain}/og-default.png`,
-    width: 1200,
-    height: 630,
+    url: `${SITE.domain}/images/logo-dark.png`,
+    width: 400,
+    height: 400,
   },
   description:
     "ISO 9001 certified manufacturer of thermal paper rolls and labels. OEM/private label, BPA-free, FSC certified. Serving 80+ countries since 2009.",
