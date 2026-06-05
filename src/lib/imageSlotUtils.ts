@@ -19,7 +19,7 @@ export async function getSlotImages(
   return Object.fromEntries(
     slots.map(({ slot, fallback }) => [
       slot,
-      overrides[slot] || r2Image(fallback),
+      r2Image(overrides[slot] || fallback),
     ]),
   );
 }
@@ -29,6 +29,5 @@ export async function getSlotImage(
   fallback: string,
 ): Promise<string> {
   const overrides = await readOverrides();
-  if (overrides[slot]) return overrides[slot];
-  return r2Image(fallback);
+  return r2Image(overrides[slot] || fallback);
 }

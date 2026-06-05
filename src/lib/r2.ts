@@ -1,7 +1,7 @@
 import { S3Client } from "@aws-sdk/client-s3";
 
-const DEFAULT_R2_URL = "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
-const R2_BASE = process.env.NEXT_PUBLIC_R2_URL || DEFAULT_R2_URL;
+// 强制使用绝对 CDN 地址，因为 Vercel 上的 /r2-assets 转发配置可能失效或被拦截
+const R2_BASE = "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
 
 export function r2Image(path: string): string {
   if (!path) return "";
@@ -9,9 +9,7 @@ export function r2Image(path: string): string {
   
   // Clean path and combine with R2_BASE
   const cleanPath = path.replace(/^\//, "");
-  const base = R2_BASE.replace(/\/$/, "");
-  
-  return `${base}/${cleanPath}`;
+  return `${R2_BASE}/${cleanPath}`;
 }
 
 const accountId = process.env.R2_ACCOUNT_ID;
