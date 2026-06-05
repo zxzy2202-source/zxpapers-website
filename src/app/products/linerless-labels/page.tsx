@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { SITE } from "@/config/siteData";
 import { getSlotImage } from "@/lib/imageSlotUtils";
+import { organizationSchema } from "@/lib/seo";
 import Image from "next/image";
 
 /**
@@ -47,100 +48,51 @@ export const metadata: Metadata = {
   },
 };
 
-const SIZES = [
-  { display: '3 1/8" x 263\'', metric: "80mm x 80m", popular: "Most popular for POS" },
-  { display: '2 1/4" x 263\'', metric: "57mm x 80m", popular: "Compact receipt printers" },
-  { display: '3 1/8" x 220\'', metric: "80mm x 67m", popular: "Standard length" },
-  { display: '40mm liner-free', metric: "40mm wide", popular: "Mobile printers" },
-  { display: "Custom widths", metric: "30–110mm", popular: "OEM only" },
-];
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE.domain },
+    { "@type": "ListItem", position: 2, name: "Products", item: `${SITE.domain}/products` },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Linerless Labels",
+      item: `${SITE.domain}/products/linerless-labels`,
+    },
+  ],
+};
 
-const ADHESIVES = [
-  {
-    name: "Removable",
-    desc: "Peels cleanly from glass, plastic & cardboard. Ideal for promotional pricing & temporary tags.",
-    use: "Supermarket shelf labels, weighted produce stickers",
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Linerless Thermal Labels & Rolls",
+  description:
+    "Reduce waste and increase productivity with liner-free thermal labels. Up to 60% more labels per roll. Available in removable, sticky, and permanent adhesives.",
+  brand: { "@type": "Brand", name: SITE.name },
+  manufacturer: { "@type": "Organization", name: SITE.name, url: SITE.domain },
+  url: `${SITE.domain}/products/linerless-labels`,
+  offers: {
+    "@type": "AggregateOffer",
+    url: `${SITE.domain}/products/linerless-labels`,
+    priceCurrency: "USD",
+    lowPrice: "1.00",
+    highPrice: "20.00",
+    offerCount: "50",
+    availability: "https://schema.org/InStock",
+    seller: { "@type": "Organization", name: SITE.name },
   },
-  {
-    name: "Sticky / Semi-Permanent",
-    desc: "Strong initial tack with controlled peel. Survives refrigerated storage and condensation.",
-    use: "Restaurant takeout, cold-chain logistics, deli labels",
-  },
-  {
-    name: "Permanent",
-    desc: "Aggressive acrylic adhesive that resists tampering. Cannot be removed without paper destruction.",
-    use: "Asset tracking, security seals, batch coding",
-  },
-];
+};
 
-const specs = [
-  { label: "Format", value: "Linerless / Liner-Free thermal labels (no release liner waste)" },
-  { label: "Coating", value: "Direct thermal — BPA-free standard, Phenol-free (BPS-free) on request" },
-  { label: "Common Widths", value: '2 1/4" (57mm), 3 1/8" (80mm), 40mm, custom 30–110mm' },
-  { label: "Roll Lengths", value: "220', 263', 656' / 67m, 80m, 200m or custom" },
-  { label: "Adhesive Options", value: "Removable, Semi-Permanent, Permanent (all FDA indirect food contact)" },
-  { label: "Core ID", value: "12mm (1/2\") / 19mm (3/4\") / 25mm (1\")" },
-  { label: "OD Max", value: "90mm (depending on printer model)" },
-  { label: "Print Compatibility", value: "Zebra, Bixolon, Star, Citizen, Posiflex, SNBC, custom OEM" },
-  { label: "Image Life", value: "5–7 years (standard) / 10 years (top-coated)" },
-  { label: "MOQ", value: "1,000 rolls (samples: 50 rolls)" },
-  { label: "Lead Time", value: "10–18 business days FCL" },
-  { label: "Certification", value: "ISO 9001:2015, FSC, FDA, REACH, RoHS" },
-];
-
-const faqs = [
-  {
-    q: "What is a linerless label and why use it?",
-    a: "A linerless label is a self-adhesive thermal label printed on a roll without a release liner — the adhesive is on the back of the paper itself and protected by a silicone top-coat on the front. Compared to traditional die-cut labels, linerless eliminates 30–50% of paper waste, fits 2x more labels per roll (reducing changeovers), and ships at lower freight cost. They are now standard in supermarkets (Tesco, Walmart), QSR (McDonald's), and modern POS systems.",
-  },
-  {
-    q: 'Do you supply 3 1/8" x 263\' linerless labels?',
-    a: 'Yes. 3 1/8" x 263\' (80mm x 80m) is one of our highest-volume linerless SKUs. We offer it in removable, sticky/semi-permanent, and permanent adhesives, all BPA-free. MOQ 1,000 rolls, samples available in 50-roll cartons. Ships in standard 24-roll cases.',
-  },
-  {
-    q: 'What about 2 1/4" x 263\' for compact printers?',
-    a: 'Available in all three adhesive grades. 2 1/4" x 263\' (57mm x 80m) fits Star Micronics, Bixolon SRP-S300, and most compact mobile receipt printers used by food delivery and field service.',
-  },
-  {
-    q: "What is the difference between removable, sticky and permanent linerless?",
-    a: "Removable: peels cleanly within 24h (promo tags, returnable totes). Sticky / semi-permanent: stays put under refrigeration & condensation but can be peeled with effort (takeout containers, deli scales). Permanent: aggressive acrylic — paper tears before adhesive releases (asset tags, security seals, batch coding).",
-  },
-  {
-    q: "Are your linerless labels compatible with my Posiflex / Zebra / Bixolon printer?",
-    a: "Yes — our linerless thermal labels work with all major linerless-ready POS printers including Bixolon SRP-S300, Star TSP143IIIU, Citizen CT-S281L, SNBC BTP-R880NPV, Zebra ZD420t, and custom OEM units. Provide your printer model and we will recommend the correct core ID and OD.",
-  },
-  {
-    q: "Can you OEM print our brand on linerless rolls?",
-    a: "Yes. Custom printed linerless labels with your logo, color, and barcodes are available — 1 to 4 color flexo printing on the silicone top-coat. MOQ 5,000 rolls for printed, 7-day plate setup, 15-day production.",
-  },
-  {
-    q: "Are linerless labels BPA-free?",
-    a: "Standard linerless thermal labels are BPA-free as a default. We also offer phenol-free (BPS-free) coating for EU REACH and California Prop 65 compliance — please specify when quoting.",
-  },
-];
-
-const offerings = [
-  {
-    title: "POS & Retail",
-    desc: "Receipt-style labels for self-service checkout, shelf-edge promotions, deli weigh stations.",
-    keywords: ["supermarket", "checkout", "deli scale"],
-  },
-  {
-    title: "QSR & Food Delivery",
-    desc: "Order labels for takeout containers, drive-thru bags, kitchen ticket routing.",
-    keywords: ["restaurant", "takeout", "food prep"],
-  },
-  {
-    title: "Logistics & Cold Chain",
-    desc: "Shipping & batch labels that survive refrigeration, condensation, and rough handling.",
-    keywords: ["shipping", "cold chain", "warehouse"],
-  },
-  {
-    title: "Asset & Security",
-    desc: "Tamper-evident permanent labels for inventory, IT assets, and security seals.",
-    keywords: ["asset tracking", "security", "inventory"],
-  },
-];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 
 export default async function LinerlessLabelsPage() {
   const heroImage = await getSlotImage("linerless-labels:hero", "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=1000&q=80");
@@ -149,11 +101,19 @@ export default async function LinerlessLabelsPage() {
     <Layout>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <div className="bg-slate-50 border-b border-slate-200">
