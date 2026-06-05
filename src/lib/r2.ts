@@ -1,12 +1,17 @@
 import { S3Client } from "@aws-sdk/client-s3";
 
-const R2_BASE = process.env.NEXT_PUBLIC_R2_URL || "/r2-assets";
+const DEFAULT_R2_URL = "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
+const R2_BASE = process.env.NEXT_PUBLIC_R2_URL || DEFAULT_R2_URL;
 
 export function r2Image(path: string): string {
   if (!path) return "";
   if (path.startsWith("http")) return path;
-  // 移除路径开头的斜杠，并拼接到 R2_BASE
-  return `${R2_BASE.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
+  
+  // Clean path and combine with R2_BASE
+  const cleanPath = path.replace(/^\//, "");
+  const base = R2_BASE.replace(/\/$/, "");
+  
+  return `${base}/${cleanPath}`;
 }
 
 const accountId = process.env.R2_ACCOUNT_ID;
