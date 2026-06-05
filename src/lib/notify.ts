@@ -3,6 +3,7 @@
  * 触发后 fire-and-forget，不阻塞主流程
  */
 import { pagePathToLabel } from "@/lib/pageLabels";
+import { SITE } from "@/config/siteData";
 
 interface InquiryNotifyData {
   name: string;
@@ -20,7 +21,7 @@ export async function notifyWeCom(data: InquiryNotifyData) {
   const url = process.env.WECOM_WEBHOOK_URL;
   if (!url) return;
   const markdown = [
-    `## 📨 新询盘`,
+    `## 📨 新询盘 | ${SITE.name}`,
     `**姓名：** ${data.name}`,
     `**邮箱：** ${data.email}`,
     `**公司：** ${data.company || "—"}`,
@@ -51,7 +52,7 @@ export async function notifyFeishu(data: InquiryNotifyData) {
     msg_type: "interactive",
     card: {
       header: {
-        title: { tag: "plain_text", content: `📨 新询盘 - ${data.country || "未知国家"}` },
+        title: { tag: "plain_text", content: `📨 ${SITE.name} 询盘 - ${data.country || "未知国家"}` },
         template: "blue",
       },
       elements: [
@@ -85,9 +86,9 @@ export async function notifyFeishu(data: InquiryNotifyData) {
 export async function notifyServerChan(data: InquiryNotifyData) {
   const key = process.env.SERVERCHAN_SENDKEY;
   if (!key) return;
-  const title = `新询盘 - ${data.name} (${data.country || "—"})`;
+  const title = `[${SITE.name}] 新询盘 - ${data.name} (${data.country || "—"})`;
   const desp = [
-    `## 📨 新询盘`,
+    `## 📨 新询盘 | ${SITE.name}`,
     `- **姓名：** ${data.name}`,
     `- **邮箱：** ${data.email}`,
     `- **公司：** ${data.company || "—"}`,
