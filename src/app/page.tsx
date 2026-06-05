@@ -22,7 +22,8 @@ export const metadata: Metadata = {
 };
 
 
-export const revalidate = 60; // 寮€鍚?60 绉掔紦瀛橈紝鏋佸ぇ鎻愬崌鍔犺浇閫熷害锛屽悗鍙颁笉鍐嶅崱椤?
+// Enable ISR with 1-minute revalidation to keep content fresh while preserving performance
+export const revalidate = 60;
 const FACTORY_IMG_FALLBACK =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
 const HERO_SLIDE_2 =
@@ -538,12 +539,10 @@ const breadcrumbSchema = {
     }
   ]
 };
-// Enable ISR with 1-minute revalidation to keep content fresh while preserving performance
-export const revalidate = 60;
 
 export default async function HomePage() {
 
-  // 18 涓骇鍝佺殑鐙珛 slot 鈥斺€?娌′紶鍥炬椂 labels 绫诲洖閫€鍒?home:product-labels 鍏滃簳鍥撅紝rolls 绫诲洖閫€鍒?home:product-rolls 鍏滃簳鍥?
+  // 18个产品的独立 slot —— 没传图时 labels 类回退到 home:product-labels 兜底图，rolls 类回退到 home:product-rolls 兜底图
   const productSlotConfigs = Object.entries(PRODUCT_SLOT_MAP).map(([name, slot]) => ({
     slot,
     fallback: LABEL_PRODUCT_NAMES.has(name) ? THERMAL_LABELS_IMG : HERO_SLIDE_3,
