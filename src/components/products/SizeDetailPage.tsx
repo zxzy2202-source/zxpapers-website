@@ -3,6 +3,7 @@ import Layout from "@/components/layout/Layout";
 import { SITE } from "@/config/siteData";
 import Image from "next/image";
 import { getSlotImage } from "@/lib/imageSlotUtils";
+import { r2Image } from "@/lib/r2";
 import type { SlotKey } from "@/config/imageSlots";
 import {
   CheckCircle, ArrowRight, Package, Award, Globe,
@@ -99,13 +100,13 @@ export default async function SizeDetailPage({
   const resolvedParentLabel = parentLabel ?? typeInfo.parent;
   const resolvedProductImage = productImageSlot
     ? await getSlotImage(PRODUCT_IMAGE_SLOT_KEYS[productImageSlot], productImage)
-    : productImage;
+    : r2Image(productImage);
   const applicationImages = await Promise.all(
     applications.map(async (item) => ({
       ...item,
       resolvedImage: item.slotKey
         ? await getSlotImage(item.slotKey, item.image)
-        : item.image,
+        : r2Image(item.image),
     }))
   );
 

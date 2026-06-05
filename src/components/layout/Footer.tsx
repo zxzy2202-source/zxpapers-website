@@ -275,7 +275,7 @@ export default function Footer() {
         <div className="container flex flex-col sm:flex-row items-center justify-between py-5 gap-3 text-xs text-slate-500">
           <div className="flex items-center gap-2">
             <Image
-              src="/images/logo.png"
+              src="/images/logo-dark.png"
               alt="Zhi Xin Paper"
               width={20}
               height={20}

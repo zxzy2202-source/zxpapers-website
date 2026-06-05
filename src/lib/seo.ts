@@ -66,7 +66,7 @@ export function organizationSchema() {
     "@type": "Organization",
     name: SITE.name,
     url: SITE.domain,
-    logo: `${SITE.domain}/logo.png`,
+    logo: `${SITE.domain}/images/logo-dark.png`,
     contactPoint: {
       "@type": "ContactPoint",
       telephone: SITE.phone,

@@ -43,6 +43,8 @@ export const IMAGE_SLOTS = [
   { slot: "home:product-custom-printed-labels", label: "首页产品-Custom Printed Labels", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏标签组卡片 4" },
   { slot: "home:product-4x3-thermal-labels", label: "首页产品-4x3 Thermal Labels", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏标签组卡片 5" },
   { slot: "home:product-2x4-thermal-labels", label: "首页产品-2x4 Thermal Labels", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏标签组卡片 6" },
+  // === Linerless Labels ===
+  { slot: "linerless-labels:hero", label: "无底纸标签 详情页 Hero 图", page: "无底纸标签", pageUrl: "/products/linerless-labels", aspect: "4:3" },
   // === 其他可能用到的 6 个 ===
   { slot: "home:product-lottery-gaming-rolls", label: "首页产品-Lottery & Gaming Rolls", page: "首页", pageUrl: "/", aspect: "4:3", description: "（备用）首页彩票游戏纸卷" },
   { slot: "home:product-colored-thermal-paper", label: "首页产品-Colored Thermal Paper", page: "首页", pageUrl: "/", aspect: "4:3", description: "（备用）首页彩色热敏纸" },
