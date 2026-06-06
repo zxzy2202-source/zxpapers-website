@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   title: "Thermal Paper Rolls Manufacturer & Wholesale | Zhixin Paper",
   description: "ISO 9001 thermal paper rolls & custom labels at factory-direct wholesale prices. Global OEM/private label service with fast shipping. Request a free quote today.",
   alternates: { canonical: SITE.domain },
+  openGraph: {
+    title: "Thermal Paper Rolls Manufacturer & Wholesale | ZhixinPaper",
+    description: "ISO 9001 thermal paper rolls & custom labels at factory-direct wholesale prices. Global OEM/private label with fast shipping.",
+    url: SITE.domain,
+    type: "website",
+    images: [{ url: `${SITE.domain}/og-default.png`, width: 1200, height: 630, alt: "ZhixinPaper | Thermal Paper Rolls Manufacturer", type: "image/png" }],
+  },
 };
 
 
@@ -620,8 +627,7 @@ export default async function HomePage() {
             <>
               Thermal Paper Rolls<br />
               <span className="text-amber-400">
-                Supplier for<span className="hidden sm:inline"> Bulk Orders</span>
-                <span className="sm:hidden"><br />Bulk Orders</span>
+                Supplier for<br className="sm:hidden" /> Bulk Orders
               </span>
             </>
           )
