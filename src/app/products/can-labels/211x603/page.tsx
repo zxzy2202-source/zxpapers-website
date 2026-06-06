@@ -11,79 +11,9 @@ export const metadata: Metadata = {
 };
 
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.zxpapers.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Products",
-      "item": "https://www.zxpapers.com/products"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Can Labels",
-      "item": "https://www.zxpapers.com/products/can-labels"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "211×603",
-      "item": "https://www.zxpapers.com/products/can-labels/211x603"
-    }
-  ]
-};
-
-const productSchema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "211×603 Can Labels | Tall 16oz Beverage Can Labels",
-  "description": "211×603 can labels for 16oz tall beverage cans. Full-wrap, moisture-resistant. CMYK + Pantone printing. MOQ 5,000. ISO 9001 certified manufacturer.",
-  "brand": {
-    "@type": "Brand",
-    "name": "Zhixin Paper"
-  },
-  "manufacturer": {
-    "@type": "Organization",
-    "name": "Zhixin Paper",
-    "url": "https://www.zxpapers.com"
-  },
-  "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-  "url": "https://www.zxpapers.com/products/can-labels/211x603"
-,
-  "offers": {
-    "@type": "AggregateOffer",
-    "url": "https://www.zxpapers.com",
-    "priceCurrency": "USD",
-    "lowPrice": "0.50",
-    "highPrice": "50.00",
-    "offerCount": "100",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "Zhixin Paper"
-    }
-  }
-};
 export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-        />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        />
       <SizeDetailPage
         type="labels"
         sizeLabel="211 × 603"

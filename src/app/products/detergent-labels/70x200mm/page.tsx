@@ -11,79 +11,9 @@ export const metadata: Metadata = {
 };
 
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.zxpapers.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Products",
-      "item": "https://www.zxpapers.com/products"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Detergent Labels",
-      "item": "https://www.zxpapers.com/products/detergent-labels"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "70×200Mm",
-      "item": "https://www.zxpapers.com/products/detergent-labels/70x200mm"
-    }
-  ]
-};
-
-const productSchema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "70×200mm Detergent Labels | Wrap-Around Bottle Labels",
-  "description": "70×200mm wrap-around detergent labels for cylindrical bottles. Water-resistant, chemical-resistant. Full-wrap CMYK printing. MOQ 5,000.",
-  "brand": {
-    "@type": "Brand",
-    "name": "Zhixin Paper"
-  },
-  "manufacturer": {
-    "@type": "Organization",
-    "name": "Zhixin Paper",
-    "url": "https://www.zxpapers.com"
-  },
-  "image": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=1200&q=80",
-  "url": "https://www.zxpapers.com/products/detergent-labels/70x200mm"
-,
-  "offers": {
-    "@type": "AggregateOffer",
-    "url": "https://www.zxpapers.com",
-    "priceCurrency": "USD",
-    "lowPrice": "0.50",
-    "highPrice": "50.00",
-    "offerCount": "100",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "Zhixin Paper"
-    }
-  }
-};
 export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-        />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        />
       <SizeDetailPage
         type="labels"
         sizeLabel="70 × 200mm"

@@ -11,79 +11,9 @@ export const metadata: Metadata = {
 };
 
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.zxpapers.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Products",
-      "item": "https://www.zxpapers.com/products"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Thermal Rolls",
-      "item": "https://www.zxpapers.com/products/thermal-rolls"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "80×70Mm",
-      "item": "https://www.zxpapers.com/products/thermal-rolls/80x70mm"
-    }
-  ]
-};
-
-const productSchema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "80mm x 70mm Thermal Paper Rolls | European POS Standard",
-  "description": "80mm x 70mm thermal paper rolls — the standard POS receipt size across European retail and hospitality. BPA-free, ISO 9001 certified.",
-  "brand": {
-    "@type": "Brand",
-    "name": "Zhixin Paper"
-  },
-  "manufacturer": {
-    "@type": "Organization",
-    "name": "Zhixin Paper",
-    "url": "https://www.zxpapers.com"
-  },
-  "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp",
-  "url": "https://www.zxpapers.com/products/thermal-rolls/80x70mm"
-,
-  "offers": {
-    "@type": "AggregateOffer",
-    "url": "https://www.zxpapers.com",
-    "priceCurrency": "USD",
-    "lowPrice": "0.50",
-    "highPrice": "50.00",
-    "offerCount": "100",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "Zhixin Paper"
-    }
-  }
-};
 export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-        />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        />
       <SizeDetailPage
         type="rolls"
         sizeLabel="80mm x 70mm"

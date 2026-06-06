@@ -11,79 +11,9 @@ export const metadata: Metadata = {
 };
 
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.zxpapers.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Products",
-      "item": "https://www.zxpapers.com/products"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Can Labels",
-      "item": "https://www.zxpapers.com/products/can-labels"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "300×407",
-      "item": "https://www.zxpapers.com/products/can-labels/300x407"
-    }
-  ]
-};
-
-const productSchema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "300×407 Can Labels | #2 Food Can Labels",
-  "description": "300×407 can labels for standard #2 food cans — tomatoes, soups, seafood, pet food. Food-safe, moisture-resistant. CMYK printing. MOQ 5,000. ISO 9001 certified.",
-  "brand": {
-    "@type": "Brand",
-    "name": "Zhixin Paper"
-  },
-  "manufacturer": {
-    "@type": "Organization",
-    "name": "Zhixin Paper",
-    "url": "https://www.zxpapers.com"
-  },
-  "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-  "url": "https://www.zxpapers.com/products/can-labels/300x407"
-,
-  "offers": {
-    "@type": "AggregateOffer",
-    "url": "https://www.zxpapers.com",
-    "priceCurrency": "USD",
-    "lowPrice": "0.50",
-    "highPrice": "50.00",
-    "offerCount": "100",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "Zhixin Paper"
-    }
-  }
-};
 export default function Page() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-        />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        />
       <SizeDetailPage
         type="labels"
         sizeLabel="300 × 407"

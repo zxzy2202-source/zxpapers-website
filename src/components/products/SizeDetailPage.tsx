@@ -24,6 +24,8 @@ export type ProductImageSlot =
   | "can-labels"
   | "detergent-labels";
 
+type ProductFamily = ProductImageSlot;
+
 interface SpecRow {
   label: string;
   value: string;
@@ -67,9 +69,39 @@ interface SizeDetailPageProps {
   palletInfo?: PalletInfo;
 }
 
-const TYPE_LABELS: Record<string, { parent: string; parentPath: string }> = {
-  rolls:  { parent: "Thermal Paper Rolls", parentPath: "/products/blank-thermal-rolls" },
-  labels: { parent: "Thermal Labels",      parentPath: "/products/blank-thermal-labels" },
+const TYPE_TO_FAMILY: Record<SizeDetailPageProps["type"], ProductFamily> = {
+  rolls: "thermal-rolls",
+  labels: "thermal-labels",
+};
+
+const FAMILY_CONTENT: Record<
+  ProductFamily,
+  {
+    parentLabel: string;
+    parentPath: string;
+    detailPathPrefix: string;
+  }
+> = {
+  "thermal-rolls": {
+    parentLabel: "Thermal Paper Rolls",
+    parentPath: "/products/thermal-paper-rolls/blank",
+    detailPathPrefix: "/products/thermal-rolls",
+  },
+  "thermal-labels": {
+    parentLabel: "Thermal Labels",
+    parentPath: "/products/thermal-labels/blank",
+    detailPathPrefix: "/products/thermal-labels",
+  },
+  "can-labels": {
+    parentLabel: "Can Labels",
+    parentPath: "/products/can-labels/blank",
+    detailPathPrefix: "/products/can-labels",
+  },
+  "detergent-labels": {
+    parentLabel: "Detergent Labels",
+    parentPath: "/products/detergent-labels/blank",
+    detailPathPrefix: "/products/detergent-labels",
+  },
 };
 
 const PRODUCT_IMAGE_SLOT_KEYS: Record<ProductImageSlot, SlotKey> = {
@@ -95,9 +127,12 @@ export default async function SizeDetailPage({
   parentLabel,
   palletInfo,
 }: SizeDetailPageProps) {
-  const typeInfo = TYPE_LABELS[type] ?? TYPE_LABELS.rolls;
-  const resolvedParentPath  = parentPath  ?? typeInfo.parentPath;
-  const resolvedParentLabel = parentLabel ?? typeInfo.parent;
+  const family = productImageSlot ?? TYPE_TO_FAMILY[type];
+  const familyContent = FAMILY_CONTENT[family];
+  const resolvedParentPath = parentPath ?? familyContent.parentPath;
+  const resolvedParentLabel = parentLabel ?? familyContent.parentLabel;
+  const productPath = `${familyContent.detailPathPrefix}/${slug}`;
+  const productUrl = `${SITE.domain}${productPath}`;
   const resolvedProductImage = productImageSlot
     ? await getSlotImage(PRODUCT_IMAGE_SLOT_KEYS[productImageSlot], productImage)
     : r2Image(productImage);
@@ -124,8 +159,52 @@ export default async function SizeDetailPage({
     "ISO 9001:2015 certified manufacturing",
   ];
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE.domain },
+      { "@type": "ListItem", position: 2, name: "Products", item: `${SITE.domain}/products` },
+      { "@type": "ListItem", position: 3, name: resolvedParentLabel, item: `${SITE.domain}${resolvedParentPath}` },
+      { "@type": "ListItem", position: 4, name: fullTitle, item: productUrl },
+    ],
+  };
+
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: fullTitle,
+    description,
+    brand: { "@type": "Brand", name: "Zhixin Paper" },
+    manufacturer: {
+      "@type": "Organization",
+      name: "Zhixin Paper",
+      url: SITE.domain,
+    },
+    image: resolvedProductImage,
+    url: productUrl,
+    offers: {
+      "@type": "AggregateOffer",
+      url: SITE.domain,
+      priceCurrency: "USD",
+      lowPrice: "0.50",
+      highPrice: "50.00",
+      offerCount: "100",
+      availability: "https://schema.org/InStock",
+      seller: { "@type": "Organization", name: "Zhixin Paper" },
+    },
+  };
+
   return (
     <Layout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
 
       {/* ── HERO ── */}
       <div className="bg-brand-navy-alt text-white py-12">
@@ -144,9 +223,7 @@ export default async function SizeDetailPage({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
               <div className="flex flex-wrap items-center gap-3 mb-4">
-                <h1 className="text-3xl sm:text-4xl font-extrabold">
-                  {sizeLabel} Thermal Paper Rolls Supplier
-                </h1>
+                <h1 className="text-3xl sm:text-4xl font-extrabold">{fullTitle}</h1>
                 {badge && (
                   <span className="bg-amber-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
                     {badge}
@@ -155,10 +232,7 @@ export default async function SizeDetailPage({
               </div>
 
               {/* One-liner */}
-              <p className="text-slate-300 text-base leading-relaxed mb-6">
-                Factory direct supply of {sizeLabel} thermal paper rolls for distributors and wholesalers.
-                Stable quality and fast delivery available.
-              </p>
+              <p className="text-slate-300 text-base leading-relaxed mb-6">{description}</p>
 
               {/* Core sell points */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-7">
