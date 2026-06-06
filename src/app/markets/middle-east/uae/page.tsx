@@ -12,13 +12,17 @@ import { CountryFlag } from "@/components/ui/country-flag";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier UAE | Bulk POS Rolls | ZhixinPaper",
+  // absolute: 免疫根 title.template，杜绝品牌后缀重复（不再依赖 layout 切断模板）
+  title: { absolute: "Thermal Paper Rolls Supplier UAE | Bulk POS Rolls | ZhixinPaper" },
   description: "Factory-direct thermal paper rolls for UAE distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001 certified. Fast shipping to Dubai, Abu Dhabi, Sharjah. MOQ 1 pallet.",
+  keywords: "thermal paper UAE, thermal rolls Dubai, POS paper UAE, thermal paper Jebel Ali, thermal paper supplier Emirates, thermal paper AED price, thermal paper Abu Dhabi, thermal paper Sharjah, thermal paper Ajman, ورق حراري الإمارات, ورق POS دبي, bulk thermal paper UAE",
   alternates: { canonical: `${SITE.domain}/markets/middle-east/uae` },
   openGraph: {
     title: "Thermal Paper Rolls Supplier UAE | ZhixinPaper",
     description: "Factory-direct thermal paper rolls for UAE. 80x80mm, 57x50mm, BPA-free. Fast shipping to Dubai & Abu Dhabi.",
+    url: `${SITE.domain}/markets/middle-east/uae`,
     type: "website",
+    images: [{ url: `${SITE.domain}/og-default.png`, width: 1200, height: 630, alt: "ZhixinPaper | Thermal Paper Rolls Manufacturer", type: "image/png" }],
   },
 };
 

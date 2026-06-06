@@ -13,8 +13,9 @@ import { getSlotImage } from "@/lib/imageSlotUtils";
 import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Supplier Middle East | ZhixinPaper",
+  title: { absolute: "Thermal Paper Supplier Middle East | ZhixinPaper" },
   description: "Factory-direct thermal paper rolls for Middle East. Serving UAE, Saudi Arabia, Egypt, Turkey. BPA-free, ISO 9001. CIF pricing.",
+  keywords: "thermal paper Middle East, thermal rolls UAE Saudi Arabia, POS paper supplier Middle East",
   alternates: { canonical: `${SITE.domain}/markets/middle-east` },
   openGraph: {
     title: "Thermal Paper Supplier Middle East | ZhixinPaper",

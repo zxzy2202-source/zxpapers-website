@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "About Zhixin Paper | Thermal Paper Manufacturer",
+  title: "About Us | Thermal Paper Manufacturer",
   description: "ISO 9001 & FSC certified thermal paper manufacturer in Xi'an, China. 10,000sqm factory, 20 production lines, 50+ countries.",
   openGraph: {
     title: `About Us | Thermal Paper Manufacturer Since ${SITE.founded}`,

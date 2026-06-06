@@ -13,13 +13,16 @@ import { getSlotImage } from "@/lib/imageSlotUtils";
 import { CountryFlag } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier Saudi Arabia | Bulk POS | ZhixinPaper",
+  title: { absolute: "Thermal Paper Rolls Supplier Saudi Arabia | Bulk POS | ZhixinPaper" },
   description: "Factory-direct thermal paper rolls for Saudi Arabia distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001. CIF Jeddah & Dammam. SABER support. MOQ 1 pallet.",
+  keywords: "thermal paper Saudi Arabia, thermal rolls Riyadh, POS paper Jeddah, thermal paper supplier KSA, thermal paper SAR price, thermal paper Dammam, thermal paper Mecca, thermal paper Medina, ورق حراري السعودية, ورق POS الرياض, bulk thermal paper KSA",
   alternates: { canonical: `${SITE.domain}/markets/middle-east/saudi-arabia` },
   openGraph: {
     title: "Thermal Paper Rolls Supplier Saudi Arabia | ZhixinPaper",
     description: "Factory-direct thermal paper rolls for KSA. CIF Jeddah & Dammam. SABER support. BPA-free, ISO 9001.",
+    url: `${SITE.domain}/markets/middle-east/saudi-arabia`,
     type: "website",
+    images: [{ url: `${SITE.domain}/og-default.png`, width: 1200, height: 630, alt: "ZhixinPaper | Thermal Paper Rolls Manufacturer", type: "image/png" }],
   },
 };
 

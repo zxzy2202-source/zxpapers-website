@@ -9,13 +9,16 @@ import { getSlotImage } from "@/lib/imageSlotUtils";
 import { CountryFlag } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier Egypt | Bulk POS Rolls | ZhixinPaper",
+  title: { absolute: "Thermal Paper Rolls Supplier Egypt | Bulk POS Rolls | ZhixinPaper" },
   description: "Factory-direct thermal paper rolls for Egypt distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001. CIF Alexandria & Port Said. Meeza card compatible. MOQ 1 pallet.",
+  keywords: "thermal paper Egypt, thermal rolls Cairo, POS paper Alexandria, thermal paper supplier Egypt, thermal paper EGP price, thermal paper Giza, thermal paper Port Said, ورق حراري مصر, ورق POS القاهرة, bulk thermal paper Egypt, thermal paper distributor Egypt",
   alternates: { canonical: `${SITE.domain}/markets/middle-east/egypt` },
   openGraph: {
     title: "Thermal Paper Rolls Supplier Egypt | ZhixinPaper",
     description: "Factory-direct thermal paper rolls for Egypt. Meeza card compatible. CIF Alexandria. BPA-free, ISO 9001.",
+    url: `${SITE.domain}/markets/middle-east/egypt`,
     type: "website",
+    images: [{ url: `${SITE.domain}/og-default.png`, width: 1200, height: 630, alt: "ZhixinPaper | Thermal Paper Rolls Manufacturer", type: "image/png" }],
   },
 };
 

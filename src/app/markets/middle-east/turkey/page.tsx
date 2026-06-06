@@ -9,13 +9,16 @@ import { getSlotImage } from "@/lib/imageSlotUtils";
 import { CountryFlag } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Supplier Turkey | Bulk POS Rolls | ZhixinPaper",
+  title: { absolute: "Thermal Paper Rolls Supplier Turkey | Bulk POS Rolls | ZhixinPaper" },
   description: "Factory-direct thermal paper rolls for Turkey distributors. 80x80mm, 80x70mm, 57x50mm, BPA-free, ISO 9001. CIF Istanbul. EU-standard sizes available. MOQ 1 pallet.",
+  keywords: "thermal paper Turkey, thermal rolls Istanbul, POS paper Turkey, thermal paper supplier Türkiye, thermal paper TRY price, termal kağıt Türkiye, termal rulo İstanbul, termal kağıt Ankara, termal kağıt İzmir, POS kağıdı Türkiye, bulk thermal paper Turkey",
   alternates: { canonical: `${SITE.domain}/markets/middle-east/turkey` },
   openGraph: {
     title: "Thermal Paper Rolls Supplier Turkey | ZhixinPaper",
     description: "Factory-direct thermal paper rolls for Turkey. EU-standard sizes. CIF Istanbul. BPA-free, ISO 9001.",
+    url: `${SITE.domain}/markets/middle-east/turkey`,
     type: "website",
+    images: [{ url: `${SITE.domain}/og-default.png`, width: 1200, height: 630, alt: "ZhixinPaper | Thermal Paper Rolls Manufacturer", type: "image/png" }],
   },
 };
 

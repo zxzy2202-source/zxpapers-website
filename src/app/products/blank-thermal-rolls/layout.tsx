@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blank Thermal Paper Rolls Wholesale | All Sizes | ZhixinPaper",
+  title: { absolute: "Blank Thermal Paper Rolls Wholesale | All Sizes | ZhixinPaper" },
   description: "Bulk blank thermal paper rolls for POS, ATM, and receipt printers. All standard sizes in stock. MOQ 1 pallet. ISO 9001 certified manufacturer.",
   keywords: "blank thermal paper rolls, thermal rolls wholesale, POS paper rolls manufacturer",
   alternates: {

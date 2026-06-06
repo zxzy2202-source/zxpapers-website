@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blank Thermal Labels Wholesale | Custom Sizes | ZhixinPaper",
+  title: { absolute: "Blank Thermal Labels Wholesale | Custom Sizes | ZhixinPaper" },
   description: "Bulk blank thermal labels for retail, logistics, and warehousing. Custom sizes, permanent/removable adhesive. MOQ 1 roll. ISO 9001 certified manufacturer.",
   keywords: "blank thermal labels, thermal labels wholesale, custom thermal labels manufacturer",
   alternates: {
