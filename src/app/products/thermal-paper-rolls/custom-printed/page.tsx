@@ -10,7 +10,7 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Custom Printed Thermal Rolls | OEM Branding",
-  description: "Custom printed thermal paper rolls with your logo, brand colors, QR codes, and promotional messages.",
+  description: "Custom printed thermal paper rolls with your logo, QR codes & promos — factory-direct OEM, low MOQ 1,000, BPA-free, global export. Free design proof. Get a quote.",
   keywords: [
     "custom printed thermal paper rolls",
     "branded thermal receipt paper",
@@ -70,6 +70,15 @@ const packagingInfo = [
   { label: "Port",             value: "Shenzhen / Guangzhou / Shanghai" },
   { label: "Incoterms",        value: "EXW, FOB, CIF, DDP" },
   { label: "Shipping",         value: "Sea freight, Air freight, Express (DHL/FedEx/UPS)" },
+];
+
+const factoryVsReseller = [
+  { factor: "Pricing", reseller: "Retail markup over factory cost", factory: "Direct factory price — no middleman" },
+  { factor: "MOQ", reseller: "Often 250–500 rolls, fixed sizes", factory: "From 1,000 rolls, fully custom sizes" },
+  { factor: "Customization", reseller: "Surface logo printing only", factory: "True OEM: coating grade, core, packaging + print" },
+  { factor: "Packaging", reseller: "Generic packaging", factory: "Private-label carton, polybag & core label" },
+  { factor: "Export", reseller: "Domestic shipping focus", factory: "FOB / CIF / DDP, full export docs, 80+ countries" },
+  { factor: "Compliance", reseller: "Limited documentation", factory: "BPA-free / phenol-free lab reports, ISO 9001, FSC" },
 ];
 
 const printingOptions = [
@@ -342,6 +351,31 @@ export default async function CustomPrintedRollsPage() {
                     <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />{b}
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Factory-Direct vs Reseller */}
+            <div>
+              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">Factory-Direct vs Reseller</h2>
+              <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                <table className="w-full text-sm">
+                  <thead className="bg-slate-50">
+                    <tr>
+                      <th className="px-5 py-3 text-left font-semibold text-slate-700">Factor</th>
+                      <th className="px-5 py-3 text-left font-semibold text-slate-700">Typical Reseller</th>
+                      <th className="px-5 py-3 text-left font-semibold text-amber-700">ZhixinPaper (Factory)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {factoryVsReseller.map(({ factor, reseller, factory }, i) => (
+                      <tr key={factor} className={i % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+                        <td className="px-5 py-3 font-medium text-slate-700 whitespace-nowrap">{factor}</td>
+                        <td className="px-5 py-3 text-slate-500">{reseller}</td>
+                        <td className="px-5 py-3 text-slate-900 font-semibold">{factory}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
 

@@ -403,7 +403,7 @@ export default async function LinerlessLabelsPage() {
               </h2>
               <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
                 <Link
-                  href="/products/thermal-labels/4x6-shipping-labels"
+                  href="/products/thermal-labels/4x6in"
                   className="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 font-semibold"
                 >
                   <Package className="w-4 h-4" /> 4x6 Thermal Shipping Labels →
