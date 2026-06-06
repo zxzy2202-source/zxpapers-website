@@ -506,7 +506,7 @@ export default async function MiddleEastAfricaPage() {
 
                 <Link
                   href={href}
-                  className="inline-flex items-center justify-center gap-2 bg-[#0A1F44] hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors"
+                  className="inline-flex items-center justify-center gap-2 bg-brand-navy-alt hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors"
                 >
                   View Specs <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -548,7 +548,7 @@ export default async function MiddleEastAfricaPage() {
                 key={country}
                 className={`rounded-2xl p-6 transition-all duration-300 hover:shadow-lg border-2 ${
                   highlight
-                    ? "bg-[#0A1F44] border-[#0A1F44] text-white"
+                    ? "bg-brand-navy-alt border-brand-navy-alt text-white"
                     : "bg-white border-slate-100 hover:border-blue-200"
                 }`}
               >
@@ -633,7 +633,7 @@ export default async function MiddleEastAfricaPage() {
                 key={method}
                 className={`rounded-2xl p-8 border-2 transition-all duration-200 ${
                   highlight
-                    ? "bg-[#0A1F44] border-[#0A1F44] text-white"
+                    ? "bg-brand-navy-alt border-brand-navy-alt text-white"
                     : "bg-white border-slate-100 hover:border-blue-200 hover:shadow-lg"
                 }`}
               >
@@ -682,7 +682,7 @@ export default async function MiddleEastAfricaPage() {
                   {i < processSteps.length - 1 && (
                     <div className="hidden lg:block absolute top-6 left-[60%] w-full h-0.5 bg-blue-200 z-0" />
                   )}
-                  <div className="relative z-10 w-12 h-12 bg-[#0A1F44] text-white rounded-full flex items-center justify-center text-sm font-extrabold mx-auto mb-3">
+                  <div className="relative z-10 w-12 h-12 bg-brand-navy-alt text-white rounded-full flex items-center justify-center text-sm font-extrabold mx-auto mb-3">
                     {step}
                   </div>
                   <div className="font-bold text-slate-900 text-xs mb-1">{title}</div>
@@ -730,7 +730,7 @@ export default async function MiddleEastAfricaPage() {
                   height={400}
                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                 <div className="absolute -bottom-5 -right-5 bg-white rounded-xl shadow-xl p-5 border border-slate-100">
-                  <div className="text-2xl font-extrabold text-[#0A1F44]">{FACTORY.annualOutput}</div>
+                  <div className="text-2xl font-extrabold text-brand-navy-alt">{FACTORY.annualOutput}</div>
                   <div className="text-xs text-slate-500">Rolls Produced Per Year</div>
                 </div>
               </div>
@@ -798,7 +798,7 @@ export default async function MiddleEastAfricaPage() {
       </section>
 
       {/* ── Inline Inquiry Form + CTA ── */}
-      <section className="py-20 bg-gradient-to-br from-[#0A1F44] to-[#1E3A6E]" id="inquiry">
+      <section className="py-20 bg-gradient-to-br from-brand-navy-alt to-brand-navy-light" id="inquiry">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Left: CTA copy */}

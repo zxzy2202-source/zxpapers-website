@@ -147,6 +147,19 @@ export default function SeoClient({ initialSeo, notifyStatus }: Props) {
           <CharCounter text={seo.siteTitle || ""} max={60} />
         </Field>
 
+        <Field label="标题模板" hint="子页面标题格式，必须包含 %s（代表页面名）。例：%s | ZhixinPaper → “About Us | ZhixinPaper”。留空则用默认。">
+          <input
+            type="text"
+            value={seo.siteTitleTemplate || ""}
+            onChange={(e) => update("siteTitleTemplate", e.target.value)}
+            placeholder="%s | ZhixinPaper"
+            className={inputCls}
+          />
+          {seo.siteTitleTemplate && !seo.siteTitleTemplate.includes("%s") && (
+            <p className="text-xs text-red-500 mt-1">缺少 %s 占位符，保存后前台会回退到默认模板。</p>
+          )}
+        </Field>
+
         <Field label="网站描述" hint="出现在 Google 搜索结果标题下方。建议 160 字符内。">
           <textarea
             value={seo.siteDescription || ""}

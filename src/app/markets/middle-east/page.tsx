@@ -208,7 +208,7 @@ export default async function MiddleEastPage() {
             backgroundPosition: "center 30%",
           }} />
         {/* Multi-layer gradient: left dark for text, right semi-transparent */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1e3d]/95 via-[#0F2B5B]/85 to-[#1a3a6e]/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-abyss/95 via-brand-navy/85 to-brand-navy-light/60" />
         {/* Bottom fade to next section */}
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white/10 to-transparent" />
         {/* Decorative gold arc */}
@@ -266,7 +266,7 @@ export default async function MiddleEastPage() {
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-3">
                 <Link href="/contact"
-                  className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-lg shadow-amber-500/30 hover:shadow-amber-400/40 hover:-translate-y-0.5">
+                  className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl transition-all shadow-lg shadow-amber-500/30 hover:shadow-amber-400/40 hover:-translate-y-0.5">
                   Get CIF Quote <ArrowRight className="w-4 h-4" />
                 </Link>
                 <a href={`https://wa.me/${SITE.whatsapp}?text=${waMsg}`} target="_blank" rel="noopener noreferrer"
@@ -341,7 +341,7 @@ export default async function MiddleEastPage() {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-[#0F2B5B] mb-3">Middle East Markets We Serve</h2>
+            <h2 className="text-3xl font-bold text-brand-navy mb-3">Middle East Markets We Serve</h2>
             <p className="text-gray-500 max-w-2xl mx-auto">Click any country for market-specific product recommendations, port logistics, and pricing guidance.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -352,7 +352,7 @@ export default async function MiddleEastPage() {
                   <div className="flex items-center gap-3">
                     <CountryFlag code={c.code} label={c.name} className="w-6 h-auto" />
                     <div>
-                      <h3 className="font-bold text-[#0F2B5B] group-hover:text-blue-600 transition-colors">{c.name}</h3>
+                      <h3 className="font-bold text-brand-navy group-hover:text-blue-600 transition-colors">{c.name}</h3>
                       <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${c.badgeColor}`}>{c.badge}</span>
                     </div>
                   </div>
@@ -360,15 +360,15 @@ export default async function MiddleEastPage() {
                 </div>
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="bg-gray-50 rounded-lg p-2">
-                    <div className="text-sm font-bold text-[#0F2B5B]">{c.terminals}</div>
+                    <div className="text-sm font-bold text-brand-navy">{c.terminals}</div>
                     <div className="text-xs text-gray-400">POS</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-2">
-                    <div className="text-sm font-bold text-[#0F2B5B]">{c.days}d</div>
+                    <div className="text-sm font-bold text-brand-navy">{c.days}d</div>
                     <div className="text-xs text-gray-400">Transit</div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-2 col-span-1">
-                    <div className="text-xs font-bold text-[#0F2B5B] leading-tight">{c.port.split(" ")[0]}</div>
+                    <div className="text-xs font-bold text-brand-navy leading-tight">{c.port.split(" ")[0]}</div>
                     <div className="text-xs text-gray-400">Port</div>
                   </div>
                 </div>
@@ -385,7 +385,7 @@ export default async function MiddleEastPage() {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-[#0F2B5B] mb-3">Popular Products for Middle East</h2>
+            <h2 className="text-3xl font-bold text-brand-navy mb-3">Popular Products for Middle East</h2>
             <p className="text-gray-500 max-w-2xl mx-auto">Most-ordered thermal paper sizes by GCC distributors. All BPA-free and compatible with major POS brands.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
@@ -393,7 +393,7 @@ export default async function MiddleEastPage() {
               <div key={p.size} className="bg-white rounded-2xl border border-gray-200 p-6 hover:border-blue-300 hover:shadow-md transition-all">
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-[#0F2B5B]">{p.size}</h3>
+                    <h3 className="text-xl font-bold text-brand-navy">{p.size}</h3>
                     <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${p.badgeColor}`}>{p.badge}</span>
                   </div>
                   <span className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-lg">MOQ: {p.moq}</span>
@@ -407,7 +407,7 @@ export default async function MiddleEastPage() {
                   ))}
                 </div>
                 <div className="flex gap-2">
-                  <Link href={p.href} className="flex-1 text-center text-sm bg-[#0F2B5B] text-white py-2 rounded-lg hover:bg-blue-800 transition-colors">
+                  <Link href={p.href} className="flex-1 text-center text-sm bg-brand-navy text-white py-2 rounded-lg hover:bg-blue-800 transition-colors">
                     View Details
                   </Link>
                   <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hello, I need a CIF quote for ${p.size} thermal paper rolls for the Middle East.`)}`}
@@ -426,7 +426,7 @@ export default async function MiddleEastPage() {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-[#0F2B5B] mb-3">Shipping Routes to Middle East</h2>
+            <h2 className="text-3xl font-bold text-brand-navy mb-3">Shipping Routes to Middle East</h2>
             <p className="text-gray-500 max-w-2xl mx-auto">Regular FCL shipments to all major Middle East ports. Full export documentation included.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
@@ -435,7 +435,7 @@ export default async function MiddleEastPage() {
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <Ship className="w-5 h-5 text-blue-600" />
-                    <h3 className="font-bold text-[#0F2B5B] text-sm">{l.route}</h3>
+                    <h3 className="font-bold text-brand-navy text-sm">{l.route}</h3>
                   </div>
                   <span className="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-semibold">{l.badge}</span>
                 </div>
@@ -447,7 +447,7 @@ export default async function MiddleEastPage() {
             ))}
           </div>
           {/* container info */}
-          <div className="mt-8 bg-[#0F2B5B] rounded-2xl p-6 text-white">
+          <div className="mt-8 bg-brand-navy rounded-2xl p-6 text-white">
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div>
                 <Truck className="w-8 h-8 text-amber-400 mx-auto mb-2" />
@@ -473,20 +473,20 @@ export default async function MiddleEastPage() {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-[#0F2B5B] mb-3">Why GCC Distributors Choose ZhixinPaper</h2>
+            <h2 className="text-3xl font-bold text-brand-navy mb-3">Why GCC Distributors Choose ZhixinPaper</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {whyUs.map((w) => (
               <div key={w.title} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
                 <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4">{w.icon}</div>
-                <h3 className="font-bold text-[#0F2B5B] mb-2">{w.title}</h3>
+                <h3 className="font-bold text-brand-navy mb-2">{w.title}</h3>
                 <p className="text-sm text-gray-600">{w.desc}</p>
               </div>
             ))}
           </div>
           {/* certifications */}
           <div className="mt-8 bg-white rounded-2xl border border-gray-200 p-6">
-            <h3 className="font-bold text-[#0F2B5B] mb-4 text-center">Certifications & Compliance</h3>
+            <h3 className="font-bold text-brand-navy mb-4 text-center">Certifications & Compliance</h3>
             <div className="flex flex-wrap justify-center gap-4">
               {CERTIFICATIONS.map((cert) => (
                 <div key={cert.name} className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg">
@@ -502,11 +502,11 @@ export default async function MiddleEastPage() {
       {/* ── FAQ ── */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-[#0F2B5B] mb-8 text-center">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold text-brand-navy mb-8 text-center">Frequently Asked Questions</h2>
           <div className="space-y-4">
             {faqs.map((f) => (
               <div key={f.q} className="border border-gray-200 rounded-xl p-6 hover:border-blue-200 transition-colors">
-                <h3 className="font-bold text-[#0F2B5B] mb-2 flex items-start gap-2">
+                <h3 className="font-bold text-brand-navy mb-2 flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> {f.q}
                 </h3>
                 <p className="text-gray-600 text-sm pl-7">{f.a}</p>
@@ -520,7 +520,7 @@ export default async function MiddleEastPage() {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-[#0F2B5B] mb-3">Get Your Middle East CIF Quote</h2>
+            <h2 className="text-3xl font-bold text-brand-navy mb-3">Get Your Middle East CIF Quote</h2>
             <p className="text-gray-500">Tell us your country and required sizes. We&apos;ll respond within 24 hours with a tailored CIF price list.</p>
           </div>
           <InquiryForm />
@@ -528,12 +528,12 @@ export default async function MiddleEastPage() {
       </section>
 
       {/* ── Final CTA ── */}
-      <section className="py-16 px-4 bg-[#0F2B5B] text-white text-center">
+      <section className="py-16 px-4 bg-brand-navy text-white text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Ready to Source Thermal Paper for the Middle East?</h2>
           <p className="text-blue-200 mb-8">CIF Jebel Ali / Jeddah / Alexandria quotes within 24 hours. L/C accepted. Arabic OEM packaging available.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">
+            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-3 rounded-lg transition-colors">
               Send Inquiry
             </Link>
             <a href={`https://wa.me/${SITE.whatsapp}?text=${waMsg}`} target="_blank" rel="noopener noreferrer"

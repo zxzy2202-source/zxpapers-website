@@ -46,6 +46,11 @@ export async function generateMetadata(): Promise<Metadata> {
   );
 
   const title = adminSeo.siteTitle || `${SITE.name} | ${SITE.tagline}`;
+  // 子页标题模板：用后台配置值，但必须含 %s 占位符，否则回退到默认，避免子页标题损坏
+  const titleTemplate =
+    adminSeo.siteTitleTemplate?.includes("%s")
+      ? adminSeo.siteTitleTemplate
+      : `%s | ${SITE.name}`;
   const description = adminSeo.siteDescription || SITE.tagline;
   const keywords = adminSeo.siteKeywords?.length ? adminSeo.siteKeywords : undefined;
   const ogImageUrl = adminSeo.ogImage || `${SITE.domain}/og-default.png`;
@@ -63,7 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(SITE.domain),
     title: {
       default: title,
-      template: `%s | ${SITE.name}`,
+      template: titleTemplate,
     },
     icons: {
       icon: [

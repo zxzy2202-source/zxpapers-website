@@ -179,7 +179,7 @@ export default async function VietnamPage() {
         </div>
       </section>
 
-      <section className="bg-[#0F2B5B] text-white py-16">
+      <section className="bg-brand-navy text-white py-16">
         <div className="container text-center">
           <h2 className="font-sora text-3xl font-extrabold mb-4">Get CIF Vietnam Pricing Today</h2>
           <p className="text-slate-300 mb-8 max-w-xl mx-auto">Send us your required sizes and quantity. We'll reply with a full price list within 24 hours.</p>

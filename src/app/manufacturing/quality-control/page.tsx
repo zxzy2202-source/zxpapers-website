@@ -60,7 +60,7 @@ export default async function QualityControlPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="relative bg-[#0F2B5B] text-white py-16 overflow-hidden">
+      <div className="relative bg-brand-navy text-white py-16 overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${qcHeroImage})` }} />
         <div className="relative container">
           <div className="text-amber-400 text-sm font-semibold mb-3">
@@ -87,7 +87,7 @@ export default async function QualityControlPage() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[{ value: "6", label: "QC Stages" }, { value: "99.8%", label: "Pass Rate" }, { value: "100%", label: "Batch Traced" }, { value: "ISO 9001", label: "Certified" }].map(({ value, label }) => (
                 <div key={label} className="bg-slate-50 rounded-2xl p-4 text-center">
-                  <div className="font-sora text-2xl font-extrabold text-[#0F2B5B]">{value}</div>
+                  <div className="font-sora text-2xl font-extrabold text-brand-navy">{value}</div>
                   <div className="text-xs text-slate-500 mt-1">{label}</div>
                 </div>
               ))}

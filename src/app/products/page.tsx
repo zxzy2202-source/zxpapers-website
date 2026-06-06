@@ -15,6 +15,30 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.domain}/products` },
 };
 
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Products",
+  "description":
+    "Complete range of thermal paper rolls, thermal labels, can labels, and detergent labels. Blank and custom printed options available.",
+  "url": `${SITE.domain}/products`,
+  "isPartOf": { "@id": `${SITE.domain}/#website` },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      { name: "Thermal Paper Rolls", path: "/products/thermal-paper-rolls/blank" },
+      { name: "Thermal Labels", path: "/products/thermal-labels/blank" },
+      { name: "Can Labels", path: "/products/can-labels" },
+      { name: "Detergent Labels", path: "/products/detergent-labels" },
+    ].map((c, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "name": c.name,
+      "url": `${SITE.domain}${c.path}`,
+    })),
+  },
+};
+
 const ROLLS_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
 const LABELS_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
 const CAN_LABELS_IMG_FB = "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80";
@@ -111,6 +135,10 @@ export default async function ProductsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+      />
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
         bgImage={r2Image(imgs["products:hero"])}
@@ -140,7 +168,7 @@ export default async function ProductsPage() {
             <div key={cat.id}>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 bg-slate-50 border border-slate-200 rounded-md flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-[#0F2B5B]" />
+                  <Icon className="w-5 h-5 text-brand-navy" />
                 </div>
                 <div>
                   <h2 className="font-sora text-2xl font-semibold tracking-[-0.03em] text-slate-900">{cat.title}</h2>
@@ -150,12 +178,12 @@ export default async function ProductsPage() {
 
               <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 mb-8`}>
                 {cat.variants.map((p) => (
-                  <Link key={p.href} href={p.href} className="group flex gap-4 p-6 bg-white border border-slate-200 hover:border-[#0F2B5B] rounded-lg transition-colors duration-200">
+                  <Link key={p.href} href={p.href} className="group flex gap-4 p-6 bg-white border border-slate-200 hover:border-brand-navy rounded-lg transition-colors duration-200">
                     <Image src={cat.image} alt={p.title} className="w-24 h-24 object-cover rounded-md flex-shrink-0 border border-slate-100" width={96} height={96}  sizes="96px" />
                     <div className="flex-1">
-                      <h3 className="font-sora font-semibold tracking-[-0.02em] text-slate-900 mb-1 group-hover:text-[#0F2B5B] transition-colors">{p.title}</h3>
+                      <h3 className="font-sora font-semibold tracking-[-0.02em] text-slate-900 mb-1 group-hover:text-brand-navy transition-colors">{p.title}</h3>
                       <p className="text-sm text-slate-600 leading-relaxed mb-3">{p.desc}</p>
-                      <span className="inline-flex items-center gap-1 text-sm text-[#0F2B5B] font-semibold">View Details <ArrowRight className="w-3.5 h-3.5" /></span>
+                      <span className="inline-flex items-center gap-1 text-sm text-brand-navy font-semibold">View Details <ArrowRight className="w-3.5 h-3.5" /></span>
                     </div>
                   </Link>
                 ))}
@@ -165,8 +193,8 @@ export default async function ProductsPage() {
                 <h3 className="font-sora text-base font-semibold text-slate-800 mb-4">Popular Sizes</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
                   {cat.sizes.map((size) => (
-                    <Link key={size.slug} href={cat.sizeHref(size.slug)} className="group flex flex-col items-center p-4 bg-white border border-slate-200 hover:border-[#0F2B5B] hover:bg-slate-50 rounded-md transition-colors duration-200 text-center">
-                      <div className="font-sora font-semibold text-slate-800 group-hover:text-[#0F2B5B] text-sm mb-1">{size.label}</div>
+                    <Link key={size.slug} href={cat.sizeHref(size.slug)} className="group flex flex-col items-center p-4 bg-white border border-slate-200 hover:border-brand-navy hover:bg-slate-50 rounded-md transition-colors duration-200 text-center">
+                      <div className="font-sora font-semibold text-slate-800 group-hover:text-brand-navy text-sm mb-1">{size.label}</div>
                       {size.badge
                         ? <span className="text-[10px] bg-amber-100 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full font-medium">{size.badge}</span>
                         : <span className="text-[10px] text-slate-400">{size.markets}</span>

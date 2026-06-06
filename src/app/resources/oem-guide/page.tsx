@@ -45,7 +45,7 @@ export default function OEMGuidePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-[#0F2B5B] text-white py-14">
+      <div className="bg-brand-navy text-white py-14">
         <div className="container">
           <div className="flex items-center gap-2 mb-3">
             <Link href="/resources" className="text-amber-400 text-xs font-bold uppercase tracking-wider hover:underline">Resources</Link>
@@ -100,7 +100,7 @@ export default function OEMGuidePage() {
                   { step: "06", title: "Shipping & Documentation", desc: "We handle export documentation (CO, packing list, invoice, BL). DDP, FOB, CIF, and EXW terms available. For EU customers, we provide REACH compliance documentation. For US customers, FDA 21 CFR 176.170 compliance letters are available on request." },
                 ].map(({ step, title, desc }) => (
                   <div key={step} className="flex gap-4 p-5 bg-white border border-slate-100 rounded-xl shadow-sm">
-                    <div className="font-sora w-10 h-10 bg-[#0F2B5B] text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0">{step}</div>
+                    <div className="font-sora w-10 h-10 bg-brand-navy text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0">{step}</div>
                     <div>
                       <div className="font-sora font-bold text-slate-900 text-sm mb-1">{title}</div>
                       <div className="text-sm text-slate-600 leading-relaxed">{desc}</div>

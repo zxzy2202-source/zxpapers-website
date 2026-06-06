@@ -72,7 +72,7 @@
   }
 
   .btn-navy {
-    @apply inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#12346d] text-white font-semibold px-6 py-3 rounded-md transition-colors duration-200 text-sm;
+    @apply inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-navy-hover text-white font-semibold px-6 py-3 rounded-md transition-colors duration-200 text-sm;
     font-family: var(--font-sora), 'Sora', sans-serif;
   }
 
@@ -82,7 +82,7 @@
   }
 
   .page-hero {
-    @apply relative py-16 bg-[#0F2B5B] text-white overflow-hidden;
+    @apply relative py-16 bg-brand-navy text-white overflow-hidden;
   }
 
   .page-hero-content {
@@ -102,7 +102,7 @@
   }
 
   .section-label {
-    @apply inline-flex items-center gap-2 text-[#0F2B5B] text-sm font-semibold uppercase tracking-[0.18em] mb-3;
+    @apply inline-flex items-center gap-2 text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3;
   }
 
   /* 统一 Sora 字体工具类，替代内联 style */

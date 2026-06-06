@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Phone, X, MessageSquare } from "lucide-react";
 import { SITE } from "@/config/siteData";
 
@@ -25,17 +25,47 @@ const QUICK_MESSAGES = [
 
 export default function WhatsAppFAB() {
   const [open, setOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const buildUrl = (text: string) =>
     `${SITE.whatsappUrl}?text=${encodeURIComponent(text)}`;
+
+  // Close on Escape and return focus to the toggle button
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  // Move focus into the panel when it opens (keyboard users)
+  useEffect(() => {
+    if (!open) return;
+    const firstLink = panelRef.current?.querySelector<HTMLElement>(
+      'a[href], button:not([disabled])'
+    );
+    firstLink?.focus();
+  }, [open]);
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {/* Quick message panel */}
       {open && (
-        <div className="bg-white rounded-lg shadow-xl border border-slate-200 w-72 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200">
+        <div
+          ref={panelRef}
+          id="whatsapp-panel"
+          role="dialog"
+          aria-label="WhatsApp quick contact"
+          className="bg-white rounded-lg shadow-xl border border-slate-200 w-72 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200"
+        >
           {/* Header */}
-          <div className="bg-[#0F2B5B] px-4 py-3 flex items-center gap-3">
+          <div className="bg-brand-navy px-4 py-3 flex items-center gap-3">
             <div className="w-9 h-9 bg-white/10 rounded-md flex items-center justify-center flex-shrink-0">
               <MessageSquare className="w-4 h-4 text-amber-300" />
             </div>
@@ -62,10 +92,10 @@ export default function WhatsAppFAB() {
                 href={buildUrl(text)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 w-full text-left bg-slate-50 hover:bg-white hover:border-[#0F2B5B] border border-slate-200 rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors duration-150"
+                className="flex items-center gap-2 w-full text-left bg-slate-50 hover:bg-white hover:border-brand-navy border border-slate-200 rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors duration-150"
                 onClick={() => setOpen(false)}
               >
-                <MessageSquare className="w-3.5 h-3.5 text-[#0F2B5B] flex-shrink-0" />
+                <MessageSquare className="w-3.5 h-3.5 text-brand-navy flex-shrink-0" />
                 {label}
               </a>
             ))}
@@ -76,7 +106,7 @@ export default function WhatsAppFAB() {
               href={buildUrl("Hello, I am interested in thermal paper rolls.\nPlease send me price and MOQ.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full bg-[#0F2B5B] hover:bg-[#12346d] text-white font-semibold py-3 rounded-md text-sm transition-colors"
+              className="flex items-center justify-center gap-2 w-full bg-brand-navy hover:bg-brand-navy-hover text-white font-semibold py-3 rounded-md text-sm transition-colors"
               onClick={() => setOpen(false)}
             >
               <Phone className="w-4 h-4" />
@@ -94,8 +124,11 @@ export default function WhatsAppFAB() {
 
       {/* FAB button */}
       <button
+        ref={buttonRef}
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close WhatsApp chat" : "Chat on WhatsApp"}
+        aria-expanded={open}
+        aria-controls="whatsapp-panel"
         className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-colors duration-200 ${
           open
             ? "bg-[#15803D] hover:bg-[#166534]"

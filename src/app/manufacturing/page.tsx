@@ -151,7 +151,7 @@ export default async function ManufacturingPage() {
               </div>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-5 leading-tight">
                 World-Class<br />
-                <span className="text-[#0F2B5B]">Manufacturing</span>
+                <span className="text-brand-navy">Manufacturing</span>
               </h2>
               <p className="text-slate-600 leading-relaxed mb-6">
                 Our {FACTORY.area} facility houses {FACTORY.productionLines} production lines capable of producing {FACTORY.annualOutput} rolls per year.
@@ -165,7 +165,7 @@ export default async function ManufacturingPage() {
                   { label: "Employees", value: FACTORY.employees },
                 ].map(({ label, value }) => (
                   <div key={label} className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm">
-                    <div className="text-xl font-extrabold text-[#0F2B5B] mb-1">{value}</div>
+                    <div className="text-xl font-extrabold text-brand-navy mb-1">{value}</div>
                     <div className="text-xs text-slate-500">{label}</div>
                   </div>
                 ))}
@@ -228,7 +228,7 @@ export default async function ManufacturingPage() {
       </div>
 
       {/* ── Equipment ────────────────────────────────────────────── */}
-      <div className="bg-[#0F2B5B] py-16">
+      <div className="bg-brand-navy py-16">
         <div className="container">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">
@@ -317,7 +317,7 @@ export default async function ManufacturingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact"
-              className="inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1a3a6b] text-white font-bold px-8 py-4 rounded-xl transition-colors">
+              className="inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-navy-light text-white font-bold px-8 py-4 rounded-xl transition-colors">
               <MessageSquare className="w-5 h-5" />
               Request Factory Quote
             </Link>

@@ -61,7 +61,7 @@ export default function SpecificationsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-[#0F2B5B] text-white py-14">
+      <div className="bg-brand-navy text-white py-14">
         <div className="container">
           <div className="text-amber-400 text-sm font-semibold mb-3">Technical Reference</div>
           <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
@@ -77,7 +77,7 @@ export default function SpecificationsPage() {
           <h2 className="font-sora text-2xl font-bold text-slate-900 mb-6">Thermal Paper Rolls — Standard Specifications</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm border border-slate-200 rounded-2xl overflow-hidden">
-              <thead className="bg-[#0F2B5B] text-white">
+              <thead className="bg-brand-navy text-white">
                 <tr>
                   {["Size", "Width", "Length", "Core (ID)", "OD", "Paper Weight", "Image Life", "Markets"].map((h) => (
                     <th key={h} className="px-4 py-3 text-left font-semibold text-xs">{h}</th>
@@ -107,7 +107,7 @@ export default function SpecificationsPage() {
           <h2 className="font-sora text-2xl font-bold text-slate-900 mb-6">Thermal Labels — Standard Specifications</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm border border-slate-200 rounded-2xl overflow-hidden">
-              <thead className="bg-[#0F2B5B] text-white">
+              <thead className="bg-brand-navy text-white">
                 <tr>
                   {["Size", "Width", "Height", "Labels/Roll", "Core (ID)", "Adhesive", "Image Life", "Applications"].map((h) => (
                     <th key={h} className="px-4 py-3 text-left font-semibold text-xs">{h}</th>
@@ -152,7 +152,7 @@ export default function SpecificationsPage() {
             <h2 className="font-sora text-2xl font-extrabold text-slate-900 mb-2">Need Custom Specifications?</h2>
             <p className="text-slate-600 text-sm max-w-lg">We manufacture to any specification. Contact our technical team with your requirements for a custom quote.</p>
           </div>
-          <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
+          <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-blue text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
             Request Custom Specs <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

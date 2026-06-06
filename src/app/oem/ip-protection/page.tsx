@@ -75,7 +75,7 @@ export default async function IPProtectionPage() {
         {heroImage && (
           <div className="absolute inset-0">
             <Image src={heroImage} alt="" fill priority sizes="100vw" className="object-cover opacity-30" />
-            <div className="absolute inset-0 bg-[#0F2B5B]/75" />
+            <div className="absolute inset-0 bg-brand-navy/75" />
           </div>
         )}
         <div className="page-hero-content">
@@ -119,7 +119,7 @@ export default async function IPProtectionPage() {
                   { step: "04", title: "Ongoing Protection", desc: "The NDA remains in effect throughout our business relationship and for 3 years after termination." },
                 ].map(({ step, title, desc }) => (
                   <div key={step} className="flex gap-4">
-                    <div className="w-9 h-9 bg-[#0F2B5B] text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
+                    <div className="w-9 h-9 bg-brand-navy text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
                       {step}
                     </div>
                     <div className="pt-0.5">

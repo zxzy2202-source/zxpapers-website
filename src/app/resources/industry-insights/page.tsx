@@ -22,7 +22,7 @@ export default async function IndustryInsightsPage() {
 
   return (
     <Layout>
-      <div className="bg-[#0F2B5B] text-white py-14">
+      <div className="bg-brand-navy text-white py-14">
         <div className="container">
           <div className="flex items-center gap-2 mb-3">
             <Link
@@ -84,7 +84,7 @@ export default async function IndustryInsightsPage() {
                             </span>
                           )}
                         </div>
-                        <h2 className="font-sora text-xl font-bold text-slate-900 mb-2 hover:text-[#0F2B5B] transition-colors">
+                        <h2 className="font-sora text-xl font-bold text-slate-900 mb-2 hover:text-brand-navy transition-colors">
                           <Link href={`/blog/${post.slug}`}>
                             {post.title}
                           </Link>
@@ -95,7 +95,7 @@ export default async function IndustryInsightsPage() {
                       </div>
                       <Link
                         href={`/blog/${post.slug}`}
-                        className="text-sm font-bold text-[#0F2B5B] flex items-center gap-1 hover:underline"
+                        className="text-sm font-bold text-brand-navy flex items-center gap-1 hover:underline"
                       >
                         Read Full Article <ChevronRight className="w-4 h-4" />
                       </Link>

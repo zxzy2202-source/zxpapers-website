@@ -16,8 +16,8 @@ import PageHero from "@/components/shared/PageHero";
 import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Factory & Wholesale Manufacturer | Zhixin Paper",
-  description: "Zhixin Paper supplies ISO 9001 thermal paper rolls and custom labels at factory-direct wholesale prices. Global OEM/private label services and fast shipping.",
+  title: "Thermal Paper Rolls Manufacturer & Wholesale | Zhixin Paper",
+  description: "ISO 9001 thermal paper rolls & custom labels at factory-direct wholesale prices. Global OEM/private label service with fast shipping. Request a free quote today.",
   alternates: { canonical: SITE.domain },
 };
 
@@ -652,7 +652,7 @@ export default async function HomePage() {
           { value: "24h Reply", label: "Quote Response" },
         ]}
         mobileRightSlot={
-          <div className="rounded-xl border border-white/12 bg-[#0c1c36]/95 p-4 shadow-lg backdrop-blur">
+          <div className="rounded-xl border border-white/12 bg-brand-abyss/95 p-4 shadow-lg backdrop-blur">
             <div className="mb-4 flex items-center justify-between gap-3">
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-300">Factory Snapshot</p>
@@ -702,13 +702,13 @@ export default async function HomePage() {
             </div>
             <div className="grid grid-cols-2 gap-px bg-white/10">
               {heroSnapshotMetrics.map(({ label, value }) => (
-                <div key={label} className="bg-[#0c1c36] px-5 py-4">
+                <div key={label} className="bg-brand-abyss px-5 py-4">
                   <div className="text-lg font-semibold text-white">{value}</div>
                   <div className="mt-1 text-[11px] uppercase tracking-[0.14em] text-slate-400">{label}</div>
                 </div>
               ))}
             </div>
-            <div className="space-y-3 bg-[#0c1c36]/90 px-6 py-5">
+            <div className="space-y-3 bg-brand-abyss/90 px-6 py-5">
               <div className="flex items-center justify-between gap-4 text-sm">
                 <span className="text-slate-400">Typical quote response</span>
                 <span className="font-semibold text-white">{SITE.responseTime}</span>
@@ -719,12 +719,12 @@ export default async function HomePage() {
               </div>
               <div className="border-t border-white/10 pt-3">
                 <div className="mb-2 text-[11px] uppercase tracking-[0.16em] text-slate-400">Core Fast-Moving Sizes</div>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {heroFastMovingSizes.map(({ size, use }) => (
-                    <div key={size} className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-3">
-                      <div className="text-sm font-semibold text-white">{size}</div>
-                      <div className="mt-1 text-[11px] text-slate-400">{use}</div>
-                    </div>
+                    <span key={size} className="inline-flex items-baseline gap-1.5 rounded-md bg-white/[0.05] px-2.5 py-1.5 text-[11px]">
+                      <span className="font-semibold text-white">{size}</span>
+                      <span className="text-slate-400">{use}</span>
+                    </span>
                   ))}
                 </div>
               </div>
@@ -738,7 +738,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
             <div>
-              <p className="text-[#0F2B5B] text-sm font-semibold uppercase tracking-[0.18em] mb-3">Most Ordered Thermal Paper Products</p>
+              <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Most Ordered Thermal Paper Products</p>
               <h2 id="popular-products-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900">
                 Bulk Thermal Paper Rolls, Labels &amp; OEM Receipt Paper
               </h2>
@@ -747,7 +747,7 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div className="rounded-2xl border border-slate-200 p-5">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Quick buying reference</p>
               <dl className="mt-4 grid grid-cols-1 gap-3">
                 {[
@@ -764,7 +764,7 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="mb-8 grid grid-cols-2 gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3 sm:grid-cols-3 xl:grid-cols-6">
+          <div className="mb-10 flex flex-wrap gap-2">
             {[
               "POS Receipt Rolls",
               "Mobile Printer Rolls",
@@ -773,10 +773,10 @@ export default async function HomePage() {
               "ATM & Banking Rolls",
               "Thermal Labels",
             ].map((item) => (
-              <div key={item} className="flex items-center gap-2 rounded-md bg-white px-3 py-2.5 text-sm font-semibold text-slate-800 shadow-sm">
-                <span className="h-2 w-2 rounded-full bg-amber-500" />
+              <span key={item} className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700">
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
                 {item}
-              </div>
+              </span>
             ))}
           </div>
 
@@ -788,7 +788,7 @@ export default async function HomePage() {
                     <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900">{title}</h3>
                     <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">{description}</p>
                   </div>
-                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#0F2B5B]">Top 4 SKUs</span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-navy">Top 4 SKUs</span>
                 </div>
 
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -804,7 +804,7 @@ export default async function HomePage() {
                     return (
                       <article
                         key={size}
-                        className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-[#0F2B5B]/40 hover:shadow-lg"
+                        className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-brand-navy/40 hover:shadow-lg"
                       >
                         <Link
                           href={href}
@@ -822,14 +822,14 @@ export default async function HomePage() {
                           <span className={`absolute right-4 top-4 text-[10px] font-semibold px-2.5 py-1 rounded-full border ${BADGE_COLORS[badgeTone] ?? BADGE_COLORS.amber}`}>
                             {badge}
                           </span>
-                          <div className="absolute bottom-4 left-4 flex h-10 w-10 items-center justify-center rounded-md border border-white/20 bg-white/90 transition-colors group-hover:bg-[#0F2B5B]">
-                            <Package className="w-4 h-4 text-[#0F2B5B] transition-colors group-hover:text-white" />
+                          <div className="absolute bottom-4 left-4 flex h-10 w-10 items-center justify-center rounded-md border border-white/20 bg-white/90 transition-colors group-hover:bg-brand-navy">
+                            <Package className="w-4 h-4 text-brand-navy transition-colors group-hover:text-white" />
                           </div>
                         </Link>
 
                         <div className="flex flex-1 flex-col p-5">
                           <h4 className="mb-2 text-[1.25rem] font-semibold leading-tight tracking-[-0.02em] text-slate-900">
-                            <Link href={href} className="transition-colors group-hover:text-[#0F2B5B]">
+                            <Link href={href} className="transition-colors group-hover:text-brand-navy">
                               {size}
                             </Link>
                           </h4>
@@ -879,7 +879,7 @@ export default async function HomePage() {
                 <div className="mt-5 flex justify-end">
                   <Link
                     href={href}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-[#0F2B5B] transition-colors hover:text-[#12346d]"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy transition-colors hover:text-brand-navy-hover"
                   >
                     View full {title.toLowerCase()} range <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -891,7 +891,7 @@ export default async function HomePage() {
           <div className="text-center mt-10">
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 text-[#0F2B5B] hover:text-[#12346d] font-semibold text-sm transition-colors"
+              className="inline-flex items-center gap-2 text-brand-navy hover:text-brand-navy-hover font-semibold text-sm transition-colors"
             >
               View all sizes &amp; specifications <ArrowRight className="w-4 h-4" />
             </Link>
@@ -907,7 +907,7 @@ export default async function HomePage() {
                 href={waContainer}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-[#0F2B5B] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#12346d]"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover"
               >
                 <Phone className="w-4 h-4" />
                 Ask for Container Quote
@@ -921,7 +921,7 @@ export default async function HomePage() {
       <section className="py-20 bg-slate-50 border-y border-slate-200">
         <div className="container">
           <div className="text-center mb-12">
-            <p className="text-[#0F2B5B] text-sm font-semibold uppercase tracking-[0.18em] mb-3">Buyer Pain Points</p>
+            <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Buyer Pain Points</p>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900">Common Problems Our Customers Face</h2>
             <p className="text-slate-600 mt-3 text-base max-w-2xl mx-auto leading-relaxed">
               We help POS distributors, importers, retail chains, and OEM buyers solve recurring quality, supply, packaging, and shipment problems.
@@ -946,12 +946,12 @@ export default async function HomePage() {
             {customerProblems.map(({ title, label, badge, badgeTone, href, desc, solutions }) => (
               <div
                 key={title}
-                className="group overflow-hidden border border-slate-200 rounded-lg bg-white flex flex-col shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-[#0F2B5B]/40 hover:shadow-lg"
+                className="group overflow-hidden border border-slate-200 rounded-lg bg-white flex flex-col shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-brand-navy/40 hover:shadow-lg"
               >
                 <div className="flex flex-1 flex-col p-6">
                   <div className="mb-5 flex items-start justify-between gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-slate-50 transition-colors group-hover:bg-[#0F2B5B]">
-                      <Package className="w-4 h-4 text-[#0F2B5B] transition-colors group-hover:text-white" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-slate-50 transition-colors group-hover:bg-brand-navy">
+                      <Package className="w-4 h-4 text-brand-navy transition-colors group-hover:text-white" />
                     </div>
                     <span className={`text-[10px] font-semibold px-2.5 py-1 rounded-full border ${BADGE_COLORS[badgeTone] ?? BADGE_COLORS.amber}`}>
                       {badge}
@@ -979,7 +979,7 @@ export default async function HomePage() {
                   <div className="flex gap-2">
                     <Link
                       href={href}
-                      className="flex-1 text-center bg-[#0F2B5B] hover:bg-[#12346d] text-white text-sm font-semibold py-2.5 rounded-md transition-colors"
+                      className="flex-1 text-center bg-brand-navy hover:bg-brand-navy-hover text-white text-sm font-semibold py-2.5 rounded-md transition-colors"
                     >
                       See Solution
                     </Link>
@@ -987,7 +987,7 @@ export default async function HomePage() {
                       href={`${waBase}${encodeURIComponent(`Hello, I need help with ${title}. Please recommend a thermal paper solution and quotation.`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 border border-slate-200 hover:border-[#0F2B5B] text-slate-700 hover:text-[#0F2B5B] rounded-md flex items-center justify-center transition-colors flex-shrink-0"
+                      className="w-10 h-10 border border-slate-200 hover:border-brand-navy text-slate-700 hover:text-brand-navy rounded-md flex items-center justify-center transition-colors flex-shrink-0"
                       aria-label={`WhatsApp inquiry for ${title}`}
                       title="WhatsApp"
                     >
@@ -1010,7 +1010,7 @@ export default async function HomePage() {
                 href={waContainer}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-[#0F2B5B] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#12346d]"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover"
               >
                 <Phone className="w-4 h-4" />
                 Ask for Solution
@@ -1026,13 +1026,13 @@ export default async function HomePage() {
           <details className="group rounded-lg border border-slate-200 bg-white">
             <summary className="flex cursor-pointer list-none flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
               <div>
-                <p className="text-[#0F2B5B] text-xs font-semibold uppercase tracking-[0.18em] mb-2">Full Range</p>
+                <p className="text-brand-navy text-xs font-semibold uppercase tracking-[0.18em] mb-2">Full Range</p>
                 <h2 className="text-xl sm:text-2xl font-semibold tracking-[-0.03em] text-slate-900">All Available Sizes</h2>
                 <p className="text-slate-600 mt-1 text-sm leading-relaxed">
                   Open the full reference when you need less common roll sizes or custom dimensions.
                 </p>
               </div>
-              <span className="inline-flex items-center justify-center gap-2 rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-[#0F2B5B] transition-colors group-open:bg-slate-50">
+              <span className="inline-flex items-center justify-center gap-2 rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-brand-navy transition-colors group-open:bg-slate-50">
                 View Size Reference <ArrowRight className="w-4 h-4 transition-transform group-open:rotate-90" />
               </span>
             </summary>
@@ -1045,7 +1045,7 @@ export default async function HomePage() {
               >
                 <div className="px-5 py-4 flex items-center gap-3 border-b border-slate-200 bg-slate-50">
                   <div className="w-8 h-8 border border-slate-200 rounded-md flex items-center justify-center flex-shrink-0 bg-white">
-                    <Package className="w-4 h-4 text-[#0F2B5B]" />
+                    <Package className="w-4 h-4 text-brand-navy" />
                   </div>
                   <h3 className="text-slate-900 font-semibold text-sm tracking-[0.01em]">{group.groupLabel}</h3>
                 </div>
@@ -1064,10 +1064,10 @@ export default async function HomePage() {
                         <div className="flex items-start justify-between gap-3">
                           <div className="min-w-0">
                             <div className="flex items-center gap-2 min-w-0">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#0F2B5B] flex-shrink-0" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-brand-navy flex-shrink-0" />
                               <Link
                                 href={sz.href}
-                                className="text-sm font-semibold text-slate-800 group-hover:text-[#0F2B5B] transition-colors truncate"
+                                className="text-sm font-semibold text-slate-800 group-hover:text-brand-navy transition-colors truncate"
                               >
                                 {sz.label}
                               </Link>
@@ -1082,7 +1082,7 @@ export default async function HomePage() {
                           <div className="flex items-center gap-1.5 ml-2 flex-shrink-0">
                             <Link
                               href={sz.href}
-                              className="text-[11px] font-semibold border border-slate-200 text-slate-700 px-2.5 py-1 rounded-md hover:border-[#0F2B5B] hover:text-[#0F2B5B] transition-colors whitespace-nowrap"
+                              className="text-[11px] font-semibold border border-slate-200 text-slate-700 px-2.5 py-1 rounded-md hover:border-brand-navy hover:text-brand-navy transition-colors whitespace-nowrap"
                             >
                               Details
                             </Link>
@@ -1090,7 +1090,7 @@ export default async function HomePage() {
                               href={`${SITE.whatsappUrl}?text=${waMsg}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="w-7 h-7 border border-slate-200 hover:border-[#0F2B5B] text-slate-600 hover:text-[#0F2B5B] rounded-md flex items-center justify-center transition-colors"
+                              className="w-7 h-7 border border-slate-200 hover:border-brand-navy text-slate-600 hover:text-brand-navy rounded-md flex items-center justify-center transition-colors"
                               aria-label={`WhatsApp inquiry for ${sz.label}`}
                               title="WhatsApp"
                             >
@@ -1108,7 +1108,7 @@ export default async function HomePage() {
                   <span className="text-xs text-slate-500">Need a custom size?</span>
                   <Link
                     href="/oem/custom-printing"
-                    className="text-xs font-semibold text-[#0F2B5B] hover:text-[#12346d] transition-colors flex items-center gap-1"
+                    className="text-xs font-semibold text-brand-navy hover:text-brand-navy-hover transition-colors flex items-center gap-1"
                   >
                     OEM Custom <ArrowRight className="w-3 h-3" />
                   </Link>
@@ -1120,7 +1120,7 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 border-t border-slate-200 px-5 pb-6 pt-5 sm:px-6">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#12346d] text-white font-semibold px-7 py-3 rounded-md transition-colors duration-200 text-sm"
+              className="inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-navy-hover text-white font-semibold px-7 py-3 rounded-md transition-colors duration-200 text-sm"
             >
               <MessageSquare className="w-4 h-4" />
               Request Full Price List
@@ -1129,7 +1129,7 @@ export default async function HomePage() {
               href={waGeneral}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-slate-300 hover:border-[#0F2B5B] text-slate-700 hover:text-[#0F2B5B] font-semibold px-7 py-3 rounded-md transition-colors duration-200 text-sm"
+              className="inline-flex items-center gap-2 border border-slate-300 hover:border-brand-navy text-slate-700 hover:text-brand-navy font-semibold px-7 py-3 rounded-md transition-colors duration-200 text-sm"
             >
               <Phone className="w-4 h-4" />
               WhatsApp for Quick Quote
@@ -1144,7 +1144,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div>
-              <p className="text-[#0F2B5B] text-sm font-semibold uppercase tracking-[0.18em] mb-3">Factory Process</p>
+              <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Factory Process</p>
               <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 leading-tight">
                 Controlled Production from Printing &amp; Slitting to Container Loading
               </h2>
@@ -1178,7 +1178,7 @@ export default async function HomePage() {
                 <div key={title} className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between gap-4">
                     <div className="flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-slate-50">
-                      <Icon className="h-5 w-5 text-[#0F2B5B]" />
+                      <Icon className="h-5 w-5 text-brand-navy" />
                     </div>
                     <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-600">{step}</span>
                   </div>
@@ -1192,7 +1192,7 @@ export default async function HomePage() {
       </section>
 
       {/* 鈶?SOCIAL PROOF 鈥?Factory numbers */}
-      <section className="py-14 bg-[#0A1F44] text-white">
+      <section className="py-14 bg-brand-navy-alt text-white">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border border-white/10 rounded-md overflow-hidden">
             {[
@@ -1218,7 +1218,7 @@ export default async function HomePage() {
       <section className="py-20 bg-white">
         <div className="container">
           <div className="text-center mb-12">
-            <p className="text-[#0F2B5B] text-sm font-semibold uppercase tracking-[0.18em] mb-3">Our Advantages</p>
+            <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Our Advantages</p>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900">Why Buyers Choose Us</h2>
           </div>
 
@@ -1226,7 +1226,7 @@ export default async function HomePage() {
             {whyUs.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="bg-slate-50 rounded-lg p-6 border border-slate-200">
                 <div className="w-12 h-12 bg-white border border-slate-200 rounded-md flex items-center justify-center mb-5">
-                  <Icon className="w-5 h-5 text-[#0F2B5B]" />
+                  <Icon className="w-5 h-5 text-brand-navy" />
                 </div>
                 <h3 className="font-semibold tracking-[-0.02em] text-slate-900 text-lg mb-2">{title}</h3>
                 <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
@@ -1240,7 +1240,7 @@ export default async function HomePage() {
       <section className="py-16 bg-slate-50 border-y border-slate-100" aria-labelledby="buyer-feedback-heading">
         <div className="container">
           <div className="mx-auto mb-10 max-w-3xl text-center">
-            <p className="text-[#0F2B5B] text-sm font-semibold uppercase tracking-[0.18em] mb-3">Buyer Feedback by Market</p>
+            <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Buyer Feedback by Market</p>
             <h2 id="buyer-feedback-heading" className="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-slate-900">
               Feedback from Thermal Paper Importers, Distributors &amp; Retail Buyers
             </h2>
@@ -1301,7 +1301,7 @@ export default async function HomePage() {
       </section>
 
       {/* 鈶?CONTAINER LOADING */}
-      <section className="py-20 bg-[#0A1F44] text-white">
+      <section className="py-20 bg-brand-navy-alt text-white">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -1370,7 +1370,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-[#0F2B5B] text-sm font-semibold uppercase tracking-[0.18em] mb-3">OEM &amp; Custom Printing</p>
+              <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">OEM &amp; Custom Printing</p>
               <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 mb-5 leading-tight">
                 Custom Printed Thermal Rolls<br />
                 <span className="text-amber-600">with Your Logo &amp; Brand</span>
@@ -1396,14 +1396,14 @@ export default async function HomePage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/products/thermal-paper-rolls/custom-printed"
-                  className="inline-flex items-center gap-2 bg-[#0A1F44] hover:bg-[#12346d] text-white font-semibold px-6 py-3 rounded-md transition-colors duration-200 text-sm"
+                  className="inline-flex items-center gap-2 bg-brand-navy-alt hover:bg-brand-navy-hover text-white font-semibold px-6 py-3 rounded-md transition-colors duration-200 text-sm"
                 >
                   <Printer className="w-4 h-4" />
                   View Custom Printed Rolls
                 </Link>
                 <Link
                   href="/oem/custom-printing"
-                  className="inline-flex items-center gap-2 border border-slate-300 text-slate-700 hover:border-[#0F2B5B] hover:text-[#0F2B5B] font-semibold px-6 py-3 rounded-md transition-colors duration-200 text-sm"
+                  className="inline-flex items-center gap-2 border border-slate-300 text-slate-700 hover:border-brand-navy hover:text-brand-navy font-semibold px-6 py-3 rounded-md transition-colors duration-200 text-sm"
                 >
                   OEM Printing Specs &amp; MOQ
                 </Link>
@@ -1421,10 +1421,10 @@ export default async function HomePage() {
                 <Link
                   key={country}
                   href={href}
-                  className="bg-slate-50 border border-slate-200 hover:border-[#0F2B5B] hover:bg-white rounded-lg p-4 transition-colors duration-200 group"
+                  className="bg-slate-50 border border-slate-200 hover:border-brand-navy hover:bg-white rounded-lg p-4 transition-colors duration-200 group"
                 >
                   <div className="mb-2"><CountryFlag code={code} label={country} className="w-8 h-auto" /></div>
-                  <div className="font-semibold text-slate-900 text-sm group-hover:text-[#0F2B5B]">{country}</div>
+                  <div className="font-semibold text-slate-900 text-sm group-hover:text-brand-navy">{country}</div>
                   <div className="text-xs text-slate-500 mt-1">{compliance}</div>
                 </Link>
               ))}
@@ -1437,7 +1437,7 @@ export default async function HomePage() {
       <section className="py-20 bg-slate-50 border-t border-slate-200">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center border border-slate-200 bg-white rounded-lg px-5 py-10 sm:px-8 sm:py-12">
-            <p className="text-[#0F2B5B] text-sm font-semibold uppercase tracking-[0.18em] mb-3">Next Step</p>
+            <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Next Step</p>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 mb-4">
               Get Your Quote Within 24 Hours
             </h2>
@@ -1449,7 +1449,7 @@ export default async function HomePage() {
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2.5 bg-[#0A1F44] hover:bg-[#12346d] text-white font-semibold px-8 py-3.5 rounded-md text-base transition-colors duration-200"
+                className="inline-flex items-center gap-2.5 bg-brand-navy-alt hover:bg-brand-navy-hover text-white font-semibold px-8 py-3.5 rounded-md text-base transition-colors duration-200"
               >
                 <MessageSquare className="w-5 h-5" />
                 Send Inquiry
@@ -1458,7 +1458,7 @@ export default async function HomePage() {
                 href={waContainer}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 border border-slate-300 hover:border-[#0F2B5B] text-slate-700 hover:text-[#0F2B5B] font-semibold px-8 py-3.5 rounded-md text-base transition-colors duration-200"
+                className="inline-flex items-center gap-2.5 border border-slate-300 hover:border-brand-navy text-slate-700 hover:text-brand-navy font-semibold px-8 py-3.5 rounded-md text-base transition-colors duration-200"
               >
                 <Phone className="w-5 h-5" />
                 WhatsApp

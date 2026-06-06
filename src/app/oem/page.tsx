@@ -113,7 +113,7 @@ export default async function OEMPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {process.map(({ step, title, desc }) => (
               <div key={step} className="flex gap-4">
-                <div className="font-sora flex-shrink-0 w-12 h-12 bg-[#0F2B5B] text-white rounded-xl flex items-center justify-center font-extrabold text-sm">{step}</div>
+                <div className="font-sora flex-shrink-0 w-12 h-12 bg-brand-navy text-white rounded-xl flex items-center justify-center font-extrabold text-sm">{step}</div>
                 <div>
                   <h3 className="font-sora font-bold text-slate-900 mb-1 text-sm">{title}</h3>
                   <p className="text-sm text-slate-600">{desc}</p>

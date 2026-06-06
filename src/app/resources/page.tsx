@@ -50,7 +50,7 @@ export default function ResourcesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-[#0F2B5B] text-white py-14">
+      <div className="bg-brand-navy text-white py-14">
         <div className="container">
           <div className="text-amber-400 text-sm font-semibold mb-3">Resource Center</div>
           <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
@@ -92,7 +92,7 @@ export default function ResourcesPage() {
             <h2 className="font-sora text-2xl font-extrabold text-slate-900 mb-2">Ready to Source Thermal Paper?</h2>
             <p className="text-slate-600 text-sm max-w-lg">Get a free quote from our OEM team. We respond within 12 hours with pricing, samples, and technical specifications.</p>
           </div>
-          <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
+          <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-blue text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
             Get Free Quote <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

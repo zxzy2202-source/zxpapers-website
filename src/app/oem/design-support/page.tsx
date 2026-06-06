@@ -83,7 +83,7 @@ export default async function DesignSupportPage() {
         {heroImage && (
           <div className="absolute inset-0">
             <Image src={heroImage} alt="" fill priority sizes="100vw" className="object-cover opacity-30" />
-            <div className="absolute inset-0 bg-[#0F2B5B]/75" />
+            <div className="absolute inset-0 bg-brand-navy/75" />
           </div>
         )}
         <div className="page-hero-content">
@@ -148,7 +148,7 @@ export default async function DesignSupportPage() {
                   { step: "05", title: "Production & Delivery", desc: "Approved designs go into production with your confirmed specifications." },
                 ].map(({ step, title, desc }) => (
                   <div key={step} className="flex gap-4">
-                    <div className="w-10 h-10 bg-[#0F2B5B] text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
+                    <div className="w-10 h-10 bg-brand-navy text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
                       {step}
                     </div>
                     <div className="pt-1">

@@ -111,7 +111,7 @@ const products = [
   {
     name: "80×80mm Thermal Rolls",
     badge: "Best Seller SEA",
-    badgeColor: "bg-amber-500 text-white",
+    badgeColor: "bg-amber-500 text-slate-950",
     desc: "Standard POS receipt roll for supermarkets, restaurants, and retail chains across Thailand, Vietnam, and Malaysia.",
     specs: ["Core: 13mm / 15mm", "Length: 80m / 100m", "GSM: 65–80gsm"],
     href: "/products/thermal-rolls/80x80mm",
@@ -472,7 +472,7 @@ export default async function SoutheastAsiaPage() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────── */}
-      <section className="bg-[#0F2B5B] text-white py-16">
+      <section className="bg-brand-navy text-white py-16">
         <div className="container text-center">
           <h2 className="font-sora text-3xl font-extrabold mb-4">
             Ready to Source Thermal Paper for Southeast Asia?

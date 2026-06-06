@@ -158,7 +158,7 @@ export default async function CustomPrintingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       {/* Hero */}
-      <div className="relative bg-[#0F2B5B] text-white py-16 overflow-hidden">
+      <div className="relative bg-brand-navy text-white py-16 overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${heroImage})` }} />
         <div className="relative container">
           <div className="text-amber-400 text-sm font-semibold mb-3">

@@ -88,7 +88,7 @@ export default async function TanzaniaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-[#0F2B5B] via-[#1a3a6e] to-[#0d2347] text-white py-20 px-4">
+      <section className="relative bg-gradient-to-br from-brand-navy via-brand-navy-light to-brand-navy-shade text-white py-20 px-4">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url('${heroImage}')`, backgroundSize: "cover", backgroundPosition: "center" }} />
         <div className="relative max-w-6xl mx-auto">
           <nav className="text-sm text-blue-300 mb-4">
@@ -102,7 +102,7 @@ export default async function TanzaniaPage() {
             Factory-direct supply for Tanzanian distributors. CIF Dar es Salaam port. East Africa re-export hub. M-Pesa & Airtel Money compatible.
           </p>
           <div className="flex flex-wrap gap-4 mb-10">
-            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">Get CIF DSM Quote</Link>
+            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-3 rounded-lg transition-colors">Get CIF DSM Quote</Link>
             <a href={`https://wa.me/${SITE.whatsapp}?text=${whatsappMsg}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">WhatsApp Us</a>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -124,13 +124,13 @@ export default async function TanzaniaPage() {
       {/* Market Overview */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-[#0F2B5B] mb-8">Tanzania Market Overview</h2>
+          <h2 className="text-3xl font-bold text-brand-navy mb-8">Tanzania Market Overview</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <p className="text-gray-600 mb-4">Tanzania is a key East African market and serves as a major re-export hub for landlocked neighboring countries including Uganda, Rwanda, Burundi, Malawi, and Zambia. Dar es Salaam port is one of the busiest in East Africa.</p>
               <p className="text-gray-600 mb-4">Mobile money services M-Pesa (Vodacom) and Airtel Money have driven significant POS terminal deployment across Tanzania. The retail sector is growing rapidly with modern supermarkets expanding into secondary cities.</p>
               <div className="bg-blue-50 rounded-xl p-6 mt-6">
-                <h3 className="font-bold text-[#0F2B5B] mb-3">Key Market Facts</h3>
+                <h3 className="font-bold text-brand-navy mb-3">Key Market Facts</h3>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li>📱 M-Pesa (Vodacom): 15M+ users, 1M+ agents</li>
                   <li>📱 Airtel Money: 8M+ users across Tanzania</li>
@@ -142,12 +142,12 @@ export default async function TanzaniaPage() {
               </div>
             </div>
             <div>
-              <h3 className="text-xl font-bold text-[#0F2B5B] mb-4">Popular Products for Tanzania</h3>
+              <h3 className="text-xl font-bold text-brand-navy mb-4">Popular Products for Tanzania</h3>
               <div className="space-y-3">
                 {products.map((p) => (
                   <div key={p.size} className="border border-gray-200 rounded-xl p-4 flex items-center justify-between hover:border-blue-400 transition-colors">
                     <div>
-                      <span className="font-bold text-[#0F2B5B]">{p.size}</span>
+                      <span className="font-bold text-brand-navy">{p.size}</span>
                       <span className="ml-2 text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">{p.badge}</span>
                       <p className="text-sm text-gray-500 mt-1">{p.desc}</p>
                     </div>
@@ -166,7 +166,7 @@ export default async function TanzaniaPage() {
       {/* Logistics */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-[#0F2B5B] mb-8 text-center">Logistics to Tanzania</h2>
+          <h2 className="text-3xl font-bold text-brand-navy mb-8 text-center">Logistics to Tanzania</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               { title: "Sea Freight (FCL)", time: "18–25 days", detail: "CIF Dar es Salaam port. 20ft container: 8,000–12,000 rolls. 40ft container: 18,000–24,000 rolls.", badge: "Recommended" },
@@ -175,7 +175,7 @@ export default async function TanzaniaPage() {
             ].map((l) => (
               <div key={l.title} className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
                 <div className="flex justify-between items-start mb-3">
-                  <h3 className="font-bold text-[#0F2B5B]">{l.title}</h3>
+                  <h3 className="font-bold text-brand-navy">{l.title}</h3>
                   <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">{l.badge}</span>
                 </div>
                 <div className="text-2xl font-bold text-amber-500 mb-2">{l.time}</div>
@@ -189,11 +189,11 @@ export default async function TanzaniaPage() {
       {/* FAQ */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-[#0F2B5B] mb-8 text-center">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold text-brand-navy mb-8 text-center">Frequently Asked Questions</h2>
           <div className="space-y-4">
             {faqs.map((faq) => (
               <div key={faq.q} className="border border-gray-200 rounded-xl p-6">
-                <h3 className="font-bold text-[#0F2B5B] mb-2">{faq.q}</h3>
+                <h3 className="font-bold text-brand-navy mb-2">{faq.q}</h3>
                 <p className="text-gray-600 text-sm">{faq.a}</p>
               </div>
             ))}
@@ -202,12 +202,12 @@ export default async function TanzaniaPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 px-4 bg-[#0F2B5B] text-white text-center">
+      <section className="py-16 px-4 bg-brand-navy text-white text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Ready to Source Thermal Paper for Tanzania?</h2>
           <p className="text-blue-200 mb-8">Get a CIF Dar es Salaam quote within 24 hours. COMESA certificate available. OEM packaging supported.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">Send Inquiry</Link>
+            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-3 rounded-lg transition-colors">Send Inquiry</Link>
             <a href={`https://wa.me/${SITE.whatsapp}?text=${whatsappMsg}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">WhatsApp for Quick Quote</a>
           </div>
         </div>

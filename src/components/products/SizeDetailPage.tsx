@@ -128,7 +128,7 @@ export default async function SizeDetailPage({
     <Layout>
 
       {/* ── HERO ── */}
-      <div className="bg-[#0A1F44] text-white py-12">
+      <div className="bg-brand-navy-alt text-white py-12">
         <div className="container">
           {/* Breadcrumb */}
           <nav className="text-xs text-slate-400 mb-5 flex items-center gap-1.5 flex-wrap" aria-label="Breadcrumb">
@@ -238,7 +238,7 @@ export default async function SizeDetailPage({
               </div>
 
               {/* Strong trading info */}
-              <div className="bg-[#0A1F44] text-white rounded-lg p-7">
+              <div className="bg-brand-navy-alt text-white rounded-lg p-7">
                 <h2 className="text-lg font-extrabold mb-5">Container Loading &amp; Delivery</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                   {[
@@ -262,7 +262,7 @@ export default async function SizeDetailPage({
               {/* Pallet Ordering Plan */}
               {palletInfo && (
                 <div className="border border-slate-200 rounded-lg overflow-hidden">
-                  <div className="bg-[#0F2B5B] px-6 py-4 flex items-center gap-3">
+                  <div className="bg-brand-navy px-6 py-4 flex items-center gap-3">
                     <div className="w-8 h-8 bg-amber-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Layers className="w-4 h-4 text-amber-400" />
                     </div>
@@ -275,17 +275,17 @@ export default async function SizeDetailPage({
                     {/* Key pallet stats */}
                     <div className="grid grid-cols-3 gap-4 mb-6">
                       <div className="text-center bg-slate-50 rounded-md p-4">
-                        <div className="text-2xl font-extrabold text-[#0F2B5B]">{palletInfo.rollsPerPallet.toLocaleString()}</div>
+                        <div className="text-2xl font-extrabold text-brand-navy">{palletInfo.rollsPerPallet.toLocaleString()}</div>
                         <div className="text-xs text-slate-500 mt-1">Rolls / Pallet</div>
                         <div className="text-[10px] text-slate-400 mt-0.5">{palletInfo.rollsPerBox} rolls/box · {palletInfo.boxesPerPallet} boxes</div>
                       </div>
                       <div className="text-center bg-slate-50 rounded-md p-4">
-                        <div className="text-2xl font-extrabold text-[#0F2B5B]">{palletInfo.weightKg.toLocaleString()}</div>
+                        <div className="text-2xl font-extrabold text-brand-navy">{palletInfo.weightKg.toLocaleString()}</div>
                         <div className="text-xs text-slate-500 mt-1">kg / Pallet</div>
                         <div className="text-[10px] text-slate-400 mt-0.5">Gross weight</div>
                       </div>
                       <div className="text-center bg-slate-50 rounded-md p-4">
-                        <div className="text-lg font-extrabold text-[#0F2B5B] leading-tight">{palletInfo.palletDim}</div>
+                        <div className="text-lg font-extrabold text-brand-navy leading-tight">{palletInfo.palletDim}</div>
                         <div className="text-xs text-slate-500 mt-1">Pallet Size</div>
                         <div className="text-[10px] text-slate-400 mt-0.5">L × W × H</div>
                       </div>
@@ -295,7 +295,7 @@ export default async function SizeDetailPage({
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-slate-50 border border-slate-200 rounded-md p-4">
                         <div className="flex items-center gap-2 mb-3">
-                          <Ship className="w-4 h-4 text-[#0F2B5B]" />
+                          <Ship className="w-4 h-4 text-brand-navy" />
                           <span className="text-sm font-bold text-slate-900">20ft Container</span>
                         </div>
                         <div className="space-y-1.5">
@@ -305,7 +305,7 @@ export default async function SizeDetailPage({
                           </div>
                           <div className="flex justify-between text-sm">
                             <span className="text-slate-500">Total Rolls</span>
-                            <span className="font-bold text-[#0F2B5B]">~{palletInfo.rollsPer20ft.toLocaleString()} rolls</span>
+                            <span className="font-bold text-brand-navy">~{palletInfo.rollsPer20ft.toLocaleString()} rolls</span>
                           </div>
                         </div>
                       </div>
@@ -337,7 +337,7 @@ export default async function SizeDetailPage({
                   <h2 className="text-xl font-extrabold text-slate-900 mb-5">Applications</h2>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     {applicationImages.map(({ name, resolvedImage, description: appDesc }) => (
-                      <div key={name} className="group bg-white border border-slate-200 hover:border-[#0F2B5B] rounded-md overflow-hidden transition-colors duration-200">
+                      <div key={name} className="group bg-white border border-slate-200 hover:border-brand-navy rounded-md overflow-hidden transition-colors duration-200">
                         <div className="aspect-video overflow-hidden">
                           <Image
                             src={resolvedImage}
@@ -361,16 +361,16 @@ export default async function SizeDetailPage({
               <div>
                 <h2 className="text-xl font-extrabold text-slate-900 mb-4">Related Products</h2>
                 <div className="flex flex-wrap gap-3">
-                  <Link href={resolvedParentPath} className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-[#0F2B5B] hover:text-[#0F2B5B] text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
+                  <Link href={resolvedParentPath} className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-brand-navy hover:text-brand-navy text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
                     <Package className="w-4 h-4" />All {resolvedParentLabel}
                   </Link>
-                  <Link href="/oem/custom-printing" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-[#0F2B5B] hover:text-[#0F2B5B] text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
+                  <Link href="/oem/custom-printing" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-brand-navy hover:text-brand-navy text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
                     <ArrowRight className="w-4 h-4" />Custom Printing
                   </Link>
-                  <Link href="/oem/packaging" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-[#0F2B5B] hover:text-[#0F2B5B] text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
+                  <Link href="/oem/packaging" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-brand-navy hover:text-brand-navy text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
                     <ArrowRight className="w-4 h-4" />Private Label
                   </Link>
-                  <Link href="/manufacturing/certifications" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-[#0F2B5B] hover:text-[#0F2B5B] text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
+                  <Link href="/manufacturing/certifications" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-brand-navy hover:text-brand-navy text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
                     <Award className="w-4 h-4" />Certifications
                   </Link>
                 </div>
@@ -391,14 +391,14 @@ export default async function SizeDetailPage({
                     href={waUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full border border-[#0F2B5B] bg-white hover:bg-slate-50 text-[#0F2B5B] font-bold py-3.5 rounded-md transition-colors text-sm"
+                    className="flex items-center justify-center gap-2 w-full border border-brand-navy bg-white hover:bg-slate-50 text-brand-navy font-bold py-3.5 rounded-md transition-colors text-sm"
                   >
                     <Phone className="w-4 h-4" />
                     WhatsApp for Quick Response
                   </a>
                   <Link
                     href="/contact"
-                    className="flex items-center justify-center gap-2 w-full bg-[#0A1F44] hover:bg-[#16376f] text-white font-bold py-3.5 rounded-md transition-colors text-sm"
+                    className="flex items-center justify-center gap-2 w-full bg-brand-navy-alt hover:bg-brand-navy-hover text-white font-bold py-3.5 rounded-md transition-colors text-sm"
                   >
                     <MessageSquare className="w-4 h-4" />
                     Send Inquiry Now
@@ -436,7 +436,7 @@ export default async function SizeDetailPage({
       </div>
 
       {/* ── BOTTOM CTA ── */}
-      <section className="py-14 bg-[#0A1F44]">
+      <section className="py-14 bg-brand-navy-alt">
         <div className="container text-center">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
             Ready to Order {sizeLabel} Thermal Paper Rolls?

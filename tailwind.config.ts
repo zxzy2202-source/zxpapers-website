@@ -16,7 +16,15 @@ const config: Config = {
       },
       colors: {
         brand: {
-          navy: "#0F2B5B",
+          // Navy scale (dark → light). Single source of truth for all dark-blue surfaces & gradients.
+          ink: "#07172f", // darkest — footer / hero base
+          abyss: "#0a1e3d",
+          "navy-deep": "#091629", // PageHero base
+          "navy-alt": "#0A1F44", // markets/africa primary navy
+          "navy-shade": "#0d2347", // gradient end-stop
+          navy: "#0F2B5B", // ← brand primary navy
+          "navy-hover": "#12346d",
+          "navy-light": "#1a3a6e", // gradient via-stop
           blue: "#1E6FD9",
           amber: "#F59E0B",
           "amber-dark": "#D97706",

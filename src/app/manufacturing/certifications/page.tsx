@@ -64,7 +64,7 @@ export default async function CertificationsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="relative bg-[#0F2B5B] text-white py-16 overflow-hidden">
+      <div className="relative bg-brand-navy text-white py-16 overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${certificationsHeroImage})` }} />
         <div className="relative container">
           <div className="text-amber-400 text-sm font-semibold mb-3">
@@ -129,7 +129,7 @@ export default async function CertificationsPage() {
           })}
         </div>
 
-        <div className="bg-[#0F2B5B] rounded-3xl p-10 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="bg-brand-navy rounded-3xl p-10 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <h2 className="font-sora text-2xl font-extrabold mb-2">Need Copies of Our Certificates?</h2>
             <p className="text-slate-300 text-sm max-w-lg">All certificates are available upon request. We can provide original scans, translated versions, or notarized copies for import/customs requirements.</p>

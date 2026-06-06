@@ -144,11 +144,11 @@ export default async function NigeriaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative bg-gradient-to-br from-[#0A1F44] via-[#0d2a5e] to-[#1a3a6e] text-white overflow-hidden">
+      <section className="relative bg-gradient-to-br from-brand-navy-alt via-brand-navy to-brand-navy-light text-white overflow-hidden">
         {heroImage && (
           <div className="absolute inset-0">
             <Image src={heroImage} alt="" fill priority sizes="100vw" className="object-cover opacity-40" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0A1F44]/85 via-[#0d2a5e]/75 to-[#1a3a6e]/60" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-navy-alt/85 via-brand-navy/75 to-brand-navy-light/60" />
           </div>
         )}
         <div className="absolute inset-0 opacity-10"
@@ -202,7 +202,7 @@ export default async function NigeriaPage() {
                 </a>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-white font-bold px-6 py-3.5 rounded-xl transition-all"
+                  className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl transition-all"
                 >
                   <ArrowRight className="w-5 h-5" />
                   Get CIF Quote
@@ -258,7 +258,7 @@ export default async function NigeriaPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#0A1F44] mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy-alt mb-4">
               Most Popular Sizes for Nigeria
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -270,7 +270,7 @@ export default async function NigeriaPage() {
             {products.map((p) => (
               <div key={p.size} className="bg-white rounded-2xl border-2 border-slate-200 hover:border-amber-400 p-6 hover:shadow-lg transition-all">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-2xl font-bold text-[#0A1F44]">{p.size}</h3>
+                  <h3 className="text-2xl font-bold text-brand-navy-alt">{p.size}</h3>
                   <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${p.badgeColor}`}>{p.badge}</span>
                 </div>
                 <p className="text-sm text-slate-600 mb-4 leading-relaxed">{p.desc}</p>
@@ -304,7 +304,7 @@ export default async function NigeriaPage() {
       </section>
 
       {/* ── Logistics to Nigeria ──────────────────────────────────────── */}
-      <section className="py-20 bg-[#0A1F44] text-white">
+      <section className="py-20 bg-brand-navy-alt text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
@@ -373,13 +373,13 @@ export default async function NigeriaPage() {
       <section className="py-20 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-[#0A1F44] mb-4">Nigeria FAQ</h2>
+            <h2 className="text-3xl font-bold text-brand-navy-alt mb-4">Nigeria FAQ</h2>
             <p className="text-slate-600">Common questions from Nigerian importers and distributors.</p>
           </div>
           <div className="space-y-4">
             {nigeriaFaqs.map((faq, i) => (
               <div key={i} className="bg-white rounded-2xl border border-slate-200 p-6">
-                <h3 className="font-bold text-[#0A1F44] mb-2 flex items-start gap-2">
+                <h3 className="font-bold text-brand-navy-alt mb-2 flex items-start gap-2">
                   <span className="text-amber-500 font-black text-lg leading-none mt-0.5">Q</span>
                   {faq.q}
                 </h3>
@@ -395,7 +395,7 @@ export default async function NigeriaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#0A1F44] mb-6">
+              <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy-alt mb-6">
                 Get Nigeria Price List<br />
                 <span className="text-amber-500">CIF Lagos — 2 Hour Quote</span>
               </h2>
@@ -441,7 +441,7 @@ export default async function NigeriaPage() {
       </section>
 
       {/* ── Final CTA ─────────────────────────────────────────────────── */}
-      <section className="py-16 bg-[#0A1F44]">
+      <section className="py-16 bg-brand-navy-alt">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="text-5xl mb-4"><CountryFlag code="NG" label="Nigeria" className="w-12 h-auto" /></div>
           <h2 className="text-3xl font-black text-white mb-4">

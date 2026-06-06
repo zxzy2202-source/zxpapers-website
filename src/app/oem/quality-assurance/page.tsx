@@ -75,7 +75,7 @@ export default async function QualityAssurancePage() {
         {heroImage && (
           <div className="absolute inset-0">
             <Image src={heroImage} alt="" fill priority sizes="100vw" className="object-cover opacity-30" />
-            <div className="absolute inset-0 bg-[#0F2B5B]/75" />
+            <div className="absolute inset-0 bg-brand-navy/75" />
           </div>
         )}
         <div className="page-hero-content">

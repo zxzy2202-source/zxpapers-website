@@ -9,6 +9,7 @@ import {
   Clock, BarChart3, Layers, Phone,
 } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -191,13 +192,13 @@ export default async function AboutPage() {
       <div className="container py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 text-[#0F2B5B] text-sm font-semibold uppercase tracking-widest mb-4">
-              <div className="w-8 h-0.5 bg-[#0F2B5B]" />
+            <div className="inline-flex items-center gap-2 text-brand-navy text-sm font-semibold uppercase tracking-widest mb-4">
+              <div className="w-8 h-0.5 bg-brand-navy" />
               Our Story
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 leading-tight">
               From 2 Lines to a{" "}
-              <span className="text-[#0F2B5B]">Global Manufacturer</span>
+              <span className="text-brand-navy">Global Manufacturer</span>
             </h2>
             <p className="text-slate-600 leading-relaxed mb-4 text-lg">
               Founded in {SITE.founded} in Xi&apos;an, Shaanxi, China, {SITE.name} started as a small thermal paper converter with a vision to become the most trusted OEM partner for global distributors.
@@ -244,7 +245,7 @@ export default async function AboutPage() {
                 { value: FACTORY.annualOutput, label: "Annual Output" },
                 { value: `${FACTORY.countriesServed}+`, label: "Countries Served" },
               ].map(({ value, label }) => (
-                <div key={label} className="bg-[#0F2B5B] text-white rounded-md p-4 text-center">
+                <div key={label} className="bg-brand-navy text-white rounded-md p-4 text-center">
                   <div className="text-2xl font-extrabold text-amber-400 mb-1">{value}</div>
                   <div className="text-xs text-slate-300">{label}</div>
                 </div>
@@ -258,10 +259,10 @@ export default async function AboutPage() {
       <div className="bg-slate-50 py-20">
         <div className="container">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 text-[#0F2B5B] text-sm font-semibold uppercase tracking-widest mb-4">
-              <div className="w-8 h-0.5 bg-[#0F2B5B]" />
+            <div className="inline-flex items-center gap-2 text-brand-navy text-sm font-semibold uppercase tracking-widest mb-4">
+              <div className="w-8 h-0.5 bg-brand-navy" />
               Manufacturing Capabilities
-              <div className="w-8 h-0.5 bg-[#0F2B5B]" />
+              <div className="w-8 h-0.5 bg-brand-navy" />
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
               Built for Bulk Orders
@@ -272,9 +273,9 @@ export default async function AboutPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {capabilities.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="bg-white rounded-lg p-6 border border-slate-200 hover:border-[#0F2B5B] transition-colors">
+              <div key={title} className="bg-white rounded-lg p-6 border border-slate-200 hover:border-brand-navy transition-colors">
                 <div className="w-12 h-12 bg-slate-50 border border-slate-200 rounded-md flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-[#0F2B5B]" />
+                  <Icon className="w-6 h-6 text-brand-navy" />
                 </div>
                 <h3 className="font-bold text-slate-900 mb-2">{title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
@@ -296,10 +297,10 @@ export default async function AboutPage() {
       {/* ── Certifications ───────────────────────────────────────── */}
       <div className="container py-20">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 text-[#0F2B5B] text-sm font-semibold uppercase tracking-widest mb-4">
-            <div className="w-8 h-0.5 bg-[#0F2B5B]" />
+          <div className="inline-flex items-center gap-2 text-brand-navy text-sm font-semibold uppercase tracking-widest mb-4">
+            <div className="w-8 h-0.5 bg-brand-navy" />
             Quality & Compliance
-            <div className="w-8 h-0.5 bg-[#0F2B5B]" />
+            <div className="w-8 h-0.5 bg-brand-navy" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
             Certifications &amp; Standards
@@ -310,8 +311,8 @@ export default async function AboutPage() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {certifications.map(({ name, desc, icon: Icon }) => (
-            <div key={name} className="text-center p-5 bg-white rounded-lg border border-slate-200 hover:border-[#0F2B5B] transition-colors">
-              <div className="w-12 h-12 rounded-md flex items-center justify-center mx-auto mb-3 bg-slate-50 border border-slate-200 text-[#0F2B5B]">
+            <div key={name} className="text-center p-5 bg-white rounded-lg border border-slate-200 hover:border-brand-navy transition-colors">
+              <div className="w-12 h-12 rounded-md flex items-center justify-center mx-auto mb-3 bg-slate-50 border border-slate-200 text-brand-navy">
                 <Icon className="w-6 h-6" />
               </div>
               <div className="font-bold text-slate-900 text-sm mb-1">{name}</div>
@@ -322,7 +323,7 @@ export default async function AboutPage() {
       </div>
 
       {/* ── Timeline ─────────────────────────────────────────────── */}
-      <div className="bg-[#0F2B5B] py-20">
+      <div className="bg-brand-navy py-20">
         <div className="container">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">
@@ -346,7 +347,7 @@ export default async function AboutPage() {
                       <p className="text-slate-300 text-sm leading-relaxed">{event}</p>
                     </div>
                   </div>
-                  <div className="w-5 h-5 bg-amber-400 rounded-full border-4 border-[#0F2B5B] flex-shrink-0 hidden lg:block ring-2 ring-white/20" />
+                  <div className="w-5 h-5 bg-amber-400 rounded-full border-4 border-brand-navy flex-shrink-0 hidden lg:block ring-2 ring-white/20" />
                   <div className="flex-1 hidden lg:block" />
                 </div>
               ))}
@@ -358,10 +359,10 @@ export default async function AboutPage() {
       {/* ── Why Choose Us ────────────────────────────────────────── */}
       <div className="container py-20">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 text-[#0F2B5B] text-sm font-semibold uppercase tracking-widest mb-4">
-            <div className="w-8 h-0.5 bg-[#0F2B5B]" />
+          <div className="inline-flex items-center gap-2 text-brand-navy text-sm font-semibold uppercase tracking-widest mb-4">
+            <div className="w-8 h-0.5 bg-brand-navy" />
             Why Buyers Choose Us
-            <div className="w-8 h-0.5 bg-[#0F2B5B]" />
+            <div className="w-8 h-0.5 bg-brand-navy" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
             The Trusted Choice for Distributors
@@ -369,7 +370,7 @@ export default async function AboutPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {whyUs.map(({ icon: Icon, stat, label, desc }) => (
-            <div key={label} className="text-center p-8 bg-[#0F2B5B] text-white rounded-lg">
+            <div key={label} className="text-center p-8 bg-brand-navy text-white rounded-lg">
               <div className="w-14 h-14 bg-amber-500/20 rounded-md flex items-center justify-center mx-auto mb-4">
                 <Icon className="w-7 h-7 text-amber-400" />
               </div>
@@ -382,7 +383,7 @@ export default async function AboutPage() {
       </div>
 
       {/* ── CTA ──────────────────────────────────────────────────── */}
-      <div className="bg-[#0A1F44] py-16">
+      <div className="bg-brand-navy-alt py-16">
         <div className="container text-center">
           <h2 className="text-3xl font-extrabold text-white mb-4">
             Ready to Start a Partnership?
@@ -392,16 +393,18 @@ export default async function AboutPage() {
             Get a quote within 24 hours.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact"
-              className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-8 py-4 rounded-md transition-colors text-base">
-              Send Inquiry Now <ArrowRight className="w-5 h-5" />
-            </Link>
-            <a href={`${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I'd like to discuss a partnership for thermal paper rolls.")}`}
-              target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-white/25 bg-white/10 hover:bg-white/15 text-white font-bold px-8 py-4 rounded-md transition-colors text-base">
-              <MessageSquare className="w-5 h-5 text-amber-400" />
-              WhatsApp Us
-            </a>
+            <Button asChild variant="amber" size="cta-lg">
+              <Link href="/contact">
+                Send Inquiry Now <ArrowRight className="w-5 h-5" />
+              </Link>
+            </Button>
+            <Button asChild variant="outlineLight" size="cta-lg" className="bg-white/10 hover:bg-white/15 hover:border-white/25">
+              <a href={`${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I'd like to discuss a partnership for thermal paper rolls.")}`}
+                target="_blank" rel="noopener noreferrer">
+                <MessageSquare className="w-5 h-5 text-amber-400" />
+                WhatsApp Us
+              </a>
+            </Button>
           </div>
         </div>
       </div>

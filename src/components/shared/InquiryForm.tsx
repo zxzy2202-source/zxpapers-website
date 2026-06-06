@@ -158,7 +158,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
         <Button
           variant="link"
           onClick={() => setStatus("idle")}
-          className="text-xs text-[#0F2B5B]"
+          className="text-xs text-brand-navy"
         >
           Send another inquiry
         </Button>
@@ -171,7 +171,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
       ref={formRef}
       onSubmit={handleSubmit}
       noValidate
-      className={`space-y-3 transition-all duration-300 ${highlighted ? "ring-2 ring-[#0F2B5B] rounded-md p-3 bg-slate-50" : ""}`}
+      className={`space-y-3 transition-all duration-300 ${highlighted ? "ring-2 ring-brand-navy rounded-md p-3 bg-slate-50" : ""}`}
     >
       {!compact && (
         <h3 className="text-lg font-semibold tracking-[-0.02em] text-slate-900 mb-4">
@@ -180,7 +180,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
       )}
 
       {status === "error" && (
-        <div className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg px-3 py-2.5 text-sm text-red-700">
+        <div role="alert" className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg px-3 py-2.5 text-sm text-red-700">
           <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
           <span>Something went wrong. Please try again or contact us directly at <a href="mailto:Sales@zxpapers.com" className="underline">Sales@zxpapers.com</a>.</span>
         </div>
@@ -188,84 +188,104 @@ export default function InquiryForm({ productName, compact, initialMessage, form
 
       <div className={compact ? "space-y-2.5" : "grid grid-cols-1 sm:grid-cols-2 gap-3"}>
         <div>
-          <Label htmlFor="inquiry-name" className="sr-only">Your Name</Label>
+          <Label htmlFor="inquiry-name" className="block text-xs font-medium text-slate-700 mb-1.5">
+            Your Name <span className="text-red-500" aria-hidden="true">*</span>
+          </Label>
           <Input
             id="inquiry-name"
             type="text"
             name="name"
-            placeholder="Your Name *"
+            placeholder="Your full name"
             required
+            aria-invalid={errors.name ? true : undefined}
+            aria-describedby={errors.name ? "inquiry-name-error" : undefined}
             className={errors.name ? errorInputClass : ""}
           />
-          {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
+          {errors.name && <p id="inquiry-name-error" role="alert" className="text-xs text-red-600 mt-1">{errors.name}</p>}
         </div>
         <div>
-          <Label htmlFor="inquiry-email" className="sr-only">Email Address</Label>
+          <Label htmlFor="inquiry-email" className="block text-xs font-medium text-slate-700 mb-1.5">
+            Email Address <span className="text-red-500" aria-hidden="true">*</span>
+          </Label>
           <Input
             id="inquiry-email"
             type="email"
             name="email"
-            placeholder="Email Address *"
+            placeholder="you@company.com"
             required
+            aria-invalid={errors.email ? true : undefined}
+            aria-describedby={errors.email ? "inquiry-email-error" : undefined}
             className={errors.email ? errorInputClass : ""}
           />
-          {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
+          {errors.email && <p id="inquiry-email-error" role="alert" className="text-xs text-red-600 mt-1">{errors.email}</p>}
         </div>
       </div>
 
       <div>
-        <Label htmlFor="inquiry-company" className="sr-only">Company Name</Label>
+        <Label htmlFor="inquiry-company" className="block text-xs font-medium text-slate-700 mb-1.5">
+          Company Name
+        </Label>
         <Input
           id="inquiry-company"
           type="text"
           name="company"
-          placeholder="Company Name"
+          placeholder="Your company"
         />
       </div>
 
       <div>
-        <Label htmlFor="inquiry-country" className="sr-only">Country / Region</Label>
+        <Label htmlFor="inquiry-country" className="block text-xs font-medium text-slate-700 mb-1.5">
+          Country / Region <span className="text-red-500" aria-hidden="true">*</span>
+        </Label>
         <Input
           id="inquiry-country"
           type="text"
           name="country"
-          placeholder="Country / Region *"
+          placeholder="Country or region"
           required
           defaultValue={defaultCountry}
           key={defaultCountry} // Force re-render when defaultCountry is set
+          aria-invalid={errors.country ? true : undefined}
+          aria-describedby={errors.country ? "inquiry-country-error" : undefined}
           className={errors.country ? errorInputClass : ""}
         />
-        {errors.country && <p className="text-xs text-red-500 mt-1">{errors.country}</p>}
+        {errors.country && <p id="inquiry-country-error" role="alert" className="text-xs text-red-600 mt-1">{errors.country}</p>}
       </div>
 
       <div>
-        <Label htmlFor="inquiry-phone" className="sr-only">Phone / WhatsApp</Label>
+        <Label htmlFor="inquiry-phone" className="block text-xs font-medium text-slate-700 mb-1.5">
+          Phone / WhatsApp <span className="text-slate-400 font-normal">(optional)</span>
+        </Label>
         <Input
           id="inquiry-phone"
           type="tel"
           name="phone"
-          placeholder="Phone / WhatsApp (optional)"
+          placeholder="Phone / WhatsApp"
         />
       </div>
 
       <div>
-        <Label htmlFor="inquiry-message" className="sr-only">Message</Label>
+        <Label htmlFor="inquiry-message" className="block text-xs font-medium text-slate-700 mb-1.5">
+          Message <span className="text-red-500" aria-hidden="true">*</span>
+        </Label>
         <Textarea
           ref={messageRef}
           id="inquiry-message"
           name="message"
           rows={compact ? 3 : 4}
           placeholder={`Message${productName ? ` about ${productName}` : ""} — quantity, size, customization...`}
+          aria-invalid={errors.message ? true : undefined}
+          aria-describedby={errors.message ? "inquiry-message-error" : undefined}
           className={`resize-none ${errors.message ? errorInputClass : ""}`}
           defaultValue={initialMessage || ""}
         />
-        {errors.message && <p className="text-xs text-red-500 mt-1">{errors.message}</p>}
+        {errors.message && <p id="inquiry-message-error" role="alert" className="text-xs text-red-600 mt-1">{errors.message}</p>}
       </div>
 
       <Button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full bg-[#0F2B5B] hover:bg-[#12346d] disabled:bg-slate-300 text-white font-semibold text-sm py-3 h-auto rounded-md transition-colors duration-200"
+        className="w-full bg-brand-navy hover:bg-brand-navy-hover disabled:bg-slate-300 text-white font-semibold text-sm py-3 h-auto rounded-md transition-colors duration-200"
       >
         {status === "submitting" ? (
           <>

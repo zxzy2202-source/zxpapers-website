@@ -124,9 +124,9 @@ export default function MarketsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#0F2B5B] via-[#1a3a6e] to-[#0d2347] text-white py-20 px-4">
+      <section className="bg-gradient-to-br from-brand-navy via-brand-navy-light to-brand-navy-shade text-white py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <div className="inline-block bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">Global Markets</div>
+          <div className="inline-block bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">Global Markets</div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Thermal Paper Supplier for<br /><span className="text-amber-400">80+ Countries Worldwide</span>
           </h1>
@@ -134,7 +134,7 @@ export default function MarketsPage() {
             Dedicated market support for Africa, Southeast Asia, and Middle East. Factory-direct pricing, CIF quotes, and local market expertise.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">Get Market-Specific Quote</Link>
+            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-3 rounded-lg transition-colors">Get Market-Specific Quote</Link>
             <a href={`https://wa.me/${SITE.whatsapp}?text=${whatsappMsg}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">WhatsApp Us</a>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
@@ -156,7 +156,7 @@ export default function MarketsPage() {
       {/* Regions */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-[#0F2B5B] mb-4 text-center">Our Key Markets</h2>
+          <h2 className="text-3xl font-bold text-brand-navy mb-4 text-center">Our Key Markets</h2>
           <p className="text-gray-500 text-center mb-12 max-w-2xl mx-auto">Click on any region or country to see market-specific product recommendations, logistics information, and pricing guidance.</p>
           <div className="space-y-10">
             {regions.map((region) => (
@@ -164,7 +164,7 @@ export default function MarketsPage() {
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
                   <div>
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-2xl font-bold text-[#0F2B5B]">{region.name}</h3>
+                      <h3 className="text-2xl font-bold text-brand-navy">{region.name}</h3>
                       <span className={`text-xs font-bold px-3 py-1 rounded-full ${region.badgeColor === "amber" ? "bg-amber-100 text-amber-700" : region.badgeColor === "blue" ? "bg-blue-100 text-blue-700" : "bg-purple-100 text-purple-700"}`}>{region.badge}</span>
                     </div>
                     <p className="text-gray-600 max-w-xl">{region.description}</p>
@@ -172,7 +172,7 @@ export default function MarketsPage() {
                   <div className="flex gap-3 mt-4 md:mt-0">
                     {region.stats.map((s) => (
                       <div key={s.label} className="bg-white rounded-xl px-4 py-3 text-center shadow-sm min-w-[80px]">
-                        <div className="text-xl font-bold text-[#0F2B5B]">{s.value}</div>
+                        <div className="text-xl font-bold text-brand-navy">{s.value}</div>
                         <div className="text-xs text-gray-500">{s.label}</div>
                       </div>
                     ))}
@@ -182,7 +182,7 @@ export default function MarketsPage() {
                   {region.countries.map((c) => (
                     <Link key={c.name} href={c.href} className="bg-white rounded-xl p-3 text-center hover:shadow-md transition-shadow border border-gray-100 hover:border-blue-300 group">
                       <div className="mb-1"><CountryFlag code={c.code} label={c.name} className="w-8 h-auto mx-auto" /></div>
-                      <div className="text-sm font-bold text-[#0F2B5B] group-hover:text-blue-600">{c.name}</div>
+                      <div className="text-sm font-bold text-brand-navy group-hover:text-blue-600">{c.name}</div>
                       <div className="text-xs text-gray-400 mt-0.5">{c.badge}</div>
                     </Link>
                   ))}
@@ -201,7 +201,7 @@ export default function MarketsPage() {
       {/* Why Choose Us */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-[#0F2B5B] mb-12">Why Global Distributors Choose ZhixinPaper</h2>
+          <h2 className="text-3xl font-bold text-brand-navy mb-12">Why Global Distributors Choose ZhixinPaper</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               { icon: "🏭", title: "Factory Direct", desc: "No middlemen. Direct from our 50,000m² factory in China. Best FOB/CIF prices guaranteed." },
@@ -213,7 +213,7 @@ export default function MarketsPage() {
             ].map((f) => (
               <div key={f.title} className="bg-white rounded-xl p-6 shadow-sm text-left">
                 <div className="text-3xl mb-3">{f.icon}</div>
-                <h3 className="font-bold text-[#0F2B5B] mb-2">{f.title}</h3>
+                <h3 className="font-bold text-brand-navy mb-2">{f.title}</h3>
                 <p className="text-sm text-gray-600">{f.desc}</p>
               </div>
             ))}
@@ -222,12 +222,12 @@ export default function MarketsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 px-4 bg-[#0F2B5B] text-white text-center">
+      <section className="py-16 px-4 bg-brand-navy text-white text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Find Your Market&apos;s Best Solution</h2>
           <p className="text-blue-200 mb-8">Tell us your country and we&apos;ll send you a tailored CIF quote with the most popular sizes for your market within 24 hours.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">Send Inquiry</Link>
+            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-3 rounded-lg transition-colors">Send Inquiry</Link>
             <a href={`https://wa.me/${SITE.whatsapp}?text=${whatsappMsg}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">WhatsApp for Quick Quote</a>
           </div>
         </div>

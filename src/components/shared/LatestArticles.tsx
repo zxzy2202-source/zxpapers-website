@@ -44,7 +44,7 @@ export default async function LatestArticles({
           </div>
           <Link
             href="/blog"
-            className="font-sora inline-flex items-center gap-1.5 text-sm font-bold text-[#0F2B5B] hover:gap-2.5 transition-all"
+            className="font-sora inline-flex items-center gap-1.5 text-sm font-bold text-brand-navy hover:gap-2.5 transition-all"
           >
             View all articles <ArrowRight className="w-4 h-4" />
           </Link>
@@ -55,7 +55,7 @@ export default async function LatestArticles({
             <Link
               key={post.id}
               href={`/blog/${post.slug}`}
-              className="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-[#0F2B5B] hover:shadow-xl transition-all flex flex-col"
+              className="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-brand-navy hover:shadow-xl transition-all flex flex-col"
             >
               {post.cover ? (
                 <div className="relative aspect-[16/9] bg-slate-100 overflow-hidden">
@@ -83,7 +83,7 @@ export default async function LatestArticles({
                     })}
                   </div>
                 )}
-                <h3 className="font-sora font-bold text-lg text-slate-900 group-hover:text-[#0F2B5B] transition-colors mb-2 line-clamp-2 leading-snug">
+                <h3 className="font-sora font-bold text-lg text-slate-900 group-hover:text-brand-navy transition-colors mb-2 line-clamp-2 leading-snug">
                   {post.title}
                 </h3>
                 {post.excerpt && (

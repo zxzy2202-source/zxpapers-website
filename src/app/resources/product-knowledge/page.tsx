@@ -68,7 +68,7 @@ export default function ProductKnowledgePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <div className="bg-[#0F2B5B] text-white py-14">
+      <div className="bg-brand-navy text-white py-14">
         <div className="container">
           <div className="flex items-center gap-2 mb-3">
             <Link href="/resources" className="text-amber-400 text-xs font-bold uppercase tracking-wider hover:underline">Resources</Link>

@@ -40,6 +40,25 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Can Labels",
+  "description":
+    "OEM can labels for beverage, food, pet food, paint, and industrial cans. Full-wrap, moisture-resistant, food-safe, BPA-free options.",
+  "url": `${SITE.domain}/products/can-labels`,
+  "isPartOf": { "@id": `${SITE.domain}/#website` },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": canLabelSizes.map((size, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "name": `${size.label} Can Labels`,
+      "url": `${SITE.domain}/products/can-labels/${size.slug}`,
+    })),
+  },
+};
 export default async function CanLabelsPage() {
   const canLabelsImage = await getSlotImage("can-labels:hero", CAN_LABELS_IMG);
   return (
@@ -47,6 +66,10 @@ export default async function CanLabelsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
       />
       {/* Breadcrumb */}
       <div className="bg-slate-50 py-10">

@@ -47,7 +47,7 @@ export default async function PackagingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="relative bg-[#0F2B5B] text-white py-14 overflow-hidden">
+      <div className="relative bg-brand-navy text-white py-14 overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${heroImage})` }} />
         <div className="relative container">
           <div className="text-amber-400 text-sm font-semibold mb-3">
@@ -71,7 +71,7 @@ export default async function PackagingPage() {
                 ))}
               </div>
             </div>
-            <Link href="/contact" className="font-sora inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3.5 rounded-xl transition-all text-sm">
+            <Link href="/contact" className="font-sora inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-blue text-white font-bold px-7 py-3.5 rounded-xl transition-all text-sm">
               Request Packaging Quote <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

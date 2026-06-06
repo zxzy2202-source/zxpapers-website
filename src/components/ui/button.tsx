@@ -18,12 +18,27 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // ── Brand variants (single source of truth for site CTAs) ──
+        amber:
+          "bg-amber-500 text-slate-950 hover:bg-amber-400 font-semibold",
+        navy:
+          "bg-brand-navy text-white hover:bg-brand-navy-hover font-semibold",
+        whatsapp:
+          "bg-[#225d47] text-white border border-white/10 hover:bg-[#2b775a] font-semibold",
+        outlineLight:
+          "border border-white/25 text-white hover:border-white/45 hover:bg-white/10 font-semibold",
+        outlineBrand:
+          "border border-slate-300 text-slate-900 hover:bg-slate-50 font-semibold",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
+        // CTA size matches existing .btn-* and PageHero buttons (px-6 py-3)
+        cta: "h-auto px-6 py-3 text-sm",
+        // Large CTA for section closers (px-8 py-4)
+        "cta-lg": "h-auto px-8 py-4 text-base",
       },
     },
     defaultVariants: {

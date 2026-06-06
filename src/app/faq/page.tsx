@@ -55,7 +55,7 @@ export default function FAQPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-[#0F2B5B] text-white py-16">
+      <div className="bg-brand-navy text-white py-16">
         <div className="container">
           <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 font-sora">
             Frequently Asked <span className="text-amber-400">Questions</span>

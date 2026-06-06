@@ -136,10 +136,10 @@ export default async function UAEPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* ── Hero ── */}
-      <section className="relative bg-gradient-to-br from-[#0F2B5B] via-[#1a3a6e] to-[#0d2347] text-white py-20 px-4 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-brand-navy via-brand-navy-light to-brand-navy-shade text-white py-20 px-4 overflow-hidden">
         <div className="absolute inset-0 opacity-10"
           style={{ backgroundImage: `url('${heroImage}')`, backgroundSize: "cover", backgroundPosition: "center" }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0F2B5B]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/80 to-transparent" />
         <div className="relative max-w-6xl mx-auto">
           <nav className="text-sm text-blue-300 mb-4 flex items-center gap-1 flex-wrap">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -152,7 +152,7 @@ export default async function UAEPage() {
           </nav>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-block bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
+              <div className="inline-block bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
                 <CountryFlag code="AE" label="UAE" className="w-5 inline-block align-middle" /> UAE Market
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
@@ -168,7 +168,7 @@ export default async function UAEPage() {
                 ))}
               </div>
               <div className="flex flex-wrap gap-4">
-                <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-3 rounded-lg transition-colors flex items-center gap-2">
+                <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-3 rounded-lg transition-colors flex items-center gap-2">
                   Get CIF Jebel Ali Quote <ArrowRight className="w-4 h-4" />
                 </Link>
                 <a href={`https://wa.me/${SITE.whatsapp}?text=${waMsg}`} target="_blank" rel="noopener noreferrer"
@@ -199,7 +199,7 @@ export default async function UAEPage() {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-[#0F2B5B] mb-3">Popular Products for UAE Market</h2>
+            <h2 className="text-3xl font-bold text-brand-navy mb-3">Popular Products for UAE Market</h2>
             <p className="text-gray-500 max-w-2xl mx-auto">Most-ordered thermal paper sizes by UAE distributors. All BPA-free and compatible with major POS brands.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
@@ -207,7 +207,7 @@ export default async function UAEPage() {
               <div key={p.size} className="bg-white rounded-2xl border border-gray-200 p-6 hover:border-blue-300 hover:shadow-md transition-all">
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-[#0F2B5B]">{p.size}</h3>
+                    <h3 className="text-xl font-bold text-brand-navy">{p.size}</h3>
                     <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${p.badgeColor}`}>{p.badge}</span>
                   </div>
                   <span className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-lg">MOQ: {p.moq}</span>
@@ -222,7 +222,7 @@ export default async function UAEPage() {
                 </div>
                 <p className="text-xs text-blue-600 mb-4">Use case: {p.use}</p>
                 <div className="flex gap-2">
-                  <Link href={p.href} className="flex-1 text-center text-sm bg-[#0F2B5B] text-white py-2 rounded-lg hover:bg-blue-800 transition-colors">View Details</Link>
+                  <Link href={p.href} className="flex-1 text-center text-sm bg-brand-navy text-white py-2 rounded-lg hover:bg-blue-800 transition-colors">View Details</Link>
                   <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hello, I need a CIF Jebel Ali quote for ${p.size} thermal paper rolls.`)}`}
                     target="_blank" rel="noopener noreferrer"
                     className="flex-1 text-center text-sm bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition-colors">WhatsApp Quote</a>
@@ -236,8 +236,8 @@ export default async function UAEPage() {
       {/* ── Logistics ── */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-[#0F2B5B] mb-8 text-center">Shipping to UAE (Jebel Ali)</h2>
-          <div className="bg-[#0F2B5B] rounded-2xl p-8 text-white mb-6">
+          <h2 className="text-3xl font-bold text-brand-navy mb-8 text-center">Shipping to UAE (Jebel Ali)</h2>
+          <div className="bg-brand-navy rounded-2xl p-8 text-white mb-6">
             <div className="grid md:grid-cols-4 gap-6 text-center">
               {[
                 { icon: <Clock className="w-6 h-6 text-amber-400 mx-auto mb-2" />, val: "18–22 Days", label: "CIF Jebel Ali" },
@@ -261,7 +261,7 @@ export default async function UAEPage() {
               { title: "GCC Re-export", detail: "UAE distributors can re-export to Saudi Arabia, Qatar, Kuwait, Oman, Bahrain with our COO documents." },
             ].map((l) => (
               <div key={l.title} className="bg-white border border-gray-200 rounded-xl p-5">
-                <h3 className="font-bold text-[#0F2B5B] mb-2 flex items-center gap-2">
+                <h3 className="font-bold text-brand-navy mb-2 flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500" /> {l.title}
                 </h3>
                 <p className="text-sm text-gray-600">{l.detail}</p>
@@ -274,12 +274,12 @@ export default async function UAEPage() {
       {/* ── Why Us ── */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-[#0F2B5B] mb-8 text-center">Why UAE Distributors Choose ZhixinPaper</h2>
+          <h2 className="text-3xl font-bold text-brand-navy mb-8 text-center">Why UAE Distributors Choose ZhixinPaper</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {whyUs.map((w) => (
               <div key={w.title} className="bg-gray-50 rounded-xl p-6">
                 <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-4">{w.icon}</div>
-                <h3 className="font-bold text-[#0F2B5B] mb-2">{w.title}</h3>
+                <h3 className="font-bold text-brand-navy mb-2">{w.title}</h3>
                 <p className="text-sm text-gray-600">{w.desc}</p>
               </div>
             ))}
@@ -290,11 +290,11 @@ export default async function UAEPage() {
       {/* ── FAQ ── */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-[#0F2B5B] mb-8 text-center">UAE Buyer FAQ</h2>
+          <h2 className="text-3xl font-bold text-brand-navy mb-8 text-center">UAE Buyer FAQ</h2>
           <div className="space-y-4">
             {faqs.map((f) => (
               <div key={f.q} className="bg-white border border-gray-200 rounded-xl p-6">
-                <h3 className="font-bold text-[#0F2B5B] mb-2 flex items-start gap-2">
+                <h3 className="font-bold text-brand-navy mb-2 flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> {f.q}
                 </h3>
                 <p className="text-gray-600 text-sm pl-7">{f.a}</p>
@@ -308,7 +308,7 @@ export default async function UAEPage() {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-[#0F2B5B] mb-3">Get Your UAE CIF Quote</h2>
+            <h2 className="text-3xl font-bold text-brand-navy mb-3">Get Your UAE CIF Quote</h2>
             <p className="text-gray-500">CIF Jebel Ali pricing within 24 hours. L/C accepted. Arabic OEM available.</p>
           </div>
           <InquiryForm />
@@ -316,12 +316,12 @@ export default async function UAEPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-16 px-4 bg-[#0F2B5B] text-white text-center">
+      <section className="py-16 px-4 bg-brand-navy text-white text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Ready to Source Thermal Paper for UAE?</h2>
           <p className="text-blue-200 mb-8">CIF Jebel Ali quotes within 24 hours. L/C accepted. GCC re-export documentation available.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">Send Inquiry</Link>
+            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-3 rounded-lg transition-colors">Send Inquiry</Link>
             <a href={`https://wa.me/${SITE.whatsapp}?text=${waMsg}`} target="_blank" rel="noopener noreferrer"
               className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">WhatsApp for Quick Quote</a>
           </div>

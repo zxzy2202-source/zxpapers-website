@@ -43,7 +43,7 @@ export default function OEMPartnershipPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-[#0F2B5B] text-white py-14">
+      <div className="bg-brand-navy text-white py-14">
         <div className="container">
           <div className="flex items-center gap-2 mb-3">
             <Link href="/contact" className="text-amber-400 text-xs font-bold uppercase tracking-wider hover:underline">Contact</Link>
@@ -77,7 +77,7 @@ export default function OEMPartnershipPage() {
                   { step: "04", text: "Sample production begins within 3–5 business days" },
                 ].map(({ step, text }) => (
                   <div key={step} className="flex items-start gap-3">
-                    <div className="font-sora w-7 h-7 bg-[#0F2B5B] text-white rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0">{step}</div>
+                    <div className="font-sora w-7 h-7 bg-brand-navy text-white rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0">{step}</div>
                     <p className="text-sm text-slate-700 leading-relaxed">{text}</p>
                   </div>
                 ))}

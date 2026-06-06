@@ -89,7 +89,7 @@ export default async function EquipmentPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="relative bg-[#0F2B5B] text-white py-16 overflow-hidden">
+      <div className="relative bg-brand-navy text-white py-16 overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${equipmentHeroImage})` }} />
         <div className="relative container">
           <div className="text-amber-400 text-sm font-semibold mb-3">
@@ -114,7 +114,7 @@ export default async function EquipmentPage() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[{ value: "12", label: "Production Lines" }, { value: "50,000 m²", label: "Factory Area" }, { value: "500M+", label: "Rolls/Year Capacity" }, { value: "24/7", label: "Operation" }].map(({ value, label }) => (
             <div key={label} className="bg-slate-50 rounded-2xl p-5 text-center">
-              <div className="font-sora text-2xl font-extrabold text-[#0F2B5B]">{value}</div>
+              <div className="font-sora text-2xl font-extrabold text-brand-navy">{value}</div>
               <div className="text-xs text-slate-500 mt-1">{label}</div>
             </div>
           ))}
@@ -154,7 +154,7 @@ export default async function EquipmentPage() {
             <h2 className="font-sora text-2xl font-extrabold text-slate-900 mb-2">Interested in a Factory Visit?</h2>
             <p className="text-slate-600 text-sm max-w-lg">We welcome qualified buyers and distributors to visit our facility. Virtual factory tours are also available via video call.</p>
           </div>
-          <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#1E6FD9] text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
+          <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-blue text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
             Schedule a Visit <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

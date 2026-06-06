@@ -11,9 +11,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#071325] text-slate-300">
+    <footer className="bg-brand-ink text-slate-300">
       {/* 鈹€鈹€ Trust bar 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ */}
-      <div className="border-b border-white/10 bg-[#0b1f42]">
+      <div className="border-b border-white/10 bg-brand-navy-alt">
         <div className="container py-5">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             {[
@@ -100,7 +100,7 @@ export default function Footer() {
             {/* WhatsApp CTA */}
             <a href={`${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a quote for thermal paper rolls.")}`}
               target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#0F2B5B] hover:bg-[#12346d] text-white text-sm font-semibold px-4 py-2.5 rounded-md transition-colors w-full justify-center">
+              className="inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-navy-hover text-white text-sm font-semibold px-4 py-2.5 rounded-md transition-colors w-full justify-center">
               <MessageSquare className="w-4 h-4" />
               WhatsApp for Quick Quote
             </a>

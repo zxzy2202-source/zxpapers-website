@@ -152,7 +152,7 @@ export default function Header() {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "shadow-sm" : ""}`}>
 
       {/* ── Top bar ── */}
-      <div className="bg-[#0b1f42] text-slate-300 text-[11px] border-b border-white/10">
+      <div className="bg-brand-navy-alt text-slate-300 text-[11px] border-b border-white/10">
         <div className="container flex items-center justify-between py-1.5">
           <div className="flex items-center gap-4">
             <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="flex items-center gap-1 hover:text-white transition-colors">
@@ -202,8 +202,8 @@ export default function Header() {
                     href={(item as NavItem).href}
                     className={`px-3 py-2 text-sm font-medium transition-colors rounded-md whitespace-nowrap ${
                       pathname === (item as NavItem).href
-                        ? "text-[#0F2B5B] bg-slate-100"
-                        : "text-slate-700 hover:bg-slate-50 hover:text-[#0F2B5B]"
+                        ? "text-brand-navy bg-slate-100"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-brand-navy"
                     }`}
                   >
                     {item.label}
@@ -225,7 +225,7 @@ export default function Header() {
                 >
                   <button
                     type="button"
-                    className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-700 hover:text-[#0F2B5B] transition-colors rounded-md hover:bg-slate-50 whitespace-nowrap"
+                    className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-700 hover:text-brand-navy transition-colors rounded-md hover:bg-slate-50 whitespace-nowrap"
                     aria-expanded={activeDropdown === item.label}
                     aria-haspopup="true"
                     onClick={() => {
@@ -262,7 +262,7 @@ export default function Header() {
                               <Link
                                 key={sub.href}
                                 href={sub.href}
-                                className="flex items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors"
+                                className="flex items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-100 hover:text-brand-navy transition-colors"
                                 role="menuitem"
                               >
                                 <NavLabelWithIcon label={sub.label} countryCode={sub.countryCode} />
@@ -270,7 +270,7 @@ export default function Header() {
                             ))}
                             {/* CTA panel */}
                             <div className="mx-3 mt-4 p-3 bg-slate-100 rounded-md border border-slate-200">
-                              <div className="text-[10px] font-bold text-[#0F2B5B] uppercase tracking-wider mb-1">
+                              <div className="text-[10px] font-bold text-brand-navy uppercase tracking-wider mb-1">
                                 Get CIF Quote
                               </div>
                               <div className="text-[11px] text-slate-600 mb-2 leading-snug">
@@ -278,7 +278,7 @@ export default function Header() {
                               </div>
                               <Link
                                 href="/contact"
-                                className="flex items-center gap-1 text-[11px] font-semibold text-[#0F2B5B] hover:text-[#12346d] transition-colors"
+                                className="flex items-center gap-1 text-[11px] font-semibold text-brand-navy hover:text-brand-navy-hover transition-colors"
                               >
                                 Request Quote <ArrowRight className="w-3 h-3" />
                               </Link>
@@ -297,7 +297,7 @@ export default function Header() {
                                   <NavLabelWithIcon
                                     label={rg.region}
                                     icon={rg.regionIcon}
-                                    textClassName="text-sm font-semibold text-slate-800 group-hover:text-[#0F2B5B] transition-colors"
+                                    textClassName="text-sm font-semibold text-slate-800 group-hover:text-brand-navy transition-colors"
                                   />
                                   {rg.badge && (
                                     <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-semibold ${BADGE_COLORS[rg.badgeColor ?? "amber"] ?? BADGE_COLORS.amber}`}>
@@ -311,14 +311,14 @@ export default function Header() {
                                     <Link
                                       key={country.href}
                                       href={country.href}
-                                      className="flex items-center justify-between py-2 px-2 rounded-md text-sm text-slate-600 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors group"
+                                      className="flex items-center justify-between py-2 px-2 rounded-md text-sm text-slate-600 hover:bg-slate-100 hover:text-brand-navy transition-colors group"
                                       role="menuitem"
                                     >
                                       <span className="flex items-center gap-2 min-w-0">
                                         {country.countryCode ? (
                                           <CountryFlag code={country.countryCode} label={country.label} className="w-5" />
                                         ) : (
-                                          <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-[#0F2B5B] transition-colors flex-shrink-0" />
+                                          <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-brand-navy transition-colors flex-shrink-0" />
                                         )}
                                         <span className="truncate">{country.label}</span>
                                       </span>
@@ -333,7 +333,7 @@ export default function Header() {
                                 {/* View all link */}
                                 <Link
                                   href={rg.regionHref}
-                                  className="flex items-center gap-1 mt-2 px-2 text-[11px] font-semibold text-[#0F2B5B] hover:text-[#12346d] transition-colors"
+                                  className="flex items-center gap-1 mt-2 px-2 text-[11px] font-semibold text-brand-navy hover:text-brand-navy-hover transition-colors"
                                 >
                                   View all <ArrowRight className="w-3 h-3" />
                                 </Link>
@@ -353,7 +353,7 @@ export default function Header() {
                               <Link
                                 key={sub.href}
                                 href={sub.href}
-                                className="flex items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors whitespace-nowrap"
+                                className="flex items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-100 hover:text-brand-navy transition-colors whitespace-nowrap"
                                 role="menuitem"
                               >
                                 {sub.label}
@@ -377,11 +377,11 @@ export default function Header() {
                                       <Link
                                         key={sz.href + sz.label}
                                         href={sz.href}
-                                        className="flex items-center justify-between py-2 px-2 rounded-md text-sm text-slate-700 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors group whitespace-nowrap"
+                                        className="flex items-center justify-between py-2 px-2 rounded-md text-sm text-slate-700 hover:bg-slate-100 hover:text-brand-navy transition-colors group whitespace-nowrap"
                                         role="menuitem"
                                       >
                                         <span className="flex items-center gap-2 whitespace-nowrap">
-                                          <span className="w-1.5 h-1.5 rounded-full bg-[#0F2B5B] group-hover:scale-150 transition-transform flex-shrink-0" />
+                                          <span className="w-1.5 h-1.5 rounded-full bg-brand-navy group-hover:scale-150 transition-transform flex-shrink-0" />
                                           {sz.label}
                                         </span>
                                         {sz.badge && (
@@ -400,7 +400,7 @@ export default function Header() {
                                 <span className="text-xs text-slate-400">Need a custom size?</span>
                                 <Link
                                   href="/oem/custom-printing"
-                                  className="text-xs font-semibold text-[#0F2B5B] hover:text-[#12346d] transition-colors"
+                                  className="text-xs font-semibold text-brand-navy hover:text-brand-navy-hover transition-colors"
                                 >
                                   OEM Custom Printing →
                                 </Link>
@@ -418,11 +418,11 @@ export default function Header() {
                                 <Link
                                   key={feat.href}
                                   href={feat.href}
-                                  className="flex items-center justify-between px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-100 hover:text-[#0F2B5B] transition-colors group"
+                                  className="flex items-center justify-between px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-100 hover:text-brand-navy transition-colors group"
                                   role="menuitem"
                                 >
                                   <span className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-[#0F2B5B] group-hover:scale-150 transition-transform" />
+                                    <span className="w-1.5 h-1.5 rounded-full bg-brand-navy group-hover:scale-150 transition-transform" />
                                     {feat.label}
                                   </span>
                                   {feat.badge && (
@@ -447,7 +447,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0 ml-2">
             <Link
               href="/contact"
-              className="bg-[#0F2B5B] hover:bg-[#12346d] text-white font-semibold text-sm px-4 py-2 rounded-md transition-colors duration-200 whitespace-nowrap"
+              className="bg-brand-navy hover:bg-brand-navy-hover text-white font-semibold text-sm px-4 py-2 rounded-md transition-colors duration-200 whitespace-nowrap"
             >
               Get a Quote
             </Link>
@@ -455,7 +455,7 @@ export default function Header() {
 
           {/* Mobile toggle */}
           <button
-            className="lg:hidden p-2 text-slate-700 hover:text-[#0F2B5B] transition-colors"
+            className="lg:hidden p-2 text-slate-700 hover:text-brand-navy transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -476,8 +476,8 @@ export default function Header() {
                       href={(item as NavItem).href}
                       className={`block px-3 py-2.5 text-sm font-medium rounded-md transition-colors ${
                         pathname === (item as NavItem).href
-                          ? "text-[#0F2B5B] bg-slate-100"
-                          : "text-slate-700 hover:bg-slate-50 hover:text-[#0F2B5B]"
+                          ? "text-brand-navy bg-slate-100"
+                          : "text-slate-700 hover:bg-slate-50 hover:text-brand-navy"
                       }`}
                     >
                       {item.label}
@@ -491,7 +491,7 @@ export default function Header() {
                 return (
                   <div key={item.label}>
                     <button
-                      className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium text-slate-700 hover:text-[#0F2B5B] hover:bg-slate-50 rounded-md transition-colors"
+                      className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 rounded-md transition-colors"
                       onClick={() => setActiveDropdown(activeDropdown === item.label ? null : item.label)}
                       aria-expanded={activeDropdown === item.label}
                     >
@@ -506,7 +506,7 @@ export default function Header() {
                           <Link
                             key={sub.href + sub.label}
                             href={sub.href}
-                            className="block px-3 py-2.5 text-sm text-slate-600 hover:text-[#0F2B5B] transition-colors"
+                            className="block px-3 py-2.5 text-sm text-slate-600 hover:text-brand-navy transition-colors"
                           >
                             {sub.label}
                           </Link>
@@ -517,7 +517,7 @@ export default function Header() {
                           <div className="pt-2 mt-2 border-t border-slate-200 space-y-3">
                             {(item as NavDropdown).regionGroups!.map((rg: NavRegionGroup) => (
                               <div key={rg.region}>
-                                <div className="px-3 text-[10px] font-bold text-[#0F2B5B] uppercase tracking-wider mb-1 flex items-center gap-2">
+                                <div className="px-3 text-[10px] font-bold text-brand-navy uppercase tracking-wider mb-1 flex items-center gap-2">
                                   {rg.regionIcon && <span aria-hidden="true">{rg.regionIcon}</span>}
                                   {rg.region}
                                   {rg.badge && (
@@ -530,13 +530,13 @@ export default function Header() {
                                   <Link
                                     key={country.href}
                                     href={country.href}
-                                    className="flex items-center justify-between px-3 py-2.5 text-sm text-slate-600 hover:text-[#0F2B5B] transition-colors"
+                                    className="flex items-center justify-between px-3 py-2.5 text-sm text-slate-600 hover:text-brand-navy transition-colors"
                                   >
                                     <span className="flex items-center gap-2">
                                       {country.countryCode ? (
                                         <CountryFlag code={country.countryCode} label={country.label} className="w-4" />
                                       ) : (
-                                          <span className="w-1 h-1 rounded-full bg-[#0F2B5B]/60 flex-shrink-0" />
+                                          <span className="w-1 h-1 rounded-full bg-brand-navy/60 flex-shrink-0" />
                                       )}
                                       {country.label}
                                     </span>
@@ -560,17 +560,17 @@ export default function Header() {
                             </div>
                             {(item as NavDropdown).sizeGroups!.map((group) => (
                               <div key={group.groupLabel}>
-                                <div className="px-3 text-[10px] font-semibold text-[#0F2B5B] uppercase tracking-wider mb-1">
+                                <div className="px-3 text-[10px] font-semibold text-brand-navy uppercase tracking-wider mb-1">
                                   {group.groupLabel}
                                 </div>
                                 {group.items.map((sz) => (
                                   <Link
                                     key={sz.href + sz.label}
                                     href={sz.href}
-                                    className="flex items-center justify-between px-3 py-2.5 text-sm text-slate-600 hover:text-[#0F2B5B] transition-colors"
+                                    className="flex items-center justify-between px-3 py-2.5 text-sm text-slate-600 hover:text-brand-navy transition-colors"
                                   >
                                     <span className="flex items-center gap-2">
-                                      <span className="w-1 h-1 rounded-full bg-[#0F2B5B]/60 flex-shrink-0" />
+                                      <span className="w-1 h-1 rounded-full bg-brand-navy/60 flex-shrink-0" />
                                       {sz.label}
                                     </span>
                                     {sz.badge && (
@@ -593,7 +593,7 @@ export default function Header() {
               <div className="pt-3 border-t border-slate-200">
                 <Link
                   href="/contact"
-                  className="block w-full text-center bg-[#0F2B5B] hover:bg-[#12346d] text-white font-semibold text-sm px-5 py-3 rounded-md transition-colors"
+                  className="block w-full text-center bg-brand-navy hover:bg-brand-navy-hover text-white font-semibold text-sm px-5 py-3 rounded-md transition-colors"
                 >
                   Get a Quote
                 </Link>

@@ -144,22 +144,22 @@ export default async function SouthAfricaPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="relative bg-[#0A1F44] text-white overflow-hidden">
+      <section className="relative bg-brand-navy-alt text-white overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-[center_35%] opacity-70 lg:bg-[center_42%] lg:opacity-78"
           style={{ backgroundImage: `url(${heroImage})` }}
           aria-hidden="true"
         />
         <div
-          className="absolute inset-0 bg-[#06152d]/72 lg:bg-transparent"
+          className="absolute inset-0 bg-brand-ink/72 lg:bg-transparent"
           aria-hidden="true"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-r from-[#06152d] via-[#07172f]/94 to-[#07172f]/28"
+          className="absolute inset-0 bg-gradient-to-r from-brand-ink via-brand-ink/94 to-brand-ink/28"
           aria-hidden="true"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-t from-[#06152d]/80 via-transparent to-[#06152d]/25"
+          className="absolute inset-0 bg-gradient-to-t from-brand-ink/80 via-transparent to-brand-ink/25"
           aria-hidden="true"
         />
         <div
@@ -180,7 +180,7 @@ export default async function SouthAfricaPage() {
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="drop-shadow-[0_3px_12px_rgba(0,0,0,0.8)]">
-              <div className="inline-flex items-center gap-2 bg-[#06152d]/55 border border-yellow-400/40 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 bg-brand-ink/55 border border-yellow-400/40 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
                 <TrendingUp className="w-4 h-4 text-yellow-400" />
                 <span className="text-yellow-300 text-sm font-medium">Africa&apos;s Most Developed Retail Market — 10M+ POS Terminals</span>
               </div>
@@ -196,7 +196,7 @@ export default async function SouthAfricaPage() {
 
               <div className="flex flex-wrap gap-3 mb-8">
                 {["CIF Durban / Cape Town", "Premium Quality", "ISO 9001", "BPA-Free", "SADC CO Available", "ATM Compatible"].map((b) => (
-                  <span key={b} className="inline-flex items-center gap-1.5 bg-[#06152d]/55 border border-white/25 rounded-full px-3 py-1.5 text-sm text-white backdrop-blur-sm">
+                  <span key={b} className="inline-flex items-center gap-1.5 bg-brand-ink/55 border border-white/25 rounded-full px-3 py-1.5 text-sm text-white backdrop-blur-sm">
                     <CheckCircle className="w-3.5 h-3.5 text-green-400" />
                     {b}
                   </span>
@@ -212,7 +212,7 @@ export default async function SouthAfricaPage() {
                   <MessageSquare className="w-5 h-5" />WhatsApp for SA Price
                 </a>
                 <Link href="/contact"
-                  className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-white font-bold px-6 py-3.5 rounded-xl transition-all">
+                  className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl transition-all">
                   <ArrowRight className="w-5 h-5" />Get CIF Quote
                 </Link>
               </div>
@@ -227,7 +227,7 @@ export default async function SouthAfricaPage() {
                 { value: "6+", label: "SADC Countries", icon: "🗺️" },
                 { value: "2hr", label: "Quote Response", icon: "⚡" },
               ].map((stat) => (
-                <div key={stat.label} className="bg-[#06152d]/68 backdrop-blur-md border border-white/25 rounded-2xl p-5 text-center shadow-xl shadow-black/20">
+                <div key={stat.label} className="bg-brand-ink/68 backdrop-blur-md border border-white/25 rounded-2xl p-5 text-center shadow-xl shadow-black/20">
                   <div className="text-3xl mb-1">{stat.icon}</div>
                   <div className="text-2xl font-bold text-amber-400">{stat.value}</div>
                   <div className="text-white/85 text-sm mt-1">{stat.label}</div>
@@ -265,7 +265,7 @@ export default async function SouthAfricaPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#0A1F44] mb-4">Most Popular Sizes for South Africa</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy-alt mb-4">Most Popular Sizes for South Africa</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Premium quality for South Africa&apos;s demanding retail and banking standards.
             </p>
@@ -274,7 +274,7 @@ export default async function SouthAfricaPage() {
             {products.map((p) => (
               <div key={p.size} className="bg-white rounded-2xl border-2 border-slate-200 hover:border-amber-400 p-6 hover:shadow-lg transition-all">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-2xl font-bold text-[#0A1F44]">{p.size}</h3>
+                  <h3 className="text-2xl font-bold text-brand-navy-alt">{p.size}</h3>
                   <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${p.badgeColor}`}>{p.badge}</span>
                 </div>
                 <p className="text-sm text-slate-600 mb-4 leading-relaxed">{p.desc}</p>
@@ -300,7 +300,7 @@ export default async function SouthAfricaPage() {
       </section>
 
       {/* ── Shipping ──────────────────────────────────────────────────── */}
-      <section className="py-20 bg-[#0A1F44] text-white">
+      <section className="py-20 bg-brand-navy-alt text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Shipping to <span className="text-amber-400">South Africa</span></h2>
@@ -347,12 +347,12 @@ export default async function SouthAfricaPage() {
       <section className="py-20 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-[#0A1F44] mb-4">South Africa FAQ</h2>
+            <h2 className="text-3xl font-bold text-brand-navy-alt mb-4">South Africa FAQ</h2>
           </div>
           <div className="space-y-4">
             {saFaqs.map((faq, i) => (
               <div key={i} className="bg-white rounded-2xl border border-slate-200 p-6">
-                <h3 className="font-bold text-[#0A1F44] mb-2 flex items-start gap-2">
+                <h3 className="font-bold text-brand-navy-alt mb-2 flex items-start gap-2">
                   <span className="text-amber-500 font-black text-lg leading-none mt-0.5">Q</span>{faq.q}
                 </h3>
                 <p className="text-slate-600 leading-relaxed pl-6">{faq.a}</p>
@@ -367,7 +367,7 @@ export default async function SouthAfricaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#0A1F44] mb-6">
+              <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy-alt mb-6">
                 Get South Africa Price List<br /><span className="text-amber-500">CIF Durban — 2 Hour Quote</span>
               </h2>
               <div className="bg-green-50 border border-green-200 rounded-2xl p-5 mb-6">
@@ -395,7 +395,7 @@ export default async function SouthAfricaPage() {
       </section>
 
       {/* ── Final CTA ─────────────────────────────────────────────────── */}
-      <section className="py-16 bg-[#0A1F44]">
+      <section className="py-16 bg-brand-navy-alt">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="text-5xl mb-4"><CountryFlag code="ZA" label="South Africa" className="w-12 h-auto" /></div>
           <h2 className="text-3xl font-black text-white mb-4">

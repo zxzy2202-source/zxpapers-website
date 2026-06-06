@@ -152,7 +152,7 @@ export default function PageHero({
 
   return (
     <div
-      className={`relative bg-[#091629] text-white overflow-hidden border-b border-slate-200 ${minHeight} flex items-center ${className}`}
+      className={`relative bg-brand-navy-deep text-white overflow-hidden border-b border-slate-200 ${minHeight} flex items-center ${className}`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}

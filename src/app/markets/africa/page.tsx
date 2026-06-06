@@ -365,7 +365,7 @@ export default async function AfricaMarketPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#0A1F44] mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy-alt mb-4">
               Key African Markets We Serve
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -389,7 +389,7 @@ export default async function AfricaMarketPage() {
                 <div className="flex items-center gap-3 mb-4">
                   <CountryFlag code={c.code} label={c.country} className="w-8 h-auto" />
                   <div>
-                    <h3 className="text-lg font-bold text-[#0A1F44]">{c.country}</h3>
+                    <h3 className="text-lg font-bold text-brand-navy-alt">{c.country}</h3>
                     <p className="text-sm text-slate-500 flex items-center gap-1">
                       <MapPin className="w-3 h-3" />{c.city}
                     </p>
@@ -401,15 +401,15 @@ export default async function AfricaMarketPage() {
                 <div className="grid grid-cols-2 gap-2 mb-4 text-xs">
                   <div className="bg-slate-50 rounded-lg p-2">
                     <div className="text-slate-400">POS Terminals</div>
-                    <div className="font-bold text-[#0A1F44]">{c.posTerminals}</div>
+                    <div className="font-bold text-brand-navy-alt">{c.posTerminals}</div>
                   </div>
                   <div className="bg-slate-50 rounded-lg p-2">
                     <div className="text-slate-400">Sea Transit</div>
-                    <div className="font-bold text-[#0A1F44]">{c.transit}</div>
+                    <div className="font-bold text-brand-navy-alt">{c.transit}</div>
                   </div>
                   <div className="bg-slate-50 rounded-lg p-2">
                     <div className="text-slate-400">Nearest Port</div>
-                    <div className="font-bold text-[#0A1F44] truncate">{c.port.split("/")[0].trim()}</div>
+                    <div className="font-bold text-brand-navy-alt truncate">{c.port.split("/")[0].trim()}</div>
                   </div>
                   <div className="bg-slate-50 rounded-lg p-2">
                     <div className="text-slate-400">Demand Level</div>
@@ -431,7 +431,7 @@ export default async function AfricaMarketPage() {
                   {c.slug && (
                     <Link
                       href={`/markets/africa/${c.slug}`}
-                      className="flex-1 text-center text-sm font-semibold bg-[#0A1F44] hover:bg-[#0d2a5e] text-white py-2.5 rounded-xl transition-colors"
+                      className="flex-1 text-center text-sm font-semibold bg-brand-navy-alt hover:bg-brand-navy text-white py-2.5 rounded-xl transition-colors"
                     >
                       View {c.country} Page →
                     </Link>
@@ -455,7 +455,7 @@ export default async function AfricaMarketPage() {
       <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#0A1F44] mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy-alt mb-4">
               Most Popular Sizes for Africa
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -468,7 +468,7 @@ export default async function AfricaMarketPage() {
             {popularProducts.map((p) => (
               <div key={p.size} className="bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-md hover:-translate-y-0.5 transition-all">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-[#0A1F44]">{p.size}</h3>
+                  <h3 className="text-xl font-bold text-brand-navy-alt">{p.size}</h3>
                   <span className={`text-xs font-bold px-2 py-1 rounded-full ${colorMap[p.badgeColor]}`}>
                     {p.badge}
                   </span>
@@ -506,7 +506,7 @@ export default async function AfricaMarketPage() {
           <div className="text-center mt-8">
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 text-[#0A1F44] font-semibold hover:text-amber-600 transition-colors"
+              className="inline-flex items-center gap-2 text-brand-navy-alt font-semibold hover:text-amber-600 transition-colors"
             >
               View All Product Sizes <ArrowRight className="w-4 h-4" />
             </Link>
@@ -518,7 +518,7 @@ export default async function AfricaMarketPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#0A1F44] mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy-alt mb-4">
               Why African Distributors Choose Us
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -536,7 +536,7 @@ export default async function AfricaMarketPage() {
                     <Icon className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#0A1F44] mb-1">{item.title}</h3>
+                    <h3 className="font-bold text-brand-navy-alt mb-1">{item.title}</h3>
                     <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
@@ -552,7 +552,7 @@ export default async function AfricaMarketPage() {
                 <div key={cert.name} className="flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-2.5 shadow-sm">
                   <ShieldCheck className="w-4 h-4 text-green-500" />
                   <div>
-                    <div className="text-sm font-bold text-[#0A1F44]">{cert.name}</div>
+                    <div className="text-sm font-bold text-brand-navy-alt">{cert.name}</div>
                     <div className="text-xs text-slate-400">{cert.desc}</div>
                   </div>
                 </div>
@@ -563,7 +563,7 @@ export default async function AfricaMarketPage() {
       </section>
 
       {/* ── Logistics Timeline ────────────────────────────────────────── */}
-      <section className="py-20 bg-[#0A1F44] text-white">
+      <section className="py-20 bg-brand-navy-alt text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
@@ -614,7 +614,7 @@ export default async function AfricaMarketPage() {
       <section className="py-20 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#0A1F44] mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy-alt mb-4">
               Frequently Asked Questions
             </h2>
             <p className="text-lg text-slate-600">
@@ -625,7 +625,7 @@ export default async function AfricaMarketPage() {
           <div className="space-y-4">
             {faqs.map((faq, i) => (
               <div key={i} className="bg-white rounded-2xl border border-slate-200 p-6">
-                <h3 className="font-bold text-[#0A1F44] mb-2 flex items-start gap-2">
+                <h3 className="font-bold text-brand-navy-alt mb-2 flex items-start gap-2">
                   <span className="text-amber-500 font-black text-lg leading-none mt-0.5">Q</span>
                   {faq.q}
                 </h3>
@@ -641,7 +641,7 @@ export default async function AfricaMarketPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#0A1F44] mb-6">
+              <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy-alt mb-6">
                 Get Your Africa Price List<br />
                 <span className="text-amber-500">Within 2 Hours</span>
               </h2>
@@ -702,10 +702,10 @@ export default async function AfricaMarketPage() {
       {/* ── Final CTA ─────────────────────────────────────────────────── */}
       <section className="py-16 bg-amber-500">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-black text-white mb-4">
+          <h2 className="text-3xl lg:text-4xl font-black text-slate-950 mb-4">
             Ready to Supply Africa&apos;s Growing POS Market?
           </h2>
-          <p className="text-xl text-amber-100 mb-8">
+          <p className="text-xl text-slate-800 mb-8">
             Join {FACTORY.oemClients} distributors worldwide. Factory direct. Reliable quality. Fast container loading.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

@@ -40,6 +40,25 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Detergent Labels",
+  "description":
+    "OEM detergent labels for laundry, dish soap, cleaners, and fabric care products. Water-resistant, chemical-resistant, GHS compliant.",
+  "url": `${SITE.domain}/products/detergent-labels`,
+  "isPartOf": { "@id": `${SITE.domain}/#website` },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": detergentLabelSizes.map((size, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "name": `${size.label} Detergent Labels`,
+      "url": `${SITE.domain}/products/detergent-labels/${size.slug}`,
+    })),
+  },
+};
 export default async function DetergentLabelsPage() {
   const detergentLabelsImage = await getSlotImage("detergent-labels:hero", DETERGENT_LABELS_IMG);
   return (
@@ -47,6 +66,10 @@ export default async function DetergentLabelsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
       />
       <div className="bg-slate-50 py-10">
         <div className="container">

@@ -145,7 +145,7 @@ export default async function ApplicationCasesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-[#0F2B5B] text-white py-14">
+      <div className="bg-brand-navy text-white py-14">
         <div className="container">
           <div className="flex items-center gap-2 mb-3">
             <Link href="/resources" className="text-amber-400 text-xs font-bold uppercase tracking-wider hover:underline">Resources</Link>
@@ -230,7 +230,7 @@ export default async function ApplicationCasesPage() {
               { step: "5", title: "Establish Quality Benchmarks", desc: "Define minimum acceptable optical density, dimensional tolerances, and image life. Request batch Certificate of Conformance documentation with each shipment, and retain a reference sample for comparison against future batches." },
             ].map(({ step, title, desc }) => (
               <div key={step} className="flex gap-4 p-5 bg-white border border-slate-100 rounded-xl shadow-sm">
-                <div className="font-sora w-9 h-9 bg-[#0F2B5B] text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0">{step}</div>
+                <div className="font-sora w-9 h-9 bg-brand-navy text-white rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0">{step}</div>
                 <div>
                   <div className="font-sora font-bold text-slate-900 text-sm mb-1">{title}</div>
                   <div className="text-sm text-slate-600 leading-relaxed">{desc}</div>
@@ -243,7 +243,7 @@ export default async function ApplicationCasesPage() {
         {/* Sidebar CTA row */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
           <div className="lg:col-span-2">
-            <div className="bg-[#0F2B5B] rounded-3xl p-10 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="bg-brand-navy rounded-3xl p-10 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
                 <h2 className="font-sora text-2xl font-extrabold mb-2">Don&apos;t See Your Industry?</h2>
                 <p className="text-slate-300 text-sm max-w-lg">We serve 30+ industries. Contact us with your application requirements and we will recommend the right product and specifications within 12 hours.</p>
