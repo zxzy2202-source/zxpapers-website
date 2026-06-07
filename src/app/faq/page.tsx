@@ -29,6 +29,17 @@ const oemFAQs = [
 ];
 
 
+// FAQPage schema built from the on-page Q&A (all answers are visible on the page → compliant)
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [...productFAQs, ...oemFAQs].map(({ q, a }) => ({
+    "@type": "Question",
+    "name": q,
+    "acceptedAnswer": { "@type": "Answer", "text": a },
+  })),
+};
+
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -51,6 +62,10 @@ const breadcrumbSchema = {
 export default function FAQPage() {
   return (
     <Layout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}

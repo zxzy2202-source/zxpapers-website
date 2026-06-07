@@ -153,7 +153,10 @@ const organizationSchema = {
     postalCode: "710200",
     addressCountry: "CN",
   },
-  sameAs: ["https://www.linkedin.com/company/zhixinpaper"],
+  sameAs: [
+    "https://www.linkedin.com/company/zhixinpaper",
+    "https://zhixinzhiye.en.alibaba.com",
+  ],
 };
 
 const websiteSchema = {

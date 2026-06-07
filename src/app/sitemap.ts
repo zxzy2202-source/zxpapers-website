@@ -108,13 +108,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // ── Other Product Category Pages (priority 0.8) ───────────────────────────
   const productCategoryPages: MetadataRoute.Sitemap = [
-    "blank-thermal-labels",
-    "blank-thermal-rolls",
-    "custom-printed-labels",
-    "custom-printed-rolls",
+    // Canonical content URLs only — the former blank-/custom-printed- aliases now 308-redirect here
     "thermal-paper-rolls/blank",
     "thermal-paper-rolls/custom-printed",
-    "linerless-labels", // NEW: 吃下 GSC 报告的 ~200 曝光 linerless 查询词
+    "thermal-labels/blank",
+    "thermal-labels/custom-printed",
+    "linerless-labels", // 吃下 GSC 报告的 ~200 曝光 linerless 查询词
   ].map((slug) => ({
     url: `${BASE}/products/${slug}`,
     lastModified: LAST_MOD,
