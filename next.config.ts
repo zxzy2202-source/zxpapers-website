@@ -27,7 +27,7 @@ const r2PublicOrigin = getAbsolutePublicUrl(
 const r2PublicHostname = new URL(r2PublicOrigin).hostname;
 
 const nextConfig: NextConfig = {
-  trailingSlash: true,
+  trailingSlash: false,
 
   async redirects() {
     return [

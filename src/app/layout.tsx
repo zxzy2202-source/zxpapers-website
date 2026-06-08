@@ -140,6 +140,7 @@ const organizationSchema = {
       "@type": "ContactPoint",
       telephone: SITE.phone,
       contactType: "sales",
+      email: SITE.email,
       availableLanguage: ["English", "Chinese"],
       areaServed: "Worldwide",
     },

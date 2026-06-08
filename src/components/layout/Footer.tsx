@@ -116,6 +116,8 @@ export default function Footer() {
                 { label: "Custom Printed Rolls", href: "/products/thermal-paper-rolls/custom-printed" },
                 { label: "Blank Thermal Labels", href: "/products/thermal-labels/blank" },
                 { label: "Custom Printed Labels", href: "/products/thermal-labels/custom-printed" },
+                { label: "Shipping Labels", href: "/products/shipping-labels" },
+                { label: "Till Rolls", href: "/products/till-rolls" },
                 { label: "Blank Can Labels", href: "/products/can-labels/blank" },
                 { label: "Detergent Labels", href: "/products/detergent-labels/blank" },
               ].map((item) => (

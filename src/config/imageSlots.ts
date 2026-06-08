@@ -182,6 +182,14 @@ export const IMAGE_SLOTS = [
 
   // ===== 联系我们 =====
   { slot: "contact:hero", label: "联系我们 顶部图", page: "联系我们", pageUrl: "/contact", aspect: "16:9" },
+
+  // ===== Till Rolls 聚合页 - 按尺寸卡片图（admin 可单独换图）=====
+  { slot: "till-rolls:size:80x80mm", label: "Till Rolls 卡片图 - 80x80mm", page: "Till Rolls", pageUrl: "/products/till-rolls", aspect: "4:3" },
+  { slot: "till-rolls:size:57x50mm", label: "Till Rolls 卡片图 - 57x50mm", page: "Till Rolls", pageUrl: "/products/till-rolls", aspect: "4:3" },
+  { slot: "till-rolls:size:80x70mm", label: "Till Rolls 卡片图 - 80x70mm", page: "Till Rolls", pageUrl: "/products/till-rolls", aspect: "4:3" },
+  { slot: "till-rolls:size:110x80mm", label: "Till Rolls 卡片图 - 110x80mm", page: "Till Rolls", pageUrl: "/products/till-rolls", aspect: "4:3" },
+  { slot: "till-rolls:size:57x40mm", label: "Till Rolls 卡片图 - 57x40mm", page: "Till Rolls", pageUrl: "/products/till-rolls", aspect: "4:3" },
+  { slot: "till-rolls:size:57x30mm", label: "Till Rolls 卡片图 - 57x30mm", page: "Till Rolls", pageUrl: "/products/till-rolls", aspect: "4:3" },
 ] as const satisfies readonly ImageSlot[];
 
 /** 全部 slot key 的 union type — 编译期防止拼错 */

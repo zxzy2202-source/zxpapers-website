@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { SITE } from "@/config/siteData";
 
 interface InquiryFormProps {
   productName?: string;
@@ -182,7 +183,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
       {status === "error" && (
         <div role="alert" className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg px-3 py-2.5 text-sm text-red-700">
           <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
-          <span>Something went wrong. Please try again or contact us directly at <a href="mailto:Sales@zxpapers.com" className="underline">Sales@zxpapers.com</a>.</span>
+          <span>Something went wrong. Please try again or contact us directly at <a href={`mailto:${SITE.email}`} className="underline">{SITE.email}</a>.</span>
         </div>
       )}
 

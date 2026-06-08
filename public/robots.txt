@@ -6,39 +6,9 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /__manus__/
 
-# Legacy WordPress paths (now 301 redirected — block crawl to save budget)
-Disallow: /wp-content/
+# Keep legacy public URLs crawlable so search engines can confirm redirects.
 Disallow: /wp-admin/
 Disallow: /wp-login.php
-Disallow: /feed
-Disallow: /tag/
-Disallow: /category/
-Disallow: /page/
-Disallow: /?
 Disallow: /*?replytocom=
-
-# Legacy multilingual prefixes (301 to English version — saves crawl budget)
-Disallow: /ro/
-Disallow: /de/
-Disallow: /fr/
-Disallow: /es/
-Disallow: /it/
-Disallow: /pt/
-Disallow: /pl/
-Disallow: /nl/
-Disallow: /tr/
-Disallow: /ar/
-Disallow: /ja/
-Disallow: /ko/
-Disallow: /ru/
-Disallow: /zh/
-Disallow: /hi/
-Disallow: /vi/
-Disallow: /th/
-Disallow: /id/
-Disallow: /ms/
-
-# Legacy single-product path (301 to /products)
-Disallow: /product/
 
 Sitemap: https://www.zxpapers.com/sitemap.xml

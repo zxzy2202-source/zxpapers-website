@@ -89,15 +89,15 @@ export default function OEMPartnershipPage() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-sm text-slate-700">
                   <Mail className="w-4 h-4 text-blue-500" />
-                  <a href="mailto:oem@zxpapers.com" className="hover:text-blue-600">oem@zxpapers.com</a>
+                  <a href={`mailto:${SITE.email}`} className="hover:text-blue-600">{SITE.email}</a>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-slate-700">
                   <Phone className="w-4 h-4 text-blue-500" />
-                  <span>+86 755 1234 5678</span>
+                  <span>{SITE.phone}</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-slate-700">
                   <Clock className="w-4 h-4 text-blue-500" />
-                  <span>Mon–Fri 9:00–18:00 CST</span>
+                  <span>{SITE.businessHours}</span>
                 </div>
               </div>
             </div>
