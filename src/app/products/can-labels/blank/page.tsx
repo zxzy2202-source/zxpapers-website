@@ -64,19 +64,11 @@ const productSchema = {
   "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
   "url": "https://www.zxpapers.com/products/can-labels/blank"
 ,
-  "offers": {
-    "@type": "AggregateOffer",
-    "url": "https://www.zxpapers.com",
-    "priceCurrency": "USD",
-    "lowPrice": "0.50",
-    "highPrice": "50.00",
-    "offerCount": "100",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "Zhixin Paper"
-    }
-  }
+  "additionalProperty": canLabelSizes.map(({ label, slug }) => ({
+    "@type": "PropertyValue",
+    "name": label,
+    "value": slug,
+  }))
 };
 export default async function BlankCanLabelsPage() {
   const heroImage = await getSlotImage("can-labels:blank-hero", CAN_LABELS_IMG);

@@ -68,19 +68,11 @@ const productSchema = {
   "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp",
   "url": "https://www.zxpapers.com/products/colored-thermal-paper",
 
-  "offers": {
-    "@type": "AggregateOffer",
-    "url": "https://www.zxpapers.com",
-    "priceCurrency": "USD",
-    "lowPrice": "0.50",
-    "highPrice": "50.00",
-    "offerCount": "100",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "Zhixin Paper"
-    }
-  }
+  "additionalProperty": specs.map(({ label, value }) => ({
+    "@type": "PropertyValue",
+    "name": label,
+    "value": value,
+  }))
 };
 
 const faqSchema = {

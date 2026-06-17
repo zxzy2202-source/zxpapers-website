@@ -64,19 +64,11 @@ const productSchema = {
   "image": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=1200&q=80",
   "url": "https://www.zxpapers.com/products/detergent-labels/blank"
 ,
-  "offers": {
-    "@type": "AggregateOffer",
-    "url": "https://www.zxpapers.com",
-    "priceCurrency": "USD",
-    "lowPrice": "0.50",
-    "highPrice": "50.00",
-    "offerCount": "100",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "Zhixin Paper"
-    }
-  }
+  "additionalProperty": detergentLabelSizes.map(({ label, slug }) => ({
+    "@type": "PropertyValue",
+    "name": label,
+    "value": slug,
+  }))
 };
 export default async function BlankDetergentLabelsPage() {
   const heroImage = await getSlotImage("detergent-labels:blank-hero", DETERGENT_LABELS_IMG);

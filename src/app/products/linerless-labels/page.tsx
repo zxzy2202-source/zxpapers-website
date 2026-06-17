@@ -171,16 +171,11 @@ const productSchema = {
   brand: { "@type": "Brand", name: SITE.name },
   manufacturer: { "@type": "Organization", name: SITE.name, url: SITE.domain },
   url: `${SITE.domain}/products/linerless-labels`,
-  offers: {
-    "@type": "AggregateOffer",
-    url: `${SITE.domain}/products/linerless-labels`,
-    priceCurrency: "USD",
-    lowPrice: "1.00",
-    highPrice: "20.00",
-    offerCount: "50",
-    availability: "https://schema.org/InStock",
-    seller: { "@type": "Organization", name: SITE.name },
-  },
+  additionalProperty: specs.map((spec) => ({
+    "@type": "PropertyValue",
+    name: spec.label,
+    value: spec.value,
+  })),
 };
 
 const faqSchema = {

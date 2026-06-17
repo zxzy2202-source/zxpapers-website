@@ -7,7 +7,7 @@ import { r2Image } from "@/lib/r2";
 import type { SlotKey } from "@/config/imageSlots";
 import {
   CheckCircle, ArrowRight, Package, Award, Globe,
-  Phone, MessageSquare, Ship, Zap, Layers,
+  Phone, MessageSquare, Ship, Zap, Layers, FileText, Factory, ClipboardList,
 } from "lucide-react";
 
 export interface ApplicationItem {
@@ -183,17 +183,32 @@ export default async function SizeDetailPage({
     },
     image: resolvedProductImage,
     url: productUrl,
-    offers: {
-      "@type": "AggregateOffer",
-      url: SITE.domain,
-      priceCurrency: "USD",
-      lowPrice: "0.50",
-      highPrice: "50.00",
-      offerCount: "100",
-      availability: "https://schema.org/InStock",
-      seller: { "@type": "Organization", name: "Zhixin Paper" },
-    },
+    additionalProperty: specs.map((spec) => ({
+      "@type": "PropertyValue",
+      name: spec.label,
+      value: spec.value,
+    })),
   };
+
+  const heroQuickFacts = [
+    specs.find((item) => item.label === "Width" || item.label === "Size")?.value ?? sizeLabel,
+    specs.find((item) => item.label === "Length")?.value ?? "Custom length available",
+    palletInfo ? `${palletInfo.rollsPerPallet.toLocaleString()} rolls / pallet` : "MOQ from 1 pallet",
+  ];
+
+  const pageAnchors = [
+    { label: "Specifications", href: "#specifications" },
+    { label: "Loading Plan", href: "#loading-plan" },
+    { label: "Applications", href: "#applications" },
+    { label: "Inquiry", href: "#inquiry-card" },
+  ];
+
+  const purchaseHighlights = [
+    { icon: ClipboardList, title: "MOQ", value: palletInfo ? "1 pallet" : "Small bulk orders" },
+    { icon: Ship, title: "Shipping", value: "FOB / CIF quotation" },
+    { icon: FileText, title: "Samples", value: "Free sample support" },
+    { icon: Factory, title: "OEM", value: "Private label available" },
+  ];
 
   return (
     <Layout>
@@ -220,10 +235,22 @@ export default async function SizeDetailPage({
             <span className="text-slate-300">{sizeLabel}</span>
           </nav>
 
+          <div className="mb-6 flex flex-wrap items-center gap-2">
+            {pageAnchors.map((anchor) => (
+              <a
+                key={anchor.href}
+                href={anchor.href}
+                className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-200 transition-colors hover:bg-white/10 hover:text-white"
+              >
+                {anchor.label}
+              </a>
+            ))}
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div>
-              <div className="flex flex-wrap items-center gap-3 mb-4">
-                <h1 className="text-3xl sm:text-4xl font-extrabold">{fullTitle}</h1>
+            <div className="space-y-5">
+              <div className="flex flex-wrap items-center gap-3">
+                <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight">{fullTitle}</h1>
                 {badge && (
                   <span className="bg-amber-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
                     {badge}
@@ -231,11 +258,18 @@ export default async function SizeDetailPage({
                 )}
               </div>
 
-              {/* One-liner */}
-              <p className="text-slate-300 text-base leading-relaxed mb-6">{description}</p>
+              <p className="text-slate-300 text-base leading-relaxed max-w-2xl">{description}</p>
 
-              {/* Core sell points */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-7">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {heroQuickFacts.map((fact) => (
+                  <div key={fact} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                    <div className="text-xs uppercase tracking-[0.18em] text-slate-400">Quick fact</div>
+                    <div className="mt-1 text-sm font-semibold text-white">{fact}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-2xl">
                 {coreSellPoints.map((p) => (
                   <div key={p} className="flex items-center gap-2 text-sm text-slate-200">
                     <CheckCircle className="w-4 h-4 text-amber-400 flex-shrink-0" />
@@ -244,7 +278,6 @@ export default async function SizeDetailPage({
                 ))}
               </div>
 
-              {/* CTA */}
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/contact"
@@ -265,20 +298,32 @@ export default async function SizeDetailPage({
               </div>
             </div>
 
-            {/* Product image */}
             <div>
-              <Image
-                src={resolvedProductImage}
-                alt={fullTitle}
-                className="w-full rounded-lg border border-white/15"
-                loading="eager"
-                width={600}
-                height={400}
-               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-3 shadow-2xl backdrop-blur-sm">
+                <Image
+                  src={resolvedProductImage}
+                  alt={fullTitle}
+                  className="w-full rounded-xl border border-white/15"
+                  loading="eager"
+                  width={720}
+                  height={520}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+                <div className="mt-3 grid grid-cols-4 gap-2 text-center">
+                  {purchaseHighlights.map(({ icon: Icon, title, value }) => (
+                    <div key={title} className="rounded-xl bg-slate-950/45 px-2 py-3">
+                      <Icon className="mx-auto mb-1.5 h-4 w-4 text-amber-400" />
+                      <div className="text-[10px] uppercase tracking-[0.16em] text-slate-400">{title}</div>
+                      <div className="mt-1 text-[11px] font-semibold text-white leading-tight">{value}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
 
       {/* ── SPECS + KEY INFO ── */}
       <div className="bg-white py-14">
@@ -287,7 +332,7 @@ export default async function SizeDetailPage({
 
             {/* Specs table */}
             <div className="lg:col-span-2 space-y-10">
-              <div>
+              <div id="specifications">
                 <h2 className="text-xl font-extrabold text-slate-900 mb-5">Specifications</h2>
                 <div className="divide-y divide-slate-100 border border-slate-200 rounded-lg overflow-hidden">
                   {/* Always show key trading specs first */}
@@ -311,8 +356,26 @@ export default async function SizeDetailPage({
                 )}
               </div>
 
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                <h2 className="text-xl font-extrabold text-slate-900 mb-4">Why buyers choose this specification</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="rounded-xl bg-white p-4 shadow-sm border border-slate-200">
+                    <div className="text-xs uppercase tracking-[0.18em] text-slate-400 mb-2">Commercial fit</div>
+                    <div className="text-sm font-semibold text-slate-900">Built for repeat wholesale orders, stable batch control, and consistent downstream replenishment.</div>
+                  </div>
+                  <div className="rounded-xl bg-white p-4 shadow-sm border border-slate-200">
+                    <div className="text-xs uppercase tracking-[0.18em] text-slate-400 mb-2">Factory capability</div>
+                    <div className="text-sm font-semibold text-slate-900">Supports OEM packaging, core-size customization, and production planning for container or pallet orders.</div>
+                  </div>
+                  <div className="rounded-xl bg-white p-4 shadow-sm border border-slate-200">
+                    <div className="text-xs uppercase tracking-[0.18em] text-slate-400 mb-2">Trade support</div>
+                    <div className="text-sm font-semibold text-slate-900">Fast quotation, sample support, and route-aware FOB / CIF communication for B2B buyers.</div>
+                  </div>
+                </div>
+              </div>
+
               {/* Strong trading info */}
-              <div className="bg-brand-navy-alt text-white rounded-lg p-7">
+              <div id="loading-plan" className="bg-brand-navy-alt text-white rounded-lg p-7">
                 <h2 className="text-lg font-extrabold mb-5">Container Loading &amp; Delivery</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                   {[
@@ -407,7 +470,7 @@ export default async function SizeDetailPage({
 
               {/* Applications */}
               {applications.length > 0 && (
-                <div>
+                <div id="applications">
                   <h2 className="text-xl font-extrabold text-slate-900 mb-5">Applications</h2>
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     {applicationImages.map(({ name, resolvedImage, description: appDesc }) => (
@@ -454,11 +517,11 @@ export default async function SizeDetailPage({
             {/* Sidebar — sticky inquiry */}
             <div className="space-y-5">
               {/* Quick inquiry card */}
-              <div className="bg-white border border-slate-200 rounded-lg p-6 sticky top-24">
+              <div id="inquiry-card" className="bg-white border border-slate-200 rounded-lg p-6 sticky top-24">
                 <h3 className="text-base font-extrabold text-slate-900 mb-1">
                   Get Price for {sizeLabel}
                 </h3>
-                <p className="text-xs text-slate-500 mb-5">Reply within 24 hours. No commitment required.</p>
+                <p className="text-xs text-slate-500 mb-5">Reply within 24 hours. Send quantity, destination, and target packaging requirement for a more accurate quote.</p>
 
                 <div className="space-y-3 mb-5">
                   <a
