@@ -19,3 +19,10 @@ build/
 llm-assistant.spec
 llm_portable_v1.zip
 portable-llm-tool/
+
+# Runtime data (inquiry submissions written by the app at runtime)
+/data/inquiries.json
+
+# Local scratch / audit & verification output
+/browser-checks/
+/verification-output/
