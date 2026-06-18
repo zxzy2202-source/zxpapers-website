@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Layout from "@/components/layout/Layout";
-import InquiryForm from "@/components/shared/InquiryForm";
-import { Truck, Package, Printer, CheckCircle, ArrowRight, MessageSquare, Layers, Boxes } from "lucide-react";
+import { BadgeCheck, Boxes, Factory, Printer, ShieldCheck, Truck } from "lucide-react";
 import { SITE } from "@/config/siteData";
+import { labelSizes } from "@/config/navigation";
+import { getSlotImage } from "@/lib/imageSlotUtils";
+import ProductCategoryShowcaseTemplate from "@/components/products/ProductCategoryShowcaseTemplate";
 
 export const metadata: Metadata = {
-  title: "4x6 Shipping Labels & Direct Thermal Rolls",
+  title: "Direct Thermal Shipping Labels | 4x6 Rolls & Fanfold",
   description:
-    "Factory-direct 4x6 direct thermal shipping labels — rolls & fanfold, Zebra/Dymo/Rollo compatible, BPA-free, bulk MOQ & OEM. Global export. Get a same-week quote.",
+    "Direct thermal shipping labels from the factory: 4x6 (100x150mm) in rolls & fanfold, Zebra/Dymo/Rollo compatible, BPA-free, bulk MOQ & OEM. Same-week quotes.",
   keywords:
     "direct thermal shipping labels, 4x6 thermal labels, shipping label rolls, fanfold shipping labels, zebra shipping labels, dymo shipping labels, 4x6 label rolls, bulk shipping labels, direct thermal labels, thermal label printer paper",
   alternates: { canonical: `${SITE.domain}/products/shipping-labels` },
@@ -22,28 +22,33 @@ export const metadata: Metadata = {
   },
 };
 
-const subProducts = [
+const LABELS_IMG_FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
+
+const products = [
   {
-    icon: "📦",
     title: "4×6 Shipping Labels",
-    desc: "The standard e-commerce shipping size. Direct thermal, in rolls or fanfold. Compatible with Amazon FBA, eBay, Shopify, and all major courier label formats.",
+    desc: "The standard e-commerce shipping size. Direct thermal, in rolls or fanfold — compatible with Amazon FBA, eBay, Shopify, and all major courier label formats.",
+    icon: "📦",
     href: "/products/thermal-labels/4x6in",
-    hrefLabel: "View 4×6 size details",
+    badge: "Most Popular",
   },
   {
-    icon: "🧻",
     title: "Shipping Label Rolls",
     desc: "Continuous direct thermal label rolls on 1\" or 3\" cores, sized for desktop and industrial thermal printers. Custom widths and counts per roll available.",
+    icon: "🧻",
+    href: "/products/thermal-labels/blank",
   },
   {
-    icon: "📚",
     title: "Fanfold Shipping Labels",
     desc: "Z-fold stacks for high-volume, non-stop printing — no roll spindle needed. Ideal for warehouse and 3PL fulfillment lines running thousands of labels per day.",
+    icon: "📚",
+    href: "/products/thermal-labels/blank",
   },
   {
-    icon: "🖨️",
     title: "Printer-Compatible",
-    desc: "Direct thermal labels matched to Zebra, Dymo, Rollo, Munbyn, and other desktop/industrial thermal printers — confirmed by size, core, and perforation.",
+    desc: "Direct thermal labels matched to Zebra, Dymo, Rollo, Munbyn, and other desktop or industrial thermal printers — confirmed by size, core, and perforation.",
+    icon: "🖨️",
+    href: "/products/thermal-labels/custom-printed",
   },
 ];
 
@@ -60,20 +65,22 @@ const specs = [
   { label: "Incoterms", value: "EXW, FOB, CIF, DDP" },
 ];
 
-const compatibility = [
-  { brand: "Zebra", models: "ZD220 / ZD420 / GK420d / industrial ZT series" },
-  { brand: "Dymo", models: "4XL / 5XL (4×6 direct thermal)" },
-  { brand: "Rollo", models: "Desktop direct thermal label printer" },
-  { brand: "Munbyn / Phomemo", models: "Desktop 4×6 thermal printers" },
-  { brand: "Generic / Industrial", models: "Any direct thermal printer by size & core" },
+const compatibilityRows = [
+  { factor: "Zebra", left: "ZD220 / ZD420 / GK420d", right: "Industrial ZT series" },
+  { factor: "Dymo", left: "4XL / 5XL", right: "4×6 direct thermal" },
+  { factor: "Rollo", left: "Desktop direct thermal", right: "4×6 shipping workflow" },
+  { factor: "Munbyn / Phomemo", left: "Desktop 4×6 printers", right: "Size and perforation matched" },
+  { factor: "Generic / Industrial", left: "Any direct thermal printer", right: "Matched by size & core" },
 ];
 
 const faqs = [
   { q: "What is the standard shipping label size?", a: "The most common e-commerce shipping label is 4\" × 6\" (100 × 150 mm). We also supply 2.25×1.25\", 4×4\", and custom sizes." },
-  { q: "Rolls or fanfold — which should I choose?", a: "Rolls suit desktop printers with a spindle; fanfold (Z-stack) suits high-volume warehouse/3PL lines and printers without a roll holder. We supply both in direct thermal." },
-  { q: "Are these labels compatible with Zebra, Dymo, and Rollo?", a: "Yes. Our direct thermal shipping labels are matched to Zebra (ZD220/ZD420/GK420d), Dymo 4XL/5XL, Rollo, Munbyn, and most desktop/industrial thermal printers by size, core, and perforation." },
-  { q: "Direct thermal vs thermal transfer — which is right for shipping?", a: "Shipping labels are almost always direct thermal: no ribbon, lower cost, and print life is ample for transit. Use thermal transfer only for long-term outdoor/chemical exposure." },
+  { q: "Rolls or fanfold — which should I choose?", a: "Rolls suit desktop printers with a spindle; fanfold (Z-stack) suits high-volume warehouse or 3PL lines and printers without a roll holder. We supply both in direct thermal." },
+  { q: "Are these labels compatible with Zebra, Dymo, and Rollo?", a: "Yes. Our direct thermal shipping labels are matched to Zebra (ZD220/ZD420/GK420d), Dymo 4XL/5XL, Rollo, Munbyn, and most desktop or industrial thermal printers by size, core, and perforation." },
+  { q: "Direct thermal vs thermal transfer — which is right for shipping?", a: "Shipping labels are almost always direct thermal: no ribbon, lower cost, and print life is ample for transit. Use thermal transfer only for long-term outdoor or chemical exposure." },
   { q: "What is the MOQ for bulk or OEM shipping labels?", a: "Stock sizes are available from low volume. Custom sizes, adhesives, or private-label packaging start at 5,000 rolls. Contact us with your size and quantity for a quote." },
+  { q: "Do direct thermal shipping labels fade or smudge?", a: "Direct thermal print darkens over months of heat, UV, or friction exposure, but print life is well beyond a parcel's transit time. For long-term outdoor storage or chemical contact, choose thermal transfer instead — for normal e-commerce shipping, direct thermal is the standard." },
+  { q: "Where can I buy 4x6 thermal shipping labels in bulk?", a: "As a direct thermal label factory, we sell 4x6 (100 × 150 mm) labels wholesale in rolls and fanfold worldwide — with bulk and OEM pricing, no middleman markup, and FOB / CIF / DDP export to the UK, EU, and North America." },
 ];
 
 const collectionSchema = {
@@ -115,214 +122,121 @@ const faqSchema = {
   })),
 };
 
-export default function ShippingLabelsPage() {
+export default async function ShippingLabelsPage() {
+  const heroImage = await getSlotImage("thermal-labels:blank-hero", LABELS_IMG_FALLBACK);
+  const featureImage = await getSlotImage("thermal-labels:custom-hero", LABELS_IMG_FALLBACK);
+
   return (
-    <Layout>
+    <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-
-      {/* Breadcrumb */}
-      <div className="bg-slate-50 border-b border-slate-200 py-3">
-        <div className="container">
-          <div className="text-sm text-slate-500">
-            <Link href="/" className="hover:text-brand-navy">Home</Link> <span className="mx-1">/</span>
-            <Link href="/products" className="hover:text-brand-navy">Products</Link> <span className="mx-1">/</span>
-            <span className="text-slate-700 font-medium">Shipping Labels</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Header */}
-      <div className="bg-brand-navy text-white py-14">
-        <div className="container">
-          <div className="flex flex-wrap gap-2 mb-4">
-            {["Direct Thermal", "4×6", "Rolls & Fanfold", "Zebra / Dymo", "OEM"].map((t) => (
-              <span key={t} className="text-xs bg-white/10 border border-white/15 text-slate-200 px-3 py-1 rounded-full font-medium">{t}</span>
-            ))}
-          </div>
-          <h1 className="font-sora text-3xl sm:text-4xl font-extrabold mb-3 leading-tight">
-            Direct Thermal Shipping Labels<br />
-            <span className="text-amber-400">4×6, Rolls &amp; Fanfold</span>
-          </h1>
-          <p className="text-slate-300 max-w-2xl text-base leading-relaxed">
-            Factory-direct direct-thermal shipping labels for e-commerce sellers, warehouses, and 3PLs.
-            4×6 and custom sizes, in rolls or fanfold, matched to Zebra, Dymo, Rollo, and industrial
-            thermal printers — BPA-free, bulk pricing, and full OEM/private-label.
-          </p>
-        </div>
-      </div>
-
-      <div className="container py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-
-          {/* LEFT */}
-          <div className="lg:col-span-2 space-y-12">
-
-            {/* Sub-products */}
-            <div>
-              <div className="flex items-center gap-2 mb-5">
-                <Layers className="w-5 h-5 text-amber-600" />
-                <h2 className="font-sora text-xl font-bold text-slate-900">Shipping Label Range</h2>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {subProducts.map(({ icon, title, desc, href, hrefLabel }) => (
-                  <div key={title} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:border-amber-300 transition-colors">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-lg">{icon}</span>
-                      <span className="font-sora font-bold text-slate-900 text-sm">{title}</span>
-                    </div>
-                    <p className="text-xs text-slate-600 leading-relaxed">{desc}</p>
-                    {href && (
-                      <Link href={href} className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-amber-600 hover:text-amber-800">
-                        {hrefLabel} <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Direct thermal explainer */}
-            <div>
-              <h2 className="font-sora text-xl font-bold text-slate-900 mb-3">Direct Thermal vs Thermal Transfer</h2>
-              <p className="text-slate-600 leading-relaxed text-sm">
-                Shipping labels are almost always <strong>direct thermal</strong>: the image is created by heat alone —
-                no ink or ribbon needed — which lowers cost and simplifies printing. Print life is more than enough for
-                transit and warehousing. Choose thermal transfer only when labels face long-term outdoor, chemical, or
-                high-heat exposure. All labels on this page are direct thermal unless specified.
-              </p>
-            </div>
-
-            {/* Specs */}
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Boxes className="w-5 h-5 text-amber-600" />
-                <h2 className="font-sora text-xl font-bold text-slate-900">Specifications</h2>
-              </div>
-              <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                <table className="w-full text-sm">
-                  <tbody>
-                    {specs.map(({ label, value }, i) => (
-                      <tr key={label} className={i % 2 === 0 ? "bg-slate-50" : "bg-white"}>
-                        <td className="px-5 py-3 font-medium text-slate-600 w-48 whitespace-nowrap">{label}</td>
-                        <td className="px-5 py-3 text-slate-900 font-semibold">{value}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Compatibility matrix */}
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Printer className="w-5 h-5 text-amber-600" />
-                <h2 className="font-sora text-xl font-bold text-slate-900">Printer Compatibility</h2>
-              </div>
-              <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                <table className="w-full text-sm">
-                  <thead className="bg-slate-50">
-                    <tr>
-                      <th className="px-5 py-3 text-left font-semibold text-slate-700 w-40">Brand</th>
-                      <th className="px-5 py-3 text-left font-semibold text-slate-700">Compatible Models</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {compatibility.map(({ brand, models }, i) => (
-                      <tr key={brand} className={i % 2 === 0 ? "bg-white" : "bg-slate-50"}>
-                        <td className="px-5 py-3 font-semibold text-slate-900">{brand}</td>
-                        <td className="px-5 py-3 text-slate-600">{models}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Bulk & OEM */}
-            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
-              <div className="flex items-start gap-3">
-                <Truck className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-sora font-bold text-amber-900 mb-1">Bulk & OEM Shipping Labels</div>
-                  <p className="text-sm text-amber-800 mb-3">
-                    Factory-direct pricing for distributors and high-volume sellers. Custom sizes, adhesives,
-                    perforation, and private-label packaging available. CIF to major ports worldwide.
-                  </p>
-                  <Link href="/oem" className="inline-flex items-center gap-2 text-sm font-bold text-amber-700 hover:text-amber-900">
-                    OEM & Private Label <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* FAQ */}
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <MessageSquare className="w-5 h-5 text-amber-600" />
-                <h2 className="font-sora text-xl font-bold text-slate-900">Frequently Asked Questions</h2>
-              </div>
-              <div className="space-y-3">
-                {faqs.map(({ q, a }) => (
-                  <div key={q} className="bg-slate-50 border border-slate-200 rounded-xl p-5">
-                    <h3 className="font-sora font-semibold text-slate-900 mb-2 text-sm">{q}</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">{a}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Cross-links */}
-            <div className="flex flex-wrap gap-4 pt-4 border-t border-slate-100">
-              <Link href="/products/thermal-labels/4x6in" className="inline-flex items-center gap-2 text-sm text-amber-600 hover:text-amber-800 font-semibold"><Package className="w-4 h-4" />4×6 Label Details →</Link>
-              <Link href="/products/thermal-labels" className="inline-flex items-center gap-2 text-sm text-amber-600 hover:text-amber-800 font-semibold">All Thermal Labels →</Link>
-              <Link href="/products/linerless-labels" className="inline-flex items-center gap-2 text-sm text-amber-600 hover:text-amber-800 font-semibold">Linerless Labels →</Link>
-            </div>
-          </div>
-
-          {/* RIGHT SIDEBAR */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24 space-y-4">
-              <div className="bg-white border-2 border-amber-500 rounded-2xl p-6 shadow-lg">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs text-green-600 font-semibold">Online — Responding within 12h</span>
-                </div>
-                <h3 className="font-sora text-lg font-extrabold text-slate-900 mb-1">Request a Quote</h3>
-                <p className="text-sm text-slate-500 mb-5">Tell us your size, format (roll/fanfold), and quantity — we&apos;ll send unit pricing same week.</p>
-                <InquiryForm compact />
-              </div>
-
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-3">
-                <h4 className="font-sora font-bold text-slate-900 text-sm">At a Glance</h4>
-                {[
-                  { icon: Package, label: "Popular Size", val: "4 × 6 in" },
-                  { icon: Boxes, label: "Format", val: "Roll / Fanfold" },
-                  { icon: Printer, label: "Type", val: "Direct Thermal" },
-                  { icon: Truck, label: "Incoterms", val: "FOB · CIF · DDP" },
-                ].map(({ icon: Icon, label, val }) => (
-                  <div key={label} className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-2 text-slate-500"><Icon className="w-4 h-4" />{label}</div>
-                    <span className="font-semibold text-slate-900">{val}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-2xl p-5">
-                <h4 className="font-sora font-bold text-slate-900 text-sm mb-3">Certifications</h4>
-                <div className="space-y-2">
-                  {["ISO 9001:2015", "FSC Certified", "BPA-Free", "RoHS / REACH"].map((c) => (
-                    <div key={c} className="flex items-center gap-2 text-sm text-slate-700">
-                      <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />{c}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Layout>
+      <ProductCategoryShowcaseTemplate
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Shipping Labels" }]}
+        heroImage={heroImage}
+        heroBadge={{ text: "E-commerce & 3PL Supply", color: "amber" }}
+        title={<>Direct Thermal Shipping Labels<br /><span className="text-amber-400">4×6, Rolls &amp; Fanfold</span></>}
+        subtitle="Factory-direct direct-thermal shipping labels for e-commerce sellers, warehouses, and 3PLs. 4×6 and custom sizes, in rolls or fanfold, matched to Zebra, Dymo, Rollo, and industrial thermal printers — BPA-free, bulk pricing, and full OEM or private-label support."
+        trustBadges={["4×6 Stock + Custom Sizes", "Rolls & Fanfold Formats", "Zebra / Dymo / Rollo Matched", "OEM Available"]}
+        stats={[
+          { value: "4×6", label: "Top Size" },
+          { value: "Roll / Fold", label: "Format" },
+          { value: "3–18", label: "Day Lead" },
+        ]}
+        ctas={[
+          { label: "Get a Quick Quote", href: "#inquiry", variant: "primary" },
+          { label: "Request Samples", href: "/contact", variant: "outline" },
+        ]}
+        introSplit={{
+          title: "4×6, Rolls & Fanfold — From the Factory",
+          lead: "From single 4×6 rolls to high-volume fanfold for 3PL lines, we supply the full direct thermal shipping label range straight from the factory — sized, cored, and perforated to match your printers.",
+          bullets: [
+            "4×6 and custom sizes in rolls or fanfold",
+            "Direct thermal — no ribbon, lower running cost",
+            "Matched to Zebra, Dymo, Rollo and industrial printers",
+            "BPA-free standard with phenol-free option",
+          ],
+          image: heroImage,
+          imageAlt: "Direct thermal shipping label rolls and fanfold stacks",
+          cta: { label: "Send Inquiry Now", href: "#inquiry" },
+        }}
+        overview={{
+          title: "What Are Direct Thermal Shipping Labels?",
+          paragraphs: [
+            "Direct thermal shipping labels are self-adhesive labels printed by heat alone — no ink, toner, or ribbon. A thermal print head darkens a heat-sensitive coating to form the barcode and address, which keeps consumable cost low, reduces printer downtime, and simplifies the workflow for high-volume fulfillment teams.",
+            "The 4\" × 6\" (100 × 150 mm) label is the global e-commerce standard, accepted by Amazon FBA, eBay, Shopify, USPS, UPS, FedEx, and DHL. We also produce 2.25 × 1.25\", 4 × 4\", 2 × 1\", and fully custom sizes, supplied as rolls on 1\" or 3\" cores or as Z-fold fanfold stacks for printers without a spindle.",
+            "As the manufacturer, we control the coating, adhesive, core, and perforation in-house. That lets us match your exact printer and workflow, keep BPA-free as the standard with a phenol-free option, and support OEM or private-label packaging for distributors and brands — at true factory-direct wholesale pricing with no middleman markup.",
+          ],
+        }}
+        featureSplit={{
+          title: "Why Use Direct Thermal Labels for Shipping?",
+          lead: "Direct thermal is the right choice for almost every shipping workflow: with no ribbon to buy or load, it cuts both cost and complexity while staying durable enough for parcel transit and last-mile handling.",
+          bullets: [
+            "No ribbon needed — lower consumable cost",
+            "Transit-ready print life for parcels and handling",
+            "Roll and fanfold formats for desktop to industrial",
+            "Custom size, adhesive and perforation for OEM",
+          ],
+          image: featureImage,
+          imageAlt: "Thermal printer producing a 4x6 shipping label",
+          cta: { label: "Talk to a Specialist", href: "#inquiry" },
+        }}
+        productsTitle="Types of Direct Thermal Shipping Labels"
+        productsDescription="Pick the format and size that matches your printers and volume — every option ships direct thermal, BPA-free, and bulk-ready."
+        products={products}
+        browseSections={[
+          {
+            title: "Shipping Labels by Size",
+            description: "Jump to the most-requested label sizes for full specs, printer compatibility, and a size-specific quote.",
+            cards: labelSizes.map((size, i) => ({
+              image: i % 2 === 0 ? heroImage : featureImage,
+              title: size.label,
+              desc: `Direct thermal ${size.label.toLowerCase()} stock — supplied in rolls or fanfold, BPA-free, and matched to your printer.`,
+              href: `/products/thermal-labels/${size.slug}`,
+              badge: size.badge,
+            })),
+          },
+          {
+            title: "Shipping Labels by Format",
+            description: "Choose the supply format that fits your printer hardware and daily throughput.",
+            cards: [
+              { image: heroImage, title: "Label Rolls (1\" / 3\" core)", desc: "Continuous direct thermal rolls for desktop and industrial thermal printers with a spindle.", href: "/products/thermal-labels/blank", badge: "Desktop" },
+              { image: featureImage, title: "Fanfold (Z-stack)", desc: "Z-fold stacks for non-stop, high-volume printing on warehouse and 3PL lines — no spindle needed.", href: "/products/thermal-labels/blank", badge: "High Volume" },
+              { image: heroImage, title: "Custom Printed Labels", desc: "Pre-printed logos, color, and layout with custom size, adhesive, and perforation for OEM programs.", href: "/products/thermal-labels/custom-printed", badge: "OEM" },
+              { image: featureImage, title: "All Thermal Labels", desc: "Explore the full direct thermal label catalogue — sizes, materials, and printer-matched options.", href: "/products/thermal-labels/blank" },
+            ],
+          },
+        ]}
+        comparison={{
+          title: "Printer Compatibility",
+          headers: { left: "Desktop / Standard", right: "Notes / Industrial" },
+          rows: compatibilityRows,
+        }}
+        specs={{ title: "Specifications", rows: specs }}
+        whyUs={{
+          title: "Why Source From the Factory",
+          subtitle: "Direct manufacturing control on coating, adhesive, and packaging — with the certifications global buyers require.",
+          items: [
+            { icon: <Factory />, title: "True Factory-Direct", text: "No distributor markup. We control the line from base paper coating to finished, boxed rolls and fanfold." },
+            { icon: <ShieldCheck />, title: "Certified & Compliant", text: "ISO 9001:2015, FSC, BPA-free standard, and RoHS / REACH support for regulated markets." },
+            { icon: <Printer />, title: "Printer-Matched", text: "Size, core, and perforation confirmed against Zebra, Dymo, Rollo, and industrial thermal printers." },
+            { icon: <Boxes />, title: "Rolls & Fanfold", text: "Both supply formats in stock and custom — desktop sellers to high-volume 3PL fulfillment lines." },
+            { icon: <Truck />, title: "Global Export", text: "FOB, CIF, and DDP to UK, EU, and North America, with reliable lead times and consolidated shipping." },
+            { icon: <BadgeCheck />, title: "OEM & Private Label", text: "Custom size, adhesive, perforation, and branded packaging programs for distributors and brands." },
+          ],
+        }}
+        faqs={faqs}
+        crossLinks={[
+          { label: "4×6 Label Details", href: "/products/thermal-labels/4x6in" },
+          { label: "All Thermal Labels", href: "/products/thermal-labels/blank" },
+          { label: "Linerless Labels", href: "/products/linerless-labels" },
+          { label: "OEM & Private Label", href: "/oem" },
+        ]}
+        inquiry={{
+          title: "Request a Shipping Label Quote",
+          description: "Tell us your size, format (roll or fanfold), printer model, and quantity — we'll send unit pricing the same week.",
+        }}
+      />
+    </>
   );
 }

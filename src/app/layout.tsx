@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { SITE } from "@/config/siteData";
+import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 import Script from "next/script";
 import { readSeo, readEffectiveSeo } from "@/lib/seoStore";
 import { Inter, Sora } from "next/font/google";
@@ -121,9 +121,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "Manufacturer"],
   "@id": `${SITE.domain}/#organization`,
   name: SITE.name,
+  legalName: "Xi'an Zhi Xin Paper Co., Ltd.",
+  alternateName: ["Zhi Xin Paper", "ZhiXin Paper", "zxpapers"],
   url: SITE.domain,
   logo: {
     "@type": "ImageObject",
@@ -131,10 +133,46 @@ const organizationSchema = {
     width: 400,
     height: 400,
   },
+  slogan: SITE.tagline,
   description:
-    "ISO 9001 certified manufacturer of thermal paper rolls and labels. OEM/private label, BPA-free, FSC certified. Serving 80+ countries since 2009.",
+    `ISO 9001:2015, FSC and BPA-free certified manufacturer of thermal paper rolls, direct thermal & shipping labels, can labels and detergent labels. Founded in 2009 in Xi'an, China, ZhixinPaper operates a ${FACTORY.area} factory with ${FACTORY.productionLines} production lines producing ${FACTORY.annualOutput} rolls per year, exporting to ${FACTORY.countriesServed} countries with factory-direct wholesale pricing and OEM/private-label programs for ${FACTORY.oemClients} clients.`,
   foundingDate: "2009",
-  numberOfEmployees: { "@type": "QuantitativeValue", value: 200 },
+  foundingLocation: {
+    "@type": "Place",
+    address: { "@type": "PostalAddress", addressLocality: "Xi'an", addressRegion: "Shaanxi", addressCountry: "CN" },
+  },
+  numberOfEmployees: { "@type": "QuantitativeValue", value: 800 },
+  knowsAbout: [
+    "Thermal paper rolls",
+    "Direct thermal labels",
+    "BPA-free thermal paper",
+    "POS receipt paper",
+    "Cash register / till rolls",
+    "4x6 shipping labels",
+    "Can labels",
+    "Detergent labels",
+    "OEM / private-label thermal paper manufacturing",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Thermal Paper & Label Products",
+    itemListElement: [
+      { name: "Thermal Paper Rolls", path: "/products/thermal-paper-rolls/blank" },
+      { name: "Thermal & Shipping Labels", path: "/products/shipping-labels" },
+      { name: "BPA-Free Thermal Paper", path: "/products/bpa-free-thermal-paper" },
+      { name: "Till Rolls", path: "/products/till-rolls" },
+      { name: "Can Labels", path: "/products/can-labels" },
+      { name: "Detergent Labels", path: "/products/detergent-labels" },
+    ].map((c) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Product", name: c.name, url: `${SITE.domain}${c.path}` },
+    })),
+  },
+  hasCredential: CERTIFICATIONS.map((c) => ({
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "certification",
+    name: c.name,
+  })),
   contactPoint: [
     {
       "@type": "ContactPoint",
@@ -249,21 +287,6 @@ export default async function RootLayout({
           </noscript>
         )}
         {children}
-        {/* WUUNU SNIPPET - DON'T CHANGE THIS (START) */}
-        {process.env.NODE_ENV !== "production" && (
-          <>
-            <Script id="wuunu-ws" strategy="afterInteractive">
-              {`window.__WUUNU_WS__ = "http://127.0.0.1:59064/?token=467b21eba87a0389416f6eef2842f5674abbd83143c90e2b";`}
-            </Script>
-            <Script
-              id="wuunu-widget"
-              src="https://cdn.jsdelivr.net/npm/@wuunu/widget@0.1.22"
-              strategy="afterInteractive"
-              crossOrigin="anonymous"
-            />
-          </>
-        )}
-        {/* WUUNU SNIPPET - DON'T CHANGE THIS (END) */}
       </body>
     </html>
   );
