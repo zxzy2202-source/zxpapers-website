@@ -37,6 +37,22 @@ const nextConfig: NextConfig = {
         destination: "https://www.zxpapers.com/:path*",
         permanent: true,
       },
+      // Domain consolidation: fold the alternate brand domain into the single
+      // canonical host so search engines / AI treat one brand entity. NOTE: this
+      // only fires if thermalrollpro.com is served by THIS deployment; if it runs
+      // a separate stack, configure the 301 at that host/CDN instead.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "thermalrollpro.com" }],
+        destination: "https://www.zxpapers.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.thermalrollpro.com" }],
+        destination: "https://www.zxpapers.com/:path*",
+        permanent: true,
+      },
       {
         source: "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/:path*",
         destination: "/:path*",
