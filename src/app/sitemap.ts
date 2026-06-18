@@ -137,6 +137,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const otherPages: MetadataRoute.Sitemap = [
     { url: `${BASE}/blog`, lastModified: STATIC_LAST_MOD, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE}/zhixinpaper-vs-panda-paper-roll`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/best-thermal-paper-suppliers`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.7 },
   ];
 
   // Manufacturing Sub-Pages (priority 0.7)
