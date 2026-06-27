@@ -1,0 +1,56 @@
+import type { Metadata } from "next";
+import SizeDetailPage from "@/components/products/SizeDetailPage";
+import { ROLLS_IMG, apps80x80 } from "../roll-sizes-data";
+import { SITE } from "@/config/siteData";
+
+export const metadata: Metadata = {
+  title: "80×80mm (3⅛ inch) Thermal Paper Rolls | Most Popular POS",
+  description: "80x80mm (3 1/8 inch) thermal paper rolls — the world's most popular POS receipt paper size. Premium quality, dark image, 5+ years image life. Factory direct.",
+  keywords: "80mm x 80mm thermal paper rolls, 3 1/8 inch thermal paper, 3 1/8 x 230 thermal paper, 80x80 receipt paper, POS receipt paper, thermal paper wholesale",
+  alternates: { canonical: `${SITE.domain}/products/thermal-rolls/80x80mm` },
+};
+
+
+export default function Page() {
+  return (
+    <>
+      <SizeDetailPage
+        type="rolls"
+        sizeLabel="80mm x 80mm"
+        slug="80x80mm"
+        fullTitle="80mm x 80mm Thermal Paper Rolls"
+        badge="Most Popular"
+        description="The 80mm x 80mm thermal paper roll is the world's most popular POS receipt size. Used in restaurants, retail stores, supermarkets, and hospitality worldwide. Our BPA-free 80x80 rolls deliver sharp, long-lasting prints compatible with all major POS printer brands."
+        specs={[
+          { label: "Width", value: "80mm (±0.5mm)" },
+          { label: "Imperial Width", value: "3⅛″ (3 1/8 inch)" },
+          { label: "Roll Diameter", value: "80mm" },
+          { label: "Paper Length", value: "80m / 60m / 50m" },
+          { label: "Core Size", value: "12mm / 25mm" },
+          { label: "Paper Weight", value: "55g/m² / 65g/m²" },
+          { label: "Image Life", value: "5–7 years" },
+          { label: "Coating", value: "BPA-Free / Standard" },
+          { label: "MOQ", value: "1,000 rolls" },
+          { label: "Lead Time", value: "7–15 days" },
+        ]}
+        applications={apps80x80}
+        markets={["Global", "Asia", "Europe", "Americas"]}
+        productImage={ROLLS_IMG}
+        productImageSlot="thermal-rolls"
+        palletInfo={
+          {
+            rollsPerBox: 50,
+            boxesPerPallet: 36,
+            rollsPerPallet: 1800,
+            weightKg: 504,
+            palletDim: "80×80×180 cm",
+            palletsPer20ft: 21,
+            palletsPer40ft: 47,
+            rollsPer20ft: 37800,
+            rollsPer40ft: 84600,
+          }
+        }
+      />
+    </>
+  );
+}

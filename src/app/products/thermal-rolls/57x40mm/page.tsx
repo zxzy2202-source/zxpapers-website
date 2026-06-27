@@ -1,0 +1,55 @@
+import type { Metadata } from "next";
+import SizeDetailPage from "@/components/products/SizeDetailPage";
+import { ROLLS_IMG, apps57x40 } from "../roll-sizes-data";
+import { SITE } from "@/config/siteData";
+
+export const metadata: Metadata = {
+  title: "57×40mm (2¼ inch) Thermal Rolls | Handheld Printers",
+  description: "57mm x 40mm (2 1/4 inch) compact thermal paper rolls for handheld printers and mobile POS. BPA-free. MOQ 1,000 rolls.",
+  keywords: "57x40mm thermal paper rolls, 2 1/4 inch thermal paper, 2 1/4 x 50 thermal paper, handheld printer paper, 57mm receipt paper",
+  alternates: { canonical: `${SITE.domain}/products/thermal-rolls/57x40mm` },
+};
+
+
+export default function Page() {
+  return (
+    <>
+      <SizeDetailPage
+        type="rolls"
+        sizeLabel="57mm x 40mm"
+        slug="57x40mm"
+        fullTitle="57mm x 40mm Thermal Paper Rolls"
+        description="The 57mm x 40mm thermal paper roll is a compact size for small portable printers and handheld devices. Ideal for mobile payment terminals and small receipt printers."
+        specs={[
+          { label: "Width", value: "57mm (±0.5mm)" },
+          { label: "Imperial Width", value: "2¼″ (2 1/4 inch)" },
+          { label: "Roll Diameter", value: "40mm" },
+          { label: "Paper Length", value: "20m / 15m" },
+          { label: "Core Size", value: "12mm" },
+          { label: "Paper Weight", value: "48g/m²" },
+          { label: "Image Life", value: "3–5 years" },
+          { label: "Coating", value: "BPA-Free / Standard" },
+          { label: "MOQ", value: "1,000 rolls" },
+          { label: "Lead Time", value: "7–15 days" },
+        ]}
+        applications={apps57x40}
+        markets={["Asia", "Global"]}
+        productImage={ROLLS_IMG}
+        productImageSlot="thermal-rolls"
+        palletInfo={
+          {
+            rollsPerBox: 100,
+            boxesPerPallet: 175,
+            rollsPerPallet: 17500,
+            weightKg: 787,
+            palletDim: "105×120×180 cm",
+            palletsPer20ft: 11,
+            palletsPer40ft: 24,
+            rollsPer20ft: 192500,
+            rollsPer40ft: 420000,
+          }
+        }
+      />
+    </>
+  );
+}

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZhixinPaper — Homepage Redesign Mockup</title>
+<style>
+  :root{
+    --navy:#0f2147;
+    --navy-2:#15294f;
+    --navy-soft:#1b3666;
+    --amber:#f5a623;
+    --amber-deep:#e08e00;
+    --ink:#16233b;
+    --muted:#5b6b86;
+    --line:#e6ebf2;
+    --bg:#ffffff;
+    --bg-soft:#f4f7fb;
+    --green:#25a35a;
+    --radius:14px;
+    --shadow:0 6px 24px rgba(15,33,71,.08);
+    --shadow-lg:0 18px 50px rgba(15,33,71,.16);
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;font-weight:700;text-transform:uppercase;color:var(--amber-deep)}
+  .eyebrow.light{color:var(--amber)}
+  h2.sec{font-size:34px;line-height:1.15;font-weight:800;letter-spacing:-.02em;margin:10px 0 14px}
+  .sec-lead{color:var(--muted);max-width:680px}
+  .center{text-align:center}
+  .center .sec-lead{margin-left:auto;margin-right:auto}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:13px 22px;border-radius:10px;border:1px solid transparent;cursor:pointer;transition:.18s}
+  .btn-amber{background:var(--amber);color:#1b1300}
+  .btn-amber:hover{background:var(--amber-deep)}
+  .btn-green{background:var(--green);color:#fff}
+  .btn-green:hover{filter:brightness(.95)}
+  .btn-ghost{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.1)}
+  .btn-outline{background:#fff;border-color:var(--line);color:var(--navy)}
+  .btn-outline:hover{border-color:var(--navy);}
+
+  /* ---------- Top bar ---------- */
+  .topbar{background:var(--navy);color:#cdd7ea;font-size:13px}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:40px}
+  .topbar .l span{margin-right:18px;opacity:.9}
+  .topbar .r span{margin-left:18px;opacity:.8}
+  .topbar .r span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);margin-right:7px;vertical-align:middle}
+
+  /* ---------- Nav ---------- */
+  nav.main{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.main .wrap{display:flex;align-items:center;height:70px;gap:28px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand .mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--amber),#ff7a45);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:16px}
+  .brand b{font-size:18px;color:var(--navy);letter-spacing:-.01em;display:block;line-height:1.1}
+  .brand small{font-size:9px;letter-spacing:.18em;color:var(--amber-deep);font-weight:700}
+  .navlinks{display:flex;gap:22px;margin-left:14px;font-size:15px;font-weight:600;color:#33415c}
+  .navlinks a:hover{color:var(--navy)}
+  .navlinks a.active{color:var(--navy)}
+  nav .spacer{flex:1}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;background:var(--navy);color:#fff;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background:
+     radial-gradient(900px 500px at 78% 18%, rgba(245,166,35,.16), transparent 60%);pointer-events:none}
+  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:64px 24px}
+  .hero .badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;background:rgba(245,166,35,.14);border:1px solid rgba(245,166,35,.35);color:#ffd699;padding:7px 14px;border-radius:999px}
+  .hero h1{font-size:48px;line-height:1.05;letter-spacing:-.025em;font-weight:800;margin:20px 0 18px}
+  .hero h1 .y{color:var(--amber)}
+  .hero p.lead{font-size:17px;color:#c4d0e6;max-width:520px}
+  .hero .chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px}
+  .hero .chip{font-size:13px;font-weight:600;color:#dbe5f5;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:7px 13px;border-radius:8px}
+  .hero .chip b{color:var(--amber)}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  /* hero visual */
+  .hero-visual{position:relative}
+  .hero-visual .photo{border-radius:18px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.1)}
+  .hero-visual .photo img{height:420px;object-fit:cover;width:100%}
+  .snap{position:absolute;left:-26px;bottom:-26px;background:#fff;color:var(--ink);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-lg);display:grid;grid-template-columns:1fr 1fr;gap:14px 26px;min-width:300px}
+  .snap .it b{font-size:22px;display:block;line-height:1.1;color:var(--navy)}
+  .snap .it span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+  /* ---------- Trust strip ---------- */
+  .trust{background:var(--navy-2);color:#fff}
+  .trust .wrap{display:flex;justify-content:space-between;gap:24px;padding:22px 24px;flex-wrap:wrap}
+  .trust .t{display:flex;align-items:center;gap:12px}
+  .trust .t .ic{width:38px;height:38px;border-radius:9px;background:rgba(245,166,35,.16);display:flex;align-items:center;justify-content:center;font-size:18px}
+  .trust .t b{font-size:17px;display:block;line-height:1.1}
+  .trust .t span{font-size:12px;color:#a9b8d4}
+
+  /* ---------- Section base ---------- */
+  section.block{padding:64px 0}
+  section.soft{background:var(--bg-soft)}
+  section[id]{scroll-margin-top:96px}
+  .sec-head{margin-bottom:34px}
+
+  /* ---------- Why cards ---------- */
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .why{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:.18s}
+  .why:hover{box-shadow:var(--shadow);transform:translateY(-3px);border-color:#d4deec}
+  .why .ic{width:46px;height:46px;border-radius:11px;background:var(--navy);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px}
+  .why h3{font-size:17px;margin-bottom:7px}
+  .why p{font-size:14px;color:var(--muted)}
+
+  /* ---------- Product cards ---------- */
+  .grid4.prod{gap:22px}
+  .pcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.18s}
+  .pcard:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+  .pcard .ph{position:relative;height:180px;background:var(--bg-soft)}
+  .pcard .ph img{height:100%;width:100%;object-fit:cover}
+  .pcard .tag{position:absolute;top:10px;right:10px;background:rgba(15,33,71,.9);color:#fff;font-size:11px;font-weight:700;padding:5px 10px;border-radius:7px}
+  .pcard .tag.pop{background:var(--amber);color:#1b1300}
+  .pcard .body{padding:18px;display:flex;flex-direction:column;flex:1}
+  .pcard h3{font-size:16px;margin-bottom:3px}
+  .pcard .kicker{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber-deep);font-weight:700;margin-bottom:9px}
+  .pcard p{font-size:13.5px;color:var(--muted);margin-bottom:14px}
+  .pcard .spec{font-size:12.5px;color:#43526e;background:var(--bg-soft);border-radius:8px;padding:8px 11px;margin-bottom:7px}
+  .pcard .actions{display:flex;gap:8px;margin-top:auto;padding-top:6px}
+  .pcard .actions .btn{flex:1;justify-content:center;padding:10px;font-size:13px}
+  .seeall{text-align:right;margin-top:18px}
+  .seeall a{color:var(--navy);font-weight:700;font-size:14px}
+  .seeall a:hover{color:var(--amber-deep)}
+
+  /* ---------- Feedback ---------- */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .fb{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .fb .top{background:var(--navy);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:11px}
+  .fb .av{width:34px;height:34px;border-radius:50%;background:var(--amber);color:#1b1300;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+  .fb .top b{font-size:14px;display:block}
+  .fb .top span{font-size:11.5px;color:#aec0e0}
+  .fb .top .wa{margin-left:auto;font-size:10px;font-weight:700;background:var(--green);padding:4px 8px;border-radius:6px}
+  .fb .msg{padding:16px;font-size:13.5px;color:#43526e}
+  .fb .flag{font-size:12px;color:var(--muted);margin-bottom:9px;font-weight:600}
+  .fb .reply{background:#e7f7ec;border-radius:9px;padding:10px 12px;font-size:12.5px;color:#1f5b38;margin-top:12px}
+
+  /* ---------- Logistics split ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  .split .photo{border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .split .photo img{height:380px;width:100%;object-fit:cover}
+  .featlist{list-style:none;margin-top:20px;display:grid;gap:12px}
+  .featlist li{display:flex;align-items:center;gap:12px;font-size:15px;color:#d7e0f1}
+  .featlist .ic{width:30px;height:30px;border-radius:8px;background:rgba(245,166,35,.18);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:14px;flex:0 0 auto}
+  .logistics{background:var(--navy);color:#fff}
+  .logistics h2.sec{color:#fff}
+  .logistics .y{color:var(--amber)}
+
+  /* ---------- CTA ---------- */
+  .cta-band{background:linear-gradient(120deg,var(--navy),var(--navy-soft));color:#fff;border-radius:20px;padding:48px;display:grid;grid-template-columns:1.3fr 1fr;gap:36px;align-items:center;box-shadow:var(--shadow-lg)}
+  .cta-band h2{font-size:30px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+  .cta-band p{color:#c4d0e6;max-width:460px}
+  .cta-band .form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:22px;display:grid;gap:12px}
+  .cta-band .form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .cta-band .form input{background:rgba(255,255,255,.92);border:none;border-radius:9px;padding:12px 13px;font-size:14px;color:#16233b}
+  .cta-band .form input::placeholder{color:#7c899e}
+
+  /* ---------- Footer ---------- */
+  .foot{background:var(--navy);color:#9fb0cf;padding:54px 0 0}
+  .foot .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:30px}
+  .foot h4{color:#fff;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+  .foot ul{list-style:none;display:grid;gap:9px;font-size:14px}
+  .foot ul a:hover{color:var(--amber)}
+  .foot .about{font-size:14px;color:#9fb0cf;max-width:300px;margin-bottom:18px}
+  .foot .bar{border-top:1px solid rgba(255,255,255,.1);margin-top:38px;padding:18px 0;font-size:13px;color:#7e8fb0;display:flex;justify-content:space-between}
+
+  /* ---------- Products mega-menu ---------- */
+  .navitem{position:relative}
+  .navitem>a.drop::after{content:"▾";font-size:10px;margin-left:5px;opacity:.55}
+  .mega{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(8px);
+    background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);
+    padding:22px;width:680px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px 22px;
+    opacity:0;visibility:hidden;transition:.18s;z-index:60}
+  .navitem:hover .mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+  .mega::before{content:"";position:absolute;top:-18px;left:0;right:0;height:18px}
+  .mega .col h5{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--amber-deep);font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+  .mega .col a{display:block;font-size:13.5px;color:#43526e;padding:5px 0;font-weight:500}
+  .mega .col a:hover{color:var(--navy)}
+  .mega .ft{grid-column:1/-1;border-top:1px solid var(--line);margin-top:6px;padding-top:12px;display:flex;justify-content:space-between;align-items:center;font-size:13px}
+  .mega .ft a{color:var(--navy);font-weight:700}
+
+  /* ---------- Category hub ---------- */
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .cat{position:relative;border-radius:var(--radius);overflow:hidden;height:230px;border:1px solid var(--line);display:block;transition:.18s}
+  .cat:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .cat img{position:absolute;inset:0;height:100%;width:100%;object-fit:cover;transition:.3s}
+  .cat:hover img{transform:scale(1.05)}
+  .cat .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,33,71,.05) 0%,rgba(15,33,71,.55) 55%,rgba(15,33,71,.9) 100%)}
+  .cat .txt{position:absolute;left:0;right:0;bottom:0;padding:18px;color:#fff;z-index:2}
+  .cat .txt b{font-size:18px;display:block;line-height:1.2}
+  .cat .txt span{font-size:12.5px;color:#cdd9ef}
+  .cat .go{display:inline-flex;align-items:center;gap:6px;margin-top:9px;font-size:12.5px;font-weight:700;color:var(--amber)}
+  .cat .pill{position:absolute;top:12px;left:12px;z-index:2;font-size:11px;font-weight:700;background:var(--amber);color:#1b1300;padding:4px 9px;border-radius:7px}
+
+  /* annotation banner */
+  .note{background:#fff8ec;border-bottom:1px solid #f3e3c0;color:#7a5a12;font-size:13px;text-align:center;padding:9px 16px}
+
+  /* float */
+  .wa-float{position:fixed;right:22px;bottom:22px;width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:var(--shadow-lg);z-index:60}
+
+  @media(max-width:980px){
+    .hero .wrap{grid-template-columns:1fr;gap:60px}
+    .hero h1{font-size:38px}
+    .grid4,.grid4.prod{grid-template-columns:repeat(2,1fr)}
+    .grid3{grid-template-columns:1fr}
+    .split,.cta-band{grid-template-columns:1fr}
+    .foot .cols{grid-template-columns:1fr 1fr}
+    .navlinks{display:none}
+  }
+  @media(max-width:560px){
+    .grid4,.grid4.prod{grid-template-columns:1fr}
+    .snap{position:static;margin-top:16px;left:0}
+  }
+</style>
+</head>
+<body>
+
+<div class="note">📐 重设计稿（Mockup）— 现代简约工业风方向。仅供确认配色 / 排版 / 区块节奏，非最终代码。</div>
+
+<!-- Top bar -->
+<div class="topbar"><div class="wrap">
+  <div class="l"><span>📞 +86 158 9176 6700</span><span>✉ Sales@zxpapers.com</span></div>
+  <div class="r"><span>ISO 9001 Certified</span><span>Global Shipping</span><span>MOQ 1 Pallet</span></div>
+</div></div>
+
+<!-- Nav -->
+<nav class="main"><div class="wrap">
+  <a class="brand" href="#"><span class="mark">Z</span><span><b>ZhixinPaper</b><small>THERMAL SOLUTIONS SINCE 2009</small></span></a>
+  <div class="navlinks">
+    <a class="active" href="#">Home</a>
+    <span class="navitem">
+      <a class="drop" href="#categories">Products</a>
+      <div class="mega">
+        <div class="col">
+          <h5>🧾 Thermal Rolls</h5>
+          <a href="#rolls">POS Receipt Rolls</a>
+          <a href="#rolls">Mobile / Portable Rolls</a>
+          <a href="#rolls">Phenol-Free Paper</a>
+          <a href="#rolls">ATM / Kiosk Rolls</a>
+        </div>
+        <div class="col">
+          <h5>🏷️ Thermal Labels</h5>
+          <a href="#labels">Blank Thermal Labels</a>
+          <a href="#labels">4×6 Shipping Labels</a>
+          <a href="#labels">Barcode Labels</a>
+          <a href="#labels">Custom Printed Labels</a>
+        </div>
+        <div class="col">
+          <h5>📄 Carbonless / NCR</h5>
+          <a href="#carbonless">2-Ply NCR Invoices</a>
+          <a href="#carbonless">3-Ply Order Books</a>
+          <a href="#carbonless">Continuous Forms</a>
+          <a href="#carbonless">Carbonless Jumbo Rolls</a>
+        </div>
+        <div class="col">
+          <h5>🥫 Can &amp; Bottle</h5>
+          <a href="#cans">Beverage Can Labels</a>
+          <a href="#cans">Food Can Labels</a>
+          <a href="#cans">Bottle &amp; Jar Labels</a>
+          <a href="#cans">Detergent Labels</a>
+        </div>
+        <div class="ft"><span style="color:var(--muted)">Blank stock · custom print · OEM / private label · jumbo supply</span><a href="#categories">All products →</a></div>
+      </div>
+    </span>
+    <a href="#">OEM &amp; Custom</a>
+    <a href="#">Manufacturing</a><a href="#">Resources</a><a href="#">Markets</a><a href="#">About</a>
+  </div>
+  <div class="spacer"></div>
+  <a class="btn btn-amber" href="#cta">Get a Quote</a>
+</div></nav>
+
+<!-- Hero -->
+<header class="hero"><div class="wrap">
+  <div class="hero-text">
+    <span class="badge">🏭 Direct Thermal Paper Factory · Since 2009</span>
+    <h1>Thermal Paper Rolls &amp; Labels<br><span class="y">for Bulk &amp; OEM Orders</span></h1>
+    <p class="lead">Factory-direct rolls, labels &amp; carbonless forms for distributors, importers and retail chains — custom printing, precise slitting and export-ready packing from our 50,000 m² ISO-9001 facility in Xi'an, China.</p>
+    <div class="chips">
+      <span class="chip">✔ ISO 9001</span>
+      <span class="chip">✔ BPA-Free</span>
+      <span class="chip">✔ FCL ready <b>3–5 days</b></span>
+      <span class="chip">✔ OEM / Private Label</span>
+    </div>
+    <div class="cta">
+      <a class="btn btn-amber" href="#cta">Get a Quote in 24h →</a>
+      <a class="btn btn-ghost" href="#">💬 WhatsApp Us</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="photo">
+      <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp" alt="Factory coating line">
+    </div>
+    <div class="snap">
+      <div class="it"><b>50,000 m²</b><span>Factory Area</span></div>
+      <div class="it"><b>2M+</b><span>Daily Rolls</span></div>
+      <div class="it"><b>20+</b><span>Production Lines</span></div>
+      <div class="it"><b>80+</b><span>Countries Served</span></div>
+    </div>
+  </div>
+</div></header>
+
+<!-- Trust strip -->
+<div class="trust"><div class="wrap">
+  <div class="t"><div class="ic">🛡️</div><div><b>ISO 9001:2015</b><span>Quality Certified</span></div></div>
+  <div class="t"><div class="ic">🌿</div><div><b>FSC Certified</b><span>Sustainable Sourcing</span></div></div>
+  <div class="t"><div class="ic">🚫</div><div><b>BPA-Free</b><span>Safe &amp; Eco-Friendly</span></div></div>
+  <div class="t"><div class="ic">⏱️</div><div><b>15+ Years</b><span>Manufacturing Experience</span></div></div>
+</div></div>
+
+<!-- Product categories hub -->
+<section class="block" id="categories">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Product Lines</span>
+      <h2 class="sec">What We Manufacture</h2>
+      <p class="sec-lead">Four core product lines — blank stock, custom-printed and OEM. Jump straight to what you source.</p>
+    </div>
+    <div class="cat-grid">
+      <a class="cat" href="#rolls">
+        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp" alt="Thermal paper rolls">
+        <div class="ov"></div><span class="pill">Best Seller</span>
+        <div class="txt"><b>Thermal Paper Rolls</b><span>POS · mobile · ATM · kiosk</span><span class="go">Explore →</span></div>
+      </a>
+      <a class="cat" href="#labels">
+        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp" alt="Thermal labels">
+        <div class="ov"></div>
+        <div class="txt"><b>Thermal Labels</b><span>Shipping · barcode · inventory</span><span class="go">Explore →</span></div>
+      </a>
+      <a class="cat" href="#carbonless">
+        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp" alt="Carbonless NCR forms">
+        <div class="ov"></div>
+        <div class="txt"><b>Carbonless &amp; NCR</b><span>Invoices · order books · forms</span><span class="go">Explore →</span></div>
+      </a>
+      <a class="cat" href="#cans">
+        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp" alt="Can and bottle labels">
+        <div class="ov"></div><span class="pill">OEM</span>
+        <div class="txt"><b>Can &amp; Bottle Labels</b><span>Beverage · food · private label</span><span class="go">Explore →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Why -->
+<section class="block soft">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Our Advantages</span>
+      <h2 class="sec">Why Buyers Choose Us</h2>
+      <p class="sec-lead">Built for repeat wholesale orders — consistent specs, export documents and predictable delivery.</p>
+    </div>
+    <div class="grid4">
+      <div class="why"><div class="ic">🏷️</div><h3>Factory-Direct Price</h3><p>No middlemen. Buy direct and save 15–30% vs. trading companies.</p></div>
+      <div class="why"><div class="ic">📈</div><h3>Daily Production Capacity</h3><p>20+ lines, 2M+ rolls daily. Large orders fulfilled on time.</p></div>
+      <div class="why"><div class="ic">⚡</div><h3>Fast Container Loading</h3><p>FCL ready in 3–5 business days. Stock for popular sizes.</p></div>
+      <div class="why"><div class="ic">📦</div><h3>OEM &amp; Private Label</h3><p>Custom logo, packaging and core printing under your brand.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Products: rolls -->
+<section class="block" id="rolls">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Products</span>
+      <h2 class="sec">Thermal Paper Rolls</h2>
+      <p class="sec-lead">POS, mobile, ATM and kiosk receipt rolls — blank or custom-printed, slit to your exact size.</p>
+    </div>
+    <div class="grid4 prod">
+      <div class="pcard">
+        <div class="ph"><span class="tag pop">Most Popular</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp" alt="POS receipt rolls"></div>
+        <div class="body">
+          <div class="kicker">Small POS / Mobile</div>
+          <h3>POS Receipt Rolls</h3>
+          <p>For handheld POS &amp; mobile payment terminals.</p>
+          <div class="spec">Sizes: 80×80, 80×100, 80×150 mm</div>
+          <div class="spec">Core: 12 / 18 / 25 mm</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="ph"><span class="tag">Standard</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp" alt="Mobile printer rolls"></div>
+        <div class="body">
+          <div class="kicker">Standard POS Receipt</div>
+          <h3>Portable / Mobile Rolls</h3>
+          <p>Countertop POS for supermarkets &amp; restaurants.</p>
+          <div class="spec">57×30 mm — Pocket Printers</div>
+          <div class="spec">57×40 mm — Mobile POS</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="ph"><span class="tag pop">Best Seller</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp" alt="Phenol free thermal paper"></div>
+        <div class="body">
+          <div class="kicker">Restaurant / Retail POS</div>
+          <h3>Phenol-Free Thermal Paper</h3>
+          <p>#1 best-selling size for full-size POS printers.</p>
+          <div class="spec">80×80 mm — BPA/BPS-Free POS</div>
+          <div class="spec">57×50 mm — Food &amp; Healthcare</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="ph"><span class="tag">ATM / Kiosk</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp" alt="Custom printed rolls"></div>
+        <div class="body">
+          <div class="kicker">ATM / Kiosk Printer</div>
+          <h3>Custom Printed Rolls</h3>
+          <p>Precision-cut for ATM machines &amp; self-service kiosks.</p>
+          <div class="spec">80×80 mm — Branded Receipts</div>
+          <div class="spec">57×50 mm — Promo &amp; QR Receipts</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="seeall"><a href="#">View full thermal paper rolls range →</a></div>
+  </div>
+</section>
+
+<!-- Products: labels -->
+<section class="block soft" id="labels">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Products</span>
+      <h2 class="sec">Thermal Labels</h2>
+      <p class="sec-lead">Direct-thermal labels for shipping, barcode, inventory &amp; private-label packaging.</p>
+    </div>
+    <div class="grid4 prod">
+      <div class="pcard">
+        <div class="ph"><span class="tag">Label Stock</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp" alt="Blank thermal labels"></div>
+        <div class="body">
+          <div class="kicker">Shipping / Barcode</div>
+          <h3>Blank Thermal Labels</h3>
+          <p>Shipping, logistics, barcode &amp; warehouse operations.</p>
+          <div class="spec">2×1 in — Barcode Labels</div>
+          <div class="spec">4×3 in — Product &amp; Shelf</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="ph"><span class="tag">Shipping</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp" alt="4x6 shipping labels"></div>
+        <div class="body">
+          <div class="kicker">Logistics / Courier</div>
+          <h3>4×6 Shipping Labels</h3>
+          <p>Parcel shipping, warehouse picking &amp; e-commerce.</p>
+          <div class="spec">4×6 in — Courier &amp; Parcel</div>
+          <div class="spec">Direct Thermal — No Ribbon</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="ph"><span class="tag">Barcode</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp" alt="Barcode thermal labels"></div>
+        <div class="body">
+          <div class="kicker">Inventory / SKU</div>
+          <h3>Barcode Thermal Labels</h3>
+          <p>Barcode printing, shelf tags &amp; product identification.</p>
+          <div class="spec">2×1 in — SKU &amp; Barcode</div>
+          <div class="spec">3×2 in — Inventory Labels</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="ph"><span class="tag pop">OEM Ready</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp" alt="Custom printed labels"></div>
+        <div class="body">
+          <div class="kicker">Private Label Packaging</div>
+          <h3>Custom Printed Labels</h3>
+          <p>Custom logo labels — clean printing, export-ready.</p>
+          <div class="spec">2×1 in — Small Brand Labels</div>
+          <div class="spec">3×2 in — Product Packaging</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="seeall"><a href="#">View all sizes &amp; specifications →</a></div>
+  </div>
+</section>
+
+<!-- Products: carbonless -->
+<section class="block" id="carbonless">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Products</span>
+      <h2 class="sec">Carbonless Paper &amp; NCR Forms</h2>
+      <p class="sec-lead">2 / 3-ply carbonless (NCR) invoices, delivery notes, order books and jumbo rolls — custom-printed and collated to your layout.</p>
+    </div>
+    <div class="grid4 prod">
+      <div class="pcard">
+        <div class="ph"><span class="tag pop">Best Seller</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp" alt="2-ply NCR invoice forms"></div>
+        <div class="body">
+          <div class="kicker">Invoices / Receipts</div>
+          <h3>2-Ply NCR Invoice Forms</h3>
+          <p>White + color copy for invoices, receipts &amp; sales slips.</p>
+          <div class="spec">A4 / A5 — CB + CF sets</div>
+          <div class="spec">Custom logo &amp; sequential numbering</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="ph"><span class="tag">Order Books</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp" alt="3-ply delivery and order books"></div>
+        <div class="body">
+          <div class="kicker">Delivery / Orders</div>
+          <h3>3-Ply Delivery &amp; Order Books</h3>
+          <p>White-yellow-pink sets for delivery notes &amp; order books.</p>
+          <div class="spec">3-ply — CB + CFB + CF</div>
+          <div class="spec">Glued, padded or wire-stitched books</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="ph"><span class="tag">Continuous</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp" alt="continuous computer forms"></div>
+        <div class="body">
+          <div class="kicker">Computer Forms</div>
+          <h3>Continuous Computer Forms</h3>
+          <p>Fan-fold 1–4 ply forms for dot-matrix &amp; ERP printing.</p>
+          <div class="spec">241 / 381 mm — Sprocket Feed</div>
+          <div class="spec">1–4 ply — Pre-printed or blank</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="ph"><span class="tag pop">OEM / Jumbo</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp" alt="carbonless jumbo rolls"></div>
+        <div class="body">
+          <div class="kicker">Converters / Jumbo</div>
+          <h3>Carbonless Jumbo Rolls</h3>
+          <p>CB / CFB / CF base paper in jumbo rolls for converters.</p>
+          <div class="spec">CB · CFB · CF — 45–55 gsm</div>
+          <div class="spec">Blue / black image, custom width</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="seeall"><a href="#">View full carbonless &amp; NCR range →</a></div>
+  </div>
+</section>
+
+<!-- Products: can & bottle labels -->
+<section class="block soft" id="cans">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Products</span>
+      <h2 class="sec">Custom-Printed Can &amp; Bottle Labels</h2>
+      <p class="sec-lead">Full-wrap, food-safe labels for beverage cans, food cans and bottles — CMYK + Pantone printing, gloss/matte lamination, private label from MOQ 5,000.</p>
+    </div>
+    <div class="grid4 prod">
+      <div class="pcard">
+        <div class="ph"><span class="tag pop">Most Popular</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp" alt="12oz beverage can labels"></div>
+        <div class="body">
+          <div class="kicker">Beverage · Craft Beer</div>
+          <h3>12oz Beverage Can Labels</h3>
+          <p>Full-wrap 211×400 for craft beer, energy &amp; soda cans.</p>
+          <div class="spec">Face: White / Matte / Clear BOPP</div>
+          <div class="spec">Food-safe acrylic · moisture-resistant</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="ph"><span class="tag">16oz Tall</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp" alt="16oz tall can labels"></div>
+        <div class="body">
+          <div class="kicker">Seltzer · RTD Cocktails</div>
+          <h3>16oz Tall Can Labels</h3>
+          <p>211×603 full-wrap for seltzers, sparkling water &amp; RTD.</p>
+          <div class="spec">CMYK + Pantone spot color</div>
+          <div class="spec">Gloss / matte lamination</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="ph"><span class="tag">Food Standard</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp" alt="food can labels"></div>
+        <div class="body">
+          <div class="kicker">Soup · Tomato · Pet Food</div>
+          <h3>Food Can Labels (#2)</h3>
+          <p>300×407 full-wrap for soups, tomatoes, seafood &amp; pet food.</p>
+          <div class="spec">FDA 21 CFR &amp; EU food-contact</div>
+          <div class="spec">Moisture-resistant face stock</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="ph"><span class="tag pop">OEM Ready</span><img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp" alt="custom bottle and jar labels"></div>
+        <div class="body">
+          <div class="kicker">Private Label Packaging</div>
+          <h3>Custom Bottle &amp; Jar Labels</h3>
+          <p>Waterproof labels for bottles, jars &amp; cosmetics — your artwork.</p>
+          <div class="spec">Clear / white BOPP · waterproof</div>
+          <div class="spec">Die-cut to any shape · MOQ 5,000</div>
+          <div class="actions"><a class="btn btn-outline" href="#">Leave Message</a><a class="btn btn-green" href="#">WhatsApp</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="seeall"><a href="#">View full can &amp; bottle label range →</a></div>
+  </div>
+</section>
+
+<!-- Logistics split -->
+<section class="block logistics">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <span class="eyebrow light">Logistics</span>
+        <h2 class="sec">Container Loading <span class="y">Available</span></h2>
+        <p class="sec-lead" style="color:#c4d0e6">Export experience to 80+ countries, with full documentation and fast FCL turnaround.</p>
+        <ul class="featlist">
+          <li><span class="ic">📦</span>20ft &amp; 40ft container loading</li>
+          <li><span class="ic">⚡</span>Fast delivery within 15–25 days</li>
+          <li><span class="ic">🚢</span>FCL ready in 3–5 business days</li>
+          <li><span class="ic">🌍</span>Export experience to 80+ countries</li>
+          <li><span class="ic">📄</span>Full export docs: CO, B/L, invoice, packing list</li>
+        </ul>
+      </div>
+      <div class="photo">
+        <img src="https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp" alt="Factory production">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Feedback -->
+<section class="block soft">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Buyer Feedback by Market</span>
+      <h2 class="sec">Feedback from Importers, Distributors &amp; Retail Buyers</h2>
+      <p class="sec-lead">Buyers care about repeat-order consistency, export documents, carton marks and predictable delivery.</p>
+    </div>
+    <div class="grid3">
+      <div class="fb">
+        <div class="top"><span class="av">US</span><div><b>U.S. POS Distributor</b><span>80×80 mm Receipt Rolls</span></div><span class="wa">WhatsApp</span></div>
+        <div class="msg"><div class="flag">🇺🇸 United States · 10:24</div>The carton labels, roll length and paper brightness stayed consistent across repeat shipments. Made our retail POS accounts easier to support.<div class="reply">✔ Thanks. We'll keep the same specs and packing plan for your repeat order.</div></div>
+      </div>
+      <div class="fb">
+        <div class="top"><span class="av">CA</span><div><b>Canada Label Buyer</b><span>4×6 Shipping Labels</span></div><span class="wa">WhatsApp</span></div>
+        <div class="msg"><div class="flag">🇨🇦 Canada · 14:08</div>The 4×6 thermal labels worked well for courier and warehouse printing. Adhesive, roll packing and barcode print quality were stable.<div class="reply">✔ Thanks. We'll keep the same specs and packing plan for your repeat order.</div></div>
+      </div>
+      <div class="fb">
+        <div class="top"><span class="av">UK</span><div><b>UK Retail Supplier</b><span>57×50 mm POS Rolls</span></div><span class="wa">WhatsApp</span></div>
+        <div class="msg"><div class="flag">🇬🇧 United Kingdom · 09:42</div>The roll diameter and core size matched our POS printer requirements. Documentation and carton marks were clear for repeat imports.<div class="reply">✔ Thanks. We'll keep the same specs and packing plan for your repeat order.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="block" id="cta">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <span class="eyebrow light">Next Step</span>
+        <h2>Get Your Quote Within 24 Hours</h2>
+        <p>Tell us your size, monthly volume and target market. Our export team replies with pricing, MOQ and lead time — usually within 12 hours.</p>
+        <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
+          <a class="btn btn-amber" href="#">📋 Get Quick Quote</a>
+          <a class="btn btn-green" href="#">💬 WhatsApp Us</a>
+        </div>
+      </div>
+      <form class="form" onsubmit="return false">
+        <div class="row"><input placeholder="Your name"><input placeholder="Company"></div>
+        <input placeholder="Email / WhatsApp">
+        <input placeholder="Product &amp; size (e.g. 80×80mm rolls)">
+        <input placeholder="Monthly volume / target market">
+        <a class="btn btn-amber" href="#" style="justify-content:center">Request Free Quote →</a>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="#" style="margin-bottom:16px"><span class="mark">Z</span><span><b style="color:#fff">ZhixinPaper</b><small>THERMAL SOLUTIONS SINCE 2009</small></span></a>
+        <p class="about">Professional manufacturer of thermal paper rolls and labels since 2009. ISO 9001 certified, serving 80+ countries worldwide.</p>
+        <a class="btn btn-green" href="#">💬 WhatsApp for Quick Quote</a>
+      </div>
+      <div><h4>Products</h4><ul><li><a href="#">Blank Thermal Rolls</a></li><li><a href="#">Custom Printed Rolls</a></li><li><a href="#">Thermal Labels</a></li><li><a href="#">Shipping Labels</a></li><li><a href="#">Can Labels</a></li></ul></div>
+      <div><h4>OEM Services</h4><ul><li><a href="#">OEM Overview</a></li><li><a href="#">Private Label</a></li><li><a href="#">Design Support</a></li><li><a href="#">Quality Assurance</a></li><li><a href="#">IP Protection</a></li></ul></div>
+      <div><h4>Markets</h4><ul><li><a href="#">Africa</a></li><li><a href="#">Middle East</a></li><li><a href="#">Southeast Asia</a></li><li><a href="#">Nigeria</a></li><li><a href="#">South Africa</a></li></ul></div>
+      <div><h4>Support</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">OEM Partnership</a></li><li><a href="#">FAQ</a></li><li><a href="#">Specifications</a></li><li><a href="#">Resource Center</a></li></ul></div>
+    </div>
+    <div class="bar"><span>© 2026 ZhixinPaper. All rights reserved. · Factory in Xi'an, Shaanxi, China</span><span>Sitemap · FAQ · Contact</span></div>
+  </div>
+</footer>
+
+<a class="wa-float" href="#" title="WhatsApp">💬</a>
+
+</body>
+</html>

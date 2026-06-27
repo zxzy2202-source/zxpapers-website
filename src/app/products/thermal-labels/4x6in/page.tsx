@@ -1,0 +1,54 @@
+import type { Metadata } from "next";
+import SizeDetailPage from "@/components/products/SizeDetailPage";
+import { LABELS_IMG, apps4x6 } from "../label-sizes-data";
+import { SITE } from "@/config/siteData";
+
+export const metadata: Metadata = {
+  title: '4×6" Thermal Shipping Labels | E-commerce',
+  description: "4x6 inch thermal labels (100x150mm). Standard shipping label size for UPS, FedEx, DHL, USPS. Direct thermal printing, strong adhesive.",
+  alternates: { canonical: `${SITE.domain}/products/thermal-labels/4x6in` },
+};
+
+
+export default function Page() {
+  return (
+    <>
+      <SizeDetailPage
+        type="labels"
+        sizeLabel='4" x 6"'
+        slug="4x6in"
+        fullTitle='4" x 6" Thermal Shipping Labels'
+        badge="Most Popular"
+        description='The 4" x 6" thermal shipping label is the global standard for e-commerce and logistics. Compatible with all major shipping carriers including UPS, FedEx, DHL, Amazon, and USPS. Our labels feature strong permanent adhesive and high-contrast printing for reliable barcode scanning.'
+        specs={[
+          { label: "Size", value: '4" x 6" (101.6mm x 152.4mm)' },
+          { label: "Labels Per Roll", value: "250 / 500 / 1,000" },
+          { label: "Core Size", value: '1" / 3"' },
+          { label: "Adhesive", value: "Permanent" },
+          { label: "Face Stock", value: "White Direct Thermal" },
+          { label: "Image Life", value: "3–5 years" },
+          { label: "Printer Compatibility", value: "Zebra, DYMO, Honeywell, Rollo" },
+          { label: "MOQ", value: "5,000 labels" },
+          { label: "Lead Time", value: "7–15 days" },
+        ]}
+        applications={apps4x6}
+        markets={["Global", "Americas", "Europe"]}
+        productImage={LABELS_IMG}
+        productImageSlot="thermal-labels"
+        palletInfo={
+          {
+            rollsPerBox: 12,
+            boxesPerPallet: 84,
+            rollsPerPallet: 1008,
+            weightKg: 966,
+            palletDim: "100×120×180 cm",
+            palletsPer20ft: 11,
+            palletsPer40ft: 25,
+            rollsPer20ft: 11088,
+            rollsPer40ft: 25200,
+          }
+        }
+      />
+    </>
+  );
+}

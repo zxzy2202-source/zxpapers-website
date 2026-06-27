@@ -1,0 +1,36 @@
+node_modules/
+.next/
+.env
+.env.local
+.env.production
+*.log
+.DS_Store
+dist/
+out/
+*.tsbuildinfo
+docs/awesome-design-md/
+docs/B2B外贸站架构方案-*.md
+
+*.db
+*.pyc
+__pycache__/
+
+# Build and IDE artifacts
+.codex-artifacts/
+build/
+llm-assistant.spec
+llm_portable_v1.zip
+portable-llm-tool/
+
+# Runtime data (inquiry submissions written by the app at runtime)
+/data/inquiries.json
+
+# Local scratch / audit & verification output
+/browser-checks/
+/verification-output/
+
+# Local editor / agent config
+.claude/
+.cursor/
+.serena/
+.vscode/

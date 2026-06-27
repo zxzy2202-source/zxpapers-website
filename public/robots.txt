@@ -1,0 +1,94 @@
+User-agent: *
+Allow: /
+
+# Internal / admin paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /__manus__/
+
+# Keep legacy public URLs crawlable so search engines can confirm redirects.
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /*?replytocom=
+
+# ─────────────────────────────────────────────────────────────
+# AI / LLM crawlers — explicitly welcomed for Generative Engine
+# Optimization (GEO). Many AI bots only read their own user-agent
+# block and ignore "*", so they are listed individually. Public
+# content is open; admin/api stay closed.
+# ─────────────────────────────────────────────────────────────
+
+# OpenAI (ChatGPT)
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Google (Gemini / AI Overviews extended crawl)
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Microsoft Copilot
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Common Crawl (feeds many open LLM datasets)
+User-agent: CCBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://www.zxpapers.com/sitemap.xml
