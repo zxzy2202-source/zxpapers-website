@@ -100,18 +100,17 @@ export default async function CustomPrintedDetergentLabelsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2 space-y-10">
             <div className="flex flex-col sm:flex-row gap-6">
-              <Image src={heroImage} alt="Custom Printed Detergent Labels" className="w-full sm:w-64 h-48 object-cover rounded-2xl flex-shrink-0"  width={256} height={192} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+              <Image src={heroImage} alt="Custom Printed Bottle Labels" className="w-full sm:w-64 h-48 object-cover rounded-2xl flex-shrink-0"  width={256} height={192} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               <div>
-                <span className="inline-block bg-sky-100 text-sky-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">Detergent Labels</span>
-                <h1 className="font-sora text-3xl font-extrabold text-slate-900 mb-3">Custom Printed Detergent Labels</h1>
+                <span className="inline-block bg-sky-100 text-sky-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">Bottle & Packaging Labels</span>
+                <h1 className="font-sora text-3xl font-extrabold text-slate-900 mb-3">Custom Printed Bottle Labels</h1>
                 <p className="text-slate-600 leading-relaxed mb-4">
-                  Full-color custom printed labels for detergent, cleaning, and household chemical products.
-                  CMYK and Pantone color matching on water-resistant BOPP, PE, or vinyl substrates.
-                  Gloss or matte lamination, embossing, hot stamping, and spot UV options available.
-                  NDA protection, design support, and private label packaging included.
+                  Full-color custom printed labels for daily chemicals, wet wipes, food packs, healthcare packaging, and industrial containers.
+                  CMYK and Pantone color matching on packaging-grade BOPP, PE, vinyl, and specialty materials with support for multi-SKU launches, multi-language layouts, and retail-facing presentation.
+                  NDA protection, design support, and private-label packaging included.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {["CMYK + Pantone", "Water Resistant", "NDA Protected", "Design Support", "MOQ 5,000"].map((tag) => (
+                  {["CMYK + Pantone", "Multi-SKU Ready", "NDA Protected", "Design Support", "MOQ 5,000"].map((tag) => (
                     <span key={tag} className="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">{tag}</span>
                   ))}
                 </div>

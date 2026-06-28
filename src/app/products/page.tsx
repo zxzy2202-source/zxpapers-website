@@ -159,7 +159,7 @@ export default async function ProductsPage() {
       description: "Custom printed carbonless forms for invoices, receipts, delivery notes, and orders — 2-part, 3-part, 4-part, or multi-part.",
       cards: [
         ...ncrFormParts.map((p) => ({ image: ncrImg, title: p.label, desc: p.desc, href: `/products/ncr-forms/${p.slug}`, badge: p.badge })),
-        ...ncrFormTypes.map((t) => ({ image: ncrImg, title: t.label, desc: t.desc, href: `/products/ncr-forms#${t.anchor}`, badge: "Carbonless" })),
+        ...ncrFormTypes.map((t) => ({ image: ncrImg, title: t.label, desc: t.desc, href: "/products/ncr-forms", badge: "Carbonless" })),
       ],
     },
   ];
@@ -203,7 +203,7 @@ export default async function ProductsPage() {
         overview={{
           title: "A Complete Thermal Paper & Label Catalog",
           paragraphs: [
-            "ZhixinPaper is a thermal paper and label manufacturer supplying the full product range from a single factory: thermal paper rolls for POS, ATM, kiosk, and till applications; direct thermal and shipping labels; can labels; and detergent or household-chemical labels.",
+              "ZhixinPaper is a thermal paper and label manufacturer supplying the full product range from a single factory: thermal paper rolls for POS, ATM, kiosk, and till applications; direct thermal and shipping labels; can labels; and bottle or packaging labels for daily chemicals, food, healthcare, and industrial products.",
             "Every category is available as blank stock for in-house printing or as custom printed runs with your logo, artwork, and private-label packaging. Standard sizes are held in stock for fast dispatch, while custom widths and shapes are produced to a ±0.5mm tolerance.",
             "Because we control coating, printing, adhesive, and packaging in-house, we hold BPA-free as standard, support OEM programs for distributors and brands, and export worldwide on FOB, CIF, and DDP terms — at wholesale pricing with no middleman markup.",
           ],

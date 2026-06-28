@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Layout from "@/components/layout/Layout";
-import InquiryForm from "@/components/shared/InquiryForm";
-import { CheckCircle, ArrowRight, Package, Ruler, ShieldCheck, Truck, Clock, Star, MessageSquare } from "lucide-react";
+import { BadgeCheck, Boxes, Factory, MessageSquare, Package, Phone, ShieldCheck, Truck } from "lucide-react";
 import { paperRollSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
 import { getSlotImage } from "@/lib/imageSlotUtils";
-import Image from "next/image";
+import { r2Image } from "@/lib/r2";
+import ProductCategoryShowcaseTemplate from "@/components/products/ProductCategoryShowcaseTemplate";
+import type { ShowcaseBrowseSection } from "@/components/products/ProductCategoryShowcaseTemplate";
 
 export const metadata: Metadata = {
   title: "Receipt Paper Rolls & Cash Register Paper | Wholesale Manufacturer",
@@ -45,9 +44,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.zxpapers.com" },
-    { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.zxpapers.com/products" },
-    { "@type": "ListItem", "position": 3, "name": "Receipt Paper Rolls", "item": "https://www.zxpapers.com/products/receipt-paper-rolls" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE.domain },
+    { "@type": "ListItem", "position": 2, "name": "Products", "item": `${SITE.domain}/products` },
+    { "@type": "ListItem", "position": 3, "name": "Receipt Paper Rolls", "item": `${SITE.domain}/products/receipt-paper-rolls` },
   ],
 };
 
@@ -56,16 +55,15 @@ const productSchema = {
   "@type": "Product",
   "name": "Receipt Paper Rolls & Cash Register Paper | Thermal POS Receipt Rolls",
   "description": "Factory-direct receipt paper rolls and cash register paper. Thermal POS receipt rolls in 57mm (2¼\") and 80mm (3⅛\") sizes. BPA-free, ISO 9001 certified. MOQ 1,000 rolls.",
-  "brand": { "@type": "Brand", "name": "Zhixin Paper" },
-  "manufacturer": { "@type": "Organization", "name": "Zhixin Paper", "url": "https://www.zxpapers.com" },
-  "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp",
-  "url": "https://www.zxpapers.com/products/receipt-paper-rolls",
-
+  "brand": { "@type": "Brand", "name": SITE.name },
+  "manufacturer": { "@id": `${SITE.domain}/#organization` },
+  "image": ROLLS_IMG_FALLBACK,
+  "url": `${SITE.domain}/products/receipt-paper-rolls`,
   "additionalProperty": specs.map(({ label, value }) => ({
     "@type": "PropertyValue",
     "name": label,
     "value": value,
-  }))
+  })),
 };
 
 const faqSchema = {
@@ -79,221 +77,129 @@ const faqSchema = {
 };
 
 export default async function ReceiptPaperRollsPage() {
-  const ROLLS_IMG = await getSlotImage("thermal-paper-rolls:blank-hero", ROLLS_IMG_FALLBACK);
+  const rollsImg = r2Image(await getSlotImage("thermal-paper-rolls:blank-hero", ROLLS_IMG_FALLBACK));
+
+  const products = [
+    { title: "80mm (3⅛\") POS Rolls", desc: "The standard width for cash registers and POS terminals — sharp, long-lasting receipts, BPA-free.", image: rollsImg, href: "/products/thermal-rolls/80x80mm", badge: "Most Popular" },
+    { title: "57mm (2¼\") Mobile Rolls", desc: "Compact rolls for mobile, credit card, and handheld receipt terminals.", image: rollsImg, href: "/products/thermal-rolls/57x50mm", badge: "Mobile POS" },
+    { title: "Custom Printed Receipt Rolls", desc: "Your logo, promotion, or back-printed coupon on every receipt. OEM & private label.", image: rollsImg, href: "/products/thermal-paper-rolls/custom-printed", badge: "Custom" },
+    { title: "BPA-Free / Phenol-Free Rolls", desc: "Food-safe, regulation-ready receipt rolls for the EU, California, and other regulated markets.", image: rollsImg, href: "/products/bpa-free-thermal-paper", badge: "Phenol-Free" },
+  ];
+
+  const browseSections: ShowcaseBrowseSection[] = [
+    {
+      title: "Popular Receipt & Cash Register Paper Sizes",
+      description: "80mm for standard POS, 57mm for mobile and card terminals — pick a size or ask for a custom width.",
+      cards: paperRollSizes.map((s) => ({
+        image: rollsImg,
+        title: s.label,
+        desc: `Popular receipt roll size${s.markets ? ` for ${s.markets}` : ""} — BPA-free, in stock and custom.`,
+        href: `/products/thermal-rolls/${s.slug}`,
+        badge: s.badge,
+      })),
+    },
+  ];
+
   return (
-    <Layout>
+    <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-
-      {/* Breadcrumb */}
-      <div className="bg-slate-50 border-b border-slate-200 py-3">
-        <div className="container">
-          <div className="text-sm text-slate-500">
-            <Link href="/" className="hover:text-blue-600">Home</Link> <span className="mx-1">/</span>
-            <Link href="/products" className="hover:text-blue-600">Products</Link> <span className="mx-1">/</span>
-            <span className="text-slate-700 font-medium">Receipt Paper Rolls</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Trust bar */}
-      <div className="bg-blue-700 text-white py-2.5">
-        <div className="container">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium">
-            <span className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" /> ISO 9001 Certified Factory Since 2009</span>
-            <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> 12h Quote Response</span>
-            <span className="flex items-center gap-1.5"><Truck className="w-3.5 h-3.5" /> Ships to 80+ Countries</span>
-            <span className="flex items-center gap-1.5"><Package className="w-3.5 h-3.5" /> MOQ 1,000 Rolls</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="container py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-
-          {/* ── LEFT CONTENT ── */}
-          <div className="lg:col-span-2 space-y-12">
-
-            {/* Hero */}
-            <div className="flex flex-col sm:flex-row gap-6">
-              <Image src={ROLLS_IMG} alt="Receipt Paper Rolls & Cash Register Paper" className="w-full sm:w-72 h-52 object-cover rounded-2xl flex-shrink-0 shadow-md" width={288} height={208} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
-              <div>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {["BPA-Free", "ISO 9001", "57mm & 80mm", "Factory Direct"].map((tag) => (
-                    <span key={tag} className="text-xs bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 rounded-full font-medium">{tag}</span>
-                  ))}
-                </div>
-                <h1 className="font-sora text-3xl font-extrabold text-slate-900 mb-3 leading-tight">Receipt Paper Rolls &amp; Cash Register Paper</h1>
-                <p className="text-slate-600 leading-relaxed mb-5">Factory-direct thermal receipt paper rolls for cash registers, POS terminals, and receipt printers worldwide. Also known as cash register paper or POS receipt paper, our rolls print sharp, long-lasting receipts with no ink or ribbon. Available in 57mm (2¼&Prime;), 80mm (3⅛&Prime;), and fully custom sizes — with BPA-free coating and OEM private label printing.</p>
-
-                {/* Quick stats */}
-                <div className="grid grid-cols-3 gap-3">
-                  {[
-                    { val: "1,000", unit: "Rolls MOQ" },
-                    { val: "7–15", unit: "Day Lead Time" },
-                    { val: "80+", unit: "Countries Served" },
-                  ].map(({ val, unit }) => (
-                    <div key={unit} className="bg-slate-50 border border-slate-200 rounded-xl p-3 text-center">
-                      <div className="font-sora text-xl font-extrabold text-blue-700">{val}</div>
-                      <div className="text-xs text-slate-500 mt-0.5">{unit}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Key Benefits */}
-            <div>
-              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">Why Buyers Choose Our Receipt Rolls</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  "High-sensitivity coating — sharp, clear receipts every time",
-                  "BPA-free & phenol-free options for regulated markets (EU, CA)",
-                  "Fits standard cash registers, POS terminals & receipt printers",
-                  "Consistent ±0.5mm width tolerance, ±2% roll length tolerance",
-                  "Compatible with Epson, Star, Bixolon, Citizen & all major brands",
-                  "Both metric (57/80mm) and imperial (2¼\"/3⅛\") sizes supplied",
-                  "Free pre-production sample before bulk order",
-                  "Private label & custom back-printing available",
-                ].map((b) => (
-                  <div key={b} className="flex items-start gap-2.5 text-sm text-slate-700">
-                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />{b}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Common Sizes */}
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Ruler className="w-5 h-5 text-blue-600" />
-                <h2 className="font-sora text-xl font-bold text-slate-900">Common Receipt &amp; Cash Register Paper Sizes</h2>
-              </div>
-              <p className="text-sm text-slate-600 mb-4">The most requested cash register paper sizes are <strong>80mm (3⅛ inch)</strong> for standard POS and <strong>57mm (2¼ inch)</strong> for mobile and card terminals. Browse all stock sizes below.</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {paperRollSizes.map((size) => (
-                  <Link key={size.slug} href={`/products/thermal-rolls/${size.slug}`} className="group flex items-center justify-between p-4 bg-white border border-slate-200 hover:border-blue-400 hover:bg-blue-50 rounded-xl transition-all duration-200 shadow-sm">
-                    <div>
-                      <div className="font-sora font-semibold text-slate-800 group-hover:text-blue-700 text-sm">{size.label}</div>
-                      {size.badge && <span className="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-medium">{size.badge}</span>}
-                    </div>
-                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
-                  </Link>
-                ))}
-              </div>
-              <p className="text-sm text-slate-500 mt-3">Need a non-standard size? <Link href="/contact" className="text-blue-600 hover:underline font-medium">Contact our OEM team →</Link></p>
-            </div>
-
-            {/* Applications */}
-            <div>
-              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">Applications</h2>
-              <div className="flex flex-wrap gap-2">
-                {["Cash Registers", "POS Terminals", "Retail Checkout", "Restaurant Order Printers", "Supermarkets", "Credit Card Terminals", "Mobile / Handheld Printers", "Parking & Kiosk Systems", "Taxi Meters", "Lottery Terminals"].map((app) => (
-                  <span key={app} className="bg-blue-50 text-blue-700 border border-blue-100 text-sm px-4 py-2 rounded-lg font-medium">{app}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* Full Specifications */}
-            <div>
-              <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">Specifications</h2>
-              <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                <table className="w-full text-sm">
-                  <tbody>
-                    {specs.map(({ label, value }, i) => (
-                      <tr key={label} className={i % 2 === 0 ? "bg-slate-50" : "bg-white"}>
-                        <td className="px-5 py-3 font-medium text-slate-600 w-44 whitespace-nowrap">{label}</td>
-                        <td className="px-5 py-3 text-slate-900 font-semibold">{value}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className="text-xs text-slate-400 mt-2">* Custom specifications available. Contact us for non-standard requirements.</p>
-            </div>
-
-            {/* FAQ */}
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <MessageSquare className="w-5 h-5 text-blue-600" />
-                <h2 className="font-sora text-xl font-bold text-slate-900">Frequently Asked Questions</h2>
-              </div>
-              <div className="space-y-3">
-                {faqs.map(({ q, a }) => (
-                  <div key={q} className="bg-slate-50 border border-slate-200 rounded-xl p-5">
-                    <h3 className="font-sora font-semibold text-slate-900 mb-2 text-sm">{q}</h3>
-                    <p className="text-sm text-slate-600 leading-relaxed">{a}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Cross-links */}
-            <div className="flex flex-wrap gap-4 pt-4 border-t border-slate-100">
-              <Link href="/products/thermal-paper-rolls/blank" className="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-semibold"><Package className="w-4 h-4" />Blank Thermal Paper Rolls →</Link>
-              <Link href="/products/thermal-paper-rolls/custom-printed" className="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-semibold">Custom Printed Rolls →</Link>
-              <Link href="/oem" className="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-semibold">OEM &amp; Private Label →</Link>
-            </div>
-          </div>
-
-          {/* ── RIGHT SIDEBAR ── */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24 space-y-4">
-
-              {/* Primary CTA */}
-              <div className="bg-white border-2 border-blue-600 rounded-2xl p-6 shadow-lg">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-xs text-green-600 font-semibold">Online — Responding within 12h</span>
-                </div>
-                <h3 className="font-sora text-lg font-extrabold text-slate-900 mb-1">Get a Free Quote</h3>
-                <p className="text-sm text-slate-500 mb-5">Tell us your size, quantity, and coating requirements. We&apos;ll send a detailed quote with unit price, MOQ, and lead time.</p>
-                <InquiryForm compact />
-              </div>
-
-              {/* Sample CTA */}
-              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5">
-                <h4 className="font-sora font-bold text-slate-900 text-sm mb-1">Request Free Samples</h4>
-                <p className="text-xs text-slate-600 mb-3">Get physical samples in 3–5 business days. Test print quality and image life before committing to a bulk order.</p>
-                <Link href="/contact" className="inline-flex items-center gap-1.5 text-sm text-amber-700 font-semibold hover:text-amber-900">
-                  Request Samples <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-
-              {/* Key order info */}
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-3">
-                <h4 className="font-sora font-bold text-slate-900 text-sm">Order at a Glance</h4>
-                {[
-                  { icon: Package, label: "MOQ", val: "1,000 rolls" },
-                  { icon: Clock, label: "Lead Time", val: "7–15 days" },
-                  { icon: Truck, label: "Incoterms", val: "EXW / FOB / CIF" },
-                  { icon: ShieldCheck, label: "Payment", val: "T/T · L/C" },
-                ].map(({ icon: Icon, label, val }) => (
-                  <div key={label} className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-2 text-slate-500">
-                      <Icon className="w-4 h-4" />{label}
-                    </div>
-                    <span className="font-semibold text-slate-900">{val}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Certifications quick list */}
-              <div className="bg-white border border-slate-200 rounded-2xl p-5">
-                <h4 className="font-sora font-bold text-slate-900 text-sm mb-3">Certifications</h4>
-                <div className="space-y-2">
-                  {["ISO 9001:2015", "FSC Certified", "BPA-Free / Phenol-Free", "RoHS / REACH", "FDA Compliant"].map((cert) => (
-                    <div key={cert} className="flex items-center gap-2 text-sm text-slate-700">
-                      <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />{cert}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Layout>
+      <ProductCategoryShowcaseTemplate
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Receipt Paper Rolls" }]}
+        heroImage={rollsImg}
+        heroBadge={{ text: "Factory Direct Supply", color: "amber" }}
+        title={<>Receipt Paper Rolls &amp;<br /><span className="text-amber-400">Cash Register Paper</span></>}
+        subtitle="Factory-direct thermal receipt paper rolls for cash registers, POS terminals, and receipt printers — 57mm (2¼″), 80mm (3⅛″), and custom sizes, BPA-free, with OEM private-label printing and bulk pricing in 24 hours."
+        trustBadges={["BPA-Free Standard", "57mm & 80mm In Stock", "OEM Available", "ISO 9001"]}
+        stats={[
+          { value: "1,000", label: "Rolls MOQ" },
+          { value: "57/80mm", label: "Common Widths" },
+          { value: "OEM", label: "Custom Printing" },
+          { value: "24h", label: "Quote Response" },
+        ]}
+        ctas={[
+          { label: "Get Receipt Roll Pricing", href: "#inquiry", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
+          { label: "WhatsApp for Quote", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need pricing for receipt / cash register paper rolls. Please send sizes and bulk pricing.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
+        ]}
+        introSplit={{
+          title: "Cash Register & POS Receipt Rolls From One Factory",
+          lead: "Also called cash register paper or POS receipt paper, our thermal rolls print sharp, long-lasting receipts with no ink or ribbon — coated, slit, and packed in-house at factory-direct pricing.",
+          bullets: [
+            "57mm & 80mm plus custom widths (±0.5mm)",
+            "12mm / 25mm cores, 30–100mm diameters",
+            "BPA-free standard, phenol-free option",
+            "Compatible with Epson, Star, Bixolon, Citizen & all major brands",
+          ],
+          image: rollsImg,
+          imageAlt: "Receipt paper rolls and cash register paper",
+          cta: { label: "Send Inquiry Now", href: "#inquiry" },
+        }}
+        overview={{
+          title: "Receipt Paper Rolls & Cash Register Paper",
+          paragraphs: [
+            "Receipt paper rolls, cash register paper, and POS receipt paper all refer to the same product — thermal paper rolls used in cash registers, POS terminals, retail checkout, restaurant order printers, supermarkets, credit card terminals, mobile and handheld printers, parking and kiosk systems, taxi meters, and lottery terminals.",
+            "The two most requested sizes are 80mm (3⅛ inch) for standard POS and cash registers, and 57mm (2¼ inch) for mobile and card terminals. We supply both metric (57/80mm) and imperial (2¼″/3⅛″) sizes, with custom widths, diameters, and lengths produced to a ±0.5mm tolerance.",
+            "As a factory-direct manufacturer, we hold BPA-free as standard with a fully phenol-free option for regulated markets, offer custom logo and back-printing, provide free pre-production samples, and export to 80+ countries on EXW, FOB, CIF, and DDP terms — at wholesale pricing with no middleman markup.",
+          ],
+        }}
+        featureSplit={{
+          title: "Why Buyers Choose Our Receipt Rolls",
+          lead: "High-sensitivity coating, consistent tolerances, and printer compatibility — backed by free samples and OEM support.",
+          bullets: [
+            "Sharp, clear receipts with high-sensitivity coating",
+            "BPA-free & phenol-free options for the EU and California",
+            "±0.5mm width and ±2% roll-length tolerance",
+            "Free pre-production sample before any bulk order",
+          ],
+          image: rollsImg,
+          imageAlt: "Custom and blank receipt paper rolls",
+          cta: { label: "Request Free Samples", href: "/contact" },
+        }}
+        productsTitle="Browse Receipt Roll Options"
+        productsDescription="Standard POS, mobile, custom printed, and phenol-free receipt rolls — in stock across all popular widths."
+        products={products}
+        browseSections={browseSections}
+        comparison={{
+          title: "80mm vs 57mm Receipt Rolls",
+          headers: { left: "80mm (3⅛″)", right: "57mm (2¼″)" },
+          rows: [
+            { factor: "Best for", left: "Cash registers & standard POS", right: "Mobile, card & handheld terminals" },
+            { factor: "Typical use", left: "Retail, supermarket, restaurant", right: "Field sales, taxi, kiosk" },
+            { factor: "Receipt width", left: "Wider — more line content", right: "Compact — portable printers" },
+            { factor: "Coating", left: "BPA-free / phenol-free option", right: "BPA-free / phenol-free option" },
+            { factor: "Availability", left: "In stock", right: "In stock" },
+          ],
+        }}
+        specs={{
+          title: "Specifications",
+          rows: specs,
+          note: "* Custom specifications available. Contact us for non-standard requirements.",
+        }}
+        whyUs={{
+          title: "Why Source Receipt Rolls From the Factory",
+          subtitle: "In-house coating, slitting, and packaging — with the certifications global buyers require.",
+          items: [
+            { icon: <Factory />, title: "True Factory-Direct", text: "No distributor markup — coated, slit, and boxed in our own factory." },
+            { icon: <ShieldCheck />, title: "Certified & Compliant", text: "ISO 9001:2015, FSC, BPA-free standard, phenol-free, FDA and RoHS / REACH support." },
+            { icon: <Package />, title: "Free Samples", text: "Free physical samples in 3–5 days to test print quality and image life before ordering." },
+            { icon: <Boxes />, title: "All Sizes In Stock", text: "57mm and 80mm plus custom widths, diameters, and lengths." },
+            { icon: <Truck />, title: "Global Export", text: "EXW, FOB, CIF, and DDP to 80+ countries with reliable lead times." },
+            { icon: <BadgeCheck />, title: "OEM & Private Label", text: "Custom logo, back-printing, and branded packaging for distributors and brands." },
+          ],
+        }}
+        faqs={faqs}
+        crossLinks={[
+          { label: "Blank Thermal Paper Rolls", href: "/products/thermal-paper-rolls/blank" },
+          { label: "Custom Printed Rolls", href: "/products/thermal-paper-rolls/custom-printed" },
+          { label: "BPA-Free Thermal Paper", href: "/products/bpa-free-thermal-paper" },
+          { label: "OEM & Private Label", href: "/oem" },
+        ]}
+        inquiry={{
+          title: "Get a Free Receipt Roll Quote",
+          description: "Tell us your size, quantity, and coating requirements — we'll send a detailed quote with unit price, MOQ, and lead time within 24 hours.",
+        }}
+      />
+    </>
   );
 }

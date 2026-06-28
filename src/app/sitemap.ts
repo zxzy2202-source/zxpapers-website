@@ -119,6 +119,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Other Product Category Pages (priority 0.8)
   const productCategoryPages: MetadataRoute.Sitemap = [
     // Canonical content URLs only; former aliases redirect here.
+    "thermal-paper-rolls",
+    "thermal-labels",
     "thermal-paper-rolls/blank",
     "thermal-paper-rolls/custom-printed",
     "thermal-labels/blank",

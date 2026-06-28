@@ -89,7 +89,7 @@ export default async function BlankDetergentLabelsPage() {
             <span className="mx-1">/</span>
             <Link href="/products" className="hover:text-blue-600">Products</Link>
             <span className="mx-1">/</span>
-            <Link href="/products/detergent-labels" className="hover:text-blue-600">Detergent Labels</Link>
+            <Link href="/products/detergent-labels" className="hover:text-blue-600">Bottle & Packaging Labels</Link>
             <span className="mx-1">/</span>
             <span>Blank</span>
           </div>

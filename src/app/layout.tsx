@@ -158,8 +158,8 @@ const organizationSchema = {
     "@type": "OfferCatalog",
     name: "Thermal Paper & Label Products",
     itemListElement: [
-      { name: "Thermal Paper Rolls", path: "/products/thermal-paper-rolls/blank" },
-      { name: "Thermal & Shipping Labels", path: "/products/shipping-labels" },
+      { name: "Thermal Paper Rolls", path: "/products/thermal-paper-rolls" },
+      { name: "Thermal & Shipping Labels", path: "/products/thermal-labels" },
       { name: "BPA-Free Thermal Paper", path: "/products/bpa-free-thermal-paper" },
       { name: "Till Rolls", path: "/products/till-rolls" },
       { name: "Can Labels", path: "/products/can-labels" },

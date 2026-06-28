@@ -43,6 +43,8 @@ export const mainNav: (NavItem | NavDropdown)[] = [
     label: "Products",
     items: [
       { label: "All Products",                    href: "/products" },
+      { label: "Thermal Paper Rolls",             href: "/products/thermal-paper-rolls" },
+      { label: "Thermal Labels",                  href: "/products/thermal-labels" },
       { label: "Receipt Paper Rolls / Cash Register", href: "/products/receipt-paper-rolls" },
       { label: "BPA-Free Thermal Paper",           href: "/products/bpa-free-thermal-paper" },
       { label: "Colored Thermal Paper",            href: "/products/colored-thermal-paper" },
@@ -52,10 +54,11 @@ export const mainNav: (NavItem | NavDropdown)[] = [
       { label: "Custom Printed Thermal Labels",    href: "/products/thermal-labels/custom-printed" },
       { label: "Blank Can Labels",                 href: "/products/can-labels/blank" },
       { label: "Custom Printed Can Labels",        href: "/products/can-labels/custom-printed" },
-      { label: "Blank Bottle Labels",              href: "/products/detergent-labels/blank" },
+      { label: "Bottle & Packaging Labels",       href: "/products/detergent-labels" },
+      { label: "Blank Bottle & Packaging Labels",  href: "/products/detergent-labels/blank" },
       { label: "Custom Printed Bottle Labels",     href: "/products/detergent-labels/custom-printed" },
       { label: "NCR Forms & Carbonless Paper",     href: "/products/ncr-forms" },
-      { label: "Custom Printed NCR Forms",         href: "/products/ncr-forms#custom" },
+      { label: "Custom Printed NCR Forms",         href: "/products/ncr-forms" },
     ],
     sizeGroups: [
       {
@@ -93,11 +96,11 @@ export const mainNav: (NavItem | NavDropdown)[] = [
       {
         groupLabel: "NCR & Business Forms",
         items: [
-          { label: "Invoice Forms",       href: "/products/ncr-forms#invoice",       badge: "Carbonless", badgeColor: "amber" },
-          { label: "Receipt Books",       href: "/products/ncr-forms#receipt" },
-          { label: "Delivery Notes",      href: "/products/ncr-forms#delivery-note",  badge: "Logistics",  badgeColor: "blue" },
-          { label: "Purchase Orders",     href: "/products/ncr-forms#purchase-order" },
-          { label: "Waybill Forms",       href: "/products/ncr-forms#waybill" },
+          { label: "2-Part (Duplicate)",     href: "/products/ncr-forms/2-part",     badge: "Most Common", badgeColor: "amber" },
+          { label: "3-Part (Triplicate)",    href: "/products/ncr-forms/3-part",     badge: "Popular",     badgeColor: "blue" },
+          { label: "4-Part (Quadruplicate)", href: "/products/ncr-forms/4-part" },
+          { label: "Multi-Part (5+ Ply)",    href: "/products/ncr-forms/multi-part" },
+          { label: "All NCR Forms",          href: "/products/ncr-forms" },
         ],
       },
     ],
@@ -240,6 +243,8 @@ export const canLabelSizes: ProductSize[] = [
 
 export const footerLinks = {
   products: [
+    { label: "Thermal Paper Rolls",              href: "/products/thermal-paper-rolls" },
+    { label: "Thermal Labels",                   href: "/products/thermal-labels" },
     { label: "Receipt Paper Rolls / Cash Register", href: "/products/receipt-paper-rolls" },
     { label: "BPA-Free Thermal Paper",           href: "/products/bpa-free-thermal-paper" },
     { label: "Colored Thermal Paper",            href: "/products/colored-thermal-paper" },
@@ -300,8 +305,8 @@ export const footerLinks = {
     { label: '2" x 1" Labels',             href: "/products/thermal-labels/2x1in" },
     { label: "211×400 Can Labels",         href: "/products/can-labels/211x400" },
     { label: "300×407 Can Labels",         href: "/products/can-labels/300x407" },
-    { label: "90×120mm Detergent Labels",  href: "/products/detergent-labels/90x120mm" },
-    { label: "70×200mm Detergent Labels",  href: "/products/detergent-labels/70x200mm" },
+    { label: "90×120mm Bottle Labels",     href: "/products/detergent-labels/90x120mm" },
+    { label: "70×200mm Wrap Labels",       href: "/products/detergent-labels/70x200mm" },
     { label: "1×1in Mini Labels",          href: "/products/thermal-labels/1x1in" },
   ],
 };
