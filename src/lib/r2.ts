@@ -4,9 +4,26 @@ import { S3Client } from "@aws-sdk/client-s3";
 // 显示端与上传端（upload-r2 route）必须用同一个 base，否则上传地址与展示地址会分裂，
 // 所以这里统一读取 NEXT_PUBLIC_R2_URL，仅在缺失时回退到历史默认值。
 const DEFAULT_R2_BASE = "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
-export const R2_PUBLIC_BASE = (
-  process.env.NEXT_PUBLIC_R2_URL || DEFAULT_R2_BASE
-).replace(/\/+$/, "");
+
+function normalizeR2PublicBase(value: string | undefined): string {
+  if (!value) return DEFAULT_R2_BASE;
+
+  try {
+    const parsed = new URL(value);
+    if (parsed.pathname.includes("/r2-assets")) {
+      return DEFAULT_R2_BASE;
+    }
+    if (parsed.protocol === "http:" || parsed.protocol === "https:") {
+      return `${parsed.origin}${parsed.pathname.replace(/\/+$/, "")}`;
+    }
+  } catch {
+    return DEFAULT_R2_BASE;
+  }
+
+  return DEFAULT_R2_BASE;
+}
+
+export const R2_PUBLIC_BASE = normalizeR2PublicBase(process.env.NEXT_PUBLIC_R2_URL);
 const R2_BASE = R2_PUBLIC_BASE;
 
 export function r2Image(path: string): string {

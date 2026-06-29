@@ -10,8 +10,11 @@ function getAbsolutePublicUrl(value: string | undefined, fallback: string) {
 
   try {
     const parsed = new URL(value);
+    if (parsed.pathname.includes("/r2-assets")) {
+      return fallback;
+    }
     if (parsed.protocol === "http:" || parsed.protocol === "https:") {
-      return parsed.origin;
+      return `${parsed.origin}${parsed.pathname.replace(/\/+$/, "")}`;
     }
   } catch {
     // Ignore invalid or relative values and fall back to the known public CDN origin.
