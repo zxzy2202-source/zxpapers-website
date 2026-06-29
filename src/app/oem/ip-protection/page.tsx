@@ -7,6 +7,8 @@ import { SITE } from "@/config/siteData";
 import { Shield, Lock, FileText, CheckCircle, ArrowRight, Eye } from "lucide-react";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 
+const OEM_IP_PROTECTION_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
+
 export const metadata: Metadata = {
   title: "IP Protection & NDA | Confidential OEM",
   description: `ZhixinPaper protects your brand and intellectual property. NDA available before discussion. Exclusive mold ownership for OEM clients.`,
@@ -64,7 +66,7 @@ const breadcrumbSchema = {
   ]
 };
 export default async function IPProtectionPage() {
-  const heroImage = await getSlotImage("oem:ip-protection-hero", "");
+  const heroImage = await getSlotImage("oem:ip-protection-hero", OEM_IP_PROTECTION_IMG_FB);
   return (
     <Layout>
       <script

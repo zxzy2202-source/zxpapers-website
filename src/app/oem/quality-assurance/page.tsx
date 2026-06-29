@@ -7,6 +7,8 @@ import { FACTORY, CERTIFICATIONS, SITE } from "@/config/siteData";
 import { Shield, CheckCircle, Award, ClipboardCheck, ArrowRight, Microscope } from "lucide-react";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 
+const OEM_QUALITY_ASSURANCE_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-qc-lab-GCyjnzeVMfG7M54TSNubFr.webp";
+
 export const metadata: Metadata = {
   title: "OEM Quality Assurance | ISO 9001 Certified",
   description: `ZhixinPaper OEM quality assurance: ISO 9001:2015 certified, multi-stage inspection, batch traceability, and third-party testing.`,
@@ -64,7 +66,7 @@ const breadcrumbSchema = {
   ]
 };
 export default async function QualityAssurancePage() {
-  const heroImage = await getSlotImage("oem:quality-assurance-hero", "");
+  const heroImage = await getSlotImage("oem:quality-assurance-hero", OEM_QUALITY_ASSURANCE_IMG_FB);
   return (
     <Layout>
       <script

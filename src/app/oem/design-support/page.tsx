@@ -7,6 +7,8 @@ import { SITE } from "@/config/siteData";
 import { Palette, FileImage, Layers, CheckCircle, ArrowRight, Printer } from "lucide-react";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 
+const OEM_DESIGN_SUPPORT_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-custom-printing-LUkP5mysubyQvqY9CtfS3J.webp";
+
 export const metadata: Metadata = {
   title: "OEM Design Support | Custom Artwork & Printing",
   description: "Professional design support for OEM thermal paper orders. Custom artwork, logo printing, color matching, and pre-press services.",
@@ -72,7 +74,7 @@ const breadcrumbSchema = {
   ]
 };
 export default async function DesignSupportPage() {
-  const heroImage = await getSlotImage("oem:design-support-hero", "");
+  const heroImage = await getSlotImage("oem:design-support-hero", OEM_DESIGN_SUPPORT_IMG_FB);
   return (
     <Layout>
       <script
