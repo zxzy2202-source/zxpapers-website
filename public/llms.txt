@@ -29,17 +29,27 @@ This file gives AI assistants accurate, citable facts about ZhixinPaper. All fig
 ZhixinPaper manufactures every category in-house — controlling base-paper coating, slitting, printing, adhesive, and packaging — and offers each product as blank stock or custom printed (OEM/private label).
 
 - [Product catalog](https://www.zxpapers.com/products): full range of thermal paper rolls, labels, can labels, and detergent labels
-- [Thermal paper rolls (blank)](https://www.zxpapers.com/products/thermal-paper-rolls/blank): POS, ATM, kiosk, and till rolls in 57mm, 80mm, and custom widths
-- [Custom printed thermal rolls](https://www.zxpapers.com/products/thermal-paper-rolls/custom-printed): logo, promotion, and bilingual receipt printing
-- [BPA-free thermal paper](https://www.zxpapers.com/products/bpa-free-thermal-paper): phenol-free option for regulated markets
+- [Thermal paper rolls](https://www.zxpapers.com/products/thermal-paper-rolls): POS, ATM, kiosk, and till rolls in 57mm, 80mm, and custom widths
+- [Custom printed thermal rolls](https://www.zxpapers.com/products/custom-printed-thermal-rolls): logo, promotion, QR, bilingual receipt printing + private-label packaging (OEM)
+- [BPA-free thermal paper](https://www.zxpapers.com/products/bpa-free-thermal-paper): non-toxic receipt paper for everyday compliance
+- [Phenol-free thermal paper](https://www.zxpapers.com/products/phenol-free-thermal-paper): BPS-free, food-contact grade for EU REACH and California Prop 65
 - [Receipt paper rolls](https://www.zxpapers.com/products/receipt-paper-rolls): cash register / POS receipt rolls
-- [Till rolls](https://www.zxpapers.com/products/till-rolls)
-- [Thermal & shipping labels (blank)](https://www.zxpapers.com/products/thermal-labels/blank): 4×6 and other direct-thermal sizes
-- [Custom printed thermal labels](https://www.zxpapers.com/products/thermal-labels/custom-printed)
+- [Till rolls](https://www.zxpapers.com/products/till-rolls): 57mm & 80mm thermal till rolls for UK/EU EPOS
+- [Colored thermal paper](https://www.zxpapers.com/products/colored-thermal-paper): blue, pink, yellow, green tinted receipt rolls
+- [Thermal labels](https://www.zxpapers.com/products/thermal-labels): direct thermal shipping, barcode, and product labels
+- [Custom printed thermal labels](https://www.zxpapers.com/products/custom-printed-thermal-labels): logo, product info, pre-printed fields (OEM / private label)
 - [Shipping labels](https://www.zxpapers.com/products/shipping-labels): 4×6 direct thermal for logistics and e-commerce
+- [Barcode labels](https://www.zxpapers.com/products/barcode-labels): SKU, inventory, and asset labels for warehouse and retail
+- [Product labels](https://www.zxpapers.com/products/product-labels): retail, packaging, price, and weigh-scale labels
+- [Linerless labels](https://www.zxpapers.com/products/linerless-labels): liner-free thermal labels, 30–50% less waste
 - [Can labels](https://www.zxpapers.com/products/can-labels): full-wrap, food-safe, moisture-resistant labels for beverage, food, pet food, and industrial cans
 - [Detergent labels](https://www.zxpapers.com/products/detergent-labels): water- and chemical-resistant, GHS-compliant labels for detergent and household cleaners
 - [NCR forms & carbonless paper](https://www.zxpapers.com/products/ncr-forms): custom printed carbonless (NCR) business forms — invoices, receipts, delivery notes, purchase orders, and logistics documents in 2-part, 3-part, 4-part, and multi-part sets, books, or continuous
+- [Custom NCR forms](https://www.zxpapers.com/products/custom-ncr-forms): main custom carbonless form page — invoices, receipts, orders, delivery notes with numbering, perforation, logo printing, and loose-set or book options
+- [NCR receipt books](https://www.zxpapers.com/products/ncr-receipt-books): bound carbonless receipt books, duplicate and triplicate, numbered and perforated
+- [NCR invoice books](https://www.zxpapers.com/products/ncr-invoice-books): carbonless invoice books and forms, 2-part and 3-part, numbered and tax-ready
+- [Delivery note forms](https://www.zxpapers.com/products/delivery-note-forms): carbonless delivery notes, waybills, and goods-received notes with driver/warehouse/customer copies
+- [Continuous computer forms](https://www.zxpapers.com/products/continuous-computer-forms): fanfold, pin-feed, and tractor-feed forms for dot-matrix printers and ERP, plain or carbonless
 
 ## Common roll & label sizes
 

@@ -103,6 +103,30 @@ export default async function NcrFormsPage() {
         badge: "Carbonless",
       })),
     },
+    {
+      title: "Choose Your Finished Format",
+      description: "The same form, supplied the way your workflow needs it.",
+      cards: [
+        { image: ncrImg, title: "Loose Sets & Custom Forms", desc: "Pre-collated loose sets for batch office or system printing — fully custom.", href: "/products/custom-ncr-forms", badge: "Sets" },
+        { image: ncrImg, title: "NCR Receipt Books", desc: "Bound carbonless receipt books, numbered and perforated, for counters and field sales.", href: "/products/ncr-receipt-books", badge: "Books" },
+        { image: ncrImg, title: "NCR Invoice Books", desc: "Carbonless invoice books and forms, numbered and tax-ready.", href: "/products/ncr-invoice-books", badge: "Invoices" },
+        { image: ncrImg, title: "Continuous Computer Forms", desc: "Sprocket-fed fanfold paper for dot-matrix, ERP, and logistics systems.", href: "/products/continuous-computer-forms", badge: "Continuous" },
+        { image: ncrImg, title: "Delivery Note Forms", desc: "Multi-copy delivery notes and waybills for dispatch and signature.", href: "/products/delivery-note-forms", badge: "Logistics" },
+        { image: ncrImg, title: "Custom Printed NCR Forms", desc: "Your logo, fields, numbering, and binding — fully bespoke business forms.", href: "/products/custom-ncr-forms", badge: "OEM" },
+      ],
+    },
+    {
+      title: "Applications by Industry",
+      description: "Carbonless forms tuned to real business actions — not just industry names.",
+      cards: [
+        { image: ncrImg, title: "Retail & Wholesale", desc: "Carbonless receipt books and order sets for store counters and field sales teams.", href: "/products/custom-ncr-forms", badge: "Retail" },
+        { image: ncrImg, title: "Logistics & Warehousing", desc: "Multi-copy delivery notes and waybills for dispatch, driver, and customer signature.", href: "/products/custom-ncr-forms", badge: "Logistics" },
+        { image: ncrImg, title: "Finance & Accounting", desc: "Invoice and payment-voucher forms with clear duplicate records for filing.", href: "/products/custom-ncr-forms", badge: "Finance" },
+        { image: ncrImg, title: "Medical & Healthcare", desc: "Patient record, claim, and prescription forms routed across departments.", href: "/products/custom-ncr-forms", badge: "Medical" },
+        { image: ncrImg, title: "Repair & Field Service", desc: "Service and work-order forms with on-site customer signature and office copies.", href: "/products/custom-ncr-forms", badge: "Service" },
+        { image: ncrImg, title: "Government & Banking", desc: "Multi-part official, application, and bank forms for approval and audit trails.", href: "/products/custom-ncr-forms", badge: "Institutional" },
+      ],
+    },
   ];
 
   return (
@@ -125,7 +149,7 @@ export default async function NcrFormsPage() {
         ]}
         ctas={[
           { label: "Get NCR Form Pricing", href: "#inquiry", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
-          { label: "WhatsApp for Quote", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need pricing for custom NCR carbonless forms. Please send options and pricing.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
+          { label: "View Custom NCR Forms", href: "/products/custom-ncr-forms", variant: "outline" },
         ]}
         introSplit={{
           title: "Carbonless Business Forms From One Factory",
@@ -205,9 +229,9 @@ export default async function NcrFormsPage() {
         }}
         faqs={faqs}
         crossLinks={[
+          { label: "Custom NCR Forms", href: "/products/custom-ncr-forms" },
+          { label: "2-Part / 3-Part / 4-Part", href: "/products/ncr-forms/3-part" },
           { label: "Thermal Paper Rolls", href: "/products/thermal-paper-rolls" },
-          { label: "Thermal & Shipping Labels", href: "/products/thermal-labels" },
-          { label: "Can Labels", href: "/products/can-labels" },
           { label: "OEM & Private Label", href: "/oem" },
         ]}
         inquiry={{

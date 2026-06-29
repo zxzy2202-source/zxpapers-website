@@ -7,6 +7,11 @@ import { rateLimit, getClientIp } from "@/lib/rateLimit";
 // 每个 IP 在 10 分钟内最多 5 次询盘，挡住脚本刷接口导致的通知轰炸（企业微信/飞书/邮件）。
 const INQUIRY_MAX = 5;
 const INQUIRY_WINDOW_SECONDS = 10 * 60;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function optionalTrim(value: unknown) {
+  return typeof value === "string" ? value.trim() : undefined;
+}
 
 export async function POST(req: NextRequest) {
   const limit = await rateLimit("inquiry", getClientIp(req), {
@@ -23,12 +28,30 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { name, email, company, country, phone, subject, message, source } = body;
 
-  if (!name?.trim() || !email?.trim() || !message?.trim()) {
+  const trimmedName = optionalTrim(name);
+  const trimmedEmail = optionalTrim(email);
+  const trimmedCountry = optionalTrim(country);
+  const trimmedMessage = optionalTrim(message);
+
+  if (
+    !trimmedName ||
+    !trimmedEmail ||
+    !EMAIL_PATTERN.test(trimmedEmail) ||
+    !trimmedCountry ||
+    !trimmedMessage
+  ) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
   const inquiryData = {
-    name, email, company, country, phone, subject, message, source,
+    name: trimmedName,
+    email: trimmedEmail,
+    company: optionalTrim(company),
+    country: trimmedCountry,
+    phone: optionalTrim(phone),
+    subject: optionalTrim(subject),
+    message: trimmedMessage,
+    source: optionalTrim(source),
   };
 
   try {
@@ -42,16 +65,16 @@ export async function POST(req: NextRequest) {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
-          subject: `[${SITE.notificationLabel || SITE.name}] New Inquiry from ${name} — ${country || "Unknown"}`,
-          from_name: name,
-          name,
-          email,
-          company: company || "—",
-          country: country || "—",
-          phone: phone || "—",
-          inquiry_subject: subject || "—",
-          message,
-          source: source || "—",
+          subject: `[${SITE.notificationLabel || SITE.name}] New Inquiry from ${inquiryData.name} — ${inquiryData.country || "Unknown"}`,
+          from_name: inquiryData.name,
+          name: inquiryData.name,
+          email: inquiryData.email,
+          company: inquiryData.company || "—",
+          country: inquiryData.country,
+          phone: inquiryData.phone || "—",
+          inquiry_subject: inquiryData.subject || "—",
+          message: inquiryData.message,
+          source: inquiryData.source || "—",
         }),
       });
       const web3Data = await web3Res.json().catch(() => ({}));

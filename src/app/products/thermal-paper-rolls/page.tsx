@@ -99,6 +99,18 @@ export default async function ThermalPaperRollsPage() {
 
   const browseSections: ShowcaseBrowseSection[] = [
     {
+      title: "Rolls by Use Case",
+      description: "Different buyers, different rolls — jump to the dedicated page for your application.",
+      cards: [
+        { image: rollsImg, title: "Receipt Paper Rolls", desc: "POS, cash register, and mobile printer receipt rolls for retail and hospitality.", href: "/products/receipt-paper-rolls", badge: "POS" },
+        { image: rollsImg, title: "Till Rolls", desc: "57mm & 80mm thermal till rolls for UK/EU EPOS and cash registers.", href: "/products/till-rolls", badge: "UK / EU" },
+        { image: rollsImg, title: "BPA-Free Thermal Paper", desc: "Non-toxic receipt paper, BPA-free standard with a phenol-free option.", href: "/products/bpa-free-thermal-paper", badge: "Compliant" },
+        { image: rollsImg, title: "Phenol-Free Thermal Paper", desc: "BPS-free, food-contact grade for EU REACH and California Prop 65.", href: "/products/phenol-free-thermal-paper", badge: "Strictest" },
+        { image: rollsImg, title: "Custom Printed Rolls", desc: "Logo, promotion, and private-label printing for OEM receipt rolls.", href: "/products/custom-printed-thermal-rolls", badge: "OEM" },
+        { image: rollsImg, title: "Colored Thermal Paper", desc: "Tinted rolls for color-coding, anti-fraud receipts, and branding.", href: "/products/colored-thermal-paper", badge: "Branding" },
+      ],
+    },
+    {
       title: "Popular Roll Sizes",
       description: "POS, ATM, kiosk, and till rolls — pick a size or ask for a custom width.",
       cards: paperRollSizes.map((s) => ({
@@ -196,10 +208,10 @@ export default async function ThermalPaperRollsPage() {
         }}
         faqs={faqs}
         crossLinks={[
-          { label: "Thermal & Shipping Labels", href: "/products/thermal-labels/blank" },
-          { label: "Can Labels", href: "/products/can-labels" },
-          { label: "NCR Forms & Carbonless", href: "/products/ncr-forms" },
-          { label: "OEM & Private Label", href: "/oem" },
+          { label: "Receipt Paper Rolls", href: "/products/receipt-paper-rolls" },
+          { label: "BPA-Free / Phenol-Free", href: "/products/phenol-free-thermal-paper" },
+          { label: "Custom Printed Thermal Rolls", href: "/products/custom-printed-thermal-rolls" },
+          { label: "Till Rolls", href: "/products/till-rolls" },
         ]}
         inquiry={{
           title: "Get Thermal Roll Pricing",

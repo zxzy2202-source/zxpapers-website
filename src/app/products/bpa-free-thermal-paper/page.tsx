@@ -79,7 +79,7 @@ export default async function BpaFreeThermalPaperPage() {
 
   const products = [
     { title: "BPA-Free Receipt Rolls", desc: "Standard BPA-free thermal rolls for POS and receipt printers — sharp print, long image life.", image: rollsImg, href: "/products/thermal-paper-rolls/blank", badge: "Standard" },
-    { title: "Phenol-Free (BPS-Free) Rolls", desc: "Premium non-phenol grade for the EU, California Prop 65, and strictly regulated markets.", image: rollsImg, href: "/products/thermal-paper-rolls/blank", badge: "Premium" },
+    { title: "Phenol-Free (BPS-Free) Rolls", desc: "Premium non-phenol grade for the EU, California Prop 65, and strictly regulated markets.", image: rollsImg, href: "/products/phenol-free-thermal-paper", badge: "Premium" },
     { title: "57mm & 80mm Widths", desc: "BPA-free rolls in the two most common POS and mobile widths, plus custom sizes.", image: rollsImg, href: "/products/thermal-rolls/80x80mm", badge: "In Stock" },
     { title: "Custom Printed BPA-Free", desc: "Your logo and promotions on non-toxic, compliant receipt rolls. OEM & private label.", image: rollsImg, href: "/products/thermal-paper-rolls/custom-printed", badge: "Custom" },
   ];
@@ -188,9 +188,9 @@ export default async function BpaFreeThermalPaperPage() {
         }}
         faqs={faqs}
         crossLinks={[
+          { label: "Phenol-Free Thermal Paper", href: "/products/phenol-free-thermal-paper" },
           { label: "Receipt Paper Rolls", href: "/products/receipt-paper-rolls" },
-          { label: "Blank Thermal Paper Rolls", href: "/products/thermal-paper-rolls/blank" },
-          { label: "Colored Thermal Paper", href: "/products/colored-thermal-paper" },
+          { label: "Thermal Paper Rolls", href: "/products/thermal-paper-rolls" },
           { label: "OEM & Private Label", href: "/oem" },
         ]}
         inquiry={{

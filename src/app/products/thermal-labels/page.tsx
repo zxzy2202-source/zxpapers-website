@@ -95,6 +95,17 @@ export default async function ThermalLabelsPage() {
 
   const browseSections: ShowcaseBrowseSection[] = [
     {
+      title: "Labels by Use Case",
+      description: "Different buyers, different labels — jump to the dedicated page for your application.",
+      cards: [
+        { image: labelsImg, title: "Shipping Labels", desc: "4×6 direct thermal for e-commerce, courier, and 3PL parcels — rolls or fanfold.", href: "/products/shipping-labels", badge: "E-commerce" },
+        { image: labelsImg, title: "Barcode Labels", desc: "SKU, inventory, and asset labels for warehouse and retail — high-contrast, scan-reliable.", href: "/products/barcode-labels", badge: "Warehouse" },
+        { image: labelsImg, title: "Product Labels", desc: "Price, shelf, weigh-scale, and packaging labels with a retail-ready look.", href: "/products/product-labels", badge: "Retail" },
+        { image: labelsImg, title: "Linerless Labels", desc: "Liner-free thermal labels — 30–50% less waste and 2× labels per roll.", href: "/products/linerless-labels", badge: "Low-Waste" },
+        { image: labelsImg, title: "Custom Printed Labels", desc: "Logo, product info, and pre-printed fields for OEM and private label.", href: "/products/custom-printed-thermal-labels", badge: "OEM" },
+      ],
+    },
+    {
       title: "Popular Label Sizes",
       description: "Shipping, barcode, and product labels — pick a size or ask for a custom die-cut.",
       cards: labelSizes.map((s) => ({
@@ -192,10 +203,10 @@ export default async function ThermalLabelsPage() {
         }}
         faqs={faqs}
         crossLinks={[
-          { label: "Thermal Paper Rolls", href: "/products/thermal-paper-rolls" },
-          { label: "Can Labels", href: "/products/can-labels" },
-          { label: "Detergent Labels", href: "/products/detergent-labels" },
-          { label: "OEM & Private Label", href: "/oem" },
+          { label: "Shipping Labels", href: "/products/shipping-labels" },
+          { label: "Barcode Labels", href: "/products/barcode-labels" },
+          { label: "Product Labels", href: "/products/product-labels" },
+          { label: "Custom Printed Labels", href: "/products/custom-printed-thermal-labels" },
         ]}
         inquiry={{
           title: "Get Thermal Label Pricing",

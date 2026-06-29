@@ -144,6 +144,31 @@ const productCategoryCards: ReadonlyArray<{
 ];
 
 // 细分 SKU 横向轮播（参考 sailingpaper 的二级产品轮播）—— 链接到真实尺寸详情页
+type FinderTone = "stock" | "custom" | "oem";
+const FINDER_TONE_STYLES: Record<FinderTone, string> = {
+  stock: "bg-amber-50 text-amber-700 border-amber-200",
+  custom: "bg-blue-50 text-brand-navy border-blue-100",
+  oem: "bg-slate-100 text-slate-700 border-slate-200",
+};
+const productFinderCards: ReadonlyArray<{
+  title: string;
+  eyebrow: string;
+  slot: SlotKey;
+  fallback: string;
+  tone: FinderTone;
+  spec: string;
+  summary: string;
+  href: string;
+  cta: string;
+}> = [
+  { title: "Stock Thermal Rolls", eyebrow: "Fast-moving POS sizes", slot: "home:category-thermal-rolls", fallback: HERO_SLIDE_3, tone: "stock", spec: "80x80 / 57x50 / 57x40 / 80x70 mm", summary: "Receipt rolls for POS, cash register, ATM, kiosk, and mobile printers.", href: "/products/thermal-paper-rolls/blank", cta: "Get Roll Quote" },
+  { title: "Thermal & Shipping Labels", eyebrow: "Warehouse and courier labels", slot: "home:category-thermal-labels", fallback: THERMAL_LABELS_IMG, tone: "stock", spec: "4x6 / 4x3 / 2x1 / 2x4 in", summary: "Direct thermal labels for shipping, barcode, inventory, and product marking.", href: "/products/thermal-labels/blank", cta: "Get Label Quote" },
+  { title: "Custom Printed Rolls & Labels", eyebrow: "OEM and private label", slot: "home:category-custom-rolls", fallback: HERO_SLIDE_3, tone: "custom", spec: "Logo, Pantone, QR, bilingual print", summary: "Brand-ready receipt rolls and labels with artwork checking and private packaging.", href: "/products/thermal-paper-rolls/custom-printed", cta: "Start Custom Project" },
+  { title: "NCR & Business Forms", eyebrow: "Carbonless paperwork", slot: "home:category-carbonless", fallback: HERO_SLIDE_3, tone: "custom", spec: "2/3/4-part invoices, receipts, delivery notes", summary: "Custom carbonless forms for invoices, receipt books, dispatch notes, and order books.", href: "/products/ncr-forms", cta: "View NCR Forms" },
+  { title: "Can & Bottle Labels", eyebrow: "Packaging label supply", slot: "home:category-can-labels", fallback: THERMAL_LABELS_IMG, tone: "custom", spec: "Food cans, beverage, detergent, household bottles", summary: "Moisture-resistant labels for cans, detergent bottles, and branded packaging.", href: "/products/can-labels/custom-printed", cta: "Get Packaging Quote" },
+  { title: "Jumbo Roll & OEM Supply", eyebrow: "Factory-to-factory cooperation", slot: "home:category-jumbo-rolls", fallback: HERO_SLIDE_2, tone: "oem", spec: "405 / 640 / 880 mm base rolls", summary: "Jumbo-roll supply and finished-goods support for converters and peer factories.", href: `/contact?product=${encodeURIComponent("Jumbo Roll Supply")}`, cta: "Discuss Supply" },
+];
+
 const popularSkuItems: SkuItem[] = [
   { size: "80 × 80 mm", use: "Restaurant & retail POS receipts", badge: "Best Seller", href: "/products/thermal-rolls/80x80mm" },
   { size: "57 × 50 mm", use: "Counter POS & card terminals", badge: "High Demand", href: "/products/thermal-rolls/57x50mm" },
@@ -175,6 +200,49 @@ const complianceMarkets = [
   { code: "AE" as CountryCode, country: "UAE",           compliance: "VAT Compliant",   href: "/markets/middle-east/uae" },
   { code: "TH" as CountryCode, country: "Thailand",      compliance: "PromptPay QR",    href: "/markets/southeast-asia/thailand" },
   { code: "ID" as CountryCode, country: "Indonesia",     compliance: "QRIS Compliant",  href: "/markets/southeast-asia/indonesia" },
+];
+
+const quoteReadinessItems = [
+  {
+    label: "Product type",
+    value: "Rolls, labels, NCR, can labels",
+    hint: "Tell us blank stock or custom printed.",
+  },
+  {
+    label: "Size & material",
+    value: "Width, length, core, GSM",
+    hint: "For labels, include adhesive and liner.",
+  },
+  {
+    label: "Custom needs",
+    value: "Logo, Pantone, QR, cartons",
+    hint: "Artwork proof can be confirmed before bulk order.",
+  },
+  {
+    label: "Destination",
+    value: "Port, country, trade term",
+    hint: "FOB, CIF, DDP, or container quote.",
+  },
+];
+
+const factoryProofMetrics = [
+  { icon: FactoryIcon, value: FACTORY.area, label: "Factory Area", sub: "Modern converting facility in Xi'an" },
+  { icon: Zap, value: FACTORY.dailyOutput, label: "Daily Output", sub: "Stable capacity for repeat orders" },
+  { icon: Globe, value: `${FACTORY.countriesServed}+`, label: "Export Markets", sub: "Bulk supply and mixed SKU pallets" },
+  { icon: Users, value: FACTORY.oemClients, label: "OEM Clients", sub: "Private label and distributor accounts" },
+];
+
+const factoryProofPoints = [
+  "ISO 9001:2015, FSC, BPA-free, RoHS, REACH, and CE support",
+  "Private-label cartons, core printing, barcode marks, and pallet plans",
+  "Export documents for wholesale buyers: invoice, packing list, CO, and B/L",
+];
+
+const finalQuoteChecklist = [
+  "Product and size/spec",
+  "Quantity or container plan",
+  "Blank stock or custom print",
+  "Destination port or country",
 ];
 
 const jumboBenefits = [
@@ -343,36 +411,80 @@ export default async function HomePage() {
             external: true,
           },
         ]}
+        rightSlot={
+          <div className="w-full max-w-md rounded-lg border border-white/15 bg-white/95 p-5 text-slate-900 shadow-2xl backdrop-blur">
+            <div className="mb-5 flex items-start justify-between gap-4 border-b border-slate-200 pb-4">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-navy">Quote Readiness</p>
+                <h2 className="mt-1 text-xl font-semibold tracking-[-0.02em] text-slate-950">Send the right RFQ details</h2>
+              </div>
+              <span className="rounded-md bg-amber-100 px-2.5 py-1 text-[11px] font-semibold text-amber-800">24h Reply</span>
+            </div>
+            <div className="space-y-3">
+              {quoteReadinessItems.map(({ label, value, hint }, index) => (
+                <div key={label} className="grid grid-cols-[2rem_1fr] gap-3 rounded-md border border-slate-200 bg-slate-50 p-3">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-md bg-amber-500 text-sm font-semibold text-slate-950">
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</div>
+                    <div className="mt-1 text-sm font-semibold text-slate-950">{value}</div>
+                    <p className="mt-1 text-xs leading-relaxed text-slate-500">{hint}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <Link
+              href="/contact"
+              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-navy px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover"
+            >
+              <MessageSquare className="h-4 w-4" />
+              Send RFQ Details
+            </Link>
+          </div>
+        }
+        mobileRightSlot={
+          <div className="rounded-lg border border-white/15 bg-white/95 p-4 text-slate-900 shadow-xl">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-navy">Quote Readiness</p>
+                <div className="mt-1 text-base font-semibold text-slate-950">Prepare these RFQ details</div>
+              </div>
+              <span className="rounded-md bg-amber-100 px-2 py-1 text-[10px] font-semibold text-amber-800">24h Reply</span>
+            </div>
+            <div className="grid grid-cols-1 gap-2 min-[420px]:grid-cols-2">
+              {quoteReadinessItems.map(({ label, value }) => (
+                <div key={label} className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2">
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">{label}</div>
+                  <div className="mt-1 text-xs font-semibold text-slate-800">{value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        }
       />
 
       {/* ①b TRUST STRIP —— 关键工厂数据 + 认证，紧跟 Hero 建立信任 */}
-      <section className="border-b border-white/10 bg-brand-navy-alt py-4 text-white">
+      <section className="border-b border-slate-200 bg-white py-5" aria-labelledby="factory-facts-heading">
         <div className="container">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm sm:gap-x-12">
-            <span className="flex items-center gap-2">
-              <FactoryIcon className="h-4 w-4 text-amber-300" aria-hidden="true" />
-              <span className="font-semibold">{FACTORY.area}</span>
-              <span className="text-slate-300">Factory</span>
-            </span>
-            <span className="flex items-center gap-2">
-              <Zap className="h-4 w-4 text-amber-300" aria-hidden="true" />
-              <span className="font-semibold">{FACTORY.dailyOutput}</span>
-              <span className="text-slate-300">Daily</span>
-            </span>
-            <span className="flex items-center gap-2">
-              <Globe className="h-4 w-4 text-amber-300" aria-hidden="true" />
-              <span className="font-semibold">{FACTORY.countriesServed}</span>
-              <span className="text-slate-300">Countries</span>
-            </span>
-            <span className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-amber-300" aria-hidden="true" />
-              <span className="font-semibold">{FACTORY.oemClients}</span>
-              <span className="text-slate-300">OEM Clients</span>
-            </span>
-            <span className="flex items-center gap-2">
-              <Award className="h-4 w-4 text-amber-300" aria-hidden="true" />
-              <span className="text-slate-300">ISO 9001 · FSC · BPA-Free · CE</span>
-            </span>
+          <h2 id="factory-facts-heading" className="sr-only">Quote-ready factory details for buyers</h2>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { icon: FactoryIcon, title: "Factory-direct supply", text: "Blank stock, custom printing, and jumbo-roll cooperation" },
+              { icon: ClipboardCheck, title: "Specs checked first", text: "Size, GSM, core, adhesive, artwork, carton marks, and packing" },
+              { icon: Award, title: "Certified options", text: "ISO 9001, FSC, BPA-free, RoHS, REACH, and CE support" },
+              { icon: Ship, title: "Export quote ready", text: "FOB, CIF, DDP, mixed SKU pallets, and container loading" },
+            ].map(({ icon: Icon, title, text }) => (
+              <div key={title} className="flex items-start gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-4">
+                <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-white text-brand-navy shadow-sm">
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                </div>
+                <div>
+                  <div className="text-sm font-semibold text-slate-950">{title}</div>
+                  <p className="mt-1 text-xs leading-relaxed text-slate-600">{text}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -381,48 +493,50 @@ export default async function HomePage() {
       <section className="py-20 bg-white border-b border-slate-100" aria-labelledby="product-categories-heading">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Product Categories</p>
+            <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Product Finder</p>
             <h2 id="product-categories-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 text-balance">
-              Thermal Rolls, Labels, Carbonless Forms &amp; Jumbo Supply
+              Choose the Right Supply Path
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-600 text-pretty">
               Blank stock ready to ship, custom-printed profit lines, and jumbo-roll supply. Pick your product and send an inquiry — we reply within 24 hours.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {productCategoryCards.map(({ title, slot, fallback, tag, spec, href }) => {
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {productFinderCards.map(({ title, eyebrow, slot, fallback, tone, spec, summary, href, cta }) => {
               const cardImage = imgs[slot] ?? fallback;
-              const inquiryHref = `/contact?product=${encodeURIComponent(title)}`;
               return (
                 <article
                   key={title}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-[transform,border-color,box-shadow] duration-200 motion-reduce:transition-none hover:-translate-y-1 hover:border-brand-navy/40 hover:shadow-lg"
+                  className="group grid overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-[border-color,box-shadow] duration-200 hover:border-brand-navy/40 hover:shadow-md sm:grid-cols-[42%_1fr] md:grid-cols-1"
                 >
-                  <Link href={href} className="relative block aspect-[4/3] overflow-hidden bg-slate-100" aria-label={`View ${title}`}>
+                  <Link href={href} className="relative block min-h-[220px] overflow-hidden bg-slate-100 md:aspect-[16/10] md:min-h-0" aria-label={`View ${title}`}>
                     <Image
                       src={cardImage}
                       alt={`${title} from ZhixinPaper factory`}
                       fill
                       loading="lazy"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
                       className="object-cover transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none"
                     />
-                    <span className={`absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${TAG_STYLES[tag]}`}>
-                      {tag}
+                    <span className={`absolute left-3 top-3 rounded-md border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${FINDER_TONE_STYLES[tone]}`}>
+                      {eyebrow}
                     </span>
                   </Link>
                   <div className="flex flex-1 flex-col p-5">
-                    <h3 className="text-base font-semibold leading-snug tracking-[-0.01em] text-slate-900">
+                    <div className="mb-3 inline-flex w-fit rounded-md bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-600">
+                      {spec}
+                    </div>
+                    <h3 className="text-lg font-semibold leading-snug tracking-[-0.02em] text-slate-900">
                       <Link href={href} className="transition-colors group-hover:text-brand-navy">{title}</Link>
                     </h3>
-                    <p className="mt-2 mb-4 flex-1 text-sm leading-relaxed text-slate-600 text-pretty">{spec}</p>
+                    <p className="mt-2 mb-5 flex-1 text-sm leading-relaxed text-slate-600 text-pretty">{summary}</p>
                     <Link
-                      href={inquiryHref}
+                      href={href}
                       className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-navy px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover"
                     >
                       <MessageSquare className="h-4 w-4" />
-                      Inquiry Now
+                      {cta}
                     </Link>
                   </div>
                 </article>
@@ -558,33 +672,41 @@ export default async function HomePage() {
       </section>
 
       {/* ⑥ FACTORY PROOF + WHY US —— 信任带 */}
-      <section className="py-14 bg-brand-navy-alt text-white">
+      <section className="py-16 bg-white border-b border-slate-100" aria-labelledby="factory-proof-heading">
         <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border border-white/10 rounded-md overflow-hidden">
-            {[
-              { icon: FactoryIcon, value: FACTORY.area, label: "Factory Area", sub: "Modern facility in Xi'an" },
-              { icon: Users, value: FACTORY.oemClients, label: "OEM Clients", sub: "Worldwide distributors" },
-              { icon: Globe, value: `${FACTORY.countriesServed}+`, label: "Countries Served", sub: "Global export network" },
-              { icon: Award, value: "ISO 9001", label: "Certified", sub: "Quality management" },
-            ].map(({ icon: Icon, value, label, sub }) => (
-              <div key={label} className="p-6 border-b border-r border-white/10 md:border-b-0 even:border-r-0 md:even:border-r md:last:border-r-0">
-                <div className="w-10 h-10 border border-white/12 rounded-md flex items-center justify-center mb-4 bg-white/5">
-                  <Icon className="w-5 h-5 text-amber-300" />
+          <div className="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <div>
+              <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Factory Proof</p>
+              <h2 id="factory-proof-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 text-balance">
+                Factory Evidence Buyers Can Use Before Sending an RFQ
+              </h2>
+            </div>
+            <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+              <p className="text-sm leading-relaxed text-slate-600">
+                We keep factory facts, certificates, OEM packing, and export documents visible because overseas buyers need proof before sharing specs, artwork, and destination details.
+              </p>
+              <div className="mt-4 grid gap-2">
+                {factoryProofPoints.map((point) => (
+                  <div key={point} className="flex items-start gap-2 text-sm text-slate-700">
+                    <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-500" />
+                    <span>{point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 lg:grid-cols-4">
+            {factoryProofMetrics.map(({ icon: Icon, value, label, sub }) => (
+              <div key={label} className="bg-white p-5">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-slate-50">
+                  <Icon className="h-5 w-5 text-brand-navy" />
                 </div>
-                <div className="text-2xl font-semibold text-white mb-1">{value}</div>
-                <div className="text-sm font-semibold text-slate-100 mb-1">{label}</div>
-                <div className="text-xs text-slate-400">{sub}</div>
+                <div className="text-2xl font-semibold text-slate-950">{value}</div>
+                <div className="mt-1 text-sm font-semibold text-slate-900">{label}</div>
+                <div className="mt-1 text-xs leading-relaxed text-slate-500">{sub}</div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-white border-b border-slate-100">
-        <div className="container">
-          <div className="text-center mb-12">
-            <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Our Advantages</p>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 text-balance">Why Buyers Choose Us</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -728,14 +850,14 @@ export default async function HomePage() {
       </section>
 
       {/* ⑧b CONTAINER LOADING —— 出口物流 */}
-      <section className="py-20 bg-brand-navy-alt text-white">
+      <section className="py-16 bg-slate-50 border-y border-slate-200">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-amber-300 text-sm font-semibold uppercase tracking-[0.18em] mb-4">Logistics</p>
-              <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] mb-7 leading-tight text-balance">
+              <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-4">Logistics</p>
+              <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] mb-7 leading-tight text-slate-900 text-balance">
                 Container Loading<br />
-                <span className="text-amber-300">Available</span>
+                <span className="text-brand-navy">Available</span>
               </h2>
 
               <div className="space-y-4 mb-8">
@@ -748,10 +870,10 @@ export default async function HomePage() {
                   { icon: CheckCircle, text: "FOB Shenzhen / CIF destination port pricing" },
                 ].map(({ icon: Icon, text }) => (
                   <div key={text} className="flex items-center gap-3">
-                    <div className="w-8 h-8 border border-white/12 rounded-md flex items-center justify-center flex-shrink-0 bg-white/5">
-                      <Icon className="w-4 h-4 text-amber-300" />
+                    <div className="w-8 h-8 border border-slate-200 rounded-md flex items-center justify-center flex-shrink-0 bg-white">
+                      <Icon className="w-4 h-4 text-brand-navy" />
                     </div>
-                    <span className="text-slate-200 text-sm font-medium">{text}</span>
+                    <span className="text-slate-700 text-sm font-medium">{text}</span>
                   </div>
                 ))}
               </div>
@@ -768,7 +890,7 @@ export default async function HomePage() {
                   href={waContainer}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border border-white/20 hover:border-white/35 text-white font-semibold px-7 py-3 rounded-md transition-colors duration-200"
+                  className="inline-flex items-center gap-2 border border-slate-300 hover:border-brand-navy text-slate-700 hover:text-brand-navy font-semibold px-7 py-3 rounded-md transition-colors duration-200"
                 >
                   <Phone className="w-5 h-5" />
                   WhatsApp
@@ -777,7 +899,7 @@ export default async function HomePage() {
             </div>
 
             <div className="relative">
-              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-md border border-white/10 bg-brand-navy/40">
+              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-md border border-slate-200 bg-slate-100">
                 <Image
                   src={FACTORY_IMG_FALLBACK}
                   alt="Thermal paper factory loading area"
@@ -880,6 +1002,15 @@ export default async function HomePage() {
               Tell us your product, required sizes, quantities, and destination port.<br />
               We&apos;ll reply with competitive pricing within 24 hours.
             </p>
+
+            <div className="mx-auto mb-8 grid max-w-2xl grid-cols-1 gap-2 text-left sm:grid-cols-2">
+              {finalQuoteChecklist.map((item) => (
+                <div key={item} className="flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700">
+                  <CheckCircle className="h-4 w-4 flex-shrink-0 text-amber-500" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
 
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <Link

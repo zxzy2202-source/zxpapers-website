@@ -26,11 +26,22 @@ export interface NavRegionGroup {
   countries: NavItem[];
 }
 
+export interface NavProductGroup {
+  groupLabel: string;
+  href: string;
+  description: string;
+  badge?: string;
+  badgeColor?: string;
+  items: NavItem[];
+}
+
 export interface NavDropdown {
   label: string;
   items: NavItem[];
   /** Legacy single featured list (kept for non-Products menus) */
   featured?: NavItem[];
+  /** Buying-scenario groups for the Products mega-menu */
+  productGroups?: NavProductGroup[];
   /** Multi-column size groups for Products mega-menu */
   sizeGroups?: NavSizeGroup[];
   /** Three-column region groups for Markets mega-menu */
@@ -47,18 +58,85 @@ export const mainNav: (NavItem | NavDropdown)[] = [
       { label: "Thermal Labels",                  href: "/products/thermal-labels" },
       { label: "Receipt Paper Rolls / Cash Register", href: "/products/receipt-paper-rolls" },
       { label: "BPA-Free Thermal Paper",           href: "/products/bpa-free-thermal-paper" },
+      { label: "Phenol-Free Thermal Paper",        href: "/products/phenol-free-thermal-paper" },
       { label: "Colored Thermal Paper",            href: "/products/colored-thermal-paper" },
-      { label: "Blank Thermal Paper Rolls",        href: "/products/thermal-paper-rolls/blank" },
-      { label: "Custom Printed Thermal Rolls",     href: "/products/thermal-paper-rolls/custom-printed" },
-      { label: "Blank Thermal Labels",             href: "/products/thermal-labels/blank" },
-      { label: "Custom Printed Thermal Labels",    href: "/products/thermal-labels/custom-printed" },
+      { label: "Custom Printed Thermal Rolls",     href: "/products/custom-printed-thermal-rolls" },
+      { label: "Shipping Labels",                  href: "/products/shipping-labels" },
+      { label: "Barcode Labels",                   href: "/products/barcode-labels" },
+      { label: "Product Labels",                   href: "/products/product-labels" },
+      { label: "Linerless Labels",                 href: "/products/linerless-labels" },
+      { label: "Custom Printed Thermal Labels",    href: "/products/custom-printed-thermal-labels" },
       { label: "Blank Can Labels",                 href: "/products/can-labels/blank" },
       { label: "Custom Printed Can Labels",        href: "/products/can-labels/custom-printed" },
       { label: "Bottle & Packaging Labels",       href: "/products/detergent-labels" },
       { label: "Blank Bottle & Packaging Labels",  href: "/products/detergent-labels/blank" },
       { label: "Custom Printed Bottle Labels",     href: "/products/detergent-labels/custom-printed" },
       { label: "NCR Forms & Carbonless Paper",     href: "/products/ncr-forms" },
-      { label: "Custom Printed NCR Forms",         href: "/products/ncr-forms" },
+      { label: "Custom NCR Forms",                 href: "/products/custom-ncr-forms" },
+      { label: "NCR Receipt Books",                href: "/products/ncr-receipt-books" },
+      { label: "NCR Invoice Books",                href: "/products/ncr-invoice-books" },
+      { label: "Delivery Note Forms",              href: "/products/delivery-note-forms" },
+      { label: "Continuous Computer Forms",        href: "/products/continuous-computer-forms" },
+    ],
+    productGroups: [
+      {
+        groupLabel: "Thermal Paper Rolls",
+        href: "/products/thermal-paper-rolls",
+        description: "POS, ATM, kiosk and cash-register receipt rolls.",
+        badge: "Core",
+        badgeColor: "amber",
+        items: [
+          { label: "Blank Thermal Rolls",          href: "/products/thermal-paper-rolls/blank" },
+          { label: "Custom Printed Rolls",         href: "/products/thermal-paper-rolls/custom-printed" },
+          { label: "Receipt Paper Rolls",          href: "/products/receipt-paper-rolls" },
+          { label: "BPA-Free Thermal Paper",       href: "/products/bpa-free-thermal-paper" },
+          { label: "Phenol-Free Thermal Paper",    href: "/products/phenol-free-thermal-paper" },
+          { label: "Colored Thermal Paper",        href: "/products/colored-thermal-paper" },
+        ],
+      },
+      {
+        groupLabel: "Thermal Labels",
+        href: "/products/thermal-labels",
+        description: "Shipping, barcode, warehouse and product labels.",
+        badge: "4x6",
+        badgeColor: "blue",
+        items: [
+          { label: "Blank Thermal Labels",         href: "/products/thermal-labels/blank" },
+          { label: "Custom Printed Labels",        href: "/products/thermal-labels/custom-printed" },
+          { label: "Shipping Labels",              href: "/products/shipping-labels" },
+          { label: "Barcode Labels",               href: "/products/barcode-labels" },
+          { label: "Product Labels",               href: "/products/product-labels" },
+          { label: "Linerless Labels",             href: "/products/linerless-labels" },
+        ],
+      },
+      {
+        groupLabel: "Can & Bottle Labels",
+        href: "/products/can-labels",
+        description: "Food cans, beverages, detergent and household packaging.",
+        badge: "OEM",
+        badgeColor: "green",
+        items: [
+          { label: "Can Labels",                   href: "/products/can-labels" },
+          { label: "Blank Can Labels",             href: "/products/can-labels/blank" },
+          { label: "Custom Printed Can Labels",    href: "/products/can-labels/custom-printed" },
+          { label: "Bottle & Packaging Labels",    href: "/products/detergent-labels" },
+          { label: "Blank Bottle Labels",          href: "/products/detergent-labels/blank" },
+          { label: "Custom Printed Bottle Labels", href: "/products/detergent-labels/custom-printed" },
+        ],
+      },
+      {
+        groupLabel: "NCR & Business Forms",
+        href: "/products/ncr-forms",
+        description: "Carbonless invoices, receipts, delivery notes and books.",
+        items: [
+          { label: "NCR Forms & Carbonless Paper", href: "/products/ncr-forms" },
+          { label: "Custom NCR Forms",             href: "/products/custom-ncr-forms" },
+          { label: "NCR Receipt Books",            href: "/products/ncr-receipt-books" },
+          { label: "NCR Invoice Books",            href: "/products/ncr-invoice-books" },
+          { label: "Delivery Note Forms",          href: "/products/delivery-note-forms" },
+          { label: "Continuous Computer Forms",    href: "/products/continuous-computer-forms" },
+        ],
+      },
     ],
     sizeGroups: [
       {
@@ -76,31 +154,31 @@ export const mainNav: (NavItem | NavDropdown)[] = [
       {
         groupLabel: "Thermal Labels",
         items: [
-          { label: '4" × 6" Shipping',  href: "/products/thermal-labels/4x6in",  badge: "Most Popular", badgeColor: "amber" },
-          { label: '2" × 1" Barcode',   href: "/products/thermal-labels/2x1in" },
-          { label: '3" × 2" Product',   href: "/products/thermal-labels/3x2in" },
-          { label: '4" × 3" Square',    href: "/products/thermal-labels/4x3in" },
-          { label: '2" × 4" Address',   href: "/products/thermal-labels/2x4in" },
+          { label: '4" × 6"',  href: "/products/thermal-labels/4x6in",  badge: "Top", badgeColor: "amber" },
+          { label: '2" × 1"',  href: "/products/thermal-labels/2x1in" },
+          { label: '3" × 2"',  href: "/products/thermal-labels/3x2in" },
+          { label: '4" × 3"',  href: "/products/thermal-labels/4x3in" },
+          { label: '2" × 4"',  href: "/products/thermal-labels/2x4in" },
         ],
       },
       {
         groupLabel: "Can & Bottle Labels",
         items: [
-          { label: "211 × 400 Can",       href: "/products/can-labels/211x400",         badge: "Standard",  badgeColor: "green" },
-          { label: "300 × 407 Can",       href: "/products/can-labels/300x407",         badge: "Food",      badgeColor: "green" },
-          { label: "307 × 510 Can",       href: "/products/can-labels/307x510" },
-          { label: "90 × 120mm Bottle",  href: "/products/detergent-labels/90x120mm",  badge: "Popular",   badgeColor: "blue" },
-          { label: "80 × 150mm Bottle",  href: "/products/detergent-labels/80x150mm" },
+          { label: "211 × 400",   href: "/products/can-labels/211x400",        badge: "Standard", badgeColor: "green" },
+          { label: "300 × 407",   href: "/products/can-labels/300x407",        badge: "Food",     badgeColor: "green" },
+          { label: "307 × 510",   href: "/products/can-labels/307x510" },
+          { label: "90 × 120mm",  href: "/products/detergent-labels/90x120mm", badge: "Bottle",   badgeColor: "blue" },
+          { label: "80 × 150mm",  href: "/products/detergent-labels/80x150mm" },
         ],
       },
       {
         groupLabel: "NCR & Business Forms",
         items: [
-          { label: "2-Part (Duplicate)",     href: "/products/ncr-forms/2-part",     badge: "Most Common", badgeColor: "amber" },
-          { label: "3-Part (Triplicate)",    href: "/products/ncr-forms/3-part",     badge: "Popular",     badgeColor: "blue" },
-          { label: "4-Part (Quadruplicate)", href: "/products/ncr-forms/4-part" },
-          { label: "Multi-Part (5+ Ply)",    href: "/products/ncr-forms/multi-part" },
-          { label: "All NCR Forms",          href: "/products/ncr-forms" },
+          { label: "2-Part",      href: "/products/ncr-forms/2-part",     badge: "Common", badgeColor: "amber" },
+          { label: "3-Part",      href: "/products/ncr-forms/3-part",     badge: "Popular", badgeColor: "blue" },
+          { label: "4-Part",      href: "/products/ncr-forms/4-part" },
+          { label: "Multi-Part",  href: "/products/ncr-forms/multi-part" },
+          { label: "All Forms",   href: "/products/ncr-forms" },
         ],
       },
     ],
