@@ -1,12 +1,19 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getPost, getPublishedPosts } from "@/lib/postsStore";
+import { ArrowLeft, ArrowRight, MessageSquare, CalendarDays } from "lucide-react";
+import Layout from "@/components/layout/Layout";
+import { getPost, getPublishedPosts, getPublishedPostsByCategory } from "@/lib/postsStore";
 import { renderMarkdown } from "@/lib/markdown";
+import { RESOURCE_CATEGORIES, type ResourceCategory } from "@/lib/postsCategories";
 import { SITE } from "@/config/siteData";
-import { ArrowLeft } from "lucide-react";
+import { r2Image } from "@/lib/r2";
 
 export const revalidate = 60;
+
+const CATEGORY_LABEL: Record<string, string> = Object.fromEntries(
+  RESOURCE_CATEGORIES.map((c) => [c.value, c.label.replace(/\s*\(.*\)\s*/, "")])
+);
 
 export async function generateStaticParams() {
   const posts = await getPublishedPosts();
@@ -30,7 +37,7 @@ export async function generateMetadata({
     openGraph: {
       title: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt,
-      images: post.cover ? [post.cover] : undefined,
+      images: post.cover ? [r2Image(post.cover)] : undefined,
       type: "article",
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
@@ -39,9 +46,14 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt,
-      images: post.cover ? [post.cover] : undefined,
+      images: post.cover ? [r2Image(post.cover)] : undefined,
     },
   };
+}
+
+function formatDate(iso?: string) {
+  if (!iso) return "";
+  return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -50,62 +62,176 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!post || !post.published) notFound();
 
   const html = renderMarkdown(post.content);
+  const cover = post.cover ? r2Image(post.cover) : undefined;
+  const categoryLabel = post.category ? CATEGORY_LABEL[post.category] ?? post.category : undefined;
+
+  // Related posts (same category, excluding current) → fallback to recent.
+  let related = post.category
+    ? (await getPublishedPostsByCategory(post.category as ResourceCategory)).filter((p) => p.slug !== post.slug)
+    : [];
+  if (related.length === 0) {
+    related = (await getPublishedPosts()).filter((p) => p.slug !== post.slug);
+  }
+  related = related.slice(0, 4);
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE.domain },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE.domain}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: `${SITE.domain}/blog/${post.slug}` },
+    ],
+  };
 
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.metaDescription || post.excerpt,
-    image: post.cover,
+    ...(cover ? { image: cover } : {}),
     datePublished: post.publishedAt,
-    dateModified: post.updatedAt,
-    author: { "@type": "Organization", name: SITE.name, url: SITE.domain },
-    publisher: { "@type": "Organization", name: SITE.name, url: SITE.domain },
+    dateModified: post.updatedAt || post.publishedAt,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE.domain}/blog/${post.slug}` },
+    author: { "@id": `${SITE.domain}/#organization` },
+    publisher: { "@id": `${SITE.domain}/#organization` },
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
+    <Layout>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
 
-      {post.cover && (
-        <div className="aspect-[21/9] w-full bg-slate-100 overflow-hidden">
-          <img src={post.cover} alt={post.title} className="w-full h-full object-cover" />
+      {/* Breadcrumb */}
+      <div className="border-b border-slate-200 bg-slate-50 py-3">
+        <div className="container text-sm text-slate-500">
+          <Link href="/" className="hover:text-brand-navy">Home</Link>
+          <span className="mx-1">/</span>
+          <Link href="/blog" className="hover:text-brand-navy">Blog</Link>
+          <span className="mx-1">/</span>
+          <span className="line-clamp-1 font-medium text-slate-700">{post.title}</span>
         </div>
-      )}
+      </div>
 
-      <article className="max-w-3xl mx-auto px-6 py-12">
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-blue-600 mb-6"
-        >
-          <ArrowLeft size={14} /> Back to Blog
-        </Link>
+      <div className="container py-10">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
+          {/* Article */}
+          <article className="min-w-0">
+            <Link
+              href="/blog"
+              className="mb-6 inline-flex items-center gap-1 text-sm text-slate-500 transition-colors hover:text-brand-navy focus-visible:outline-none focus-visible:underline"
+            >
+              <ArrowLeft size={14} aria-hidden="true" /> Back to Blog
+            </Link>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
-          {post.title}
-        </h1>
+            {categoryLabel && (
+              <Link
+                href={`/resources/${post.category}`}
+                className="mb-4 inline-flex w-fit items-center rounded-full bg-amber-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-amber-700 transition-colors hover:bg-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+              >
+                {categoryLabel}
+              </Link>
+            )}
 
-        <div className="text-sm text-slate-400 mt-4 flex items-center gap-2">
-          {post.publishedAt && (
-            <span>
-              Published{" "}
-              {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </span>
-          )}
+            <h1 className="text-3xl font-extrabold leading-tight tracking-[-0.02em] text-slate-900 sm:text-4xl">
+              {post.title}
+            </h1>
+
+            <div className="mt-4 inline-flex items-center gap-1.5 text-sm text-slate-400">
+              <CalendarDays className="h-4 w-4" aria-hidden="true" />
+              {post.publishedAt ? `Published ${formatDate(post.publishedAt)}` : ""}
+            </div>
+
+            {cover && (
+              <div className="mt-8 aspect-[21/9] w-full overflow-hidden rounded-2xl bg-slate-100">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={cover} alt={post.title} className="h-full w-full object-cover" />
+              </div>
+            )}
+
+            <div className="prose-content mt-10" dangerouslySetInnerHTML={{ __html: html }} />
+
+            {/* Bottom CTA */}
+            <div className="mt-12 flex flex-col items-start justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:flex-row sm:items-center">
+              <div>
+                <p className="text-base font-semibold text-slate-900">Need thermal paper, labels, or NCR forms?</p>
+                <p className="mt-1 text-sm text-slate-500">Factory-direct bulk pricing and OEM quotes within 24 hours.</p>
+              </div>
+              <Link
+                href="/contact"
+                className="inline-flex flex-shrink-0 items-center gap-2 rounded-md bg-brand-navy px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
+              >
+                <MessageSquare className="h-4 w-4" aria-hidden="true" /> Get a Quote
+              </Link>
+            </div>
+          </article>
+
+          {/* Sidebar */}
+          <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+            {related.length > 0 && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-5">
+                <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900">Related Articles</h2>
+                <ul className="mt-3 space-y-4">
+                  {related.map((p) => (
+                    <li key={p.id}>
+                      <Link href={`/blog/${p.slug}`} className="group flex gap-3 focus-visible:outline-none">
+                        <span className="h-14 w-16 flex-shrink-0 overflow-hidden rounded-md bg-slate-100">
+                          {p.cover ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img src={r2Image(p.cover)} alt={p.title} loading="lazy" className="h-full w-full object-cover" />
+                          ) : (
+                            <span className="flex h-full w-full items-center justify-center text-[9px] font-semibold uppercase tracking-wider text-slate-300">ZXP</span>
+                          )}
+                        </span>
+                        <span className="min-w-0">
+                          <span className="line-clamp-2 text-sm font-medium leading-snug text-slate-800 transition-colors group-hover:text-brand-navy">
+                            {p.title}
+                          </span>
+                          {p.publishedAt && (
+                            <span className="mt-1 block text-xs text-slate-400">{formatDate(p.publishedAt)}</span>
+                          )}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Categories */}
+            <div className="rounded-2xl border border-slate-200 bg-white p-5">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900">Categories</h2>
+              <ul className="mt-3 space-y-1">
+                {RESOURCE_CATEGORIES.map((c) => (
+                  <li key={c.value}>
+                    <Link
+                      href={`/resources/${c.value}`}
+                      className="flex items-center justify-between rounded-md px-2 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-50 hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/30"
+                    >
+                      {CATEGORY_LABEL[c.value]}
+                      <ArrowRight className="h-3.5 w-3.5 text-slate-400" aria-hidden="true" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* CTA */}
+            <div className="rounded-2xl border border-brand-navy/20 bg-brand-navy-alt p-5 text-white">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-amber-300">Get a Quote</h2>
+              <p className="mt-2 text-sm leading-relaxed text-slate-200">
+                Factory-direct thermal paper, labels, and NCR forms — bulk pricing and OEM in 24 hours.
+              </p>
+              <Link
+                href="/contact"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md bg-amber-500 px-3 py-2.5 text-sm font-semibold text-slate-950 transition-colors hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                <MessageSquare className="h-4 w-4" aria-hidden="true" /> Contact Sales
+              </Link>
+            </div>
+          </aside>
         </div>
-
-        <div
-          className="mt-10 prose-content"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      </article>
-    </div>
+      </div>
+    </Layout>
   );
 }

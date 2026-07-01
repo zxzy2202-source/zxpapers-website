@@ -20,8 +20,39 @@ export const metadata: Metadata = {
 export default async function IndustryInsightsPage() {
   const posts = await getPublishedPostsByCategory("industry-insights");
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE.domain },
+      { "@type": "ListItem", position: 2, name: "Resources", item: `${SITE.domain}/resources` },
+      { "@type": "ListItem", position: 3, name: "Industry Insights", item: `${SITE.domain}/resources/industry-insights` },
+    ],
+  };
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Thermal Paper Industry Insights & Trends",
+    description:
+      "Market analysis, regulatory updates, and strategic insights for thermal paper distributors, buyers, and brand owners.",
+    url: `${SITE.domain}/resources/industry-insights`,
+    isPartOf: { "@id": `${SITE.domain}/#website` },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: posts.length,
+      itemListElement: posts.map((p, idx) => ({
+        "@type": "ListItem",
+        position: idx + 1,
+        name: p.title,
+        url: `${SITE.domain}/blog/${p.slug}`,
+      })),
+    },
+  };
+
   return (
     <Layout>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <div className="bg-brand-navy text-white py-14">
         <div className="container">
           <div className="flex items-center gap-2 mb-3">
