@@ -27,6 +27,7 @@ import {
 interface Props {
   slotsGrouped: Record<string, ImageSlot[]>;
   overrides: Record<string, string>;
+  defaultImages: Record<string, string>;
 }
 
 interface UploadDialogState {
@@ -96,7 +97,11 @@ function slotMatchesStatus(
   return true;
 }
 
-export default function ImageManagerClient({ slotsGrouped, overrides }: Props) {
+export default function ImageManagerClient({
+  slotsGrouped,
+  overrides,
+  defaultImages,
+}: Props) {
   const router = useRouter();
   const fileInputs = useRef<Record<string, HTMLInputElement | null>>({});
   const [uploading, setUploading] = useState<string | null>(null);
@@ -427,7 +432,8 @@ export default function ImageManagerClient({ slotsGrouped, overrides }: Props) {
                       <ImageSlotCard
                         key={slot.slot}
                         slot={slot}
-                        currentUrl={overrides[slot.slot]}
+                        currentUrl={overrides[slot.slot] || defaultImages[slot.slot]}
+                        isCustom={!!overrides[slot.slot]}
                         isLoading={uploading === slot.slot}
                         isSuccess={successSlot === slot.slot}
                         fileInputRef={(el) => {
@@ -640,6 +646,7 @@ function CountBadge({
 function ImageSlotCard({
   slot,
   currentUrl,
+  isCustom,
   isLoading,
   isSuccess,
   fileInputRef,
@@ -649,6 +656,7 @@ function ImageSlotCard({
 }: {
   slot: ImageSlot;
   currentUrl?: string;
+  isCustom: boolean;
   isLoading: boolean;
   isSuccess: boolean;
   fileInputRef: (el: HTMLInputElement | null) => void;
@@ -656,8 +664,6 @@ function ImageSlotCard({
   onChooseFile: () => void;
   onReset: (slot: string) => void;
 }) {
-  const isCustom = !!currentUrl;
-
   return (
     <div
       className={`overflow-hidden rounded-lg border transition ${

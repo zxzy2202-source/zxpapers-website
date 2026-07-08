@@ -1,5 +1,6 @@
 import { IMAGE_SLOTS, groupSlotsByPage } from "@/config/imageSlots";
 import { readOverrides } from "@/lib/imageSlotStore";
+import { buildDefaultImagesForSlots } from "@/lib/imageSlotDefaults";
 import ImageManagerClient from "./ImageManagerClient";
 import { Images } from "lucide-react";
 
@@ -8,6 +9,7 @@ export const dynamic = "force-dynamic";
 export default async function ImagesPage() {
   const overrides = await readOverrides();
   const grouped = groupSlotsByPage();
+  const defaultImages = buildDefaultImagesForSlots(IMAGE_SLOTS);
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -31,7 +33,11 @@ export default async function ImagesPage() {
         </div>
       </div>
 
-      <ImageManagerClient slotsGrouped={grouped} overrides={overrides} />
+      <ImageManagerClient
+        slotsGrouped={grouped}
+        overrides={overrides}
+        defaultImages={defaultImages}
+      />
     </div>
   );
 }
