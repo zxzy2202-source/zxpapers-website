@@ -1,0 +1,763 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - link "Skip to main content" [ref=e3] [cursor=pointer]:
+      - /url: "#main-content"
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - link "+86 158 9176 6700" [ref=e8] [cursor=pointer]:
+            - /url: tel:+8615891766700
+            - img [ref=e9]
+            - text: +86 158 9176 6700
+          - link "Sales@zxpapers.com" [ref=e11] [cursor=pointer]:
+            - /url: mailto:Sales@zxpapers.com
+            - img [ref=e12]
+            - text: Sales@zxpapers.com
+        - generic [ref=e15]:
+          - generic [ref=e16]: ISO 9001 Certified
+          - generic [ref=e17]: "|"
+          - generic [ref=e18]: Global Shipping
+          - generic [ref=e19]: "|"
+          - generic [ref=e20]: MOQ 1 Pallet
+      - navigation [ref=e21]:
+        - generic [ref=e22]:
+          - link "Zhi Xin Paper - Home" [ref=e23] [cursor=pointer]:
+            - /url: /
+            - img "Zhi Xin Paper" [ref=e24]
+            - generic [ref=e25]:
+              - generic [ref=e26]: ZhixinPaper
+              - generic [ref=e27]: Thermal Solutions Since 2009
+          - generic [ref=e28]:
+            - link "Home" [ref=e29] [cursor=pointer]:
+              - /url: /
+            - button "Products" [ref=e31] [cursor=pointer]:
+              - text: Products
+              - img [ref=e32]
+            - button "OEM & Custom" [ref=e35] [cursor=pointer]:
+              - text: OEM & Custom
+              - img [ref=e36]
+            - button "Manufacturing" [ref=e39] [cursor=pointer]:
+              - text: Manufacturing
+              - img [ref=e40]
+            - button "Resources" [ref=e43] [cursor=pointer]:
+              - text: Resources
+              - img [ref=e44]
+            - button "Markets" [ref=e47] [cursor=pointer]:
+              - text: Markets
+              - img [ref=e48]
+            - link "About Us" [ref=e50] [cursor=pointer]:
+              - /url: /about
+            - link "Contact" [ref=e51] [cursor=pointer]:
+              - /url: /contact
+          - link "Get a Quote" [ref=e53] [cursor=pointer]:
+            - /url: /contact
+    - main [ref=e54]:
+      - generic [ref=e63]:
+        - navigation [ref=e64]:
+          - link "Home" [ref=e66] [cursor=pointer]:
+            - /url: /
+          - generic [ref=e67]:
+            - generic [ref=e68]: /
+            - link "Products" [ref=e69] [cursor=pointer]:
+              - /url: /products
+          - generic [ref=e70]:
+            - generic [ref=e71]: /
+            - link "NCR Forms" [ref=e72] [cursor=pointer]:
+              - /url: /products/ncr-forms
+          - generic [ref=e73]:
+            - generic [ref=e74]: /
+            - generic [ref=e75]: Port, Customs & Air Cargo NCR Forms
+        - generic [ref=e76]: Cargo Handover Records
+        - heading "Port, Customs & Air Cargo NCR Forms for Cargo Release Records" [level=1] [ref=e77]:
+          - text: Port, Customs & Air Cargo NCR Forms for
+          - text: Cargo Release Records
+        - paragraph [ref=e78]: Custom carbonless forms for port gate passes, cargo release notes, equipment interchange receipts, container damage reports, customs inspection records and air cargo handover documents.
+        - generic [ref=e79]:
+          - generic [ref=e80]: Gate Pass
+          - generic [ref=e82]: Cargo Release
+          - generic [ref=e84]: EIR Forms
+          - generic [ref=e86]: DG Checklists
+        - generic [ref=e88]:
+          - link "Request a Quote" [ref=e89] [cursor=pointer]:
+            - /url: "#inquiry"
+            - img [ref=e90]
+            - text: Request a Quote
+            - img [ref=e92]
+          - link "WhatsApp for Quote" [ref=e94] [cursor=pointer]:
+            - /url: https://wa.me/8618092117618?text=Hello%2C%20I%20need%20pricing%20for%20port%2Fcustoms%2Fair%20cargo%20NCR%20forms.%20I%20can%20send%20the%20copy%20roles%2C%20fields%20and%20quantity.
+            - img [ref=e95]
+            - text: WhatsApp for Quote
+        - generic [ref=e97]:
+          - generic [ref=e98]:
+            - generic [ref=e99]: 2-5 Part
+            - generic [ref=e100]: Copy Sets
+          - generic [ref=e101]:
+            - generic [ref=e102]: EIR
+            - generic [ref=e103]: Depot Ready
+          - generic [ref=e104]:
+            - generic [ref=e105]: QR / Barcodes
+            - generic [ref=e106]: Optional
+          - generic [ref=e107]:
+            - generic [ref=e108]: 24h
+            - generic [ref=e109]: Quote Response
+      - generic [ref=e112]:
+        - generic [ref=e113]:
+          - generic [ref=e116]: Overview
+          - heading "Forms for Chain-of-Custody Events" [level=2] [ref=e117]
+          - paragraph [ref=e118]: Port and air-cargo paperwork happens at handover points where terminals, drivers, freight forwarders, customs contractors and customers each need proof of what happened.
+          - list [ref=e119]:
+            - listitem [ref=e120]: Gate passes and cargo release notes
+            - listitem [ref=e122]: Equipment interchange receipts with container details
+            - listitem [ref=e124]: Container damage reports and exception records
+            - listitem [ref=e126]: Air cargo handover and dangerous goods checklist forms
+          - link "Send Inquiry Now" [ref=e129] [cursor=pointer]:
+            - /url: "#inquiry"
+            - text: Send Inquiry Now
+            - img
+        - img "Port, Customs & Air Cargo NCR Forms" [ref=e131]
+      - generic [ref=e134]:
+        - heading "Carbonless Records for Handover, Release and Damage Proof" [level=2] [ref=e135]
+        - generic [ref=e136]:
+          - paragraph [ref=e137]: Many port and air-cargo systems are digital, but physical signed records still matter when cargo, vehicles, containers and regulatory parties meet at the same handover point. NCR forms give each party an immediate copy without re-entering the record.
+          - paragraph [ref=e138]: These buyers care about responsibility boundaries more than generic stationery. The form should show cargo numbers, seal numbers, container condition, driver details, release authority, abnormal cargo notes and the signatures that prove responsibility transfer.
+          - paragraph [ref=e139]: ZhixinPaper prints port and customs NCR forms with sequential numbering, copy-color roles, barcodes or QR codes, damage diagrams and reinforced export packaging for humid ports and long-distance sea freight.
+      - generic [ref=e142]:
+        - generic [ref=e143]:
+          - generic [ref=e146]: Why It Works
+          - heading "Make Responsibility Clear at Every Handover" [level=2] [ref=e147]
+          - paragraph [ref=e148]: Pre-printed roles and fields reduce disputes when a container, shipment or gate pass changes hands.
+          - list [ref=e149]:
+            - listitem [ref=e150]: Terminal, driver, freight forwarder and customer copy labels
+            - listitem [ref=e152]: Container number, seal number, cargo ID and release fields
+            - listitem [ref=e154]: Damage diagram, exception notes and photo reference fields
+            - listitem [ref=e156]: Dangerous goods checklist and responsible-person signature fields
+          - link "Discuss Your Layout" [ref=e159] [cursor=pointer]:
+            - /url: "#inquiry"
+            - text: Discuss Your Layout
+            - img
+        - img "Port, Customs & Air Cargo NCR Forms carbonless form examples" [ref=e161]
+      - generic [ref=e163]:
+        - generic [ref=e164]:
+          - generic [ref=e167]: The Range
+          - heading "Port and Cargo Form Applications" [level=2] [ref=e168]
+          - paragraph [ref=e169]: Carbonless forms for the cargo events where signatures and copy distribution still matter.
+        - generic [ref=e170]:
+          - generic [ref=e172]:
+            - generic [ref=e173]:
+              - img "Port Gate Passes" [ref=e174]
+              - generic [ref=e175]: Gate
+            - heading "Port Gate Passes" [level=3] [ref=e176]
+            - paragraph [ref=e177]: Entry, exit and cargo movement passes for terminals, drivers and security desks.
+          - generic [ref=e179]:
+            - generic [ref=e180]:
+              - img "Cargo Release Notes" [ref=e181]
+              - generic [ref=e182]: Release
+            - heading "Cargo Release Notes" [level=3] [ref=e183]
+            - paragraph [ref=e184]: Release documents for forwarders, carriers, warehouses and customers.
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - img "Equipment Interchange Receipts" [ref=e188]
+              - generic [ref=e189]: EIR
+            - heading "Equipment Interchange Receipts" [level=3] [ref=e190]
+            - paragraph [ref=e191]: EIR forms with container number, seal number and condition fields.
+          - generic [ref=e193]:
+            - generic [ref=e194]:
+              - img "Container Damage Reports" [ref=e195]
+              - generic [ref=e196]: Damage
+            - heading "Container Damage Reports" [level=3] [ref=e197]
+            - paragraph [ref=e198]: Damage-position diagrams, exception notes and signature records.
+          - generic [ref=e200]:
+            - generic [ref=e201]:
+              - img "Air Cargo Handover Forms" [ref=e202]
+              - generic [ref=e203]: Air Cargo
+            - heading "Air Cargo Handover Forms" [level=3] [ref=e204]
+            - paragraph [ref=e205]: Handover, short-transfer and abnormal-cargo records for cargo terminals.
+          - generic [ref=e207]:
+            - generic [ref=e208]:
+              - img "Dangerous Goods Checklists" [ref=e209]
+              - generic [ref=e210]: DG
+            - heading "Dangerous Goods Checklists" [level=3] [ref=e211]
+            - paragraph [ref=e212]: DG inspection items, declaration fields and responsible-party signatures.
+      - generic [ref=e214]:
+        - generic [ref=e215]:
+          - generic [ref=e216]:
+            - heading "Related NCR Product Formats" [level=2] [ref=e217]
+            - paragraph [ref=e218]: Match the application page with the right NCR product format, part count or finished form.
+          - generic [ref=e220]:
+            - generic [ref=e222]:
+              - link "Delivery Note Forms POD" [ref=e223] [cursor=pointer]:
+                - /url: /products/delivery-note-forms
+                - img "Delivery Note Forms" [ref=e224]
+                - generic [ref=e225]: POD
+              - generic [ref=e226]:
+                - heading "Delivery Note Forms" [level=3] [ref=e227]:
+                  - link "Delivery Note Forms" [ref=e228] [cursor=pointer]:
+                    - /url: /products/delivery-note-forms
+                - paragraph [ref=e229]: Proof-of-delivery forms for logistics and warehouse dispatch.
+                - link "View Format" [ref=e230] [cursor=pointer]:
+                  - /url: /products/delivery-note-forms
+            - generic [ref=e232]:
+              - link "4-Part NCR Forms 4-Part" [ref=e233] [cursor=pointer]:
+                - /url: /products/ncr-forms/4-part
+                - img "4-Part NCR Forms" [ref=e234]
+                - generic [ref=e235]: 4-Part
+              - generic [ref=e236]:
+                - heading "4-Part NCR Forms" [level=3] [ref=e237]:
+                  - link "4-Part NCR Forms" [ref=e238] [cursor=pointer]:
+                    - /url: /products/ncr-forms/4-part
+                - paragraph [ref=e239]: Four-copy sets for terminal, driver, forwarder and customer records.
+                - link "View Format" [ref=e240] [cursor=pointer]:
+                  - /url: /products/ncr-forms/4-part
+            - generic [ref=e242]:
+              - link "Multi-Part NCR Forms 5+ Ply" [ref=e243] [cursor=pointer]:
+                - /url: /products/ncr-forms/multi-part
+                - img "Multi-Part NCR Forms" [ref=e244]
+                - generic [ref=e245]: 5+ Ply
+              - generic [ref=e246]:
+                - heading "Multi-Part NCR Forms" [level=3] [ref=e247]:
+                  - link "Multi-Part NCR Forms" [ref=e248] [cursor=pointer]:
+                    - /url: /products/ncr-forms/multi-part
+                - paragraph [ref=e249]: 5+ ply forms for customs and regulated cargo workflows.
+                - link "View Format" [ref=e250] [cursor=pointer]:
+                  - /url: /products/ncr-forms/multi-part
+            - generic [ref=e252]:
+              - link "Custom NCR Forms Custom" [ref=e253] [cursor=pointer]:
+                - /url: /products/custom-ncr-forms
+                - img "Custom NCR Forms" [ref=e254]
+                - generic [ref=e255]: Custom
+              - generic [ref=e256]:
+                - heading "Custom NCR Forms" [level=3] [ref=e257]:
+                  - link "Custom NCR Forms" [ref=e258] [cursor=pointer]:
+                    - /url: /products/custom-ncr-forms
+                - paragraph [ref=e259]: Fully custom layouts with numbering, barcodes and copy roles.
+                - link "View Format" [ref=e260] [cursor=pointer]:
+                  - /url: /products/custom-ncr-forms
+        - generic [ref=e261]:
+          - generic [ref=e262]:
+            - heading "More NCR Industry Applications" [level=2] [ref=e263]
+            - paragraph [ref=e264]: Explore other high-intent carbonless form applications for SEO, GEO and inquiry qualification.
+          - generic [ref=e265]:
+            - generic [ref=e266]:
+              - generic [ref=e268]:
+                - link "Government NCR Forms Application" [ref=e269] [cursor=pointer]:
+                  - /url: /products/government-ncr-forms
+                  - img "Government NCR Forms" [ref=e270]
+                  - generic [ref=e271]: Application
+                - generic [ref=e272]:
+                  - heading "Government NCR Forms" [level=3] [ref=e273]:
+                    - link "Government NCR Forms" [ref=e274] [cursor=pointer]:
+                      - /url: /products/government-ncr-forms
+                  - paragraph [ref=e275]: Custom government NCR forms for permits, receipts, inspection reports, customs documents, procurement receiving records and archive-ready multi-part documentation.
+                  - link "View Application" [ref=e276] [cursor=pointer]:
+                    - /url: /products/government-ncr-forms
+              - generic [ref=e278]:
+                - link "Field Service NCR Forms Application" [ref=e279] [cursor=pointer]:
+                  - /url: /products/field-service-ncr-forms
+                  - img "Field Service NCR Forms" [ref=e280]
+                  - generic [ref=e281]: Application
+                - generic [ref=e282]:
+                  - heading "Field Service NCR Forms" [level=3] [ref=e283]:
+                    - link "Field Service NCR Forms" [ref=e284] [cursor=pointer]:
+                      - /url: /products/field-service-ncr-forms
+                  - paragraph [ref=e285]: Custom NCR service tickets and work order forms for HVAC, plumbing, electrical and field technicians, with customer signature, wraparound cover and clear copies.
+                  - link "View Application" [ref=e286] [cursor=pointer]:
+                    - /url: /products/field-service-ncr-forms
+              - generic [ref=e288]:
+                - link "Auto Repair NCR Forms Application" [ref=e289] [cursor=pointer]:
+                  - /url: /products/auto-repair-ncr-forms
+                  - img "Auto Repair NCR Forms" [ref=e290]
+                  - generic [ref=e291]: Application
+                - generic [ref=e292]:
+                  - heading "Auto Repair NCR Forms" [level=3] [ref=e293]:
+                    - link "Auto Repair NCR Forms" [ref=e294] [cursor=pointer]:
+                      - /url: /products/auto-repair-ncr-forms
+                  - paragraph [ref=e295]: Custom carbonless auto repair NCR forms with vehicle inspection diagrams, damage records, repair authorization, insurance copies and sequential numbering.
+                  - link "View Application" [ref=e296] [cursor=pointer]:
+                    - /url: /products/auto-repair-ncr-forms
+              - generic [ref=e298]:
+                - link "Logistics & Warehouse NCR Forms Application" [ref=e299] [cursor=pointer]:
+                  - /url: /products/logistics-warehouse-ncr-forms
+                  - img "Logistics & Warehouse NCR Forms" [ref=e300]
+                  - generic [ref=e301]: Application
+                - generic [ref=e302]:
+                  - heading "Logistics & Warehouse NCR Forms" [level=3] [ref=e303]:
+                    - link "Logistics & Warehouse NCR Forms" [ref=e304] [cursor=pointer]:
+                      - /url: /products/logistics-warehouse-ncr-forms
+                  - paragraph [ref=e305]: Carbonless delivery notes, proof-of-delivery forms, warehouse receiving records and stock transfer forms for 3PL, warehouses and distribution teams.
+                  - link "View Application" [ref=e306] [cursor=pointer]:
+                    - /url: /products/logistics-warehouse-ncr-forms
+              - generic [ref=e308]:
+                - link "Medical & Pharmacy NCR Forms Application" [ref=e309] [cursor=pointer]:
+                  - /url: /products/medical-pharmacy-ncr-forms
+                  - img "Medical & Pharmacy NCR Forms" [ref=e310]
+                  - generic [ref=e311]: Application
+                - generic [ref=e312]:
+                  - heading "Medical & Pharmacy NCR Forms" [level=3] [ref=e313]:
+                    - link "Medical & Pharmacy NCR Forms" [ref=e314] [cursor=pointer]:
+                      - /url: /products/medical-pharmacy-ncr-forms
+                  - paragraph [ref=e315]: Custom medical and pharmacy NCR forms for prescription copies, lab handover, patient consent, public health records and archive-ready multi-part documentation.
+                  - link "View Application" [ref=e316] [cursor=pointer]:
+                    - /url: /products/medical-pharmacy-ncr-forms
+            - button "Previous" [disabled] [ref=e317]:
+              - img [ref=e318]
+            - button "Next" [ref=e320] [cursor=pointer]:
+              - img [ref=e321]
+            - generic [ref=e323]:
+              - button "Go to slide 1" [ref=e324] [cursor=pointer]
+              - button "Go to slide 2" [ref=e325] [cursor=pointer]
+      - generic [ref=e327]:
+        - generic [ref=e328]:
+          - generic [ref=e331]: Compare
+          - heading "Cargo Workflow Mapping" [level=2] [ref=e332]
+        - table [ref=e335]:
+          - rowgroup [ref=e336]:
+            - row "Option Handover Event Useful NCR Form" [ref=e337]:
+              - columnheader "Option" [ref=e338]
+              - columnheader "Handover Event" [ref=e339]
+              - columnheader "Useful NCR Form" [ref=e340]
+          - rowgroup [ref=e341]:
+            - row "Gate entry / exit Driver and terminal need proof Numbered gate pass with terminal and driver copies" [ref=e342]:
+              - cell "Gate entry / exit" [ref=e343]
+              - cell "Driver and terminal need proof" [ref=e344]
+              - cell "Numbered gate pass with terminal and driver copies" [ref=e345]
+            - row "Cargo release Release authority and pickup proof 3-part or 4-part cargo release note" [ref=e346]:
+              - cell "Cargo release" [ref=e347]
+              - cell "Release authority and pickup proof" [ref=e348]
+              - cell "3-part or 4-part cargo release note" [ref=e349]
+            - row "Container pickup / return Condition and seal details matter EIR with damage diagram and signatures" [ref=e350]:
+              - cell "Container pickup / return" [ref=e351]
+              - cell "Condition and seal details matter" [ref=e352]
+              - cell "EIR with damage diagram and signatures" [ref=e353]
+            - row "Dangerous goods handover Inspection items cannot be missed DG checklist with responsible-person signatures" [ref=e354]:
+              - cell "Dangerous goods handover" [ref=e355]
+              - cell "Inspection items cannot be missed" [ref=e356]
+              - cell "DG checklist with responsible-person signatures" [ref=e357]
+      - generic [ref=e359]:
+        - heading "Recommended Specifications" [level=2] [ref=e361]
+        - table [ref=e363]:
+          - rowgroup [ref=e364]:
+            - row "Copies 2-part to 5-part carbonless sets" [ref=e365]:
+              - cell "Copies" [ref=e366]
+              - cell "2-part to 5-part carbonless sets" [ref=e367]
+            - row "Fields Cargo ID, container number, seal number, driver, terminal, damage notes" [ref=e368]:
+              - cell "Fields" [ref=e369]
+              - cell "Cargo ID, container number, seal number, driver, terminal, damage notes" [ref=e370]
+            - row "Tracking Sequential numbering, barcode or QR code available" [ref=e371]:
+              - cell "Tracking" [ref=e372]
+              - cell "Sequential numbering, barcode or QR code available" [ref=e373]
+            - row "Formats Loose sets, pads, books or continuous forms" [ref=e374]:
+              - cell "Formats" [ref=e375]
+              - cell "Loose sets, pads, books or continuous forms" [ref=e376]
+            - row "Durability Wraparound covers and reinforced export packaging available" [ref=e377]:
+              - cell "Durability" [ref=e378]
+              - cell "Wraparound covers and reinforced export packaging available" [ref=e379]
+            - row "Use Cases Gate pass, release note, EIR, damage report, customs inspection, air cargo handover" [ref=e380]:
+              - cell "Use Cases" [ref=e381]
+              - cell "Gate pass, release note, EIR, damage report, customs inspection, air cargo handover" [ref=e382]
+        - paragraph [ref=e383]: "* Phenol-free / BPA-free and FSC options are quoted on request for compliance-sensitive orders."
+      - generic [ref=e385]:
+        - generic [ref=e386]:
+          - heading "Why Source Port, Customs & Air Cargo NCR Forms From ZhixinPaper" [level=2] [ref=e387]
+          - paragraph [ref=e388]: Factory-direct printing, numbering, collating and export packaging for custom carbonless form programs.
+        - generic [ref=e389]:
+          - generic [ref=e390]:
+            - img [ref=e392]
+            - heading "Logistics-Aware Fields" [level=3] [ref=e397]
+            - paragraph [ref=e398]: Forms can include container, seal, driver, release and damage fields.
+          - generic [ref=e399]:
+            - img [ref=e401]
+            - heading "Clear Copy Distribution" [level=3] [ref=e405]
+            - paragraph [ref=e406]: Each party can receive a labeled copy after one signed record.
+          - generic [ref=e407]:
+            - img [ref=e409]
+            - heading "Export Packaging" [level=3] [ref=e419]
+            - paragraph [ref=e420]: Packaging can be reinforced for humid ports and long-distance freight.
+          - generic [ref=e421]:
+            - img [ref=e423]
+            - heading "NCR Range Support" [level=3] [ref=e426]
+            - paragraph [ref=e427]: 2-part, 3-part, 4-part and multi-part formats are available from the same factory.
+      - generic [ref=e430]:
+        - generic [ref=e431]:
+          - generic [ref=e434]: FAQ
+          - heading "Frequently Asked Questions" [level=2] [ref=e435]
+          - paragraph [ref=e436]: Answers to the questions buyers ask most. Need something specific? Our team replies within 12 hours.
+          - link "Ask a Question" [ref=e437] [cursor=pointer]:
+            - /url: "#inquiry"
+            - text: Ask a Question
+            - img [ref=e438]
+        - generic [ref=e440]:
+          - generic [ref=e441]:
+            - button "01 What are port NCR forms used for?" [expanded] [ref=e442] [cursor=pointer]:
+              - generic [ref=e443]: "01"
+              - generic [ref=e444]: What are port NCR forms used for?
+              - generic [ref=e445]: −
+            - region "01 What are port NCR forms used for?" [ref=e446]: Port NCR forms are used for gate passes, cargo release notes, equipment interchange receipts, damage reports, customs inspection records and handover documents where terminals, drivers, forwarders and customers each need signed copies.
+          - button "02 Do ports, freight forwarders and air cargo terminals still use NCR forms?" [ref=e448] [cursor=pointer]:
+            - generic [ref=e449]: "02"
+            - generic [ref=e450]: Do ports, freight forwarders and air cargo terminals still use NCR forms?
+            - generic [ref=e451]: +
+          - button "03 Can you make EIR forms with container damage fields?" [ref=e453] [cursor=pointer]:
+            - generic [ref=e454]: "03"
+            - generic [ref=e455]: Can you make EIR forms with container damage fields?
+            - generic [ref=e456]: +
+          - button "04 Can the forms include barcodes or QR codes?" [ref=e458] [cursor=pointer]:
+            - generic [ref=e459]: "04"
+            - generic [ref=e460]: Can the forms include barcodes or QR codes?
+            - generic [ref=e461]: +
+      - generic [ref=e464]:
+        - generic [ref=e465]:
+          - generic [ref=e468]: Online — Responding within 12h
+          - heading "Get Port and Cargo NCR Form Pricing" [level=2] [ref=e469]
+          - paragraph [ref=e470]: Send the form type, copy roles, cargo fields, numbering or barcode requirement and quantity for a quote.
+          - generic [ref=e471]:
+            - link "NCR Forms & Business Forms" [ref=e472] [cursor=pointer]:
+              - /url: /products/ncr-forms
+              - text: NCR Forms & Business Forms
+              - img [ref=e473]
+            - link "Custom NCR Forms" [ref=e475] [cursor=pointer]:
+              - /url: /products/custom-ncr-forms
+              - text: Custom NCR Forms
+              - img [ref=e476]
+            - link "Delivery Note Forms" [ref=e478] [cursor=pointer]:
+              - /url: /products/delivery-note-forms
+              - text: Delivery Note Forms
+              - img [ref=e479]
+            - link "Continuous Computer Forms" [ref=e481] [cursor=pointer]:
+              - /url: /products/continuous-computer-forms
+              - text: Continuous Computer Forms
+              - img [ref=e482]
+            - link "4-Part (Quadruplicate)" [ref=e484] [cursor=pointer]:
+              - /url: /products/ncr-forms/4-part
+              - text: 4-Part (Quadruplicate)
+              - img [ref=e485]
+        - generic [ref=e488]:
+          - generic [ref=e489]:
+            - generic [ref=e490]:
+              - generic [ref=e491]: Your Name *
+              - textbox "Your Name" [ref=e492]:
+                - /placeholder: Your full name
+            - generic [ref=e493]:
+              - generic [ref=e494]: Email Address *
+              - textbox "Email Address" [ref=e495]:
+                - /placeholder: you@company.com
+          - generic [ref=e496]:
+            - generic [ref=e497]: Company Name
+            - textbox "Company Name" [ref=e498]:
+              - /placeholder: Your company
+          - generic [ref=e499]:
+            - generic [ref=e500]: Country / Region *
+            - textbox "Country / Region" [ref=e501]:
+              - /placeholder: Country or region
+              - text: United States
+          - generic [ref=e502]:
+            - generic [ref=e503]: Phone / WhatsApp (optional)
+            - textbox "Phone / WhatsApp (optional)" [ref=e504]:
+              - /placeholder: Phone / WhatsApp
+          - generic [ref=e505]:
+            - generic [ref=e506]: Message *
+            - textbox "Message" [ref=e507]:
+              - /placeholder: Message — quantity, size, customization...
+          - button "Send Inquiry" [ref=e508] [cursor=pointer]:
+            - img
+            - text: Send Inquiry
+          - paragraph [ref=e509]: Response within 12 hours · NDA available · No spam
+    - contentinfo [ref=e510]:
+      - generic [ref=e513]:
+        - generic [ref=e514]:
+          - img [ref=e516]
+          - generic [ref=e518]:
+            - generic [ref=e519]: ISO 9001:2015
+            - generic [ref=e520]: Quality Certified
+        - generic [ref=e521]:
+          - img [ref=e523]
+          - generic [ref=e526]:
+            - generic [ref=e527]: FSC Certified
+            - generic [ref=e528]: Sustainable Sourcing
+        - generic [ref=e529]:
+          - img [ref=e531]
+          - generic [ref=e534]:
+            - generic [ref=e535]: BPA-Free
+            - generic [ref=e536]: Safe & Eco-Friendly
+        - generic [ref=e537]:
+          - img [ref=e539]
+          - generic [ref=e542]:
+            - generic [ref=e543]: 15+ Years
+            - generic [ref=e544]: Manufacturing Experience
+      - generic [ref=e546]:
+        - generic [ref=e547]:
+          - link "Zhi Xin Paper - Home" [ref=e548] [cursor=pointer]:
+            - /url: /
+            - img "Zhi Xin Paper" [ref=e549]
+            - generic [ref=e550]:
+              - generic [ref=e551]: ZhixinPaper
+              - generic [ref=e552]: Thermal Solutions Since 2009
+          - paragraph [ref=e553]: Professional manufacturer of thermal paper rolls and thermal labels since 2009. ISO 9001 certified, serving 80++ countries worldwide.
+          - generic [ref=e554]:
+            - link "+86 158 9176 6700" [ref=e555] [cursor=pointer]:
+              - /url: tel:+8615891766700
+              - img [ref=e557]
+              - text: +86 158 9176 6700
+            - 'link "WhatsApp: +86 180 9211 7618" [ref=e559] [cursor=pointer]':
+              - /url: https://wa.me/8618092117618?text=Hello%2C%20I%20need%20a%20quote%20for%20thermal%20paper%20rolls.
+              - img [ref=e561]
+              - text: "WhatsApp: +86 180 9211 7618"
+            - generic [ref=e563]:
+              - img [ref=e565]
+              - text: "WeChat: +86 158 9176 6700"
+            - link "Sales@zxpapers.com" [ref=e567] [cursor=pointer]:
+              - /url: mailto:Sales@zxpapers.com
+              - img [ref=e569]
+              - text: Sales@zxpapers.com
+            - generic [ref=e572]:
+              - img [ref=e574]
+              - generic [ref=e577]: Building 15, Phase 1 Zone 2, Ronghao Industrial Park, Gaoling District, Xi'an, Shaanxi, China
+          - link "WhatsApp for Quick Quote" [ref=e578] [cursor=pointer]:
+            - /url: https://wa.me/8618092117618?text=Hello%2C%20I%20need%20a%20quote%20for%20thermal%20paper%20rolls.
+            - img [ref=e579]
+            - text: WhatsApp for Quick Quote
+        - generic [ref=e581]:
+          - heading "Products" [level=3] [ref=e582]
+          - list [ref=e583]:
+            - listitem [ref=e584]:
+              - link "All Products" [ref=e585] [cursor=pointer]:
+                - /url: /products
+                - img [ref=e586]
+                - text: All Products
+            - listitem [ref=e588]:
+              - link "Blank Thermal Rolls" [ref=e589] [cursor=pointer]:
+                - /url: /products/thermal-paper-rolls/blank
+                - img [ref=e590]
+                - text: Blank Thermal Rolls
+            - listitem [ref=e592]:
+              - link "Custom Printed Rolls" [ref=e593] [cursor=pointer]:
+                - /url: /products/thermal-paper-rolls/custom-printed
+                - img [ref=e594]
+                - text: Custom Printed Rolls
+            - listitem [ref=e596]:
+              - link "Blank Thermal Labels" [ref=e597] [cursor=pointer]:
+                - /url: /products/thermal-labels/blank
+                - img [ref=e598]
+                - text: Blank Thermal Labels
+            - listitem [ref=e600]:
+              - link "Custom Printed Labels" [ref=e601] [cursor=pointer]:
+                - /url: /products/thermal-labels/custom-printed
+                - img [ref=e602]
+                - text: Custom Printed Labels
+            - listitem [ref=e604]:
+              - link "Shipping Labels" [ref=e605] [cursor=pointer]:
+                - /url: /products/shipping-labels
+                - img [ref=e606]
+                - text: Shipping Labels
+            - listitem [ref=e608]:
+              - link "Till Rolls" [ref=e609] [cursor=pointer]:
+                - /url: /products/till-rolls
+                - img [ref=e610]
+                - text: Till Rolls
+            - listitem [ref=e612]:
+              - link "Blank Can Labels" [ref=e613] [cursor=pointer]:
+                - /url: /products/can-labels/blank
+                - img [ref=e614]
+                - text: Blank Can Labels
+            - listitem [ref=e616]:
+              - link "Detergent Labels" [ref=e617] [cursor=pointer]:
+                - /url: /products/detergent-labels/blank
+                - img [ref=e618]
+                - text: Detergent Labels
+          - heading "OEM Services" [level=3] [ref=e620]
+          - list [ref=e621]:
+            - listitem [ref=e622]:
+              - link "OEM Overview" [ref=e623] [cursor=pointer]:
+                - /url: /oem
+                - img [ref=e624]
+                - text: OEM Overview
+            - listitem [ref=e626]:
+              - link "Private Label" [ref=e627] [cursor=pointer]:
+                - /url: /oem/packaging
+                - img [ref=e628]
+                - text: Private Label
+            - listitem [ref=e630]:
+              - link "Design Support" [ref=e631] [cursor=pointer]:
+                - /url: /oem/design-support
+                - img [ref=e632]
+                - text: Design Support
+            - listitem [ref=e634]:
+              - link "Quality Assurance" [ref=e635] [cursor=pointer]:
+                - /url: /oem/quality-assurance
+                - img [ref=e636]
+                - text: Quality Assurance
+            - listitem [ref=e638]:
+              - link "IP Protection" [ref=e639] [cursor=pointer]:
+                - /url: /oem/ip-protection
+                - img [ref=e640]
+                - text: IP Protection
+            - listitem [ref=e642]:
+              - link "Case Studies" [ref=e643] [cursor=pointer]:
+                - /url: /oem/case-studies
+                - img [ref=e644]
+                - text: Case Studies
+        - generic [ref=e646]:
+          - heading "Popular Sizes" [level=3] [ref=e647]
+          - generic [ref=e648]:
+            - paragraph [ref=e649]: Thermal Paper Rolls
+            - list [ref=e650]:
+              - listitem [ref=e651]:
+                - link "80mm x 80mm Most Popular" [ref=e652] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/80x80mm
+                  - img [ref=e653]
+                  - text: 80mm x 80mm
+                  - generic [ref=e655]: Most Popular
+              - listitem [ref=e656]:
+                - link "57mm x 50mm" [ref=e657] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/57x50mm
+                  - img [ref=e658]
+                  - text: 57mm x 50mm
+              - listitem [ref=e660]:
+                - link "80mm x 70mm" [ref=e661] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/80x70mm
+                  - img [ref=e662]
+                  - text: 80mm x 70mm
+              - listitem [ref=e664]:
+                - link "110mm x 80mm Wide Format" [ref=e665] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/110x80mm
+                  - img [ref=e666]
+                  - text: 110mm x 80mm
+                  - generic [ref=e668]: Wide Format
+              - listitem [ref=e669]:
+                - link "57mm x 40mm" [ref=e670] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/57x40mm
+                  - img [ref=e671]
+                  - text: 57mm x 40mm
+              - listitem [ref=e673]:
+                - link "57mm x 30mm" [ref=e674] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/57x30mm
+                  - img [ref=e675]
+                  - text: 57mm x 30mm
+          - generic [ref=e677]:
+            - paragraph [ref=e678]: Thermal Labels
+            - list [ref=e679]:
+              - listitem [ref=e680]:
+                - link "4\" x 6\" Shipping Most Popular" [ref=e681] [cursor=pointer]:
+                  - /url: /products/thermal-labels/4x6in
+                  - img [ref=e682]
+                  - text: 4" x 6" Shipping
+                  - generic [ref=e684]: Most Popular
+              - listitem [ref=e685]:
+                - link "2\" x 1\" Barcode" [ref=e686] [cursor=pointer]:
+                  - /url: /products/thermal-labels/2x1in
+                  - img [ref=e687]
+                  - text: 2" x 1" Barcode
+              - listitem [ref=e689]:
+                - link "3\" x 2\" Product" [ref=e690] [cursor=pointer]:
+                  - /url: /products/thermal-labels/3x2in
+                  - img [ref=e691]
+                  - text: 3" x 2" Product
+              - listitem [ref=e693]:
+                - link "4\" x 3\" Square" [ref=e694] [cursor=pointer]:
+                  - /url: /products/thermal-labels/4x3in
+                  - img [ref=e695]
+                  - text: 4" x 3" Square
+              - listitem [ref=e697]:
+                - link "2\" x 4\" Address" [ref=e698] [cursor=pointer]:
+                  - /url: /products/thermal-labels/2x4in
+                  - img [ref=e699]
+                  - text: 2" x 4" Address
+        - generic [ref=e701]:
+          - heading "Markets" [level=3] [ref=e702]
+          - list [ref=e703]:
+            - listitem [ref=e704]:
+              - link "Africa Overview" [ref=e705] [cursor=pointer]:
+                - /url: /markets/africa
+            - listitem [ref=e706]:
+              - link "Nigeria" [ref=e707] [cursor=pointer]:
+                - /url: /markets/africa/nigeria
+            - listitem [ref=e708]:
+              - link "Kenya" [ref=e709] [cursor=pointer]:
+                - /url: /markets/africa/kenya
+            - listitem [ref=e710]:
+              - link "South Africa" [ref=e711] [cursor=pointer]:
+                - /url: /markets/africa/south-africa
+            - listitem [ref=e712]:
+              - link "Ghana" [ref=e713] [cursor=pointer]:
+                - /url: /markets/africa/ghana
+            - listitem [ref=e714]:
+              - link "Middle East & Africa" [ref=e715] [cursor=pointer]:
+                - /url: /markets/middle-east-africa
+            - listitem [ref=e716]:
+              - link "Southeast Asia" [ref=e717] [cursor=pointer]:
+                - /url: /markets/southeast-asia
+          - heading "Company" [level=3] [ref=e718]
+          - list [ref=e719]:
+            - listitem [ref=e720]:
+              - link "About Us" [ref=e721] [cursor=pointer]:
+                - /url: /about
+                - img [ref=e722]
+                - text: About Us
+            - listitem [ref=e724]:
+              - link "Manufacturing" [ref=e725] [cursor=pointer]:
+                - /url: /manufacturing
+                - img [ref=e726]
+                - text: Manufacturing
+            - listitem [ref=e728]:
+              - link "Certifications" [ref=e729] [cursor=pointer]:
+                - /url: /manufacturing/certifications
+                - img [ref=e730]
+                - text: Certifications
+            - listitem [ref=e732]:
+              - link "Quality Control" [ref=e733] [cursor=pointer]:
+                - /url: /manufacturing/quality-control
+                - img [ref=e734]
+                - text: Quality Control
+        - generic [ref=e736]:
+          - heading "Support" [level=3] [ref=e737]
+          - list [ref=e738]:
+            - listitem [ref=e739]:
+              - link "Contact Us" [ref=e740] [cursor=pointer]:
+                - /url: /contact
+                - img [ref=e741]
+                - text: Contact Us
+            - listitem [ref=e743]:
+              - link "OEM Partnership" [ref=e744] [cursor=pointer]:
+                - /url: /contact/oem-partnership
+                - img [ref=e745]
+                - text: OEM Partnership
+            - listitem [ref=e747]:
+              - link "FAQ" [ref=e748] [cursor=pointer]:
+                - /url: /faq
+                - img [ref=e749]
+                - text: FAQ
+            - listitem [ref=e751]:
+              - link "OEM Guide" [ref=e752] [cursor=pointer]:
+                - /url: /resources/oem-guide
+                - img [ref=e753]
+                - text: OEM Guide
+            - listitem [ref=e755]:
+              - link "Specifications" [ref=e756] [cursor=pointer]:
+                - /url: /specifications
+                - img [ref=e757]
+                - text: Specifications
+            - listitem [ref=e759]:
+              - link "Resource Center" [ref=e760] [cursor=pointer]:
+                - /url: /resources
+                - img [ref=e761]
+                - text: Resource Center
+          - generic [ref=e763]:
+            - generic [ref=e764]:
+              - img [ref=e765]
+              - generic [ref=e768]: Business Hours
+            - generic [ref=e769]:
+              - generic [ref=e770]: Mon-Fri 9:00-18:00 (GMT+8)
+              - generic [ref=e773]: "WhatsApp: 7 days/week"
+      - generic [ref=e775]:
+        - generic [ref=e776]:
+          - img "Zhi Xin Paper" [ref=e777]
+          - paragraph [ref=e778]: © 2026 ZhixinPaper. All rights reserved. | Factory in Xi'an, Shaanxi, China
+        - generic [ref=e779]:
+          - link "Sitemap" [ref=e780] [cursor=pointer]:
+            - /url: /sitemap.xml
+          - link "FAQ" [ref=e781] [cursor=pointer]:
+            - /url: /faq
+          - link "Contact" [ref=e782] [cursor=pointer]:
+            - /url: /contact
+    - button "Chat on WhatsApp" [ref=e784] [cursor=pointer]:
+      - img [ref=e785]
+  - alert [ref=e787]

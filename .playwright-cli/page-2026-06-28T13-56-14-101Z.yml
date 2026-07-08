@@ -1,0 +1,1318 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - link "Skip to main content" [ref=e3] [cursor=pointer]:
+      - /url: "#main-content"
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - link "+86 158 9176 6700" [ref=e8] [cursor=pointer]:
+            - /url: tel:+8615891766700
+            - img [ref=e9]
+            - text: +86 158 9176 6700
+          - link "Sales@zxpapers.com" [ref=e11] [cursor=pointer]:
+            - /url: mailto:Sales@zxpapers.com
+            - img [ref=e12]
+            - text: Sales@zxpapers.com
+        - generic [ref=e15]:
+          - generic [ref=e16]: ISO 9001 Certified
+          - generic [ref=e17]: "|"
+          - generic [ref=e18]: Global Shipping
+          - generic [ref=e19]: "|"
+          - generic [ref=e20]: MOQ 1 Pallet
+      - navigation [ref=e21]:
+        - generic [ref=e22]:
+          - link "Zhi Xin Paper - Home" [ref=e23] [cursor=pointer]:
+            - /url: /
+            - img "Zhi Xin Paper" [ref=e24]
+            - generic [ref=e25]:
+              - generic [ref=e26]: ZhixinPaper
+              - generic [ref=e27]: Thermal Solutions Since 2009
+          - generic [ref=e28]:
+            - link "Home" [ref=e29] [cursor=pointer]:
+              - /url: /
+            - button "Products" [ref=e31] [cursor=pointer]:
+              - text: Products
+              - img [ref=e32]
+            - button "OEM & Custom" [ref=e35] [cursor=pointer]:
+              - text: OEM & Custom
+              - img [ref=e36]
+            - button "Manufacturing" [ref=e39] [cursor=pointer]:
+              - text: Manufacturing
+              - img [ref=e40]
+            - button "Resources" [ref=e43] [cursor=pointer]:
+              - text: Resources
+              - img [ref=e44]
+            - button "Markets" [ref=e47] [cursor=pointer]:
+              - text: Markets
+              - img [ref=e48]
+            - link "About Us" [ref=e50] [cursor=pointer]:
+              - /url: /about
+            - link "Contact" [ref=e51] [cursor=pointer]:
+              - /url: /contact
+          - link "Get a Quote" [ref=e53] [cursor=pointer]:
+            - /url: /contact
+    - main [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e62]:
+          - button "Show hero image 1" [ref=e63] [cursor=pointer]
+          - button "Show hero image 2" [ref=e65] [cursor=pointer]
+          - button "Show hero image 3" [ref=e67] [cursor=pointer]
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - img [ref=e74]
+            - text: Thermal Paper & Custom Printing Factory · Since 2009
+          - generic [ref=e79]: Custom Printing · OEM / Private Label · Jumbo Roll Supply
+          - heading "Thermal Paper, Labels & Carbonless Forms Custom-Printed for Brands Worldwide" [level=1] [ref=e80]:
+            - text: Thermal Paper, Labels & Carbonless Forms
+            - generic [ref=e81]: Custom-Printed for Brands Worldwide
+          - paragraph [ref=e82]: Factory-direct blank stock and custom-printed thermal rolls, thermal labels, can labels, and carbonless NCR forms — plus jumbo-roll supply for converters. Export-ready packing and fast loading from our 50,000 m2 facility in Xi'an, China.
+          - generic [ref=e83]:
+            - generic [ref=e84]: ISO 9001 Certified
+            - generic [ref=e86]: BPA-Free
+            - generic [ref=e88]: OEM / Private Label
+            - generic [ref=e90]: FCL 3-5 Days
+          - generic [ref=e92]:
+            - link "Get a Custom Quote" [ref=e93] [cursor=pointer]:
+              - /url: /contact
+              - img [ref=e94]
+              - text: Get a Custom Quote
+              - img [ref=e96]
+            - link "WhatsApp Us" [ref=e98] [cursor=pointer]:
+              - /url: https://wa.me/8618092117618?text=Hello%2C%20I%20need%20a%20quotation%20for%20thermal%20paper.%20Please%20send%20me%20price%20and%20MOQ.
+              - img [ref=e99]
+              - text: WhatsApp Us
+      - generic [ref=e103]:
+        - generic [ref=e104]:
+          - img [ref=e105]
+          - generic [ref=e107]: 50,000 m2
+          - generic [ref=e108]: Factory
+        - generic [ref=e109]:
+          - img [ref=e110]
+          - generic [ref=e112]: 2M+ Rolls
+          - generic [ref=e113]: Daily
+        - generic [ref=e114]:
+          - img [ref=e115]
+          - generic [ref=e118]: 80+
+          - generic [ref=e119]: Countries
+        - generic [ref=e120]:
+          - img [ref=e121]
+          - generic [ref=e126]: 2,000+
+          - generic [ref=e127]: OEM Clients
+        - generic [ref=e128]:
+          - img [ref=e129]
+          - generic [ref=e132]: ISO 9001 · FSC · BPA-Free · CE
+      - region "Thermal Rolls, Labels, Carbonless Forms & Jumbo Supply" [ref=e133]:
+        - generic [ref=e134]:
+          - generic [ref=e135]:
+            - paragraph [ref=e136]: Product Categories
+            - heading "Thermal Rolls, Labels, Carbonless Forms & Jumbo Supply" [level=2] [ref=e137]
+            - paragraph [ref=e138]: Blank stock ready to ship, custom-printed profit lines, and jumbo-roll supply. Pick your product and send an inquiry — we reply within 24 hours.
+          - generic [ref=e139]:
+            - article [ref=e140]:
+              - link "View Blank Thermal Paper Rolls" [ref=e141] [cursor=pointer]:
+                - /url: /products/thermal-paper-rolls/blank
+                - img "Blank Thermal Paper Rolls from ZhixinPaper factory" [ref=e142]
+                - generic [ref=e143]: In Stock
+              - generic [ref=e144]:
+                - heading "Blank Thermal Paper Rolls" [level=3] [ref=e145]:
+                  - link "Blank Thermal Paper Rolls" [ref=e146] [cursor=pointer]:
+                    - /url: /products/thermal-paper-rolls/blank
+                - paragraph [ref=e147]: 80×80 / 57×50 / 57×40 / 79×80 mm POS receipt rolls
+                - link "Inquiry Now" [ref=e148] [cursor=pointer]:
+                  - /url: /contact?product=Blank%20Thermal%20Paper%20Rolls
+                  - img [ref=e149]
+                  - text: Inquiry Now
+            - article [ref=e151]:
+              - link "View Blank Thermal Labels" [ref=e152] [cursor=pointer]:
+                - /url: /products/thermal-labels/blank
+                - img "Blank Thermal Labels from ZhixinPaper factory" [ref=e153]
+                - generic [ref=e154]: In Stock
+              - generic [ref=e155]:
+                - heading "Blank Thermal Labels" [level=3] [ref=e156]:
+                  - link "Blank Thermal Labels" [ref=e157] [cursor=pointer]:
+                    - /url: /products/thermal-labels/blank
+                - paragraph [ref=e158]: 4×6 / 4×3 / 2×1 in shipping & barcode labels
+                - link "Inquiry Now" [ref=e159] [cursor=pointer]:
+                  - /url: /contact?product=Blank%20Thermal%20Labels
+                  - img [ref=e160]
+                  - text: Inquiry Now
+            - article [ref=e162]:
+              - link "View BPA-Free Thermal Paper" [ref=e163] [cursor=pointer]:
+                - /url: /products/bpa-free-thermal-paper
+                - img "BPA-Free Thermal Paper from ZhixinPaper factory" [ref=e164]
+                - generic [ref=e165]: In Stock
+              - generic [ref=e166]:
+                - heading "BPA-Free Thermal Paper" [level=3] [ref=e167]:
+                  - link "BPA-Free Thermal Paper" [ref=e168] [cursor=pointer]:
+                    - /url: /products/bpa-free-thermal-paper
+                - paragraph [ref=e169]: Phenol-free, food-safe receipt paper rolls
+                - link "Inquiry Now" [ref=e170] [cursor=pointer]:
+                  - /url: /contact?product=BPA-Free%20Thermal%20Paper
+                  - img [ref=e171]
+                  - text: Inquiry Now
+            - article [ref=e173]:
+              - link "View Custom-Printed Rolls & Labels" [ref=e174] [cursor=pointer]:
+                - /url: /products/thermal-paper-rolls/custom-printed
+                - img "Custom-Printed Rolls & Labels from ZhixinPaper factory" [ref=e175]
+                - generic [ref=e176]: Custom
+              - generic [ref=e177]:
+                - heading "Custom-Printed Rolls & Labels" [level=3] [ref=e178]:
+                  - link "Custom-Printed Rolls & Labels" [ref=e179] [cursor=pointer]:
+                    - /url: /products/thermal-paper-rolls/custom-printed
+                - paragraph [ref=e180]: Logo, Pantone, QR & bilingual branded rolls
+                - link "Inquiry Now" [ref=e181] [cursor=pointer]:
+                  - /url: /contact?product=Custom-Printed%20Rolls%20%26%20Labels
+                  - img [ref=e182]
+                  - text: Inquiry Now
+            - article [ref=e184]:
+              - link "View Custom-Printed Carbonless Forms" [ref=e185] [cursor=pointer]:
+                - /url: /products/ncr-forms
+                - img "Custom-Printed Carbonless Forms from ZhixinPaper factory" [ref=e186]
+                - generic [ref=e187]: Custom
+              - generic [ref=e188]:
+                - heading "Custom-Printed Carbonless Forms" [level=3] [ref=e189]:
+                  - link "Custom-Printed Carbonless Forms" [ref=e190] [cursor=pointer]:
+                    - /url: /products/ncr-forms
+                - paragraph [ref=e191]: 2/3-ply NCR invoices, delivery notes, order books
+                - link "Inquiry Now" [ref=e192] [cursor=pointer]:
+                  - /url: /contact?product=Custom-Printed%20Carbonless%20Forms
+                  - img [ref=e193]
+                  - text: Inquiry Now
+            - article [ref=e195]:
+              - link "View Custom-Printed Can Labels" [ref=e196] [cursor=pointer]:
+                - /url: /products/can-labels/custom-printed
+                - img "Custom-Printed Can Labels from ZhixinPaper factory" [ref=e197]
+                - generic [ref=e198]: Custom
+              - generic [ref=e199]:
+                - heading "Custom-Printed Can Labels" [level=3] [ref=e200]:
+                  - link "Custom-Printed Can Labels" [ref=e201] [cursor=pointer]:
+                    - /url: /products/can-labels/custom-printed
+                - paragraph [ref=e202]: Food, beverage & aerosol can labels, die-cut
+                - link "Inquiry Now" [ref=e203] [cursor=pointer]:
+                  - /url: /contact?product=Custom-Printed%20Can%20Labels
+                  - img [ref=e204]
+                  - text: Inquiry Now
+            - article [ref=e206]:
+              - link "View Custom-Printed Bottle Labels" [ref=e207] [cursor=pointer]:
+                - /url: /products/detergent-labels/custom-printed
+                - img "Custom-Printed Bottle Labels from ZhixinPaper factory" [ref=e208]
+                - generic [ref=e209]: Custom
+              - generic [ref=e210]:
+                - heading "Custom-Printed Bottle Labels" [level=3] [ref=e211]:
+                  - link "Custom-Printed Bottle Labels" [ref=e212] [cursor=pointer]:
+                    - /url: /products/detergent-labels/custom-printed
+                - paragraph [ref=e213]: Detergent & beverage bottle labels, wrap-around
+                - link "Inquiry Now" [ref=e214] [cursor=pointer]:
+                  - /url: /contact?product=Custom-Printed%20Bottle%20Labels
+                  - img [ref=e215]
+                  - text: Inquiry Now
+            - article [ref=e217]:
+              - link "View Thermal Paper Jumbo Rolls" [ref=e218] [cursor=pointer]:
+                - /url: /contact?product=Jumbo%20Roll%20Supply
+                - img "Thermal Paper Jumbo Rolls from ZhixinPaper factory" [ref=e219]
+                - generic [ref=e220]: Agency
+              - generic [ref=e221]:
+                - heading "Thermal Paper Jumbo Rolls" [level=3] [ref=e222]:
+                  - link "Thermal Paper Jumbo Rolls" [ref=e223] [cursor=pointer]:
+                    - /url: /contact?product=Jumbo%20Roll%20Supply
+                - paragraph [ref=e224]: 405 / 640 / 880 mm thermal & label base rolls
+                - link "Inquiry Now" [ref=e225] [cursor=pointer]:
+                  - /url: /contact?product=Thermal%20Paper%20Jumbo%20Rolls
+                  - img [ref=e226]
+                  - text: Inquiry Now
+      - region "Best-Selling Sizes, Ready for a Quick Quote" [ref=e228]:
+        - generic [ref=e229]:
+          - generic [ref=e230]:
+            - paragraph [ref=e231]: Popular Sizes
+            - heading "Best-Selling Sizes, Ready for a Quick Quote" [level=2] [ref=e232]
+            - paragraph [ref=e233]: Browse our fastest-moving roll and label sizes. Need a size that is not listed? We slit to any custom width.
+          - generic [ref=e234]:
+            - generic [ref=e235]:
+              - button "Scroll to previous sizes" [ref=e236] [cursor=pointer]:
+                - img [ref=e237]
+              - button "Scroll to next sizes" [ref=e239] [cursor=pointer]:
+                - img [ref=e240]
+            - region "Popular thermal paper and label sizes" [ref=e242]:
+              - generic [ref=e243]:
+                - generic [ref=e245]: Best Seller
+                - link "80 × 80 mm" [ref=e246] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/80x80mm
+                - paragraph [ref=e247]: Restaurant & retail POS receipts
+                - link "Inquiry Now" [ref=e248] [cursor=pointer]:
+                  - /url: /contact?product=80%20%C3%97%2080%20mm
+                  - img [ref=e249]
+                  - text: Inquiry Now
+              - generic [ref=e251]:
+                - generic [ref=e253]: High Demand
+                - link "57 × 50 mm" [ref=e254] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/57x50mm
+                - paragraph [ref=e255]: Counter POS & card terminals
+                - link "Inquiry Now" [ref=e256] [cursor=pointer]:
+                  - /url: /contact?product=57%20%C3%97%2050%20mm
+                  - img [ref=e257]
+                  - text: Inquiry Now
+              - generic [ref=e259]:
+                - link "57 × 40 mm" [ref=e261] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/57x40mm
+                - paragraph [ref=e262]: Mobile & handheld POS printers
+                - link "Inquiry Now" [ref=e263] [cursor=pointer]:
+                  - /url: /contact?product=57%20%C3%97%2040%20mm
+                  - img [ref=e264]
+                  - text: Inquiry Now
+              - generic [ref=e266]:
+                - link "57 × 30 mm" [ref=e268] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/57x30mm
+                - paragraph [ref=e269]: Pocket & mini receipt printers
+                - link "Inquiry Now" [ref=e270] [cursor=pointer]:
+                  - /url: /contact?product=57%20%C3%97%2030%20mm
+                  - img [ref=e271]
+                  - text: Inquiry Now
+              - generic [ref=e273]:
+                - generic [ref=e275]: Europe
+                - link "80 × 70 mm" [ref=e276] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/80x70mm
+                - paragraph [ref=e277]: European POS printers
+                - link "Inquiry Now" [ref=e278] [cursor=pointer]:
+                  - /url: /contact?product=80%20%C3%97%2070%20mm
+                  - img [ref=e279]
+                  - text: Inquiry Now
+              - generic [ref=e281]:
+                - link "110 × 80 mm" [ref=e283] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/110x80mm
+                - paragraph [ref=e284]: Kiosk & wide-format printers
+                - link "Inquiry Now" [ref=e285] [cursor=pointer]:
+                  - /url: /contact?product=110%20%C3%97%2080%20mm
+                  - img [ref=e286]
+                  - text: Inquiry Now
+              - generic [ref=e288]:
+                - generic [ref=e290]: Most Popular
+                - link "4 × 6 in" [ref=e291] [cursor=pointer]:
+                  - /url: /products/thermal-labels/4x6in
+                - paragraph [ref=e292]: Shipping & courier labels
+                - link "Inquiry Now" [ref=e293] [cursor=pointer]:
+                  - /url: /contact?product=4%20%C3%97%206%20in
+                  - img [ref=e294]
+                  - text: Inquiry Now
+              - generic [ref=e296]:
+                - link "4 × 3 in" [ref=e298] [cursor=pointer]:
+                  - /url: /products/thermal-labels/4x3in
+                - paragraph [ref=e299]: Warehouse & carton labels
+                - link "Inquiry Now" [ref=e300] [cursor=pointer]:
+                  - /url: /contact?product=4%20%C3%97%203%20in
+                  - img [ref=e301]
+                  - text: Inquiry Now
+              - generic [ref=e303]:
+                - link "2 × 1 in" [ref=e305] [cursor=pointer]:
+                  - /url: /products/thermal-labels/2x1in
+                - paragraph [ref=e306]: Barcode & SKU labels
+                - link "Inquiry Now" [ref=e307] [cursor=pointer]:
+                  - /url: /contact?product=2%20%C3%97%201%20in
+                  - img [ref=e308]
+                  - text: Inquiry Now
+              - generic [ref=e310]:
+                - link "2 × 4 in" [ref=e312] [cursor=pointer]:
+                  - /url: /products/thermal-labels/2x4in
+                - paragraph [ref=e313]: Address & product labels
+                - link "Inquiry Now" [ref=e314] [cursor=pointer]:
+                  - /url: /contact?product=2%20%C3%97%204%20in
+                  - img [ref=e315]
+                  - text: Inquiry Now
+              - generic [ref=e317]:
+                - link "211 × 400" [ref=e319] [cursor=pointer]:
+                  - /url: /products/can-labels/211x400
+                - paragraph [ref=e320]: Standard food & beverage cans
+                - link "Inquiry Now" [ref=e321] [cursor=pointer]:
+                  - /url: /contact?product=211%20%C3%97%20400
+                  - img [ref=e322]
+                  - text: Inquiry Now
+              - generic [ref=e324]:
+                - link "300 × 407" [ref=e326] [cursor=pointer]:
+                  - /url: /products/can-labels/300x407
+                - paragraph [ref=e327]: Wide-body food cans
+                - link "Inquiry Now" [ref=e328] [cursor=pointer]:
+                  - /url: /contact?product=300%20%C3%97%20407
+                  - img [ref=e329]
+                  - text: Inquiry Now
+      - region "Turn Every Receipt, Label & Form Into a Brand Touchpoint" [ref=e331]:
+        - generic [ref=e333]:
+          - generic [ref=e334]:
+            - paragraph [ref=e335]: Printing Capability
+            - heading "Turn Every Receipt, Label & Form Into a Brand Touchpoint" [level=2] [ref=e336]
+            - paragraph [ref=e337]: Full-color flexographic printing with Pantone matching, QR codes, Arabic/English bilingual layouts, and TRA / ZATCA / FIRS compliance printing for Africa, Middle East, and Southeast Asia.
+            - generic [ref=e338]:
+              - generic [ref=e339]:
+                - img [ref=e340]
+                - generic [ref=e343]: Logo & brand colors (Pantone)
+              - generic [ref=e344]:
+                - img [ref=e345]
+                - generic [ref=e348]: QR codes & loyalty barcodes
+              - generic [ref=e349]:
+                - img [ref=e350]
+                - generic [ref=e353]: Arabic + English bilingual
+              - generic [ref=e354]:
+                - img [ref=e355]
+                - generic [ref=e358]: TRA / ZATCA / FIRS compliant
+              - generic [ref=e359]:
+                - img [ref=e360]
+                - generic [ref=e363]: MOQ from 1,000 units
+              - generic [ref=e364]:
+                - img [ref=e365]
+                - generic [ref=e368]: Free design proof in 24h
+            - generic [ref=e369]:
+              - link "OEM Printing Specs & MOQ" [ref=e370] [cursor=pointer]:
+                - /url: /oem/custom-printing
+                - img [ref=e371]
+                - text: OEM Printing Specs & MOQ
+              - link "Request a Design Proof" [ref=e375] [cursor=pointer]:
+                - /url: /contact
+          - generic [ref=e376]:
+            - link "Tanzania Tanzania TRA Compliant" [ref=e377] [cursor=pointer]:
+              - /url: /markets/africa/tanzania
+              - img "Tanzania" [ref=e379]:
+                - img [ref=e380]
+              - generic [ref=e385]: Tanzania
+              - generic [ref=e386]: TRA Compliant
+            - link "Saudi Arabia Saudi Arabia ZATCA Compliant" [ref=e387] [cursor=pointer]:
+              - /url: /markets/middle-east/saudi-arabia
+              - img "Saudi Arabia" [ref=e389]:
+                - img [ref=e390]
+              - generic [ref=e395]: Saudi Arabia
+              - generic [ref=e396]: ZATCA Compliant
+            - link "Nigeria Nigeria FIRS Compliant" [ref=e397] [cursor=pointer]:
+              - /url: /markets/africa/nigeria
+              - img "Nigeria" [ref=e399]:
+                - img [ref=e400]
+              - generic [ref=e404]: Nigeria
+              - generic [ref=e405]: FIRS Compliant
+            - link "UAE UAE VAT Compliant" [ref=e406] [cursor=pointer]:
+              - /url: /markets/middle-east/uae
+              - img "UAE" [ref=e408]:
+                - img [ref=e409]
+              - generic [ref=e414]: UAE
+              - generic [ref=e415]: VAT Compliant
+            - link "Thailand Thailand PromptPay QR" [ref=e416] [cursor=pointer]:
+              - /url: /markets/southeast-asia/thailand
+              - img "Thailand" [ref=e418]:
+                - img [ref=e419]
+              - generic [ref=e424]: Thailand
+              - generic [ref=e425]: PromptPay QR
+            - link "Indonesia Indonesia QRIS Compliant" [ref=e426] [cursor=pointer]:
+              - /url: /markets/southeast-asia/indonesia
+              - img "Indonesia" [ref=e428]:
+                - img [ref=e429]
+              - generic [ref=e432]: Indonesia
+              - generic [ref=e433]: QRIS Compliant
+      - generic [ref=e436]:
+        - generic [ref=e437]:
+          - paragraph [ref=e438]: How Custom Orders Work
+          - heading "From Artwork to Container in Four Controlled Steps" [level=2] [ref=e439]
+          - paragraph [ref=e440]: Every order follows a clear process, with artwork, proof, print registration, size, packing, and pallet plan checked before shipment — so first-time overseas buyers know exactly what to expect.
+          - generic [ref=e441]:
+            - img "Thermal paper printing, slitting, and converting line" [ref=e443]
+            - generic [ref=e444]:
+              - generic [ref=e445]:
+                - generic [ref=e446]: 24h
+                - generic [ref=e447]: Design Proof
+              - generic [ref=e448]:
+                - generic [ref=e449]: 3-5
+                - generic [ref=e450]: FCL Ready
+        - generic [ref=e451]:
+          - generic [ref=e452]:
+            - generic [ref=e453]:
+              - img [ref=e455]
+              - generic [ref=e459]: "01"
+            - heading "Artwork & Spec Confirmation" [level=3] [ref=e460]
+            - paragraph [ref=e461]: Confirm paper grade, GSM, width, core size, print artwork, copies, packing method, and destination requirements before production.
+          - generic [ref=e462]:
+            - generic [ref=e463]:
+              - img [ref=e465]
+              - generic [ref=e469]: "02"
+            - heading "Free Design Proof" [level=3] [ref=e470]
+            - paragraph [ref=e471]: We send a digital proof within 24 hours — logo placement, Pantone colors, QR codes, and bilingual layouts checked before mass print.
+          - generic [ref=e472]:
+            - generic [ref=e473]:
+              - img [ref=e475]
+              - generic [ref=e477]: "03"
+            - heading "Printing & Converting" [level=3] [ref=e478]
+            - paragraph [ref=e479]: Flexographic printing, then slitting and rewinding into finished rolls, labels, and forms with controlled size and tension.
+          - generic [ref=e480]:
+            - generic [ref=e481]:
+              - img [ref=e483]
+              - generic [ref=e487]: "04"
+            - heading "Inspection & Export" [level=3] [ref=e488]
+            - paragraph [ref=e489]: Check print registration, roll size and length, carton labels, and pallet plan, then load with full export documents.
+      - generic [ref=e492]:
+        - generic [ref=e493]:
+          - img [ref=e495]
+          - generic [ref=e497]: 50,000 m2
+          - generic [ref=e498]: Factory Area
+          - generic [ref=e499]: Modern facility in Xi'an
+        - generic [ref=e500]:
+          - img [ref=e502]
+          - generic [ref=e507]: 2,000+
+          - generic [ref=e508]: OEM Clients
+          - generic [ref=e509]: Worldwide distributors
+        - generic [ref=e510]:
+          - img [ref=e512]
+          - generic [ref=e515]: 80++
+          - generic [ref=e516]: Countries Served
+          - generic [ref=e517]: Global export network
+        - generic [ref=e518]:
+          - img [ref=e520]
+          - generic [ref=e523]: ISO 9001
+          - generic [ref=e524]: Certified
+          - generic [ref=e525]: Quality management
+      - generic [ref=e527]:
+        - generic [ref=e528]:
+          - paragraph [ref=e529]: Our Advantages
+          - heading "Why Buyers Choose Us" [level=2] [ref=e530]
+        - generic [ref=e531]:
+          - generic [ref=e532]:
+            - img [ref=e534]
+            - heading "Factory Direct Price" [level=3] [ref=e537]
+            - paragraph [ref=e538]: No middlemen. Buy direct from our factory and save 15-30% vs. trading companies.
+          - generic [ref=e539]:
+            - img [ref=e541]
+            - heading "Daily Production Capacity" [level=3] [ref=e543]
+            - paragraph [ref=e544]: 20+ production lines, 2M+ Rolls daily output. Large orders fulfilled on time.
+          - generic [ref=e545]:
+            - img [ref=e547]
+            - heading "Fast Container Loading" [level=3] [ref=e549]
+            - paragraph [ref=e550]: FCL ready in 3-5 business days. Warehouse stock for most popular sizes.
+          - generic [ref=e551]:
+            - img [ref=e553]
+            - heading "OEM & Private Label" [level=3] [ref=e557]
+            - paragraph [ref=e558]: Custom logo, packaging, and core printing. Build your own brand with our factory.
+      - region "Jumbo Roll Supply & OEM Partnership" [ref=e559]:
+        - generic [ref=e561]:
+          - generic [ref=e562]:
+            - img "Jumbo thermal and label base rolls ready for converting" [ref=e564]
+            - generic [ref=e565]:
+              - generic [ref=e566]: 20+
+              - generic [ref=e567]: Production Lines
+          - generic [ref=e568]:
+            - paragraph [ref=e569]: Factory-to-Factory Supply
+            - heading "Jumbo Roll Supply & OEM Partnership" [level=2] [ref=e570]
+            - paragraph [ref=e571]: We co-purchase jumbo thermal and label base rolls with partner mills to secure better pricing — and we take on finished-goods orders that peer factories can't run in-house. If you are a factory or large converter, let's build a two-way supply relationship.
+            - generic [ref=e572]:
+              - generic [ref=e573]:
+                - img [ref=e575]
+                - generic [ref=e578]: Co-purchasing with partner mills for better base-paper pricing
+              - generic [ref=e579]:
+                - img [ref=e581]
+                - generic [ref=e584]: We take on finished-goods orders peer factories can't run in-house
+              - generic [ref=e585]:
+                - img [ref=e587]
+                - generic [ref=e590]: Thermal & self-adhesive label base rolls, controlled GSM
+              - generic [ref=e591]:
+                - img [ref=e593]
+                - generic [ref=e596]: Flexible MOQ and container planning for factory buyers
+            - generic [ref=e597]:
+              - link "Partner With Us" [ref=e598] [cursor=pointer]:
+                - /url: /contact?product=Jumbo%20Roll%20Supply%20%26%20OEM%20Partnership
+                - img [ref=e599]
+                - text: Partner With Us
+              - link "WhatsApp" [ref=e604] [cursor=pointer]:
+                - /url: https://wa.me/8618092117618?text=Hello%2C%20we%20are%20a%20factory%20interested%20in%20jumbo-roll%20supply%20%2F%20OEM%20partnership.%20Please%20share%20specs%20and%20pricing.
+                - img [ref=e605]
+                - text: WhatsApp
+      - region "Feedback from Thermal Paper Importers, Distributors & Retail Buyers" [ref=e607]:
+        - generic [ref=e608]:
+          - generic [ref=e609]:
+            - paragraph [ref=e610]: Buyer Feedback by Market
+            - heading "Feedback from Thermal Paper Importers, Distributors & Retail Buyers" [level=2] [ref=e611]
+            - paragraph [ref=e612]: Buyers usually care less about generic praise and more about repeat-order consistency, export documents, carton marks, OEM printing, and predictable delivery.
+          - generic [ref=e614]:
+            - article [ref=e615]:
+              - generic [ref=e617]:
+                - generic [ref=e618]:
+                  - generic [ref=e619]: U
+                  - generic [ref=e620]:
+                    - generic [ref=e621]: U.S. POS Distributor
+                    - generic [ref=e622]: 80x80mm Receipt Rolls
+                - generic [ref=e623]: WhatsApp
+              - generic [ref=e624]:
+                - generic [ref=e625]:
+                  - generic [ref=e626]:
+                    - img "United States" [ref=e627]:
+                      - img [ref=e628]
+                    - text: United States
+                  - generic [ref=e635]: 10:24
+                - generic [ref=e636]:
+                  - generic [ref=e637]:
+                    - text: The carton labels, roll length, and paper brightness stayed consistent across repeat shipments. That made our retail POS accounts easier to support.
+                    - generic [ref=e638]: 10:24
+                  - generic [ref=e639]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e640]: Delivered
+            - article [ref=e641]:
+              - generic [ref=e643]:
+                - generic [ref=e644]:
+                  - generic [ref=e645]: C
+                  - generic [ref=e646]:
+                    - generic [ref=e647]: Canada Label Buyer
+                    - generic [ref=e648]: 4x6 Shipping Labels
+                - generic [ref=e649]: WhatsApp
+              - generic [ref=e650]:
+                - generic [ref=e651]:
+                  - generic [ref=e652]:
+                    - img "Canada" [ref=e653]:
+                      - img [ref=e654]
+                    - text: Canada
+                  - generic [ref=e658]: 14:08
+                - generic [ref=e659]:
+                  - generic [ref=e660]:
+                    - text: The 4x6 thermal labels worked well for courier and warehouse printing. Adhesive, roll packing, and barcode print quality were stable.
+                    - generic [ref=e661]: 14:08
+                  - generic [ref=e662]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e663]: Delivered
+            - article [ref=e664]:
+              - generic [ref=e666]:
+                - generic [ref=e667]:
+                  - generic [ref=e668]: U
+                  - generic [ref=e669]:
+                    - generic [ref=e670]: UK Retail Supplier
+                    - generic [ref=e671]: 57x50mm POS Rolls
+                - generic [ref=e672]: WhatsApp
+              - generic [ref=e673]:
+                - generic [ref=e674]:
+                  - generic [ref=e675]:
+                    - img "United Kingdom" [ref=e676]:
+                      - img [ref=e677]
+                    - text: United Kingdom
+                  - generic [ref=e686]: 09:42
+                - generic [ref=e687]:
+                  - generic [ref=e688]:
+                    - text: The roll diameter and core size matched our POS printer requirements. Documentation and carton marks were clear for repeat imports.
+                    - generic [ref=e689]: 09:42
+                  - generic [ref=e690]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e691]: Delivered
+            - article [ref=e692]:
+              - generic [ref=e694]:
+                - generic [ref=e695]:
+                  - generic [ref=e696]: G
+                  - generic [ref=e697]:
+                    - generic [ref=e698]: Germany Office Supplier
+                    - generic [ref=e699]: Phenol-Free Thermal Paper
+                - generic [ref=e700]: WhatsApp
+              - generic [ref=e701]:
+                - generic [ref=e702]:
+                  - generic [ref=e703]:
+                    - img "Germany" [ref=e704]:
+                      - img [ref=e705]
+                    - text: Germany
+                  - generic [ref=e709]: 11:16
+                - generic [ref=e710]:
+                  - generic [ref=e711]:
+                    - text: The phenol-free paper option helped us meet customer requirements. Sample confirmation before bulk order reduced quality risk.
+                    - generic [ref=e712]: 11:16
+                  - generic [ref=e713]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e714]: Delivered
+            - article [ref=e715]:
+              - generic [ref=e717]:
+                - generic [ref=e718]:
+                  - generic [ref=e719]: F
+                  - generic [ref=e720]:
+                    - generic [ref=e721]: France Packaging Buyer
+                    - generic [ref=e722]: Custom Thermal Labels
+                - generic [ref=e723]: WhatsApp
+              - generic [ref=e724]:
+                - generic [ref=e725]:
+                  - generic [ref=e726]:
+                    - img "France" [ref=e727]:
+                      - img [ref=e728]
+                    - text: France
+                  - generic [ref=e732]: 15:27
+                - generic [ref=e733]:
+                  - generic [ref=e734]:
+                    - text: Artwork checking and label specifications were confirmed before production. The finished labels matched our private-label packing plan.
+                    - generic [ref=e735]: 15:27
+                  - generic [ref=e736]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e737]: Delivered
+            - article [ref=e738]:
+              - generic [ref=e740]:
+                - generic [ref=e741]:
+                  - generic [ref=e742]: A
+                  - generic [ref=e743]:
+                    - generic [ref=e744]: Australia POS Wholesaler
+                    - generic [ref=e745]: Mixed POS Roll Pallets
+                - generic [ref=e746]: WhatsApp
+              - generic [ref=e747]:
+                - generic [ref=e748]:
+                  - generic [ref=e749]:
+                    - img "Australia" [ref=e750]:
+                      - img [ref=e751]
+                    - text: Australia
+                  - generic [ref=e762]: 13:51
+                - generic [ref=e763]:
+                  - generic [ref=e764]:
+                    - text: Mixed sizes were packed clearly by SKU. It helped our warehouse receive and distribute 57mm and 80mm rolls without confusion.
+                    - generic [ref=e765]: 13:51
+                  - generic [ref=e766]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e767]: Delivered
+            - article [ref=e768]:
+              - generic [ref=e770]:
+                - generic [ref=e771]:
+                  - generic [ref=e772]: "N"
+                  - generic [ref=e773]:
+                    - generic [ref=e774]: Netherlands Importer
+                    - generic [ref=e775]: Barcode Thermal Labels
+                - generic [ref=e776]: WhatsApp
+              - generic [ref=e777]:
+                - generic [ref=e778]:
+                  - generic [ref=e779]:
+                    - img "Netherlands" [ref=e780]:
+                      - img [ref=e781]
+                    - text: Netherlands
+                  - generic [ref=e785]: 16:20
+                - generic [ref=e786]:
+                  - generic [ref=e787]:
+                    - text: Barcode print quality stayed sharp, and the label rolls arrived with good edge cutting. The packing list matched our order lines.
+                    - generic [ref=e788]: 16:20
+                  - generic [ref=e789]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e790]: Delivered
+            - article [ref=e791]:
+              - generic [ref=e793]:
+                - generic [ref=e794]:
+                  - generic [ref=e795]: U
+                  - generic [ref=e796]:
+                    - generic [ref=e797]: UAE POS Distributor
+                    - generic [ref=e798]: OEM Printed Receipt Rolls
+                - generic [ref=e799]: WeChat
+              - generic [ref=e800]:
+                - generic [ref=e801]:
+                  - generic [ref=e802]:
+                    - img "UAE" [ref=e803]:
+                      - img [ref=e804]
+                    - text: UAE
+                  - generic [ref=e809]: 16:35
+                - generic [ref=e810]:
+                  - generic [ref=e811]:
+                    - text: Our branded receipt artwork and carton design were checked before mass production. The final rolls matched our store requirements and were easy to distribute.
+                    - generic [ref=e812]: 16:35
+                  - generic [ref=e813]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e814]: Delivered
+            - article [ref=e815]:
+              - generic [ref=e817]:
+                - generic [ref=e818]:
+                  - generic [ref=e819]: U
+                  - generic [ref=e820]:
+                    - generic [ref=e821]: U.S. POS Distributor
+                    - generic [ref=e822]: 80x80mm Receipt Rolls
+                - generic [ref=e823]: WhatsApp
+              - generic [ref=e824]:
+                - generic [ref=e825]:
+                  - generic [ref=e826]:
+                    - img "United States" [ref=e827]:
+                      - img [ref=e828]
+                    - text: United States
+                  - generic [ref=e835]: 10:24
+                - generic [ref=e836]:
+                  - generic [ref=e837]:
+                    - text: The carton labels, roll length, and paper brightness stayed consistent across repeat shipments. That made our retail POS accounts easier to support.
+                    - generic [ref=e838]: 10:24
+                  - generic [ref=e839]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e840]: Delivered
+            - article [ref=e841]:
+              - generic [ref=e843]:
+                - generic [ref=e844]:
+                  - generic [ref=e845]: C
+                  - generic [ref=e846]:
+                    - generic [ref=e847]: Canada Label Buyer
+                    - generic [ref=e848]: 4x6 Shipping Labels
+                - generic [ref=e849]: WhatsApp
+              - generic [ref=e850]:
+                - generic [ref=e851]:
+                  - generic [ref=e852]:
+                    - img "Canada" [ref=e853]:
+                      - img [ref=e854]
+                    - text: Canada
+                  - generic [ref=e858]: 14:08
+                - generic [ref=e859]:
+                  - generic [ref=e860]:
+                    - text: The 4x6 thermal labels worked well for courier and warehouse printing. Adhesive, roll packing, and barcode print quality were stable.
+                    - generic [ref=e861]: 14:08
+                  - generic [ref=e862]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e863]: Delivered
+            - article [ref=e864]:
+              - generic [ref=e866]:
+                - generic [ref=e867]:
+                  - generic [ref=e868]: U
+                  - generic [ref=e869]:
+                    - generic [ref=e870]: UK Retail Supplier
+                    - generic [ref=e871]: 57x50mm POS Rolls
+                - generic [ref=e872]: WhatsApp
+              - generic [ref=e873]:
+                - generic [ref=e874]:
+                  - generic [ref=e875]:
+                    - img "United Kingdom" [ref=e876]:
+                      - img [ref=e877]
+                    - text: United Kingdom
+                  - generic [ref=e886]: 09:42
+                - generic [ref=e887]:
+                  - generic [ref=e888]:
+                    - text: The roll diameter and core size matched our POS printer requirements. Documentation and carton marks were clear for repeat imports.
+                    - generic [ref=e889]: 09:42
+                  - generic [ref=e890]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e891]: Delivered
+            - article [ref=e892]:
+              - generic [ref=e894]:
+                - generic [ref=e895]:
+                  - generic [ref=e896]: G
+                  - generic [ref=e897]:
+                    - generic [ref=e898]: Germany Office Supplier
+                    - generic [ref=e899]: Phenol-Free Thermal Paper
+                - generic [ref=e900]: WhatsApp
+              - generic [ref=e901]:
+                - generic [ref=e902]:
+                  - generic [ref=e903]:
+                    - img "Germany" [ref=e904]:
+                      - img [ref=e905]
+                    - text: Germany
+                  - generic [ref=e909]: 11:16
+                - generic [ref=e910]:
+                  - generic [ref=e911]:
+                    - text: The phenol-free paper option helped us meet customer requirements. Sample confirmation before bulk order reduced quality risk.
+                    - generic [ref=e912]: 11:16
+                  - generic [ref=e913]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e914]: Delivered
+            - article [ref=e915]:
+              - generic [ref=e917]:
+                - generic [ref=e918]:
+                  - generic [ref=e919]: F
+                  - generic [ref=e920]:
+                    - generic [ref=e921]: France Packaging Buyer
+                    - generic [ref=e922]: Custom Thermal Labels
+                - generic [ref=e923]: WhatsApp
+              - generic [ref=e924]:
+                - generic [ref=e925]:
+                  - generic [ref=e926]:
+                    - img "France" [ref=e927]:
+                      - img [ref=e928]
+                    - text: France
+                  - generic [ref=e932]: 15:27
+                - generic [ref=e933]:
+                  - generic [ref=e934]:
+                    - text: Artwork checking and label specifications were confirmed before production. The finished labels matched our private-label packing plan.
+                    - generic [ref=e935]: 15:27
+                  - generic [ref=e936]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e937]: Delivered
+            - article [ref=e938]:
+              - generic [ref=e940]:
+                - generic [ref=e941]:
+                  - generic [ref=e942]: A
+                  - generic [ref=e943]:
+                    - generic [ref=e944]: Australia POS Wholesaler
+                    - generic [ref=e945]: Mixed POS Roll Pallets
+                - generic [ref=e946]: WhatsApp
+              - generic [ref=e947]:
+                - generic [ref=e948]:
+                  - generic [ref=e949]:
+                    - img "Australia" [ref=e950]:
+                      - img [ref=e951]
+                    - text: Australia
+                  - generic [ref=e962]: 13:51
+                - generic [ref=e963]:
+                  - generic [ref=e964]:
+                    - text: Mixed sizes were packed clearly by SKU. It helped our warehouse receive and distribute 57mm and 80mm rolls without confusion.
+                    - generic [ref=e965]: 13:51
+                  - generic [ref=e966]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e967]: Delivered
+            - article [ref=e968]:
+              - generic [ref=e970]:
+                - generic [ref=e971]:
+                  - generic [ref=e972]: "N"
+                  - generic [ref=e973]:
+                    - generic [ref=e974]: Netherlands Importer
+                    - generic [ref=e975]: Barcode Thermal Labels
+                - generic [ref=e976]: WhatsApp
+              - generic [ref=e977]:
+                - generic [ref=e978]:
+                  - generic [ref=e979]:
+                    - img "Netherlands" [ref=e980]:
+                      - img [ref=e981]
+                    - text: Netherlands
+                  - generic [ref=e985]: 16:20
+                - generic [ref=e986]:
+                  - generic [ref=e987]:
+                    - text: Barcode print quality stayed sharp, and the label rolls arrived with good edge cutting. The packing list matched our order lines.
+                    - generic [ref=e988]: 16:20
+                  - generic [ref=e989]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e990]: Delivered
+            - article [ref=e991]:
+              - generic [ref=e993]:
+                - generic [ref=e994]:
+                  - generic [ref=e995]: U
+                  - generic [ref=e996]:
+                    - generic [ref=e997]: UAE POS Distributor
+                    - generic [ref=e998]: OEM Printed Receipt Rolls
+                - generic [ref=e999]: WeChat
+              - generic [ref=e1000]:
+                - generic [ref=e1001]:
+                  - generic [ref=e1002]:
+                    - img "UAE" [ref=e1003]:
+                      - img [ref=e1004]
+                    - text: UAE
+                  - generic [ref=e1009]: 16:35
+                - generic [ref=e1010]:
+                  - generic [ref=e1011]:
+                    - text: Our branded receipt artwork and carton design were checked before mass production. The final rolls matched our store requirements and were easy to distribute.
+                    - generic [ref=e1012]: 16:35
+                  - generic [ref=e1013]:
+                    - text: Thanks. We will keep the same specs and packing plan for your repeat order.
+                    - generic [ref=e1014]: Delivered
+      - generic [ref=e1017]:
+        - generic [ref=e1018]:
+          - paragraph [ref=e1019]: Logistics
+          - heading "Container Loading Available" [level=2] [ref=e1020]:
+            - text: Container Loading
+            - text: Available
+          - generic [ref=e1021]:
+            - generic [ref=e1022]:
+              - img [ref=e1024]
+              - generic [ref=e1028]: 20ft & 40ft container loading
+            - generic [ref=e1029]:
+              - img [ref=e1031]
+              - generic [ref=e1033]: Fast delivery within 15-25 days
+            - generic [ref=e1034]:
+              - img [ref=e1036]
+              - generic [ref=e1040]: FCL ready in 3-5 business days
+            - generic [ref=e1041]:
+              - img [ref=e1043]
+              - generic [ref=e1046]: Export experience to 80+ countries worldwide
+            - generic [ref=e1047]:
+              - img [ref=e1049]
+              - generic [ref=e1052]: "Full export docs: CO, B/L, invoice, packing list"
+            - generic [ref=e1053]:
+              - img [ref=e1055]
+              - generic [ref=e1058]: FOB Shenzhen / CIF destination port pricing
+          - generic [ref=e1059]:
+            - link "Get Container Quote" [ref=e1060] [cursor=pointer]:
+              - /url: /contact
+              - img [ref=e1061]
+              - text: Get Container Quote
+            - link "WhatsApp" [ref=e1063] [cursor=pointer]:
+              - /url: https://wa.me/8618092117618?text=Hello%2C%20I%20need%20a%20quotation.%0AProduct%3A%20__%0AQuantity%3A%20__%20container%0ADestination%3A%20__
+              - img [ref=e1064]
+              - text: WhatsApp
+        - generic [ref=e1066]:
+          - img "Thermal paper factory loading area" [ref=e1068]
+          - generic [ref=e1069]:
+            - generic [ref=e1070]: 20+
+            - generic [ref=e1071]: Production Lines
+      - region "Browse Every Size & Product" [ref=e1072]:
+        - generic [ref=e1073]:
+          - generic [ref=e1074]:
+            - paragraph [ref=e1075]: Full Catalog
+            - heading "Browse Every Size & Product" [level=2] [ref=e1076]
+          - generic [ref=e1077]:
+            - link "Receipt Paper Rolls POS, cash register & mobile printer rolls" [ref=e1078] [cursor=pointer]:
+              - /url: /products/receipt-paper-rolls
+              - generic [ref=e1079]:
+                - generic [ref=e1080]: Receipt Paper Rolls
+                - generic [ref=e1081]: POS, cash register & mobile printer rolls
+              - img [ref=e1082]
+            - link "Thermal Labels Shipping, barcode & product labels" [ref=e1084] [cursor=pointer]:
+              - /url: /products/thermal-labels/custom-printed
+              - generic [ref=e1085]:
+                - generic [ref=e1086]: Thermal Labels
+                - generic [ref=e1087]: Shipping, barcode & product labels
+              - img [ref=e1088]
+            - link "Can Labels Food, beverage & aerosol can labels" [ref=e1090] [cursor=pointer]:
+              - /url: /products/can-labels
+              - generic [ref=e1091]:
+                - generic [ref=e1092]: Can Labels
+                - generic [ref=e1093]: Food, beverage & aerosol can labels
+              - img [ref=e1094]
+            - link "Bottle Labels Detergent, beverage & household bottles" [ref=e1096] [cursor=pointer]:
+              - /url: /products/detergent-labels
+              - generic [ref=e1097]:
+                - generic [ref=e1098]: Bottle Labels
+                - generic [ref=e1099]: Detergent, beverage & household bottles
+              - img [ref=e1100]
+            - link "NCR Forms & Carbonless Invoices, receipts, delivery notes & order books" [ref=e1102] [cursor=pointer]:
+              - /url: /products/ncr-forms
+              - generic [ref=e1103]:
+                - generic [ref=e1104]: NCR Forms & Carbonless
+                - generic [ref=e1105]: Invoices, receipts, delivery notes & order books
+              - img [ref=e1106]
+            - link "BPA-Free Thermal Paper Phenol-free, food-safe receipt paper" [ref=e1108] [cursor=pointer]:
+              - /url: /products/bpa-free-thermal-paper
+              - generic [ref=e1109]:
+                - generic [ref=e1110]: BPA-Free Thermal Paper
+                - generic [ref=e1111]: Phenol-free, food-safe receipt paper
+              - img [ref=e1112]
+            - link "All Products & Sizes Full size reference & specifications" [ref=e1114] [cursor=pointer]:
+              - /url: /products
+              - generic [ref=e1115]:
+                - generic [ref=e1116]: All Products & Sizes
+                - generic [ref=e1117]: Full size reference & specifications
+              - img [ref=e1118]
+      - region "Key Facts About ZhixinPaper" [ref=e1120]:
+        - generic [ref=e1121]:
+          - heading "Key Facts About ZhixinPaper" [level=2] [ref=e1122]
+          - paragraph [ref=e1123]: ZhixinPaper (legal name Xi'an Zhi Xin Paper Co., Ltd.) is a factory-direct manufacturer of thermal paper rolls, direct thermal & shipping labels, can labels, and detergent labels, founded in 2009 in Xi'an, Shaanxi, China. It supplies wholesale and OEM/private-label buyers in 80+ countries with ISO 9001:2015, FSC, and BPA-free certified products at factory pricing.
+          - generic [ref=e1124]:
+            - generic [ref=e1125]:
+              - term [ref=e1126]: Founded
+              - definition [ref=e1127]: "2009"
+            - generic [ref=e1128]:
+              - term [ref=e1129]: Factory size
+              - definition [ref=e1130]: 50,000 m2
+            - generic [ref=e1131]:
+              - term [ref=e1132]: Annual output
+              - definition [ref=e1133]: 500M+ rolls/yr
+            - generic [ref=e1134]:
+              - term [ref=e1135]: Countries served
+              - definition [ref=e1136]: 80+
+            - generic [ref=e1137]:
+              - term [ref=e1138]: OEM clients
+              - definition [ref=e1139]: 2,000+
+            - generic [ref=e1140]:
+              - term [ref=e1141]: FCL lead time
+              - definition [ref=e1142]: 3-5 days
+          - paragraph [ref=e1143]:
+            - text: "Certifications: ISO 9001:2015, FSC, BPA-Free, RoHS, REACH, CE · Export terms: FOB, CIF, DDP ·"
+            - link "More about the factory" [ref=e1144] [cursor=pointer]:
+              - /url: /about
+      - generic [ref=e1147]:
+        - paragraph [ref=e1148]: Next Step
+        - heading "Get Your Quote Within 24 Hours" [level=2] [ref=e1149]
+        - paragraph [ref=e1150]:
+          - text: Tell us your product, required sizes, quantities, and destination port.
+          - text: We'll reply with competitive pricing within 24 hours.
+        - generic [ref=e1151]:
+          - link "Send Inquiry" [ref=e1152] [cursor=pointer]:
+            - /url: /contact
+            - img [ref=e1153]
+            - text: Send Inquiry
+          - link "WhatsApp" [ref=e1155] [cursor=pointer]:
+            - /url: https://wa.me/8618092117618?text=Hello%2C%20I%20need%20a%20quotation.%0AProduct%3A%20__%0AQuantity%3A%20__%20container%0ADestination%3A%20__
+            - img [ref=e1156]
+            - text: WhatsApp
+        - generic [ref=e1158]:
+          - generic [ref=e1159]:
+            - img [ref=e1160]
+            - text: No commitment required
+          - generic [ref=e1163]:
+            - img [ref=e1164]
+            - text: Free samples available
+          - generic [ref=e1167]:
+            - img [ref=e1168]
+            - text: NDA on request
+    - contentinfo [ref=e1171]:
+      - generic [ref=e1174]:
+        - generic [ref=e1175]:
+          - img [ref=e1177]
+          - generic [ref=e1179]:
+            - generic [ref=e1180]: ISO 9001:2015
+            - generic [ref=e1181]: Quality Certified
+        - generic [ref=e1182]:
+          - img [ref=e1184]
+          - generic [ref=e1187]:
+            - generic [ref=e1188]: FSC Certified
+            - generic [ref=e1189]: Sustainable Sourcing
+        - generic [ref=e1190]:
+          - img [ref=e1192]
+          - generic [ref=e1195]:
+            - generic [ref=e1196]: BPA-Free
+            - generic [ref=e1197]: Safe & Eco-Friendly
+        - generic [ref=e1198]:
+          - img [ref=e1200]
+          - generic [ref=e1203]:
+            - generic [ref=e1204]: 15+ Years
+            - generic [ref=e1205]: Manufacturing Experience
+      - generic [ref=e1207]:
+        - generic [ref=e1208]:
+          - link "Zhi Xin Paper - Home" [ref=e1209] [cursor=pointer]:
+            - /url: /
+            - img "Zhi Xin Paper" [ref=e1210]
+            - generic [ref=e1211]:
+              - generic [ref=e1212]: ZhixinPaper
+              - generic [ref=e1213]: Thermal Solutions Since 2009
+          - paragraph [ref=e1214]: Professional manufacturer of thermal paper rolls and thermal labels since 2009. ISO 9001 certified, serving 80++ countries worldwide.
+          - generic [ref=e1215]:
+            - link "+86 158 9176 6700" [ref=e1216] [cursor=pointer]:
+              - /url: tel:+8615891766700
+              - img [ref=e1218]
+              - text: +86 158 9176 6700
+            - 'link "WhatsApp: +86 180 9211 7618" [ref=e1220] [cursor=pointer]':
+              - /url: https://wa.me/8618092117618?text=Hello%2C%20I%20need%20a%20quote%20for%20thermal%20paper%20rolls.
+              - img [ref=e1222]
+              - text: "WhatsApp: +86 180 9211 7618"
+            - generic [ref=e1224]:
+              - img [ref=e1226]
+              - text: "WeChat: +86 158 9176 6700"
+            - link "Sales@zxpapers.com" [ref=e1228] [cursor=pointer]:
+              - /url: mailto:Sales@zxpapers.com
+              - img [ref=e1230]
+              - text: Sales@zxpapers.com
+            - generic [ref=e1233]:
+              - img [ref=e1235]
+              - generic [ref=e1238]: Building 15, Phase 1 Zone 2, Ronghao Industrial Park, Gaoling District, Xi'an, Shaanxi, China
+          - link "WhatsApp for Quick Quote" [ref=e1239] [cursor=pointer]:
+            - /url: https://wa.me/8618092117618?text=Hello%2C%20I%20need%20a%20quote%20for%20thermal%20paper%20rolls.
+            - img [ref=e1240]
+            - text: WhatsApp for Quick Quote
+        - generic [ref=e1242]:
+          - heading "Products" [level=3] [ref=e1243]
+          - list [ref=e1244]:
+            - listitem [ref=e1245]:
+              - link "All Products" [ref=e1246] [cursor=pointer]:
+                - /url: /products
+                - img [ref=e1247]
+                - text: All Products
+            - listitem [ref=e1249]:
+              - link "Blank Thermal Rolls" [ref=e1250] [cursor=pointer]:
+                - /url: /products/thermal-paper-rolls/blank
+                - img [ref=e1251]
+                - text: Blank Thermal Rolls
+            - listitem [ref=e1253]:
+              - link "Custom Printed Rolls" [ref=e1254] [cursor=pointer]:
+                - /url: /products/thermal-paper-rolls/custom-printed
+                - img [ref=e1255]
+                - text: Custom Printed Rolls
+            - listitem [ref=e1257]:
+              - link "Blank Thermal Labels" [ref=e1258] [cursor=pointer]:
+                - /url: /products/thermal-labels/blank
+                - img [ref=e1259]
+                - text: Blank Thermal Labels
+            - listitem [ref=e1261]:
+              - link "Custom Printed Labels" [ref=e1262] [cursor=pointer]:
+                - /url: /products/thermal-labels/custom-printed
+                - img [ref=e1263]
+                - text: Custom Printed Labels
+            - listitem [ref=e1265]:
+              - link "Shipping Labels" [ref=e1266] [cursor=pointer]:
+                - /url: /products/shipping-labels
+                - img [ref=e1267]
+                - text: Shipping Labels
+            - listitem [ref=e1269]:
+              - link "Till Rolls" [ref=e1270] [cursor=pointer]:
+                - /url: /products/till-rolls
+                - img [ref=e1271]
+                - text: Till Rolls
+            - listitem [ref=e1273]:
+              - link "Blank Can Labels" [ref=e1274] [cursor=pointer]:
+                - /url: /products/can-labels/blank
+                - img [ref=e1275]
+                - text: Blank Can Labels
+            - listitem [ref=e1277]:
+              - link "Detergent Labels" [ref=e1278] [cursor=pointer]:
+                - /url: /products/detergent-labels/blank
+                - img [ref=e1279]
+                - text: Detergent Labels
+          - heading "OEM Services" [level=3] [ref=e1281]
+          - list [ref=e1282]:
+            - listitem [ref=e1283]:
+              - link "OEM Overview" [ref=e1284] [cursor=pointer]:
+                - /url: /oem
+                - img [ref=e1285]
+                - text: OEM Overview
+            - listitem [ref=e1287]:
+              - link "Private Label" [ref=e1288] [cursor=pointer]:
+                - /url: /oem/packaging
+                - img [ref=e1289]
+                - text: Private Label
+            - listitem [ref=e1291]:
+              - link "Design Support" [ref=e1292] [cursor=pointer]:
+                - /url: /oem/design-support
+                - img [ref=e1293]
+                - text: Design Support
+            - listitem [ref=e1295]:
+              - link "Quality Assurance" [ref=e1296] [cursor=pointer]:
+                - /url: /oem/quality-assurance
+                - img [ref=e1297]
+                - text: Quality Assurance
+            - listitem [ref=e1299]:
+              - link "IP Protection" [ref=e1300] [cursor=pointer]:
+                - /url: /oem/ip-protection
+                - img [ref=e1301]
+                - text: IP Protection
+            - listitem [ref=e1303]:
+              - link "Case Studies" [ref=e1304] [cursor=pointer]:
+                - /url: /oem/case-studies
+                - img [ref=e1305]
+                - text: Case Studies
+        - generic [ref=e1307]:
+          - heading "Popular Sizes" [level=3] [ref=e1308]
+          - generic [ref=e1309]:
+            - paragraph [ref=e1310]: Thermal Paper Rolls
+            - list [ref=e1311]:
+              - listitem [ref=e1312]:
+                - link "80mm x 80mm Most Popular" [ref=e1313] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/80x80mm
+                  - img [ref=e1314]
+                  - text: 80mm x 80mm
+                  - generic [ref=e1316]: Most Popular
+              - listitem [ref=e1317]:
+                - link "57mm x 50mm" [ref=e1318] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/57x50mm
+                  - img [ref=e1319]
+                  - text: 57mm x 50mm
+              - listitem [ref=e1321]:
+                - link "80mm x 70mm" [ref=e1322] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/80x70mm
+                  - img [ref=e1323]
+                  - text: 80mm x 70mm
+              - listitem [ref=e1325]:
+                - link "110mm x 80mm Wide Format" [ref=e1326] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/110x80mm
+                  - img [ref=e1327]
+                  - text: 110mm x 80mm
+                  - generic [ref=e1329]: Wide Format
+              - listitem [ref=e1330]:
+                - link "57mm x 40mm" [ref=e1331] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/57x40mm
+                  - img [ref=e1332]
+                  - text: 57mm x 40mm
+              - listitem [ref=e1334]:
+                - link "57mm x 30mm" [ref=e1335] [cursor=pointer]:
+                  - /url: /products/thermal-rolls/57x30mm
+                  - img [ref=e1336]
+                  - text: 57mm x 30mm
+          - generic [ref=e1338]:
+            - paragraph [ref=e1339]: Thermal Labels
+            - list [ref=e1340]:
+              - listitem [ref=e1341]:
+                - link "4\" x 6\" Shipping Most Popular" [ref=e1342] [cursor=pointer]:
+                  - /url: /products/thermal-labels/4x6in
+                  - img [ref=e1343]
+                  - text: 4" x 6" Shipping
+                  - generic [ref=e1345]: Most Popular
+              - listitem [ref=e1346]:
+                - link "2\" x 1\" Barcode" [ref=e1347] [cursor=pointer]:
+                  - /url: /products/thermal-labels/2x1in
+                  - img [ref=e1348]
+                  - text: 2" x 1" Barcode
+              - listitem [ref=e1350]:
+                - link "3\" x 2\" Product" [ref=e1351] [cursor=pointer]:
+                  - /url: /products/thermal-labels/3x2in
+                  - img [ref=e1352]
+                  - text: 3" x 2" Product
+              - listitem [ref=e1354]:
+                - link "4\" x 3\" Square" [ref=e1355] [cursor=pointer]:
+                  - /url: /products/thermal-labels/4x3in
+                  - img [ref=e1356]
+                  - text: 4" x 3" Square
+              - listitem [ref=e1358]:
+                - link "2\" x 4\" Address" [ref=e1359] [cursor=pointer]:
+                  - /url: /products/thermal-labels/2x4in
+                  - img [ref=e1360]
+                  - text: 2" x 4" Address
+        - generic [ref=e1362]:
+          - heading "Markets" [level=3] [ref=e1363]
+          - list [ref=e1364]:
+            - listitem [ref=e1365]:
+              - link "Africa Overview" [ref=e1366] [cursor=pointer]:
+                - /url: /markets/africa
+            - listitem [ref=e1367]:
+              - link "Nigeria" [ref=e1368] [cursor=pointer]:
+                - /url: /markets/africa/nigeria
+            - listitem [ref=e1369]:
+              - link "Kenya" [ref=e1370] [cursor=pointer]:
+                - /url: /markets/africa/kenya
+            - listitem [ref=e1371]:
+              - link "South Africa" [ref=e1372] [cursor=pointer]:
+                - /url: /markets/africa/south-africa
+            - listitem [ref=e1373]:
+              - link "Ghana" [ref=e1374] [cursor=pointer]:
+                - /url: /markets/africa/ghana
+            - listitem [ref=e1375]:
+              - link "Middle East & Africa" [ref=e1376] [cursor=pointer]:
+                - /url: /markets/middle-east-africa
+            - listitem [ref=e1377]:
+              - link "Southeast Asia" [ref=e1378] [cursor=pointer]:
+                - /url: /markets/southeast-asia
+          - heading "Company" [level=3] [ref=e1379]
+          - list [ref=e1380]:
+            - listitem [ref=e1381]:
+              - link "About Us" [ref=e1382] [cursor=pointer]:
+                - /url: /about
+                - img [ref=e1383]
+                - text: About Us
+            - listitem [ref=e1385]:
+              - link "Manufacturing" [ref=e1386] [cursor=pointer]:
+                - /url: /manufacturing
+                - img [ref=e1387]
+                - text: Manufacturing
+            - listitem [ref=e1389]:
+              - link "Certifications" [ref=e1390] [cursor=pointer]:
+                - /url: /manufacturing/certifications
+                - img [ref=e1391]
+                - text: Certifications
+            - listitem [ref=e1393]:
+              - link "Quality Control" [ref=e1394] [cursor=pointer]:
+                - /url: /manufacturing/quality-control
+                - img [ref=e1395]
+                - text: Quality Control
+        - generic [ref=e1397]:
+          - heading "Support" [level=3] [ref=e1398]
+          - list [ref=e1399]:
+            - listitem [ref=e1400]:
+              - link "Contact Us" [ref=e1401] [cursor=pointer]:
+                - /url: /contact
+                - img [ref=e1402]
+                - text: Contact Us
+            - listitem [ref=e1404]:
+              - link "OEM Partnership" [ref=e1405] [cursor=pointer]:
+                - /url: /contact/oem-partnership
+                - img [ref=e1406]
+                - text: OEM Partnership
+            - listitem [ref=e1408]:
+              - link "FAQ" [ref=e1409] [cursor=pointer]:
+                - /url: /faq
+                - img [ref=e1410]
+                - text: FAQ
+            - listitem [ref=e1412]:
+              - link "OEM Guide" [ref=e1413] [cursor=pointer]:
+                - /url: /resources/oem-guide
+                - img [ref=e1414]
+                - text: OEM Guide
+            - listitem [ref=e1416]:
+              - link "Specifications" [ref=e1417] [cursor=pointer]:
+                - /url: /specifications
+                - img [ref=e1418]
+                - text: Specifications
+            - listitem [ref=e1420]:
+              - link "Resource Center" [ref=e1421] [cursor=pointer]:
+                - /url: /resources
+                - img [ref=e1422]
+                - text: Resource Center
+          - generic [ref=e1424]:
+            - generic [ref=e1425]:
+              - img [ref=e1426]
+              - generic [ref=e1429]: Business Hours
+            - generic [ref=e1430]:
+              - generic [ref=e1431]: Mon-Fri 9:00-18:00 (GMT+8)
+              - generic [ref=e1434]: "WhatsApp: 7 days/week"
+      - generic [ref=e1436]:
+        - generic [ref=e1437]:
+          - img "Zhi Xin Paper" [ref=e1438]
+          - paragraph [ref=e1439]: © 2026 ZhixinPaper. All rights reserved. | Factory in Xi'an, Shaanxi, China
+        - generic [ref=e1440]:
+          - link "Sitemap" [ref=e1441] [cursor=pointer]:
+            - /url: /sitemap.xml
+          - link "FAQ" [ref=e1442] [cursor=pointer]:
+            - /url: /faq
+          - link "Contact" [ref=e1443] [cursor=pointer]:
+            - /url: /contact
+    - button "Chat on WhatsApp" [ref=e1445] [cursor=pointer]:
+      - img [ref=e1446]
+  - alert [ref=e1448]
+  - button "Open Next.js Dev Tools" [ref=e1454] [cursor=pointer]:
+    - img [ref=e1455]

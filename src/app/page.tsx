@@ -489,20 +489,34 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ② PRODUCT CATEGORIES —— 参考 sailingpaper 的密集类目网格，按询盘漏斗排序 */}
-      <section className="py-20 bg-white border-b border-slate-100" aria-labelledby="product-categories-heading">
+      {/* ② PRODUCT CATEGORIES —— 采购路径入口 */}
+      <section className="py-16 bg-white border-b border-slate-100" aria-labelledby="product-categories-heading">
         <div className="container">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Product Finder</p>
-            <h2 id="product-categories-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 text-balance">
-              Choose the Right Supply Path
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-600 text-pretty">
-              Blank stock ready to ship, custom-printed profit lines, and jumbo-roll supply. Pick your product and send an inquiry — we reply within 24 hours.
-            </p>
+          <div className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_360px] lg:items-end">
+            <div className="max-w-3xl">
+              <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Product Finder</p>
+              <h2 id="product-categories-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 text-balance">
+                Choose the Right Supply Path
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-slate-600 text-pretty">
+                Start with the buying scenario: fast-moving stock, private-label printing, packaging labels, NCR forms, or jumbo-roll cooperation. Each card leads to the right quote path.
+              </p>
+            </div>
+            <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+              <div className="text-sm font-semibold text-slate-900">Not sure what to send?</div>
+              <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                Product type, size, quantity, and destination are enough for a first estimate.
+              </p>
+              <Link
+                href="/contact"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:underline"
+              >
+                Send a quick RFQ <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {productFinderCards.map(({ title, eyebrow, slot, fallback, tone, spec, summary, href, cta }) => {
               const cardImage = imgs[slot] ?? fallback;
               return (
@@ -546,10 +560,11 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ②b POPULAR SIZES CAROUSEL —— 细分 SKU 横向轮播（带左右箭头） */}
-      <section className="py-16 bg-slate-50 border-b border-slate-200" aria-labelledby="popular-sizes-heading">
+      {/* ②b POPULAR SIZES CAROUSEL —— 常用规格快速入口 */}
+      <section className="py-14 bg-slate-50 border-b border-slate-200" aria-labelledby="popular-sizes-heading">
         <div className="container">
-          <div className="mb-2 max-w-2xl">
+          <div className="mb-2 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
             <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Popular Sizes</p>
             <h2 id="popular-sizes-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 text-balance">
               Best-Selling Sizes, Ready for a Quick Quote
@@ -557,16 +572,23 @@ export default async function HomePage() {
             <p className="mt-4 text-base leading-relaxed text-slate-600 text-pretty">
               Browse our fastest-moving roll and label sizes. Need a size that is not listed? We slit to any custom width.
             </p>
+            </div>
+            <Link
+              href="/products"
+              className="inline-flex w-fit items-center gap-2 rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-navy hover:text-brand-navy"
+            >
+              View Full Catalog <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
           <PopularSizesCarousel items={popularSkuItems} />
         </div>
       </section>
 
-      {/* ④ CUSTOM PRINTING CAPABILITY —— 能力差异化带 */}
-      <section className="py-20 bg-white border-b border-slate-100" aria-labelledby="capability-heading">
+      {/* ④ CUSTOM PRINTING + ORDER FLOW —— 定制能力与流程合并 */}
+      <section className="py-16 bg-white border-b border-slate-100" aria-labelledby="capability-heading">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div className="lg:sticky lg:top-24">
               <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Printing Capability</p>
               <h2 id="capability-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 mb-5 leading-tight text-balance">
                 Turn Every Receipt, Label &amp; Form Into a Brand Touchpoint
@@ -574,7 +596,7 @@ export default async function HomePage() {
               <p className="text-slate-600 text-base mb-6 leading-relaxed text-pretty">
                 Full-color flexographic printing with Pantone matching, QR codes, Arabic/English bilingual layouts, and TRA / ZATCA / FIRS compliance printing for Africa, Middle East, and Southeast Asia.
               </p>
-              <div className="grid grid-cols-1 gap-3 mb-8 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-3 mb-7 sm:grid-cols-2">
                 {printingCapabilities.map((item) => (
                   <div key={item} className="flex items-start gap-2 text-sm text-slate-700">
                     <CheckCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
@@ -598,94 +620,66 @@ export default async function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              {complianceMarkets.map(({ code, country, compliance, href }) => (
-                <Link
-                  key={country}
-                  href={href}
-                  className="bg-slate-50 border border-slate-200 hover:border-brand-navy hover:bg-white rounded-lg p-4 transition-colors duration-200 group"
-                >
-                  <div className="mb-2"><CountryFlag code={code} label={country} className="w-8 h-auto" /></div>
-                  <div className="font-semibold text-slate-900 text-sm group-hover:text-brand-navy">{country}</div>
-                  <div className="text-xs text-slate-500 mt-1">{compliance}</div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* ⑤ CUSTOM ORDER PROCESS —— 下单流程 4 步 */}
-      <section className="py-20 bg-slate-50 border-b border-slate-200">
-        <div className="container">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div>
-              <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">How Custom Orders Work</p>
-              <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 leading-tight text-balance">
-                From Artwork to Container in Four Controlled Steps
-              </h2>
-              <p className="mt-4 text-base leading-relaxed text-slate-600 text-pretty">
-                Every order follows a clear process, with artwork, proof, print registration, size, packing, and pallet plan checked before shipment — so first-time overseas buyers know exactly what to expect.
-              </p>
+              <div className="mb-5 rounded-lg border border-slate-200 bg-slate-50 p-5">
+                <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">How Custom Orders Work</p>
+                <h3 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900 text-balance">
+                  From Artwork to Container in Four Controlled Steps
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  Artwork, proof, print registration, size, packing, and pallet plan are checked before shipment, so first-time overseas buyers know what to expect.
+                </p>
+              </div>
 
-              <div className="mt-8 overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
-                <div className="relative aspect-[4/3] w-full bg-slate-100">
-                  <Image
-                    src={HERO_SLIDE_2}
-                    alt="Thermal paper printing, slitting, and converting line"
-                    fill
-                    loading="lazy"
-                    sizes="(max-width: 1024px) 100vw, 45vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-px bg-slate-200">
-                  {[
-                    { label: "Design Proof", value: "24h" },
-                    { label: "FCL Ready", value: FACTORY.fclLoadingDays },
-                  ].map(({ label, value }) => (
-                    <div key={label} className="bg-white px-5 py-4">
-                      <div className="text-lg font-semibold text-slate-900">{value}</div>
-                      <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</div>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {productionProcess.map(({ icon: Icon, step, title, desc }) => (
+                  <div key={title} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                    <div className="mb-4 flex items-center justify-between gap-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-slate-50">
+                        <Icon className="h-5 w-5 text-brand-navy" />
+                      </div>
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700">{step}</span>
                     </div>
-                  ))}
-                </div>
+                    <h3 className="text-base font-semibold tracking-[-0.02em] text-slate-900">{title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {complianceMarkets.map(({ code, country, compliance, href }) => (
+                  <Link
+                    key={country}
+                    href={href}
+                    className="group rounded-lg border border-slate-200 bg-slate-50 p-4 transition-colors duration-200 hover:border-brand-navy hover:bg-white"
+                  >
+                    <div className="mb-2"><CountryFlag code={code} label={country} className="w-8 h-auto" /></div>
+                    <div className="font-semibold text-slate-900 text-sm group-hover:text-brand-navy">{country}</div>
+                    <div className="text-xs text-slate-500 mt-1">{compliance}</div>
+                  </Link>
+                ))}
               </div>
             </div>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {productionProcess.map(({ icon: Icon, step, title, desc }) => (
-                <div key={title} className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-                  <div className="mb-5 flex items-center justify-between gap-4">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-slate-50">
-                      <Icon className="h-5 w-5 text-brand-navy" />
-                    </div>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700">{step}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold tracking-[-0.02em] text-slate-900">{title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{desc}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
 
-      {/* ⑥ FACTORY PROOF + WHY US —— 信任带 */}
-      <section className="py-16 bg-white border-b border-slate-100" aria-labelledby="factory-proof-heading">
+      {/* ⑥ FACTORY PROOF + LOGISTICS —— 工厂与交付证明 */}
+      <section className="py-16 bg-slate-50 border-b border-slate-200" aria-labelledby="factory-proof-heading">
         <div className="container">
           <div className="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
               <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Factory Proof</p>
               <h2 id="factory-proof-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 text-balance">
-                Factory Evidence Buyers Can Use Before Sending an RFQ
+                Factory Evidence &amp; Export Details Buyers Can Verify
               </h2>
             </div>
-            <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+            <div className="rounded-lg border border-slate-200 bg-white p-5">
               <p className="text-sm leading-relaxed text-slate-600">
-                We keep factory facts, certificates, OEM packing, and export documents visible because overseas buyers need proof before sharing specs, artwork, and destination details.
+                Overseas buyers need more than product photos. We make capacity, certificates, packing control, and shipping details visible before you share specs, artwork, and destination information.
               </p>
-              <div className="mt-4 grid gap-2">
+              <div className="mt-4 grid gap-2 sm:grid-cols-3">
                 {factoryProofPoints.map((point) => (
                   <div key={point} className="flex items-start gap-2 text-sm text-slate-700">
                     <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-500" />
@@ -696,7 +690,7 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="mb-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 lg:grid-cols-4">
+          <div className="mb-6 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 lg:grid-cols-4">
             {factoryProofMetrics.map(({ icon: Icon, value, label, sub }) => (
               <div key={label} className="bg-white p-5">
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-slate-50">
@@ -709,16 +703,71 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {whyUs.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="bg-slate-50 rounded-lg p-6 border border-slate-200">
-                <div className="w-12 h-12 bg-white border border-slate-200 rounded-md flex items-center justify-center mb-5">
-                  <Icon className="w-5 h-5 text-brand-navy" />
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {whyUs.map(({ icon: Icon, title, desc }) => (
+                <div key={title} className="rounded-lg border border-slate-200 bg-white p-5">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-slate-50">
+                    <Icon className="w-5 h-5 text-brand-navy" />
+                  </div>
+                  <h3 className="font-semibold tracking-[-0.02em] text-slate-900 text-base mb-2">{title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
                 </div>
-                <h3 className="font-semibold tracking-[-0.02em] text-slate-900 text-lg mb-2">{title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
+              ))}
+            </div>
+
+            <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+              <div className="relative aspect-[16/10] w-full bg-slate-100">
+                <Image
+                  src={FACTORY_IMG_FALLBACK}
+                  alt="Thermal paper factory loading and production area"
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  className="object-cover"
+                />
               </div>
-            ))}
+              <div className="p-5">
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-navy">Export Logistics</p>
+                    <h3 className="mt-1 text-xl font-semibold tracking-[-0.02em] text-slate-900">Container Loading Available</h3>
+                  </div>
+                  <Ship className="h-6 w-6 text-brand-navy" />
+                </div>
+                <div className="grid gap-3">
+                  {[
+                    "20ft & 40ft container loading",
+                    "FCL ready in " + FACTORY.fclLoadingDays + " business days",
+                    "Full export docs: CO, B/L, invoice, packing list",
+                    "FOB Shenzhen / CIF destination port pricing",
+                  ].map((text) => (
+                    <div key={text} className="flex items-start gap-2 text-sm text-slate-700">
+                      <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-500" />
+                      <span>{text}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 rounded-md bg-brand-navy-alt px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover"
+                  >
+                    <MessageSquare className="h-4 w-4" />
+                    Get Container Quote
+                  </Link>
+                  <a
+                    href={waContainer}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-navy hover:text-brand-navy"
+                  >
+                    <Phone className="h-4 w-4" />
+                    WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -844,75 +893,6 @@ export default async function HomePage() {
                 </article>
               );
             })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ⑧b CONTAINER LOADING —— 出口物流 */}
-      <section className="py-16 bg-slate-50 border-y border-slate-200">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-4">Logistics</p>
-              <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] mb-7 leading-tight text-slate-900 text-balance">
-                Container Loading<br />
-                <span className="text-brand-navy">Available</span>
-              </h2>
-
-              <div className="space-y-4 mb-8">
-                {[
-                  { icon: Ship,        text: "20ft & 40ft container loading" },
-                  { icon: Zap,         text: "Fast delivery within 15-25 days" },
-                  { icon: Package,     text: `FCL ready in ${FACTORY.fclLoadingDays} business days` },
-                  { icon: CheckCircle, text: `Export experience to ${FACTORY.countriesServed} countries worldwide` },
-                  { icon: CheckCircle, text: "Full export docs: CO, B/L, invoice, packing list" },
-                  { icon: CheckCircle, text: "FOB Shenzhen / CIF destination port pricing" },
-                ].map(({ icon: Icon, text }) => (
-                  <div key={text} className="flex items-center gap-3">
-                    <div className="w-8 h-8 border border-slate-200 rounded-md flex items-center justify-center flex-shrink-0 bg-white">
-                      <Icon className="w-4 h-4 text-brand-navy" />
-                    </div>
-                    <span className="text-slate-700 text-sm font-medium">{text}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-7 py-3 rounded-md transition-colors duration-200"
-                >
-                  <MessageSquare className="w-5 h-5" />
-                  Get Container Quote
-                </Link>
-                <a
-                  href={waContainer}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border border-slate-300 hover:border-brand-navy text-slate-700 hover:text-brand-navy font-semibold px-7 py-3 rounded-md transition-colors duration-200"
-                >
-                  <Phone className="w-5 h-5" />
-                  WhatsApp
-                </a>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-md border border-slate-200 bg-slate-100">
-                <Image
-                  src={FACTORY_IMG_FALLBACK}
-                  alt="Thermal paper factory loading area"
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-4 -right-4 bg-amber-500 text-slate-950 rounded-md p-4 text-center">
-                <div className="text-2xl font-semibold">{FACTORY.productionLines}</div>
-                <div className="text-xs font-semibold uppercase tracking-[0.14em]">Production Lines</div>
-              </div>
             </div>
           </div>
         </div>

@@ -94,6 +94,12 @@ export const IMAGE_SLOTS = [
   { slot: "can-labels:hero", label: "罐头标签 顶部图", page: "罐头标签", pageUrl: "/products/can-labels", aspect: "16:9" },
   { slot: "detergent-labels:hero", label: "洗涤剂标签 顶部图", page: "洗涤剂标签", pageUrl: "/products/detergent-labels", aspect: "16:9" },
   { slot: "ncr-forms:hero", label: "NCR无碳联单 顶部图", page: "NCR表格", pageUrl: "/products/ncr-forms", aspect: "16:9" },
+  { slot: "ncr-applications:government-ncr-forms:hero", label: "NCR应用页-Government 顶部图", page: "NCR应用页", pageUrl: "/products/government-ncr-forms", aspect: "16:9", description: "Government NCR Forms 应用页 Hero 图" },
+  { slot: "ncr-applications:port-customs-air-cargo-ncr-forms:hero", label: "NCR应用页-港口海关空运 顶部图", page: "NCR应用页", pageUrl: "/products/port-customs-air-cargo-ncr-forms", aspect: "16:9", description: "Port, Customs & Air Cargo NCR Forms 应用页 Hero 图" },
+  { slot: "ncr-applications:field-service-ncr-forms:hero", label: "NCR应用页-现场服务 顶部图", page: "NCR应用页", pageUrl: "/products/field-service-ncr-forms", aspect: "16:9", description: "Field Service NCR Forms 应用页 Hero 图" },
+  { slot: "ncr-applications:auto-repair-ncr-forms:hero", label: "NCR应用页-汽修车检 顶部图", page: "NCR应用页", pageUrl: "/products/auto-repair-ncr-forms", aspect: "16:9", description: "Auto Repair NCR Forms 应用页 Hero 图" },
+  { slot: "ncr-applications:logistics-warehouse-ncr-forms:hero", label: "NCR应用页-物流仓储 顶部图", page: "NCR应用页", pageUrl: "/products/logistics-warehouse-ncr-forms", aspect: "16:9", description: "Logistics & Warehouse NCR Forms 应用页 Hero 图" },
+  { slot: "ncr-applications:medical-pharmacy-ncr-forms:hero", label: "NCR应用页-医疗药房 顶部图", page: "NCR应用页", pageUrl: "/products/medical-pharmacy-ncr-forms", aspect: "16:9", description: "Medical & Pharmacy NCR Forms 应用页 Hero 图" },
 
   // 热敏标签 - 应用场景图（在 label-sizes-data.tsx 中用 slotKey 引用）
   { slot: "thermal-labels:applications:ecommerce", label: "热敏标签-电商物流", page: "热敏标签", pageUrl: "/products/thermal-labels", aspect: "4:3", description: "E-commerce / 4x6 主流电商发货标签场景" },

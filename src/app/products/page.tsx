@@ -8,6 +8,7 @@ import ProductCategoryShowcaseTemplate from "@/components/products/ProductCatego
 import type { ShowcaseBrowseSection } from "@/components/products/ProductCategoryShowcaseTemplate";
 import { CAN_LABELS_IMG } from "./can-labels/can-labels-data";
 import { DETERGENT_LABELS_IMG } from "./detergent-labels/detergent-labels-data";
+import { ncrApplicationPages } from "./ncr-applications-data";
 import { NCR_FORMS_IMG, ncrFormParts, ncrFormTypes } from "./ncr-forms/ncr-forms-data";
 
 export const metadata: Metadata = {
@@ -45,6 +46,7 @@ const catalogEntries: { name: string; path: string }[] = [
   ...detergentLabelSizes.map((s) => ({ name: `${s.label} Detergent Label`, path: `/products/detergent-labels/${s.slug}` })),
   { name: "NCR Forms & Carbonless Paper", path: "/products/ncr-forms" },
   ...ncrFormParts.map((p) => ({ name: `${p.label} NCR Forms`, path: `/products/ncr-forms/${p.slug}` })),
+  ...ncrApplicationPages.map((p) => ({ name: p.name, path: `/products/${p.slug}` })),
 ];
 
 const collectionSchema = {
@@ -156,10 +158,17 @@ export default async function ProductsPage() {
     },
     {
       title: "NCR Forms & Business Forms",
-      description: "Custom printed carbonless forms for invoices, receipts, delivery notes, and orders — 2-part, 3-part, 4-part, or multi-part.",
+      description: "Custom printed carbonless forms for invoices, receipts, delivery notes, orders, and industry-specific records.",
       cards: [
         ...ncrFormParts.map((p) => ({ image: ncrImg, title: p.label, desc: p.desc, href: `/products/ncr-forms/${p.slug}`, badge: p.badge })),
         ...ncrFormTypes.map((t) => ({ image: ncrImg, title: t.label, desc: t.desc, href: "/products/ncr-forms", badge: "Carbonless" })),
+        ...ncrApplicationPages.map((page) => ({
+          image: ncrImg,
+          title: page.name,
+          desc: page.metaDescription,
+          href: `/products/${page.slug}`,
+          badge: "Application",
+        })),
       ],
     },
   ];

@@ -5,6 +5,7 @@ import { getSlotImage } from "@/lib/imageSlotUtils";
 import { r2Image } from "@/lib/r2";
 import ProductCategoryShowcaseTemplate from "@/components/products/ProductCategoryShowcaseTemplate";
 import type { ShowcaseBrowseSection } from "@/components/products/ProductCategoryShowcaseTemplate";
+import { ncrApplicationPages } from "../ncr-applications-data";
 import { NCR_FORMS_IMG, ncrFormParts } from "../ncr-forms/ncr-forms-data";
 
 export const metadata: Metadata = {
@@ -104,14 +105,15 @@ export default async function CustomNcrFormsPage() {
     {
       title: "Industries We Serve",
       description: "Forms tuned to real business actions, not just industry names.",
-      cards: [
-        { image: ncrImg, title: "Wholesale & Distribution", desc: "Invoice and order sets with customer, accounts, and warehouse copies for distribution.", href: "#inquiry", badge: "Distribution" },
-        { image: ncrImg, title: "Logistics & Shipping", desc: "Multi-copy delivery notes and waybills for warehouse dispatch and customer signature.", href: "#inquiry", badge: "Logistics" },
-        { image: ncrImg, title: "Retail Stores", desc: "Carbonless receipt books for retail counters and field sales teams.", href: "#inquiry", badge: "Retail" },
-        { image: ncrImg, title: "Field Service & Repair", desc: "Service and work-order forms with customer signature and office copies.", href: "#inquiry", badge: "Service" },
-        { image: ncrImg, title: "Medical & Admin", desc: "Patient record, claim, and administrative forms routed across departments.", href: "#inquiry", badge: "Healthcare" },
-        { image: ncrImg, title: "Finance & Banking", desc: "Invoices, payment vouchers, and financial forms with clear duplicate records.", href: "#inquiry", badge: "Finance" },
-      ],
+      cards: ncrApplicationPages.map((page) => ({
+        image: ncrImg,
+        title: page.name,
+        desc: page.metaDescription,
+        href: `/products/${page.slug}`,
+        badge: "Application",
+        ctaLabel: "View Application",
+        ctaHref: `/products/${page.slug}`,
+      })),
     },
   ];
 

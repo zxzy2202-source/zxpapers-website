@@ -5,6 +5,7 @@ import { r2Image } from "@/lib/r2";
 import { SITE } from "@/config/siteData";
 import ProductCategoryShowcaseTemplate from "@/components/products/ProductCategoryShowcaseTemplate";
 import type { ShowcaseBrowseSection } from "@/components/products/ProductCategoryShowcaseTemplate";
+import { ncrApplicationPages } from "../ncr-applications-data";
 import { NCR_FORMS_IMG, ncrFormParts, ncrFormTypes } from "./ncr-forms-data";
 
 export const metadata: Metadata = {
@@ -47,6 +48,7 @@ const breadcrumbSchema = {
 const catalogEntries = [
   ...ncrFormParts.map((p) => ({ name: `${p.label} NCR Forms`, path: `/products/ncr-forms/${p.slug}` })),
   ...ncrFormTypes.map((t) => ({ name: t.label, path: `/products/ncr-forms/${formTypeToPart[t.anchor]}` })),
+  ...ncrApplicationPages.map((page) => ({ name: page.name, path: `/products/${page.slug}` })),
 ];
 
 const collectionSchema = {
@@ -117,15 +119,16 @@ export default async function NcrFormsPage() {
     },
     {
       title: "Applications by Industry",
-      description: "Carbonless forms tuned to real business actions — not just industry names.",
-      cards: [
-        { image: ncrImg, title: "Retail & Wholesale", desc: "Carbonless receipt books and order sets for store counters and field sales teams.", href: "/products/custom-ncr-forms", badge: "Retail" },
-        { image: ncrImg, title: "Logistics & Warehousing", desc: "Multi-copy delivery notes and waybills for dispatch, driver, and customer signature.", href: "/products/custom-ncr-forms", badge: "Logistics" },
-        { image: ncrImg, title: "Finance & Accounting", desc: "Invoice and payment-voucher forms with clear duplicate records for filing.", href: "/products/custom-ncr-forms", badge: "Finance" },
-        { image: ncrImg, title: "Medical & Healthcare", desc: "Patient record, claim, and prescription forms routed across departments.", href: "/products/custom-ncr-forms", badge: "Medical" },
-        { image: ncrImg, title: "Repair & Field Service", desc: "Service and work-order forms with on-site customer signature and office copies.", href: "/products/custom-ncr-forms", badge: "Service" },
-        { image: ncrImg, title: "Government & Banking", desc: "Multi-part official, application, and bank forms for approval and audit trails.", href: "/products/custom-ncr-forms", badge: "Institutional" },
-      ],
+      description: "Carbonless forms tuned to real business actions, copy distribution and inquiry intent.",
+      cards: ncrApplicationPages.map((page) => ({
+        image: ncrImg,
+        title: page.name,
+        desc: page.metaDescription,
+        href: `/products/${page.slug}`,
+        badge: "Application",
+        ctaLabel: "View Application",
+        ctaHref: `/products/${page.slug}`,
+      })),
     },
   ];
 

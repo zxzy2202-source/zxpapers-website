@@ -135,6 +135,12 @@ export const mainNav: (NavItem | NavDropdown)[] = [
           { label: "NCR Invoice Books",            href: "/products/ncr-invoice-books" },
           { label: "Delivery Note Forms",          href: "/products/delivery-note-forms" },
           { label: "Continuous Computer Forms",    href: "/products/continuous-computer-forms" },
+          { label: "Government NCR Forms",          href: "/products/government-ncr-forms" },
+          { label: "Port, Customs & Air Cargo NCR Forms", href: "/products/port-customs-air-cargo-ncr-forms" },
+          { label: "Field Service NCR Forms",       href: "/products/field-service-ncr-forms" },
+          { label: "Auto Repair NCR Forms",         href: "/products/auto-repair-ncr-forms" },
+          { label: "Logistics & Warehouse NCR Forms", href: "/products/logistics-warehouse-ncr-forms" },
+          { label: "Medical & Pharmacy NCR Forms",  href: "/products/medical-pharmacy-ncr-forms" },
         ],
       },
     ],
@@ -207,10 +213,9 @@ export const mainNav: (NavItem | NavDropdown)[] = [
   {
     label: "Resources",
     items: [
+      { label: "Blog & Insights",      href: "/blog" },
       { label: "OEM Guide",            href: "/resources/oem-guide" },
-      { label: "Product Knowledge",    href: "/resources/product-knowledge" },
-      { label: "Application Cases",    href: "/resources/application-cases" },
-      { label: "Industry Insights",    href: "/resources/industry-insights" },
+      { label: "FAQ",                  href: "/faq" },
     ],
   },
   {
