@@ -63,11 +63,161 @@ function buildFaqSchema(data: MarketCountryPageData) {
   };
 }
 
+const decisionAccentStyles = {
+  amber: {
+    border: "border-amber-300",
+    label: "bg-amber-50 text-amber-800 border-amber-200",
+    icon: "bg-amber-500 text-slate-950",
+    link: "text-amber-700 hover:text-amber-900",
+  },
+  blue: {
+    border: "border-blue-300",
+    label: "bg-blue-50 text-blue-800 border-blue-200",
+    icon: "bg-blue-600 text-white",
+    link: "text-blue-700 hover:text-blue-900",
+  },
+  green: {
+    border: "border-green-300",
+    label: "bg-green-50 text-green-800 border-green-200",
+    icon: "bg-green-600 text-white",
+    link: "text-green-700 hover:text-green-900",
+  },
+  purple: {
+    border: "border-purple-300",
+    label: "bg-purple-50 text-purple-800 border-purple-200",
+    icon: "bg-purple-600 text-white",
+    link: "text-purple-700 hover:text-purple-900",
+  },
+} as const;
+
+function MarketRfqSlip({ data }: MarketCountryPageTemplateProps) {
+  if (!data.heroSpecRows?.length) return null;
+
+  return (
+    <div className="w-full max-w-md border border-white/20 bg-white text-slate-950 shadow-2xl shadow-slate-950/30">
+      <div className="border-b border-dashed border-slate-300 bg-slate-50 px-5 py-4">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Italy RFQ slip</p>
+            <h2 className="mt-1 text-xl font-semibold tracking-normal text-slate-950">Choose the right quote route</h2>
+          </div>
+          <CountryFlag code={data.countryCode} label={data.countryName} className="w-8" />
+        </div>
+      </div>
+
+      <div className="divide-y divide-dashed divide-slate-200 px-5">
+        {data.heroSpecRows.map((row) => (
+          <div key={row.label} className="grid grid-cols-[8.5rem_1fr] gap-3 py-3 text-sm">
+            <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">{row.label}</div>
+            <div className="font-semibold text-slate-900">{row.value}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="border-t border-dashed border-slate-300 bg-slate-950 px-5 py-4 text-white">
+        <p className="text-xs leading-relaxed text-slate-300">
+          Built from Italy buyer behavior: standard compliant rolls first, custom printing through direct B2B proofing.
+        </p>
+        <Link
+          href={data.primaryCtaHref}
+          className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md bg-amber-500 px-4 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-amber-400"
+        >
+          {data.primaryCtaLabel}
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function MarketDecisionPathways({ data }: MarketCountryPageTemplateProps) {
+  if (!data.decisionPaths?.length && !data.keywordChips?.length && !data.quoteChecklist?.length) return null;
+
+  return (
+    <section className="border-b border-slate-200 bg-slate-950 py-10 text-white" aria-labelledby="market-decision-heading">
+      <div className="container">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">{data.countryName} buying logic</p>
+            <h2 id="market-decision-heading" className="text-3xl font-semibold tracking-normal text-white sm:text-4xl">
+              Route buyers before they browse the catalog.
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-300">
+              Italian buyers arrive with different intent: standard fiscal-roll replenishment, custom receipt marketing, or resale packaging. The page now makes that decision visible immediately.
+            </p>
+          </div>
+
+          {data.keywordChips?.length ? (
+            <div className="flex flex-wrap gap-2 lg:justify-end">
+              {data.keywordChips.map((keyword) => (
+                <span key={keyword} className="rounded-md border border-white/15 bg-white/8 px-3 py-1.5 font-mono text-[11px] font-semibold text-slate-200">
+                  {keyword}
+                </span>
+              ))}
+            </div>
+          ) : null}
+        </div>
+
+        {data.decisionPaths?.length ? (
+          <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
+            {data.decisionPaths.map((path) => {
+              const accent = decisionAccentStyles[path.accent];
+              return (
+                <article key={path.title} className={`border-l-4 ${accent.border} rounded-lg bg-white p-5 text-slate-950 shadow-lg shadow-slate-950/10`}>
+                  <div className="mb-4 flex items-start justify-between gap-3">
+                    <span className={`rounded-md border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] ${accent.label}`}>
+                      {path.label}
+                    </span>
+                    <span className={`flex h-8 w-8 items-center justify-center rounded-md ${accent.icon}`}>
+                      <ArrowRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-semibold leading-snug tracking-normal text-slate-950">{path.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600">{path.desc}</p>
+                  <div className="mt-5 space-y-2">
+                    {path.proofPoints.map((point) => (
+                      <div key={point} className="flex items-start gap-2 text-sm text-slate-700">
+                        <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <Link href={path.href} className={`mt-5 inline-flex items-center gap-2 text-sm font-semibold ${accent.link}`}>
+                    {path.cta}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </article>
+              );
+            })}
+          </div>
+        ) : null}
+
+        {data.quoteChecklist?.length ? (
+          <div className="mt-8 rounded-lg border border-white/12 bg-white/8 p-5">
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <h3 className="text-base font-semibold text-white">Quote-ready details to request</h3>
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-300">Fewer follow-up emails</span>
+            </div>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
+              {data.quoteChecklist.map((item) => (
+                <div key={item} className="rounded-md border border-white/10 bg-slate-900/70 px-3 py-2.5 text-sm text-slate-200">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
 export default async function MarketCountryPageTemplate({ data }: MarketCountryPageTemplateProps) {
   const heroImage = await getSlotImage(data.slot, data.heroFallback);
   const breadcrumbSchema = buildBreadcrumbSchema(data);
   const faqSchema = buildFaqSchema(data);
   const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent(data.whatsappMessage)}`;
+  const heroRfqSlip = data.heroSpecRows?.length ? <MarketRfqSlip data={data} /> : undefined;
 
   return (
     <Layout>
@@ -121,7 +271,11 @@ export default async function MarketCountryPageTemplate({ data }: MarketCountryP
           },
         ]}
         stats={data.stats}
+        rightSlot={heroRfqSlip}
+        mobileRightSlot={heroRfqSlip}
       />
+
+      <MarketDecisionPathways data={data} />
 
       <section className="bg-white py-16">
         <div className="container">

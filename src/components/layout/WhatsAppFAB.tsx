@@ -25,6 +25,7 @@ const QUICK_MESSAGES = [
 
 export default function WhatsAppFAB() {
   const [open, setOpen] = useState(false);
+  const [showMobileFab, setShowMobileFab] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -53,8 +54,28 @@ export default function WhatsAppFAB() {
     firstLink?.focus();
   }, [open]);
 
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 639px)");
+    const updateVisibility = () => {
+      setShowMobileFab(!media.matches || window.scrollY > 680);
+    };
+
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    media.addEventListener("change", updateVisibility);
+
+    return () => {
+      window.removeEventListener("scroll", updateVisibility);
+      media.removeEventListener("change", updateVisibility);
+    };
+  }, []);
+
   return (
-    <div className="fixed bottom-6 right-6 z-50 hidden sm:flex flex-col items-end gap-3">
+    <div
+      className={`fixed bottom-5 right-4 z-50 flex-col items-end gap-3 sm:bottom-6 sm:right-6 ${
+        showMobileFab ? "flex" : "hidden sm:flex"
+      }`}
+    >
       {/* Quick message panel */}
       {open && (
         <div
@@ -129,7 +150,7 @@ export default function WhatsAppFAB() {
         aria-label={open ? "Close WhatsApp chat" : "Chat on WhatsApp"}
         aria-expanded={open}
         aria-controls="whatsapp-panel"
-        className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-colors duration-200 ${
+        className={`w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-colors duration-200 sm:h-14 sm:w-14 ${
           open
             ? "bg-[#15803D] hover:bg-[#166534]"
             : "bg-[#16A34A] hover:bg-[#15803D]"
@@ -147,7 +168,7 @@ export default function WhatsAppFAB() {
 
       {/* Pulse ring when closed */}
       {!open && (
-        <span className="absolute bottom-0 right-0 w-14 h-14 rounded-full bg-[#16A34A] opacity-20 animate-ping pointer-events-none" />
+        <span className="absolute bottom-0 right-0 h-12 w-12 rounded-full bg-[#16A34A] opacity-20 animate-ping pointer-events-none sm:h-14 sm:w-14" />
       )}
     </div>
   );

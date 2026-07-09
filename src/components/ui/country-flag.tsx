@@ -10,6 +10,7 @@ import frFlag from "country-flag-icons/string/3x2/FR";
 import gbFlag from "country-flag-icons/string/3x2/GB";
 import ghFlag from "country-flag-icons/string/3x2/GH";
 import idFlag from "country-flag-icons/string/3x2/ID";
+import itFlag from "country-flag-icons/string/3x2/IT";
 import keFlag from "country-flag-icons/string/3x2/KE";
 import kwFlag from "country-flag-icons/string/3x2/KW";
 import myFlag from "country-flag-icons/string/3x2/MY";
@@ -31,7 +32,7 @@ export type CountryCode =
   | "NG" | "KE" | "ZA" | "GH" | "ET" | "TZ"
   | "AE" | "SA" | "EG" | "TR" | "QA" | "KW"
   | "TH" | "ID" | "VN" | "PH" | "MY" | "SG"
-  | "US" | "CA" | "GB" | "DE" | "FR" | "AU" | "NL";
+  | "US" | "CA" | "GB" | "DE" | "FR" | "AU" | "NL" | "IT";
 
 const flagMarkup: Record<CountryCode, string> = {
   NG: ngFlag,
@@ -48,6 +49,7 @@ const flagMarkup: Record<CountryCode, string> = {
   KW: kwFlag,
   TH: thFlag,
   ID: idFlag,
+  IT: itFlag,
   VN: vnFlag,
   PH: phFlag,
   MY: myFlag,

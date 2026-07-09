@@ -7,8 +7,8 @@ import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
   title: "Global Markets | Thermal Paper Supplier",
-  description: "ZhixinPaper supplies thermal paper rolls to 80+ countries. Dedicated market pages for Africa (Nigeria, Kenya, South Africa, Ghana), Southeast Asia.",
-  keywords: "thermal paper supplier global markets, thermal paper Africa, thermal paper Southeast Asia, thermal paper Middle East, B2B thermal paper export",
+  description: "ZhixinPaper supplies thermal paper rolls to 80+ countries. Dedicated market pages for Africa, Southeast Asia, Middle East, and Europe including Italy.",
+  keywords: "thermal paper supplier global markets, thermal paper Africa, thermal paper Southeast Asia, thermal paper Middle East, thermal paper Italy, B2B thermal paper export",
   openGraph: {
     title: "Global Markets",
     description: "Factory-direct thermal paper supplier for Africa, Southeast Asia, and Middle East markets.",
@@ -93,6 +93,24 @@ const regions = [
     color: "from-purple-500 to-violet-600",
     bgColor: "bg-purple-50",
     borderColor: "border-purple-200",
+  },
+  {
+    name: "Europe",
+    href: "/markets/europe",
+    badge: "Compliance Led",
+    badgeColor: "blue",
+    description: "EU buyers looking for BPA-free, BPS-free, phenol-free, FSC, private-label, and custom printed thermal paper rolls. Italy is the first priority page.",
+    stats: [
+      { label: "Top Size", value: "80x80" },
+      { label: "Focus", value: "BPA/BPS" },
+      { label: "Countries", value: "1+" },
+    ],
+    countries: [
+      { code: "IT" as CountryCode, name: "Italy", href: "/markets/europe/italy", badge: "80x80 + Custom" },
+    ],
+    color: "from-sky-500 to-blue-600",
+    bgColor: "bg-sky-50",
+    borderColor: "border-sky-200",
   },
 ];
 

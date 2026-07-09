@@ -44,6 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/markets/middle-east`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
     { url: `${BASE}/markets/middle-east-africa`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/markets/southeast-asia`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${BASE}/markets/europe`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.8 },
   ];
 
   // Africa Country Pages (priority 0.5; sales/trust pages, near-zero search demand)
@@ -74,6 +75,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: STATIC_LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: 0.5,
+  }));
+
+  const europePages: MetadataRoute.Sitemap = [
+    "italy",
+  ].map((country) => ({
+    url: `${BASE}/markets/europe/${country}`,
+    lastModified: STATIC_LAST_MOD,
+    changeFrequency: "monthly" as const,
+    priority: 0.55,
   }));
 
   // Thermal Rolls Product Pages (priority 0.85)
@@ -220,6 +230,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...africaPages,
     ...middleEastPages,
     ...seaPages,
+    ...europePages,
     ...thermalRollPages,
     ...thermalLabelPages,
     ...detergentLabelPages,
