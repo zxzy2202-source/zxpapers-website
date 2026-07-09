@@ -67,6 +67,7 @@ const orderSteps = [
   { step: "05", title: "QC & Shipment", desc: "Pre-shipment inspection report provided. CIF delivery to major ports available." },
 ];
 const geoApplications = [
+  { title: "Italy / EU", badge: "Italy · EU resellers · receipt marketing", items: ["Rotoli termici personalizzati con logo", "Stampa retro scontrino with coupon or QR code", "BPA-free, BPS-free, FSC and long-life receipt options"] },
   { title: "Africa", badge: "Nigeria · Kenya · Tanzania · Ghana", items: ["TRA-compliant pre-printed tax receipt rolls", "M-Pesa / MTN MoMo payment confirmation receipts", "Fuel station receipt rolls with station logo"] },
   { title: "Middle East", badge: "UAE · Saudi Arabia · Egypt · Turkey", items: ["ZATCA e-invoicing QR code printed rolls", "Arabic + English bilingual receipt printing", "Hotel & hospitality branded receipt rolls"] },
   { title: "Southeast Asia", badge: "Thailand · Indonesia · Vietnam · Philippines", items: ["PromptPay QR code printed rolls", "QRIS payment receipt rolls", "Convenience store chain branded rolls"] },
@@ -78,6 +79,7 @@ const faqs = [
   { q: "Can you match our exact brand colors?", a: "Yes. We offer Pantone, CMYK, and RAL color matching with a tolerance of ±ΔE 2.0." },
   { q: "How long does production take?", a: "Custom printed orders typically take 10–18 business days, including proof approval and production." },
   { q: "Can I order custom packaging as well?", a: "Yes. We offer full OEM/private label service including custom carton printing, polybag printing, and branded core labels." },
+  { q: "Do you support custom printed receipt rolls for Italy?", a: "Yes. We can print logo, reverse-side receipt advertising, coupon, QR code, and Italian-language layouts for rotoli termici personalizzati and stampa retro scontrino projects." },
 ];
 const productSchema = {
   "@context": "https://schema.org",
@@ -110,7 +112,7 @@ export default async function CustomPrintedRollsPage() {
         breadcrumbItems={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Custom Printed Thermal Rolls" }]}
         heroImage={heroImage}
         heroAlt="Custom Printed Thermal Paper Rolls with Logo"
-        heroTags={["Custom Logo", "Pantone Matching", "QR Code", "OEM / Private Label", "Africa & Middle East"]}
+        heroTags={["Custom Logo", "Pantone Matching", "QR Code", "OEM / Private Label", "Italy / EU"]}
         title="Custom Printed Thermal Paper Rolls"
         description="Turn every receipt into a brand touchpoint. We print your logo, colors, promotional messages, or QR codes directly on thermal paper rolls using high-precision flexographic printing. Available in all standard sizes with OEM private label packaging — free design proof included with every order."
         stats={[{ val: "1,000", unit: "Rolls MOQ" }, { val: "10–18", unit: "Day Lead Time" }, { val: "4-Color", unit: "Flexo Print" }]}
@@ -136,6 +138,7 @@ export default async function CustomPrintedRollsPage() {
           { label: "Full OEM Printing Details", href: "/oem/custom-printing" },
           { label: "Blank Thermal Rolls", href: "/products/thermal-paper-rolls/blank" },
           { label: "Custom Printed Labels", href: "/products/thermal-labels/custom-printed" },
+          { label: "Italy Market", href: "/markets/europe/italy" },
           { label: "Africa Market", href: "/markets/africa" },
           { label: "Middle East Market", href: "/markets/middle-east" },
         ]}
@@ -148,7 +151,7 @@ export default async function CustomPrintedRollsPage() {
           { icon: Printer, label: "Print Colors", val: "Up to 4 colors" },
           { icon: ShieldCheck, label: "Payment", val: "T/T · L/C" },
         ]}
-        sidebarListCard={{ title: "Key Advantages", items: ["Brand every customer touchpoint", "Increase repeat business with promotional printing", "Free digital proof + physical sample", "TRA / ZATCA / FIRS compliance printing supported", "Arabic, English, French multilingual layouts"] }}
+        sidebarListCard={{ title: "Key Advantages", items: ["Brand every customer touchpoint", "Increase repeat business with promotional printing", "Free digital proof + physical sample", "QR code and coupon print testing supported", "Italian, Arabic, English, French multilingual layouts"] }}
       />
     </>
   );

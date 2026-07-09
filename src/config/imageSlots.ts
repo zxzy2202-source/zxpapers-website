@@ -164,6 +164,7 @@ export const IMAGE_SLOTS = [
   { slot: "markets:southeast-asia-hero", label: "东南亚市场 顶部图", page: "东南亚市场", pageUrl: "/markets/southeast-asia", aspect: "16:9" },
   { slot: "markets:middle-east-hero", label: "中东市场 顶部图", page: "中东市场", pageUrl: "/markets/middle-east", aspect: "16:9" },
   { slot: "markets:middle-east-africa-hero", label: "中东非洲 顶部图", page: "中东非洲市场", pageUrl: "/markets/middle-east-africa", aspect: "16:9" },
+  { slot: "markets:europe-hero", label: "欧洲市场 顶部图", page: "欧洲市场", pageUrl: "/markets/europe", aspect: "16:9" },
   // 各国子页面 hero
   { slot: "markets:ghana-hero", label: "加纳 顶部图", page: "加纳市场", pageUrl: "/markets/africa/ghana", aspect: "16:9" },
   { slot: "markets:kenya-hero", label: "肯尼亚 顶部图", page: "肯尼亚市场", pageUrl: "/markets/africa/kenya", aspect: "16:9" },
@@ -175,6 +176,7 @@ export const IMAGE_SLOTS = [
   { slot: "markets:saudi-arabia-hero", label: "沙特 顶部图", page: "沙特市场", pageUrl: "/markets/middle-east/saudi-arabia", aspect: "16:9" },
   { slot: "markets:turkey-hero", label: "土耳其 顶部图", page: "土耳其市场", pageUrl: "/markets/middle-east/turkey", aspect: "16:9" },
   { slot: "markets:uae-hero", label: "阿联酋 顶部图", page: "阿联酋市场", pageUrl: "/markets/middle-east/uae", aspect: "16:9" },
+  { slot: "markets:italy-hero", label: "意大利 顶部图", page: "意大利市场", pageUrl: "/markets/europe/italy", aspect: "16:9" },
   { slot: "markets:indonesia-hero", label: "印尼 顶部图", page: "印尼市场", pageUrl: "/markets/southeast-asia/indonesia", aspect: "16:9" },
   { slot: "markets:malaysia-hero", label: "马来西亚 顶部图", page: "马来西亚市场", pageUrl: "/markets/southeast-asia/malaysia", aspect: "16:9" },
   { slot: "markets:philippines-hero", label: "菲律宾 顶部图", page: "菲律宾市场", pageUrl: "/markets/southeast-asia/philippines", aspect: "16:9" },

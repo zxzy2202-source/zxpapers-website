@@ -3,19 +3,7 @@ import "./globals.css";
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 import Script from "next/script";
 import { readSeo, readEffectiveSeo } from "@/lib/seoStore";
-import { Inter, Sora } from "next/font/google";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const sora = Sora({
-  subsets: ["latin"],
-  variable: "--font-sora",
-  display: "swap",
-});
 const DEFAULT_R2_PUBLIC_ORIGIN = "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
 const R2_PUBLIC_ORIGIN = (() => {
   try {
@@ -231,7 +219,7 @@ export default async function RootLayout({
   const gtmId = adminSeo.googleTagManagerId?.trim();
 
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
+    <html lang="en">
       <head>
         <link rel="dns-prefetch" href="https://d2xsxph8kpxj0f.cloudfront.net" />
         <link rel="dns-prefetch" href={R2_PUBLIC_ORIGIN} />

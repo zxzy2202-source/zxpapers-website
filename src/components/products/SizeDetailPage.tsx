@@ -507,6 +507,11 @@ export default async function SizeDetailPage({
                   <Link href="/oem/packaging" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-brand-navy hover:text-brand-navy text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
                     <ArrowRight className="w-4 h-4" />Private Label
                   </Link>
+                  {type === "rolls" ? (
+                    <Link href="/markets/europe/italy" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-brand-navy hover:text-brand-navy text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
+                      <ArrowRight className="w-4 h-4" />Italy 80x80 Market
+                    </Link>
+                  ) : null}
                   <Link href="/manufacturing/certifications" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-brand-navy hover:text-brand-navy text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
                     <Award className="w-4 h-4" />Certifications
                   </Link>

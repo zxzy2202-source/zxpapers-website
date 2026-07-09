@@ -34,6 +34,16 @@ export interface MarketCountryFeature {
   desc: string;
 }
 
+export interface MarketCountryDecisionPath {
+  label: string;
+  title: string;
+  desc: string;
+  proofPoints: string[];
+  href: string;
+  cta: string;
+  accent: "amber" | "blue" | "green" | "purple";
+}
+
 export interface MarketCountryFaq {
   q: string;
   a: string;
@@ -54,8 +64,12 @@ export interface MarketCountryPageData {
   subtitle: string;
   trustBadges: string[];
   stats: MarketCountryStat[];
+  heroSpecRows?: MarketCountryPreference[];
   marketHighlights: MarketCountryStat[];
   marketHighlightsNote: string;
+  decisionPaths?: MarketCountryDecisionPath[];
+  keywordChips?: string[];
+  quoteChecklist?: string[];
   products: MarketCountryProduct[];
   buyingPreferences: MarketCountryPreference[];
   shippingRows: MarketCountryShippingRow[];
@@ -72,6 +86,193 @@ export interface MarketCountryPageData {
 }
 
 const siteUrl = "https://www.zxpapers.com";
+
+export const italyMarketPage: MarketCountryPageData = {
+  slug: "italy",
+  regionSlug: "europe",
+  regionName: "Europe",
+  countryName: "Italy",
+  countryCode: "IT",
+  slot: "markets:italy-hero",
+  heroFallback: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1400&q=80",
+  heroBadge: { text: "Italy Market", color: "blue" },
+  eyebrow: "Thermal Paper Supplier for Italy",
+  title: "Thermal Paper Rolls Supplier for Italy",
+  titleHighlight: "Supplier for Italy",
+  subtitle: "Factory-direct 80x80x12 thermal paper rolls for Italian POS, fiscal receipt, Amazon.it reseller, and custom receipt-printing buyers. Built around BPA-free options, real meterage, clean QR printing, and private-label packaging.",
+  trustBadges: ["80x80x12 mm", "BPA-Free", "BPS-Free Option", "FSC Option", "Custom Back Print", "24h Quote"],
+  stats: [
+    { value: "80x80x12", label: "Top Italy Size" },
+    { value: "55g/60g", label: "Quality Range" },
+    { value: "70m/80m", label: "Real Meterage" },
+    { value: "10 Years", label: "Image-Life Option" },
+  ],
+  heroSpecRows: [
+    { label: "Standard SKU", value: "80x80x12 BPA-free" },
+    { label: "Custom route", value: "Logo, QR, stampa retro" },
+    { label: "Reseller route", value: "Private label cartons" },
+    { label: "Quote inputs", value: "Size, GSM, core, quantity" },
+  ],
+  marketHighlights: [
+    { value: "Amazon.it", label: "Standard SKU Demand" },
+    { value: "B2B", label: "Custom Print Channel" },
+    { value: "BPA/BPS", label: "EU Compliance Focus" },
+  ],
+  marketHighlightsNote: "Italy demand splits into two routes: Amazon.it and local resellers move standard 80x80 fiscal receipt rolls, while custom logo, coupon, QR code, and reverse-side receipt printing usually belongs in direct B2B inquiry flows.",
+  decisionPaths: [
+    {
+      label: "Standard demand",
+      title: "80x80x12 for Amazon.it and POS resellers",
+      desc: "Best for buyers comparing rotoli termici 80x80, carta termica 80x80, BPA-free claims, real meterage, and carton protection.",
+      proofPoints: ["80 mm width, 12 mm core", "55g / 60g, 70m / 80m reali", "BPA-free, BPS-free option"],
+      href: "/products/thermal-rolls/80x80mm",
+      cta: "View 80x80 specs",
+      accent: "amber",
+    },
+    {
+      label: "Custom printing",
+      title: "Logo, QR code and reverse-side receipt ads",
+      desc: "Best for restaurants, cafes, retail brands, beauty salons, and local chains that want receipts to drive reviews, coupons, and repeat visits.",
+      proofPoints: ["Logo and coupon print", "QR scan test before bulk", "Italian-language layout proof"],
+      href: "/products/thermal-paper-rolls/custom-printed",
+      cta: "Plan custom rolls",
+      accent: "purple",
+    },
+    {
+      label: "Private label",
+      title: "Reseller cartons for Italy and EU channels",
+      desc: "Best for office suppliers, POS consumable distributors, and marketplace sellers that need stable specs, clean carton marks, and fewer returns.",
+      proofPoints: ["50 / 100 / 200 roll cartons", "OEM carton and core marks", "Reinforced export packing"],
+      href: "/oem/packaging",
+      cta: "Review OEM packing",
+      accent: "green",
+    },
+  ],
+  keywordChips: [
+    "rotoli termici 80x80",
+    "carta termica 80x80",
+    "rotoli cassa 80x80",
+    "rotoli omologati",
+    "registratore telematico",
+    "scontrini fiscali",
+    "rotoli termici personalizzati",
+    "stampa retro scontrino",
+    "rotoli con logo",
+  ],
+  quoteChecklist: [
+    "Roll size: 80x80x12 or custom",
+    "GSM: 48g, 55g, 60g, or premium",
+    "Length: 70m / 80m real meterage",
+    "Core size and printer model",
+    "Quantity and destination",
+    "Printing: logo, back-side, coupon, QR code",
+    "Compliance: BPA-free, BPS-free, phenol-free, FSC",
+    "Packaging: standard carton or private label",
+  ],
+  products: [
+    {
+      name: "80x80x12 mm Thermal Rolls",
+      badge: "Amazon.it Fit",
+      badgeClassName: "bg-amber-100 text-amber-800",
+      href: "/products/thermal-rolls/80x80mm",
+      desc: "Mainstream format for registratori telematici, cash registers, retail POS, restaurants, bars, tabaccherie, and service counters across Italy.",
+      specs: ["Width: 80 mm", "Core: 12 mm", "Length: 70m / 80m reali", "GSM: 55g / 60g"],
+      useCase: "Scontrini fiscali, retail POS, bar and restaurant receipts",
+      moq: "1 pallet",
+      quoteMessage: "Hello, I need pricing for 80x80x12 thermal paper rolls for Italy. Please quote BPA-free, 55g/60g, real meterage, and CIF Italy options.",
+    },
+    {
+      name: "BPA-Free / BPS-Free Rolls",
+      badge: "EU Buyers",
+      badgeClassName: "bg-blue-100 text-blue-800",
+      href: "/products/bpa-free-thermal-paper",
+      desc: "Receipt paper options for buyers who need clear compliance positioning, safer handling, and stronger trust than low-cost 48g commodity rolls.",
+      specs: ["BPA-free standard", "BPS-free option", "Phenol-free option", "FSC option"],
+      useCase: "EU retail, hospitality, office supply, Amazon resellers",
+      moq: "1 pallet",
+      quoteMessage: "Hello, I need BPA-free or BPS-free thermal paper rolls for Italy. Please send specs, MOQ, and available certificates.",
+    },
+    {
+      name: "Custom Printed Receipt Rolls",
+      badge: "Logo + QR",
+      badgeClassName: "bg-purple-100 text-purple-800",
+      href: "/products/thermal-paper-rolls/custom-printed",
+      desc: "Logo, reverse-side advertising, coupon, QR code, Google Review prompt, return policy, and Italian-language receipt-printing layouts.",
+      specs: ["Logo print", "Stampa retro scontrino", "Coupon / QR code", "Italian layout proof"],
+      useCase: "Restaurants, cafes, retail chains, beauty salons, local brands",
+      moq: "From 1,000 rolls",
+      quoteMessage: "Hello, I need custom printed thermal rolls for Italy with logo / QR code / back-side printing. Please send MOQ, artwork requirements, and sample options.",
+    },
+    {
+      name: "Private Label for Resellers",
+      badge: "Distributor",
+      badgeClassName: "bg-green-100 text-green-800",
+      href: "/oem/packaging",
+      desc: "Private-label cartons, roll labels, core branding, and packaging specs for Amazon.it sellers, office suppliers, and POS consumable distributors.",
+      specs: ["50 / 100 / 200 roll packs", "Italian carton marks", "Reinforced cartons", "OEM brand support"],
+      useCase: "Amazon.it sellers, office suppliers, POS maintenance channels",
+      moq: "OEM MOQ by packaging",
+      quoteMessage: "Hello, I need private-label thermal paper rolls for Italy resale. Please send carton options, MOQ, and price tiers.",
+    },
+  ],
+  buyingPreferences: [
+    { label: "Italian Search Terms", value: "rotoli termici 80x80, carta termica 80x80, rotoli cassa 80x80" },
+    { label: "Compliance Language", value: "BPA Free, senza BPA, BPS-free option, FSC option, scontrini fiscali" },
+    { label: "Key Specs", value: "80x80x12 mm, 55g/60g, 70m/80m reali, clean cut edge, tight winding" },
+    { label: "Buyer Types", value: "Amazon.it resellers, POS consumable distributors, restaurants, tabaccherie, retail chains" },
+    { label: "Custom Demand", value: "rotoli termici personalizzati, stampa retro scontrino, rotoli con logo, QR coupon" },
+    { label: "Main Concerns", value: "wrong core size, short rolls, weak print darkness, QR scan failure, damaged cartons" },
+  ],
+  shippingRows: [
+    { label: "Destination", value: "Italy main ports or EU warehouse delivery by quotation" },
+    { label: "Incoterm", value: "FOB / CIF / DDP options depending on quantity and route" },
+    { label: "Container Options", value: "Pallet trial, LCL, 20ft FCL, 40ft FCL" },
+    { label: "Standard Packs", value: "50 / 100 / 200 rolls per carton by size and buyer channel" },
+    { label: "Documents", value: "Commercial invoice, packing list, B/L, certificate support on request" },
+    { label: "Samples", value: "Standard samples and printed proof samples before bulk custom orders" },
+  ],
+  shippingCards: [
+    { title: "Amazon.it Reseller Route", detail: "Best for standard 80x80x12 BPA-free rolls with clear dimensions, real meterage, stronger carton protection, and private-label packaging." },
+    { title: "Direct B2B Custom Route", detail: "Best for logo, coupon, QR code, and reverse-side receipt printing where buyers need proofing, artwork review, and lower risk before bulk order." },
+    { title: "Quality Upgrade Path", detail: "55g/60g, BPS-free, phenol-free, FSC, and longer image-life options help buyers avoid a pure low-price 48g comparison." },
+    { title: "Quote Qualification", detail: "Ask for roll size, GSM, core, quantity, printer model, destination, and whether the buyer needs logo, back print, QR code, or private label." },
+  ],
+  features: [
+    { title: "Italy-Specific SKU Logic", desc: "The page leads with 80x80x12, real meterage, and registratore telematico use because that is how Italian buyers reduce wrong-spec risk." },
+    { title: "Custom Receipt Printing", desc: "Logo, coupon, QR code, Google Review, and reverse-side receipt advertising are framed as marketing tools, not just printing decoration." },
+    { title: "EU Compliance Options", desc: "BPA-free, BPS-free, phenol-free, FSC, RoHS, and REACH support can be positioned according to the buyer's channel and price level." },
+    { title: "Private-Label Packaging", desc: "Italian resellers can request carton marks, roll labels, and packaging tiers suited to Amazon.it or local wholesale channels." },
+    { title: "Proof Before Production", desc: "Digital proof and printed sample flow reduces risk around color, QR scan quality, and Italian-language layout accuracy." },
+    { title: "Factory-Direct Quotation", desc: "Buyers can compare standard rolls, premium grades, and custom printing in one RFQ instead of contacting separate suppliers." },
+  ],
+  faqs: [
+    { q: "Which thermal paper roll size is most important for Italy?", a: "80x80x12 mm is the core size for many Italian POS and registratore telematico receipt applications. Buyers should confirm width, diameter, core, GSM, length, and printer model before ordering." },
+    { q: "Can you supply rotoli termici personalizzati con logo?", a: "Yes. We support custom printed thermal rolls with logo, reverse-side receipt advertising, QR code, coupon, return policy, and Italian-language layouts." },
+    { q: "Do you offer BPA-free and BPS-free paper for Italy?", a: "BPA-free is available as a standard option, with BPS-free, phenol-free, FSC, and long-life grades available for buyers who need stronger EU compliance positioning." },
+    { q: "Can QR codes print clearly on receipt rolls?", a: "Yes, but artwork size, contrast, paper grade, and print testing matter. For custom receipt rolls we recommend digital proof plus printed sample before bulk production." },
+    { q: "Is Amazon.it a good channel for custom printed rolls?", a: "Amazon.it is stronger for standard 80x80 compliant SKU demand. Logo, back print, QR, and coupon rolls are usually better handled through direct B2B inquiry and proofing." },
+    { q: "What should Italian buyers send for a fast quote?", a: "Send roll size, GSM, core size, length, quantity, destination, printer model, packaging requirement, and whether you need logo, back-side printing, QR code, or private label." },
+  ],
+  ctaTitle: "Get Italy 80x80 and Custom Printed Roll Pricing",
+  ctaDescription: "Send your target size, GSM, quantity, packaging, and printing requirement. We will reply with a standard-roll or custom-printing quotation within 24 hours.",
+  primaryCtaLabel: "Get Italy Price List",
+  primaryCtaHref: "/contact",
+  whatsappMessage: "Hello, I need thermal paper rolls for Italy. Please quote 80x80x12 BPA-free rolls and custom printed receipt roll options.",
+  showInquiryForm: true,
+  metadata: {
+    title: { absolute: "Thermal Paper Rolls Supplier Italy | 80x80x12 & Custom Printed Receipts" },
+    description: "Factory-direct thermal paper rolls for Italy: 80x80x12 BPA-free rolls, real meterage, private label, custom logo and reverse-side receipt printing.",
+    keywords: "rotoli termici 80x80, carta termica 80x80, rotoli cassa 80x80, rotoli omologati, BPA free, registratore telematico, scontrini fiscali, rotoli termici personalizzati, stampa retro scontrino, rotoli con logo, thermal paper rolls Italy",
+    alternates: { canonical: `${siteUrl}/markets/europe/italy` },
+    openGraph: {
+      title: "Thermal Paper Rolls Supplier Italy | ZhixinPaper",
+      description: "80x80x12 BPA-free thermal rolls, private label cartons, and custom printed receipt rolls for Italy buyers.",
+      url: `${siteUrl}/markets/europe/italy`,
+      type: "website",
+      images: [{ url: `${siteUrl}/og-default.png`, width: 1200, height: 630, alt: "ZhixinPaper thermal paper rolls for Italy", type: "image/png" }],
+    },
+  },
+};
 
 export const thailandMarketPage: MarketCountryPageData = {
   slug: "thailand",
@@ -1719,6 +1920,128 @@ export interface MarketRegionPageData {
   showInquiryForm?: boolean;
   metadata: Metadata;
 }
+
+export const europeRegionPage: MarketRegionPageData = {
+  slug: "europe",
+  regionName: "Europe",
+  slot: "markets:europe-hero",
+  heroFallback: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1400&q=80",
+  eyebrow: "Thermal Paper Supplier for Europe",
+  title: "Thermal Paper Rolls Supplier for Europe",
+  titleHighlight: "Supplier for Europe",
+  subtitle: "Factory-direct BPA-free, BPS-free, phenol-free, FSC, and custom printed thermal paper rolls for EU distributors, POS consumable suppliers, resellers, and receipt-marketing buyers.",
+  trustBadges: ["BPA-Free", "BPS-Free Option", "FSC Option", "Private Label", "Custom Printing", "EU Buyer Support"],
+  stats: [
+    { value: "80x80", label: "Top POS Roll" },
+    { value: "BPA/BPS", label: "Compliance Focus" },
+    { value: "OEM", label: "Reseller Ready" },
+    { value: "24h", label: "Quote Response" },
+  ],
+  marketHighlights: [
+    { value: "Compliance", label: "Primary Buyer Filter" },
+    { value: "Private Label", label: "Distributor Opportunity" },
+    { value: "Custom Print", label: "Receipt Marketing" },
+  ],
+  marketHighlightsNote: "European buyers usually compare more than unit price. They look for clear specifications, safer chemistry options, stable print quality, packaging integrity, and supplier documentation that can support resellers or regulated business channels.",
+  countries: [
+    {
+      code: "IT",
+      name: "Italy",
+      href: "/markets/europe/italy",
+      port: "Italy / EU route",
+      transitDays: "By quote",
+      posTerminals: "High POS demand",
+      topSize: "80x80x12",
+      highlight: "Strong standard 80x80 demand plus direct B2B custom receipt-printing opportunity",
+      badge: "80x80 + Custom",
+      badgeClassName: "bg-blue-100 text-blue-800",
+    },
+  ],
+  products: [
+    {
+      name: "80x80 Thermal Rolls",
+      badge: "EU POS",
+      badgeClassName: "bg-amber-100 text-amber-800",
+      href: "/products/thermal-rolls/80x80mm",
+      desc: "Mainstream POS receipt paper for European retail, hospitality, fuel, service, and reseller channels.",
+      specs: ["80mm width", "12mm / 25mm core", "55g / 60g", "BPA-free"],
+      useCase: "Retail POS, cash register, hospitality receipts",
+      moq: "1 pallet",
+      quoteMessage: "Hello, I need 80x80 thermal paper pricing for Europe. Please send BPA-free and BPS-free options.",
+    },
+    {
+      name: "Phenol-Free Thermal Paper",
+      badge: "Premium",
+      badgeClassName: "bg-blue-100 text-blue-800",
+      href: "/products/phenol-free-thermal-paper",
+      desc: "Higher-grade receipt paper option for buyers who want stronger chemical-safety positioning and long-term customer trust.",
+      specs: ["BPS-free", "Phenol-free", "FSC option", "Long-life grade"],
+      useCase: "EU retail, healthcare, hospitality, premium receipt paper",
+      moq: "1 pallet",
+      quoteMessage: "Hello, I need phenol-free thermal paper options for Europe. Please send specs, certificates, MOQ, and price tiers.",
+    },
+    {
+      name: "Custom Printed Rolls",
+      badge: "Receipt Marketing",
+      badgeClassName: "bg-purple-100 text-purple-800",
+      href: "/products/thermal-paper-rolls/custom-printed",
+      desc: "Logo, back-side advertising, coupons, QR codes, return policy, and multilingual printed receipt layouts.",
+      specs: ["Logo", "Back print", "QR code", "Coupon"],
+      useCase: "Retail chains, restaurants, local brands, resellers",
+      moq: "From 1,000 rolls",
+      quoteMessage: "Hello, I need custom printed thermal rolls for Europe. Please send MOQ, artwork requirements, and sample options.",
+    },
+  ],
+  shippingRows: [
+    { label: "Target Countries", value: "Italy first, additional EU pages can be added by demand" },
+    { label: "Incoterm", value: "FOB / CIF / DDP by route and order scale" },
+    { label: "Compliance Options", value: "BPA-free, BPS-free, phenol-free, FSC, RoHS, REACH support" },
+    { label: "Container Options", value: "Pallet trial, LCL, 20ft FCL, 40ft FCL" },
+    { label: "OEM Packaging", value: "Private label cartons, roll labels, core marks, language-specific artwork" },
+    { label: "Samples", value: "Blank samples and printed proof samples before bulk custom production" },
+  ],
+  shippingCards: [
+    { title: "Compliance-Led Selling", detail: "European pages should clearly separate BPA-free, BPS-free, phenol-free, FSC, and long-life options so buyers can match quality level to channel." },
+    { title: "Standard SKU + Custom Split", detail: "Use standard 80x80 pages for replenishment demand and custom printed roll pages for logo, coupon, QR, and reverse-side receipt advertising." },
+    { title: "Reseller Packaging", detail: "Amazon and office-supply resellers need stronger carton protection, visible specs, private label options, and low-return packaging logic." },
+    { title: "Quote-Ready RFQ", detail: "Ask for size, GSM, core, real meterage, quantity, destination, printer model, compliance grade, and custom-printing requirements." },
+  ],
+  features: [
+    { title: "EU-Focused Product Ladder", desc: "Standard BPA-free rolls, BPS-free / phenol-free premium options, FSC, and long-life paper can be positioned as clear tiers." },
+    { title: "Private Label Ready", desc: "Supports distributors and marketplace sellers that need cartons, roll labels, and consistent specifications for resale." },
+    { title: "Custom Printing Support", desc: "Receipt printing is connected to loyalty, review generation, coupon use, and customer retention, not only brand decoration." },
+    { title: "Specification Clarity", desc: "Pages foreground width, diameter, core, GSM, and real meterage to reduce wrong-spec inquiries and buyer hesitation." },
+    { title: "Proof and Sample Flow", desc: "Digital proof and printed sample support reduce QR clarity, color, and layout risks before mass production." },
+    { title: "Factory-Direct Commercials", desc: "Buyers can compare standard stock, premium chemistry, and custom printing without separate supplier conversations." },
+  ],
+  faqs: [
+    { q: "Which thermal paper products fit European buyers best?", a: "80x80 POS rolls, BPA-free standard rolls, BPS-free / phenol-free premium grades, FSC options, and custom printed receipt rolls are the main Europe-facing product groups." },
+    { q: "Do you support EU compliance documentation?", a: "We can support common documentation needs for BPA-free, BPS-free, phenol-free, FSC, RoHS, and REACH-oriented buyer conversations depending on product grade and order." },
+    { q: "Can European resellers order private-label packaging?", a: "Yes. Private-label cartons, roll labels, carton marks, and branded packaging can be quoted based on quantity and artwork." },
+    { q: "Can you print logos and QR codes on receipt rolls?", a: "Yes. We support logo, QR code, coupon, reverse-side printing, and multilingual layouts with proofing before bulk production." },
+    { q: "What should I send for a Europe quote?", a: "Send roll size, GSM, core, length, quantity, destination, compliance target, packaging, and any custom-printing requirement." },
+    { q: "Why is Italy listed first?", a: "The current research points to a strong Italy opportunity around 80x80x12 standard rolls and custom receipt-printing searches, so Italy is the first Europe page to prioritize." },
+  ],
+  ctaTitle: "Get Europe Thermal Paper Pricing",
+  ctaDescription: "Send your country, size mix, compliance target, packaging, and monthly quantity. We will reply with a Europe-ready product and quote plan.",
+  primaryCtaLabel: "Get Europe Quote",
+  primaryCtaHref: "/contact",
+  whatsappMessage: "Hello, I need thermal paper rolls for Europe. Please send BPA-free, BPS-free, private-label, and custom printed roll options.",
+  showInquiryForm: true,
+  metadata: {
+    title: { absolute: "Thermal Paper Rolls Supplier Europe | BPA-Free, BPS-Free & Custom Printed" },
+    description: "Factory-direct thermal paper rolls for Europe: 80x80 POS rolls, BPA-free, BPS-free, phenol-free, FSC, private label, and custom printed receipts.",
+    keywords: "thermal paper rolls Europe, BPA free thermal paper Europe, BPS free thermal paper, phenol free thermal paper, custom printed thermal rolls Europe, receipt paper supplier Europe",
+    alternates: { canonical: `${siteUrl}/markets/europe` },
+    openGraph: {
+      title: "Thermal Paper Rolls Supplier Europe | ZhixinPaper",
+      description: "BPA-free, BPS-free, private label, and custom printed thermal paper rolls for European buyers.",
+      url: `${siteUrl}/markets/europe`,
+      type: "website",
+      images: [{ url: `${siteUrl}/og-default.png`, width: 1200, height: 630, alt: "ZhixinPaper thermal paper rolls supplier for Europe", type: "image/png" }],
+    },
+  },
+};
 
 export const africaRegionPage: MarketRegionPageData = {
   slug: "africa",

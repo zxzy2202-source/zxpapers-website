@@ -9,7 +9,7 @@ import { r2Image } from "@/lib/r2";
 import Layout from "@/components/layout/Layout";
 import { SITE, FACTORY } from "@/config/siteData";
 import { MessageSquare, Phone, Package, CheckCircle, ArrowRight,
-  Ship, Zap, Tag, Globe, Users, Award, Factory as FactoryIcon, Printer, Layers, Scissors, ClipboardCheck, Handshake,
+  Ship, Zap, Tag, Globe, Users, Award, Factory as FactoryIcon, Printer, Layers, ClipboardCheck, Handshake,
 } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import PopularSizesCarousel, { type SkuItem } from "@/components/shared/PopularSizesCarousel";
@@ -225,6 +225,33 @@ const quoteReadinessItems = [
   },
 ];
 
+const buyerRoutes = [
+  {
+    icon: Package,
+    title: "Stock Wholesale",
+    buyer: "POS distributors, office suppliers, courier warehouses",
+    need: "Fast price check for standard rolls and shipping labels.",
+    action: "Start with sizes and quantity",
+    href: "/products/thermal-paper-rolls/blank",
+  },
+  {
+    icon: Printer,
+    title: "Custom Printing",
+    buyer: "Retail chains, brands, packaging buyers, importers",
+    need: "Logo, QR, Pantone, bilingual print, private cartons, or forms.",
+    action: "Prepare artwork and specs",
+    href: "/oem/custom-printing",
+  },
+  {
+    icon: FactoryIcon,
+    title: "Factory Supply",
+    buyer: "Converters, peer factories, bulk purchasing teams",
+    need: "Jumbo rolls, OEM production, or container-level cooperation.",
+    action: "Discuss supply plan",
+    href: `/contact?product=${encodeURIComponent("Jumbo Roll Supply")}`,
+  },
+];
+
 const factoryProofMetrics = [
   { icon: FactoryIcon, value: FACTORY.area, label: "Factory Area", sub: "Modern converting facility in Xi'an" },
   { icon: Zap, value: FACTORY.dailyOutput, label: "Daily Output", sub: "Stable capacity for repeat orders" },
@@ -315,6 +342,53 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+function QuoteReadinessPanel() {
+  return (
+    <div className="w-full max-w-xl overflow-hidden rounded-lg border border-white/15 bg-white/95 text-slate-950 shadow-2xl shadow-slate-950/25 backdrop-blur">
+      <div className="border-b border-slate-200 bg-slate-50 px-5 py-4 sm:px-6">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-navy">RFQ Fast Track</p>
+            <h2 className="mt-1 text-xl font-semibold tracking-[-0.02em] text-slate-950">Send a quote-ready inquiry</h2>
+          </div>
+          <span className="rounded-md bg-amber-500 px-2.5 py-1 text-[11px] font-semibold text-slate-950">24h Reply</span>
+        </div>
+        <p className="mt-3 text-sm leading-relaxed text-slate-600">
+          Prepare the details we need to quote price, samples, packing, and loading plan with fewer follow-up emails.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-px bg-slate-200 sm:grid-cols-2">
+        {quoteReadinessItems.map(({ label, value, hint }, index) => (
+          <div key={label} className="bg-white px-5 py-4">
+            <div className="mb-3 flex items-center gap-2">
+              <span className="flex h-7 w-7 items-center justify-center rounded-md bg-slate-100 text-xs font-semibold text-brand-navy">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</span>
+            </div>
+            <div className="text-sm font-semibold text-slate-950">{value}</div>
+            <p className="mt-1 text-xs leading-relaxed text-slate-500">{hint}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex flex-col gap-3 border-t border-slate-200 bg-slate-50 p-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <p className="text-xs font-medium leading-relaxed text-slate-500">
+          Samples, NDA, and private-label packing can be confirmed after spec review.
+        </p>
+        <Link
+          href="/contact"
+          className="inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold text-slate-950 transition-colors hover:bg-amber-400"
+        >
+          <MessageSquare className="h-4 w-4" />
+          Send RFQ Details
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 export default async function HomePage() {
   const [imgs, hero] = await Promise.all([
@@ -411,80 +485,55 @@ export default async function HomePage() {
             external: true,
           },
         ]}
-        rightSlot={
-          <div className="w-full max-w-md rounded-lg border border-white/15 bg-white/95 p-5 text-slate-900 shadow-2xl backdrop-blur">
-            <div className="mb-5 flex items-start justify-between gap-4 border-b border-slate-200 pb-4">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-navy">Quote Readiness</p>
-                <h2 className="mt-1 text-xl font-semibold tracking-[-0.02em] text-slate-950">Send the right RFQ details</h2>
-              </div>
-              <span className="rounded-md bg-amber-100 px-2.5 py-1 text-[11px] font-semibold text-amber-800">24h Reply</span>
-            </div>
-            <div className="space-y-3">
-              {quoteReadinessItems.map(({ label, value, hint }, index) => (
-                <div key={label} className="grid grid-cols-[2rem_1fr] gap-3 rounded-md border border-slate-200 bg-slate-50 p-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-md bg-amber-500 text-sm font-semibold text-slate-950">
-                    {String(index + 1).padStart(2, "0")}
-                  </div>
-                  <div>
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</div>
-                    <div className="mt-1 text-sm font-semibold text-slate-950">{value}</div>
-                    <p className="mt-1 text-xs leading-relaxed text-slate-500">{hint}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <Link
-              href="/contact"
-              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-navy px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover"
-            >
-              <MessageSquare className="h-4 w-4" />
-              Send RFQ Details
-            </Link>
-          </div>
-        }
-        mobileRightSlot={
-          <div className="rounded-lg border border-white/15 bg-white/95 p-4 text-slate-900 shadow-xl">
-            <div className="mb-3 flex items-center justify-between gap-3">
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-navy">Quote Readiness</p>
-                <div className="mt-1 text-base font-semibold text-slate-950">Prepare these RFQ details</div>
-              </div>
-              <span className="rounded-md bg-amber-100 px-2 py-1 text-[10px] font-semibold text-amber-800">24h Reply</span>
-            </div>
-            <div className="grid grid-cols-1 gap-2 min-[420px]:grid-cols-2">
-              {quoteReadinessItems.map(({ label, value }) => (
-                <div key={label} className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2">
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">{label}</div>
-                  <div className="mt-1 text-xs font-semibold text-slate-800">{value}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        }
+        rightSlot={<QuoteReadinessPanel />}
+        mobileRightSlot={<QuoteReadinessPanel />}
       />
 
-      {/* ①b TRUST STRIP —— 关键工厂数据 + 认证，紧跟 Hero 建立信任 */}
-      <section className="border-b border-slate-200 bg-white py-5" aria-labelledby="factory-facts-heading">
+      {/* ①a BUYER ROUTES —— 首屏后先帮助买家选择采购路径 */}
+      <section className="border-b border-slate-200 bg-white py-8" aria-labelledby="buyer-routes-heading">
         <div className="container">
-          <h2 id="factory-facts-heading" className="sr-only">Quote-ready factory details for buyers</h2>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { icon: FactoryIcon, title: "Factory-direct supply", text: "Blank stock, custom printing, and jumbo-roll cooperation" },
-              { icon: ClipboardCheck, title: "Specs checked first", text: "Size, GSM, core, adhesive, artwork, carton marks, and packing" },
-              { icon: Award, title: "Certified options", text: "ISO 9001, FSC, BPA-free, RoHS, REACH, and CE support" },
-              { icon: Ship, title: "Export quote ready", text: "FOB, CIF, DDP, mixed SKU pallets, and container loading" },
-            ].map(({ icon: Icon, title, text }) => (
-              <div key={title} className="flex items-start gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-4">
-                <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-white text-brand-navy shadow-sm">
-                  <Icon className="h-4 w-4" aria-hidden="true" />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-slate-950">{title}</div>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-600">{text}</p>
-                </div>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch">
+            <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
+              <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Buyer Route</p>
+              <h2 id="buyer-routes-heading" className="text-2xl font-semibold tracking-[-0.03em] text-slate-950 text-balance">
+                Start from the way you buy, not from a long catalog.
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-slate-600">
+                Most buyers land here with one of three intentions: standard SKU replenishment, custom printed products, or factory-to-factory supply. Choose the closest route and send fewer back-and-forth emails.
+              </p>
+              <div className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-slate-200 bg-slate-200">
+                {[
+                  { term: "MOQ", value: "From 1,000 units" },
+                  { term: "Reply", value: "Within 24h" },
+                ].map(({ term, value }) => (
+                  <div key={term} className="bg-white px-4 py-3">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">{term}</div>
+                    <div className="mt-1 text-sm font-semibold text-slate-900">{value}</div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+              {buyerRoutes.map(({ icon: Icon, title, buyer, need, action, href }) => (
+                <Link
+                  key={title}
+                  href={href}
+                  className="group flex min-h-full flex-col rounded-lg border border-slate-200 bg-white p-5 transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-brand-navy/45 hover:shadow-md motion-reduce:transform-none"
+                >
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-brand-navy text-white">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-base font-semibold tracking-[-0.02em] text-slate-950 group-hover:text-brand-navy">{title}</h3>
+                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">{buyer}</p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{need}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy">
+                    {action}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -492,48 +541,67 @@ export default async function HomePage() {
       {/* ② PRODUCT CATEGORIES —— 参考 sailingpaper 的密集类目网格，按询盘漏斗排序 */}
       <section className="py-20 bg-white border-b border-slate-100" aria-labelledby="product-categories-heading">
         <div className="container">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Product Finder</p>
-            <h2 id="product-categories-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 text-balance">
-              Choose the Right Supply Path
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-600 text-pretty">
-              Blank stock ready to ship, custom-printed profit lines, and jumbo-roll supply. Pick your product and send an inquiry — we reply within 24 hours.
-            </p>
+          <div className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-[0.8fr_1fr] lg:items-end">
+            <div>
+              <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Product Finder</p>
+              <h2 id="product-categories-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 text-balance">
+                Match Your RFQ to the Right Product Line
+              </h2>
+            </div>
+            <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+              <p className="text-sm leading-relaxed text-slate-600">
+                Use this section like a procurement shortcut: choose standard stock for fast replenishment, custom printing for brand or compliance work, and jumbo/OEM supply for converter-level demand.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2 text-[11px] font-semibold uppercase tracking-[0.12em]">
+                <span className="rounded-md border border-amber-200 bg-amber-50 px-2.5 py-1 text-amber-700">Stock</span>
+                <span className="rounded-md border border-blue-100 bg-blue-50 px-2.5 py-1 text-brand-navy">Custom</span>
+                <span className="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-slate-600">OEM</span>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {productFinderCards.map(({ title, eyebrow, slot, fallback, tone, spec, summary, href, cta }) => {
+            {productFinderCards.map(({ title, eyebrow, slot, fallback, tone, spec, summary, href, cta }, index) => {
               const cardImage = imgs[slot] ?? fallback;
+              const isFeatured = index === 0;
               return (
                 <article
                   key={title}
-                  className="group grid overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-[border-color,box-shadow] duration-200 hover:border-brand-navy/40 hover:shadow-md sm:grid-cols-[42%_1fr] md:grid-cols-1"
+                  className={`group grid overflow-hidden rounded-lg border bg-white shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-brand-navy/40 hover:shadow-md motion-reduce:transform-none ${
+                    isFeatured
+                      ? "border-brand-navy/25 xl:col-span-2 xl:grid-cols-[45%_1fr]"
+                      : "border-slate-200 sm:grid-cols-[42%_1fr] md:grid-cols-1"
+                  }`}
                 >
-                  <Link href={href} className="relative block min-h-[220px] overflow-hidden bg-slate-100 md:aspect-[16/10] md:min-h-0" aria-label={`View ${title}`}>
+                  <Link href={href} className={`relative block min-h-[220px] overflow-hidden bg-slate-100 ${isFeatured ? "md:aspect-[16/10] xl:aspect-auto" : "md:aspect-[16/10] md:min-h-0"}`} aria-label={`View ${title}`}>
                     <Image
                       src={cardImage}
                       alt={`${title} from ZhixinPaper factory`}
                       fill
                       loading="lazy"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                      sizes={isFeatured ? "(max-width: 1280px) 100vw, 38vw" : "(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"}
                       className="object-cover transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none"
                     />
+                    {isFeatured && <span className="absolute bottom-3 left-3 rounded-md bg-brand-navy/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white">Highest inquiry volume</span>}
                     <span className={`absolute left-3 top-3 rounded-md border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] ${FINDER_TONE_STYLES[tone]}`}>
                       {eyebrow}
                     </span>
                   </Link>
-                  <div className="flex flex-1 flex-col p-5">
+                  <div className={`flex flex-1 flex-col ${isFeatured ? "p-6" : "p-5"}`}>
                     <div className="mb-3 inline-flex w-fit rounded-md bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-600">
                       {spec}
                     </div>
-                    <h3 className="text-lg font-semibold leading-snug tracking-[-0.02em] text-slate-900">
+                    <h3 className={`${isFeatured ? "text-2xl" : "text-lg"} font-semibold leading-snug tracking-[-0.02em] text-slate-900`}>
                       <Link href={href} className="transition-colors group-hover:text-brand-navy">{title}</Link>
                     </h3>
                     <p className="mt-2 mb-5 flex-1 text-sm leading-relaxed text-slate-600 text-pretty">{summary}</p>
                     <Link
                       href={href}
-                      className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-navy px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover"
+                      className={`inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-colors ${
+                        isFeatured
+                          ? "bg-amber-500 text-slate-950 hover:bg-amber-400"
+                          : "bg-brand-navy text-white hover:bg-brand-navy-hover"
+                      }`}
                     >
                       <MessageSquare className="h-4 w-4" />
                       {cta}
@@ -549,14 +617,30 @@ export default async function HomePage() {
       {/* ②b POPULAR SIZES CAROUSEL —— 细分 SKU 横向轮播（带左右箭头） */}
       <section className="py-16 bg-slate-50 border-b border-slate-200" aria-labelledby="popular-sizes-heading">
         <div className="container">
-          <div className="mb-2 max-w-2xl">
-            <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Popular Sizes</p>
-            <h2 id="popular-sizes-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 text-balance">
-              Best-Selling Sizes, Ready for a Quick Quote
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-600 text-pretty">
-              Browse our fastest-moving roll and label sizes. Need a size that is not listed? We slit to any custom width.
-            </p>
+          <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-[0.82fr_1fr] lg:items-end">
+            <div>
+              <p className="text-brand-navy text-sm font-semibold uppercase tracking-[0.18em] mb-3">Common Sizes</p>
+              <h2 id="popular-sizes-heading" className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-slate-900 text-balance">
+                Best-Selling Sizes for Faster Quotes
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 text-pretty">
+                Browse our most requested roll and label sizes. Need another width, length, core, or label format? We can slit and convert to your required specification.
+              </p>
+            </div>
+            <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+              <p className="text-sm font-semibold text-slate-950">For a faster quotation, send these details:</p>
+              <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                {["Size", "Quantity", "Destination"].map((item) => (
+                  <div key={item} className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">Required</div>
+                    <div className="mt-1 text-sm font-semibold text-slate-900">{item}</div>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-xs leading-relaxed text-slate-500">
+                Custom slitting, mixed sizes, and private-label cartons can be confirmed before bulk order.
+              </p>
+            </div>
           </div>
           <PopularSizesCarousel items={popularSkuItems} />
         </div>
