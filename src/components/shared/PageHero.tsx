@@ -65,6 +65,8 @@ export interface PageHeroProps {
   mobileRightSlot?: ReactNode;
   /** Min height class */
   minHeight?: string;
+  /** Tighter homepage composition that keeps the primary CTA above the fold */
+  compact?: boolean;
   /** Extra class names */
   className?: string;
 }
@@ -95,6 +97,7 @@ export default function PageHero({
   rightSlot,
   mobileRightSlot,
   minHeight = "min-h-[520px]",
+  compact = false,
   className = "",
 }: PageHeroProps) {
   const heroImages = (bgImages?.length ? bgImages : bgImage ? [bgImage] : []).filter(Boolean);
@@ -215,10 +218,10 @@ export default function PageHero({
 
       {/* Content */}
       <div className="relative w-full">
-        <div className="container py-16 sm:py-24">
+        <div className={`container ${compact ? "py-10 sm:py-12 lg:py-14" : "py-16 sm:py-24"}`}>
           <div className={`grid ${rightSlot ? "grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16" : "grid-cols-1"} items-center`}>
             {/* Left: text content */}
-            <div className={rightSlot ? "max-w-2xl" : "max-w-3xl"}>
+            <div className={rightSlot ? "max-w-2xl" : compact ? "max-w-[760px]" : "max-w-3xl"}>
               {/* Breadcrumbs */}
               {breadcrumbs && breadcrumbs.length > 0 && (
                 <nav className="flex items-center gap-1.5 text-sm text-slate-400 mb-5">
@@ -240,7 +243,7 @@ export default function PageHero({
               {/* Badge */}
               {badge && (
                 <div
-                  className={`inline-flex items-center gap-2 text-sm font-medium px-4 py-1.5 rounded-md mb-5 border ${
+                  className={`inline-flex items-center gap-2 text-sm font-medium px-4 py-1.5 rounded-md border ${compact ? "mb-4" : "mb-5"} ${
                     badgeColors[badge.color ?? "amber"]
                   }`}
                 >
@@ -260,7 +263,11 @@ export default function PageHero({
               )}
 
               {/* Title */}
-              <h1 className="max-w-full text-[2.25rem] sm:text-[3.5rem] lg:text-[4.15rem] font-semibold tracking-normal sm:tracking-[-0.03em] leading-[1.06] sm:leading-[1.02] mb-5 text-white">
+              <h1 className={`max-w-full font-semibold tracking-normal sm:tracking-[-0.03em] text-white ${
+                compact
+                  ? "text-[2.2rem] sm:text-[3rem] lg:text-[3.55rem] leading-[1.08] sm:leading-[1.04] mb-4"
+                  : "text-[2.25rem] sm:text-[3.5rem] lg:text-[4.15rem] leading-[1.06] sm:leading-[1.02] mb-5"
+              }`}>
                 {typeof title === "string" && titleHighlight ? (
                   <>
                     {title.split(titleHighlight)[0]}
@@ -274,7 +281,7 @@ export default function PageHero({
 
               {/* Subtitle */}
               {subtitle && (
-                <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-7 max-w-2xl">
+                <p className={`text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl ${compact ? "mb-6" : "mb-7"}`}>
                   {subtitle}
                 </p>
               )}
@@ -296,7 +303,7 @@ export default function PageHero({
 
               {/* CTAs */}
               {ctas && ctas.length > 0 && (
-                <div className="flex flex-col min-[420px]:flex-row min-[420px]:flex-wrap gap-3 mb-8">
+                <div className={`flex flex-col min-[420px]:flex-row min-[420px]:flex-wrap gap-3 ${compact ? "mb-0" : "mb-8"}`}>
                   {ctas.map((cta) => {
                     const base =
                       "inline-flex items-center justify-center gap-2 font-semibold px-5 sm:px-6 py-3 rounded-md transition-colors duration-200 text-sm";

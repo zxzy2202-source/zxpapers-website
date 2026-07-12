@@ -7,8 +7,6 @@
 
 @layer base {
   :root {
-    --font-inter: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --font-sora: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --header-offset-mobile: 98px;
     --header-offset-desktop: 92px;
     --background: 0 0% 100%;

@@ -1,70 +1,66 @@
 import type { Metadata } from "next";
-import { BadgeCheck, Boxes, Factory, MessageSquare, Package, Phone, ShieldCheck, Truck } from "lucide-react";
 import { getSlotImages } from "@/lib/imageSlotUtils";
 import { r2Image } from "@/lib/r2";
 import { paperRollSizes, labelSizes, canLabelSizes, detergentLabelSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
-import ProductCategoryShowcaseTemplate from "@/components/products/ProductCategoryShowcaseTemplate";
-import type { ShowcaseBrowseSection } from "@/components/products/ProductCategoryShowcaseTemplate";
+import ProductsCatalogPage from "@/components/products/ProductsCatalogPage";
+import type { CatalogFamily } from "@/components/products/ProductsCatalogPage";
 import { CAN_LABELS_IMG } from "./can-labels/can-labels-data";
 import { DETERGENT_LABELS_IMG } from "./detergent-labels/detergent-labels-data";
 import { ncrApplicationPages } from "./ncr-applications-data";
-import { NCR_FORMS_IMG, ncrFormParts, ncrFormTypes } from "./ncr-forms/ncr-forms-data";
+import { ncrFormParts } from "./ncr-forms/ncr-forms-data";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls, Labels & Can Labels | Factory Catalog",
+  title: "Thermal Paper, Labels & NCR Forms | Factory Catalog",
   description:
-    "Factory-direct catalog of thermal paper rolls, thermal & shipping labels, can labels, and detergent labels — blank or custom printed, all sizes in stock, BPA-free, OEM. Get bulk pricing.",
+    "Factory-direct thermal paper rolls, direct thermal labels, can and bottle labels, and NCR forms. Browse stock sizes or request custom printing, OEM packaging, and bulk pricing.",
   keywords:
-    "thermal paper rolls, thermal labels, shipping labels, can labels, detergent labels, custom printed thermal paper, blank thermal labels, thermal paper manufacturer, thermal paper wholesale, OEM thermal paper",
+    "thermal paper rolls, thermal labels, shipping labels, can labels, bottle labels, NCR forms, custom printed thermal paper, thermal paper manufacturer, thermal paper wholesale, OEM thermal paper",
   alternates: { canonical: `${SITE.domain}/products` },
 };
 
 const ROLLS_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
 const LABELS_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
-// Can/detergent have no brand photography yet — reuse the canonical category constants
-// (single source of truth) so /products inherits any future real image automatically.
 const CAN_LABELS_IMG_FB = CAN_LABELS_IMG;
 const DETERGENT_LABELS_IMG_FB = DETERGENT_LABELS_IMG;
-// On-brand factory photo instead of a generic stock image for the catalog hero.
+const NCR_FORMS_IMG_FB = "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80";
 const HERO_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
 
-// Build the catalog ItemList from the same size config the page renders, so the
-// structured data always mirrors the actual on-page links (blank, custom, every size).
+// Keep structured data generated from the same navigation config used by the catalog.
 const catalogEntries: { name: string; path: string }[] = [
   { name: "Blank Thermal Paper Rolls", path: "/products/thermal-paper-rolls/blank" },
   { name: "Custom Printed Thermal Rolls", path: "/products/thermal-paper-rolls/custom-printed" },
-  ...paperRollSizes.map((s) => ({ name: `${s.label} Thermal Paper Roll`, path: `/products/thermal-rolls/${s.slug}` })),
+  ...paperRollSizes.map((size) => ({ name: `${size.label} Thermal Paper Roll`, path: `/products/thermal-rolls/${size.slug}` })),
   { name: "Blank Thermal Labels", path: "/products/thermal-labels/blank" },
   { name: "Custom Printed Thermal Labels", path: "/products/thermal-labels/custom-printed" },
-  ...labelSizes.map((s) => ({ name: `${s.label} Thermal Label`, path: `/products/thermal-labels/${s.slug}` })),
+  ...labelSizes.map((size) => ({ name: `${size.label} Thermal Label`, path: `/products/thermal-labels/${size.slug}` })),
   { name: "Blank Can Labels", path: "/products/can-labels/blank" },
   { name: "Custom Printed Can Labels", path: "/products/can-labels/custom-printed" },
-  ...canLabelSizes.map((s) => ({ name: `${s.label} Can Label`, path: `/products/can-labels/${s.slug}` })),
+  ...canLabelSizes.map((size) => ({ name: `${size.label} Can Label`, path: `/products/can-labels/${size.slug}` })),
   { name: "Blank Detergent Labels", path: "/products/detergent-labels/blank" },
   { name: "Custom Printed Detergent Labels", path: "/products/detergent-labels/custom-printed" },
-  ...detergentLabelSizes.map((s) => ({ name: `${s.label} Detergent Label`, path: `/products/detergent-labels/${s.slug}` })),
+  ...detergentLabelSizes.map((size) => ({ name: `${size.label} Detergent Label`, path: `/products/detergent-labels/${size.slug}` })),
   { name: "NCR Forms & Carbonless Paper", path: "/products/ncr-forms" },
-  ...ncrFormParts.map((p) => ({ name: `${p.label} NCR Forms`, path: `/products/ncr-forms/${p.slug}` })),
-  ...ncrApplicationPages.map((p) => ({ name: p.name, path: `/products/${p.slug}` })),
+  ...ncrFormParts.map((part) => ({ name: `${part.label} NCR Forms`, path: `/products/ncr-forms/${part.slug}` })),
+  ...ncrApplicationPages.map((page) => ({ name: page.name, path: `/products/${page.slug}` })),
 ];
 
 const collectionSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Products",
+  name: "Thermal Paper, Labels and NCR Form Products",
   description:
-    "Complete range of thermal paper rolls, thermal labels, can labels, and detergent labels. Blank and custom printed options available.",
+    "Factory catalog of thermal paper rolls, direct thermal labels, can and bottle labels, and NCR forms in blank, stock, and custom printed options.",
   url: `${SITE.domain}/products`,
   isPartOf: { "@id": `${SITE.domain}/#website` },
   mainEntity: {
     "@type": "ItemList",
     numberOfItems: catalogEntries.length,
-    itemListElement: catalogEntries.map((c, idx) => ({
+    itemListElement: catalogEntries.map((entry, index) => ({
       "@type": "ListItem",
-      position: idx + 1,
-      name: c.name,
-      url: `${SITE.domain}${c.path}`,
+      position: index + 1,
+      name: entry.name,
+      url: `${SITE.domain}${entry.path}`,
     })),
   },
 };
@@ -79,195 +75,261 @@ const breadcrumbSchema = {
 };
 
 const faqs = [
-  { q: "What thermal paper products do you manufacture?", a: "We are a factory producing thermal paper rolls (POS, ATM, kiosk, and till rolls), direct thermal and shipping labels, can labels, and detergent / household-chemical labels — each available blank or custom printed." },
-  { q: "Do you supply blank and custom printed options?", a: "Yes. Every category is offered as blank stock for in-house printing, or custom printed with your logo, artwork, and private-label packaging (OEM)." },
-  { q: "What sizes are available?", a: "Thermal rolls in 57mm and 80mm plus custom widths; labels in 4×6 and other common sizes; can and detergent labels sized to standard containers. Custom sizes are made to ±0.5mm tolerance." },
-  { q: "What is the minimum order quantity (MOQ)?", a: "Stock sizes are available from low volume. Custom sizes, printing, adhesives, or private-label packaging start at 5,000 units. Tell us your category and quantity for a quote." },
-  { q: "Where do you ship and how fast?", a: "We export worldwide on FOB, CIF, or DDP terms to the UK, EU, and North America. Stock items ship in 3–7 days; custom production runs 10–18 days." },
+  {
+    q: "What thermal paper and label products do you manufacture?",
+    a: "We manufacture thermal paper rolls for POS, ATM, kiosk, and till applications; direct thermal shipping and barcode labels; can and bottle labels; and custom NCR business forms. Each range includes stock, blank, or custom printed options where applicable.",
+  },
+  {
+    q: "Do you supply blank and custom printed options?",
+    a: "Yes. Blank stock is available for in-house or variable-data printing. Custom production can include logos, Pantone or CMYK artwork, numbering, adhesives, die-cut shapes, and private-label packaging.",
+  },
+  {
+    q: "What sizes are available?",
+    a: "Popular stock formats include 57mm and 80mm thermal rolls, 4 x 6 inch shipping labels, standard can and bottle label dimensions, and 2-part to multi-part NCR forms. Custom widths, shapes, and form sizes can be produced to specification.",
+  },
+  {
+    q: "What is the minimum order quantity?",
+    a: "Stock sizes are available from low volume. Custom sizes, printing, adhesives, numbering, or private-label packaging typically start at 5,000 units. MOQ depends on the material and conversion process, so send the product and quantity for confirmation.",
+  },
+  {
+    q: "Where do you ship and how fast?",
+    a: "We export worldwide on FOB, CIF, or DDP terms. Stock items normally ship in 3 to 7 days, while custom production normally takes 10 to 18 days after artwork and specification approval.",
+  },
 ];
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqs.map(({ q, a }) => ({
+  mainEntity: faqs.map(({ q, a }) => ({
     "@type": "Question",
-    "name": q,
-    "acceptedAnswer": { "@type": "Answer", "text": a },
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
   })),
 };
 
 export default async function ProductsPage() {
-  const imgs = await getSlotImages([
+  const images = await getSlotImages([
     { slot: "products:hero", fallback: HERO_IMG_FB },
     { slot: "products:thermal-rolls", fallback: ROLLS_IMG_FB },
     { slot: "products:thermal-labels", fallback: LABELS_IMG_FB },
     { slot: "products:can-labels", fallback: CAN_LABELS_IMG_FB },
     { slot: "products:detergent-labels", fallback: DETERGENT_LABELS_IMG_FB },
+    { slot: "products:ncr-forms", fallback: NCR_FORMS_IMG_FB },
   ]);
 
-  const rollsImg = r2Image(imgs["products:thermal-rolls"]);
-  const labelsImg = r2Image(imgs["products:thermal-labels"]);
-  const canImg = r2Image(imgs["products:can-labels"]);
-  const detergentImg = r2Image(imgs["products:detergent-labels"]);
-  const ncrImg = r2Image(NCR_FORMS_IMG);
+  const rollsImage = r2Image(images["products:thermal-rolls"]);
+  const labelsImage = r2Image(images["products:thermal-labels"]);
+  const canImage = r2Image(images["products:can-labels"]);
+  const bottleImage = r2Image(images["products:detergent-labels"]);
+  const ncrImage = r2Image(images["products:ncr-forms"]);
 
-  const products = [
-    { title: "Thermal Paper Rolls", desc: "POS receipts, ATM, kiosk, and parking-ticket rolls — BPA-free, sharp print, blank or custom.", image: rollsImg, href: "/products/thermal-paper-rolls/blank", badge: "POS & Receipts" },
-    { title: "Thermal & Shipping Labels", desc: "Direct thermal shipping, barcode, and product labels — 4×6 and custom, rolls or fanfold.", image: labelsImg, href: "/products/thermal-labels/blank", badge: "4×6 & Custom" },
-    { title: "Can Labels", desc: "Full-wrap and partial-wrap labels for beverage, food, pet food, and industrial cans.", image: canImg, href: "/products/can-labels", badge: "Food Safe" },
-    { title: "Detergent Labels", desc: "Water- and chemical-resistant, GHS-compliant labels for detergent and cleaning bottles.", image: detergentImg, href: "/products/detergent-labels", badge: "Chemical Resistant" },
-    { title: "NCR Forms & Business Forms", desc: "Custom printed carbonless forms — invoices, receipts, delivery notes & order books, 2/3/4-part.", image: ncrImg, href: "/products/ncr-forms", badge: "Carbonless" },
-  ];
-
-  const browseSections: ShowcaseBrowseSection[] = [
+  const families: CatalogFamily[] = [
     {
+      id: "thermal-rolls",
+      navLabel: "Thermal Paper Rolls",
       title: "Thermal Paper Rolls",
-      description: "POS receipts, ATM, kiosk, and till rolls — choose blank or custom, then drill into a size.",
-      cards: [
-        { image: rollsImg, title: "Blank Thermal Paper Rolls", desc: "Standard white thermal rolls for all POS and receipt printers. BPA-free, high image clarity.", href: "/products/thermal-paper-rolls/blank", badge: "Blank" },
-        { image: rollsImg, title: "Custom Printed Thermal Rolls", desc: "Rolls pre-printed with your logo, brand colors, or promotions. OEM and private label available.", href: "/products/thermal-paper-rolls/custom-printed", badge: "Custom" },
-        ...paperRollSizes.map((s) => ({ image: s.image ? r2Image(s.image) : rollsImg, title: s.label, desc: `Popular thermal roll size${s.markets ? ` for ${s.markets}` : ""} — in stock and custom.`, href: `/products/thermal-rolls/${s.slug}`, badge: s.badge })),
+      badge: "POS, ATM & Kiosk",
+      description: "Receipt rolls for retail, banking, parking, kiosk, and mobile POS systems, supplied blank or printed for wholesale and distribution programs.",
+      href: "/products/thermal-paper-rolls",
+      image: rollsImage,
+      imageAlt: "Thermal paper rolls in standard POS and receipt sizes",
+      facts: ["57mm, 80mm, and custom widths", "BPA-free standard with phenol-free option", "White, colored, and pre-printed rolls"],
+      applications: ["Supermarket, restaurant, and retail POS receipts", "ATM, bank counter, and payment-terminal records", "Parking, ticketing, kiosk, and mobile POS systems"],
+      buyers: ["POS consumable and office-supply distributors", "Retail-chain procurement and merchant-service teams", "Payment-terminal, ATM, and kiosk service companies"],
+      groups: [
+        {
+          title: "Choose by format",
+          links: [
+            { label: "All Thermal Paper Rolls", href: "/products/thermal-paper-rolls", badge: "Overview" },
+            { label: "Blank Thermal Rolls", href: "/products/thermal-paper-rolls/blank" },
+            { label: "Custom Printed Rolls", href: "/products/thermal-paper-rolls/custom-printed" },
+            { label: "Receipt Paper Rolls", href: "/products/receipt-paper-rolls" },
+          ],
+        },
+        {
+          title: "Popular stock sizes",
+          links: paperRollSizes.map((size) => ({
+            label: size.label,
+            href: `/products/thermal-rolls/${size.slug}`,
+            note: size.markets,
+            badge: size.badge,
+          })),
+        },
+        {
+          title: "Material & application",
+          links: [
+            { label: "BPA-Free Thermal Paper", href: "/products/bpa-free-thermal-paper" },
+            { label: "Phenol-Free Thermal Paper", href: "/products/phenol-free-thermal-paper" },
+            { label: "Colored Thermal Paper", href: "/products/colored-thermal-paper" },
+            { label: "Till Rolls", href: "/products/till-rolls" },
+            { label: "Custom Printed Range", href: "/products/custom-printed-thermal-rolls" },
+          ],
+        },
       ],
     },
     {
-      title: "Thermal & Shipping Labels",
-      description: "Direct thermal shipping, barcode, and product labels — blank or custom, in popular sizes.",
-      cards: [
-        { image: labelsImg, title: "Blank Thermal Labels", desc: "Direct thermal labels for shipping, inventory, and barcodes. Compatible with all major printers.", href: "/products/thermal-labels/blank", badge: "Blank" },
-        { image: labelsImg, title: "Custom Printed Thermal Labels", desc: "Pre-printed labels with your brand, logo, or product information. Private label available.", href: "/products/thermal-labels/custom-printed", badge: "Custom" },
-        ...labelSizes.map((s) => ({ image: s.image ? r2Image(s.image) : labelsImg, title: s.label, desc: `Popular label size${s.markets ? ` for ${s.markets}` : ""} — direct thermal, in stock and custom.`, href: `/products/thermal-labels/${s.slug}`, badge: s.badge })),
+      id: "thermal-labels",
+      navLabel: "Thermal Labels",
+      title: "Direct Thermal & Shipping Labels",
+      badge: "Shipping, Barcode & Product",
+      description: "Direct thermal labels for courier, warehouse, inventory, barcode, food, and product identification workflows in rolls or fanfold packs.",
+      href: "/products/thermal-labels",
+      image: labelsImage,
+      imageAlt: "Direct thermal shipping and barcode labels in rolls and fanfold packs",
+      facts: ["4 x 6 inch shipping labels and custom sizes", "Permanent, removable, and application-specific adhesives", "Roll, fanfold, blank, and pre-printed supply"],
+      applications: ["Courier dispatch and last-mile shipping labels", "E-commerce warehouse picking, packing, and barcode workflows", "Inventory, food traceability, and product identification"],
+      buyers: ["Logistics consumable and label distributors", "E-commerce fulfillment and warehouse operations", "Packaging integrators and barcode-system suppliers"],
+      groups: [
+        {
+          title: "Choose by format",
+          links: [
+            { label: "All Thermal Labels", href: "/products/thermal-labels", badge: "Overview" },
+            { label: "Blank Thermal Labels", href: "/products/thermal-labels/blank" },
+            { label: "Custom Printed Labels", href: "/products/thermal-labels/custom-printed" },
+            { label: "Linerless Labels", href: "/products/linerless-labels" },
+          ],
+        },
+        {
+          title: "Popular stock sizes",
+          links: labelSizes.map((size) => ({
+            label: size.label,
+            href: `/products/thermal-labels/${size.slug}`,
+            note: size.markets,
+            badge: size.badge,
+          })),
+        },
+        {
+          title: "Choose by application",
+          links: [
+            { label: "Shipping Labels", href: "/products/shipping-labels" },
+            { label: "Barcode Labels", href: "/products/barcode-labels" },
+            { label: "Product Labels", href: "/products/product-labels" },
+            { label: "Custom Printed Range", href: "/products/custom-printed-thermal-labels" },
+          ],
+        },
       ],
     },
     {
-      title: "Can Labels",
-      description: "Moisture-resistant, food-safe can labels for every standard can size — blank or custom.",
-      cards: [
-        { image: canImg, title: "Blank Can Labels", desc: "Moisture-resistant, food-safe blank labels. Full-wrap and partial-wrap for all standard cans.", href: "/products/can-labels/blank", badge: "Blank" },
-        { image: canImg, title: "Custom Printed Can Labels", desc: "Full-color printed can labels with your brand design for beverages, food, and industrial cans.", href: "/products/can-labels/custom-printed", badge: "Custom" },
-        ...canLabelSizes.map((s) => ({ image: s.image ? r2Image(s.image) : canImg, title: s.label, desc: `Can label size${s.markets ? ` for ${s.markets}` : ""} — food-safe and moisture-resistant.`, href: `/products/can-labels/${s.slug}`, badge: s.badge })),
+      id: "can-labels",
+      navLabel: "Beverage & Food Labels",
+      title: "Beverage & Food Packaging Labels",
+      badge: "Bottles, Cans & Food Containers",
+      description: "Pressure-sensitive packaging labels for mineral water, beverages, canned food, jars, and other filled products that need moisture resistance and shelf-ready branding.",
+      href: "/products/can-labels",
+      image: canImage,
+      imageAlt: "Custom printed packaging labels for food and beverage containers",
+      facts: ["Food-safe material options", "Moisture-resistant facestocks and adhesives", "Full-color OEM and private-label printing"],
+      applications: ["Mineral water, juice, soda, and beverage containers", "Canned food, jars, and shelf-ready food packaging", "Private-label and contract-packed consumer products"],
+      buyers: ["Beverage and food brand owners", "Co-packers, filling plants, and private-label programs", "Packaging distributors and regional label resellers"],
+      groups: [
+        {
+          title: "Choose by format",
+          links: [
+            { label: "All Beverage & Food Packaging Labels", href: "/products/can-labels", badge: "Overview" },
+            { label: "Blank Packaging Labels", href: "/products/can-labels/blank" },
+            { label: "Custom Printed Packaging Labels", href: "/products/can-labels/custom-printed" },
+          ],
+        },
+        {
+          title: "Standard container sizes",
+          links: canLabelSizes.map((size) => ({
+            label: size.label,
+            href: `/products/can-labels/${size.slug}`,
+            note: size.markets,
+            badge: size.badge,
+          })),
+        },
       ],
     },
     {
-      title: "Detergent Labels",
-      description: "Water- and chemical-resistant labels for detergent, dish soap, and household cleaners.",
-      cards: [
-        { image: detergentImg, title: "Blank Detergent Labels", desc: "Water- and chemical-resistant blank labels for detergent bottles and household chemicals.", href: "/products/detergent-labels/blank", badge: "Blank" },
-        { image: detergentImg, title: "Custom Printed Detergent Labels", desc: "GHS-compliant printed labels with your brand, hazard pictograms, and product information.", href: "/products/detergent-labels/custom-printed", badge: "Custom" },
-        ...detergentLabelSizes.map((s) => ({ image: s.image ? r2Image(s.image) : detergentImg, title: s.label, desc: `Detergent label size${s.markets ? ` for ${s.markets}` : ""} — water- and chemical-resistant.`, href: `/products/detergent-labels/${s.slug}`, badge: s.badge })),
+      id: "bottle-labels",
+      navLabel: "Bottle & Household Labels",
+      title: "Bottle & Household Packaging Labels",
+      badge: "Beverage, Chemical & Water Resistant",
+      description: "Durable labels for mineral water, beverages, detergent, cleaning, household chemical, and personal-care bottles with clear brand and hazard information.",
+      href: "/products/detergent-labels",
+      image: bottleImage,
+      imageAlt: "Bottle and household packaging labels on cleaning-product containers",
+      facts: ["Water, oil, and household chemical resistance", "GHS information and hazard pictogram support", "Front, back, and wrap-around formats"],
+      applications: ["Drinking water, beverage, and refillable bottle labels", "Detergent, cleaning, and household-chemical packaging", "Personal-care, toiletry, and oil-resistant containers"],
+      buyers: ["Household and personal-care product manufacturers", "Chemical, cleaning, and detergent brand owners", "Bottle-packaging suppliers and contract manufacturers"],
+      groups: [
+        {
+          title: "Choose by format",
+          links: [
+            { label: "All Bottle Labels", href: "/products/detergent-labels", badge: "Overview" },
+            { label: "Blank Bottle Labels", href: "/products/detergent-labels/blank" },
+            { label: "Custom Printed Bottle Labels", href: "/products/detergent-labels/custom-printed" },
+          ],
+        },
+        {
+          title: "Standard bottle sizes",
+          links: detergentLabelSizes.map((size) => ({
+            label: size.label,
+            href: `/products/detergent-labels/${size.slug}`,
+            note: size.markets,
+            badge: size.badge,
+          })),
+        },
       ],
     },
     {
+      id: "ncr-forms",
+      navLabel: "NCR Forms",
       title: "NCR Forms & Business Forms",
-      description: "Custom printed carbonless forms for invoices, receipts, delivery notes, orders, and industry-specific records.",
-      cards: [
-        ...ncrFormParts.map((p) => ({ image: ncrImg, title: p.label, desc: p.desc, href: `/products/ncr-forms/${p.slug}`, badge: p.badge })),
-        ...ncrFormTypes.map((t) => ({ image: ncrImg, title: t.label, desc: t.desc, href: "/products/ncr-forms", badge: "Carbonless" })),
-        ...ncrApplicationPages.map((page) => ({
-          image: ncrImg,
-          title: page.name,
-          desc: page.metaDescription,
-          href: `/products/${page.slug}`,
-          badge: "Application",
-        })),
+      badge: "Carbonless Multi-Copy Forms",
+      description: "Custom printed carbonless forms for invoices, receipts, delivery records, field service, public-sector documentation, and other signed multi-party workflows.",
+      href: "/products/ncr-forms",
+      image: ncrImage,
+      imageAlt: "NCR carbonless forms and multi-copy business documents",
+      facts: ["2-part to 6-part copy sets", "Numbering, perforation, books, pads, and continuous forms", "Custom copy colors, fields, terms, and packaging"],
+      applications: ["Invoices, receipt books, purchase orders, and delivery notes", "Field-service, repair, and signed proof-of-service records", "Government, utility, transport, and multi-party documentation"],
+      buyers: ["Commercial printers and business-form distributors", "Field-service software, equipment, and form suppliers", "Institutional procurement teams and trade wholesalers"],
+      groups: [
+        {
+          title: "Choose by format",
+          links: [
+            { label: "All NCR Forms", href: "/products/ncr-forms", badge: "Overview" },
+            { label: "Custom NCR Forms", href: "/products/custom-ncr-forms" },
+            { label: "Receipt Books", href: "/products/ncr-receipt-books" },
+            { label: "Invoice Books", href: "/products/ncr-invoice-books" },
+            { label: "Delivery Note Forms", href: "/products/delivery-note-forms" },
+            { label: "Continuous Computer Forms", href: "/products/continuous-computer-forms" },
+          ],
+        },
+        {
+          title: "Choose by copy count",
+          links: ncrFormParts.map((part) => ({
+            label: part.label,
+            href: `/products/ncr-forms/${part.slug}`,
+            badge: part.badge,
+          })),
+        },
+        {
+          title: "Industry applications",
+          links: ncrApplicationPages.map((page) => ({
+            label: page.name,
+            href: `/products/${page.slug}`,
+          })),
+        },
       ],
     },
   ];
+
+  const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent(
+    "Hello, I need a quote for your paper or label products. I can send the product, size, quantity, and destination.",
+  )}`;
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <ProductCategoryShowcaseTemplate
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
-        heroImage={r2Image(imgs["products:hero"])}
-        heroBadge={{ text: "Factory Direct Supply", color: "amber" }}
-        title={<>Thermal Paper Rolls<br /><span className="text-amber-400">&amp; Labels Catalog</span></>}
-        subtitle="The complete factory catalog of thermal paper rolls, labels, and specialty labels — blank or custom printed, all sizes in stock, with OEM packaging and bulk pricing in 24 hours."
-        trustBadges={["All Sizes In Stock", "OEM Available", "BPA-Free Options", "ISO 9001"]}
-        stats={[
-          { value: "50+", label: "Product Sizes" },
-          { value: "In Stock", label: "Ready to Ship" },
-          { value: "OEM", label: "Custom Packaging" },
-          { value: "24h", label: "Quote Response" },
-        ]}
-        ctas={[
-          { label: "Get Full Price List", href: "/contact", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
-          { label: "WhatsApp for Quote", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need pricing for thermal paper rolls. Please send full price list.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
-        ]}
-        introSplit={{
-          title: "One Factory, the Full Thermal Range",
-          lead: "From POS receipt rolls to direct thermal shipping labels, can labels, and detergent labels — we manufacture every category in-house, blank or custom printed, at true factory-direct pricing.",
-          bullets: [
-            "Thermal paper rolls — 57mm, 80mm & custom",
-            "Direct thermal & shipping labels — 4×6 and custom",
-            "Can labels — food-safe, full- and partial-wrap",
-            "Detergent labels — water- & chemical-resistant",
-            "NCR forms — carbonless invoices, receipts & delivery notes",
-          ],
-          image: rollsImg,
-          imageAlt: "Thermal paper rolls and label products from the factory",
-          cta: { label: "Send Inquiry Now", href: "#inquiry" },
-        }}
-        overview={{
-          title: "A Complete Thermal Paper & Label Catalog",
-          paragraphs: [
-              "ZhixinPaper is a thermal paper and label manufacturer supplying the full product range from a single factory: thermal paper rolls for POS, ATM, kiosk, and till applications; direct thermal and shipping labels; can labels; and bottle or packaging labels for daily chemicals, food, healthcare, and industrial products.",
-            "Every category is available as blank stock for in-house printing or as custom printed runs with your logo, artwork, and private-label packaging. Standard sizes are held in stock for fast dispatch, while custom widths and shapes are produced to a ±0.5mm tolerance.",
-            "Because we control coating, printing, adhesive, and packaging in-house, we hold BPA-free as standard, support OEM programs for distributors and brands, and export worldwide on FOB, CIF, and DDP terms — at wholesale pricing with no middleman markup.",
-          ],
-        }}
-        featureSplit={{
-          title: "Blank or Custom Printed — Your Call",
-          lead: "Match the product to your workflow: order blank stock to print in-house, or hand us your artwork for fully custom, private-label runs.",
-          bullets: [
-            "Blank stock for in-house and variable-data printing",
-            "Custom CMYK / Pantone printing with design support",
-            "Private-label packaging and OEM programs",
-            "BPA-free standard with phenol-free option",
-          ],
-          image: labelsImg,
-          imageAlt: "Blank and custom printed thermal labels",
-          cta: { label: "Discuss Your Project", href: "#inquiry" },
-        }}
-        productsTitle="Browse Our Product Categories"
-        productsDescription="Five core categories, each available blank or custom printed and in stock across all popular sizes."
-        products={products}
-        browseSections={browseSections}
-        comparison={{
-          title: "Blank vs Custom Printed",
-          headers: { left: "Blank Stock", right: "Custom Printed" },
-          rows: [
-            { factor: "Best for", left: "In-house & variable-data printing", right: "Branded, finished products" },
-            { factor: "Artwork", left: "None — print your own", right: "Your logo, colors & layout" },
-            { factor: "MOQ", left: "From low volume (stock sizes)", right: "From 5,000 units" },
-            { factor: "Lead time", left: "3–7 days (stock)", right: "10–18 days (production)" },
-            { factor: "Packaging", left: "Standard boxing", right: "Private-label / OEM" },
-          ],
-        }}
-        whyUs={{
-          title: "Why Source From the Factory",
-          subtitle: "In-house control of coating, printing, adhesive, and packaging — with the certifications global buyers require.",
-          items: [
-            { icon: <Factory />, title: "True Factory-Direct", text: "No distributor markup. We run the line from base-paper coating to finished, boxed product." },
-            { icon: <ShieldCheck />, title: "Certified & Compliant", text: "ISO 9001:2015, FSC, BPA-free standard, and RoHS / REACH support for regulated markets." },
-            { icon: <Package />, title: "Blank or Custom", text: "Every category in blank stock or custom printed, with OEM and private-label programs." },
-            { icon: <Boxes />, title: "All Sizes In Stock", text: "57/80mm rolls, 4×6 labels, and standard can / bottle sizes ready for fast dispatch." },
-            { icon: <Truck />, title: "Global Export", text: "FOB, CIF, and DDP to the UK, EU, and North America with reliable lead times." },
-            { icon: <BadgeCheck />, title: "OEM & Private Label", text: "Custom size, print, adhesive, and branded packaging for distributors and brands." },
-          ],
-        }}
+      <ProductsCatalogPage
+        heroImage={r2Image(images["products:hero"])}
+        whatsappHref={whatsappHref}
+        families={families}
         faqs={faqs}
-        crossLinks={[
-          { label: "Till Rolls", href: "/products/till-rolls" },
-          { label: "Shipping Labels", href: "/products/shipping-labels" },
-          { label: "BPA-Free Thermal Paper", href: "/products/bpa-free-thermal-paper" },
-          { label: "OEM & Private Label", href: "/oem" },
-        ]}
-        inquiry={{
-          title: "Get the Full Price List",
-          description: "Tell us which categories, sizes, and quantities you need — blank or custom — and we'll send wholesale pricing within 24 hours.",
-        }}
       />
     </>
   );

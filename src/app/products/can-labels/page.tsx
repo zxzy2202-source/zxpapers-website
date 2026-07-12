@@ -8,11 +8,11 @@ import ProductCategoryShowcaseTemplate from "@/components/products/ProductCatego
 import type { ShowcaseBrowseSection } from "@/components/products/ProductCategoryShowcaseTemplate";
 
 export const metadata: Metadata = {
-  title: "Can Labels Manufacturer | Custom & Blank",
+  title: "Beverage & Food Packaging Labels Manufacturer | Custom & Blank",
   description:
-    "OEM can labels for beverage, food, pet food, paint, and industrial cans. Full-wrap, moisture-resistant, food-safe. BPA-free options. MOQ 5,000 labels.",
+    "OEM packaging labels for beverage bottles, food containers, cans, jars, and filled products. Full-wrap, moisture-resistant, food-safe options with custom printing and bulk supply.",
   keywords:
-    "can labels, custom can labels, blank can labels, beverage can labels, food can labels, pet food labels, full-wrap can labels, moisture-resistant labels, food-safe labels, can label manufacturer, OEM can labels",
+    "beverage packaging labels, food packaging labels, bottle labels, can labels, custom packaging labels, blank packaging labels, full-wrap labels, moisture-resistant labels, food-safe labels, OEM packaging label manufacturer",
   alternates: { canonical: `${SITE.domain}/products/can-labels` },
 };
 
@@ -30,7 +30,7 @@ const breadcrumbSchema = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: SITE.domain },
     { "@type": "ListItem", position: 2, name: "Products", item: `${SITE.domain}/products` },
-    { "@type": "ListItem", position: 3, name: "Can Labels", item: `${SITE.domain}/products/can-labels` },
+    { "@type": "ListItem", position: 3, name: "Beverage & Food Packaging Labels", item: `${SITE.domain}/products/can-labels` },
   ],
 };
 
@@ -43,9 +43,9 @@ const catalogEntries = [
 const collectionSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Can Labels",
+  name: "Beverage & Food Packaging Labels",
   description:
-    "OEM can labels for beverage, food, pet food, paint, and industrial cans. Full-wrap, moisture-resistant, food-safe, BPA-free options.",
+    "OEM packaging labels for beverage bottles, food containers, cans, jars, and filled products. Full-wrap, moisture-resistant and food-safe options.",
   url: `${SITE.domain}/products/can-labels`,
   isPartOf: { "@id": `${SITE.domain}/#website` },
   mainEntity: {
@@ -74,14 +74,14 @@ export default async function CanLabelsPage() {
   const canImg = r2Image(await getSlotImage("can-labels:hero", CAN_LABELS_IMG));
 
   const products = [
-    { title: "Blank Can Labels", desc: "Moisture-resistant, food-safe blank labels. Full-wrap and partial-wrap for all standard cans.", image: canImg, href: "/products/can-labels/blank", badge: "Blank" },
-    { title: "Custom Printed Can Labels", desc: "Full-color printed can labels with your brand design for beverages, food, and industrial cans.", image: canImg, href: "/products/can-labels/custom-printed", badge: "Custom" },
+    { title: "Blank Packaging Labels", desc: "Moisture-resistant, food-safe blank labels for standard container formats.", image: canImg, href: "/products/can-labels/blank", badge: "Blank" },
+    { title: "Custom Printed Packaging Labels", desc: "Full-color packaging labels with your brand design for beverages, food, and filled products.", image: canImg, href: "/products/can-labels/custom-printed", badge: "Custom" },
   ];
 
   const browseSections: ShowcaseBrowseSection[] = [
     {
-      title: "Popular Can Sizes",
-      description: "Full-wrap labels for every standard can — pick a size or ask for a custom dimension.",
+      title: "Popular Container Sizes",
+      description: "Full-wrap labels for standard filled-product containers. Pick a size or ask for a custom dimension.",
       cards: canLabelSizes.map((s) => ({
         image: canImg,
         title: s.label,
@@ -98,24 +98,24 @@ export default async function CanLabelsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <ProductCategoryShowcaseTemplate
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Can Labels" }]}
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Beverage & Food Packaging Labels" }]}
         heroImage={canImg}
         heroBadge={{ text: "Food-Safe & Moisture-Resistant", color: "amber" }}
-        title={<>Can Labels<br /><span className="text-amber-400">Custom &amp; Blank</span></>}
-        subtitle="OEM can labels for beverage, food, pet food, paint, and industrial cans — full-wrap and partial-wrap, moisture-resistant, food-safe, with BPA-free options and bulk pricing in 24 hours."
-        trustBadges={["Full-Wrap", "Food Safe", "Moisture Resistant", "BPA-Free Option"]}
+        title={<>Beverage &amp; Food<br /><span className="text-amber-400">Packaging Labels</span></>}
+        subtitle="OEM packaging labels for mineral water, beverages, food containers, cans, jars, and other filled products. Full-wrap, moisture-resistant, food-safe options with bulk pricing in 24 hours."
+        trustBadges={["Full-Wrap", "Food Safe", "Moisture Resistant", "Custom Printing"]}
         stats={[
-          { value: "211–401", label: "Can Sizes" },
+          { value: "211–401", label: "Container Sizes" },
           { value: "FDA", label: "Food-Safe Adhesive" },
           { value: "OEM", label: "Custom Printing" },
           { value: "24h", label: "Quote Response" },
         ]}
         ctas={[
-          { label: "Get Can Label Pricing", href: "#inquiry", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
-          { label: "WhatsApp for Quote", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need pricing for can labels. Please send sizes and bulk pricing.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
+          { label: "Get Packaging Label Pricing", href: "#inquiry", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
+          { label: "WhatsApp for Quote", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need pricing for beverage and food packaging labels. Please send sizes and bulk pricing.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
         ]}
         introSplit={{
-          title: "Full-Wrap Can Labels From One Factory",
+          title: "Packaging Labels for Filled Products",
           lead: "From craft-beer slim cans to food, pet food, and industrial cans, we print, die-cut, and pack moisture-resistant, food-safe can labels in-house at factory-direct pricing.",
           bullets: [
             "Standard 211×400 to 401×700 plus custom sizes",
@@ -148,8 +148,8 @@ export default async function CanLabelsPage() {
           imageAlt: "Blank and custom printed can labels",
           cta: { label: "Discuss Your Project", href: "#inquiry" },
         }}
-        productsTitle="Browse Can Label Products"
-        productsDescription="Blank and custom printed can labels, in stock across all standard can sizes."
+        productsTitle="Browse Packaging Label Products"
+        productsDescription="Blank and custom printed packaging labels across standard filled-product container sizes."
         products={products}
         browseSections={browseSections}
         comparison={{
