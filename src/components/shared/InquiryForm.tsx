@@ -255,7 +255,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
 
       <div>
         <Label htmlFor="inquiry-phone" className="block text-xs font-medium text-slate-700 mb-1.5">
-          Phone / WhatsApp <span className="text-slate-400 font-normal">(optional)</span>
+          Phone / WhatsApp <span className="text-slate-500 font-normal">(optional)</span>
         </Label>
         <Input
           id="inquiry-phone"

@@ -210,6 +210,7 @@ const exactDefaults: Record<string, string> = {
   "products:thermal-labels": THERMAL_LABELS_IMAGE,
   "products:can-labels": CAN_LABELS_IMAGE,
   "products:detergent-labels": DETERGENT_LABELS_IMAGE,
+  "products:ncr-forms": NCR_FORMS_IMAGE,
   "thermal-rolls:hero": THERMAL_ROLLS_IMAGE,
   "thermal-paper-rolls:blank-hero": THERMAL_ROLLS_IMAGE,
   "thermal-paper-rolls:custom-hero": THERMAL_ROLLS_IMAGE,
