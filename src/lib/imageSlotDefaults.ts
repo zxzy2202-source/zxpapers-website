@@ -14,6 +14,20 @@ const DETERGENT_LABELS_IMAGE =
   "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=800&q=80";
 const NCR_FORMS_IMAGE =
   "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80";
+const NCR_RECEIPT_HERO_IMAGE =
+  "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=82";
+const NCR_RECEIPT_OVERVIEW_IMAGE =
+  "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1000&q=82";
+const NCR_RECEIPT_RISK_IMAGE =
+  "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=1000&q=82";
+const NCR_RECEIPT_2_PART_IMAGE =
+  "https://images.unsplash.com/photo-1518133835878-5a93cc3f89e5?w=1000&q=82";
+const NCR_RECEIPT_3_PART_IMAGE =
+  "https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=1000&q=82";
+const NCR_RECEIPT_PRIVATE_LABEL_IMAGE =
+  "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1000&q=82";
+const NCR_RECEIPT_PACKING_IMAGE =
+  "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1000&q=82";
 const CONTACT_IMAGE =
   "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1400&q=80";
 
@@ -225,6 +239,14 @@ const exactDefaults: Record<string, string> = {
   "detergent-labels:blank-hero": DETERGENT_LABELS_IMAGE,
   "detergent-labels:custom-hero": DETERGENT_LABELS_IMAGE,
   "ncr-forms:hero": NCR_FORMS_IMAGE,
+  "ncr-receipt-books:hero": NCR_RECEIPT_HERO_IMAGE,
+  "ncr-receipt-books:overview": NCR_RECEIPT_OVERVIEW_IMAGE,
+  "ncr-receipt-books:buyer-risk": NCR_RECEIPT_RISK_IMAGE,
+  "ncr-receipt-books:2-part": NCR_RECEIPT_2_PART_IMAGE,
+  "ncr-receipt-books:3-part": NCR_RECEIPT_3_PART_IMAGE,
+  "ncr-receipt-books:private-label": NCR_RECEIPT_PRIVATE_LABEL_IMAGE,
+  "ncr-receipt-books:production": FACTORY_IMAGE,
+  "ncr-receipt-books:packing": NCR_RECEIPT_PACKING_IMAGE,
   "oem:hero": FACTORY_IMAGE,
   "oem:case-studies-hero": FACTORY_IMAGE,
   "oem:custom-printing-hero": FACTORY_LINE_IMAGE,
