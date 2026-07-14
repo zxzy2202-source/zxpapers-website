@@ -1,40 +1,91 @@
 import type { Metadata } from "next";
-import { BadgeCheck, BookOpen, Boxes, Factory, MessageSquare, Phone, ShieldCheck } from "lucide-react";
+import NcrInvoiceBooksCatalogPage, {
+  invoiceBookOrderSteps,
+  invoiceBookSpecifications,
+} from "@/components/products/NcrInvoiceBooksCatalogPage";
 import { SITE } from "@/config/siteData";
-import { getSlotImage } from "@/lib/imageSlotUtils";
-import { r2Image } from "@/lib/r2";
-import ProductCategoryShowcaseTemplate from "@/components/products/ProductCategoryShowcaseTemplate";
-import type { ShowcaseBrowseSection } from "@/components/products/ProductCategoryShowcaseTemplate";
-import { NCR_FORMS_IMG } from "../ncr-forms/ncr-forms-data";
+import { getSlotImages } from "@/lib/imageSlotUtils";
+
+const INVOICE_HERO_IMAGE = "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=82";
+// Product photos sourced from the company's Xi'an Zhi Xin Paper Alibaba supplier listing.
+const INVOICE_OVERVIEW_IMAGE = "/images/ncr-invoice-books/numbered-multipart-invoice-book.webp";
+const INVOICE_RISK_IMAGE = "/images/ncr-invoice-books/numbered-multipart-invoice-book.webp";
+const INVOICE_2_PART_IMAGE = "/images/ncr-invoice-books/custom-order-form-pad.webp";
+const INVOICE_3_PART_IMAGE = "/images/ncr-invoice-books/triplicate-order-form-book.webp";
+const INVOICE_PRIVATE_LABEL_IMAGE = "/images/ncr-invoice-books/custom-carbonless-invoice-book.webp";
+const INVOICE_PRODUCTION_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
+const INVOICE_PACKING_IMAGE = "/uploads/images/1778755819135-456d030e-f44b-453b-86bb-69c736ef4e12-32b6c697519b48fc814b3a4712323de2.webp";
+
+const USE_CASE_IMAGES = {
+  stationery: "/images/ncr-invoice-books/custom-order-form-pad.webp",
+  tradePrinter: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=900&q=80",
+  fieldService: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=900&q=80",
+  multiBranch: "/uploads/images/1778749791640-3b5c725a-937d-48a1-bdad-b0331d9c9dca-image.webp",
+} as const;
+
+const pageDescription =
+  "Wholesale NCR invoice books for distributors and commercial printers, with duplicate or triplicate sets, controlled numbering, custom binding, private-label packing, and repeat-order specifications.";
 
 export const metadata: Metadata = {
-  title: "NCR Invoice Books | Carbonless Invoice & Statement Forms",
-  description:
-    "Factory-direct carbonless NCR invoice books and invoice forms — 2-part and 3-part, numbered, tax-ready, with custom logo and fields. Loose sets or bound books. MOQ from low volume, OEM.",
-  keywords:
-    "ncr invoice books, carbonless invoice books, invoice forms, duplicate invoice book, triplicate invoice book, custom invoice books, numbered invoice forms, business invoice books, carbonless invoice forms, tax invoice books",
+  title: "Wholesale NCR Invoice Books | Duplicate & Triplicate",
+  description: pageDescription,
   alternates: { canonical: `${SITE.domain}/products/ncr-invoice-books` },
+  openGraph: {
+    title: "Wholesale NCR Invoice Books for Repeat Supply Programs",
+    description:
+      "Source custom carbonless invoice books with controlled numbering, approved binding, private-label packing, and repeat-order specifications.",
+    url: `${SITE.domain}/products/ncr-invoice-books`,
+    type: "website",
+    images: [
+      {
+        url: INVOICE_HERO_IMAGE,
+        alt: "Wholesale NCR invoice books prepared for repeat distributor orders",
+      },
+    ],
+  },
 };
 
-const specs = [
-  { label: "Copies per Set", value: "2-part (duplicate) / 3-part (triplicate)" },
-  { label: "Format", value: "Bound books, padded sets, or loose collated sets" },
-  { label: "Finishing", value: "Sequential numbering, perforation, glue / staple binding" },
-  { label: "Print", value: "Tax-ready layout, logo, fields; black or color" },
-  { label: "Ply Colors", value: "White (original) + pink / yellow copies" },
-  { label: "Sets per Book", value: "50 / 100 / custom" },
-  { label: "Size", value: "A4, A5, 1/3 A4, or custom" },
-  { label: "Paper", value: "Carbonless (CB/CFB/CF) 50–55 gsm" },
-  { label: "MOQ", value: "From low volume; custom printing from ~5,000 sets" },
-  { label: "Lead Time", value: "Proof 3–7 days · production 10–18 days" },
-];
-
 const faqs = [
-  { q: "What is a carbonless NCR invoice book?", a: "An NCR invoice book is a bound or padded set of carbonless invoices — write or print once and the copy transfers to the sheets below. The original goes to the customer while copies stay for accounts and your records." },
-  { q: "Do you make 2-part and 3-part invoice books?", a: "Yes. 2-part (duplicate) keeps a customer and an accounts copy; 3-part (triplicate) adds a warehouse or file copy. Both are numbered and perforated, in bound books or loose sets." },
-  { q: "Can the invoices be tax-ready with our fields?", a: "Yes. We pre-print your tax-ready layout, logo, company and tax details, and line-item fields in black or color, with sequential numbering for audit and filing." },
-  { q: "Loose sets or bound books — which should I choose?", a: "Bound books suit handwritten or counter invoicing; loose collated sets suit printer or system invoicing. We supply both, plus padded sets." },
-  { q: "What is the MOQ and lead time?", a: "Stock from low volume; custom printed invoice books start at around 5,000 sets with a 3–7 day proof and 10–18 day production, exported on FOB, CIF, and DDP terms." },
+  {
+    q: "What is an NCR invoice book?",
+    a: "An NCR invoice book is a bound set of carbonless invoice forms. Writing on the coated top sheet transfers the same information to the copies below, producing a customer original and one or more retained records without separate carbon paper.",
+  },
+  {
+    q: "Should I order 2-part or 3-part invoice books?",
+    a: "Choose 2-part books when the customer receives the original and the seller retains one accounts copy. Choose 3-part books when a warehouse, branch, operations team, or another department also needs an immediate controlled copy.",
+  },
+  {
+    q: "What information is needed for an accurate wholesale quotation?",
+    a: "Send the buyer type, destination market, copy roles, finished size, sets per book, binding, cover, perforation, number rules, artwork, print colors, order quantity, packing, destination, and expected repeat-order schedule.",
+  },
+  {
+    q: "Can number ranges be allocated by branch, carton, or distributor SKU?",
+    a: "Yes. Numbering can run continuously across an order or be allocated by branch, warehouse, carton, book, or SKU. Start and end numbers, branch codes, barcodes, QR codes, and carton-range labels can be recorded in the approved specification.",
+  },
+  {
+    q: "Which binding, perforation, and cover options are available?",
+    a: "Invoice books can be glued, padded, stapled, stitched, or wire bound. Covers can be plain, custom printed, or wraparound with a writing shield. Perforation position and binding placement are confirmed during proof approval.",
+  },
+  {
+    q: "Can you print our local invoice or tax layout?",
+    a: "Yes. We print buyer-supplied and buyer-approved fields, logos, terms, languages, tables, and copy labels. The buyer should confirm that the approved artwork meets local tax, invoicing, and recordkeeping requirements before production.",
+  },
+  {
+    q: "Do you provide a proof or sample before mass production?",
+    a: "Yes. A digital proof confirms the layout, copy roles, colors, numbering, perforation, binding, cover, and packing. A physical pre-production sample can be arranged when transfer clarity, tear-off, or binding must be checked before the production run.",
+  },
+  {
+    q: "What is the MOQ and production lead time?",
+    a: "MOQ depends on size, print colors, numbering, binding, cover, and packing. Custom programs commonly begin with a commercial production quantity. Standard production is usually 10 to 18 business days after proof approval, with the exact schedule confirmed in the quotation.",
+  },
+  {
+    q: "How do repeat orders stay consistent?",
+    a: "We link the approved artwork, copy sequence, paper, number rules, binding, cover, sets per book, labels, and carton data to one reorder reference. The next order should state the new number range and any approved change to that reference.",
+  },
+  {
+    q: "Can you quote private-label packing and export delivery terms?",
+    a: "Yes. We can supply distributor covers, book labels, shrink-wrapped inner packs, SKU labels, carton marks, and export cartons. Share the destination, quantity, packing request, and shipping method for factory collection, FOB, CIF, or delivered options.",
+  },
 ];
 
 const breadcrumbSchema = {
@@ -43,151 +94,171 @@ const breadcrumbSchema = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: SITE.domain },
     { "@type": "ListItem", position: 2, name: "Products", item: `${SITE.domain}/products` },
-    { "@type": "ListItem", position: 3, name: "NCR Forms & Business Forms", item: `${SITE.domain}/products/ncr-forms` },
+    { "@type": "ListItem", position: 3, name: "NCR Forms & Carbonless Paper", item: `${SITE.domain}/products/ncr-forms` },
     { "@type": "ListItem", position: 4, name: "NCR Invoice Books", item: `${SITE.domain}/products/ncr-invoice-books` },
   ],
-};
-
-const productSchema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  name: "Carbonless NCR Invoice Books & Forms",
-  description: "Carbonless NCR invoice books and forms in 2-part and 3-part, numbered, tax-ready, with custom logo and fields, as loose sets or bound books.",
-  brand: { "@type": "Brand", name: SITE.name },
-  manufacturer: { "@id": `${SITE.domain}/#organization` },
-  image: NCR_FORMS_IMG,
-  url: `${SITE.domain}/products/ncr-invoice-books`,
-  additionalProperty: specs.map(({ label, value }) => ({ "@type": "PropertyValue", name: label, value })),
 };
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to order wholesale NCR invoice books",
+  description:
+    "Define the invoice copy workflow, approve the book format, confirm artwork and number rules, approve proof and packing, and record one specification for repeat orders.",
+  step: invoiceBookOrderSteps.map((item, index) => ({
+    "@type": "HowToStep",
+    position: index + 1,
+    name: item.title,
+    text: item.text,
+  })),
 };
 
 export default async function NcrInvoiceBooksPage() {
-  const ncrImg = r2Image(await getSlotImage("ncr-forms:hero", NCR_FORMS_IMG));
+  const images = await getSlotImages([
+    { slot: "ncr-invoice-books:hero", fallback: INVOICE_HERO_IMAGE },
+    { slot: "ncr-invoice-books:overview", fallback: INVOICE_OVERVIEW_IMAGE },
+    { slot: "ncr-invoice-books:buyer-risk", fallback: INVOICE_RISK_IMAGE },
+    { slot: "ncr-invoice-books:2-part", fallback: INVOICE_2_PART_IMAGE },
+    { slot: "ncr-invoice-books:3-part", fallback: INVOICE_3_PART_IMAGE },
+    { slot: "ncr-invoice-books:private-label", fallback: INVOICE_PRIVATE_LABEL_IMAGE },
+    { slot: "ncr-invoice-books:production", fallback: INVOICE_PRODUCTION_IMAGE },
+    { slot: "ncr-invoice-books:packing", fallback: INVOICE_PACKING_IMAGE },
+  ]);
 
-  const products = [
-    { title: "2-Part Invoice Books", desc: "Customer original plus an accounts copy — the standard duplicate invoice book.", image: ncrImg, href: "/products/ncr-forms/2-part", badge: "Duplicate" },
-    { title: "3-Part Invoice Books", desc: "Customer, accounts, and warehouse / file copies for fuller records.", image: ncrImg, href: "/products/ncr-forms/3-part", badge: "Triplicate" },
-    { title: "Loose Invoice Sets", desc: "Pre-collated loose sets for printer or system invoicing.", image: ncrImg, href: "/products/custom-ncr-forms", badge: "Loose Sets" },
-    { title: "Custom Printed Invoices", desc: "Tax-ready layout, logo, and fields with numbering. OEM & private label.", image: ncrImg, href: "/products/custom-ncr-forms", badge: "Custom" },
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": `${SITE.domain}/products/ncr-invoice-books#product`,
+    name: "Wholesale NCR Invoice Books",
+    alternateName: [
+      "Carbonless Invoice Books",
+      "Duplicate Invoice Books",
+      "Triplicate Invoice Books",
+      "Private-Label Invoice Books",
+    ],
+    description: pageDescription,
+    url: `${SITE.domain}/products/ncr-invoice-books`,
+    image: [
+      images["ncr-invoice-books:hero"],
+      images["ncr-invoice-books:2-part"],
+      images["ncr-invoice-books:3-part"],
+      images["ncr-invoice-books:private-label"],
+    ],
+    category: "NCR / Carbonless Invoice Books",
+    brand: { "@type": "Brand", name: SITE.name },
+    manufacturer: { "@id": `${SITE.domain}/#organization` },
+    audience: {
+      "@type": "BusinessAudience",
+      audienceType:
+        "Overseas distributors, commercial printing companies, stationery wholesalers, and repeat procurement programs",
+    },
+    additionalProperty: invoiceBookSpecifications.map(({ label, value }) => ({
+      "@type": "PropertyValue",
+      name: label,
+      value,
+    })),
+  };
+
+  const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent(
+    "Hello, I need wholesale pricing for NCR invoice books. I can send our buyer type, 2-part or 3-part copy roles, size, sets per book, number rules, binding, cover, artwork, quantity, packing, destination, and repeat-order plan.",
+  )}`;
+
+  const programs = [
+    {
+      title: "Duplicate Invoice Book Range",
+      description:
+        "A 2-part program with a customer original and one retained copy, configured for common local invoice sizes and resale demand.",
+      image: images["ncr-invoice-books:2-part"],
+      imageAlt: "Duplicate 2-part NCR invoice book program",
+      href: "/products/ncr-forms/2-part",
+      useCase: "Best for retail invoicing, service businesses, field sales, and high-volume stationery ranges.",
+    },
+    {
+      title: "Triplicate Controlled-Copy Books",
+      description:
+        "A 3-part program with a third record for accounts, operations, warehouse, branch control, or another recipient.",
+      image: images["ncr-invoice-books:3-part"],
+      imageAlt: "Triplicate 3-part NCR invoice book program",
+      href: "/products/ncr-forms/3-part",
+      useCase: "Best for distribution, logistics, repair, rentals, and multi-department invoice workflows.",
+    },
+    {
+      title: "Loose and Padded Invoice Sets",
+      description:
+        "Pre-collated loose or padded carbonless sets for desk, field, typewriter, impact printer, or system-based invoicing.",
+      image: images["ncr-invoice-books:overview"],
+      imageAlt: "Loose and padded carbonless invoice form sets",
+      href: "/products/custom-ncr-forms",
+      useCase: "Best for commercial printers, system invoicing, and buyers that do not need a retained bound copy.",
+    },
+    {
+      title: "Private-Label Invoice Books",
+      description:
+        "Distributor covers, local fields, languages, number rules, book labels, inner packs, and carton references under one SKU.",
+      image: images["ncr-invoice-books:private-label"],
+      imageAlt: "Custom invoice layout prepared for private-label production",
+      href: "/oem/packaging",
+      useCase: "Best for stationery brands, office-supply distributors, wholesalers, and country-specific resale ranges.",
+    },
   ];
 
-  const browseSections: ShowcaseBrowseSection[] = [
+  const useCases = [
     {
-      title: "Related NCR Form Types",
-      description: "Need receipts, delivery notes, or another document? Explore the full NCR range.",
-      cards: [
-        { image: ncrImg, title: "NCR Receipt Books", desc: "Bound carbonless receipt books for counters and field sales.", href: "/products/ncr-receipt-books", badge: "Receipts" },
-        { image: ncrImg, title: "Delivery Note Forms", desc: "Multi-copy delivery notes and waybills for dispatch and signature.", href: "/products/delivery-note-forms", badge: "Logistics" },
-        { image: ncrImg, title: "Custom NCR Forms", desc: "Loose sets and books in 2/3/4-part with custom printing.", href: "/products/custom-ncr-forms", badge: "Custom" },
-        { image: ncrImg, title: "NCR Forms & Business Forms", desc: "The full carbonless and business-forms overview.", href: "/products/ncr-forms", badge: "Overview" },
-      ],
+      title: "Stationery Wholesale Ranges",
+      description:
+        "Standard duplicate and triplicate SKUs with local sizes, common fields, controlled numbering, private-label covers, and export carton data.",
+      image: USE_CASE_IMAGES.stationery,
+      imageAlt: "Business invoice documents prepared for a stationery wholesale range",
+    },
+    {
+      title: "Commercial Printer Outsourcing",
+      description:
+        "Outsource collating, numbering, perforation, covers, and binding when internal finishing capacity is constrained.",
+      image: USE_CASE_IMAGES.tradePrinter,
+      imageAlt: "Commercial printing and finishing equipment for invoice books",
+    },
+    {
+      title: "Field Sales and Service",
+      description:
+        "Portable books for technicians, repair teams, agents, rentals, utilities, and customer invoicing away from a fixed counter.",
+      image: USE_CASE_IMAGES.fieldService,
+      imageAlt: "Field service business using a controlled invoice book",
+    },
+    {
+      title: "Multi-Branch Invoice Control",
+      description:
+        "Allocate number ranges, book labels, and cartons by branch, region, warehouse, or franchise while retaining one approved SKU specification.",
+      image: USE_CASE_IMAGES.multiBranch,
+      imageAlt: "Export container transport supporting multi-branch invoice book distribution",
     },
   ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <ProductCategoryShowcaseTemplate
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "NCR Forms", href: "/products/ncr-forms" }, { label: "NCR Invoice Books" }]}
-        heroImage={ncrImg}
-        heroBadge={{ text: "Tax-Ready Carbonless Invoices", color: "amber" }}
-        title={<>NCR Invoice Books<br /><span className="text-amber-400">Carbonless Invoice Forms</span></>}
-        subtitle="Factory-direct carbonless NCR invoice books and forms — 2-part and 3-part, numbered and tax-ready, with your logo and fields, as bound books or loose sets, for distributors, retailers, and accounts teams."
-        trustBadges={["2 / 3-Part", "Tax-Ready Layout", "Sequential Numbering", "Books or Loose Sets"]}
-        stats={[
-          { value: "2 / 3-Part", label: "Copies per Set" },
-          { value: "Numbered", label: "Audit-Ready" },
-          { value: "Custom", label: "Layout & Fields" },
-          { value: "24h", label: "Quote Response" },
-        ]}
-        ctas={[
-          { label: "Get Invoice Book Pricing", href: "#inquiry", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
-          { label: "WhatsApp for Quote", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need pricing for carbonless NCR invoice books / forms. Please advise parts, format, and printing.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
-        ]}
-        introSplit={{
-          title: "Carbonless Invoice Books From One Factory",
-          lead: "Write or print once and every copy is made — original to the customer, copies for accounts and your files. We print, number, and bind invoice books in-house at factory-direct pricing.",
-          bullets: [
-            "2-part (duplicate) & 3-part (triplicate)",
-            "Tax-ready layout, logo & line-item fields",
-            "Sequential numbering for audit & filing",
-            "Bound books, padded sets, or loose sets",
-          ],
-          image: ncrImg,
-          imageAlt: "Carbonless NCR invoice books",
-          cta: { label: "Send Inquiry Now", href: "#inquiry" },
-        }}
-        overview={{
-          title: "Carbonless NCR Invoice Books & Forms",
-          paragraphs: [
-            "An NCR invoice book is a bound or padded set of carbonless invoices — write or print once and the copy transfers to the sheets below with no carbon paper. The original goes to the customer while copies stay for accounts and your records.",
-            "2-part (duplicate) keeps a customer and an accounts copy; 3-part (triplicate) adds a warehouse or file copy. We pre-print a tax-ready layout with your logo, company and tax details, and line-item fields, and add sequential numbering for clean audit and filing.",
-            "Bound books suit handwritten or counter invoicing, while loose collated sets suit printer or system invoicing — we supply both, plus padded sets, and export worldwide on FOB, CIF, and DDP terms at wholesale pricing.",
-          ],
-        }}
-        featureSplit={{
-          title: "Bound Books or Loose Sets",
-          lead: "Match the format to how you invoice — bound for the counter, loose sets for system printing.",
-          bullets: [
-            "Bound books for handwritten / counter invoicing",
-            "Loose collated sets for printer / system use",
-            "Padded sets for desk and field use",
-            "Numbered and perforated for clean records",
-          ],
-          image: ncrImg,
-          imageAlt: "Bound and loose carbonless invoice sets",
-          cta: { label: "Talk to a Specialist", href: "#inquiry" },
-        }}
-        productsTitle="Invoice Book Options"
-        productsDescription="Duplicate, triplicate, loose sets, and custom printed invoices — numbered and tax-ready."
-        products={products}
-        browseSections={browseSections}
-        comparison={{
-          title: "2-Part vs 3-Part Invoice Books",
-          headers: { left: "2-Part (Duplicate)", right: "3-Part (Triplicate)" },
-          rows: [
-            { factor: "Copies", left: "Customer + accounts", right: "Customer + accounts + file/warehouse" },
-            { factor: "Best for", left: "Simple invoicing", right: "Fuller record & dispatch trail" },
-            { factor: "Ply colors", left: "White + color copy", right: "White + 2 color copies" },
-            { factor: "Format", left: "Books or loose sets", right: "Books or loose sets" },
-            { factor: "Numbering", left: "Sequential", right: "Sequential" },
-          ],
-        }}
-        specs={{
-          title: "Specifications",
-          rows: specs,
-          note: "* Tax-ready layouts, custom sizes, and binding available on request.",
-        }}
-        whyUs={{
-          title: "Why Source Invoice Books From the Factory",
-          subtitle: "In-house printing, numbering, and binding for tax-ready carbonless invoices.",
-          items: [
-            { icon: <Factory />, title: "True Factory-Direct", text: "No middleman — printed, numbered, and bound in our own factory." },
-            { icon: <BookOpen />, title: "Books or Loose Sets", text: "Bound, padded, or loose collated sets to match how you invoice." },
-            { icon: <Boxes />, title: "Duplicate or Triplicate", text: "2-part and 3-part carbonless with configurable copy colors." },
-            { icon: <ShieldCheck />, title: "Numbered & Tax-Ready", text: "Sequential numbering and tax-ready layout for audit and filing." },
-            { icon: <BadgeCheck />, title: "Custom & OEM", text: "Your logo, tax details, and fields for distributors and brands." },
-            { icon: <Phone />, title: "Fast Quotes", text: "Send your layout and quantity for pricing within 24 hours." },
-          ],
-        }}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <NcrInvoiceBooksCatalogPage
+        heroImage={images["ncr-invoice-books:hero"]}
+        overviewImage={images["ncr-invoice-books:overview"]}
+        buyerRiskImage={images["ncr-invoice-books:buyer-risk"]}
+        productionImage={images["ncr-invoice-books:production"]}
+        packingImage={images["ncr-invoice-books:packing"]}
+        whatsappHref={whatsappHref}
+        programs={programs}
+        useCases={useCases}
         faqs={faqs}
-        crossLinks={[
-          { label: "Custom NCR Forms", href: "/products/custom-ncr-forms" },
-          { label: "NCR Receipt Books", href: "/products/ncr-receipt-books" },
-          { label: "Delivery Note Forms", href: "/products/delivery-note-forms" },
-          { label: "OEM & Private Label", href: "/oem" },
-        ]}
-        inquiry={{
-          title: "Get an Invoice Book Quote",
-          description: "Tell us 2-part or 3-part, books or loose sets, size, layout, and quantity — we'll quote within 24 hours.",
-        }}
       />
     </>
   );

@@ -36,6 +36,20 @@ const NCR_RECEIPT_PRIVATE_LABEL_IMAGE =
   "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1000&q=82";
 const NCR_RECEIPT_PACKING_IMAGE =
   "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1000&q=82";
+const NCR_INVOICE_HERO_IMAGE =
+  "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=82";
+const NCR_INVOICE_OVERVIEW_IMAGE =
+  "/images/ncr-invoice-books/numbered-multipart-invoice-book.webp";
+const NCR_INVOICE_RISK_IMAGE =
+  "/images/ncr-invoice-books/numbered-multipart-invoice-book.webp";
+const NCR_INVOICE_2_PART_IMAGE =
+  "/images/ncr-invoice-books/custom-order-form-pad.webp";
+const NCR_INVOICE_3_PART_IMAGE =
+  "/images/ncr-invoice-books/triplicate-order-form-book.webp";
+const NCR_INVOICE_PRIVATE_LABEL_IMAGE =
+  "/images/ncr-invoice-books/custom-carbonless-invoice-book.webp";
+const NCR_INVOICE_PACKING_IMAGE =
+  "/uploads/images/1778755819135-456d030e-f44b-453b-86bb-69c736ef4e12-32b6c697519b48fc814b3a4712323de2.webp";
 const AUTO_REPAIR_INSPECTION_IMAGE =
   "https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1000&q=82";
 const AUTO_REPAIR_ORDER_IMAGE =
@@ -282,6 +296,14 @@ const exactDefaults: Record<string, string> = {
   "ncr-receipt-books:private-label": NCR_RECEIPT_PRIVATE_LABEL_IMAGE,
   "ncr-receipt-books:production": FACTORY_IMAGE,
   "ncr-receipt-books:packing": NCR_RECEIPT_PACKING_IMAGE,
+  "ncr-invoice-books:hero": NCR_INVOICE_HERO_IMAGE,
+  "ncr-invoice-books:overview": NCR_INVOICE_OVERVIEW_IMAGE,
+  "ncr-invoice-books:buyer-risk": NCR_INVOICE_RISK_IMAGE,
+  "ncr-invoice-books:2-part": NCR_INVOICE_2_PART_IMAGE,
+  "ncr-invoice-books:3-part": NCR_INVOICE_3_PART_IMAGE,
+  "ncr-invoice-books:private-label": NCR_INVOICE_PRIVATE_LABEL_IMAGE,
+  "ncr-invoice-books:production": FACTORY_IMAGE,
+  "ncr-invoice-books:packing": NCR_INVOICE_PACKING_IMAGE,
   "auto-repair-ncr-forms:inspection": AUTO_REPAIR_INSPECTION_IMAGE,
   "auto-repair-ncr-forms:repair-order": AUTO_REPAIR_ORDER_IMAGE,
   "auto-repair-ncr-forms:damage-report": AUTO_REPAIR_DAMAGE_IMAGE,
