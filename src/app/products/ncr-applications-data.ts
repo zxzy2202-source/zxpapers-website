@@ -420,11 +420,11 @@ export const ncrApplicationPages: NcrApplicationPageData[] = [
     slug: "auto-repair-ncr-forms",
     heroSlot: "ncr-applications:auto-repair-ncr-forms:hero",
     name: "Auto Repair NCR Forms",
-    metaTitle: "Auto Repair NCR Forms | Vehicle Inspection & Repair Authorization",
+    metaTitle: "Auto Repair NCR Forms | Repair Orders & Vehicle Inspection",
     metaDescription:
-      "Custom carbonless auto repair NCR forms with vehicle inspection diagrams, damage records, repair authorization, insurance copies and sequential numbering.",
+      "Custom auto repair NCR forms for vehicle intake, damage inspection, estimates and signed repair authorization, with clear customer, workshop and insurer copies.",
     keywords:
-      "auto repair NCR forms, vehicle inspection forms, repair authorization forms, carbonless auto repair work orders, vehicle damage report forms, mechanic invoice books",
+      "auto repair NCR forms, auto repair order forms, vehicle inspection forms, repair authorization forms, carbonless auto repair work orders, vehicle damage report forms, mechanic invoice books",
     heroBadge: "Repair Authorization",
     title: "Custom Auto Repair NCR Forms with",
     highlight: "Vehicle Inspection Records",
