@@ -14,6 +14,14 @@ const DETERGENT_LABELS_IMAGE =
   "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=800&q=80";
 const NCR_FORMS_IMAGE =
   "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80";
+const NCR_OVERVIEW_IMAGE =
+  "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1000&q=82";
+const NCR_BOOKS_IMAGE =
+  "https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=1000&q=82";
+const NCR_CONTINUOUS_IMAGE =
+  "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=1000&q=82";
+const NCR_DELIVERY_IMAGE =
+  "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000&q=82";
 const NCR_RECEIPT_HERO_IMAGE =
   "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=82";
 const NCR_RECEIPT_OVERVIEW_IMAGE =
@@ -28,10 +36,32 @@ const NCR_RECEIPT_PRIVATE_LABEL_IMAGE =
   "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1000&q=82";
 const NCR_RECEIPT_PACKING_IMAGE =
   "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1000&q=82";
+const AUTO_REPAIR_INSPECTION_IMAGE =
+  "https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1000&q=82";
+const AUTO_REPAIR_ORDER_IMAGE =
+  "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1000&q=82";
+const AUTO_REPAIR_DAMAGE_IMAGE =
+  "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1000&q=82";
+const AUTO_REPAIR_AUTHORIZATION_IMAGE =
+  "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1000&q=82";
+const AUTO_REPAIR_INVOICE_IMAGE =
+  "https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=1000&q=82";
 const CONTACT_IMAGE =
   "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1400&q=80";
 
 const applicationDefaults: Record<string, string> = {
+  "ncr-applications:government-ncr-forms:hero":
+    "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80",
+  "ncr-applications:port-customs-air-cargo-ncr-forms:hero":
+    "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=900&q=80",
+  "ncr-applications:field-service-ncr-forms:hero":
+    "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&q=80",
+  "ncr-applications:auto-repair-ncr-forms:hero":
+    "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=900&q=80",
+  "ncr-applications:logistics-warehouse-ncr-forms:hero":
+    "https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=80",
+  "ncr-applications:medical-pharmacy-ncr-forms:hero":
+    "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&q=80",
   "thermal-labels:applications:ecommerce":
     "https://images.unsplash.com/photo-1586880244406-556ebe35f282?w=600&q=80",
   "thermal-labels:applications:amazon":
@@ -239,6 +269,11 @@ const exactDefaults: Record<string, string> = {
   "detergent-labels:blank-hero": DETERGENT_LABELS_IMAGE,
   "detergent-labels:custom-hero": DETERGENT_LABELS_IMAGE,
   "ncr-forms:hero": NCR_FORMS_IMAGE,
+  "ncr-forms:overview": NCR_OVERVIEW_IMAGE,
+  "ncr-forms:books": NCR_BOOKS_IMAGE,
+  "ncr-forms:continuous": NCR_CONTINUOUS_IMAGE,
+  "ncr-forms:delivery": NCR_DELIVERY_IMAGE,
+  "ncr-forms:production": FACTORY_IMAGE,
   "ncr-receipt-books:hero": NCR_RECEIPT_HERO_IMAGE,
   "ncr-receipt-books:overview": NCR_RECEIPT_OVERVIEW_IMAGE,
   "ncr-receipt-books:buyer-risk": NCR_RECEIPT_RISK_IMAGE,
@@ -247,6 +282,12 @@ const exactDefaults: Record<string, string> = {
   "ncr-receipt-books:private-label": NCR_RECEIPT_PRIVATE_LABEL_IMAGE,
   "ncr-receipt-books:production": FACTORY_IMAGE,
   "ncr-receipt-books:packing": NCR_RECEIPT_PACKING_IMAGE,
+  "auto-repair-ncr-forms:inspection": AUTO_REPAIR_INSPECTION_IMAGE,
+  "auto-repair-ncr-forms:repair-order": AUTO_REPAIR_ORDER_IMAGE,
+  "auto-repair-ncr-forms:damage-report": AUTO_REPAIR_DAMAGE_IMAGE,
+  "auto-repair-ncr-forms:authorization": AUTO_REPAIR_AUTHORIZATION_IMAGE,
+  "auto-repair-ncr-forms:invoice": AUTO_REPAIR_INVOICE_IMAGE,
+  "auto-repair-ncr-forms:production": FACTORY_IMAGE,
   "oem:hero": FACTORY_IMAGE,
   "oem:case-studies-hero": FACTORY_IMAGE,
   "oem:custom-printing-hero": FACTORY_LINE_IMAGE,

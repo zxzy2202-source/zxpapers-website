@@ -1,38 +1,91 @@
 import type { Metadata } from "next";
-import { BadgeCheck, Boxes, Factory, FileText, Layers, MessageSquare, Phone, ShieldCheck, Truck } from "lucide-react";
-import { getSlotImage } from "@/lib/imageSlotUtils";
-import { r2Image } from "@/lib/r2";
+import NcrFormsCatalogPage from "@/components/products/NcrFormsCatalogPage";
 import { SITE } from "@/config/siteData";
-import ProductCategoryShowcaseTemplate from "@/components/products/ProductCategoryShowcaseTemplate";
-import type { ShowcaseBrowseSection } from "@/components/products/ProductCategoryShowcaseTemplate";
+import { getSlotImages } from "@/lib/imageSlotUtils";
 import { ncrApplicationPages } from "../ncr-applications-data";
-import { NCR_FORMS_IMG, ncrFormParts, ncrFormTypes } from "./ncr-forms-data";
+import { ncrFormParts } from "./ncr-forms-data";
+
+const NCR_HERO_IMAGE = "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1400&q=82";
+const NCR_OVERVIEW_IMAGE = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1000&q=82";
+const NCR_BOOKS_IMAGE = "https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=1000&q=82";
+const NCR_CONTINUOUS_IMAGE = "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=1000&q=82";
+const NCR_DELIVERY_IMAGE = "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000&q=82";
+const NCR_PRODUCTION_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
+
+const applicationFallbacks = {
+  "government-ncr-forms": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80",
+  "port-customs-air-cargo-ncr-forms": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=900&q=80",
+  "field-service-ncr-forms": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=900&q=80",
+  "auto-repair-ncr-forms": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=900&q=80",
+  "logistics-warehouse-ncr-forms": "https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=80",
+  "medical-pharmacy-ncr-forms": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&q=80",
+} as const;
 
 export const metadata: Metadata = {
   title: "NCR Forms & Carbonless Paper Manufacturer | Custom Printed",
-  description:
-    "Custom printed NCR carbonless forms for invoices, receipts, delivery notes, purchase orders, and logistics documents. 2-part, 3-part, 4-part and multi-part sets, books, or continuous. Custom size, numbering, logo & binding. MOQ from low volume.",
-  keywords:
-    "NCR forms, carbonless forms, NCR paper, carbonless paper, custom printed NCR forms, 2-part forms, 3-part forms, 4-part forms, carbonless invoice books, carbonless receipt books, delivery note forms, business forms, continuous form paper, NCR forms manufacturer",
+  description: "Wholesale NCR forms and carbonless paper for distributors and printers, including 2-part to 5+ part sets, books, numbering and private-label packing.",
+  keywords: "wholesale NCR forms, NCR forms manufacturer, carbonless paper supplier, NCR paper for printers, custom NCR forms, 2-part forms, 3-part forms, 4-part forms, NCR receipt books, invoice books, delivery note forms, continuous computer forms",
   alternates: { canonical: `${SITE.domain}/products/ncr-forms` },
-};
-
-// Map each document type to the most relevant part-count detail page.
-const formTypeToPart: Record<string, string> = {
-  invoice: "3-part",
-  receipt: "2-part",
-  "delivery-note": "3-part",
-  "purchase-order": "3-part",
-  waybill: "4-part",
-  business: "2-part",
+  openGraph: {
+    title: "Custom NCR Forms & Carbonless Business Forms",
+    description: "Wholesale carbonless paper and finished NCR forms for distributors, commercial printers, and repeat supply programs.",
+    url: `${SITE.domain}/products/ncr-forms`,
+    type: "website",
+    images: [{ url: NCR_HERO_IMAGE, alt: "Custom NCR forms and carbonless business documents" }],
+  },
 };
 
 const faqs = [
-  { q: "What is NCR / carbonless paper?", a: "NCR (No Carbon Required) paper, also called carbonless paper, is coated so that writing or printing on the top sheet automatically transfers to the sheets below — producing multiple copies without inserting carbon paper between them." },
-  { q: "What numbers of parts (plies) do you offer?", a: "We produce 2-part (duplicate), 3-part (triplicate), 4-part (quadruplicate), and multi-part (5+ ply) carbonless sets. The number of plies depends on how many copies each step of your workflow needs." },
-  { q: "Which business forms can you print?", a: "Invoices, receipts, delivery notes, purchase orders, sales orders, waybills and logistics forms, medical and insurance forms, and bank/financial forms — as loose sets, glued or wire-bound books, or continuous computer forms." },
-  { q: "Can you custom print our logo, fields, and numbering?", a: "Yes. Every form is fully customizable — your logo, brand colors, table fields, sequential numbering, multiple languages, paper size, ply colors, and binding (book, pad, loose set, or continuous)." },
-  { q: "What is the minimum order quantity and lead time?", a: "MOQ is available from low volume for stock formats; custom printed forms typically start around 5,000 sets. Standard production runs 10–18 days; rush orders can ship faster. We export worldwide on FOB, CIF, and DDP terms." },
+  {
+    q: "What are NCR forms?",
+    a: "NCR forms are carbonless multi-copy forms. Writing or impact printing on the coated top sheet transfers the same information to the sheets below, so several parties receive matching copies without separate carbon paper.",
+  },
+  {
+    q: "How many parts should an NCR form have?",
+    a: "Use 2-part forms when 2 parties need copies, 3-part forms for customer, accounts, and operations, and 4-part or multi-part forms when carriers, warehouses, agencies, or archives also need records. The correct part count follows the copy-distribution workflow.",
+  },
+  {
+    q: "What do CB, CFB, and CF mean in carbonless paper?",
+    a: "CB means Coated Back and is normally the top sheet. CFB means Coated Front and Back and is used for middle sheets. CF means Coated Front and is the final receiving sheet at the bottom of the set.",
+  },
+  {
+    q: "Which NCR form formats can you manufacture?",
+    a: "ZhixinPaper manufactures loose collated sets, glued pads, numbered receipt books, invoice books, delivery notes, waybills, wraparound service books, and sprocket-fed continuous computer forms.",
+  },
+  {
+    q: "Can NCR forms include custom fields, logos, and numbering?",
+    a: "Yes. Forms can include custom tables, logos, brand colors, sequential numbering, barcodes, QR codes, multilingual text, copy labels, perforation, and custom binding or packing.",
+  },
+  {
+    q: "What information is needed for an NCR form quotation?",
+    a: "Send the document use, number of parts, copy roles, size, finished format, quantity, artwork, print colors, numbering range, perforation or binding, packing request, and destination country.",
+  },
+  {
+    q: "What is the MOQ and lead time for custom NCR forms?",
+    a: "MOQ depends on size, print colors, numbering, and finishing. Custom printed orders commonly start around 5,000 sets, while some simple formats can start lower. Standard production is usually 10 to 18 business days after proof approval.",
+  },
+  {
+    q: "Do you provide a proof or sample before production?",
+    a: "Yes. A digital proof confirms the layout, copy sequence, colors, numbering, perforation, and binding. A physical sample can be arranged when copy clarity, material, or finishing must be tested before mass production.",
+  },
+  {
+    q: "Can distributors order private-label packing or plain NCR paper?",
+    a: "Yes. Distributors can request private-label cartons, packing labels, repeat-order SKU references, and export carton data. Commercial printers can request plain CB, CFB, and CF carbonless paper in sheets or reams for in-house printing.",
+  },
+];
+
+const formatCatalog = [
+  { name: "Custom Printed NCR Forms", path: "/products/custom-ncr-forms" },
+  { name: "NCR Receipt Books", path: "/products/ncr-receipt-books" },
+  { name: "NCR Invoice Books", path: "/products/ncr-invoice-books" },
+  { name: "Delivery Note Forms", path: "/products/delivery-note-forms" },
+  { name: "Continuous Computer Forms", path: "/products/continuous-computer-forms" },
+];
+
+const catalogEntries = [
+  ...ncrFormParts.map((part) => ({ name: `${part.label} NCR Forms`, path: `/products/ncr-forms/${part.slug}` })),
+  ...formatCatalog,
+  ...ncrApplicationPages.map((page) => ({ name: page.name, path: `/products/${page.slug}` })),
 ];
 
 const breadcrumbSchema = {
@@ -41,32 +94,36 @@ const breadcrumbSchema = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: SITE.domain },
     { "@type": "ListItem", position: 2, name: "Products", item: `${SITE.domain}/products` },
-    { "@type": "ListItem", position: 3, name: "NCR Forms & Business Forms", item: `${SITE.domain}/products/ncr-forms` },
+    { "@type": "ListItem", position: 3, name: "NCR Forms & Carbonless Paper", item: `${SITE.domain}/products/ncr-forms` },
   ],
 };
-
-const catalogEntries = [
-  ...ncrFormParts.map((p) => ({ name: `${p.label} NCR Forms`, path: `/products/ncr-forms/${p.slug}` })),
-  ...ncrFormTypes.map((t) => ({ name: t.label, path: `/products/ncr-forms/${formTypeToPart[t.anchor]}` })),
-  ...ncrApplicationPages.map((page) => ({ name: page.name, path: `/products/${page.slug}` })),
-];
 
 const collectionSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "NCR Forms & Business Forms",
-  description:
-    "Custom printed NCR carbonless forms and business forms for invoices, receipts, delivery notes, purchase orders, and logistics documents — 2-part, 3-part, 4-part, and multi-part sets, books, or continuous.",
+  "@id": `${SITE.domain}/products/ncr-forms#collection`,
+  name: "NCR Forms & Carbonless Business Forms",
+  description: metadata.description,
   url: `${SITE.domain}/products/ncr-forms`,
   isPartOf: { "@id": `${SITE.domain}/#website` },
+  primaryImageOfPage: { "@type": "ImageObject", url: NCR_HERO_IMAGE },
+  about: [
+    { "@type": "Thing", name: "NCR forms", alternateName: "No Carbon Required forms" },
+    { "@type": "Thing", name: "Carbonless copy paper" },
+    { "@type": "Thing", name: "Multi-part business forms" },
+  ],
+  audience: {
+    "@type": "BusinessAudience",
+    audienceType: "Distributors, commercial printers, stationery suppliers, and institutional procurement teams",
+  },
   mainEntity: {
     "@type": "ItemList",
     numberOfItems: catalogEntries.length,
-    itemListElement: catalogEntries.map((c, idx) => ({
+    itemListElement: catalogEntries.map((entry, index) => ({
       "@type": "ListItem",
-      position: idx + 1,
-      name: c.name,
-      url: `${SITE.domain}${c.path}`,
+      position: index + 1,
+      name: entry.name,
+      url: `${SITE.domain}${entry.path}`,
     })),
   },
 };
@@ -81,166 +138,98 @@ const faqSchema = {
   })),
 };
 
+const termsSchema = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  name: "NCR Carbonless Paper Layer Terms",
+  url: `${SITE.domain}/products/ncr-forms#quote-guide`,
+  hasDefinedTerm: [
+    { "@type": "DefinedTerm", name: "CB", alternateName: "Coated Back", description: "The top carbonless sheet that transfers an image to the sheet below." },
+    { "@type": "DefinedTerm", name: "CFB", alternateName: "Coated Front and Back", description: "A middle carbonless sheet that receives and transfers an image." },
+    { "@type": "DefinedTerm", name: "CF", alternateName: "Coated Front", description: "The bottom carbonless sheet that receives the transferred image." },
+  ],
+};
+
 export default async function NcrFormsPage() {
-  const ncrImg = r2Image(await getSlotImage("ncr-forms:hero", NCR_FORMS_IMG));
+  const images = await getSlotImages([
+    { slot: "ncr-forms:hero", fallback: NCR_HERO_IMAGE },
+    { slot: "ncr-forms:overview", fallback: NCR_OVERVIEW_IMAGE },
+    { slot: "ncr-forms:books", fallback: NCR_BOOKS_IMAGE },
+    { slot: "ncr-forms:continuous", fallback: NCR_CONTINUOUS_IMAGE },
+    { slot: "ncr-forms:delivery", fallback: NCR_DELIVERY_IMAGE },
+    { slot: "ncr-forms:production", fallback: NCR_PRODUCTION_IMAGE },
+    ...ncrApplicationPages.map((page) => ({
+      slot: page.heroSlot,
+      fallback: applicationFallbacks[page.slug as keyof typeof applicationFallbacks] ?? NCR_OVERVIEW_IMAGE,
+    })),
+  ]);
 
-  // Product grid = the 4 part counts, each linking to its detail page (core aggregation).
-  const products = ncrFormParts.map((p) => ({
-    title: p.label,
-    desc: p.desc,
-    image: ncrImg,
-    href: `/products/ncr-forms/${p.slug}`,
-    badge: p.badge,
-  }));
+  const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need wholesale pricing for NCR forms or carbonless paper. I can send our buyer type, product range, specifications, quantity, repeat-order plan, packing, and destination.")}`;
 
-  const browseSections: ShowcaseBrowseSection[] = [
+  const formats = [
     {
-      title: "Business Forms by Document Type",
-      description: "Carbonless forms for every business document — pick a document type, then the number of parts you need.",
-      cards: ncrFormTypes.map((t) => ({
-        image: ncrImg,
-        title: t.label,
-        desc: t.desc,
-        href: `/products/ncr-forms/${formTypeToPart[t.anchor]}`,
-        badge: "Carbonless",
-      })),
+      title: "Loose Sets & Custom Printed Forms",
+      description: "Pre-collated carbonless sets for invoices, purchase orders, work orders, vouchers, and custom business documents.",
+      image: images["ncr-forms:overview"],
+      imageAlt: "Loose custom printed NCR carbonless form sets",
+      links: [{ label: "Custom NCR Forms", href: "/products/custom-ncr-forms" }],
     },
     {
-      title: "Choose Your Finished Format",
-      description: "The same form, supplied the way your workflow needs it.",
-      cards: [
-        { image: ncrImg, title: "Loose Sets & Custom Forms", desc: "Pre-collated loose sets for batch office or system printing — fully custom.", href: "/products/custom-ncr-forms", badge: "Sets" },
-        { image: ncrImg, title: "NCR Receipt Books", desc: "Bound carbonless receipt books, numbered and perforated, for counters and field sales.", href: "/products/ncr-receipt-books", badge: "Books" },
-        { image: ncrImg, title: "NCR Invoice Books", desc: "Carbonless invoice books and forms, numbered and tax-ready.", href: "/products/ncr-invoice-books", badge: "Invoices" },
-        { image: ncrImg, title: "Continuous Computer Forms", desc: "Sprocket-fed fanfold paper for dot-matrix, ERP, and logistics systems.", href: "/products/continuous-computer-forms", badge: "Continuous" },
-        { image: ncrImg, title: "Delivery Note Forms", desc: "Multi-copy delivery notes and waybills for dispatch and signature.", href: "/products/delivery-note-forms", badge: "Logistics" },
-        { image: ncrImg, title: "Custom Printed NCR Forms", desc: "Your logo, fields, numbering, and binding — fully bespoke business forms.", href: "/products/custom-ncr-forms", badge: "OEM" },
+      title: "Receipt & Invoice Books",
+      description: "Numbered, perforated, glued, stitched, or wraparound books for counters, field sales, service teams, and invoicing.",
+      image: images["ncr-forms:books"],
+      imageAlt: "Numbered NCR receipt and invoice books",
+      links: [
+        { label: "Receipt Books", href: "/products/ncr-receipt-books" },
+        { label: "Invoice Books", href: "/products/ncr-invoice-books" },
       ],
     },
     {
-      title: "Applications by Industry",
-      description: "Carbonless forms tuned to real business actions, copy distribution and inquiry intent.",
-      cards: ncrApplicationPages.map((page) => ({
-        image: ncrImg,
-        title: page.name,
-        desc: page.metaDescription,
-        href: `/products/${page.slug}`,
-        badge: "Application",
-        ctaLabel: "View Application",
-        ctaHref: `/products/${page.slug}`,
-      })),
+      title: "Delivery Notes & Waybills",
+      description: "Multi-copy dispatch, proof-of-delivery, goods-received, cargo handover, and warehouse documents with signature fields.",
+      image: images["ncr-forms:delivery"],
+      imageAlt: "Logistics workflow for NCR delivery notes and waybills",
+      links: [{ label: "Delivery Note Forms", href: "/products/delivery-note-forms" }],
+    },
+    {
+      title: "Continuous Computer Forms",
+      description: "Fanfold, pin-feed, or tractor-feed forms for dot-matrix printers, ERP systems, warehouses, banks, and logistics operations.",
+      image: images["ncr-forms:continuous"],
+      imageAlt: "Continuous computer forms for impact and dot-matrix printing",
+      links: [{ label: "Continuous Forms", href: "/products/continuous-computer-forms" }],
     },
   ];
+
+  const applications = ncrApplicationPages.map((page) => ({
+    title: page.name,
+    description: page.metaDescription,
+    href: `/products/${page.slug}`,
+    image: images[page.heroSlot],
+    imageAlt: `${page.name} workflow using custom carbonless forms`,
+  }));
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <ProductCategoryShowcaseTemplate
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "NCR Forms & Business Forms" }]}
-        heroImage={ncrImg}
-        heroBadge={{ text: "Custom Carbonless Forms", color: "amber" }}
-        title={<>NCR Forms &amp;<br /><span className="text-amber-400">Carbonless Business Documents</span></>}
-        subtitle="Custom printed NCR (carbonless) forms for invoices, receipts, delivery notes, purchase orders, and logistics — in 2-part, 3-part, 4-part, and multi-part sets, as loose sets, bound books, or continuous, with numbering, logo printing, and binding."
-        trustBadges={["2/3/4-Part", "Custom Numbering", "Logo Printing", "Books or Sets"]}
-        stats={[
-          { value: "2–5+", label: "Parts / Plies" },
-          { value: "Custom", label: "Numbering & Fields" },
-          { value: "OEM", label: "Logo Printing" },
-          { value: "24h", label: "Quote Response" },
-        ]}
-        ctas={[
-          { label: "Get NCR Form Pricing", href: "#inquiry", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
-          { label: "View Custom NCR Forms", href: "/products/custom-ncr-forms", variant: "outline" },
-        ]}
-        introSplit={{
-          title: "Carbonless Business Forms From One Factory",
-          lead: "Write or print once and every copy is made — no carbon paper. We print, collate, number, and bind NCR forms in-house at factory-direct pricing.",
-          bullets: [
-            "2-part, 3-part, 4-part & multi-part sets",
-            "Invoices, receipts, delivery notes, POs & waybills",
-            "Loose sets, books/pads, or continuous forms",
-            "Custom size, numbering, logo & ply colors",
-          ],
-          image: ncrImg,
-          imageAlt: "Custom printed NCR carbonless business forms",
-          cta: { label: "Send Inquiry Now", href: "#inquiry" },
-        }}
-        overview={{
-          title: "Custom NCR Forms & Carbonless Paper",
-          paragraphs: [
-            "ZhixinPaper manufactures NCR (No Carbon Required) carbonless forms and business documents — invoices, receipts, delivery notes, purchase orders, sales orders, waybills, medical and insurance forms, and bank vouchers — printed, collated, numbered, and bound in our own factory.",
-            "Choose the number of parts your workflow needs: 2-part (duplicate), 3-part (triplicate), 4-part (quadruplicate), or multi-part (5+ ply). Forms are supplied as loose collated sets, glued or wire-bound books and pads, or sprocket-fed continuous computer forms for impact printers.",
-            "Every form is fully customizable — your logo, table fields, sequential numbering, ply colors, languages, paper size, and binding. We also supply plain carbonless paper (NCR paper) for in-house printing, and export worldwide on FOB, CIF, and DDP terms at wholesale pricing.",
-          ],
-        }}
-        featureSplit={{
-          title: "Custom Printed Forms or Plain Carbonless Paper",
-          lead: "Order finished, branded forms ready to use — or plain carbonless (NCR) paper to print your own forms in-house.",
-          bullets: [
-            "Custom printed: logo, fields, numbering & binding",
-            "Plain carbonless paper (CB / CFB / CF) sheets & reams",
-            "Sequential numbering and barcoding",
-            "Multi-language and GHS / regulatory text",
-          ],
-          image: ncrImg,
-          imageAlt: "Custom printed and plain carbonless NCR paper",
-          cta: { label: "Discuss Your Project", href: "#inquiry" },
-        }}
-        productsTitle="Choose Your Number of Parts"
-        productsDescription="Pick the number of carbonless copies your workflow needs — each links to full specs and use cases."
-        products={products}
-        browseSections={browseSections}
-        comparison={{
-          title: "Loose Sets vs Bound Books",
-          headers: { left: "Loose NCR Sets", right: "NCR Books / Pads" },
-          rows: [
-            { factor: "Best for", left: "Batch office use & system printing", right: "Field sales, receipts & order pads" },
-            { factor: "Format", left: "Pre-collated loose sets", right: "Glued / wire / stitched with perforation" },
-            { factor: "Numbering", left: "Sequential per set", right: "Sequential per book" },
-            { factor: "MOQ", left: "From low volume", right: "From ~5,000 sets" },
-            { factor: "Lead time", left: "10–18 days", right: "10–18 days" },
-          ],
-        }}
-        specs={{
-          title: "Standard Specifications",
-          rows: [
-            { label: "Paper", value: "Carbonless (CB / CFB / CF) 50–60 gsm, wood-free" },
-            { label: "Plies", value: "2-part, 3-part, 4-part, or multi-part (5+)" },
-            { label: "Ply Colors", value: "White, pink, yellow, blue, green (configurable per copy)" },
-            { label: "Format", value: "Loose sets, books/pads, or continuous (sprocket-fed)" },
-            { label: "Binding", value: "Glue, wire-O, stitched, or padded with tear-off perforation" },
-            { label: "Numbering", value: "Sequential / custom numbering, barcoding optional" },
-            { label: "Printing", value: "1–4 color offset; custom logo, fields, and languages" },
-            { label: "Size", value: "A4, A5, A6, letter, or custom dimensions" },
-            { label: "MOQ", value: "From low volume; custom printing from ~5,000 sets" },
-            { label: "Lead Time", value: "10–18 days (standard); rush available" },
-          ],
-        }}
-        whyUs={{
-          title: "Why Source NCR Forms From the Factory",
-          subtitle: "In-house printing, collating, numbering, and binding — at true factory-direct pricing.",
-          items: [
-            { icon: <Factory />, title: "True Factory-Direct", text: "No middleman — printed, collated, numbered, and bound in our own factory." },
-            { icon: <Layers />, title: "Any Number of Parts", text: "2-part to multi-part (5+ ply) carbonless sets for any workflow." },
-            { icon: <FileText />, title: "Every Business Form", text: "Invoices, receipts, delivery notes, POs, waybills, and office records." },
-            { icon: <Boxes />, title: "Books, Sets or Continuous", text: "Loose sets, bound books/pads, or sprocket-fed continuous forms." },
-            { icon: <ShieldCheck />, title: "Certified Production", text: "ISO 9001:2015 production with sequential numbering and QC." },
-            { icon: <Truck />, title: "Global Export", text: "FOB, CIF, and DDP worldwide with full export documentation." },
-          ],
-        }}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(termsSchema) }} />
+      <NcrFormsCatalogPage
+        heroImage={images["ncr-forms:hero"]}
+        overviewImage={images["ncr-forms:overview"]}
+        productionImage={images["ncr-forms:production"]}
+        whatsappHref={whatsappHref}
+        parts={ncrFormParts.map((part) => ({
+          label: part.label,
+          href: `/products/ncr-forms/${part.slug}`,
+          badge: part.badge,
+          desc: part.desc,
+          copies: part.copies,
+          bestFor: part.bestFor,
+        }))}
+        formats={formats}
+        applications={applications}
         faqs={faqs}
-        crossLinks={[
-          { label: "Custom NCR Forms", href: "/products/custom-ncr-forms" },
-          { label: "2-Part / 3-Part / 4-Part", href: "/products/ncr-forms/3-part" },
-          { label: "Thermal Paper Rolls", href: "/products/thermal-paper-rolls" },
-          { label: "OEM & Private Label", href: "/oem" },
-        ]}
-        inquiry={{
-          title: "Get NCR Form Pricing",
-          description: "Tell us your document type, number of parts, quantities, and binding — we'll send wholesale pricing within 24 hours.",
-        }}
       />
     </>
   );

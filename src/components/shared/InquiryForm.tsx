@@ -117,6 +117,9 @@ export default function InquiryForm({ productName, compact, initialMessage, form
     const validationErrors = validate(data);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      requestAnimationFrame(() => {
+        form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
+      });
       return;
     }
     setErrors({});
@@ -150,13 +153,14 @@ export default function InquiryForm({ productName, compact, initialMessage, form
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center justify-center py-8 text-center border border-slate-200 rounded-lg bg-slate-50">
+      <div role="status" aria-live="polite" className="flex flex-col items-center justify-center py-8 text-center border border-slate-200 rounded-lg bg-slate-50">
         <div className="w-14 h-14 bg-white border border-slate-200 rounded-md flex items-center justify-center mb-4">
-          <CheckCircle className="w-7 h-7 text-amber-500" />
+          <CheckCircle className="w-7 h-7 text-amber-500" aria-hidden="true" />
         </div>
         <h3 className="font-semibold text-slate-900 mb-1 text-lg">Inquiry Sent</h3>
         <p className="text-sm text-slate-600 mb-4">We&apos;ll respond within 12 hours.</p>
         <Button
+          type="button"
           variant="link"
           onClick={() => setStatus("idle")}
           className="text-xs text-brand-navy"
@@ -172,7 +176,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
       ref={formRef}
       onSubmit={handleSubmit}
       noValidate
-      className={`space-y-3 transition-all duration-300 ${highlighted ? "ring-2 ring-brand-navy rounded-md p-3 bg-slate-50" : ""}`}
+      className={`space-y-3 ${highlighted ? "ring-2 ring-brand-navy rounded-md p-3 bg-slate-50" : ""}`}
     >
       {!compact && (
         <h3 className="text-lg font-semibold tracking-[-0.02em] text-slate-900 mb-4">
@@ -182,7 +186,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
 
       {status === "error" && (
         <div role="alert" className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg px-3 py-2.5 text-sm text-red-700">
-          <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+          <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden="true" />
           <span>Something went wrong. Please try again or contact us directly at <a href={`mailto:${SITE.email}`} className="underline">{SITE.email}</a>.</span>
         </div>
       )}
@@ -196,7 +200,8 @@ export default function InquiryForm({ productName, compact, initialMessage, form
             id="inquiry-name"
             type="text"
             name="name"
-            placeholder="Your full name"
+            autoComplete="name"
+            placeholder="Your full name…"
             required
             aria-invalid={errors.name ? true : undefined}
             aria-describedby={errors.name ? "inquiry-name-error" : undefined}
@@ -212,7 +217,10 @@ export default function InquiryForm({ productName, compact, initialMessage, form
             id="inquiry-email"
             type="email"
             name="email"
-            placeholder="you@company.com"
+            inputMode="email"
+            autoComplete="email"
+            spellCheck={false}
+            placeholder="you@company.com…"
             required
             aria-invalid={errors.email ? true : undefined}
             aria-describedby={errors.email ? "inquiry-email-error" : undefined}
@@ -230,7 +238,8 @@ export default function InquiryForm({ productName, compact, initialMessage, form
           id="inquiry-company"
           type="text"
           name="company"
-          placeholder="Your company"
+          autoComplete="organization"
+          placeholder="Your company…"
         />
       </div>
 
@@ -242,7 +251,8 @@ export default function InquiryForm({ productName, compact, initialMessage, form
           id="inquiry-country"
           type="text"
           name="country"
-          placeholder="Country or region"
+          autoComplete="country-name"
+          placeholder="Country or region…"
           required
           defaultValue={defaultCountry}
           key={defaultCountry} // Force re-render when defaultCountry is set
@@ -261,7 +271,9 @@ export default function InquiryForm({ productName, compact, initialMessage, form
           id="inquiry-phone"
           type="tel"
           name="phone"
-          placeholder="Phone / WhatsApp"
+          inputMode="tel"
+          autoComplete="tel"
+          placeholder="Phone / WhatsApp…"
         />
       </div>
 
@@ -273,8 +285,9 @@ export default function InquiryForm({ productName, compact, initialMessage, form
           ref={messageRef}
           id="inquiry-message"
           name="message"
+          autoComplete="off"
           rows={compact ? 3 : 4}
-          placeholder={`Message${productName ? ` about ${productName}` : ""} — quantity, size, customization...`}
+          placeholder={`Message${productName ? ` about ${productName}` : ""}: quantity, size, customization…`}
           aria-invalid={errors.message ? true : undefined}
           aria-describedby={errors.message ? "inquiry-message-error" : undefined}
           className={`resize-none ${errors.message ? errorInputClass : ""}`}
@@ -290,17 +303,17 @@ export default function InquiryForm({ productName, compact, initialMessage, form
       >
         {status === "submitting" ? (
           <>
-            <Loader2 className="w-4 h-4 animate-spin" />
-            Sending...
+            <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+            Sending…
           </>
         ) : (
           <>
-            <Send className="w-4 h-4" />
+            <Send className="w-4 h-4" aria-hidden="true" />
             Send Inquiry
           </>
         )}
       </Button>
-      <p className="text-xs text-slate-500 text-center">Response within 12 hours · NDA available · No spam</p>
+      <p className="text-xs text-slate-500 text-center">Response within 12 hours. NDA available. No spam.</p>
     </form>
   );
 }
