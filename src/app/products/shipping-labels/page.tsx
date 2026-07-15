@@ -15,8 +15,7 @@ import { getSlotImages } from "@/lib/imageSlotUtils";
 const PAGE_DESCRIPTION =
   "Bulk direct thermal shipping labels for 3PL and warehouse operations, including 4x6 rolls and fanfold, printer matching, adhesive selection, pallet packing, samples, and repeat-order control.";
 
-const THERMAL_LABELS_IMAGE =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
+const SHIPPING_LABELS_IMAGE = "/images/shipping-labels/shipping-labels-hero.webp";
 const FACTORY_LINE_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
 
@@ -275,7 +274,7 @@ const howToSchema = {
 
 export default async function ShippingLabelsPage() {
   const images = await getSlotImages([
-    { slot: "shipping-labels:hero", fallback: THERMAL_LABELS_IMAGE },
+    { slot: "shipping-labels:hero", fallback: SHIPPING_LABELS_IMAGE },
     {
       slot: "shipping-labels:overview",
       fallback: "https://images.unsplash.com/photo-1586880244406-556ebe35f282?w=1200&q=80",
@@ -286,11 +285,11 @@ export default async function ShippingLabelsPage() {
     },
     {
       slot: "shipping-labels:rolls",
-      fallback: THERMAL_LABELS_IMAGE,
+      fallback: SHIPPING_LABELS_IMAGE,
     },
     {
       slot: "shipping-labels:fanfold",
-      fallback: THERMAL_LABELS_IMAGE,
+      fallback: SHIPPING_LABELS_IMAGE,
     },
     {
       slot: "shipping-labels:applications",
@@ -377,7 +376,9 @@ export default async function ShippingLabelsPage() {
     name: "Direct Thermal Shipping Labels",
     description: PAGE_DESCRIPTION,
     url: `${SITE.domain}/products/shipping-labels`,
-    image: images["shipping-labels:hero"],
+    image: images["shipping-labels:hero"].startsWith("/")
+      ? `${SITE.domain}${images["shipping-labels:hero"]}`
+      : images["shipping-labels:hero"],
     brand: { "@type": "Brand", name: "ZhixinPaper" },
     manufacturer: { "@type": "Organization", name: "Xi'an Zhi Xin Paper Co., Ltd." },
     category: "Direct thermal shipping labels",
