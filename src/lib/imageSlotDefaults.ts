@@ -8,6 +8,20 @@ const THERMAL_ROLLS_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
 const THERMAL_LABELS_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
+const SHIPPING_LABELS_HERO_IMAGE = THERMAL_LABELS_IMAGE;
+const SHIPPING_LABELS_OVERVIEW_IMAGE =
+  "https://images.unsplash.com/photo-1586880244406-556ebe35f282?w=1200&q=80";
+const SHIPPING_LABELS_RISK_IMAGE =
+  "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&q=80";
+const SHIPPING_LABELS_ROLL_IMAGE =
+  "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1200&q=80";
+const SHIPPING_LABELS_FANFOLD_IMAGE =
+  "https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=1200&q=80";
+const SHIPPING_LABELS_APPLICATION_IMAGE =
+  "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200&q=80";
+const SHIPPING_LABELS_QUALITY_IMAGE = FACTORY_LINE_IMAGE;
+const SHIPPING_LABELS_PACKING_IMAGE =
+  "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&q=80";
 const CAN_LABELS_IMAGE =
   "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80";
 const DETERGENT_LABELS_IMAGE =
@@ -275,6 +289,14 @@ const exactDefaults: Record<string, string> = {
   "thermal-labels:hero": THERMAL_LABELS_IMAGE,
   "thermal-labels:blank-hero": THERMAL_LABELS_IMAGE,
   "thermal-labels:custom-hero": THERMAL_LABELS_IMAGE,
+  "shipping-labels:hero": SHIPPING_LABELS_HERO_IMAGE,
+  "shipping-labels:overview": SHIPPING_LABELS_OVERVIEW_IMAGE,
+  "shipping-labels:failure-risks": SHIPPING_LABELS_RISK_IMAGE,
+  "shipping-labels:rolls": SHIPPING_LABELS_ROLL_IMAGE,
+  "shipping-labels:fanfold": SHIPPING_LABELS_FANFOLD_IMAGE,
+  "shipping-labels:applications": SHIPPING_LABELS_APPLICATION_IMAGE,
+  "shipping-labels:quality-control": SHIPPING_LABELS_QUALITY_IMAGE,
+  "shipping-labels:packing": SHIPPING_LABELS_PACKING_IMAGE,
   "linerless-labels:hero": THERMAL_LABELS_IMAGE,
   "can-labels:hero": CAN_LABELS_IMAGE,
   "can-labels:blank-hero": CAN_LABELS_IMAGE,
