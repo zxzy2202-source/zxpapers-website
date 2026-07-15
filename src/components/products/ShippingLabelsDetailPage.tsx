@@ -198,7 +198,7 @@ export default function ShippingLabelsDetailPage({
 
       <section id="overview" className="scroll-mt-24 bg-white">
         <div className="container grid items-stretch gap-10 py-14 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-16 lg:py-20">
-          <div className="relative aspect-[4/3] min-h-[320px] overflow-hidden bg-slate-100 lg:aspect-auto">
+          <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 lg:aspect-auto lg:min-h-[320px]">
             <Image
               src={overviewImage}
               alt="Direct thermal shipping labels used in parcel fulfillment"
@@ -487,7 +487,7 @@ export default function ShippingLabelsDetailPage({
 
       <section id="quality-control" className="scroll-mt-24 bg-brand-navy text-white">
         <div className="container grid items-stretch gap-10 py-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 lg:py-20">
-          <div className="relative aspect-[4/3] min-h-[330px] overflow-hidden bg-slate-800 lg:aspect-auto">
+          <div className="relative aspect-[4/3] overflow-hidden bg-slate-800 lg:aspect-auto lg:min-h-[330px]">
             <Image
               src={qualityControlImage}
               alt="Thermal label production and quality inspection line"
