@@ -267,7 +267,7 @@ export default function ShippingLabelsDetailPage({
                   <div>
                     <div className="flex items-start justify-between gap-4">
                       <h3 className="font-sora text-lg font-semibold leading-snug text-slate-950">{title}</h3>
-                      <span className="text-xs font-semibold text-slate-400">0{index + 1}</span>
+                      <span className="text-xs font-semibold text-slate-600">0{index + 1}</span>
                     </div>
                     <dl className="mt-4 grid gap-3 text-sm leading-relaxed sm:grid-cols-3">
                       <div>
