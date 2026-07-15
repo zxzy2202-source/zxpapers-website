@@ -1,36 +1,68 @@
 import type { Metadata } from "next";
-import { BadgeCheck, Boxes, Factory, MessageSquare, Package, Phone, ShieldCheck, Truck } from "lucide-react";
-import { getSlotImages } from "@/lib/imageSlotUtils";
-import { r2Image } from "@/lib/r2";
+import ThermalLabelsCatalogPage from "@/components/products/ThermalLabelsCatalogPage";
 import { labelSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
-import ProductCategoryShowcaseTemplate from "@/components/products/ProductCategoryShowcaseTemplate";
-import type { ShowcaseBrowseSection } from "@/components/products/ProductCategoryShowcaseTemplate";
+import { getSlotImages } from "@/lib/imageSlotUtils";
 
-const LABELS_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
+const HERO_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
+const OVERVIEW_IMAGE = "https://images.unsplash.com/photo-1586880244406-556ebe35f282?w=1200&q=82";
+const CUSTOM_IMAGE = "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200&q=82";
+const QUALITY_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
 
 export const metadata: Metadata = {
-  title: "Thermal Labels Manufacturer | Shipping & Barcode Labels",
+  title: "Thermal Labels Manufacturer for Shipping, Barcode and Food",
   description:
-    "Factory-direct direct-thermal labels for shipping, barcode, inventory, and product identification — blank or custom printed, 4×6 and custom sizes, rolls or fanfold. ISO 9001, OEM, bulk pricing in 24h.",
+    "Factory-direct direct thermal and thermal transfer labels for shipping, barcode, food, freezer and industrial applications. Choose compatible sizes, adhesives, compliance documents and private-label printing.",
   keywords:
-    "thermal labels, direct thermal labels, 4x6 shipping labels, barcode labels, inventory labels, blank thermal labels, custom printed thermal labels, thermal label manufacturer, thermal label wholesale, fanfold labels",
+    "thermal labels manufacturer, direct thermal labels, thermal transfer labels, 4x6 shipping labels, fanfold labels, FNSKU barcode labels, BPA-Free thermal labels, freezer labels, custom printed thermal labels",
   alternates: { canonical: `${SITE.domain}/products/thermal-labels` },
+  openGraph: {
+    title: "Thermal Labels for Shipping, Barcode, Food and Industrial Use",
+    description:
+      "Source printer-compatible thermal labels with clear barcode readability, application-matched adhesives, compliance-ready materials and private-label support.",
+    url: `${SITE.domain}/products/thermal-labels`,
+    type: "website",
+    images: [{ url: HERO_IMAGE, alt: "Thermal labels for shipping and barcode printing" }],
+  },
 };
 
-const variants = [
-  { name: "Blank Thermal Labels", path: "/products/thermal-labels/blank" },
-  { name: "Custom Printed Thermal Labels", path: "/products/thermal-labels/custom-printed" },
-  { name: "4×6 Shipping Labels", path: "/products/shipping-labels" },
-  { name: "Linerless Labels", path: "/products/linerless-labels" },
-];
-
 const faqs = [
-  { q: "What thermal label sizes do you manufacture?", a: "We produce 4×6, 2×1, 3×2, 4×3, 2×4, and 1×1 inch labels plus custom sizes to ±0.5mm tolerance, supplied on rolls or as fanfold stacks with 1″, 1.5″, or 3″ cores." },
-  { q: "Are these direct thermal or thermal transfer labels?", a: "These are direct thermal labels — no ribbon required. We offer standard and top-coated (durable) face stocks; tell us your image-life and environment needs and we'll match the grade." },
-  { q: "Do you offer blank and custom printed labels?", a: "Both. Blank labels ship from stock for shipping and barcode printing; custom printed labels carry your logo, product information, or pre-printed fields (OEM / private label)." },
-  { q: "What is the minimum order quantity and lead time?", a: "Stock sizes are available from low volume; custom printing typically starts at 5,000 labels. Stock items ship in 3–7 days; custom production runs 10–18 days." },
-  { q: "Which printers are your labels compatible with?", a: "Our labels fit all major desktop and industrial direct-thermal printers (Zebra, TSC, Honeywell, and more). Send your printer model and we'll confirm size, core, and roll diameter before production." },
+  {
+    q: "What is the difference between direct thermal and thermal transfer labels?",
+    a: "Direct thermal labels use a heat-sensitive coating and do not require a ribbon. They are suited to shipping labels, receipts, stock labels and other short-term applications. Thermal transfer labels use a ribbon to create a more durable image for industrial, medical, asset and outdoor identification.",
+  },
+  {
+    q: "Which thermal labels are best for Amazon FBA?",
+    a: "Amazon FBA programs commonly use 4x6 shipping labels and FNSKU barcode labels. A matte, high-contrast face stock, accurate die-cutting and a verified fit for Zebra, Rollo, Munbyn or another printer help reduce scan and feeding issues.",
+  },
+  {
+    q: "Do you offer BPA-Free, BPS-Free and phenol-free labels?",
+    a: "Yes. We can supply BPA-Free, BPS-Free and phenol-free thermal labels with compliance documents for customers selling into North America, Europe and other regulated markets. The required document set is confirmed with the quotation.",
+  },
+  {
+    q: "What adhesive should I choose for shipping labels?",
+    a: "Permanent adhesive is suitable for common cartons and mailers. All-temperature adhesive is better for variable warehouse conditions. Freezer-grade adhesive is used for frozen food, seafood, cold-chain and medical logistics where condensation and low temperatures are expected.",
+  },
+  {
+    q: "Can you make fanfold labels for high-volume fulfillment?",
+    a: "Yes. Fanfold labels are available for 3PLs, overseas warehouses and high-volume shippers that want fewer roll changes and a predictable stack format. We confirm sheet size, perforation, stack count and printer feed direction before production.",
+  },
+  {
+    q: "Which printer brands are compatible with your labels?",
+    a: "We support common desktop and industrial thermal printers, including Zebra, Rollo, Munbyn, TSC, Dymo, Brother and other models. Send the printer model, label dimensions, core and maximum roll diameter so we can confirm compatibility before sampling.",
+  },
+  {
+    q: "Can you print logos, barcodes and warning information?",
+    a: "Yes. Custom programs can include logos, FNSKU or other barcode areas, QR codes, warning text, multilingual instructions, variable fields and private-label packaging. A digital proof is approved before mass production.",
+  },
+  {
+    q: "What is the MOQ and lead time for custom thermal labels?",
+    a: "MOQ depends on the material, size, print coverage, packing and order mix. Stock sizes can be quoted for low-volume trial orders. Custom programs are scheduled after artwork and specification approval, with the exact production window stated in the quotation.",
+  },
+  {
+    q: "Can you provide samples and quality documents?",
+    a: "Yes. We can arrange sample labels for printer feeding, barcode readability, adhesion and environmental checks. Depending on the application, we can also provide material declarations, BPA or BPS reports, REACH or FSC documents and batch quality records.",
+  },
 ];
 
 const breadcrumbSchema = {
@@ -43,28 +75,46 @@ const breadcrumbSchema = {
   ],
 };
 
-const catalogEntries = [
-  ...variants.map((v) => ({ name: v.name, path: v.path })),
-  ...labelSizes.map((s) => ({ name: `${s.label} Thermal Label`, path: `/products/thermal-labels/${s.slug}` })),
-];
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": `${SITE.domain}/products/thermal-labels#product`,
+  name: "Thermal Labels",
+  alternateName: ["Direct Thermal Labels", "Thermal Transfer Labels", "Shipping Labels", "Barcode Labels"],
+  description: metadata.description,
+  url: `${SITE.domain}/products/thermal-labels`,
+  image: [HERO_IMAGE, OVERVIEW_IMAGE, CUSTOM_IMAGE],
+  category: "Thermal Labels",
+  brand: { "@type": "Brand", name: SITE.name },
+  manufacturer: { "@id": `${SITE.domain}/#organization` },
+  audience: {
+    "@type": "BusinessAudience",
+    audienceType: "Distributors, 3PLs, e-commerce brands, packaging suppliers, food businesses and industrial buyers",
+  },
+  additionalProperty: [
+    { "@type": "PropertyValue", name: "Formats", value: "Roll or fanfold" },
+    { "@type": "PropertyValue", name: "Applications", value: "Shipping, barcode, food, freezer, retail and industrial traceability" },
+    { "@type": "PropertyValue", name: "Materials", value: "Direct thermal, thermal transfer, paper, BOPP, PET, PP and PI options" },
+    { "@type": "PropertyValue", name: "Compliance options", value: "BPA-Free, BPS-Free, phenol-free, FSC and REACH-ready options" },
+  ],
+};
 
 const collectionSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: "Thermal Labels",
-  description:
-    "Factory-direct direct-thermal labels for shipping, barcode, inventory, and product identification — blank or custom printed, in 4×6 and custom sizes, on rolls or fanfold.",
+  description: metadata.description,
   url: `${SITE.domain}/products/thermal-labels`,
-  isPartOf: { "@id": `${SITE.domain}/#website` },
   mainEntity: {
     "@type": "ItemList",
-    numberOfItems: catalogEntries.length,
-    itemListElement: catalogEntries.map((c, idx) => ({
-      "@type": "ListItem",
-      position: idx + 1,
-      name: c.name,
-      url: `${SITE.domain}${c.path}`,
-    })),
+    numberOfItems: labelSizes.length + 4,
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Blank Thermal Labels", url: `${SITE.domain}/products/thermal-labels/blank` },
+      { "@type": "ListItem", position: 2, name: "Custom Printed Thermal Labels", url: `${SITE.domain}/products/thermal-labels/custom-printed` },
+      { "@type": "ListItem", position: 3, name: "Shipping Labels", url: `${SITE.domain}/products/shipping-labels` },
+      { "@type": "ListItem", position: 4, name: "Barcode Labels", url: `${SITE.domain}/products/barcode-labels` },
+      ...labelSizes.map((size, index) => ({ "@type": "ListItem", position: index + 5, name: `${size.label} Thermal Label`, url: `${SITE.domain}/products/thermal-labels/${size.slug}` })),
+    ],
   },
 };
 
@@ -79,139 +129,61 @@ const faqSchema = {
 };
 
 export default async function ThermalLabelsPage() {
-  const imgs = await getSlotImages([
-    { slot: "products:thermal-labels", fallback: LABELS_IMG_FB },
-    { slot: "thermal-labels:hero", fallback: LABELS_IMG_FB },
+  const images = await getSlotImages([
+    { slot: "thermal-labels:hero", fallback: HERO_IMAGE },
+    { slot: "products:thermal-labels", fallback: OVERVIEW_IMAGE },
+    { slot: "thermal-labels:applications:packaging", fallback: CUSTOM_IMAGE },
+    { slot: "manufacturing:facility-line", fallback: QUALITY_IMAGE },
+    { slot: "thermal-labels:applications:warehouse", fallback: OVERVIEW_IMAGE },
+    { slot: "thermal-labels:applications:ecommerce", fallback: OVERVIEW_IMAGE },
+    { slot: "thermal-labels:applications:amazon", fallback: OVERVIEW_IMAGE },
+    { slot: "thermal-labels:applications:barcode", fallback: OVERVIEW_IMAGE },
+    { slot: "thermal-labels:applications:food", fallback: OVERVIEW_IMAGE },
+    { slot: "thermal-labels:applications:pharmacy", fallback: OVERVIEW_IMAGE },
+    { slot: "thermal-labels:applications:asset", fallback: QUALITY_IMAGE },
+    { slot: "thermal-labels:applications:shipping", fallback: OVERVIEW_IMAGE },
+    { slot: "thermal-labels:applications:crossborder", fallback: OVERVIEW_IMAGE },
+    { slot: "thermal-labels:applications:europe", fallback: OVERVIEW_IMAGE },
   ]);
-  const labelsImg = r2Image(imgs["products:thermal-labels"]);
-  const heroImg = r2Image(imgs["thermal-labels:hero"]);
 
-  const products = [
-    { title: "Blank Thermal Labels", desc: "Direct thermal labels for shipping, inventory, and barcodes — compatible with all major printers, in stock.", image: labelsImg, href: "/products/thermal-labels/blank", badge: "In Stock" },
-    { title: "Custom Printed Thermal Labels", desc: "Your brand, logo, or product information pre-printed. OEM & private label.", image: labelsImg, href: "/products/thermal-labels/custom-printed", badge: "Custom" },
-    { title: "4×6 Shipping Labels", desc: "The standard 4×6 direct thermal label for e-commerce and courier shipping.", image: labelsImg, href: "/products/shipping-labels", badge: "Most Popular" },
-    { title: "Linerless Labels", desc: "Liner-free thermal labels for more labels per roll and less waste.", image: labelsImg, href: "/products/linerless-labels", badge: "Eco" },
+  const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent(
+    "Hello, I need thermal label pricing. I can send the printer model, label size, core, quantity, surface, temperature, material, adhesive, destination and whether the labels are blank or custom printed.",
+  )}`;
+
+  const families = [
+    { tag: "P0 range", title: "4x6 Shipping Labels", text: "Roll and fanfold formats for Amazon, Shopify, 3PL and courier fulfillment. Confirm printer, core and label count before quoting.", image: images["thermal-labels:applications:shipping"], imageAlt: "4x6 thermal shipping labels for parcel fulfillment", href: "/products/shipping-labels", featured: true },
+    { tag: "P0 range", title: "Barcode and FNSKU Labels", text: "Matte, high-contrast labels for SKU, FNSKU, UPC, EAN and 2D code workflows.", image: images["thermal-labels:applications:barcode"], imageAlt: "Thermal barcode labels for inventory and FNSKU printing", href: "/products/barcode-labels" },
+    { tag: "P0 range", title: "BPA-Free and Phenol-Free", text: "Compliance-ready options for North American, European and ESG-led packaging programs.", image: images["thermal-labels:applications:europe"], imageAlt: "Compliance-ready thermal labels for European packaging", href: "/products/bpa-free-thermal-paper" },
+    { tag: "P1 range", title: "Food and Freezer Labels", text: "Water-resistant, oil-resistant and low-temperature adhesive options for food, drink and cold-chain packaging.", image: images["thermal-labels:applications:food"], imageAlt: "Food and freezer thermal labels for packaging", href: "/products/thermal-labels/blank" },
+    { tag: "P1 service", title: "Custom Printed and Private Label", text: "Print logos, warning text, QR codes, barcodes and multilingual instructions with repeatable packing references.", image: images["thermal-labels:applications:packaging"], imageAlt: "Custom printed thermal labels and private-label packaging", href: "/products/thermal-labels/custom-printed" },
+    { tag: "P2 range", title: "Industrial Thermal Transfer", text: "PET, PP and PI labels matched with wax-resin or resin ribbons for durable traceability.", image: images["thermal-labels:applications:asset"], imageAlt: "Durable industrial thermal transfer labels for asset tracking", href: "/products/thermal-labels/custom-printed" },
   ];
 
-  const browseSections: ShowcaseBrowseSection[] = [
-    {
-      title: "Labels by Use Case",
-      description: "Different buyers, different labels — jump to the dedicated page for your application.",
-      cards: [
-        { image: labelsImg, title: "Shipping Labels", desc: "4×6 direct thermal for e-commerce, courier, and 3PL parcels — rolls or fanfold.", href: "/products/shipping-labels", badge: "E-commerce" },
-        { image: labelsImg, title: "Barcode Labels", desc: "SKU, inventory, and asset labels for warehouse and retail — high-contrast, scan-reliable.", href: "/products/barcode-labels", badge: "Warehouse" },
-        { image: labelsImg, title: "Product Labels", desc: "Price, shelf, weigh-scale, and packaging labels with a retail-ready look.", href: "/products/product-labels", badge: "Retail" },
-        { image: labelsImg, title: "Linerless Labels", desc: "Liner-free thermal labels — 30–50% less waste and 2× labels per roll.", href: "/products/linerless-labels", badge: "Low-Waste" },
-        { image: labelsImg, title: "Custom Printed Labels", desc: "Logo, product info, and pre-printed fields for OEM and private label.", href: "/products/custom-printed-thermal-labels", badge: "OEM" },
-      ],
-    },
-    {
-      title: "Popular Label Sizes",
-      description: "Shipping, barcode, and product labels — pick a size or ask for a custom die-cut.",
-      cards: labelSizes.map((s) => ({
-        image: labelsImg,
-        title: s.label,
-        desc: `Popular label size${s.markets ? ` for ${s.markets}` : ""} — direct thermal, in stock and custom.`,
-        href: `/products/thermal-labels/${s.slug}`,
-        badge: s.badge,
-      })),
-    },
+  const applications = [
+    { title: "E-commerce fulfillment", text: "4x6 labels for Amazon, Shopify, eBay, Etsy and marketplace parcels. Reduce scan and reprint risk with a printer-matched roll.", image: images["thermal-labels:applications:ecommerce"], imageAlt: "E-commerce warehouse preparing thermal shipping labels", href: "/products/shipping-labels", linkLabel: "View shipping labels" },
+    { title: "Amazon FBA and inventory", text: "FNSKU, SKU and barcode labels for inbound stock, inventory counts and warehouse location control.", image: images["thermal-labels:applications:amazon"], imageAlt: "Amazon FBA inventory labels prepared for warehouse use", href: "/products/barcode-labels", linkLabel: "View barcode labels" },
+    { title: "3PL and overseas warehouses", text: "Fanfold and large-core programs for high-volume fulfillment where roll changes and printer downtime affect labor cost.", image: images["thermal-labels:applications:warehouse"], imageAlt: "Warehouse team using thermal labels for fulfillment", href: "/products/shipping-labels", linkLabel: "Plan a warehouse program" },
+    { title: "Food, drink and takeout", text: "Labels for cups, meal boxes and food packaging where oil, moisture, condensation and adhesive safety matter.", image: images["thermal-labels:applications:food"], imageAlt: "Food packaging using thermal labels", href: "/products/thermal-labels/blank", linkLabel: "Discuss food labels" },
+    { title: "Pharmacy and healthcare", text: "Short-term direct thermal labels or durable transfer labels for prescriptions, samples and controlled identification.", image: images["thermal-labels:applications:pharmacy"], imageAlt: "Pharmacy and healthcare thermal labels", href: "/products/thermal-labels/custom-printed", linkLabel: "Discuss medical labels" },
+    { title: "Cross-border shipping", text: "Specification support for multilingual warning text, local carrier formats, compliance files and private-label packing.", image: images["thermal-labels:applications:crossborder"], imageAlt: "Cross-border parcel labeling and export packaging", href: "/products/thermal-labels/custom-printed", linkLabel: "Plan a custom program" },
   ];
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <ProductCategoryShowcaseTemplate
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Thermal Labels" }]}
-        heroImage={heroImg}
-        heroBadge={{ text: "Factory Direct Supply", color: "amber" }}
-        title={<>Thermal &amp; Shipping Labels<br /><span className="text-amber-400">Blank or Custom</span></>}
-        subtitle="Factory-direct direct-thermal labels for shipping, barcode, inventory, and product identification — blank or custom printed, 4×6 and custom sizes, on rolls or fanfold, with OEM packaging and bulk pricing in 24 hours."
-        trustBadges={["4×6 In Stock", "All Sizes Custom", "OEM Available", "ISO 9001"]}
-        stats={[
-          { value: "4×6", label: "Best Seller" },
-          { value: "In Stock", label: "Ready to Ship" },
-          { value: "OEM", label: "Custom Printing" },
-          { value: "24h", label: "Quote Response" },
-        ]}
-        ctas={[
-          { label: "Get Label Pricing", href: "#inquiry", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
-          { label: "WhatsApp for Quote", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need pricing for thermal labels. Please send sizes and bulk pricing.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
-        ]}
-        introSplit={{
-          title: "Every Shipping & Barcode Label From One Factory",
-          lead: "From 4×6 shipping labels to 2×1 barcode and product labels, we coat, die-cut, print, and pack every direct-thermal label in-house at true factory-direct pricing.",
-          bullets: [
-            "4×6 and custom sizes (±0.5mm)",
-            "Rolls or fanfold, 1″ / 1.5″ / 3″ cores",
-            "Standard or durable top-coated face stock",
-            "Blank stock or custom printed (OEM)",
-          ],
-          image: labelsImg,
-          imageAlt: "Direct thermal shipping and barcode labels",
-          cta: { label: "Send Inquiry Now", href: "#inquiry" },
-        }}
-        overview={{
-          title: "A Complete Direct Thermal Label Range",
-          paragraphs: [
-            "ZhixinPaper manufactures direct thermal labels for shipping, courier and e-commerce parcels, barcode and SKU labels, warehouse and inventory tags, and product identification. Every label is produced from coated face stock to finished, packed rolls in our own factory.",
-            "Labels are available as blank stock for fast dispatch or custom printed with your logo, product information, and pre-printed fields. The 4×6 shipping size is held in stock, while custom sizes and die-cuts are produced to a ±0.5mm tolerance, on rolls or as fanfold stacks.",
-            "Because we control coating, die-cutting, printing, and packaging in-house, we hold consistent print quality, support OEM and private-label programs, and export worldwide on FOB, CIF, and DDP terms at wholesale pricing.",
-          ],
-        }}
-        featureSplit={{
-          title: "Blank or Custom Printed — Your Call",
-          lead: "Order blank labels to print on demand, or hand us your artwork for branded, pre-printed labels and private-label packaging.",
-          bullets: [
-            "Blank stock for all desktop & industrial printers",
-            "Custom logo, product & variable-field printing",
-            "Rolls or fanfold to match your line",
-            "Standard and durable top-coated options",
-          ],
-          image: labelsImg,
-          imageAlt: "Blank and custom printed thermal labels",
-          cta: { label: "Discuss Your Project", href: "#inquiry" },
-        }}
-        productsTitle="Browse Thermal Label Products"
-        productsDescription="Blank, custom printed, shipping, and linerless labels — each in stock across all popular sizes."
-        products={products}
-        browseSections={browseSections}
-        comparison={{
-          title: "Blank vs Custom Printed Labels",
-          headers: { left: "Blank Labels", right: "Custom Printed Labels" },
-          rows: [
-            { factor: "Best for", left: "On-demand shipping & barcode printing", right: "Branded & pre-printed product labels" },
-            { factor: "Artwork", left: "None — print your own", right: "Your logo, fields & layout" },
-            { factor: "MOQ", left: "From low volume (stock sizes)", right: "From 5,000 labels" },
-            { factor: "Lead time", left: "3–7 days (stock)", right: "10–18 days (production)" },
-            { factor: "Packaging", left: "Standard boxing", right: "Private-label / OEM" },
-          ],
-        }}
-        whyUs={{
-          title: "Why Source Labels From the Factory",
-          subtitle: "In-house coating, die-cutting, printing, and packaging — with the certifications global buyers require.",
-          items: [
-            { icon: <Factory />, title: "True Factory-Direct", text: "No distributor markup — we run the line from coated face stock to finished, packed labels." },
-            { icon: <ShieldCheck />, title: "Certified & Compliant", text: "ISO 9001:2015, FSC, and RoHS / REACH support for regulated markets." },
-            { icon: <Package />, title: "Blank or Custom", text: "Stock blank labels or custom printed with OEM and private-label programs." },
-            { icon: <Boxes />, title: "All Sizes In Stock", text: "4×6 shipping labels plus custom sizes, on rolls or fanfold, ready for fast dispatch." },
-            { icon: <Truck />, title: "Global Export", text: "FOB, CIF, and DDP to the UK, EU, and North America with reliable lead times." },
-            { icon: <BadgeCheck />, title: "OEM & Private Label", text: "Custom size, die-cut, print, and branded packaging for distributors and brands." },
-          ],
-        }}
+      <ThermalLabelsCatalogPage
+        heroImage={images["thermal-labels:hero"]}
+        overviewImage={images["products:thermal-labels"]}
+        customImage={images["thermal-labels:applications:packaging"]}
+        qualityImage={images["manufacturing:facility-line"]}
+        whatsappHref={whatsappHref}
+        families={families}
+        applications={applications}
+        sizes={labelSizes}
         faqs={faqs}
-        crossLinks={[
-          { label: "Shipping Labels", href: "/products/shipping-labels" },
-          { label: "Barcode Labels", href: "/products/barcode-labels" },
-          { label: "Product Labels", href: "/products/product-labels" },
-          { label: "Custom Printed Labels", href: "/products/custom-printed-thermal-labels" },
-        ]}
-        inquiry={{
-          title: "Get Thermal Label Pricing",
-          description: "Tell us your sizes, core, quantities, and whether you need blank or custom printed — we'll send wholesale pricing within 24 hours.",
-        }}
       />
     </>
   );
