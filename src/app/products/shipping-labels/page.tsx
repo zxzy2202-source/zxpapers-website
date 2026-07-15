@@ -1,106 +1,238 @@
 import type { Metadata } from "next";
-import { BadgeCheck, Boxes, Factory, Printer, ShieldCheck, Truck } from "lucide-react";
+import { Printer, RefreshCcw, ScanLine, ShieldAlert } from "lucide-react";
+import ShippingLabelsDetailPage, {
+  type ShippingLabelApplication,
+  type ShippingLabelCompatibilityRow,
+  type ShippingLabelFailureRisk,
+  type ShippingLabelFaq,
+  type ShippingLabelFormat,
+  type ShippingLabelSpecificationGroup,
+  type ShippingLabelWorkflowStep,
+} from "@/components/products/ShippingLabelsDetailPage";
 import { SITE } from "@/config/siteData";
-import { labelSizes } from "@/config/navigation";
-import { getSlotImage } from "@/lib/imageSlotUtils";
-import ProductCategoryShowcaseTemplate from "@/components/products/ProductCategoryShowcaseTemplate";
+import { getSlotImages } from "@/lib/imageSlotUtils";
+
+const PAGE_DESCRIPTION =
+  "Bulk direct thermal shipping labels for 3PL and warehouse operations, including 4x6 rolls and fanfold, printer matching, adhesive selection, pallet packing, samples, and repeat-order control.";
+
+const THERMAL_LABELS_IMAGE =
+  "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
+const FACTORY_LINE_IMAGE =
+  "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
 
 export const metadata: Metadata = {
-  title: "Direct Thermal Shipping Labels | 4x6 Rolls & Fanfold",
-  description:
-    "Direct thermal shipping labels from the factory: 4x6 (100x150mm) in rolls & fanfold, Zebra/Dymo/Rollo compatible, BPA-free, bulk MOQ & OEM. Same-week quotes.",
+  title: "4x6 Shipping Labels for 3PL and Warehouses | Rolls and Fanfold",
+  description: PAGE_DESCRIPTION,
   keywords:
-    "direct thermal shipping labels, 4x6 thermal labels, shipping label rolls, fanfold shipping labels, zebra shipping labels, dymo shipping labels, 4x6 label rolls, bulk shipping labels, direct thermal labels, thermal label printer paper",
+    "4x6 shipping labels bulk, direct thermal shipping labels, fanfold shipping labels, shipping label rolls, 3PL shipping labels, warehouse shipping labels, thermal printer compatible labels, wholesale shipping labels",
   alternates: { canonical: `${SITE.domain}/products/shipping-labels` },
   openGraph: {
-    title: "Direct Thermal Shipping Labels | 4x6, Rolls & Fanfold | ZhixinPaper",
+    title: "4x6 Shipping Labels for 3PL and Warehouses | ZhixinPaper",
     description:
-      "Factory-direct 4x6 direct thermal shipping labels — rolls & fanfold, Zebra/Dymo compatible, BPA-free, bulk MOQ & OEM.",
+      "Printer-matched 4x6 rolls and fanfold labels for high-volume fulfillment, with adhesive, packing and repeat-SKU control.",
     url: `${SITE.domain}/products/shipping-labels`,
     type: "website",
-    images: [{ url: `${SITE.domain}/og-default.png`, width: 1200, height: 630, alt: "ZhixinPaper Direct Thermal Shipping Labels", type: "image/png" }],
+    images: [
+      {
+        url: `${SITE.domain}/og-default.png`,
+        width: 1200,
+        height: 630,
+        alt: "Bulk 4x6 shipping labels for 3PL and warehouse operations",
+      },
+    ],
   },
 };
 
-const LABELS_IMG_FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
-
-const products = [
+const failureRisks: ShippingLabelFailureRisk[] = [
   {
-    title: "4×6 Shipping Labels",
-    desc: "The standard e-commerce shipping size. Direct thermal, in rolls or fanfold — compatible with Amazon FBA, eBay, Shopify, and all major courier label formats.",
-    icon: "📦",
-    href: "/products/thermal-labels/4x6in",
-    badge: "Most Popular",
+    title: "Barcode will not scan",
+    symptom: "Operators reprint labels or key tracking numbers by hand.",
+    cause: "Low image contrast, incorrect print density, coating mismatch or poor barcode quiet zones.",
+    control: "Approve a printer-matched sample and verify the live carrier barcode before the bulk run.",
+    icon: ScanLine,
   },
   {
-    title: "Shipping Label Rolls",
-    desc: "Continuous direct thermal label rolls on 1\" or 3\" cores, sized for desktop and industrial thermal printers. Custom widths and counts per roll available.",
-    icon: "🧻",
-    href: "/products/thermal-labels/blank",
+    title: "Labels jam or skip",
+    symptom: "The printer misses labels, pauses the line or feeds two labels at once.",
+    cause: "Wrong gap, sensor method, core, roll diameter, perforation or winding tension.",
+    control: "Confirm printer model, sensing method, gap, core, outer diameter and unwind direction.",
+    icon: Printer,
   },
   {
-    title: "Fanfold Shipping Labels",
-    desc: "Z-fold stacks for high-volume, non-stop printing — no roll spindle needed. Ideal for warehouse and 3PL fulfillment lines running thousands of labels per day.",
-    icon: "📚",
-    href: "/products/thermal-labels/blank",
+    title: "Labels lift from parcels",
+    symptom: "Corners rise or the label detaches during sorting and final-mile handling.",
+    cause: "The adhesive does not match recycled cartons, rough corrugated board, poly mailers or temperature.",
+    control: "Test permanent, high-tack or all-temperature adhesive on the real parcel surface.",
+    icon: ShieldAlert,
   },
   {
-    title: "Printer-Compatible",
-    desc: "Direct thermal labels matched to Zebra, Dymo, Rollo, Munbyn, and other desktop or industrial thermal printers — confirmed by size, core, and perforation.",
-    icon: "🖨️",
-    href: "/products/thermal-labels/custom-printed",
+    title: "Teams change media too often",
+    symptom: "Packing stations stop repeatedly to replace rolls or fanfold stacks.",
+    cause: "Label count, core and supply format were chosen without daily throughput data.",
+    control: "Size roll capacity or fanfold stack count from labels per shift and available printer space.",
+    icon: RefreshCcw,
   },
 ];
 
-const specs = [
-  { label: "Most Popular Size", value: "4\" × 6\" (100 × 150 mm)" },
-  { label: "Other Sizes", value: "2.25×1.25\", 4×4\", 2×1\", custom (±0.5mm)" },
-  { label: "Format", value: "Rolls (1\" / 3\" core) or Fanfold (Z-stack)" },
-  { label: "Material", value: "Direct thermal (no ribbon needed)" },
-  { label: "Adhesive", value: "Permanent acrylic / removable (selectable)" },
-  { label: "Labels per Roll", value: "250 / 500 / 1,000 (size-dependent)" },
-  { label: "Coating", value: "BPA-free (standard) / phenol-free option" },
-  { label: "MOQ", value: "Stock sizes from low volume; custom from 5,000 rolls" },
-  { label: "Lead Time", value: "Stock 3–7 days · custom 10–18 days" },
-  { label: "Incoterms", value: "EXW, FOB, CIF, DDP" },
-];
-
-const compatibilityRows = [
-  { factor: "Zebra", left: "ZD220 / ZD420 / GK420d", right: "Industrial ZT series" },
-  { factor: "Dymo", left: "4XL / 5XL", right: "4×6 direct thermal" },
-  { factor: "Rollo", left: "Desktop direct thermal", right: "4×6 shipping workflow" },
-  { factor: "Munbyn / Phomemo", left: "Desktop 4×6 printers", right: "Size and perforation matched" },
-  { factor: "Generic / Industrial", left: "Any direct thermal printer", right: "Matched by size & core" },
-];
-
-const faqs = [
-  { q: "What is the standard shipping label size?", a: "The most common e-commerce shipping label is 4\" × 6\" (100 × 150 mm). We also supply 2.25×1.25\", 4×4\", and custom sizes." },
-  { q: "Rolls or fanfold — which should I choose?", a: "Rolls suit desktop printers with a spindle; fanfold (Z-stack) suits high-volume warehouse or 3PL lines and printers without a roll holder. We supply both in direct thermal." },
-  { q: "Are these labels compatible with Zebra, Dymo, and Rollo?", a: "Yes. Our direct thermal shipping labels are matched to Zebra (ZD220/ZD420/GK420d), Dymo 4XL/5XL, Rollo, Munbyn, and most desktop or industrial thermal printers by size, core, and perforation." },
-  { q: "Direct thermal vs thermal transfer — which is right for shipping?", a: "Shipping labels are almost always direct thermal: no ribbon, lower cost, and print life is ample for transit. Use thermal transfer only for long-term outdoor or chemical exposure." },
-  { q: "What is the MOQ for bulk or OEM shipping labels?", a: "Stock sizes are available from low volume. Custom sizes, adhesives, or private-label packaging start at 5,000 rolls. Contact us with your size and quantity for a quote." },
-  { q: "Do direct thermal shipping labels fade or smudge?", a: "Direct thermal print darkens over months of heat, UV, or friction exposure, but print life is well beyond a parcel's transit time. For long-term outdoor storage or chemical contact, choose thermal transfer instead — for normal e-commerce shipping, direct thermal is the standard." },
-  { q: "Where can I buy 4x6 thermal shipping labels in bulk?", a: "As a direct thermal label factory, we sell 4x6 (100 × 150 mm) labels wholesale in rolls and fanfold worldwide — with bulk and OEM pricing, no middleman markup, and FOB / CIF / DDP export to the UK, EU, and North America." },
-];
-
-const collectionSchema = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: "Direct Thermal Shipping Labels",
-  description:
-    "Factory-direct 4x6 direct thermal shipping labels in rolls and fanfold — Zebra/Dymo compatible, BPA-free, OEM and bulk.",
-  url: `${SITE.domain}/products/shipping-labels`,
-  isPartOf: { "@id": `${SITE.domain}/#website` },
-  mainEntity: {
-    "@type": "ItemList",
-    itemListElement: [
-      "4x6 Shipping Labels",
-      "Shipping Label Rolls",
-      "Fanfold Shipping Labels",
-      "Printer-Compatible Direct Thermal Labels",
-    ].map((name, i) => ({ "@type": "ListItem", position: i + 1, name })),
+const compatibilityRows: ShippingLabelCompatibilityRow[] = [
+  {
+    printer: "Zebra desktop",
+    commonModels: "ZD220, ZD230, ZD420, GK420d",
+    confirm: "4-inch media width, 1-inch core, outer diameter, gap sensing and DPI",
   },
-};
+  {
+    printer: "Zebra industrial",
+    commonModels: "ZT230, ZT411, ZT510",
+    confirm: "3-inch core, large roll diameter, winding direction, speed and sensor setup",
+  },
+  {
+    printer: "Rollo and Munbyn",
+    commonModels: "Desktop 4x6 direct thermal",
+    confirm: "Fanfold or roll feed, label width, gap, perforation and driver size",
+  },
+  {
+    printer: "Dymo",
+    commonModels: "4XL and 5XL workflows",
+    confirm: "Model-specific media path, label dimensions and compatible supply format",
+  },
+  {
+    printer: "Generic industrial",
+    commonModels: "203, 300 or 600 DPI direct thermal",
+    confirm: "Maximum width, core, roll diameter, sensing method, speed and image density",
+  },
+];
+
+const specificationGroups: ShippingLabelSpecificationGroup[] = [
+  {
+    title: "Label geometry",
+    items: [
+      { label: "Standard size", value: "4 x 6 inch / 100 x 150 mm" },
+      { label: "Die cut", value: "Width, height, corner radius and tolerance confirmed" },
+      { label: "Feed control", value: "Gap, perforation and black-mark option" },
+    ],
+  },
+  {
+    title: "Printer fit",
+    items: [
+      { label: "Printer", value: "Brand, model and 203 / 300 / 600 DPI" },
+      { label: "Roll hardware", value: "Core, maximum outer diameter and unwind direction" },
+      { label: "Sensing", value: "Gap, transmissive or black-mark sensor" },
+    ],
+  },
+  {
+    title: "Face stock",
+    items: [
+      { label: "Print method", value: "Direct thermal, no ribbon required" },
+      { label: "Coating", value: "Standard or top-coated by friction and moisture exposure" },
+      { label: "Compliance", value: "BPA-free standard; phenol-free option on request" },
+    ],
+  },
+  {
+    title: "Adhesive",
+    items: [
+      { label: "Standard", value: "Permanent acrylic for common cartons and mailers" },
+      { label: "Difficult surfaces", value: "High-tack for recycled or uneven corrugated board" },
+      { label: "Temperature", value: "All-temperature or freezer adhesive for cold workflows" },
+    ],
+  },
+  {
+    title: "Supply format",
+    items: [
+      { label: "Rolls", value: "Labels per roll, rolls per carton and cartons per pallet" },
+      { label: "Fanfold", value: "Labels per stack, stacks per carton and stack direction" },
+      { label: "Packing", value: "Neutral or private-label carton and pallet marks" },
+    ],
+  },
+  {
+    title: "Commercial brief",
+    items: [
+      { label: "Order", value: "Sample quantity, initial volume and repeat forecast" },
+      { label: "Delivery", value: "Destination and EXW, FOB, CIF or DDP term" },
+      { label: "Control", value: "Approved SKU, batch reference and peak-season plan" },
+    ],
+  },
+];
+
+const workflowSteps: ShippingLabelWorkflowStep[] = [
+  {
+    name: "Send printer and label details",
+    description: "Share the model, size, format, core, diameter, sensing method, surface and expected volume.",
+  },
+  {
+    name: "Approve sample and packing specification",
+    description: "Confirm print response, feeding, adhesion, label count, carton data and pallet plan.",
+  },
+  {
+    name: "Verify the first production batch",
+    description: "Check barcode contrast, die-cut position, winding, quantity and batch reference before release.",
+  },
+  {
+    name: "Reorder by the approved SKU",
+    description: "Reuse the controlled specification and batch reference for stable peak-season replenishment.",
+  },
+];
+
+const qualityControls = [
+  "Barcode contrast and print-density check on the confirmed printer class",
+  "Die-cut position, label gap, perforation and sensing-mark verification",
+  "Adhesive coat and peel test on the buyer's target parcel surface",
+  "Roll tension, winding direction, edge alignment and fanfold stacking check",
+  "Core, label count, carton count and pallet-mark verification",
+  "Batch reference retained for repeat-order comparison",
+];
+
+const faqs: ShippingLabelFaq[] = [
+  {
+    question: "What is the standard size for a shipping label?",
+    answer:
+      "The most common parcel format is 4 x 6 inch, approximately 100 x 150 mm. Confirm the exact driver size and printer media width before ordering because some workflows use a true 100 x 150 mm metric die.",
+  },
+  {
+    question: "Should a 3PL use shipping-label rolls or fanfold labels?",
+    answer:
+      "Use rolls when the printer has the correct spindle and roll capacity. Use fanfold when the station needs a larger continuous supply, has no roll holder or benefits from fewer media changes. The printer path and labels per shift decide the better format.",
+  },
+  {
+    question: "How do I confirm compatibility with Zebra, Rollo, Munbyn or Dymo?",
+    answer:
+      "Send the exact printer model, DPI, maximum media width, core, outer diameter, sensing method and preferred roll or fanfold format. Compatibility should be approved from those specifications and a print sample, not from brand name alone.",
+  },
+  {
+    question: "Do direct thermal shipping labels need a ribbon?",
+    answer:
+      "No. Direct thermal face stock darkens under the printer's heat and requires no ink, toner or ribbon. Thermal transfer is better only when the label needs longer image life or resistance to demanding outdoor, chemical or abrasion exposure.",
+  },
+  {
+    question: "Which adhesive works on cartons and poly mailers?",
+    answer:
+      "Permanent acrylic works for many clean standard surfaces. Recycled corrugated board, rough cartons and low-energy plastics may need high-tack adhesive. Temperature changes or cold storage may require all-temperature or freezer adhesive. Test the real parcel surface before a bulk order.",
+  },
+  {
+    question: "Why do shipping-label barcodes sometimes fail to scan?",
+    answer:
+      "Common causes include weak thermal coating response, incorrect print density, dirty printheads, barcode scaling, insufficient quiet zones, wrinkling or abrasion. Approve the sample on the production printer and scan the live carrier barcode before release.",
+  },
+  {
+    question: "How many labels can be supplied per roll or fanfold stack?",
+    answer:
+      "Counts depend on label size, core, maximum roll diameter, printer space and required stack height. Common programs use 250, 500 or 1,000 labels, but high-volume industrial formats should be specified from the installed equipment and labels per shift.",
+  },
+  {
+    question: "Can I test shipping labels before a pallet order?",
+    answer:
+      "Yes. Provide the printer and application details so the sample uses the intended size, coating, adhesive, core and format. Test feeding, barcode output and adhesion on the real parcel before approving bulk production.",
+  },
+  {
+    question: "What are the MOQ and lead time for bulk shipping labels?",
+    answer:
+      "Stock specifications can start at lower volumes. Custom construction, packing or private-label programs depend on the approved specification and production quantity. Send the initial order and repeat forecast for an accurate MOQ and lead-time quotation.",
+  },
+  {
+    question: "How do repeat orders stay consistent?",
+    answer:
+      "The approved specification records face stock, coating, adhesive, die, gap, core, winding, label count, carton data and pallet mark. Reorders reference the same SKU and batch-control record, with the first production batch checked against the approval.",
+  },
+];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -108,134 +240,181 @@ const breadcrumbSchema = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: SITE.domain },
     { "@type": "ListItem", position: 2, name: "Products", item: `${SITE.domain}/products` },
-    { "@type": "ListItem", position: 3, name: "Shipping Labels", item: `${SITE.domain}/products/shipping-labels` },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Shipping Labels",
+      item: `${SITE.domain}/products/shipping-labels`,
+    },
   ],
 };
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqs.map(({ q, a }) => ({
+  mainEntity: faqs.map(({ question, answer }) => ({
     "@type": "Question",
-    name: q,
-    acceptedAnswer: { "@type": "Answer", text: a },
+    name: question,
+    acceptedAnswer: { "@type": "Answer", text: answer },
+  })),
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to set up a repeat shipping-label supply program",
+  description:
+    "A four-step process for confirming printer fit, approving the label and packing specification, verifying production and reordering a controlled shipping-label SKU.",
+  step: workflowSteps.map(({ name, description }, index) => ({
+    "@type": "HowToStep",
+    position: index + 1,
+    name,
+    text: description,
   })),
 };
 
 export default async function ShippingLabelsPage() {
-  const heroImage = await getSlotImage("thermal-labels:blank-hero", LABELS_IMG_FALLBACK);
-  const featureImage = await getSlotImage("thermal-labels:custom-hero", LABELS_IMG_FALLBACK);
+  const images = await getSlotImages([
+    { slot: "shipping-labels:hero", fallback: THERMAL_LABELS_IMAGE },
+    {
+      slot: "shipping-labels:overview",
+      fallback: "https://images.unsplash.com/photo-1586880244406-556ebe35f282?w=1200&q=80",
+    },
+    {
+      slot: "shipping-labels:failure-risks",
+      fallback: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&q=80",
+    },
+    {
+      slot: "shipping-labels:rolls",
+      fallback: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1200&q=80",
+    },
+    {
+      slot: "shipping-labels:fanfold",
+      fallback: "https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=1200&q=80",
+    },
+    {
+      slot: "shipping-labels:applications",
+      fallback: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200&q=80",
+    },
+    { slot: "shipping-labels:quality-control", fallback: FACTORY_LINE_IMAGE },
+    {
+      slot: "shipping-labels:packing",
+      fallback: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&q=80",
+    },
+    {
+      slot: "thermal-labels:applications:ecommerce",
+      fallback: "https://images.unsplash.com/photo-1586880244406-556ebe35f282?w=900&q=80",
+    },
+    {
+      slot: "thermal-labels:applications:warehouse",
+      fallback: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=80",
+    },
+    {
+      slot: "thermal-labels:applications:logistics",
+      fallback: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=900&q=80",
+    },
+    {
+      slot: "thermal-labels:applications:shipping",
+      fallback: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=900&q=80",
+    },
+  ]);
+
+  const formats: ShippingLabelFormat[] = [
+    {
+      title: "Shipping label rolls",
+      bestFor: "Desktop and industrial printers with spindle support",
+      description:
+        "Compact, controlled media supply with a core and outer diameter matched to the installed printer.",
+      checks: ["1-inch or 3-inch core", "Maximum roll diameter", "Labels per roll", "Unwind direction"],
+      image: images["shipping-labels:rolls"],
+      imageAlt: "Direct thermal shipping-label rolls for warehouse printers",
+    },
+    {
+      title: "Fanfold shipping labels",
+      bestFor: "High-throughput stations and printers without a roll holder",
+      description:
+        "Z-fold stacks provide a larger continuous supply and can reduce media changes at busy packing stations.",
+      checks: ["Labels per stack", "Fold direction", "Gap and perforation", "Feed path and stack space"],
+      image: images["shipping-labels:fanfold"],
+      imageAlt: "Fanfold 4x6 shipping labels for high-volume fulfillment",
+    },
+  ];
+
+  const applications: ShippingLabelApplication[] = [
+    {
+      title: "3PL packing stations",
+      description: "Standardize labels across multiple customers and carrier workflows.",
+      decision: "Confirm printer fleet, labels per shift and carton or poly-mailer surfaces.",
+      image: images["thermal-labels:applications:ecommerce"],
+      imageAlt: "3PL packing station using direct thermal shipping labels",
+    },
+    {
+      title: "Overseas warehouse replenishment",
+      description: "Hold a repeatable SKU for daily outbound parcels and peak-season demand.",
+      decision: "Confirm pallet quantity, local buffer stock and reorder trigger.",
+      image: images["thermal-labels:applications:warehouse"],
+      imageAlt: "Overseas warehouse shipping-label replenishment",
+    },
+    {
+      title: "Marketplace fulfillment",
+      description: "Print carrier and marketplace labels with stable barcode contrast.",
+      decision: "Confirm driver size, barcode scaling, DPI and live scan result.",
+      image: images["thermal-labels:applications:logistics"],
+      imageAlt: "Marketplace fulfillment parcel with 4x6 shipping label",
+    },
+    {
+      title: "Courier sorting and consolidation",
+      description: "Keep labels attached and readable through handling and route transfers.",
+      decision: "Confirm parcel surface, friction, moisture and storage temperature.",
+      image: images["thermal-labels:applications:shipping"],
+      imageAlt: "Courier parcel sorting with readable shipping labels",
+    },
+  ];
+
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Direct Thermal Shipping Labels",
+    description: PAGE_DESCRIPTION,
+    url: `${SITE.domain}/products/shipping-labels`,
+    image: images["shipping-labels:hero"],
+    brand: { "@type": "Brand", name: "ZhixinPaper" },
+    manufacturer: { "@type": "Organization", name: "Xi'an Zhi Xin Paper Co., Ltd." },
+    category: "Direct thermal shipping labels",
+    additionalProperty: specificationGroups.flatMap((group) =>
+      group.items.map((item) => ({
+        "@type": "PropertyValue",
+        name: `${group.title}: ${item.label}`,
+        value: item.value,
+      })),
+    ),
+  };
+
+  const whatsappMessage =
+    "Hello, I need bulk shipping labels. Printer model: __. Label size: __. Roll or fanfold: __. Core / roll diameter / label count: __. Parcel surface and temperature: __. Monthly volume: __. Destination: __.";
+  const whatsappUrl = `https://wa.me/8618092117618?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <ProductCategoryShowcaseTemplate
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products", href: "/products" }, { label: "Shipping Labels" }]}
-        heroImage={heroImage}
-        heroBadge={{ text: "E-commerce & 3PL Supply", color: "amber" }}
-        title={<>Direct Thermal Shipping Labels<br /><span className="text-amber-400">4×6, Rolls &amp; Fanfold</span></>}
-        subtitle="Factory-direct direct-thermal shipping labels for e-commerce sellers, warehouses, and 3PLs. 4×6 and custom sizes, in rolls or fanfold, matched to Zebra, Dymo, Rollo, and industrial thermal printers — BPA-free, bulk pricing, and full OEM or private-label support."
-        trustBadges={["4×6 Stock + Custom Sizes", "Rolls & Fanfold Formats", "Zebra / Dymo / Rollo Matched", "OEM Available"]}
-        stats={[
-          { value: "4×6", label: "Top Size" },
-          { value: "Roll / Fold", label: "Format" },
-          { value: "3–18", label: "Day Lead" },
-        ]}
-        ctas={[
-          { label: "Get a Quick Quote", href: "#inquiry", variant: "primary" },
-          { label: "Request Samples", href: "/contact", variant: "outline" },
-        ]}
-        introSplit={{
-          title: "4×6, Rolls & Fanfold — From the Factory",
-          lead: "From single 4×6 rolls to high-volume fanfold for 3PL lines, we supply the full direct thermal shipping label range straight from the factory — sized, cored, and perforated to match your printers.",
-          bullets: [
-            "4×6 and custom sizes in rolls or fanfold",
-            "Direct thermal — no ribbon, lower running cost",
-            "Matched to Zebra, Dymo, Rollo and industrial printers",
-            "BPA-free standard with phenol-free option",
-          ],
-          image: heroImage,
-          imageAlt: "Direct thermal shipping label rolls and fanfold stacks",
-          cta: { label: "Send Inquiry Now", href: "#inquiry" },
-        }}
-        overview={{
-          title: "What Are Direct Thermal Shipping Labels?",
-          paragraphs: [
-            "Direct thermal shipping labels are self-adhesive labels printed by heat alone — no ink, toner, or ribbon. A thermal print head darkens a heat-sensitive coating to form the barcode and address, which keeps consumable cost low, reduces printer downtime, and simplifies the workflow for high-volume fulfillment teams.",
-            "The 4\" × 6\" (100 × 150 mm) label is the global e-commerce standard, accepted by Amazon FBA, eBay, Shopify, USPS, UPS, FedEx, and DHL. We also produce 2.25 × 1.25\", 4 × 4\", 2 × 1\", and fully custom sizes, supplied as rolls on 1\" or 3\" cores or as Z-fold fanfold stacks for printers without a spindle.",
-            "As the manufacturer, we control the coating, adhesive, core, and perforation in-house. That lets us match your exact printer and workflow, keep BPA-free as the standard with a phenol-free option, and support OEM or private-label packaging for distributors and brands — at true factory-direct wholesale pricing with no middleman markup.",
-          ],
-        }}
-        featureSplit={{
-          title: "Why Use Direct Thermal Labels for Shipping?",
-          lead: "Direct thermal is the right choice for almost every shipping workflow: with no ribbon to buy or load, it cuts both cost and complexity while staying durable enough for parcel transit and last-mile handling.",
-          bullets: [
-            "No ribbon needed — lower consumable cost",
-            "Transit-ready print life for parcels and handling",
-            "Roll and fanfold formats for desktop to industrial",
-            "Custom size, adhesive and perforation for OEM",
-          ],
-          image: featureImage,
-          imageAlt: "Thermal printer producing a 4x6 shipping label",
-          cta: { label: "Talk to a Specialist", href: "#inquiry" },
-        }}
-        productsTitle="Types of Direct Thermal Shipping Labels"
-        productsDescription="Pick the format and size that matches your printers and volume — every option ships direct thermal, BPA-free, and bulk-ready."
-        products={products}
-        browseSections={[
-          {
-            title: "Shipping Labels by Size",
-            description: "Jump to the most-requested label sizes for full specs, printer compatibility, and a size-specific quote.",
-            cards: labelSizes.map((size, i) => ({
-              image: i % 2 === 0 ? heroImage : featureImage,
-              title: size.label,
-              desc: `Direct thermal ${size.label.toLowerCase()} stock — supplied in rolls or fanfold, BPA-free, and matched to your printer.`,
-              href: `/products/thermal-labels/${size.slug}`,
-              badge: size.badge,
-            })),
-          },
-          {
-            title: "Shipping Labels by Format",
-            description: "Choose the supply format that fits your printer hardware and daily throughput.",
-            cards: [
-              { image: heroImage, title: "Label Rolls (1\" / 3\" core)", desc: "Continuous direct thermal rolls for desktop and industrial thermal printers with a spindle.", href: "/products/thermal-labels/blank", badge: "Desktop" },
-              { image: featureImage, title: "Fanfold (Z-stack)", desc: "Z-fold stacks for non-stop, high-volume printing on warehouse and 3PL lines — no spindle needed.", href: "/products/thermal-labels/blank", badge: "High Volume" },
-              { image: heroImage, title: "Custom Printed Labels", desc: "Pre-printed logos, color, and layout with custom size, adhesive, and perforation for OEM programs.", href: "/products/thermal-labels/custom-printed", badge: "OEM" },
-              { image: featureImage, title: "All Thermal Labels", desc: "Explore the full direct thermal label catalogue — sizes, materials, and printer-matched options.", href: "/products/thermal-labels/blank" },
-            ],
-          },
-        ]}
-        comparison={{
-          title: "Printer Compatibility",
-          headers: { left: "Desktop / Standard", right: "Notes / Industrial" },
-          rows: compatibilityRows,
-        }}
-        specs={{ title: "Specifications", rows: specs }}
-        whyUs={{
-          title: "Why Source From the Factory",
-          subtitle: "Direct manufacturing control on coating, adhesive, and packaging — with the certifications global buyers require.",
-          items: [
-            { icon: <Factory />, title: "True Factory-Direct", text: "No distributor markup. We control the line from base paper coating to finished, boxed rolls and fanfold." },
-            { icon: <ShieldCheck />, title: "Certified & Compliant", text: "ISO 9001:2015, FSC, BPA-free standard, and RoHS / REACH support for regulated markets." },
-            { icon: <Printer />, title: "Printer-Matched", text: "Size, core, and perforation confirmed against Zebra, Dymo, Rollo, and industrial thermal printers." },
-            { icon: <Boxes />, title: "Rolls & Fanfold", text: "Both supply formats in stock and custom — desktop sellers to high-volume 3PL fulfillment lines." },
-            { icon: <Truck />, title: "Global Export", text: "FOB, CIF, and DDP to UK, EU, and North America, with reliable lead times and consolidated shipping." },
-            { icon: <BadgeCheck />, title: "OEM & Private Label", text: "Custom size, adhesive, perforation, and branded packaging programs for distributors and brands." },
-          ],
-        }}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <ShippingLabelsDetailPage
+        heroImage={images["shipping-labels:hero"]}
+        overviewImage={images["shipping-labels:overview"]}
+        failureRisksImage={images["shipping-labels:failure-risks"]}
+        qualityControlImage={images["shipping-labels:quality-control"]}
+        packingImage={images["shipping-labels:packing"]}
+        failureRisks={failureRisks}
+        formats={formats}
+        compatibilityRows={compatibilityRows}
+        specificationGroups={specificationGroups}
+        applications={applications}
+        workflowSteps={workflowSteps}
+        qualityControls={qualityControls}
         faqs={faqs}
-        crossLinks={[
-          { label: "4×6 Label Details", href: "/products/thermal-labels/4x6in" },
-          { label: "All Thermal Labels", href: "/products/thermal-labels/blank" },
-          { label: "Linerless Labels", href: "/products/linerless-labels" },
-          { label: "OEM & Private Label", href: "/oem" },
-        ]}
-        inquiry={{
-          title: "Request a Shipping Label Quote",
-          description: "Tell us your size, format (roll or fanfold), printer model, and quantity — we'll send unit pricing the same week.",
-        }}
+        whatsappUrl={whatsappUrl}
       />
     </>
   );
