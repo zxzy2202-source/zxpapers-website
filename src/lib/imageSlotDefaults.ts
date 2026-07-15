@@ -13,15 +13,13 @@ const SHIPPING_LABELS_OVERVIEW_IMAGE =
   "https://images.unsplash.com/photo-1586880244406-556ebe35f282?w=1200&q=80";
 const SHIPPING_LABELS_RISK_IMAGE =
   "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&q=80";
-const SHIPPING_LABELS_ROLL_IMAGE =
-  "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1200&q=80";
-const SHIPPING_LABELS_FANFOLD_IMAGE =
-  "https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=1200&q=80";
+const SHIPPING_LABELS_ROLL_IMAGE = THERMAL_LABELS_IMAGE;
+const SHIPPING_LABELS_FANFOLD_IMAGE = THERMAL_LABELS_IMAGE;
 const SHIPPING_LABELS_APPLICATION_IMAGE =
   "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200&q=80";
 const SHIPPING_LABELS_QUALITY_IMAGE = FACTORY_LINE_IMAGE;
 const SHIPPING_LABELS_PACKING_IMAGE =
-  "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&q=80";
+  "/uploads/images/1778755819135-456d030e-f44b-453b-86bb-69c736ef4e12-32b6c697519b48fc814b3a4712323de2.webp";
 const CAN_LABELS_IMAGE =
   "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80";
 const DETERGENT_LABELS_IMAGE =

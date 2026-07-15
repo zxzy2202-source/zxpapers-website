@@ -32,6 +32,7 @@ export interface ShippingLabelFormat {
   checks: string[];
   image: string;
   imageAlt: string;
+  objectPosition?: string;
 }
 
 export interface ShippingLabelCompatibilityRow {
@@ -307,6 +308,7 @@ export default function ShippingLabelsDetailPage({
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 32vw"
                     className="object-cover transition-transform duration-500 hover:scale-[1.02]"
+                    style={{ objectPosition: format.objectPosition }}
                   />
                 </div>
                 <div className="flex flex-col p-6 lg:p-7">

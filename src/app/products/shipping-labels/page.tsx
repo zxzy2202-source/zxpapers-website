@@ -286,11 +286,11 @@ export default async function ShippingLabelsPage() {
     },
     {
       slot: "shipping-labels:rolls",
-      fallback: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1200&q=80",
+      fallback: THERMAL_LABELS_IMAGE,
     },
     {
       slot: "shipping-labels:fanfold",
-      fallback: "https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=1200&q=80",
+      fallback: THERMAL_LABELS_IMAGE,
     },
     {
       slot: "shipping-labels:applications",
@@ -299,7 +299,8 @@ export default async function ShippingLabelsPage() {
     { slot: "shipping-labels:quality-control", fallback: FACTORY_LINE_IMAGE },
     {
       slot: "shipping-labels:packing",
-      fallback: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&q=80",
+      fallback:
+        "/uploads/images/1778755819135-456d030e-f44b-453b-86bb-69c736ef4e12-32b6c697519b48fc814b3a4712323de2.webp",
     },
     {
       slot: "thermal-labels:applications:ecommerce",
@@ -310,12 +311,9 @@ export default async function ShippingLabelsPage() {
       fallback: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=80",
     },
     {
-      slot: "thermal-labels:applications:logistics",
-      fallback: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=900&q=80",
-    },
-    {
       slot: "thermal-labels:applications:shipping",
-      fallback: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=900&q=80",
+      fallback:
+        "/uploads/images/1778749791640-3b5c725a-937d-48a1-bdad-b0331d9c9dca-image.webp",
     },
   ]);
 
@@ -328,6 +326,7 @@ export default async function ShippingLabelsPage() {
       checks: ["1-inch or 3-inch core", "Maximum roll diameter", "Labels per roll", "Unwind direction"],
       image: images["shipping-labels:rolls"],
       imageAlt: "Direct thermal shipping-label rolls for warehouse printers",
+      objectPosition: "34% center",
     },
     {
       title: "Fanfold shipping labels",
@@ -337,6 +336,7 @@ export default async function ShippingLabelsPage() {
       checks: ["Labels per stack", "Fold direction", "Gap and perforation", "Feed path and stack space"],
       image: images["shipping-labels:fanfold"],
       imageAlt: "Fanfold 4x6 shipping labels for high-volume fulfillment",
+      objectPosition: "88% center",
     },
   ];
 
@@ -345,7 +345,7 @@ export default async function ShippingLabelsPage() {
       title: "3PL packing stations",
       description: "Standardize labels across multiple customers and carrier workflows.",
       decision: "Confirm printer fleet, labels per shift and carton or poly-mailer surfaces.",
-      image: images["thermal-labels:applications:ecommerce"],
+      image: images["shipping-labels:applications"],
       imageAlt: "3PL packing station using direct thermal shipping labels",
     },
     {
@@ -359,7 +359,7 @@ export default async function ShippingLabelsPage() {
       title: "Marketplace fulfillment",
       description: "Print carrier and marketplace labels with stable barcode contrast.",
       decision: "Confirm driver size, barcode scaling, DPI and live scan result.",
-      image: images["thermal-labels:applications:logistics"],
+      image: images["thermal-labels:applications:ecommerce"],
       imageAlt: "Marketplace fulfillment parcel with 4x6 shipping label",
     },
     {
