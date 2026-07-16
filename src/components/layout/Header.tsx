@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, type FocusEvent, type KeyboardEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, Phone, Mail, ArrowRight, Package, Ruler, BadgeCheck, MessageSquare } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Mail, ArrowRight, Package, Ruler, BadgeCheck } from "lucide-react";
 import Image from "next/image";
 import { mainNav, type NavItem, type NavDropdown, type NavProductGroup, type NavRegionGroup } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
@@ -73,9 +73,10 @@ function ProductGroupIcon({ label }: { label: string }) {
 }
 
 export default function Header() {
-  const [mobileOpen, setMobileOpen]         = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [scrolled, setScrolled]             = useState(false);
+  const [mobileOpen, setMobileOpen]                           = useState(false);
+  const [activeDropdown, setActiveDropdown]                   = useState<string | null>(null);
+  const [activeMobileProductGroup, setActiveMobileProductGroup] = useState<string | null>(null);
+  const [scrolled, setScrolled]                               = useState(false);
   const closeTimerRef = useRef<number | null>(null);
   const scrollFrameRef = useRef<number | null>(null);
   const scrolledRef = useRef(false);
@@ -131,6 +132,7 @@ export default function Header() {
   useEffect(() => {
     setMobileOpen(false);
     setActiveDropdown(null);
+    setActiveMobileProductGroup(null);
     cancelDropdownClose();
   }, [pathname]);
 
@@ -257,7 +259,7 @@ export default function Header() {
                       className="absolute top-full left-0 bg-white rounded-md shadow-xl border border-slate-200 overflow-hidden z-50"
                       style={{
                         ...(hasProductGroups
-                          ? { width: "min(calc(100vw - 2rem), 1080px)" }
+                          ? { width: "min(calc(100vw - 2rem), 1200px)" }
                           : hasRegionGroups
                             ? { width: "min(calc(100vw - 2rem), 920px)" }
                             : hasSizeGroups
@@ -363,158 +365,96 @@ export default function Header() {
                           </div>
                         </div>
                       ) : hasProductGroups ? (
-                        /* Products Mega Menu: compact procurement catalog */
-                        <div className="flex max-h-[min(600px,calc(100vh-128px))] overflow-y-auto overscroll-contain">
-                          <div className="w-[210px] flex-shrink-0 border-r border-slate-200 bg-brand-navy-alt p-4 text-white">
-                            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-300">
-                              Product Finder
-                            </div>
-                            <p className="mt-2 text-sm font-semibold leading-snug text-pretty">
-                              Find the right stock or custom product for your order.
-                            </p>
-                            <Link
-                              href="/products"
-                              className="mt-4 flex items-center justify-between rounded-md bg-white px-3 py-2.5 text-sm font-semibold text-brand-navy transition-colors hover:bg-amber-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
-                              role="menuitem"
-                            >
-                              All Products
-                              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                            </Link>
-                            <div className="mt-4 space-y-2 border-t border-white/10 pt-4">
-                              {["BPA-Free Options", "ISO 9001 Factory", "OEM Packaging"].map((cue) => (
-                                <div key={cue} className="flex items-center gap-2 text-xs text-slate-200">
-                                  <BadgeCheck className="h-3.5 w-3.5 flex-shrink-0 text-amber-300" aria-hidden="true" />
-                                  <span>{cue}</span>
-                                </div>
+                        /* Products Mega Menu: dense procurement directory */
+                        <div className="max-h-[min(620px,calc(100vh-110px))] overflow-y-auto overscroll-contain">
+                          <div
+                            data-products-utility
+                            className="flex items-center justify-between gap-6 bg-brand-navy-alt px-5 py-3 text-white"
+                          >
+                            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-300">
+                              Product Directory
+                            </span>
+                            <div className="flex min-w-0 items-center justify-end gap-5">
+                              {(item as NavDropdown).productUtilities!.map((utility, utilityIndex, utilities) => (
+                                <Link
+                                  key={utility.href + utility.label}
+                                  href={utility.href}
+                                  role="menuitem"
+                                  className={
+                                    utilityIndex === utilities.length - 1
+                                      ? "inline-flex items-center gap-1 rounded-md bg-amber-500 px-3 py-2 text-xs font-semibold text-slate-950 transition-colors hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                                      : "text-xs font-semibold text-slate-200 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                                  }
+                                >
+                                  {utility.label}
+                                  {utilityIndex === utilities.length - 1 && (
+                                    <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                                  )}
+                                </Link>
                               ))}
                             </div>
-                            <Link
-                              href="/contact"
-                              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-amber-500 px-3 py-2.5 text-sm font-semibold text-slate-950 transition-colors hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                              role="menuitem"
-                            >
-                              <MessageSquare className="h-4 w-4" aria-hidden="true" />
-                              Request Pricing
-                            </Link>
                           </div>
 
-                          <div className="min-w-0 flex-1 px-4 py-3">
-                            <div className="mb-2 flex items-end justify-between gap-4 border-b border-slate-200 pb-3">
-                              <div>
-                                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-                                  Choose by Category
-                                </div>
-                                <div className="mt-1 text-sm font-semibold text-slate-900">
-                                  Blank stock, custom printing, and OEM supply
+                          <div className="grid grid-cols-4 divide-x divide-slate-200">
+                            {(item as NavDropdown).productGroups!.map((group: NavProductGroup) => (
+                              <div
+                                key={group.groupLabel}
+                                data-product-family={group.groupLabel}
+                                className="min-w-0 px-4 py-4"
+                              >
+                                <Link
+                                  href={group.href}
+                                  role="menuitem"
+                                  className="group flex min-h-11 items-start gap-2.5 border-b-2 border-brand-navy pb-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
+                                >
+                                  <span className="inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md bg-brand-navy text-white" aria-hidden="true">
+                                    <ProductGroupIcon label={group.groupLabel} />
+                                  </span>
+                                  <span className="min-w-0">
+                                    <span className="block text-sm font-semibold text-slate-900 transition-colors group-hover:text-brand-navy">
+                                      {group.groupLabel}
+                                    </span>
+                                    <span className="mt-0.5 block text-[10px] text-slate-500">
+                                      View complete range
+                                    </span>
+                                  </span>
+                                </Link>
+                                <div className="mt-2">
+                                  {group.items.slice(0, 6).map((sub) => (
+                                    <Link
+                                      key={sub.href + sub.label}
+                                      href={sub.href}
+                                      role="menuitem"
+                                      data-product-child
+                                      className="flex min-h-8 items-center gap-1.5 rounded-md px-1 text-[11px] leading-snug text-slate-600 transition-colors hover:bg-slate-50 hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
+                                    >
+                                      <span className="text-amber-500" aria-hidden="true">›</span>
+                                      <span className="break-words">{sub.label}</span>
+                                    </Link>
+                                  ))}
                                 </div>
                               </div>
-                              <Link
-                                href="/oem"
-                                className="hidden items-center gap-1 rounded-md text-xs font-semibold text-brand-navy transition-colors hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40 lg:flex"
-                                role="menuitem"
-                              >
-                                OEM Services <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                              </Link>
-                            </div>
-
-                            <div className="grid grid-cols-2">
-                              {(item as NavDropdown).productGroups!.map((group: NavProductGroup, groupIndex) => (
-                                <div
-                                  key={group.groupLabel}
-                                  data-product-family={group.groupLabel}
-                                  className={`min-w-0 py-3 ${groupIndex % 2 === 0 ? "pr-4" : "border-l border-slate-200 pl-4"} ${groupIndex < 2 ? "border-b border-slate-200" : ""}`}
-                                >
-                                  <Link
-                                    href={group.href}
-                                    className="group flex items-start justify-between gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
-                                    role="menuitem"
-                                  >
-                                    <span className="flex min-w-0 gap-2.5">
-                                      <span className="mt-0.5 inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md bg-brand-navy text-white" aria-hidden="true">
-                                        <ProductGroupIcon label={group.groupLabel} />
-                                      </span>
-                                      <span className="min-w-0">
-                                        <span className="block text-sm font-semibold text-slate-900 transition-colors group-hover:text-brand-navy">
-                                          {group.groupLabel}
-                                        </span>
-                                        <span className="mt-0.5 block line-clamp-2 text-[11px] leading-relaxed text-slate-500">
-                                          {group.description}
-                                        </span>
-                                      </span>
-                                    </span>
-                                    {group.badge && (
-                                      <span className={`mt-0.5 flex-shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${BADGE_COLORS[group.badgeColor ?? "amber"] ?? BADGE_COLORS.amber}`}>
-                                        {group.badge}
-                                      </span>
-                                    )}
-                                  </Link>
-                                  <div className="mt-2 grid grid-cols-2 gap-x-2 gap-y-0.5">
-                                    {group.items.slice(0, 4).map((sub) => (
-                                      <Link
-                                        key={sub.href + sub.label}
-                                        href={sub.href}
-                                        className="flex min-w-0 items-center gap-1.5 rounded-md py-1.5 text-[11px] leading-snug text-slate-600 transition-colors hover:text-brand-navy focus-visible:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
-                                        role="menuitem"
-                                      >
-                                        <span className="h-1 w-1 flex-shrink-0 rounded-full bg-slate-300" aria-hidden="true" />
-                                        <span className="line-clamp-2 break-words">{sub.label}</span>
-                                      </Link>
-                                    ))}
-                                    {group.items.length > 4 && (
-                                      <Link
-                                        href={group.href}
-                                        className="col-span-2 mt-0.5 flex items-center gap-1 rounded-md py-1.5 text-[11px] font-semibold text-brand-navy transition-colors hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
-                                        role="menuitem"
-                                      >
-                                        View all {group.groupLabel}
-                                        <ArrowRight className="h-3 w-3" aria-hidden="true" />
-                                      </Link>
-                                    )}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
+                            ))}
                           </div>
 
                           {hasSizeGroups && (
-                            <div className="hidden w-[220px] flex-shrink-0 border-l border-slate-200 bg-slate-50 p-4 lg:block">
-                              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
+                            <div className="flex flex-wrap items-center gap-2 border-t border-slate-200 bg-slate-50 px-5 py-3">
+                              <span className="mr-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">
                                 Popular Sizes
-                              </div>
-                              <div className="mt-3 space-y-2.5">
-                                {(item as NavDropdown).sizeGroups!.map((group) => (
-                                  <div key={group.groupLabel}>
-                                    <div className="mb-1 text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                                      {group.groupLabel}
-                                    </div>
-                                    <div className="space-y-0.5">
-                                      {group.items.slice(0, 2).map((sz) => (
-                                        <Link
-                                          key={sz.href + sz.label}
-                                          href={sz.href}
-                                          className="flex items-center justify-between gap-2 rounded-md px-2 py-1.5 text-xs text-slate-700 transition-colors hover:bg-white hover:text-brand-navy focus-visible:bg-white focus-visible:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
-                                          role="menuitem"
-                                        >
-                                          <span className="whitespace-nowrap">{sz.label}</span>
-                                          {sz.badge && (
-                                            <span className={`flex-shrink-0 rounded-full px-1.5 py-0.5 text-[9px] font-semibold ${BADGE_COLORS[sz.badgeColor ?? "amber"] ?? BADGE_COLORS.amber}`}>
-                                              {sz.badge}
-                                            </span>
-                                          )}
-                                        </Link>
-                                      ))}
-                                    </div>
-                                  </div>
+                              </span>
+                              {(item as NavDropdown).sizeGroups!
+                                .flatMap((group) => group.items.slice(0, 2))
+                                .map((size) => (
+                                  <Link
+                                    key={size.href + size.label}
+                                    href={size.href}
+                                    role="menuitem"
+                                    data-popular-size
+                                    className="rounded-md border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-medium text-slate-700 transition-colors hover:border-brand-navy/30 hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
+                                  >
+                                    {size.label}
+                                  </Link>
                                 ))}
-                              </div>
-                              <Link
-                                href="/specifications"
-                                className="mt-4 flex items-center justify-between rounded-md border border-slate-200 bg-white px-3 py-2.5 text-xs font-semibold text-brand-navy transition-colors hover:border-brand-navy/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
-                                role="menuitem"
-                              >
-                                Size Guide
-                                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                              </Link>
                             </div>
                           )}
                         </div>
@@ -633,7 +573,14 @@ export default function Header() {
           {/* Mobile toggle */}
           <button
             className="xl:hidden p-2 text-slate-700 hover:text-brand-navy transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
+            onClick={() => {
+              const nextOpen = !mobileOpen;
+              setMobileOpen(nextOpen);
+              if (!nextOpen) {
+                setActiveDropdown(null);
+                setActiveMobileProductGroup(null);
+              }
+            }}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
           >
@@ -671,7 +618,11 @@ export default function Header() {
                   <div key={item.label}>
                     <button
                       className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 rounded-md transition-colors [touch-action:manipulation] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
-                      onClick={() => setActiveDropdown(activeDropdown === item.label ? null : item.label)}
+                      onClick={() => {
+                        const nextDropdown = activeDropdown === item.label ? null : item.label;
+                        setActiveDropdown(nextDropdown);
+                        setActiveMobileProductGroup(null);
+                      }}
                       aria-expanded={activeDropdown === item.label}
                       aria-controls={mobileDropdownId}
                     >
@@ -697,48 +648,53 @@ export default function Header() {
                                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
                               </Link>
                             </div>
-                            {(item as NavDropdown).productGroups!.map((group: NavProductGroup) => (
-                              <div key={group.groupLabel} data-product-family={group.groupLabel} className="border-t border-slate-200 px-3 pt-3">
-                                <Link
-                                  href={group.href}
-                                  className="flex min-h-11 items-start justify-between gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
-                                >
-                                  <span className="min-w-0">
-                                    <span className="block text-sm font-semibold text-slate-900">
-                                      {group.groupLabel}
-                                    </span>
-                                    <span className="mt-1 block text-xs leading-relaxed text-slate-500">
-                                      {group.description}
-                                    </span>
-                                  </span>
-                                  {group.badge && (
-                                    <span className={`flex-shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${BADGE_COLORS[group.badgeColor ?? "amber"] ?? BADGE_COLORS.amber}`}>
-                                      {group.badge}
-                                    </span>
-                                  )}
-                                </Link>
-                                <div className="mt-1 grid grid-cols-1">
-                                  {group.items.slice(0, 2).map((sub) => (
-                                    <Link
-                                      key={sub.href + sub.label}
-                                      href={sub.href}
-                                      data-mobile-product-link
-                                      className="flex min-h-10 items-center gap-2 rounded-md px-1 text-sm text-slate-600 hover:text-brand-navy [touch-action:manipulation] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
-                                    >
-                                      <span className="h-1 w-1 flex-shrink-0 rounded-full bg-brand-navy/60" aria-hidden="true" />
-                                      {sub.label}
-                                    </Link>
-                                  ))}
-                                  <Link
-                                    href={group.href}
-                                    data-mobile-product-link
-                                    className="flex min-h-10 items-center gap-1 rounded-md px-1 text-xs font-semibold text-brand-navy [touch-action:manipulation] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
+                            {(item as NavDropdown).productGroups!.map((group: NavProductGroup, groupIndex) => {
+                              const isExpanded = activeMobileProductGroup === group.groupLabel;
+                              const panelId = `mobile-product-family-${groupIndex}`;
+
+                              return (
+                                <div key={group.groupLabel} data-product-family={group.groupLabel} className="border-t border-slate-200">
+                                  <button
+                                    type="button"
+                                    data-mobile-product-trigger
+                                    aria-expanded={isExpanded}
+                                    aria-controls={panelId}
+                                    onClick={() => setActiveMobileProductGroup(isExpanded ? null : group.groupLabel)}
+                                    className="flex min-h-11 w-full items-center justify-between gap-3 rounded-md px-3 text-left text-sm font-semibold text-slate-900 [touch-action:manipulation] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
                                   >
-                                    View All <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                                  </Link>
+                                    <span>{group.groupLabel}</span>
+                                    <span className="flex items-center gap-2 text-[10px] font-medium text-slate-500">
+                                      {group.items.length} products
+                                      <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} aria-hidden="true" />
+                                    </span>
+                                  </button>
+
+                                  {isExpanded && (
+                                    <div id={panelId} className="bg-slate-50 px-3 pb-2">
+                                      {group.items.slice(0, 5).map((sub) => (
+                                        <Link
+                                          key={sub.href + sub.label}
+                                          href={sub.href}
+                                          data-mobile-product-link
+                                          className="flex min-h-10 items-center gap-2 border-t border-slate-200 text-sm text-slate-600 hover:text-brand-navy [touch-action:manipulation] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
+                                        >
+                                          <span className="text-amber-500" aria-hidden="true">›</span>
+                                          {sub.label}
+                                        </Link>
+                                      ))}
+                                      <Link
+                                        href={group.href}
+                                        data-mobile-product-view-all
+                                        className="flex min-h-10 items-center gap-1 border-t border-slate-200 text-xs font-semibold text-brand-navy [touch-action:manipulation] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
+                                      >
+                                        View all {group.groupLabel}
+                                        <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                                      </Link>
+                                    </div>
+                                  )}
                                 </div>
-                              </div>
-                            ))}
+                              );
+                            })}
                             <div className="grid grid-cols-2 gap-2 px-3">
                               <Link
                                 href="/oem"
