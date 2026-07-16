@@ -2,141 +2,59 @@ import type { Metadata } from "next";
 import CustomPrintedThermalRollsCatalogPage from "@/components/products/CustomPrintedThermalRollsCatalogPage";
 import { paperRollSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
-import { getSlotImage, getSlotImages } from "@/lib/imageSlotUtils";
-import { r2Image } from "@/lib/r2";
+import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
-  title: "Custom Printed Thermal Rolls | OEM Branding",
-  description: "Custom printed thermal paper rolls with logos, promotions, QR codes and multilingual layouts. Factory-direct OEM production, digital proof, BPA-free grades and export packing.",
-  keywords: "custom printed thermal paper rolls, branded receipt paper, thermal paper rolls with logo, private label thermal rolls, QR code receipt rolls, OEM thermal paper printing",
+  title: "Custom Printed Thermal Paper Rolls | OEM & Private Label",
+  description: "Review custom printed thermal paper rolls by specification, artwork, print side, repeat, QR or barcode use, packing and sample-approval requirements.",
+  keywords: "custom printed thermal paper rolls, branded receipt rolls, private label thermal rolls, logo printed receipt paper, back printed receipt rolls, OEM thermal paper printing",
   alternates: { canonical: `${SITE.domain}/products/thermal-paper-rolls/custom-printed` },
 };
 
-const ROLLS_IMG_FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
-const LABELS_IMG_FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
-const FACTORY_IMG_FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
-
-const printingSpecs = [
-  { label: "Print Method", value: "Flexographic printing, up to 4 colors" },
-  { label: "Print Side", value: "Thermal side / Reverse side / Both sides" },
-  { label: "Color Matching", value: "Pantone / CMYK / RAL; approved proof controls final color" },
-  { label: "Print Area", value: "Full width or partial custom layout" },
-  { label: "Repeat Pattern", value: "Every receipt or a confirmed repeat interval" },
-  { label: "Variable Data", value: "Static artwork standard; variable QR or barcode reviewed separately" },
-  { label: "Ink Type", value: "Water-based or UV-cured according to application" },
-  { label: "Artwork Format", value: "AI / PDF / EPS / CDR; vector artwork preferred" },
-  { label: "Proof", value: "Digital proof before production; physical sample available" },
+const FALLBACK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
+const printingRequirements = [
+  { label: "Roll specification", value: "Width, outer diameter or length, core, paper grade, winding and any sensor mark" },
+  { label: "Print side", value: "Thermal side, reverse side or both, subject to feasibility review" },
+  { label: "Artwork", value: "Vector artwork preferred; fonts, language, live-print area and repeat must be confirmed" },
+  { label: "Colors", value: "Color references and approval method are confirmed during artwork review" },
+  { label: "QR / barcode", value: "Code size, position, destination and scanner or app must be included in the test plan" },
+  { label: "Proof and sample", value: "Proof route and physical sample requirement are confirmed after feasibility review" },
 ];
-
-const productSpecs = [
-  { label: "Paper Width", value: "57mm / 80mm / Custom (±0.5mm)" },
-  { label: "Roll Diameter", value: "40mm–100mm; custom available" },
-  { label: "Core Inner Diameter", value: "12mm / 25mm / Custom" },
-  { label: "Paper Weight", value: "48 / 55 / 65 / 80 gsm" },
-  { label: "Coating", value: "BPA-free standard; phenol-free available" },
-  { label: "Image Life", value: "3-year standard; 7-year and 10-year grades" },
-  { label: "MOQ", value: "From 1,000 rolls; private-label packing depends on configuration" },
-  { label: "Lead Time", value: "10–18 business days after proof approval" },
-  { label: "Sample Lead Time", value: "5–7 business days when a physical sample is required" },
-  { label: "Payment Terms", value: "T/T 30% deposit, balance before shipment; L/C at sight" },
+const orderRequirements = [
+  { label: "Quantity", value: "Provide quantity by size, artwork version and packing SKU" },
+  { label: "Packing", value: "Neutral, distributor or private-label configuration reviewed by channel and destination" },
+  { label: "Documents", value: "Material and document requirements confirmed by exact product and scope" },
+  { label: "Commercial terms", value: "MOQ, proof, sample, production timing and payment are confirmed after review" },
 ];
-
-const packagingInfo = [
-  { label: "Inner Packing", value: "Moisture-resistant polybag; custom print available" },
-  { label: "Outer Carton", value: "5-ply corrugated export carton; custom print available" },
-  { label: "Rolls per Carton", value: "50 / 100 / 200 rolls depending on size" },
-  { label: "Export Ports", value: "Shenzhen / Guangzhou / Shanghai" },
-  { label: "Incoterms", value: "EXW / FOB / CIF / DDP" },
-  { label: "Shipping", value: "Sea freight, air freight, or express courier" },
+const approvalSteps = [
+  { step: "01", title: "Submit the brief", desc: "Send the roll specification, printer, print side, artwork, colors, repeat, live-print area, quantity, packing and destination." },
+  { step: "02", title: "Review feasibility", desc: "Confirm printable area, paper, winding, code use, packing and any sample or test requirement." },
+  { step: "03", title: "Approve the proof", desc: "Approve copy, language, artwork version, color reference, repeat and orientation." },
+  { step: "04", title: "Test when required", desc: "Use a physical sample for printer feeding, cutting, QR or barcode scanning and environment-specific review." },
+  { step: "05", title: "Freeze the master specification", desc: "Record the approved product, artwork, packing and change-confirmation reference before production." },
+  { step: "06", title: "Produce, inspect and pack", desc: "Inspect against the approved reference and confirmed shipment configuration." },
 ];
-
-const printingOptions = [
-  { title: "Logo & Brand Colors", desc: "Place the company logo, tagline, contact details, and approved brand colors on each receipt." },
-  { title: "Promotion & Coupon", desc: "Add discount codes, campaigns, social channels, website URLs, or calls to action." },
-  { title: "QR Code & Barcode", desc: "Use static QR codes for loyalty, survey, digital receipt, payment, or authentication workflows." },
-  { title: "Security & Numbering", desc: "Review serial numbers, void patterns, watermarks, or specialist security features by application." },
-  { title: "Multilingual & Compliance", desc: "Combine multiple languages, legal text, terms, or market-specific receipt information." },
-  { title: "Reverse-Side Printing", desc: "Use the back of the receipt for advertising, instructions, policies, or distributor branding." },
+const projectReviewAreas = [
+  { title: "Multilingual Layout", badge: "Copy and version review", items: ["Confirm languages, text ownership and approved copy", "Keep every language version tied to the artwork revision"] },
+  { title: "Tax or Fiscal Fields", badge: "Target-market review", items: ["Collect the required text, code, issuer and destination", "Do not claim approval until the exact requirement and evidence are verified"] },
+  { title: "QR and Barcode Use", badge: "Position and scan plan", items: ["Confirm code destination, size, contrast, live-print area and scanner or app", "Agree on proof, physical sample and scan-test scope"] },
+  { title: "Destination Documents", badge: "Product-scope evidence", items: ["List the required material, report or certificate fields", "Confirm issuer, product scope, date, batch relationship and verification method"] },
 ];
-
-const orderSteps = [
-  { step: "01", title: "Submit the brief", desc: "Send size, quantity, print side, colors, repeat pattern, destination, and available artwork." },
-  { step: "02", title: "Review feasibility", desc: "We check printable area, artwork quality, paper grade, ink system, and packing requirements." },
-  { step: "03", title: "Approve the proof", desc: "Review the digital layout, copy, colors, repeat, and roll orientation before production." },
-  { step: "04", title: "Produce and inspect", desc: "Printing, slitting, winding, dimensions, artwork registration, and packing are checked." },
-  { step: "05", title: "Pack and ship", desc: "The order is packed under the confirmed carton, pallet, label, and export terms." },
-];
-
-const regionalApplications = [
-  { title: "Europe & Italy", badge: "EU resale and receipt marketing", items: ["Logo, coupon, QR, and reverse-side advertising", "Italian or multilingual layouts", "BPA-free and phenol-free grade review"] },
-  { title: "Africa", badge: "Retail, fuel, mobile money", items: ["Payment-confirmation and branded receipts", "Fuel-station and retailer identification", "Distributor and private-label packaging"] },
-  { title: "Middle East", badge: "Retail, hospitality, bilingual", items: ["Arabic and English receipt layouts", "QR and tax-information placement", "Hotel, restaurant, and retail branding"] },
-  { title: "Southeast Asia", badge: "QR payment and convenience retail", items: ["Payment QR and loyalty campaigns", "Convenience-store chain branding", "Local-language and English layouts"] },
-];
-
 const faqs = [
-  { q: "What is the minimum order for custom printed rolls?", a: "Custom printed production normally starts from 1,000 rolls. MOQ can change with size, colors, ink, variable data, and private-label packing." },
-  { q: "Do you provide a design proof before production?", a: "Yes. A digital proof is supplied for layout approval before production. A physical printed sample can be arranged when color, material, or print testing is required." },
-  { q: "What file formats do you accept for artwork?", a: "AI, PDF, EPS, and CDR files are accepted. Vector artwork with outlined fonts and referenced Pantone or CMYK colors gives the most reliable result." },
-  { q: "Can you match our exact brand colors?", a: "Pantone, CMYK, and RAL references can be reviewed. Final color is controlled through the approved proof or physical sample and the selected paper and ink system." },
-  { q: "How long does production take?", a: "Custom printed orders normally take 10 to 18 business days after artwork and specification approval. Complex sampling or packing can extend the schedule." },
-  { q: "Can I order custom packaging as well?", a: "Yes. Custom cartons, polybags, core labels, and distributor packaging are available. MOQ depends on the printing and packing configuration." },
-  { q: "Do you support multilingual receipt printing?", a: "Yes. Italian, Arabic, English, French, and other multilingual layouts can be reviewed as part of the artwork proof process." },
+  { q: "What information is required for a custom printed roll review?", a: "Send the complete roll specification, printer, print side, artwork, language, colors, repeat, code use, quantity by SKU, packing, destination and document requirements." },
+  { q: "When are MOQ and production timing confirmed?", a: "MOQ and timing are confirmed after the roll specification, artwork, quantity, packing, proof route, sample requirement and destination have been reviewed." },
+  { q: "Is a physical sample always required?", a: "Not always. A physical sample is planned when printer feeding, cutting, color, QR or barcode scanning, material or destination-specific risk needs to be tested." },
+  { q: "Can you review multilingual artwork?", a: "Yes. The buyer supplies or approves the final copy, and each language version is tied to the artwork revision and proof approval." },
+  { q: "How are repeat orders controlled?", a: "Repeat orders should reference the approved roll specification, artwork version, packing configuration, master sample where used and any confirmed change notice." },
 ];
-
-const productSchema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  name: "Custom Printed Thermal Paper Rolls",
-  description: metadata.description,
-  brand: { "@type": "Brand", name: "ZhixinPaper" },
-  manufacturer: { "@type": "Organization", name: "ZhixinPaper", url: SITE.domain },
-  image: ROLLS_IMG_FALLBACK,
-  url: `${SITE.domain}/products/thermal-paper-rolls/custom-printed`,
-  additionalProperty: [...printingSpecs, ...productSpecs].map(({ label, value }) => ({ "@type": "PropertyValue", name: label, value })),
-};
-
+const productSchema = { "@context": "https://schema.org", "@type": "Product", name: "Custom Printed Thermal Paper Rolls", description: metadata.description, brand: { "@type": "Brand", name: "ZhixinPaper" }, manufacturer: { "@type": "Organization", name: "ZhixinPaper", url: SITE.domain }, image: FALLBACK, url: `${SITE.domain}/products/thermal-paper-rolls/custom-printed`, additionalProperty: [...printingRequirements, ...orderRequirements].map(({ label, value }) => ({ "@type": "PropertyValue", name: label, value })) };
 const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) };
 const breadcrumbSchema = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-  { "@type": "ListItem", position: 1, name: "Home", item: SITE.domain },
-  { "@type": "ListItem", position: 2, name: "Products", item: `${SITE.domain}/products` },
-  { "@type": "ListItem", position: 3, name: "Thermal Paper Rolls", item: `${SITE.domain}/products/thermal-paper-rolls` },
-  { "@type": "ListItem", position: 4, name: "Custom Printed Thermal Rolls", item: `${SITE.domain}/products/thermal-paper-rolls/custom-printed` },
+  { "@type": "ListItem", position: 1, name: "Home", item: SITE.domain }, { "@type": "ListItem", position: 2, name: "Products", item: `${SITE.domain}/products` }, { "@type": "ListItem", position: 3, name: "Thermal Paper Rolls", item: `${SITE.domain}/products/thermal-paper-rolls` }, { "@type": "ListItem", position: 4, name: "Custom Printed", item: `${SITE.domain}/products/thermal-paper-rolls/custom-printed` },
 ] };
 
 export default async function CustomPrintedRollsPage() {
-  const heroImage = await getSlotImage("thermal-paper-rolls:custom-hero", ROLLS_IMG_FALLBACK);
-  const images = await getSlotImages([
-    { slot: "products:thermal-rolls", fallback: ROLLS_IMG_FALLBACK },
-    { slot: "products:thermal-labels", fallback: LABELS_IMG_FALLBACK },
-    { slot: "products:hero", fallback: FACTORY_IMG_FALLBACK },
-  ]);
-  const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a quote for custom printed thermal paper rolls. I can send the size, quantity, colors, print side, artwork, and destination.")}`;
-
-  const relatedProducts = [
-    { title: "Blank Thermal Paper Rolls", description: "Choose unprinted stock when standard sizes, flexible downstream use, and faster dispatch matter most.", href: "/products/thermal-paper-rolls/blank", image: r2Image(images["products:thermal-rolls"]), imageAlt: "Blank thermal paper rolls for stock supply", badge: "Closest alternative" },
-    { title: "Custom Printed Thermal Labels", description: "Move to adhesive labels when the printed item must identify cartons, parcels, products, or inventory.", href: "/products/thermal-labels/custom-printed", image: r2Image(images["products:thermal-labels"]), imageAlt: "Custom printed thermal label rolls", badge: "Adjacent print format" },
-    { title: "OEM & Private Label Services", description: "Use the wider OEM program for branded cartons, polybags, core labels, artwork support, and resale packaging.", href: "/oem", image: r2Image(images["products:hero"]), imageAlt: "ZhixinPaper factory production for OEM paper and label programs", badge: "Next procurement step" },
-  ];
-
-  return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
-      <CustomPrintedThermalRollsCatalogPage
-        heroImage={heroImage}
-        whatsappHref={whatsappHref}
-        printingOptions={printingOptions}
-        orderSteps={orderSteps}
-        printingSpecs={printingSpecs}
-        productSpecs={productSpecs}
-        packagingInfo={packagingInfo}
-        regionalApplications={regionalApplications}
-        sizes={paperRollSizes.map((size) => ({ label: size.label, href: `/products/thermal-rolls/${size.slug}`, badge: size.badge, markets: size.markets }))}
-        relatedProducts={relatedProducts}
-        faqs={faqs}
-      />
-    </>
-  );
+  const heroImage = await getSlotImage("thermal-paper-rolls:custom-hero", FALLBACK);
+  const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a custom printed thermal roll review. I can send the specification, printer, artwork, quantity, packing and destination.")}`;
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} /><CustomPrintedThermalRollsCatalogPage heroImage={heroImage} whatsappHref={whatsappHref} printingRequirements={printingRequirements} orderRequirements={orderRequirements} approvalSteps={approvalSteps} projectReviewAreas={projectReviewAreas} sizes={paperRollSizes.map((size) => ({ label: size.label, href: `/products/thermal-rolls/${size.slug}`, badge: size.badge }))} faqs={faqs} /></>;
 }

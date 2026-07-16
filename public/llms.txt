@@ -30,7 +30,7 @@ ZhixinPaper manufactures every category in-house — controlling base-paper coat
 
 - [Product catalog](https://www.zxpapers.com/products): full range of thermal paper rolls, labels, can labels, and detergent labels
 - [Thermal paper rolls](https://www.zxpapers.com/products/thermal-paper-rolls): POS, ATM, kiosk, and till rolls in 57mm, 80mm, and custom widths
-- [Custom printed thermal rolls](https://www.zxpapers.com/products/custom-printed-thermal-rolls): logo, promotion, QR, bilingual receipt printing + private-label packaging (OEM)
+- [Custom printed thermal rolls](https://www.zxpapers.com/products/thermal-paper-rolls/custom-printed): custom roll specification, artwork, proof/sample planning, QR or barcode review, private-label packing and product-specific RFQ
 - [BPA-free thermal paper](https://www.zxpapers.com/products/bpa-free-thermal-paper): non-toxic receipt paper for everyday compliance
 - [Phenol-free thermal paper](https://www.zxpapers.com/products/phenol-free-thermal-paper): BPS-free, food-contact grade for EU REACH and California Prop 65
 - [Receipt paper rolls](https://www.zxpapers.com/products/receipt-paper-rolls): cash register / POS receipt rolls
