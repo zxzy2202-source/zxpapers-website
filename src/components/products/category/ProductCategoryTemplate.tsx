@@ -10,6 +10,7 @@ import {
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import PageHero from "@/components/shared/PageHero";
+import { cn } from "@/lib/utils";
 import type {
   ProductCategoryConfig,
   ResolvedProductCategoryImages,
@@ -52,6 +53,7 @@ export default function ProductCategoryTemplate({
 }: ProductCategoryTemplateProps) {
   const featuredFamily = config.families.find((family) => family.featured);
   const compactFamilies = config.families.filter((family) => !family.featured);
+  const singleCompactFamily = compactFamilies.length === 1;
 
   return (
     <Layout>
@@ -162,23 +164,51 @@ export default function ProductCategoryTemplate({
             </Link>
           ) : null}
 
-          <div className="mt-4 grid gap-px border border-slate-200 bg-slate-200 md:grid-cols-2 xl:grid-cols-5">
+          <div
+            className={cn(
+              "mt-4 grid gap-px border border-slate-200 bg-slate-200",
+              singleCompactFamily ? "md:grid-cols-1" : "md:grid-cols-2 xl:grid-cols-5",
+            )}
+          >
             {compactFamilies.map((family) => (
               <Link
                 key={family.id}
                 href={family.href}
-                className="group grid min-h-28 grid-cols-[96px_minmax(0,1fr)] bg-white focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 md:block"
+                className={cn(
+                  "group grid min-h-28 grid-cols-[96px_minmax(0,1fr)] bg-white focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500",
+                  singleCompactFamily
+                    ? "md:min-h-[220px] md:grid-cols-[minmax(220px,0.4fr)_minmax(0,0.6fr)]"
+                    : "md:block",
+                )}
               >
-                <div className="relative min-h-28 overflow-hidden bg-slate-100 md:aspect-[16/9] md:min-h-0">
+                <div
+                  className={cn(
+                    "relative min-h-28 overflow-hidden bg-slate-100",
+                    singleCompactFamily
+                      ? "md:min-h-[220px]"
+                      : "md:aspect-[16/9] md:min-h-0",
+                  )}
+                >
                   <Image
                     src={images.families[family.id]}
                     alt={family.image.alt}
                     fill
-                    sizes="(max-width: 768px) 96px, (max-width: 1280px) 50vw, 20vw"
+                    sizes={
+                      singleCompactFamily
+                        ? "(max-width: 768px) 96px, 40vw"
+                        : "(max-width: 768px) 96px, (max-width: 1280px) 50vw, 20vw"
+                    }
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.035] motion-reduce:transition-none"
                   />
                 </div>
-                <div className="flex min-w-0 flex-col justify-center p-4 md:min-h-[220px] md:justify-start md:p-5">
+                <div
+                  className={cn(
+                    "flex min-w-0 flex-col justify-center p-4",
+                    singleCompactFamily
+                      ? "md:min-h-[220px] md:p-7 lg:p-8"
+                      : "md:min-h-[220px] md:justify-start md:p-5",
+                  )}
+                >
                   <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-teal-700">
                     {family.label}
                   </p>
@@ -188,7 +218,12 @@ export default function ProductCategoryTemplate({
                   <p className="mt-2 hidden text-xs leading-relaxed text-slate-600 md:block">
                     {family.description}
                   </p>
-                  <span className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-navy md:mt-auto md:pt-4">
+                  <span
+                    className={cn(
+                      "mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-navy",
+                      singleCompactFamily ? "md:mt-5" : "md:mt-auto md:pt-4",
+                    )}
+                  >
                     {family.linkLabel}
                     <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                   </span>
