@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 
 const BASE = SITE.domain;
 // Keep static page lastmod stable. Update this when static page content changes.
-const STATIC_LAST_MOD = "2026-06-06";
+const STATIC_LAST_MOD = "2026-07-16";
 
 function uniqueByUrl(entries: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
   const seen = new Set<string>();
@@ -144,6 +144,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "shipping-labels",
     "till-rolls",
     "linerless-labels",
+    "linerless-labels/3-1-8-x-263",
     "ncr-forms",
     "custom-ncr-forms",
     "continuous-computer-forms",

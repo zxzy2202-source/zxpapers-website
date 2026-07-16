@@ -45,6 +45,9 @@ export const IMAGE_SLOTS = [
   { slot: "home:product-2x4-thermal-labels", label: "首页产品-2x4 Thermal Labels", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏标签组卡片 6" },
   // === Linerless Labels ===
   { slot: "linerless-labels:hero", label: "无底纸标签 详情页 Hero 图", page: "无底纸标签", pageUrl: "/products/linerless-labels", aspect: "4:3" },
+  { slot: "linerless-3-1-8-x-263:hero", label: "3 1/8 x 263 无底纸标签 - Hero 图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "16:9", description: "产品详情页首屏，优先使用真实卷材与标签成品图" },
+  { slot: "linerless-3-1-8-x-263:application", label: "3 1/8 x 263 无底纸标签 - 应用图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "4:3", description: "直接答案和应用场景模块" },
+  { slot: "linerless-3-1-8-x-263:quality", label: "3 1/8 x 263 无底纸标签 - 质检图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "4:3", description: "样品、打印、粘合或工厂质检模块" },
   // === 其他可能用到的 6 个 ===
   { slot: "home:product-lottery-gaming-rolls", label: "首页产品-Lottery & Gaming Rolls", page: "首页", pageUrl: "/", aspect: "4:3", description: "（备用）首页彩票游戏纸卷" },
   { slot: "home:product-colored-thermal-paper", label: "首页产品-Colored Thermal Paper", page: "首页", pageUrl: "/", aspect: "4:3", description: "（备用）首页彩色热敏纸" },

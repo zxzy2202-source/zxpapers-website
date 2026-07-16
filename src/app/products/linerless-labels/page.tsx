@@ -81,7 +81,7 @@ export default async function LinerlessLabelsPage() {
   const labelsImg = r2Image(await getSlotImage("thermal-labels:hero", LABELS_IMG_FALLBACK));
 
   const products = [
-    { title: "3⅛\" × 263' Linerless", desc: "Our highest-volume linerless SKU (80mm × 80m) — removable, sticky, or permanent, all BPA-free.", image: labelsImg, href: "#inquiry", badge: "Best Seller" },
+    { title: "3⅛\" × 263' Linerless Labels", desc: "80mm × 80m continuous linerless format reviewed against the printer, adhesive, application, sample test and packing specification.", image: labelsImg, href: "/products/linerless-labels/3-1-8-x-263", badge: "Detail" },
     { title: "2¼\" × 263' Linerless", desc: "57mm × 80m for compact mobile printers used by food delivery and field service.", image: labelsImg, href: "#inquiry", badge: "Compact" },
     { title: "40mm Liner-Free Rolls", desc: "Narrow liner-free rolls for scales, deli, and small-format thermal printers.", image: labelsImg, href: "#inquiry", badge: "Narrow" },
     { title: "Custom Printed Linerless", desc: "Pre-printed logo and color on liner-free stock with your adhesive grade. OEM & private label.", image: labelsImg, href: "/products/thermal-labels/custom-printed", badge: "OEM" },
