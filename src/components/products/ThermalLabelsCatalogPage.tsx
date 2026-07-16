@@ -175,24 +175,45 @@ export default function ThermalLabelsCatalogPage({
         </div>
       </section>
 
-      <section id="product-families" className="border-y border-slate-200 bg-white">
+      <section id="product-families" className="scroll-mt-24 border-y border-slate-200 bg-white">
         <div className="container py-14 lg:py-20">
           <SectionHeading eyebrow="Product families" title="Build the label range around the job" description="Start with proven P0 SKUs, then add specialty materials and custom printing as your customers' applications grow." />
-          <div className="mt-10 grid gap-5 lg:grid-cols-12">
-            {families.map((family, index) => (
-              <Link key={family.title} href={family.href} className={`group relative overflow-hidden border border-slate-200 bg-slate-50 ${family.featured ? "lg:col-span-7 lg:row-span-2" : index % 3 === 0 ? "lg:col-span-5" : "lg:col-span-4"}`}>
-                <div className={`relative ${family.featured ? "aspect-[16/10] lg:aspect-auto lg:h-full" : "aspect-[16/9]"}`}>
-                  <Image src={family.image} alt={family.imageAlt} fill sizes="(max-width: 1024px) 100vw, 58vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/15 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
+          <div className="mt-10">
+            {families.filter((family) => family.featured).map((family) => (
+              <Link key={family.title} href={family.href} className="group block overflow-hidden border border-slate-200 bg-slate-950">
+                <div className="relative min-h-[410px] overflow-hidden sm:min-h-[470px] xl:min-h-[520px]">
+                  <Image src={family.image} alt={family.imageAlt} fill sizes="(max-width: 1280px) 100vw, 86vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-8">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-300">{family.tag}</p>
-                    <h3 className="mt-2 font-sora text-xl font-semibold leading-tight sm:text-2xl">{family.title}</h3>
-                    <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-200">{family.text}</p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-amber-300">View product range <ArrowRight className="h-4 w-4" aria-hidden="true" /></span>
+                    <h3 className="mt-2 font-sora text-2xl font-semibold leading-tight sm:text-3xl">{family.title}</h3>
+                    <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-200 sm:text-base">{family.text}</p>
+                    <span className="mt-5 inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-amber-300">View product range <ArrowRight className="h-4 w-4" aria-hidden="true" /></span>
                   </div>
                 </div>
               </Link>
             ))}
+
+            <div className="mt-5 grid gap-5 sm:grid-cols-2 xl:grid-cols-6">
+              {families.filter((family) => !family.featured).map((family, index, secondaryFamilies) => {
+                const isLast = index === secondaryFamilies.length - 1;
+                const layout = index <= 1 ? "xl:col-span-3" : isLast ? "sm:col-span-2 xl:col-span-2" : "xl:col-span-2";
+
+                return (
+                  <Link key={family.title} href={family.href} className={`group overflow-hidden border border-slate-200 bg-white ${isLast ? "grid grid-cols-1 sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] xl:flex xl:flex-col" : "flex flex-col"} ${layout}`}>
+                    <div className={`relative aspect-[16/9] shrink-0 overflow-hidden bg-slate-100 xl:aspect-[16/7] ${isLast ? "sm:aspect-auto sm:min-h-[280px] xl:min-h-0" : ""}`}>
+                      <Image src={family.image} alt={family.imageAlt} fill sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 42vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                    </div>
+                    <div className="flex flex-1 flex-col p-5 sm:p-6">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-700">{family.tag}</p>
+                      <h3 className="mt-2 font-sora text-xl font-semibold leading-tight text-slate-950 group-hover:text-amber-800">{family.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">{family.text}</p>
+                      <span className="mt-auto inline-flex shrink-0 items-center gap-2 whitespace-nowrap pt-5 text-sm font-semibold text-brand-navy transition-colors group-hover:text-amber-700">View product range <ArrowRight className="h-4 w-4" aria-hidden="true" /></span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
