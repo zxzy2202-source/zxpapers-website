@@ -73,9 +73,10 @@ function ProductGroupIcon({ label }: { label: string }) {
 }
 
 export default function Header() {
-  const [mobileOpen, setMobileOpen]         = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [scrolled, setScrolled]             = useState(false);
+  const [mobileOpen, setMobileOpen]                           = useState(false);
+  const [activeDropdown, setActiveDropdown]                   = useState<string | null>(null);
+  const [activeMobileProductGroup, setActiveMobileProductGroup] = useState<string | null>(null);
+  const [scrolled, setScrolled]                               = useState(false);
   const closeTimerRef = useRef<number | null>(null);
   const scrollFrameRef = useRef<number | null>(null);
   const scrolledRef = useRef(false);
@@ -131,6 +132,7 @@ export default function Header() {
   useEffect(() => {
     setMobileOpen(false);
     setActiveDropdown(null);
+    setActiveMobileProductGroup(null);
     cancelDropdownClose();
   }, [pathname]);
 
@@ -571,7 +573,14 @@ export default function Header() {
           {/* Mobile toggle */}
           <button
             className="xl:hidden p-2 text-slate-700 hover:text-brand-navy transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
+            onClick={() => {
+              const nextOpen = !mobileOpen;
+              setMobileOpen(nextOpen);
+              if (!nextOpen) {
+                setActiveDropdown(null);
+                setActiveMobileProductGroup(null);
+              }
+            }}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
           >
@@ -609,7 +618,11 @@ export default function Header() {
                   <div key={item.label}>
                     <button
                       className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium text-slate-700 hover:text-brand-navy hover:bg-slate-50 rounded-md transition-colors [touch-action:manipulation] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
-                      onClick={() => setActiveDropdown(activeDropdown === item.label ? null : item.label)}
+                      onClick={() => {
+                        const nextDropdown = activeDropdown === item.label ? null : item.label;
+                        setActiveDropdown(nextDropdown);
+                        setActiveMobileProductGroup(null);
+                      }}
                       aria-expanded={activeDropdown === item.label}
                       aria-controls={mobileDropdownId}
                     >
@@ -635,48 +648,53 @@ export default function Header() {
                                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
                               </Link>
                             </div>
-                            {(item as NavDropdown).productGroups!.map((group: NavProductGroup) => (
-                              <div key={group.groupLabel} data-product-family={group.groupLabel} className="border-t border-slate-200 px-3 pt-3">
-                                <Link
-                                  href={group.href}
-                                  className="flex min-h-11 items-start justify-between gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
-                                >
-                                  <span className="min-w-0">
-                                    <span className="block text-sm font-semibold text-slate-900">
-                                      {group.groupLabel}
-                                    </span>
-                                    <span className="mt-1 block text-xs leading-relaxed text-slate-500">
-                                      {group.description}
-                                    </span>
-                                  </span>
-                                  {group.badge && (
-                                    <span className={`flex-shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${BADGE_COLORS[group.badgeColor ?? "amber"] ?? BADGE_COLORS.amber}`}>
-                                      {group.badge}
-                                    </span>
-                                  )}
-                                </Link>
-                                <div className="mt-1 grid grid-cols-1">
-                                  {group.items.slice(0, 2).map((sub) => (
-                                    <Link
-                                      key={sub.href + sub.label}
-                                      href={sub.href}
-                                      data-mobile-product-link
-                                      className="flex min-h-10 items-center gap-2 rounded-md px-1 text-sm text-slate-600 hover:text-brand-navy [touch-action:manipulation] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
-                                    >
-                                      <span className="h-1 w-1 flex-shrink-0 rounded-full bg-brand-navy/60" aria-hidden="true" />
-                                      {sub.label}
-                                    </Link>
-                                  ))}
-                                  <Link
-                                    href={group.href}
-                                    data-mobile-product-link
-                                    className="flex min-h-10 items-center gap-1 rounded-md px-1 text-xs font-semibold text-brand-navy [touch-action:manipulation] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
+                            {(item as NavDropdown).productGroups!.map((group: NavProductGroup, groupIndex) => {
+                              const isExpanded = activeMobileProductGroup === group.groupLabel;
+                              const panelId = `mobile-product-family-${groupIndex}`;
+
+                              return (
+                                <div key={group.groupLabel} data-product-family={group.groupLabel} className="border-t border-slate-200">
+                                  <button
+                                    type="button"
+                                    data-mobile-product-trigger
+                                    aria-expanded={isExpanded}
+                                    aria-controls={panelId}
+                                    onClick={() => setActiveMobileProductGroup(isExpanded ? null : group.groupLabel)}
+                                    className="flex min-h-11 w-full items-center justify-between gap-3 rounded-md px-3 text-left text-sm font-semibold text-slate-900 [touch-action:manipulation] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
                                   >
-                                    View All <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                                  </Link>
+                                    <span>{group.groupLabel}</span>
+                                    <span className="flex items-center gap-2 text-[10px] font-medium text-slate-500">
+                                      {group.items.length} products
+                                      <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} aria-hidden="true" />
+                                    </span>
+                                  </button>
+
+                                  {isExpanded && (
+                                    <div id={panelId} className="bg-slate-50 px-3 pb-2">
+                                      {group.items.slice(0, 5).map((sub) => (
+                                        <Link
+                                          key={sub.href + sub.label}
+                                          href={sub.href}
+                                          data-mobile-product-link
+                                          className="flex min-h-10 items-center gap-2 border-t border-slate-200 text-sm text-slate-600 hover:text-brand-navy [touch-action:manipulation] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
+                                        >
+                                          <span className="text-amber-500" aria-hidden="true">›</span>
+                                          {sub.label}
+                                        </Link>
+                                      ))}
+                                      <Link
+                                        href={group.href}
+                                        data-mobile-product-view-all
+                                        className="flex min-h-10 items-center gap-1 border-t border-slate-200 text-xs font-semibold text-brand-navy [touch-action:manipulation] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/40"
+                                      >
+                                        View all {group.groupLabel}
+                                        <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                                      </Link>
+                                    </div>
+                                  )}
                                 </div>
-                              </div>
-                            ))}
+                              );
+                            })}
                             <div className="grid grid-cols-2 gap-2 px-3">
                               <Link
                                 href="/oem"
