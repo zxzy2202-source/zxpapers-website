@@ -19,6 +19,7 @@ import {
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import InquiryForm from "@/components/shared/InquiryForm";
+import MobileInquiryBar from "./MobileInquiryBar";
 import type {
   ProductDetailConfig,
   ProductFactIcon,
@@ -38,16 +39,40 @@ const factIcons: Record<ProductFactIcon, LucideIcon> = {
   approval: ClipboardCheck,
 };
 
-function SectionIntro({ label, title, description }: { label: string; title: string; description: string }) {
+function StageIntro({
+  number,
+  label,
+  title,
+  description,
+  inverse = false,
+}: {
+  number: string;
+  label: string;
+  title: string;
+  description: string;
+  inverse?: boolean;
+}) {
+  return (
+    <div className="grid gap-3 sm:grid-cols-[72px_minmax(0,1fr)] sm:gap-5" data-procurement-stage={number}>
+      <div className="flex items-center gap-3 sm:block">
+        <span className={`font-sora text-xl font-semibold tabular-nums ${inverse ? "text-amber-300" : "text-brand-navy"}`}>{number}</span>
+        <span className="h-px flex-1 bg-amber-500 sm:mt-2 sm:block sm:w-10" aria-hidden="true" />
+      </div>
+      <div>
+        <p className={`text-[11px] font-semibold uppercase tracking-normal ${inverse ? "text-amber-300" : "text-amber-700"}`}>{label}</p>
+        <h2 className={`mt-1.5 text-pretty font-sora text-2xl font-semibold leading-tight lg:text-[2rem] ${inverse ? "text-white" : "text-[#172033]"}`}>{title}</h2>
+        <p className={`mt-2.5 max-w-[70ch] text-pretty text-sm leading-relaxed lg:text-base ${inverse ? "text-slate-300" : "text-slate-600"}`}>{description}</p>
+      </div>
+    </div>
+  );
+}
+
+function OverviewIntro({ label, title, description }: { label: string; title: string; description: string }) {
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-normal text-amber-700">{label}</p>
-      <h2 className="mt-2 text-pretty font-sora text-2xl font-semibold leading-tight text-slate-950 lg:text-[2rem]">
-        {title}
-      </h2>
-      <p className="mt-3 max-w-[70ch] text-pretty text-sm leading-relaxed text-slate-600 lg:text-base">
-        {description}
-      </p>
+      <p className="text-[11px] font-semibold uppercase tracking-normal text-amber-700">{label}</p>
+      <h3 className="mt-1.5 text-pretty font-sora text-xl font-semibold leading-tight text-[#172033] lg:text-2xl">{title}</h3>
+      <p className="mt-2.5 max-w-[70ch] text-sm leading-relaxed text-slate-600">{description}</p>
     </div>
   );
 }
@@ -55,11 +80,11 @@ function SectionIntro({ label, title, description }: { label: string; title: str
 export default function ProductDetailTemplate({ config, images, whatsappHref }: ProductDetailTemplateProps) {
   return (
     <Layout>
-      <main data-product-detail-template={config.slug}>
+      <main className="pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0" data-product-detail-template={config.slug}>
         <PageHero
           bgImage={images.hero}
           overlayOpacity={64}
-          minHeight="min-h-[370px]"
+          minHeight="min-h-[420px] sm:min-h-[390px] lg:min-h-[370px]"
           compact
           breadcrumbs={config.breadcrumbs.map((item, index) => ({
             label: item.name,
@@ -106,12 +131,19 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
 
         <section className="bg-slate-50" data-product-detail-section="procurement-overview">
           <div className="container py-9 lg:py-12">
-            <div className="grid gap-7 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-stretch lg:gap-10">
+            <div className="border border-slate-200 border-t-4 border-t-brand-navy bg-white p-4 shadow-[0_12px_32px_rgba(7,23,47,0.06)] sm:p-6 lg:p-8">
+              <StageIntro
+                number="01"
+                label="Product fit"
+                title={config.directAnswer.question}
+                description={config.directAnswer.answer}
+              />
+              <div className="mt-6 grid gap-7 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-stretch lg:gap-10">
               <div className="relative aspect-[4/3] overflow-hidden border border-slate-200 bg-white lg:aspect-auto lg:min-h-[340px]">
                 <Image src={images.application} alt={config.images.application.alt} fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover" />
               </div>
               <div>
-                <SectionIntro label={config.directAnswer.label} title={config.directAnswer.question} description={config.directAnswer.answer} />
+                <OverviewIntro label={config.directAnswer.label} title="Qualification inputs" description="Use these inputs to confirm the roll, printer, adhesive and application before comparing supply offers." />
                 <div className="mt-5 border-t border-slate-300">
                   {config.directAnswer.checklist.map((item) => (
                     <p key={item} className="flex gap-3 border-b border-slate-300 py-3 text-sm leading-relaxed text-slate-700">
@@ -124,7 +156,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
             </div>
 
             <div className="mt-8 border-t border-slate-300 pt-7">
-              <SectionIntro label={config.supplyProgram.label} title={config.supplyProgram.title} description={config.supplyProgram.description} />
+              <OverviewIntro label={config.supplyProgram.label} title={config.supplyProgram.title} description={config.supplyProgram.description} />
               <div className="mt-5 grid border-l border-t border-slate-300 sm:grid-cols-2 lg:grid-cols-4">
                 {config.supplyProgram.buyers.map((buyer) => (
                   <p key={buyer} className="flex gap-2 border-b border-r border-slate-300 bg-white p-3 text-xs font-medium leading-relaxed text-slate-700 sm:p-4">
@@ -145,23 +177,28 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
               </div>
               <p className="border-x border-b border-slate-300 bg-white px-4 py-3 text-xs leading-relaxed text-slate-500">{config.supplyProgram.note}</p>
             </div>
+            </div>
           </div>
         </section>
 
         <section className="border-y border-slate-200 bg-white" data-product-detail-section="risks">
           <div className="container py-9 lg:py-12">
-            <SectionIntro
-              label="Buyer risk review"
+            <StageIntro
+              number="02"
+              label="Risk control"
               title="Resolve the problems behind the roll specification"
               description="A size name is not enough for a production order. Confirm how the roll loads, cuts, adheres, prints, scans, ships, and repeats before approving the supply specification."
             />
             <div className="mt-6 grid border-l border-t border-slate-300 sm:grid-cols-2 lg:grid-cols-3">
-              {config.problems.map((problem) => (
-                <article key={problem.question} className="flex flex-col border-b border-r border-slate-300 p-4 lg:p-5">
-                  <ShieldCheck className="h-5 w-5 text-amber-700" aria-hidden="true" />
+              {config.problems.map((problem, index) => (
+                <article key={problem.question} className="flex flex-col border-b border-r border-slate-300 bg-white p-4 lg:p-5" data-risk-marker={index + 1}>
+                  <div className="flex items-center justify-between">
+                    <ShieldCheck className="h-5 w-5 text-amber-700" aria-hidden="true" />
+                    <span className="font-sora text-xs font-semibold text-amber-700">R{index + 1}</span>
+                  </div>
                   <h3 className="mt-3 text-pretty font-sora text-base font-semibold leading-tight text-slate-950">{problem.question}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{problem.consequence}</p>
-                  <div className="mt-4 border-t border-slate-200 pt-3">
+                  <div className="mt-4 border-l-2 border-brand-navy bg-blue-50/70 px-3 py-2.5">
                     <p className="text-[11px] font-semibold uppercase tracking-normal text-slate-500">Review response</p>
                     <p className="mt-1.5 text-sm font-medium leading-relaxed text-slate-800">{problem.response}</p>
                   </div>
@@ -173,8 +210,9 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
 
         <section className="bg-slate-50" data-product-detail-section="specifications">
           <div className="container py-9 lg:py-12">
-            <SectionIntro
-              label="Specification basis"
+            <StageIntro
+              number="03"
+              label="Specification"
               title="Define the complete roll before comparing quotes"
               description="The values below describe the quotation and approval fields for this format. Final manufacturing tolerances, material, packing, and test scope belong in the approved specification."
             />
@@ -182,7 +220,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
               {config.specifications.map((group) => {
                 const headingId = "spec-" + group.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
                 return (
-                  <section key={group.title} aria-labelledby={headingId} className="border border-slate-300 bg-white">
+                  <section key={group.title} aria-labelledby={headingId} className="border border-l-4 border-slate-300 border-l-amber-500 bg-white">
                     <div className="border-b border-slate-300 bg-brand-navy px-4 py-3 text-white sm:flex sm:items-baseline sm:gap-5">
                       <h3 id={headingId} className="font-sora text-base font-semibold sm:min-w-56">{group.title}</h3>
                       <p className="mt-1 text-xs leading-relaxed text-slate-300 sm:mt-0">{group.description}</p>
@@ -212,8 +250,9 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
                 <Image src={images.application} alt={config.images.application.alt} fill sizes="(max-width: 1024px) 100vw, 38vw" className="object-cover" />
               </div>
               <div>
-                <SectionIntro
-                  label="Application review"
+                <StageIntro
+                  number="04"
+                  label="Application"
                   title="Match the adhesive and test plan to the real surface"
                   description="The same roll dimensions can behave differently across containers, temperatures, dwell times, condensation, grease, and handling. Review the application before choosing the adhesive."
                 />
@@ -223,7 +262,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
                       <h3 className="font-sora text-sm font-semibold text-slate-950">{application.title}</h3>
                       <div>
                         <p className="text-sm leading-relaxed text-slate-600">{application.description}</p>
-                        <p className="mt-1 text-xs font-semibold leading-relaxed text-brand-navy">Confirm: {application.confirm}</p>
+                        <p className="mt-1.5 border-l-2 border-amber-500 pl-2 text-xs font-semibold leading-relaxed text-brand-navy">Confirm: {application.confirm}</p>
                       </div>
                     </article>
                   ))}
@@ -235,15 +274,16 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
 
         <section className="bg-slate-50" data-product-detail-section="workflow">
           <div className="container py-9 lg:py-12">
-            <SectionIntro
-              label="Approval workflow"
+            <StageIntro
+              number="05"
+              label="Approval route"
               title="Move from a qualified RFQ to a repeatable supply reference"
               description="The B2B approval route connects application, complete roll specification, OEM packing, samples, bulk-order approval, and repeat-order control."
             />
-            <ol className="mt-6 grid gap-px border border-slate-200 bg-slate-200 sm:grid-cols-2 lg:grid-cols-4">
+            <ol className="relative mt-6 grid gap-px border border-slate-200 bg-slate-200 before:absolute before:bottom-5 before:left-6 before:top-5 before:w-px before:bg-amber-400 sm:grid-cols-2 sm:before:hidden lg:grid-cols-4" data-workflow-rail>
               {config.workflow.map((item) => (
-                <li key={item.step} className="bg-white p-4">
-                  <span className="font-sora text-xs font-semibold tabular-nums text-amber-700">{item.step}</span>
+                <li key={item.step} className="relative bg-white py-4 pl-12 pr-4 sm:p-4">
+                  <span className="absolute left-[17px] top-4 z-10 flex h-5 w-5 items-center justify-center rounded-full bg-amber-500 font-sora text-[9px] font-semibold tabular-nums text-slate-950 sm:static sm:h-7 sm:w-7 sm:text-[10px]">{item.step}</span>
                   <h3 className="mt-2 font-sora text-base font-semibold text-slate-950">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
                 </li>
@@ -259,7 +299,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
                 <Image src={images.quality} alt={config.images.quality.alt} fill sizes="(max-width: 1024px) 100vw, 38vw" className="object-cover" />
               </div>
               <div>
-                <SectionIntro label={config.evidence.label} title={config.evidence.title} description={config.evidence.description} />
+                <StageIntro number="06" label="Evidence" title={config.evidence.title} description={config.evidence.description} />
                 <div className="mt-5 border-t border-slate-300">
                   {config.evidence.checks.map((item) => (
                     <p key={item} className="flex gap-3 border-b border-slate-300 py-3 text-sm leading-relaxed text-slate-700">
@@ -278,9 +318,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
           <div className="container py-9 lg:py-12">
             <div className="grid overflow-hidden border border-slate-200 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]">
               <div className="bg-brand-navy p-6 text-white lg:p-8">
-                <p className="text-xs font-semibold uppercase tracking-normal text-amber-300">{config.inquiry.label}</p>
-                <h2 className="mt-2 text-pretty font-sora text-2xl font-semibold leading-tight lg:text-3xl">{config.inquiry.title}</h2>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-300">{config.inquiry.description}</p>
+                <StageIntro number="07" label="Request quote" title={config.inquiry.title} description={config.inquiry.description} inverse />
                 <div className="mt-6 border-y border-white/15">
                   {config.inquiry.checklist.map((item) => (
                     <p key={item} className="flex gap-2 border-b border-white/15 py-2.5 text-sm text-slate-200 last:border-b-0">
@@ -303,18 +341,19 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
 
         <section className="border-y border-slate-200 bg-white" data-product-detail-section="faq">
           <div className="container py-9 lg:py-12">
-            <SectionIntro
-              label="FAQ"
+            <StageIntro
+              number="08"
+              label="Sourcing FAQ"
               title={config.productName + " sourcing questions"}
               description="Concise answers for printer fit, adhesive selection, sample review, packing, and repeat-order control."
             />
             <div className="mt-6 grid gap-x-8 lg:grid-cols-2" data-faq-columns>
               {config.faq.map((faq, index) => (
-                <details key={faq.q} className="group border-t border-slate-300">
-                  <summary className="flex cursor-pointer list-none items-center gap-3 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 [&::-webkit-details-marker]:hidden">
+                <details key={faq.q} className="group border-t border-slate-300 open:bg-slate-50/70">
+                  <summary className="flex min-h-12 cursor-pointer list-none items-center gap-3 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 [&::-webkit-details-marker]:hidden">
                     <span className="font-sora text-xs font-semibold tabular-nums text-amber-700">{String(index + 1).padStart(2, "0")}</span>
-                    <span className="flex-1 text-pretty font-sora text-sm font-semibold text-slate-900 sm:text-base">{faq.q}</span>
-                    <ChevronDown className="h-4 w-4 flex-none text-slate-500 transition-transform duration-200 motion-reduce:transition-none group-open:rotate-180" aria-hidden="true" />
+                    <span className="flex-1 text-pretty font-sora text-sm font-semibold text-slate-900 group-open:text-brand-navy sm:text-base">{faq.q}</span>
+                    <ChevronDown className="h-4 w-4 flex-none text-slate-500 transition-transform duration-200 motion-reduce:transition-none group-open:rotate-180 group-open:text-amber-600" aria-hidden="true" />
                   </summary>
                   <p className="pb-4 pl-9 pr-7 text-sm leading-relaxed text-slate-600">{faq.a}</p>
                 </details>
@@ -325,14 +364,15 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
 
         <section className="bg-slate-50" data-product-detail-section="related-products">
           <div className="container py-9 lg:py-12">
-            <SectionIntro
-              label="Related product programs"
+            <StageIntro
+              number="09"
+              label="Related programs"
               title="Compare the next product route for your buying brief"
               description="Use these related pages when the project needs printed branding, additional label formats, or a logistics-specific supply program."
             />
-            <div className="mt-6 grid border-l border-t border-slate-300 md:grid-cols-3">
+            <div className="-mx-4 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-3 md:gap-0 md:overflow-visible md:p-0 md:pb-0" data-related-scroller aria-label="Related product programs">
               {config.relatedProducts.map((product) => (
-                <article key={product.id} className="flex min-w-0 flex-col border-b border-r border-slate-300 bg-white">
+                <article key={product.id} className="flex min-w-[86%] snap-start flex-col border border-slate-300 bg-white md:min-w-0 md:border-l-0 md:first:border-l">
                   <div className="relative aspect-[16/9] overflow-hidden border-b border-slate-200 bg-slate-100">
                     <Image src={images.related[product.id]} alt={product.image.alt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                   </div>
@@ -352,6 +392,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
           </div>
         </section>
       </main>
+      <MobileInquiryBar inquiryHref={config.hero.primaryCta.href} whatsappHref={whatsappHref} />
     </Layout>
   );
 }
