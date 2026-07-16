@@ -348,6 +348,10 @@ export const canLabelsCategoryConfig = {
     productName: "Custom Can Labels",
     initialMessage:
       "Company and buyer type:\nCan application and product:\nCan material, coating and dimensions:\nLabel area, seam and curvature:\nFilling and labeling sequence:\nSurface cleaning and container temperature:\nCondensation, water, oil, chemical or abrasion exposure:\nMaterial, adhesive and finish preference:\nArtwork versions, colors, white ink and barcode:\nCore, outer diameter, winding, gap and applicator:\nEstimated quantity by SKU:\nPacking and private-label requirement:\nRequired samples, tests or documents:\nDestination country / port:\nRequested delivery window:\nCurrent supply problem:",
+    responseNote:
+      "Timing and document availability are confirmed after the specification review.",
+    successMessage:
+      "We'll review your specification and reply with the next required step.",
   },
   breadcrumbs: [
     { name: "Home", path: "/" },

@@ -479,6 +479,8 @@ export default function ProductCategoryTemplate({
                 compact
                 productName={config.inquiry.productName}
                 initialMessage={config.inquiry.initialMessage}
+                responseNote={config.inquiry.responseNote}
+                successMessage={config.inquiry.successMessage}
               />
             </div>
           </div>

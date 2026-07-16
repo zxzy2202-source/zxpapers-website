@@ -63,8 +63,15 @@ test("category schema names sizes from the active category", async () => {
 });
 
 test("shared category template adapts a single compact product route", async () => {
-  const template = await read("src/components/products/category/ProductCategoryTemplate.tsx");
+  const [template, form] = await Promise.all([
+    read("src/components/products/category/ProductCategoryTemplate.tsx"),
+    read("src/components/shared/InquiryForm.tsx"),
+  ]);
 
   assert.match(template, /singleCompactFamily/);
   assert.match(template, /compactFamilies\.length === 1/);
+  assert.match(template, /responseNote=\{config\.inquiry\.responseNote\}/);
+  assert.match(template, /successMessage=\{config\.inquiry\.successMessage\}/);
+  assert.match(form, /responseNote\?: string/);
+  assert.match(form, /successMessage\?: string/);
 });

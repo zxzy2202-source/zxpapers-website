@@ -13,6 +13,8 @@ interface InquiryFormProps {
   compact?: boolean;
   initialMessage?: string;
   formId?: string;
+  responseNote?: string;
+  successMessage?: string;
 }
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -39,7 +41,14 @@ async function submitInquiryToBackend(payload: {
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
-export default function InquiryForm({ productName, compact, initialMessage, formId }: InquiryFormProps) {
+export default function InquiryForm({
+  productName,
+  compact,
+  initialMessage,
+  formId,
+  responseNote = "Response within 12 hours. NDA available. No spam.",
+  successMessage = "We'll respond within 12 hours.",
+}: InquiryFormProps) {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [highlighted, setHighlighted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -158,7 +167,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
           <CheckCircle className="w-7 h-7 text-amber-500" aria-hidden="true" />
         </div>
         <h3 className="font-semibold text-slate-900 mb-1 text-lg">Inquiry Sent</h3>
-        <p className="text-sm text-slate-600 mb-4">We&apos;ll respond within 12 hours.</p>
+        <p className="text-sm text-slate-600 mb-4">{successMessage}</p>
         <Button
           type="button"
           variant="link"
@@ -313,7 +322,7 @@ export default function InquiryForm({ productName, compact, initialMessage, form
           </>
         )}
       </Button>
-      <p className="text-xs text-slate-500 text-center">Response within 12 hours. NDA available. No spam.</p>
+      <p className="text-xs text-slate-500 text-center">{responseNote}</p>
     </form>
   );
 }

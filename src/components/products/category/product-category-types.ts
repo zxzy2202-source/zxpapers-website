@@ -92,6 +92,8 @@ export interface ProductCategoryConfig {
     checklist: string[];
     productName: string;
     initialMessage: string;
+    responseNote?: string;
+    successMessage?: string;
   };
   breadcrumbs: Array<{ name: string; path: string }>;
   relatedPrograms: Array<{ label: string; href: string }>;
