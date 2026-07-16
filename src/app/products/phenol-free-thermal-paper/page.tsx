@@ -74,7 +74,7 @@ export default async function PhenolFreeThermalPaperPage() {
   const products = [
     { title: "Phenol-Free POS Rolls", desc: "80mm and 57mm phenol-free receipt rolls for cash registers and mobile terminals.", image: rollsImg, href: "/products/thermal-rolls/80x80mm", badge: "BPS-Free" },
     { title: "Food-Contact Receipt Rolls", desc: "Indirect food-contact safe rolls for QSR, deli, bakery, and grocery receipts.", image: rollsImg, href: "/products/receipt-paper-rolls", badge: "Food Safe" },
-    { title: "Custom Printed Phenol-Free", desc: "Your logo and promotions on fully phenol-free, compliant stock. OEM & private label.", image: rollsImg, href: "/products/custom-printed-thermal-rolls", badge: "OEM" },
+    { title: "Custom Printed Phenol-Free", desc: "Review custom printing against the exact paper, artwork, packing and document requirement.", image: rollsImg, href: "/products/thermal-paper-rolls/custom-printed", badge: "OEM" },
     { title: "BPA-Free Standard Grade", desc: "Prefer the everyday-compliance grade? See our standard BPA-free thermal paper.", image: rollsImg, href: "/products/bpa-free-thermal-paper", badge: "Standard" },
   ];
 

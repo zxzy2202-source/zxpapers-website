@@ -134,7 +134,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "can-labels",
     "detergent-labels",
     "phenol-free-thermal-paper",
-    "custom-printed-thermal-rolls",
     "custom-printed-thermal-labels",
     "barcode-labels",
     "product-labels",

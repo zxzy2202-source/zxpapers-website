@@ -60,7 +60,7 @@ export const mainNav: (NavItem | NavDropdown)[] = [
       { label: "BPA-Free Thermal Paper",           href: "/products/bpa-free-thermal-paper" },
       { label: "Phenol-Free Thermal Paper",        href: "/products/phenol-free-thermal-paper" },
       { label: "Colored Thermal Paper",            href: "/products/colored-thermal-paper" },
-      { label: "Custom Printed Thermal Rolls",     href: "/products/custom-printed-thermal-rolls" },
+    { label: "Custom Printed Thermal Rolls",     href: "/products/thermal-paper-rolls/custom-printed" },
       { label: "Shipping Labels",                  href: "/products/shipping-labels" },
       { label: "Barcode Labels",                   href: "/products/barcode-labels" },
       { label: "Product Labels",                   href: "/products/product-labels" },

@@ -162,7 +162,7 @@ export default async function ProductsPage() {
             { label: "Phenol-Free Thermal Paper", href: "/products/phenol-free-thermal-paper" },
             { label: "Colored Thermal Paper", href: "/products/colored-thermal-paper" },
             { label: "Till Rolls", href: "/products/till-rolls" },
-            { label: "Custom Printed Range", href: "/products/custom-printed-thermal-rolls" },
+        { label: "Custom Printed Range", href: "/products/thermal-paper-rolls/custom-printed" },
           ],
         },
       ],

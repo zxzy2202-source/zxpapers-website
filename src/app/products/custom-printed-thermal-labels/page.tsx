@@ -182,7 +182,7 @@ export default async function CustomPrintedThermalLabelsPage() {
         faqs={faqs}
         crossLinks={[
           { label: "Thermal & Shipping Labels", href: "/products/thermal-labels" },
-          { label: "Custom Printed Thermal Rolls", href: "/products/custom-printed-thermal-rolls" },
+          { label: "Custom Printed Thermal Rolls", href: "/products/thermal-paper-rolls/custom-printed" },
           { label: "Product Labels", href: "/products/product-labels" },
           { label: "OEM & Private Label", href: "/oem" },
         ]}
