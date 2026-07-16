@@ -11,7 +11,7 @@ export function buildProductCategorySchemas(
       .filter((family) => family.href.startsWith("/"))
       .map((family) => ({ name: family.title, path: family.href })),
     ...config.sizes.map((size) => ({
-      name: `${size.label} Thermal Labels`,
+      name: `${size.label} ${config.categoryName}`,
       path: `${config.canonicalPath}/${size.slug}`,
     })),
   ];

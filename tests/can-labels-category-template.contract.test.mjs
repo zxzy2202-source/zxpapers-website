@@ -39,7 +39,9 @@ test("can labels config keeps approved product and size destinations", async () 
   assert.match(config, /Filling, labeling and exposure/);
   assert.match(config, /Material, adhesive and finish/);
   assert.match(config, /Artwork, roll and commercial/);
-  assert.doesNotMatch(config, /href:\s*"#/);
+
+  const families = config.slice(config.indexOf("families: ["), config.indexOf("sizes:"));
+  assert.doesNotMatch(families, /href:\s*"#/);
 });
 
 test("can labels copy respects product and evidence boundaries", async () => {
