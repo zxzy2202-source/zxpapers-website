@@ -40,6 +40,8 @@ export interface NavDropdown {
   items: NavItem[];
   /** Legacy single featured list (kept for non-Products menus) */
   featured?: NavItem[];
+  /** High-priority routes in the Products mega-menu utility bar */
+  productUtilities?: NavItem[];
   /** Buying-scenario groups for the Products mega-menu */
   productGroups?: NavProductGroup[];
   /** Multi-column size groups for Products mega-menu */
@@ -77,6 +79,13 @@ export const mainNav: (NavItem | NavDropdown)[] = [
       { label: "NCR Invoice Books",                href: "/products/ncr-invoice-books" },
       { label: "Delivery Note Forms",              href: "/products/delivery-note-forms" },
       { label: "Continuous Computer Forms",        href: "/products/continuous-computer-forms" },
+    ],
+    productUtilities: [
+      { label: "All Products",        href: "/products" },
+      { label: "Blank Thermal Rolls", href: "/products/thermal-paper-rolls/blank" },
+      { label: "Custom Printing",     href: "/oem/custom-printing" },
+      { label: "OEM Services",        href: "/oem" },
+      { label: "Request Pricing",     href: "/contact" },
     ],
     productGroups: [
       {
