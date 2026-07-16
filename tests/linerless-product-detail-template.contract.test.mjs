@@ -49,8 +49,7 @@ test("linerless detail template owns SEO, GEO, schema and RFQ inputs", async () 
   assert.match(config, /\/products\/thermal-labels\/custom-printed/);
   assert.match(config, /\/products\/thermal-labels/);
   assert.match(config, /\/products\/shipping-labels/);
-  assert.match(route, /linerlessDetailConfig\.images\.risk/);
-  assert.match(route, /linerlessDetailConfig\.relatedProducts\.map/);
+  assert.match(route, /resolveProductDetailImages\(linerlessDetailConfig\)/);
   assert.match(template, /data-product-detail-section="procurement-overview"/);
   assert.doesNotMatch(template, /data-context-image/);
   assert.match(template, /sm:grid-cols-2 lg:grid-cols-3/);
