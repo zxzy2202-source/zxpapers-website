@@ -72,6 +72,17 @@ export interface ProductSupplyProgram {
   note: string;
 }
 
+export interface ProductRelatedItem {
+  id: string;
+  label: string;
+  title: string;
+  description: string;
+  buyerFit: string;
+  href: string;
+  linkLabel: string;
+  image: ProductDetailImageConfig;
+}
+
 export interface ProductDetailConfig {
   kind: "detail";
   slug: string;
@@ -87,6 +98,10 @@ export interface ProductDetailConfig {
     hero: ProductDetailImageConfig;
     application: ProductDetailImageConfig;
     quality: ProductDetailImageConfig;
+    risk: ProductDetailImageConfig;
+    specification: ProductDetailImageConfig;
+    workflow: ProductDetailImageConfig;
+    faq: ProductDetailImageConfig;
   };
   hero: {
     badge: string;
@@ -120,10 +135,16 @@ export interface ProductDetailConfig {
   };
   breadcrumbs: Array<{ name: string; path: string }>;
   relatedLinks: Array<{ label: string; href: string }>;
+  relatedProducts: ProductRelatedItem[];
 }
 
 export interface ResolvedProductDetailImages {
   hero: string;
   application: string;
   quality: string;
+  risk: string;
+  specification: string;
+  workflow: string;
+  faq: string;
+  related: Record<string, string>;
 }

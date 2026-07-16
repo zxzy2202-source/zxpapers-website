@@ -60,6 +60,23 @@ function SectionIntro({
   );
 }
 
+function ContextImage({ src, alt, marker }: { src: string; alt: string; marker: string }) {
+  return (
+    <div
+      className="relative mt-8 aspect-[4/3] overflow-hidden border border-slate-200 bg-slate-100"
+      data-context-image={marker}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 1024px) 100vw, 30vw"
+        className="object-cover"
+      />
+    </div>
+  );
+}
+
 export default function ProductDetailTemplate({
   config,
   images,
@@ -190,11 +207,18 @@ export default function ProductDetailTemplate({
         <section className="border-y border-slate-200 bg-white" data-product-detail-section="risks">
           <div className="container py-12 lg:py-16">
             <div className="grid gap-8 lg:grid-cols-[minmax(240px,0.55fr)_minmax(0,1.45fr)] lg:gap-14">
-              <SectionIntro
-                label="Buyer risk review"
-                title="Resolve the problems behind the roll specification"
-                description="A size name is not enough for a production order. Confirm how the roll loads, cuts, adheres, prints, scans, ships, and repeats before approving the supply specification."
-              />
+              <div>
+                <SectionIntro
+                  label="Buyer risk review"
+                  title="Resolve the problems behind the roll specification"
+                  description="A size name is not enough for a production order. Confirm how the roll loads, cuts, adheres, prints, scans, ships, and repeats before approving the supply specification."
+                />
+                <ContextImage
+                  src={images.risk}
+                  alt={config.images.risk.alt}
+                  marker="risk"
+                />
+              </div>
               <div className="grid border-l border-t border-slate-300 sm:grid-cols-2">
                 {config.problems.map((problem) => (
                   <article key={problem.question} className="flex min-h-64 flex-col border-b border-r border-slate-300 p-5 sm:p-6">
@@ -217,11 +241,16 @@ export default function ProductDetailTemplate({
         <section className="bg-slate-50" data-product-detail-section="specifications">
           <div className="container py-12 lg:py-16">
             <div className="grid gap-10 lg:grid-cols-[minmax(250px,0.58fr)_minmax(0,1.42fr)] lg:gap-16">
-              <div className="lg:sticky lg:top-28 lg:self-start">
+              <div>
                 <SectionIntro
                   label="Specification basis"
                   title="Define the complete roll before comparing quotes"
                   description="The values below describe the quotation and approval fields for this format. Final manufacturing tolerances, material, packing, and test scope belong in the approved specification."
+                />
+                <ContextImage
+                  src={images.specification}
+                  alt={config.images.specification.alt}
+                  marker="specification"
                 />
               </div>
               <div className="space-y-8">
@@ -286,11 +315,18 @@ export default function ProductDetailTemplate({
         <section className="bg-slate-50" data-product-detail-section="workflow">
           <div className="container py-12 lg:py-16">
             <div className="grid gap-10 lg:grid-cols-[minmax(250px,0.58fr)_minmax(0,1.42fr)] lg:gap-16">
-              <SectionIntro
-                label="Approval workflow"
-                title="Move from a qualified RFQ to a repeatable supply reference"
-                description="The B2B approval route connects application, complete roll specification, OEM packing, samples, bulk-order approval, and repeat-order control."
-              />
+              <div>
+                <SectionIntro
+                  label="Approval workflow"
+                  title="Move from a qualified RFQ to a repeatable supply reference"
+                  description="The B2B approval route connects application, complete roll specification, OEM packing, samples, bulk-order approval, and repeat-order control."
+                />
+                <ContextImage
+                  src={images.workflow}
+                  alt={config.images.workflow.alt}
+                  marker="workflow"
+                />
+              </div>
               <ol className="border-t border-slate-300">
                 {config.workflow.map((item) => (
                   <li key={item.step} className="grid gap-3 border-b border-slate-300 py-5 sm:grid-cols-[56px_180px_minmax(0,1fr)] sm:items-start sm:gap-5">
@@ -339,7 +375,7 @@ export default function ProductDetailTemplate({
         <section className="bg-slate-50" data-product-detail-section="faq">
           <div className="container py-12 lg:py-16">
             <div className="grid gap-10 lg:grid-cols-[minmax(250px,0.62fr)_minmax(0,1.38fr)] lg:gap-16">
-              <div className="lg:sticky lg:top-28 lg:self-start">
+              <div>
                 <SectionIntro
                   label="FAQ"
                   title={`${config.productName} sourcing questions`}
@@ -353,6 +389,11 @@ export default function ProductDetailTemplate({
                     </Link>
                   ))}
                 </nav>
+                <ContextImage
+                  src={images.faq}
+                  alt={config.images.faq.alt}
+                  marker="faq"
+                />
               </div>
               <div className="border-t border-slate-300">
                 {config.faq.map((faq, index) => (
@@ -366,6 +407,49 @@ export default function ProductDetailTemplate({
                   </details>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          className="border-y border-slate-200 bg-white"
+          data-product-detail-section="related-products"
+        >
+          <div className="container py-12 lg:py-16">
+            <SectionIntro
+              label="Related product programs"
+              title="Compare the next product route for your buying brief"
+              description="Use these related pages when the project needs printed branding, additional label formats, or a logistics-specific supply program."
+            />
+            <div className="mt-8 grid border-l border-t border-slate-300 md:grid-cols-3">
+              {config.relatedProducts.map((product) => (
+                <article key={product.id} className="flex min-w-0 flex-col border-b border-r border-slate-300 bg-white">
+                  <div className="relative aspect-[4/3] overflow-hidden border-b border-slate-200 bg-slate-100">
+                    <Image
+                      src={images.related[product.id]}
+                      alt={product.image.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-300 motion-reduce:transition-none md:hover:scale-[1.02]"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-5 sm:p-6">
+                    <p className="text-xs font-semibold uppercase tracking-normal text-amber-700">{product.label}</p>
+                    <h3 className="mt-3 font-sora text-xl font-semibold leading-tight text-slate-950">{product.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-600">{product.description}</p>
+                    <p className="mt-4 border-t border-slate-200 pt-4 text-xs font-semibold leading-relaxed text-brand-navy">
+                      {product.buyerFit}
+                    </p>
+                    <Link
+                      href={product.href}
+                      className="mt-auto inline-flex min-h-11 items-center gap-2 pt-5 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+                    >
+                      {product.linkLabel}
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>

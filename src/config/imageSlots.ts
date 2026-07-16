@@ -48,6 +48,13 @@ export const IMAGE_SLOTS = [
   { slot: "linerless-3-1-8-x-263:hero", label: "3 1/8 x 263 无底纸标签 - Hero 图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "16:9", description: "产品详情页首屏，优先使用真实卷材与标签成品图" },
   { slot: "linerless-3-1-8-x-263:application", label: "3 1/8 x 263 无底纸标签 - 应用图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "4:3", description: "直接答案和应用场景模块" },
   { slot: "linerless-3-1-8-x-263:quality", label: "3 1/8 x 263 无底纸标签 - 质检图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "4:3", description: "样品、打印、粘合或工厂质检模块" },
+  { slot: "linerless-3-1-8-x-263:risk", label: "3 1/8 x 263 无底纸标签 - 采购风险图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "4:3", description: "打印、扫码、粘胶和仓储风险模块" },
+  { slot: "linerless-3-1-8-x-263:specification", label: "3 1/8 x 263 无底纸标签 - 规格审核图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "4:3", description: "卷径、纸芯、材料和胶黏规格模块" },
+  { slot: "linerless-3-1-8-x-263:workflow", label: "3 1/8 x 263 无底纸标签 - 审批流程图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "4:3", description: "打样、生产和批量订单审批模块" },
+  { slot: "linerless-3-1-8-x-263:faq", label: "3 1/8 x 263 无底纸标签 - FAQ 包装图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "4:3", description: "常见采购问题、包装和复购模块" },
+  { slot: "linerless-3-1-8-x-263:related-custom", label: "3 1/8 x 263 无底纸标签 - 推荐定制标签图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "4:3", description: "相关产品：定制印刷热敏标签" },
+  { slot: "linerless-3-1-8-x-263:related-thermal", label: "3 1/8 x 263 无底纸标签 - 推荐热敏标签图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "4:3", description: "相关产品：热敏标签产品线" },
+  { slot: "linerless-3-1-8-x-263:related-shipping", label: "3 1/8 x 263 无底纸标签 - 推荐运输标签图", page: "3 1/8 x 263 无底纸标签", pageUrl: "/products/linerless-labels/3-1-8-x-263", aspect: "4:3", description: "相关产品：运输和仓储标签" },
   // === 其他可能用到的 6 个 ===
   { slot: "home:product-lottery-gaming-rolls", label: "首页产品-Lottery & Gaming Rolls", page: "首页", pageUrl: "/", aspect: "4:3", description: "（备用）首页彩票游戏纸卷" },
   { slot: "home:product-colored-thermal-paper", label: "首页产品-Colored Thermal Paper", page: "首页", pageUrl: "/", aspect: "4:3", description: "（备用）首页彩色热敏纸" },

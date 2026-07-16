@@ -8,16 +8,29 @@ import { buildProductDetailMetadata } from "@/lib/product-pages/product-detail-m
 import { buildProductDetailSchemas } from "@/lib/product-pages/product-detail-schema";
 
 const resolveImages = cache(async () => {
+  const relatedImageConfigs = linerlessDetailConfig.relatedProducts.map((item) => item.image);
   const images = await getSlotImages([
     linerlessDetailConfig.images.hero,
     linerlessDetailConfig.images.application,
     linerlessDetailConfig.images.quality,
+    linerlessDetailConfig.images.risk,
+    linerlessDetailConfig.images.specification,
+    linerlessDetailConfig.images.workflow,
+    linerlessDetailConfig.images.faq,
+    ...relatedImageConfigs,
   ]);
 
   return {
     hero: images[linerlessDetailConfig.images.hero.slot],
     application: images[linerlessDetailConfig.images.application.slot],
     quality: images[linerlessDetailConfig.images.quality.slot],
+    risk: images[linerlessDetailConfig.images.risk.slot],
+    specification: images[linerlessDetailConfig.images.specification.slot],
+    workflow: images[linerlessDetailConfig.images.workflow.slot],
+    faq: images[linerlessDetailConfig.images.faq.slot],
+    related: Object.fromEntries(
+      linerlessDetailConfig.relatedProducts.map((item) => [item.id, images[item.image.slot]]),
+    ),
   };
 });
 

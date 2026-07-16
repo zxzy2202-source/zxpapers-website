@@ -4,6 +4,11 @@ const LINERLESS_PRODUCT_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
 const QUALITY_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
+const WAREHOUSE_IMAGE =
+  "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&q=80";
+const SHIPPING_LABEL_IMAGE = "/images/shipping-labels/shipping-labels-hero.webp";
+const PACKING_IMAGE =
+  "/uploads/images/1778755819135-456d030e-f44b-453b-86bb-69c736ef4e12-32b6c697519b48fc814b3a4712323de2.webp";
 
 export const linerlessDetailConfig = {
   kind: "detail",
@@ -39,6 +44,26 @@ export const linerlessDetailConfig = {
       slot: "linerless-3-1-8-x-263:quality",
       fallback: QUALITY_IMAGE,
       alt: "Linerless label material and production quality review",
+    },
+    risk: {
+      slot: "linerless-3-1-8-x-263:risk",
+      fallback: WAREHOUSE_IMAGE,
+      alt: "Warehouse label workflow reviewed for linerless roll supply risks",
+    },
+    specification: {
+      slot: "linerless-3-1-8-x-263:specification",
+      fallback: LINERLESS_PRODUCT_IMAGE,
+      alt: "Linerless label roll dimensions, core and material specification review",
+    },
+    workflow: {
+      slot: "linerless-3-1-8-x-263:workflow",
+      fallback: QUALITY_IMAGE,
+      alt: "Label production line used for sample and bulk-order approval",
+    },
+    faq: {
+      slot: "linerless-3-1-8-x-263:faq",
+      fallback: PACKING_IMAGE,
+      alt: "Export cartons and packing references for repeat linerless label orders",
     },
   },
   hero: {
@@ -286,5 +311,49 @@ export const linerlessDetailConfig = {
     { label: "Thermal Labels", href: "/products/thermal-labels" },
     { label: "Shipping Labels", href: "/products/shipping-labels" },
     { label: "OEM Custom Printing", href: "/oem/custom-printing" },
+  ],
+  relatedProducts: [
+    {
+      id: "custom-printed",
+      label: "OEM & private label",
+      title: "Custom Printed Thermal Labels",
+      description: "Develop printed labels, roll identification and private-label packing from approved artwork and application requirements.",
+      buyerFit: "Best for brands, distributors and multilingual packaging programs.",
+      href: "/products/thermal-labels/custom-printed",
+      linkLabel: "Explore custom printed labels",
+      image: {
+        slot: "linerless-3-1-8-x-263:related-custom",
+        fallback: LINERLESS_PRODUCT_IMAGE,
+        alt: "Custom printed thermal labels for OEM and private-label supply",
+      },
+    },
+    {
+      id: "thermal-labels",
+      label: "Broader label range",
+      title: "Thermal Labels",
+      description: "Review direct-thermal and thermal-transfer labels by printer, size, adhesive, material and application.",
+      buyerFit: "Best for buyers consolidating multiple label formats with one supplier.",
+      href: "/products/thermal-labels",
+      linkLabel: "View thermal label options",
+      image: {
+        slot: "linerless-3-1-8-x-263:related-thermal",
+        fallback: LINERLESS_PRODUCT_IMAGE,
+        alt: "Thermal label rolls for barcode, food and product identification",
+      },
+    },
+    {
+      id: "shipping-labels",
+      label: "Logistics & fulfillment",
+      title: "Shipping Labels",
+      description: "Source printer-matched roll and fanfold labels for parcel, warehouse, 3PL and cross-border fulfillment.",
+      buyerFit: "Best for logistics programs where scanning, adhesion and replenishment matter.",
+      href: "/products/shipping-labels",
+      linkLabel: "View shipping labels",
+      image: {
+        slot: "linerless-3-1-8-x-263:related-shipping",
+        fallback: SHIPPING_LABEL_IMAGE,
+        alt: "Shipping label rolls for warehouse and 3PL fulfillment",
+      },
+    },
   ],
 } satisfies ProductDetailConfig;
