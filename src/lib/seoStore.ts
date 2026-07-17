@@ -76,8 +76,8 @@ export const SEO_DEFAULTS: Required<
     "custom printed thermal labels",
     "blank thermal labels bulk",
     // Differentiation (差异化产品)
-    "can labels manufacturer",
-    "custom printed can labels",
+    "machine ready roll labels",
+    "automatic labeling machine labels",
     "detergent labels supplier",
     "custom detergent labels wholesale",
     // Commercial (B2B 询盘意图)

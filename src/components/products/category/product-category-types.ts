@@ -72,6 +72,11 @@ export interface ProductCategoryConfig {
     secondaryCta: { label: string; href: string };
   };
   jumpLinks: Array<{ label: string; href: string }>;
+  sectionCopy?: {
+    families?: { label: string; title: string; description: string };
+    applications?: { label: string; title: string; description: string };
+    selection?: { label: string; title: string; description: string };
+  };
   families: ProductCategoryFamily[];
   sizes: ProductCategorySize[];
   applications: ProductCategoryApplication[];

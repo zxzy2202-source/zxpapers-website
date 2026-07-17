@@ -1,367 +1,442 @@
 import type { ProductCategoryConfig } from "@/components/products/category/product-category-types";
-import { canLabelSizes, CAN_LABELS_IMG } from "@/app/products/can-labels/can-labels-data";
 
-const CUSTOM_IMAGE =
-  "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=1200&q=82";
+const MACHINE_LINE_IMAGE =
+  "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
+const PRINTED_ROLL_IMAGE =
+  "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=1200&q=82";
+const BLANK_ROLL_IMAGE =
+  "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=1200&q=82";
+const CLEAR_FILM_IMAGE =
+  "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1200&q=82";
+const BEVERAGE_IMAGE =
+  "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=1200&q=82";
 const FOOD_IMAGE =
-  "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=82";
-const PET_FOOD_IMAGE =
-  "https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?w=1200&q=82";
-const PAINT_IMAGE =
-  "https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=1200&q=82";
+  "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=1200&q=82";
+const PERSONAL_CARE_IMAGE =
+  "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=1200&q=82";
+const HOUSEHOLD_IMAGE =
+  "https://images.unsplash.com/photo-1585421514738-01798e348b17?w=1200&q=82";
 const INDUSTRIAL_IMAGE =
-  "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&q=82";
+  "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=82";
 const COPACKER_IMAGE =
   "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=1200&q=82";
-const QUALITY_IMAGE =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
-
-const sizeUses: Record<string, string> = {
-  "211x400": "Standard food and beverage cans",
-  "211x603": "Tall beverage and specialty cans",
-  "300x407": "Common food and pet-food cans",
-  "307x510": "Wide food and industrial cans",
-  "401x700": "Large food-service and industrial cans",
-};
 
 export const canLabelsCategoryConfig = {
   kind: "category",
   canonicalPath: "/products/can-labels",
-  categoryName: "Can Labels",
+  categoryName: "Machine-Ready Roll Labels",
   alternateNames: [
-    "Custom Can Labels",
-    "Metal Can Labels",
-    "Food Can Labels",
-    "Beverage Can Labels",
+    "Labels for Filling Lines",
+    "Automatic Label Applicator Labels",
+    "Machine-Applied Roll Labels",
+    "Roll Labels for Bottling Lines",
   ],
   audience:
-    "Food and beverage brands, private-label brands, food OEM and ODM manufacturers, co-packers, pet-food manufacturers, industrial product manufacturers, packaging procurement teams and label distributors",
+    "Beverage, food, personal-care, household-product and industrial filling plants; co-packers; OEM manufacturers; production engineers; packaging procurement teams; and label distributors",
   metadata: {
-    title: "Custom Can Labels Manufacturer | Food, Beverage & OEM",
+    title: "Machine-Ready Roll Labels for Filling Lines | B2B",
     description:
-      "Source custom printed and blank can labels by container, size and application. Review metal surface, moisture, oil, material, finish, machine and OEM packing requirements.",
+      "Specify roll labels for automatic filling and labeling lines by applicator, core ID, roll OD, web width, unwind, gap, liner, sensor, speed and container condition.",
     keywords: [
-      "custom can labels",
-      "metal can labels",
-      "food can labels",
-      "beverage can labels",
-      "printed can labels",
-      "blank can labels",
-      "can label manufacturer",
-      "OEM can label supplier",
+      "machine ready roll labels",
+      "labels for filling lines",
+      "automatic label applicator labels",
+      "bottling line labels",
+      "machine applied pressure sensitive labels",
+      "custom printed roll labels",
+      "automatic labeling machine label rolls",
+      "OEM roll label supplier",
     ],
   },
   hero: {
     image: {
       slot: "can-labels:hero",
-      fallback: CAN_LABELS_IMG,
-      alt: "Custom printed labels applied to food beverage and metal cans",
+      fallback: MACHINE_LINE_IMAGE,
+      alt: "Machine-ready label rolls specified for an automatic filling and labeling line",
     },
-    badge: "B2B custom can label catalog",
-    titleBefore: "Custom Can Labels for ",
-    titleHighlight: "Food, Beverage and Metal Containers",
+    badge: "B2B filling-line label program",
+    titleBefore: "Machine-Ready Roll Labels for ",
+    titleHighlight: "Automatic Filling and Labeling Lines",
     description:
-      "Start with the actual can, coating and label area. Then confirm cleaning, filling and labeling sequence, condensation or oil exposure, artwork, roll format, quantity and packing before quotation.",
+      "A label that looks right can still stop a production line. Qualify the applicator, roll construction, sensor method, target speed, container condition and application position before quotation and approve the first roll on the intended setup.",
     trustBadges: [
-      "Custom printed and blank",
-      "Paper and film routes",
-      "Hand or machine applied",
-      "OEM and multi-SKU review",
+      "Applicator-specific review",
+      "Controlled roll specification",
+      "Printed and blank routes",
+      "First-roll trial planning",
     ],
     facts: [
-      { value: "2 routes", label: "Custom printed or blank" },
-      { value: "5 sizes", label: "Existing can formats" },
-      { value: "4 steps", label: "Qualification sequence" },
-      { value: "B2B", label: "OEM supply review" },
+      { value: "6 series", label: "Machine-ready product routes" },
+      { value: "1 spec", label: "Quote-to-production control" },
+      { value: "4 stages", label: "Line qualification" },
+      { value: "B2B", label: "OEM and co-packer supply" },
     ],
-    primaryCta: { label: "Browse Can Label Options", href: "#product-families" },
-    secondaryCta: { label: "Request an OEM Review", href: "#inquiry" },
+    primaryCta: { label: "Review Line Requirements", href: "#selection-guide" },
+    secondaryCta: { label: "Request a Roll-Label Review", href: "#inquiry" },
   },
   jumpLinks: [
-    { label: "Products", href: "#product-families" },
-    { label: "Sizes", href: "#popular-sizes" },
+    { label: "Supply Routes", href: "#product-families" },
     { label: "Applications", href: "#applications" },
-    { label: "Selection", href: "#selection-guide" },
+    { label: "Line Checklist", href: "#selection-guide" },
+    { label: "Trial", href: "#qualification" },
     { label: "FAQ", href: "#faq" },
     { label: "Quote", href: "#inquiry" },
   ],
+  sectionCopy: {
+    families: {
+      label: "Machine-ready product series",
+      title: "Choose by label format and production workflow",
+      description:
+        "The product series defines how labels are printed, sensed, dispensed and changed on the line. Final material, adhesive and roll construction are confirmed against the actual applicator and container.",
+    },
+    applications: {
+      label: "Filling-line applications",
+      title: "Match the series to the container and process",
+      description:
+        "Product type narrows the operating risk. Container geometry, filling sequence, surface condition, exposure and target speed still need project-specific confirmation.",
+    },
+    selection: {
+      label: "Four-step line qualification",
+      title: "Lock the machine specification before material approval",
+      description:
+        "Applicator geometry, roll construction and container presentation determine which label construction is worth testing on the first roll.",
+    },
+  },
   families: [
     {
       id: "custom-printed",
-      label: "Primary OEM route",
-      title: "Custom Printed Can Labels",
+      label: "Core product series",
+      title: "Custom Printed Roll Labels for Automatic Applicators",
       description:
-        "Printed can-label programs for approved artwork, color, finish, version control and repeat supply.",
+        "Finished pressure-sensitive labels supplied to an approved artwork, material construction, die-cut and machine-ready roll specification.",
       buyerFit:
-        "Best for brands, co-packers and distributors that need finished labels aligned with the real can, application method, artwork versions and packing plan.",
-      href: "/products/can-labels/custom-printed",
-      linkLabel: "Review custom printed can labels",
+        "Best for brands, filling plants and co-packers that need repeatable color, finish, roll geometry, artwork revision and carton identification.",
+      href: "#inquiry",
+      linkLabel: "Specify custom printed rolls",
       featured: true,
       image: {
         slot: "can-labels:custom-hero",
-        fallback: CUSTOM_IMAGE,
-        alt: "Custom printed can labels prepared for branded packaging",
+        fallback: PRINTED_ROLL_IMAGE,
+        alt: "Custom printed roll labels prepared for automatic application",
       },
     },
     {
-      id: "blank",
-      label: "Secondary supply route",
-      title: "Blank Can Labels",
+      id: "wraparound",
+      label: "Single-label bottle format",
+      title: "Wraparound Roll Labels",
       description:
-        "Unprinted labels for buyers applying variable data or print in-house after material and can fit are reviewed.",
+        "Full-wrap or near-wrap labels for cylindrical bottles and jars, supplied with controlled overlap, gap, orientation and seam position.",
       buyerFit:
-        "Best for internal printing workflows that already control the printer, label dimensions and required image durability.",
-      href: "/products/can-labels/blank",
-      linkLabel: "Review blank can labels",
+        "Best for stable round containers. Confirm across x around dimensions, bottle roundness, label stiffness, overlap or gap and wrap-belt setup.",
+      href: "#inquiry",
+      linkLabel: "Review a wraparound format",
+      image: {
+        slot: "can-labels:series:wraparound",
+        fallback: BEVERAGE_IMAGE,
+        alt: "Wraparound roll labels for cylindrical bottles on an automatic line",
+      },
+    },
+    {
+      id: "front-back",
+      label: "Paired label format",
+      title: "Front and Back Label Sets",
+      description:
+        "Coordinated front and back labels supplied as separate or paired rolls for applicators placing two panels on one container.",
+      buyerFit:
+        "Best for bottles needing a branded front panel and regulatory back panel. Confirm pitch, relative orientation, two-head setup and changeover controls.",
+      href: "#inquiry",
+      linkLabel: "Specify a front/back set",
+      image: {
+        slot: "can-labels:series:front-back",
+        fallback: PERSONAL_CARE_IMAGE,
+        alt: "Front and back bottle label set prepared for automatic application",
+      },
+    },
+    {
+      id: "clear-film",
+      label: "Sensor-critical construction",
+      title: "Clear Film Machine-Ready Labels",
+      description:
+        "Transparent film labels for a no-label-look appearance, qualified with the liner, gap or mark and the actual label sensor.",
+      buyerFit:
+        "Best for clear PET or glass packaging. White ink, barcode contrast, trapped air and sensing must be approved on the intended line.",
+      href: "#inquiry",
+      linkLabel: "Review clear-film sensing",
+      image: {
+        slot: "can-labels:series:clear-film",
+        fallback: CLEAR_FILM_IMAGE,
+        alt: "Clear film labels for transparent bottles and automatic label sensing",
+      },
+    },
+    {
+      id: "blank-variable-data",
+      label: "On-demand print route",
+      title: "Blank and Variable-Data Roll Labels",
+      description:
+        "Blank or preprinted rolls for adding batch, barcode, date or serial data before automatic application.",
+      buyerFit:
+        "Best for plants controlling data in-house. Printer, ribbon or direct-thermal method, DPI, sensor and downstream applicator must be reviewed together.",
+      href: "#inquiry",
+      linkLabel: "Confirm printer and applicator",
       image: {
         slot: "can-labels:blank-hero",
-        fallback: CAN_LABELS_IMG,
-        alt: "Blank can label stock for in-house printing and application",
+        fallback: BLANK_ROLL_IMAGE,
+        alt: "Blank roll labels for variable-data printing and automatic application",
+      },
+    },
+    {
+      id: "multi-sku",
+      label: "Version-controlled supply",
+      title: "Multi-SKU Short-Run Roll Labels",
+      description:
+        "Controlled short runs for multiple flavors, capacities, languages or markets sharing compatible construction and roll specifications.",
+      buyerFit:
+        "Best for launches and co-packers reducing per-version inventory. SKU codes, quantities, revisions, roll IDs and carton separation are required.",
+      href: "#inquiry",
+      linkLabel: "Review a multi-SKU order",
+      image: {
+        slot: "can-labels:series:multi-sku",
+        fallback: COPACKER_IMAGE,
+        alt: "Multiple roll-label versions controlled for a co-packer filling line",
       },
     },
   ],
-  sizes: canLabelSizes.map((size) => ({
-    slug: size.slug,
-    label: size.label,
-    market: size.markets ?? "Global",
-    badge: size.badge,
-    use: sizeUses[size.slug],
-  })),
+  sizes: [],
   applications: [
     {
-      id: "food-cans",
-      title: "Food cans",
+      id: "beverage-lines",
+      title: "Beverage bottling lines",
       description:
-        "Labels for canned vegetables, fruit, seafood, sauces and other foods with project-specific material review.",
+        "Roll labels for water, juice, tea, coffee and other beverage containers applied on controlled production lines.",
       confirm:
-        "can coating, filling and labeling sequence, oil or water exposure, storage and whether any direct food contact requirement is separate",
-      href: "/products/can-labels/custom-printed",
-      linkLabel: "Review a food-can project",
+        "applicator, dry or wet bottle, empty or filled state, application temperature, condensation timing, line speed and label position",
+      href: "#inquiry",
+      linkLabel: "Review a beverage line",
+      image: {
+        slot: "can-labels:applications:beverage",
+        fallback: BEVERAGE_IMAGE,
+        alt: "Beverage bottles moving through a filling and labeling process",
+      },
+    },
+    {
+      id: "food-lines",
+      title: "Food and sauce filling",
+      description:
+        "Machine-applied labels for jars, bottles and rigid food containers with project-specific exposure review.",
+      confirm:
+        "container material, filling temperature, surface contamination, oil or sauce contact, cleaning, storage and application position",
+      href: "#inquiry",
+      linkLabel: "Review a food filling line",
       image: {
         slot: "can-labels:applications:food",
         fallback: FOOD_IMAGE,
-        alt: "Printed labels on canned food packaging",
+        alt: "Packaged food containers prepared for automatic labeling",
       },
     },
     {
-      id: "beverage-cans",
-      title: "Beverage and craft cans",
+      id: "personal-care-lines",
+      title: "Personal-care filling lines",
       description:
-        "Branded labels for chilled beverage, craft and seasonal can programs with controlled artwork versions.",
+        "Front, back or wraparound labels for cosmetics, shampoo, lotion and small curved containers.",
       confirm:
-        "can shape, chilled condensation, application point, white ink, finish and acceptable label-edge appearance",
-      href: "/products/can-labels/custom-printed",
-      linkLabel: "Review a beverage-can program",
-      image: {
-        slot: "can-labels:applications:beverage",
-        fallback: CUSTOM_IMAGE,
-        alt: "Custom labels applied to chilled beverage cans",
-      },
-    },
-    {
-      id: "pet-food-cans",
-      title: "Pet-food cans",
-      description:
-        "Multi-flavor and multi-format label programs for wet pet food and related retail packaging.",
-      confirm:
-        "oil or gravy exposure, can surface, SKU list, language, barcode, quantity by version and carton separation",
-      href: "/products/can-labels/custom-printed",
-      linkLabel: "Plan a pet-food label order",
+        "container stiffness and curvature, squeeze behavior, label panel, application position, product leakage and finish",
+      href: "#inquiry",
+      linkLabel: "Review a personal-care line",
       image: {
         slot: "can-labels:applications:pet-food",
-        fallback: PET_FOOD_IMAGE,
-        alt: "Pet-food cans with printed product labels",
+        fallback: PERSONAL_CARE_IMAGE,
+        alt: "Personal-care bottles using pressure-sensitive roll labels",
       },
     },
     {
-      id: "oil-paint-cans",
-      title: "Oil, lubricant and paint cans",
+      id: "household-lines",
+      title: "Household-product filling",
       description:
-        "Film and protected print routes for metal containers exposed to handling, leakage or wiping.",
+        "Roll-label programs for cleaners, detergents and other household bottles using automatic applicators.",
       confirm:
-        "metal coating, surface oil, actual product leakage, wiping method, abrasion, temperature and required life",
-      href: "/products/can-labels/custom-printed",
-      linkLabel: "Review an oil or paint can",
+        "HDPE or PET surface, bottle shape, splash or wipe exposure, chemical contact, line speed and required service life",
+      href: "/products/detergent-labels",
+      linkLabel: "Review household bottle labels",
       image: {
         slot: "can-labels:applications:paint",
-        fallback: PAINT_IMAGE,
-        alt: "Printed labels on paint and coating cans",
+        fallback: HOUSEHOLD_IMAGE,
+        alt: "Household product bottles labeled on a filling line",
       },
     },
     {
-      id: "industrial-cans",
-      title: "Industrial and chemical containers",
+      id: "industrial-lines",
+      title: "Industrial liquid filling",
       description:
-        "Durable identification selected against the real metal surface and operating conditions.",
+        "Machine-applied identification for lubricants, chemicals and industrial liquids after the real exposure is defined.",
       confirm:
-        "actual liquid, concentration, splash or wipe method, contact time, temperature, abrasion and service life",
-      href: "/products/can-labels/custom-printed",
-      linkLabel: "Start a technical label review",
+        "liquid, concentration, splash or wipe method, contact time, temperature, abrasion, container surface and approval test",
+      href: "#inquiry",
+      linkLabel: "Start an industrial line review",
       image: {
         slot: "can-labels:applications:industrial",
         fallback: INDUSTRIAL_IMAGE,
-        alt: "Labels on industrial metal cans and containers",
+        alt: "Industrial liquid containers prepared for automatic labeling",
       },
     },
     {
       id: "copacker-programs",
-      title: "Co-packer and multi-SKU programs",
+      title: "Co-packer and multi-SKU lines",
       description:
-        "Roll-label supply for filling and packing lines managing multiple approved brands, flavors or markets.",
+        "Controlled roll, artwork, carton and replacement identification for lines switching between brands, flavors or markets.",
       confirm:
-        "applicator, line speed, core, outer diameter, winding, gap, version codes, quantities and carton controls",
+        "shared construction, SKU list, quantity by version, revision code, roll ID, carton separation, changeover and obsolete-stock handling",
       href: "/oem",
       linkLabel: "Review an OEM supply program",
       image: {
         slot: "can-labels:applications:canning",
         fallback: COPACKER_IMAGE,
-        alt: "Can labeling line for co-packer and multi-SKU production",
+        alt: "Co-packer filling line managing multiple roll-label versions",
       },
     },
   ],
   selectionSteps: [
     {
       step: "01",
-      title: "Can and surface",
-      description: "Identify the real container before choosing paper, film or adhesive.",
+      title: "Applicator and line",
+      description: "Identify the target equipment and operating condition before setting the roll format.",
       inputs: [
-        "Aluminum, steel or other metal",
-        "Bare, coated, printed or varnished surface",
-        "Can dimensions, label area and seam",
-        "Dust, machining oil and cleaning process",
+        "Applicator brand, model and label head",
+        "Target and start-up line speed",
+        "Front, back, wraparound or top application",
+        "Gap, black-mark or other sensor method",
       ],
     },
     {
       step: "02",
-      title: "Filling, labeling and exposure",
-      description: "Record when the label is applied and what reaches it during use.",
+      title: "Roll construction",
+      description: "Match the roll to the machine's physical limits and web path.",
       inputs: [
-        "Before or after filling and cooling",
-        "Application and storage temperature",
-        "Condensation, water, oil or product leakage",
-        "Wiping, abrasion and required service life",
+        "Core ID and maximum roll outer diameter",
+        "Web width, gap or pitch and labels per roll",
+        "Unwind direction and label orientation",
+        "Liner, splice allowance and roll packing",
       ],
     },
     {
       step: "03",
-      title: "Material, adhesive and finish",
-      description: "Shortlist the complete construction after the first two steps are known.",
+      title: "Container and process",
+      description: "Qualify adhesion and placement against the real container presented to the label head.",
       inputs: [
-        "Coated paper, White BOPP, Clear BOPP or PET",
-        "Adhesive selected for the actual surface",
-        "Gloss, matte, varnish or lamination objective",
-        "White ink, small text and barcode contrast",
+        "Container material, shape, curvature and stiffness",
+        "Empty or filled; dry, wet, dusty or oily surface",
+        "Application and storage temperature",
+        "Filling, cooling, cleaning and handling sequence",
       ],
     },
     {
       step: "04",
-      title: "Artwork, roll and commercial",
-      description: "Lock production and order inputs for a comparable quotation.",
+      title: "Artwork, trial and control",
+      description: "Use one approved specification from quotation through production and reorders.",
       inputs: [
-        "Artwork versions, colors and approval owner",
-        "Core, outer diameter, winding, gap and line speed",
-        "Quantity by SKU and replacement control",
-        "Packing, destination, documents and delivery window",
+        "Artwork revision and SKU quantity",
+        "Proof, sample and first-roll trial requirement",
+        "Acceptance criteria at target speed",
+        "Roll, carton and replacement identification",
       ],
     },
   ],
   evidence: {
     image: {
       slot: "manufacturing:facility-line",
-      fallback: QUALITY_IMAGE,
-      alt: "Label printing and quality-control line for can-label production",
+      fallback: MACHINE_LINE_IMAGE,
+      alt: "Production line used to review machine-ready roll-label construction",
     },
-    label: "Qualification and evidence",
-    title: "Approve the complete label on the production can",
+    label: "Machine qualification",
+    title: "Approve the first roll on the recorded applicator and container",
     description:
-      "A material name alone cannot approve adhesion, appearance or durability. Record the selected face stock, adhesive, finish, can surface, exposure, artwork, roll construction and acceptance result.",
+      "Applicator compatibility is a project-level result. Record the equipment, container, label construction, speed, continuous-run target and acceptance criteria instead of claiming one roll works on every machine.",
     checks: [
       {
-        title: "Actual-can adhesion",
+        title: "Pre-installation check",
         description:
-          "Test the production can after the real cleaning process and record initial, 24-hour and longer dwell observations.",
+          "Verify core, outer diameter, web width, unwind, liner, splice, label orientation and the approved artwork revision.",
       },
       {
-        title: "Exposure review",
+        title: "Low-speed setup",
         description:
-          "Reproduce condensation, water, oil, wiping, abrasion or temperature conditions using defined contact and timing.",
+          "Confirm sensing, release, placement and initial adhesion before increasing production speed.",
       },
       {
-        title: "Print approval",
+        title: "Target-speed run",
         description:
-          "Approve artwork version, color, white ink, finish, small text, die-cut position and barcode on the intended background.",
+          "Record tension, skew, liner breaks, wrinkles, bubbles, stops and waste during a defined continuous run.",
       },
       {
-        title: "Machine-ready trial",
+        title: "Restart and approval",
         description:
-          "Confirm core, outer diameter, winding, gap, liner, sensor, line speed and first-roll feed on the intended applicator.",
+          "Check positioning and sensor recovery after stopping, then record final settings, adjustments, samples and approver.",
       },
     ],
     note:
-      "Use on the outside of food packaging and direct food contact are separate scopes. Confirm the selected material, destination requirements, evidence subject and approval responsibility for each project.",
+      "Changing the applicator, container, label size, face stock, adhesive, liner, unwind, gap, speed or sensor may require a new trial. Compatibility applies only to the recorded setup and conditions.",
   },
   faq: [
     {
-      q: "Should can labels use paper or film?",
-      a: "Coated paper can suit dry, controlled packaging and a paper appearance. White BOPP, Clear BOPP or PET may be better starting points when moisture, oil, abrasion or longer durability matters. The final route depends on the actual can, exposure, finish and cost target.",
+      q: "What information is required for labels used on an automatic filling line?",
+      a: "Provide the applicator brand and model, label position, target speed, core ID, maximum roll OD, web width, unwind, gap or pitch, liner, sensor method, container condition, label size and artwork. Photos of the roll path and an existing approved roll are also useful.",
     },
     {
-      q: "Will one permanent adhesive work on every metal can?",
-      a: "No. A can may be aluminum or steel with print, varnish or another coating, and the surface may carry dust, machining oil or condensation. Test the proposed construction on the production can after the real cleaning process.",
+      q: "Why is unwind direction important?",
+      a: "The unwind direction determines which edge and artwork orientation reach the label head first. A wrong direction can place the label upside down, on the wrong panel or make the roll unusable without rewinding.",
     },
     {
-      q: "How should labels for chilled beverage cans be reviewed?",
-      a: "Confirm whether labels are applied before or after filling and cooling, the can temperature at application, when condensation forms, storage conditions and acceptable edge appearance. Reproduce that sequence during sample approval.",
+      q: "How do core size and roll outer diameter affect the order?",
+      a: "The core must fit the unwind shaft and the completed roll must stay within the machine's available diameter and weight. These values also affect labels per roll, changeover frequency, packing and freight.",
     },
     {
-      q: "What should be tested for food or lubricant oil exposure?",
-      a: "Record the actual oil or product, whether it contacts the face or cut edge, contact duration, wiping method and temperature. Material, print protection and adhesive must be assessed as one construction.",
+      q: "What causes a labeling machine to miss or stop on a roll?",
+      a: "Common causes include an unsuitable gap or mark, transparent-label sensing, liner variation, excessive die-cut depth, wrong unwind, web-width mismatch, tension instability and container presentation. Diagnosis should use the recorded machine and roll setup.",
     },
     {
-      q: "Can Clear BOPP create a no-label look on cans?",
-      a: "Clear BOPP can create a transparent appearance on a smooth surface, but white ink, can color, printed background, trapped air and label edges affect the result. Approve it on a representative filled can.",
+      q: "Can one roll-label construction work on every automatic applicator?",
+      a: "No. Passing one setup does not prove universal compatibility. Applicator, sensor, liner, speed, web path, container and application position can change the result, so new setups may require another first-roll trial.",
     },
     {
-      q: "What is needed for machine-applied can labels?",
-      a: "Send the applicator model, line speed, core ID, maximum roll diameter, web width, label dimensions, gap, winding, liner and sensor method. A first-roll trial is the strongest approval step for a new construction.",
+      q: "Can labels be applied to cold or wet bottles after filling?",
+      a: "That depends on the actual application temperature, water film, container material, adhesive and dwell time. Distinguish labels applied to a dry bottle before cooling from labels applied to a cold or wet bottle, then test the intended sequence.",
     },
     {
-      q: "Can multiple flavors or artwork versions share one order?",
-      a: "Multiple approved versions can be reviewed together when every SKU has a unique code, quantity and approval file. Roll labels, cartons and replacement records should use the same version code to reduce mixing risk.",
+      q: "How are multiple SKUs controlled on a co-packer line?",
+      a: "Give each artwork a controlled revision and quantity. Roll labels, cartons, replacement records and obsolete-stock handling should use the same version code to reduce mixing during line changeovers.",
     },
     {
-      q: "What information is needed for a useful can-label quotation?",
-      a: "Provide the can material, coating, dimensions, label area, filling and labeling sequence, surface condition, exposure, material preference, artwork versions, roll specification, quantity by SKU, packing, destination, document scope and requested delivery window.",
+      q: "What should a first-roll trial record?",
+      a: "Record the equipment, container, roll construction, speed, run length, sensing, release, placement, adhesion, stops, waste, adjustments, final settings and approval result. The approved specification should then control production and reorders.",
     },
   ],
   inquiry: {
-    label: "B2B can-label review",
-    title: "Send the can, application and production inputs",
+    label: "B2B filling-line label review",
+    title: "Send the machine, roll and container inputs",
     description:
-      "A complete request lets the team identify missing samples, tests, artwork controls and commercial inputs before quotation.",
+      "A complete line specification lets the team identify missing samples, trial requirements, construction risks and commercial inputs before quotation.",
     checklist: [
-      "Can material, coating, dimensions, label area, seam and surface cleaning",
-      "Filling and labeling sequence, temperature, condensation, oil and handling exposure",
-      "Material, adhesive, finish, artwork, barcode and approval requirements",
-      "Roll construction, applicator, SKU quantity, packing, destination and delivery window",
+      "Applicator brand/model, label position, target speed and sensor method",
+      "Core ID, maximum roll OD, web width, unwind, gap, liner and labels per roll",
+      "Container material, shape, empty/filled state, surface condition and temperature",
+      "Label construction, artwork versions, quantity by SKU, packing and destination",
     ],
-    productName: "Custom Can Labels",
+    productName: "Machine-Ready Roll Labels for Filling Lines",
     initialMessage:
-      "Company and buyer type:\nCan application and product:\nCan material, coating and dimensions:\nLabel area, seam and curvature:\nFilling and labeling sequence:\nSurface cleaning and container temperature:\nCondensation, water, oil, chemical or abrasion exposure:\nMaterial, adhesive and finish preference:\nArtwork versions, colors, white ink and barcode:\nCore, outer diameter, winding, gap and applicator:\nEstimated quantity by SKU:\nPacking and private-label requirement:\nRequired samples, tests or documents:\nDestination country / port:\nRequested delivery window:\nCurrent supply problem:",
+      "Company and buyer type:\nProduct being filled:\nApplicator brand and model:\nLabel position and target line speed:\nContainer material, shape and dimensions:\nEmpty or filled at application:\nContainer surface: dry / wet / dusty / oily:\nApplication and storage temperature:\nLabel size, shape and material preference:\nCore ID and maximum roll OD:\nWeb width, gap/pitch and liner:\nUnwind direction and sensor method:\nLabels per roll and splice allowance:\nArtwork versions and quantity by SKU:\nFirst-roll trial and acceptance criteria:\nRoll/box and box/pallet packing:\nDestination country / port:\nRequested delivery window:\nCurrent line problem:",
     responseNote:
-      "Timing and document availability are confirmed after the specification review.",
+      "Compatibility, timing and evidence scope are confirmed after the line specification review.",
     successMessage:
-      "We'll review your specification and reply with the next required step.",
+      "We'll review your line specification and reply with the next required step.",
   },
   breadcrumbs: [
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
-    { name: "Can Labels", path: "/products/can-labels" },
+    { name: "Machine-Ready Roll Labels", path: "/products/can-labels" },
   ],
   relatedPrograms: [
-    { label: "Product Labels", href: "/products/product-labels" },
-    { label: "Detergent and Chemical Container Labels", href: "/products/detergent-labels" },
-    { label: "Thermal Labels", href: "/products/thermal-labels" },
+    { label: "Custom Printed Thermal Labels", href: "/products/custom-printed-thermal-labels" },
+    { label: "Bottle and Household Labels", href: "/products/detergent-labels" },
+    { label: "Linerless Labels", href: "/products/linerless-labels" },
     { label: "OEM and Private Label", href: "/oem" },
   ],
 } satisfies ProductCategoryConfig;

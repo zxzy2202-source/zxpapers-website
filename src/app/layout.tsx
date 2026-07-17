@@ -136,7 +136,7 @@ const organizationSchema = {
   },
   slogan: SITE.tagline,
   description:
-    `ISO 9001:2015, FSC and BPA-free certified manufacturer of thermal paper rolls, direct thermal & shipping labels, can labels and detergent labels. Founded in 2009 in Xi'an, China, ZhixinPaper operates a ${FACTORY.area} factory with ${FACTORY.productionLines} production lines producing ${FACTORY.annualOutput} rolls per year, exporting to ${FACTORY.countriesServed} countries with factory-direct wholesale pricing and OEM/private-label programs for ${FACTORY.oemClients} clients.`,
+    `ISO 9001:2015, FSC and BPA-free certified manufacturer of thermal paper rolls, direct thermal and shipping labels, machine-ready roll labels, and bottle labels. Founded in 2009 in Xi'an, China, ZhixinPaper operates a ${FACTORY.area} factory with ${FACTORY.productionLines} production lines producing ${FACTORY.annualOutput} rolls per year, exporting to ${FACTORY.countriesServed} countries with factory-direct wholesale pricing and OEM/private-label programs for ${FACTORY.oemClients} clients.`,
   foundingDate: "2009",
   foundingLocation: {
     "@type": "Place",
@@ -150,7 +150,8 @@ const organizationSchema = {
     "POS receipt paper",
     "Cash register / till rolls",
     "4x6 shipping labels",
-    "Can labels",
+    "Machine-ready roll labels",
+    "Automatic labeling machine labels",
     "Detergent labels",
     "NCR / carbonless business forms",
     "OEM / private-label thermal paper manufacturing",
@@ -163,7 +164,7 @@ const organizationSchema = {
       { name: "Thermal & Shipping Labels", path: "/products/thermal-labels" },
       { name: "BPA-Free Thermal Paper", path: "/products/bpa-free-thermal-paper" },
       { name: "Till Rolls", path: "/products/till-rolls" },
-      { name: "Can Labels", path: "/products/can-labels" },
+      { name: "Machine-Ready Roll Labels", path: "/products/can-labels" },
       { name: "Detergent Labels", path: "/products/detergent-labels" },
       { name: "NCR Forms & Carbonless Business Forms", path: "/products/ncr-forms" },
     ].map((c) => ({

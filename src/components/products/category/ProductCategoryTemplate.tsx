@@ -65,7 +65,9 @@ export default function ProductCategoryTemplate({
           ? "md:grid-cols-3"
           : compactFamilies.length === 4
             ? "md:grid-cols-2 xl:grid-cols-4"
-            : "md:grid-cols-2 xl:grid-cols-5";
+            : compactFamilies.length === 5
+              ? "md:grid-cols-2 xl:grid-cols-3"
+              : "md:grid-cols-2 xl:grid-cols-4";
   const sizeGridClass =
     config.sizes.length === 1
       ? "grid-cols-1"
@@ -154,9 +156,15 @@ export default function ProductCategoryTemplate({
       >
         <div className="container py-10 sm:py-12 lg:py-16">
           <SectionHeading
-            label="Product families"
-            title="Choose the label program before the specification"
-            description="Start with the product route that matches the printer and job. Size, material, adhesive, packing and commercial terms are confirmed inside that route."
+            label={config.sectionCopy?.families?.label ?? "Product families"}
+            title={
+              config.sectionCopy?.families?.title ??
+              "Choose the label program before the specification"
+            }
+            description={
+              config.sectionCopy?.families?.description ??
+              "Start with the product route that matches the printer and job. Size, material, adhesive, packing and commercial terms are confirmed inside that route."
+            }
           />
 
           {featuredFamily ? (
@@ -238,7 +246,7 @@ export default function ProductCategoryTemplate({
                     "flex min-w-0 flex-col justify-center p-4",
                     singleCompactFamily
                       ? "md:min-h-[220px] md:p-7 lg:p-8"
-                      : "md:min-h-[220px] md:justify-start md:p-5",
+                      : "md:min-h-[280px] md:justify-start md:p-5",
                   )}
                 >
                   <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-teal-700">
@@ -249,6 +257,9 @@ export default function ProductCategoryTemplate({
                   </h3>
                   <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-slate-600">
                     {family.description}
+                  </p>
+                  <p className="mt-3 hidden border-l-2 border-teal-600 pl-3 text-xs leading-relaxed text-slate-600 md:block">
+                    {family.buyerFit}
                   </p>
                   <span
                     className={cn(
@@ -266,49 +277,51 @@ export default function ProductCategoryTemplate({
         </div>
       </section>
 
-      <section
-        id="popular-sizes"
-        data-category-section="popular-sizes"
-        className="scroll-mt-24 border-y border-slate-200 bg-slate-50"
-      >
-        <div className="container py-10 sm:py-12 lg:py-16">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:items-end">
-            <SectionHeading
-              label="Popular specifications"
-              title="Start with a known size when the printer already matches"
-              description="A size name does not confirm core, outer diameter, gap, winding, face stock or adhesive. Open the size page, then qualify the full construction."
-            />
-            <div className={cn("grid border-l border-t border-slate-300", sizeGridClass)}>
-              {config.sizes.map((size) => (
-                <Link
-                  key={size.slug}
-                  href={`${config.canonicalPath}/${size.slug}`}
-                  className="group flex min-h-36 flex-col border-b border-r border-slate-300 bg-white p-4 transition-colors hover:bg-amber-50 focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 motion-reduce:transition-none"
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="text-[11px] font-semibold text-slate-500">
-                      {size.market}
-                    </span>
-                    {size.badge ? (
-                      <span className="border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800">
-                        {size.badge}
+      {config.sizes.length > 0 ? (
+        <section
+          id="popular-sizes"
+          data-category-section="popular-sizes"
+          className="scroll-mt-24 border-y border-slate-200 bg-slate-50"
+        >
+          <div className="container py-10 sm:py-12 lg:py-16">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:items-end">
+              <SectionHeading
+                label="Popular specifications"
+                title="Start with a known size when the printer already matches"
+                description="A size name does not confirm core, outer diameter, gap, winding, face stock or adhesive. Open the size page, then qualify the full construction."
+              />
+              <div className={cn("grid border-l border-t border-slate-300", sizeGridClass)}>
+                {config.sizes.map((size) => (
+                  <Link
+                    key={size.slug}
+                    href={`${config.canonicalPath}/${size.slug}`}
+                    className="group flex min-h-36 flex-col border-b border-r border-slate-300 bg-white p-4 transition-colors hover:bg-amber-50 focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 motion-reduce:transition-none"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="text-[11px] font-semibold text-slate-500">
+                        {size.market}
                       </span>
-                    ) : null}
-                  </div>
-                  <h3 className="mt-5 font-sora text-base font-semibold leading-tight text-slate-950 group-hover:text-amber-800 sm:text-lg">
-                    {size.label}
-                  </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-slate-600">{size.use}</p>
-                  <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-xs font-semibold text-brand-navy">
-                    View specification
-                    <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-                  </span>
-                </Link>
-              ))}
+                      {size.badge ? (
+                        <span className="border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800">
+                          {size.badge}
+                        </span>
+                      ) : null}
+                    </div>
+                    <h3 className="mt-5 font-sora text-base font-semibold leading-tight text-slate-950 group-hover:text-amber-800 sm:text-lg">
+                      {size.label}
+                    </h3>
+                    <p className="mt-2 text-xs leading-relaxed text-slate-600">{size.use}</p>
+                    <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-xs font-semibold text-brand-navy">
+                      View specification
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                    </span>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <section
         id="applications"
@@ -317,9 +330,15 @@ export default function ProductCategoryTemplate({
       >
         <div className="container py-10 sm:py-12 lg:py-16">
           <SectionHeading
-            label="Application routes"
-            title="Match the label to the operating condition"
-            description="Application pages help define the risk. The final product route still depends on the printer, surface, environment and required evidence."
+            label={config.sectionCopy?.applications?.label ?? "Application routes"}
+            title={
+              config.sectionCopy?.applications?.title ??
+              "Match the label to the operating condition"
+            }
+            description={
+              config.sectionCopy?.applications?.description ??
+              "Application pages help define the risk. The final product route still depends on the printer, surface, environment and required evidence."
+            }
           />
           <div
             role="region"
@@ -378,9 +397,15 @@ export default function ProductCategoryTemplate({
       >
         <div className="container py-10 sm:py-12 lg:py-16">
           <SectionHeading
-            label="Four-step selection"
-            title="Build the specification in the right order"
-            description="The material route comes last. Printer geometry and the actual application determine which construction is worth testing."
+            label={config.sectionCopy?.selection?.label ?? "Four-step selection"}
+            title={
+              config.sectionCopy?.selection?.title ??
+              "Build the specification in the right order"
+            }
+            description={
+              config.sectionCopy?.selection?.description ??
+              "The material route comes last. Printer geometry and the actual application determine which construction is worth testing."
+            }
           />
           <ol className="mt-8 grid border-l border-t border-slate-300 lg:grid-cols-4">
             {config.selectionSteps.map((item) => (

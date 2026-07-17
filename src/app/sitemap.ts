@@ -116,16 +116,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // Can Labels Product Pages (priority 0.8)
-  const canLabelPages: MetadataRoute.Sitemap = [
-    "211x400", "211x603", "300x407", "307x510", "401x700", "blank", "custom-printed",
-  ].map((size) => ({
-    url: `${BASE}/products/can-labels/${size}`,
-    lastModified: STATIC_LAST_MOD,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
-
   // Other Product Category Pages (priority 0.8)
   const productCategoryPages: MetadataRoute.Sitemap = [
     // Canonical content URLs only; former aliases redirect here.
@@ -234,7 +224,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...thermalRollPages,
     ...thermalLabelPages,
     ...detergentLabelPages,
-    ...canLabelPages,
     ...productCategoryPages,
     ...otherPages,
     ...manufacturingPages,

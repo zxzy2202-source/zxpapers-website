@@ -34,12 +34,12 @@ import { r2Image } from "@/lib/r2";
 export const metadata: Metadata = {
   title: "Custom-Printed Thermal Paper, Labels & Carbonless Forms | Zhixin Paper",
   description:
-    "ISO 9001 factory for blank and custom-printed thermal paper rolls, thermal labels, can labels and carbonless NCR forms. OEM/private label printing plus jumbo-roll supply.",
+    "ISO 9001 factory for blank and custom-printed thermal paper rolls, thermal labels, machine-ready roll labels and carbonless NCR forms. OEM/private label printing plus jumbo-roll supply.",
   alternates: { canonical: SITE.domain },
   openGraph: {
     title: "Custom-Printed Thermal Paper, Labels & Carbonless Forms | ZhixinPaper",
     description:
-      "Factory for blank and custom-printed thermal rolls, labels, can labels and carbonless forms. OEM/private label with export-ready packing.",
+      "Factory for blank and custom-printed thermal rolls, labels, machine-ready filling-line labels and carbonless forms. OEM/private label with export-ready packing.",
     url: SITE.domain,
     type: "website",
     images: [
@@ -110,10 +110,10 @@ const productLines: ProductLine[] = [
     fallback: COATING_LINE_IMAGE,
   },
   {
-    title: "Can & Bottle Labels",
-    spec: "Food, beverage, detergent and aerosol packaging",
-    summary: "Moisture-resistant printed labels with die-cutting and application-ready finishing.",
-    href: "/products/can-labels/custom-printed",
+    title: "Filling Line Roll Labels",
+    spec: "Machine-ready rolls for automatic label applicators",
+    summary: "Printed and blank roll labels qualified by applicator, roll format, sensor, speed and container condition.",
+    href: "/products/can-labels",
     slot: "home:category-can-labels",
     fallback: THERMAL_LABELS_IMAGE,
     imagePosition: "object-right",

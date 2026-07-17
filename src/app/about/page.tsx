@@ -200,7 +200,7 @@ export default async function AboutPage() {
           </h2>
           <p className="text-slate-600 mb-8 max-w-3xl">
             {SITE.name} (legal name Xi&apos;an Zhi Xin Paper Co., Ltd.) is a factory-direct
-            manufacturer of thermal paper rolls, direct thermal &amp; shipping labels, can labels,
+                manufacturer of thermal paper rolls, direct thermal &amp; shipping labels, machine-ready roll labels,
             and detergent labels, founded in {SITE.founded} in Xi&apos;an, Shaanxi, China.
           </p>
           <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5">
@@ -218,7 +218,7 @@ export default async function AboutPage() {
               { term: "FCL lead time", value: `${FACTORY.fclLoadingDays} business days` },
               { term: "Export terms", value: "FOB, CIF, DDP worldwide" },
               { term: "Certifications", value: "ISO 9001:2015, FSC, BPA-Free, RoHS, REACH, CE" },
-              { term: "Product range", value: "Thermal paper rolls, thermal & shipping labels, can labels, detergent labels" },
+                  { term: "Product range", value: "Thermal paper rolls, thermal & shipping labels, machine-ready roll labels, bottle labels" },
               { term: "Business model", value: "Factory-direct wholesale & OEM/private label" },
             ].map(({ term, value }) => (
               <div key={term} className="border-l-2 border-brand-navy/20 pl-4">

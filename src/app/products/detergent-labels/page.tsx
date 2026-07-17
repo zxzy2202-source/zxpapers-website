@@ -192,7 +192,7 @@ export default async function DetergentLabelsPage() {
         }}
         faqs={faqs}
         crossLinks={[
-          { label: "Can Labels", href: "/products/can-labels" },
+                { label: "Machine-Ready Filling Line Labels", href: "/products/can-labels" },
           { label: "Thermal & Shipping Labels", href: "/products/thermal-labels" },
           { label: "NCR Forms & Carbonless", href: "/products/ncr-forms" },
           { label: "OEM & Private Label", href: "/oem" },

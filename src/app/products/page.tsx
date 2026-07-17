@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getSlotImages } from "@/lib/imageSlotUtils";
 import { r2Image } from "@/lib/r2";
-import { paperRollSizes, labelSizes, canLabelSizes, detergentLabelSizes } from "@/config/navigation";
+import { paperRollSizes, labelSizes, detergentLabelSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
 import ProductsCatalogPage from "@/components/products/ProductsCatalogPage";
 import type { CatalogFamily } from "@/components/products/ProductsCatalogPage";
@@ -13,9 +13,9 @@ import { ncrFormParts } from "./ncr-forms/ncr-forms-data";
 export const metadata: Metadata = {
   title: "Thermal Paper, Labels & NCR Forms | Factory Catalog",
   description:
-    "Factory-direct thermal paper rolls, direct thermal labels, can and bottle labels, and NCR forms. Browse stock sizes or request custom printing, OEM packaging, and bulk pricing.",
+    "Factory-direct thermal paper rolls, direct thermal labels, machine-ready filling-line labels, bottle labels, and NCR forms. Browse stock sizes or request custom printing and OEM supply.",
   keywords:
-    "thermal paper rolls, thermal labels, shipping labels, can labels, bottle labels, NCR forms, custom printed thermal paper, thermal paper manufacturer, thermal paper wholesale, OEM thermal paper",
+    "thermal paper rolls, thermal labels, shipping labels, machine ready roll labels, automatic labeling machine labels, bottle labels, NCR forms, custom printed thermal paper, thermal paper manufacturer, OEM thermal paper",
   alternates: { canonical: `${SITE.domain}/products` },
 };
 
@@ -34,9 +34,7 @@ const catalogEntries: { name: string; path: string }[] = [
   { name: "Blank Thermal Labels", path: "/products/thermal-labels/blank" },
   { name: "Custom Printed Thermal Labels", path: "/products/thermal-labels/custom-printed" },
   ...labelSizes.map((size) => ({ name: `${size.label} Thermal Label`, path: `/products/thermal-labels/${size.slug}` })),
-  { name: "Blank Can Labels", path: "/products/can-labels/blank" },
-  { name: "Custom Printed Can Labels", path: "/products/can-labels/custom-printed" },
-  ...canLabelSizes.map((size) => ({ name: `${size.label} Can Label`, path: `/products/can-labels/${size.slug}` })),
+  { name: "Machine-Ready Roll Labels for Filling Lines", path: "/products/can-labels" },
   { name: "Blank Detergent Labels", path: "/products/detergent-labels/blank" },
   { name: "Custom Printed Detergent Labels", path: "/products/detergent-labels/custom-printed" },
   ...detergentLabelSizes.map((size) => ({ name: `${size.label} Detergent Label`, path: `/products/detergent-labels/${size.slug}` })),
@@ -211,33 +209,32 @@ export default async function ProductsPage() {
     },
     {
       id: "can-labels",
-      navLabel: "Beverage & Food Labels",
-      title: "Beverage & Food Packaging Labels",
-      badge: "Bottles, Cans & Food Containers",
-      description: "Pressure-sensitive packaging labels for mineral water, beverages, canned food, jars, and other filled products that need moisture resistance and shelf-ready branding.",
+      navLabel: "Filling Line Labels",
+      title: "Machine-Ready Roll Labels for Filling Lines",
+      badge: "Automatic Label Applicators",
+      description: "Pressure-sensitive roll labels specified for automatic filling and labeling lines by applicator, core, roll diameter, unwind, gap, liner, sensor, speed, and container condition.",
       href: "/products/can-labels",
       image: canImage,
-      imageAlt: "Custom printed packaging labels for food and beverage containers",
-      facts: ["Food-safe material options", "Moisture-resistant facestocks and adhesives", "Full-color OEM and private-label printing"],
-      applications: ["Mineral water, juice, soda, and beverage containers", "Canned food, jars, and shelf-ready food packaging", "Private-label and contract-packed consumer products"],
-      buyers: ["Beverage and food brand owners", "Co-packers, filling plants, and private-label programs", "Packaging distributors and regional label resellers"],
+      imageAlt: "Machine-ready roll labels for automatic filling and labeling lines",
+      facts: ["Applicator and line-speed review", "Controlled core, roll, unwind, liner, and sensor specification", "First-roll trial planning"],
+      applications: ["Beverage and food filling lines", "Personal-care and household-product bottling", "Multi-SKU co-packer and OEM lines"],
+      buyers: ["Filling plants and production engineers", "Co-packers and private-label manufacturers", "Packaging procurement teams and label distributors"],
       groups: [
         {
-          title: "Choose by format",
+          title: "Start the line review",
           links: [
-            { label: "All Beverage & Food Packaging Labels", href: "/products/can-labels", badge: "Overview" },
-            { label: "Blank Packaging Labels", href: "/products/can-labels/blank" },
-            { label: "Custom Printed Packaging Labels", href: "/products/can-labels/custom-printed" },
+            { label: "Machine-Ready Roll Labels", href: "/products/can-labels", badge: "Overview" },
+            { label: "Custom Printed Thermal Labels", href: "/products/custom-printed-thermal-labels" },
+            { label: "Linerless Labels", href: "/products/linerless-labels" },
           ],
         },
         {
-          title: "Standard container sizes",
-          links: canLabelSizes.map((size) => ({
-            label: size.label,
-            href: `/products/can-labels/${size.slug}`,
-            note: size.markets,
-            badge: size.badge,
-          })),
+          title: "Related packaging programs",
+          links: [
+            { label: "Bottle & Household Labels", href: "/products/detergent-labels" },
+            { label: "Product Labels", href: "/products/product-labels" },
+            { label: "OEM & Private Label Supply", href: "/oem" },
+          ],
         },
       ],
     },

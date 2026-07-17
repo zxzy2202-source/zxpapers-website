@@ -4,7 +4,7 @@
 import type { ApplicationItem } from "@/components/products/SizeDetailPage";
 
 export const CAN_LABELS_IMG =
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80";
+  "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
 
 // ── Application image pool ────────────────────────────────────────────────
 const APP_IMAGES = {

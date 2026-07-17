@@ -23,7 +23,7 @@ export default async function CanLabelsPage() {
     images.hero,
   );
   const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent(
-    "Hello, I need a custom can label review. I can send the can material, coating, dimensions, filling and labeling sequence, surface condition, exposure, artwork, roll specification, quantity, packing and destination.",
+    "Hello, I need machine-ready roll labels for a filling line. I can send the applicator model, line speed, container, core ID, roll OD, web width, unwind, gap, liner, sensor, artwork, quantity, packing and destination.",
   )}`;
 
   return (
