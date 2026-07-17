@@ -210,14 +210,6 @@ const websiteSchema = {
   description:
     "ISO 9001 certified thermal paper rolls and labels manufacturer. Factory direct, OEM available.",
   publisher: { "@id": `${SITE.domain}/#organization` },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${SITE.domain}/products?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 export default async function RootLayout({

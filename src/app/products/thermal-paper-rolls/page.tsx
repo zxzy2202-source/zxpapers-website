@@ -9,12 +9,32 @@ import type { ThermalRollSizeItem } from "@/components/products/ThermalPaperRoll
 const ROLLS_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Manufacturer | OEM & Wholesale Supply",
+  title: { absolute: "OEM Thermal Paper Rolls Manufacturer | ZhixinPaper" },
   description:
-    "Source blank, private-label and custom printed thermal paper rolls for distributor, wholesale and print-partner programs, with specification, packing and sample review before pricing.",
+    "Source OEM and wholesale thermal paper rolls for distributor, private-label and custom printed programs. Confirm size, grade, packing and samples before production.",
   keywords:
     "thermal paper rolls manufacturer, OEM thermal paper rolls, private label receipt rolls, wholesale thermal paper rolls, custom printed thermal rolls, distributor thermal paper supply, POS receipt paper rolls",
   alternates: { canonical: `${SITE.domain}/products/thermal-paper-rolls` },
+  openGraph: {
+    type: "website",
+    title: "OEM Thermal Paper Rolls Manufacturer | ZhixinPaper",
+    description:
+      "Source OEM and wholesale thermal paper rolls for distributor, private-label and custom printed programs. Confirm size, grade, packing and samples before production.",
+    url: `${SITE.domain}/products/thermal-paper-rolls`,
+    images: [
+      {
+        url: ROLLS_IMG_FB,
+        alt: "Thermal paper rolls for OEM, private-label and wholesale supply",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OEM Thermal Paper Rolls Manufacturer | ZhixinPaper",
+    description:
+      "Source OEM and wholesale thermal paper rolls for distributor, private-label and custom printed programs. Confirm size, grade, packing and samples before production.",
+    images: [ROLLS_IMG_FB],
+  },
 };
 
 const variants = [
