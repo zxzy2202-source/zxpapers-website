@@ -12,7 +12,7 @@ export function buildProductCategorySchemas(
       .map((family) => ({ name: family.title, path: family.href })),
     ...config.sizes.map((size) => ({
       name: `${size.label} ${config.categoryName}`,
-      path: `${config.canonicalPath}/${size.slug}`,
+      path: size.href ?? `${config.canonicalPath}/${size.slug}`,
     })),
   ];
   const distinctEntries = Array.from(

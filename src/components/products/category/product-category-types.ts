@@ -24,6 +24,7 @@ export interface ProductCategorySize {
   market: string;
   badge?: string;
   use: string;
+  href?: string;
 }
 
 export interface ProductCategoryApplication {
@@ -74,6 +75,7 @@ export interface ProductCategoryConfig {
   jumpLinks: Array<{ label: string; href: string }>;
   sectionCopy?: {
     families?: { label: string; title: string; description: string };
+    sizes?: { label: string; title: string; description: string };
     applications?: { label: string; title: string; description: string };
     selection?: { label: string; title: string; description: string };
   };

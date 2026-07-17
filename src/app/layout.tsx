@@ -162,6 +162,8 @@ const organizationSchema = {
     itemListElement: [
       { name: "Thermal Paper Rolls", path: "/products/thermal-paper-rolls" },
       { name: "Thermal & Shipping Labels", path: "/products/thermal-labels" },
+      { name: "Barcode & Variable-Data Labels", path: "/products/barcode-labels" },
+      { name: "Product & Packaging Labels", path: "/products/product-labels" },
       { name: "BPA-Free Thermal Paper", path: "/products/bpa-free-thermal-paper" },
       { name: "Till Rolls", path: "/products/till-rolls" },
       { name: "Machine-Ready Roll Labels", path: "/products/can-labels" },

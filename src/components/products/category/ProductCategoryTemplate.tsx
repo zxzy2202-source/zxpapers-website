@@ -67,7 +67,9 @@ export default function ProductCategoryTemplate({
             ? "md:grid-cols-2 xl:grid-cols-4"
             : compactFamilies.length === 5
               ? "md:grid-cols-2 xl:grid-cols-3"
-              : "md:grid-cols-2 xl:grid-cols-4";
+              : compactFamilies.length === 6
+                ? "md:grid-cols-2 xl:grid-cols-3"
+                : "md:grid-cols-2 xl:grid-cols-4";
   const sizeGridClass =
     config.sizes.length === 1
       ? "grid-cols-1"
@@ -286,15 +288,21 @@ export default function ProductCategoryTemplate({
           <div className="container py-10 sm:py-12 lg:py-16">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:items-end">
               <SectionHeading
-                label="Popular specifications"
-                title="Start with a known size when the printer already matches"
-                description="A size name does not confirm core, outer diameter, gap, winding, face stock or adhesive. Open the size page, then qualify the full construction."
+                label={config.sectionCopy?.sizes?.label ?? "Popular specifications"}
+                title={
+                  config.sectionCopy?.sizes?.title ??
+                  "Start with a known size when the printer already matches"
+                }
+                description={
+                  config.sectionCopy?.sizes?.description ??
+                  "A size name does not confirm core, outer diameter, gap, winding, face stock or adhesive. Open the size page, then qualify the full construction."
+                }
               />
               <div className={cn("grid border-l border-t border-slate-300", sizeGridClass)}>
                 {config.sizes.map((size) => (
                   <Link
                     key={size.slug}
-                    href={`${config.canonicalPath}/${size.slug}`}
+                    href={size.href ?? `${config.canonicalPath}/${size.slug}`}
                     className="group flex min-h-36 flex-col border-b border-r border-slate-300 bg-white p-4 transition-colors hover:bg-amber-50 focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 motion-reduce:transition-none"
                   >
                     <div className="flex items-start justify-between gap-2">

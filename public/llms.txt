@@ -39,8 +39,8 @@ ZhixinPaper manufactures every category in-house — controlling base-paper coat
 - [Thermal labels](https://www.zxpapers.com/products/thermal-labels): direct thermal shipping, barcode, and product labels
 - [Custom printed thermal labels](https://www.zxpapers.com/products/custom-printed-thermal-labels): logo, product info, pre-printed fields (OEM / private label)
 - [Shipping labels](https://www.zxpapers.com/products/shipping-labels): bulk 4x6 direct thermal shipping labels for 3PL, overseas warehouse and logistics operations, supplied as rolls or fanfold and specified by printer model, DPI, core, roll diameter, gap, unwind direction, parcel surface and throughput; includes permanent, high-tack and all-temperature adhesive options, carton and pallet packing, batch control, samples and repeat-order SKU management
-- [Barcode labels](https://www.zxpapers.com/products/barcode-labels): SKU, inventory, and asset labels for warehouse and retail
-- [Product labels](https://www.zxpapers.com/products/product-labels): retail, packaging, price, and weigh-scale labels
+- [Barcode and variable-data labels](https://www.zxpapers.com/products/barcode-labels): B2B SKU, UPC, FNSKU, warehouse, carton, pallet, asset and durable label programs selected by data, printer, surface, environment and scan workflow
+- [Product and packaging labels](https://www.zxpapers.com/products/product-labels): B2B retail, packaging, price, food-scale, barcode, blank, and custom printed label programs selected by printer, surface, environment, and artwork
 - [Linerless labels](https://www.zxpapers.com/products/linerless-labels): liner-free thermal labels, 30–50% less waste
 - [3 1/8 x 263' Linerless Labels](https://www.zxpapers.com/products/linerless-labels/3-1-8-x-263): OEM and bulk-supply page for distributors, importers, private-label brands and procurement teams, covering printer fit, adhesive selection, samples, custom packing and repeat-order specifications
 - [Can labels](https://www.zxpapers.com/products/can-labels): full-wrap, food-safe, moisture-resistant labels for beverage, food, pet food, and industrial cans
