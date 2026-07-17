@@ -57,6 +57,10 @@ export interface PageHeroProps {
   trustBadges?: string[];
   /** Stat cards row */
   stats?: HeroStat[];
+  /** Number of trust badges shown below the small breakpoint */
+  mobileTrustBadgeLimit?: number;
+  /** Number of stat cards shown below the small breakpoint */
+  mobileStatLimit?: number;
   /** CTA buttons */
   ctas?: HeroCTA[];
   /** Right-side visual slot */
@@ -93,6 +97,8 @@ export default function PageHero({
   subtitle,
   trustBadges,
   stats,
+  mobileTrustBadgeLimit,
+  mobileStatLimit,
   ctas,
   rightSlot,
   mobileRightSlot,
@@ -289,10 +295,14 @@ export default function PageHero({
               {/* Trust badges */}
               {trustBadges && trustBadges.length > 0 && (
                 <div className="flex flex-wrap gap-2.5 mb-7">
-                  {trustBadges.map((badge) => (
+                  {trustBadges.map((badge, index) => (
                     <span
                       key={badge}
-                      className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] bg-white/5 border border-white/15 text-slate-200 px-3 py-2 rounded-md"
+                      className={`${
+                        mobileTrustBadgeLimit !== undefined && index >= mobileTrustBadgeLimit
+                          ? "hidden sm:inline-flex"
+                          : "inline-flex"
+                      } items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] bg-white/5 border border-white/15 text-slate-200 px-3 py-2 rounded-md`}
                     >
                       <span className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
                       {badge}
@@ -345,15 +355,19 @@ export default function PageHero({
               {/* Stats */}
               {stats && stats.length > 0 && (
                 <div className={`grid grid-cols-1 min-[380px]:grid-cols-2 ${statsGridClass} gap-3`}>
-                  {stats.map(({ value, label, sub }) => (
+                  {stats.map(({ value, label, sub }, index) => (
                     <div
                       key={label}
-                      className="min-w-0 border border-white/12 bg-black/20 rounded-md px-4 py-4 text-left"
+                      className={`${
+                        mobileStatLimit !== undefined && index >= mobileStatLimit
+                          ? "hidden sm:block"
+                          : ""
+                      } min-w-0 border border-white/12 bg-black/20 rounded-md px-4 py-4 text-left`}
                     >
                       <div className="text-base sm:text-xl font-semibold text-white mb-1">
                         {value}
                       </div>
-                      <div className="text-[10px] sm:text-[11px] text-slate-300 font-semibold uppercase tracking-[0.08em] sm:tracking-[0.14em]">{label}</div>
+                      <div className="text-[11px] text-slate-300 font-semibold uppercase tracking-[0.08em] sm:tracking-[0.14em]">{label}</div>
                       {sub && <div className="text-[11px] text-slate-500 mt-1">{sub}</div>}
                     </div>
                   ))}

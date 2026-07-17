@@ -10,6 +10,7 @@ import {
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import PageHero from "@/components/shared/PageHero";
+import ProductCategoryActionLink from "@/components/products/category/ProductCategoryActionLink";
 import { cn } from "@/lib/utils";
 import type {
   ProductCategoryConfig,
@@ -54,6 +55,33 @@ export default function ProductCategoryTemplate({
   const featuredFamily = config.families.find((family) => family.featured);
   const compactFamilies = config.families.filter((family) => !family.featured);
   const singleCompactFamily = compactFamilies.length === 1;
+  const inquiryFormId = `${config.canonicalPath.replaceAll("/", "-").replace(/^-/, "")}-inquiry`;
+  const compactGridClass =
+    compactFamilies.length === 1
+      ? "md:grid-cols-1"
+      : compactFamilies.length === 2
+        ? "md:grid-cols-2"
+        : compactFamilies.length === 3
+          ? "md:grid-cols-3"
+          : compactFamilies.length === 4
+            ? "md:grid-cols-2 xl:grid-cols-4"
+            : "md:grid-cols-2 xl:grid-cols-5";
+  const sizeGridClass =
+    config.sizes.length === 1
+      ? "grid-cols-1"
+      : config.sizes.length === 2
+        ? "grid-cols-1 sm:grid-cols-2"
+        : "grid-cols-2 sm:grid-cols-3";
+  const applicationGridClass =
+    config.applications.length === 1
+      ? "lg:grid-cols-1"
+      : config.applications.length === 2
+        ? "lg:grid-cols-2"
+        : config.applications.length === 4
+          ? "lg:grid-cols-2 xl:grid-cols-4"
+          : "lg:grid-cols-3";
+  const inquiryMessageFor = (selection: string) =>
+    `Selected requirement: ${selection}\n\n${config.inquiry.initialMessage}`;
 
   return (
     <Layout>
@@ -78,6 +106,8 @@ export default function ProductCategoryTemplate({
         subtitle={config.hero.description}
         trustBadges={config.hero.trustBadges}
         stats={config.hero.facts}
+        mobileTrustBadgeLimit={2}
+        mobileStatLimit={2}
         ctas={[
           {
             label: config.hero.primaryCta.label,
@@ -99,7 +129,7 @@ export default function ProductCategoryTemplate({
         aria-label={`${config.categoryName} catalog paths`}
         className="border-b border-slate-200 bg-white"
       >
-        <div className="container overflow-x-auto py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="container overflow-x-auto py-2 [scrollbar-width:thin]">
           <div className="flex min-w-max items-center gap-1">
             <span className="mr-3 hidden text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 sm:inline">
               Browse by
@@ -108,7 +138,7 @@ export default function ProductCategoryTemplate({
               <a
                 key={link.href}
                 href={link.href}
-                className="inline-flex min-h-10 items-center border border-transparent px-3 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50 hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
+                className="inline-flex min-h-11 items-center border border-transparent px-3 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50 hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
               >
                 {link.label}
               </a>
@@ -167,13 +197,15 @@ export default function ProductCategoryTemplate({
           <div
             className={cn(
               "mt-4 grid gap-px border border-slate-200 bg-slate-200",
-              singleCompactFamily ? "md:grid-cols-1" : "md:grid-cols-2 xl:grid-cols-5",
+              compactGridClass,
             )}
           >
             {compactFamilies.map((family) => (
-              <Link
+              <ProductCategoryActionLink
                 key={family.id}
                 href={family.href}
+                inquiryFormId={inquiryFormId}
+                inquiryMessage={inquiryMessageFor(family.title)}
                 className={cn(
                   "group grid min-h-28 grid-cols-[96px_minmax(0,1fr)] bg-white focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500",
                   singleCompactFamily
@@ -209,13 +241,13 @@ export default function ProductCategoryTemplate({
                       : "md:min-h-[220px] md:justify-start md:p-5",
                   )}
                 >
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-teal-700">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-teal-700">
                     {family.label}
                   </p>
                   <h3 className="mt-1.5 font-sora text-base font-semibold leading-snug text-slate-950 group-hover:text-brand-navy">
                     {family.title}
                   </h3>
-                  <p className="mt-2 hidden text-xs leading-relaxed text-slate-600 md:block">
+                  <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-slate-600">
                     {family.description}
                   </p>
                   <span
@@ -228,7 +260,7 @@ export default function ProductCategoryTemplate({
                     <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                   </span>
                 </div>
-              </Link>
+              </ProductCategoryActionLink>
             ))}
           </div>
         </div>
@@ -246,7 +278,7 @@ export default function ProductCategoryTemplate({
               title="Start with a known size when the printer already matches"
               description="A size name does not confirm core, outer diameter, gap, winding, face stock or adhesive. Open the size page, then qualify the full construction."
             />
-            <div className="grid grid-cols-2 border-l border-t border-slate-300 sm:grid-cols-3">
+            <div className={cn("grid border-l border-t border-slate-300", sizeGridClass)}>
               {config.sizes.map((size) => (
                 <Link
                   key={size.slug}
@@ -258,7 +290,7 @@ export default function ProductCategoryTemplate({
                       {size.market}
                     </span>
                     {size.badge ? (
-                      <span className="border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[9px] font-semibold text-amber-800">
+                      <span className="border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800">
                         {size.badge}
                       </span>
                     ) : null}
@@ -289,7 +321,15 @@ export default function ProductCategoryTemplate({
             title="Match the label to the operating condition"
             description="Application pages help define the risk. The final product route still depends on the printer, surface, environment and required evidence."
           />
-          <div className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [scrollbar-width:thin] lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
+          <div
+            role="region"
+            aria-label={`${config.categoryName} application routes`}
+            tabIndex={0}
+            className={cn(
+              "mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [scrollbar-width:thin] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 lg:grid lg:overflow-visible lg:pb-0",
+              applicationGridClass,
+            )}
+          >
             {config.applications.map((application) => (
               <article
                 key={application.id}
@@ -315,13 +355,15 @@ export default function ProductCategoryTemplate({
                     <span className="font-semibold text-teal-800">Confirm: </span>
                     {application.confirm}
                   </p>
-                  <Link
+                  <ProductCategoryActionLink
                     href={application.href}
-                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy transition-colors hover:text-amber-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
+                    inquiryFormId={inquiryFormId}
+                    inquiryMessage={inquiryMessageFor(application.title)}
+                    className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand-navy transition-colors hover:text-amber-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
                   >
                     {application.linkLabel}
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
+                  </ProductCategoryActionLink>
                 </div>
               </article>
             ))}
@@ -468,7 +510,7 @@ export default function ProductCategoryTemplate({
                 href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-7 inline-flex items-center gap-2 self-start text-sm font-semibold text-amber-300 transition-colors hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy motion-reduce:transition-none"
+                className="mt-7 inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-amber-300 transition-colors hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy motion-reduce:transition-none"
               >
                 <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 Send the specification on WhatsApp
@@ -477,6 +519,7 @@ export default function ProductCategoryTemplate({
             <div className="p-6 sm:p-7 lg:p-9">
               <InquiryForm
                 compact
+                formId={inquiryFormId}
                 productName={config.inquiry.productName}
                 initialMessage={config.inquiry.initialMessage}
                 responseNote={config.inquiry.responseNote}
@@ -501,7 +544,7 @@ export default function ProductCategoryTemplate({
               <Link
                 key={program.href}
                 href={program.href}
-                className="text-sm font-semibold text-brand-navy transition-colors hover:text-amber-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
+                className="inline-flex min-h-11 items-center text-sm font-semibold text-brand-navy transition-colors hover:text-amber-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
               >
                 {program.label}
               </Link>

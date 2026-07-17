@@ -49,3 +49,28 @@ test("Products navigation exposes both the category and the featured linerless d
     "the featured detail entry should remain visible before the desktop and mobile menu limits",
   );
 });
+
+test("category layout adapts to the active item count and preserves mobile context", async () => {
+  const [template, hero, inquiry, actionLink] = await Promise.all([
+    read("src/components/products/category/ProductCategoryTemplate.tsx"),
+    read("src/components/shared/PageHero.tsx"),
+    read("src/components/shared/InquiryForm.tsx"),
+    read("src/components/products/category/ProductCategoryActionLink.tsx"),
+  ]);
+
+  assert.match(template, /compactFamilies\.length === 4/);
+  assert.match(template, /config\.sizes\.length === 1/);
+  assert.match(template, /config\.applications\.length === 4/);
+  assert.match(template, /lg:grid-cols-2 xl:grid-cols-4/);
+  assert.match(template, /mobileTrustBadgeLimit=\{2\}/);
+  assert.match(template, /mobileStatLimit=\{2\}/);
+  assert.match(template, /line-clamp-2/);
+  assert.match(template, /application routes/);
+  assert.match(template, /formId=\{inquiryFormId\}/);
+  assert.match(hero, /mobileTrustBadgeLimit/);
+  assert.match(hero, /mobileStatLimit/);
+  assert.match(inquiry, /min-h-40 resize-y/);
+  assert.match(inquiry, /className={`h-11/);
+  assert.match(actionLink, /CustomEvent\("inquiryScroll"/);
+  assert.match(actionLink, /history\.replaceState/);
+});

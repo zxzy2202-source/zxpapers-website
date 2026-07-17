@@ -214,7 +214,7 @@ export default function InquiryForm({
             required
             aria-invalid={errors.name ? true : undefined}
             aria-describedby={errors.name ? "inquiry-name-error" : undefined}
-            className={errors.name ? errorInputClass : ""}
+            className={`h-11 ${errors.name ? errorInputClass : ""}`}
           />
           {errors.name && <p id="inquiry-name-error" role="alert" className="text-xs text-red-600 mt-1">{errors.name}</p>}
         </div>
@@ -233,7 +233,7 @@ export default function InquiryForm({
             required
             aria-invalid={errors.email ? true : undefined}
             aria-describedby={errors.email ? "inquiry-email-error" : undefined}
-            className={errors.email ? errorInputClass : ""}
+            className={`h-11 ${errors.email ? errorInputClass : ""}`}
           />
           {errors.email && <p id="inquiry-email-error" role="alert" className="text-xs text-red-600 mt-1">{errors.email}</p>}
         </div>
@@ -249,6 +249,7 @@ export default function InquiryForm({
           name="company"
           autoComplete="organization"
           placeholder="Your company…"
+          className="h-11"
         />
       </div>
 
@@ -267,7 +268,7 @@ export default function InquiryForm({
           key={defaultCountry} // Force re-render when defaultCountry is set
           aria-invalid={errors.country ? true : undefined}
           aria-describedby={errors.country ? "inquiry-country-error" : undefined}
-          className={errors.country ? errorInputClass : ""}
+          className={`h-11 ${errors.country ? errorInputClass : ""}`}
         />
         {errors.country && <p id="inquiry-country-error" role="alert" className="text-xs text-red-600 mt-1">{errors.country}</p>}
       </div>
@@ -283,6 +284,7 @@ export default function InquiryForm({
           inputMode="tel"
           autoComplete="tel"
           placeholder="Phone / WhatsApp…"
+          className="h-11"
         />
       </div>
 
@@ -295,11 +297,11 @@ export default function InquiryForm({
           id="inquiry-message"
           name="message"
           autoComplete="off"
-          rows={compact ? 3 : 4}
+          rows={compact ? 7 : 5}
           placeholder={`Message${productName ? ` about ${productName}` : ""}: quantity, size, customization…`}
           aria-invalid={errors.message ? true : undefined}
           aria-describedby={errors.message ? "inquiry-message-error" : undefined}
-          className={`resize-none ${errors.message ? errorInputClass : ""}`}
+          className={`min-h-40 resize-y ${errors.message ? errorInputClass : ""}`}
           defaultValue={initialMessage || ""}
         />
         {errors.message && <p id="inquiry-message-error" role="alert" className="text-xs text-red-600 mt-1">{errors.message}</p>}

@@ -10,6 +10,10 @@ const LOGISTICS_IMAGE =
   "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&q=82";
 const QUALITY_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
+const OEM_PACKING_IMAGE =
+  "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=82";
+const QSR_IMAGE =
+  "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=82";
 
 export const linerlessLabelsCategoryConfig = {
   kind: "category",
@@ -103,7 +107,7 @@ export const linerlessLabelsCategoryConfig = {
       linkLabel: "Review removable behavior",
       image: {
         slot: "linerless-labels:family-removable",
-        fallback: LINERLESS_IMAGE,
+        fallback: LOGISTICS_IMAGE,
         alt: "Removable linerless labels for temporary identification",
       },
     },
@@ -119,7 +123,7 @@ export const linerlessLabelsCategoryConfig = {
       linkLabel: "Review holding requirements",
       image: {
         slot: "linerless-labels:family-permanent",
-        fallback: LINERLESS_IMAGE,
+        fallback: FOOD_IMAGE,
         alt: "Permanent linerless labels for longer-dwell identification",
       },
     },
@@ -135,7 +139,7 @@ export const linerlessLabelsCategoryConfig = {
       linkLabel: "Send a printer specification",
       image: {
         slot: "linerless-labels:family-custom",
-        fallback: LINERLESS_IMAGE,
+        fallback: QUALITY_IMAGE,
         alt: "Custom width linerless label rolls for printer-specific supply",
       },
     },
@@ -151,7 +155,7 @@ export const linerlessLabelsCategoryConfig = {
       linkLabel: "Review OEM capabilities",
       image: {
         slot: "linerless-labels:family-oem",
-        fallback: LINERLESS_IMAGE,
+        fallback: OEM_PACKING_IMAGE,
         alt: "OEM and private-label packing for linerless label rolls",
       },
     },
@@ -207,7 +211,7 @@ export const linerlessLabelsCategoryConfig = {
       linkLabel: "Review a QSR label program",
       image: {
         slot: "linerless-labels:application-qsr",
-        fallback: FOOD_IMAGE,
+        fallback: QSR_IMAGE,
         alt: "Linerless order labels in a quick-service food workflow",
       },
     },
