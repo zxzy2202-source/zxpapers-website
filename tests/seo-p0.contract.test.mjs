@@ -7,6 +7,7 @@ import nextConfig from "../next.config.ts";
 const robots = readFileSync("public/robots.txt", "utf8");
 const adminLayout = readFileSync("src/app/admin/layout.tsx", "utf8");
 const imageSlots = readFileSync("src/config/imageSlots.ts", "utf8");
+const sitemapSource = readFileSync("src/app/sitemap.ts", "utf8");
 const redirects = await nextConfig.redirects();
 
 function assertRedirect(source, destination) {
@@ -146,4 +147,17 @@ test("legacy language roots use explicit redirects with non-empty locations", ()
     const explicitIndex = redirects.findIndex((redirect) => redirect.source === `/${language}`);
     assert.ok(explicitIndex < fallbackIndex, `/${language} must run before the optional path fallback`);
   }
+});
+
+test("sitemap excludes can-label detail routes that permanently redirect", () => {
+  const canLabelRedirect = redirects.find(
+    (redirect) =>
+      redirect.source ===
+      "/products/can-labels/:legacy(211x400|211x603|300x407|307x510|401x700|blank|custom-printed)",
+  );
+  assert.ok(canLabelRedirect, "missing can-label consolidation redirect");
+  assert.equal(canLabelRedirect.destination, "/products/can-labels");
+  assert.match(sitemapSource, /"can-labels",/);
+  assert.doesNotMatch(sitemapSource, /const canLabelPages/);
+  assert.doesNotMatch(sitemapSource, /"custom-printed-thermal-rolls"/);
 });
