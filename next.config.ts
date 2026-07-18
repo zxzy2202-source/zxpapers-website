@@ -4,6 +4,12 @@ const disableImageOptimization =
   process.env.NEXT_IMAGE_UNOPTIMIZED !== "false"; // 默认禁用图片优化（避免外部图片源被拦截）
 const DEFAULT_R2_PUBLIC_URL =
   "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
+const CANONICAL_SITE_URL = "https://www.zxpapers.com";
+const LEGACY_LANGUAGES = [
+  "ro", "de", "fr", "es", "it", "pt", "pl", "nl", "tr", "ar", "ja", "ko",
+  "ru", "zh", "hi", "vi", "th", "id", "ms",
+] as const;
+const LEGACY_LANGUAGE_PATTERN = LEGACY_LANGUAGES.join("|");
 
 function getAbsolutePublicUrl(value: string | undefined, fallback: string) {
   if (!value) return fallback;
@@ -34,6 +40,98 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      // Evidence-backed WordPress migrations. Absolute destinations collapse
+      // legacy path, language and bare-host cleanup into one application rule.
+      {
+        source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/product-category/:slug*`,
+        destination: `${CANONICAL_SITE_URL}/products`,
+        permanent: true,
+      },
+      {
+        source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/product-tag/:slug*`,
+        destination: `${CANONICAL_SITE_URL}/products`,
+        permanent: true,
+      },
+      {
+        source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/posts`,
+        destination: `${CANONICAL_SITE_URL}/blog`,
+        permanent: true,
+      },
+      {
+        source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/posts/:path*`,
+        destination: `${CANONICAL_SITE_URL}/blog`,
+        permanent: true,
+      },
+      {
+        source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/about-us/blog`,
+        destination: `${CANONICAL_SITE_URL}/blog`,
+        permanent: true,
+      },
+      {
+        source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/about-us/blog/:path*`,
+        destination: `${CANONICAL_SITE_URL}/blog`,
+        permanent: true,
+      },
+      {
+        source: "/product-category/:slug*",
+        destination: `${CANONICAL_SITE_URL}/products`,
+        permanent: true,
+      },
+      {
+        source: "/product-tag/:slug*",
+        destination: `${CANONICAL_SITE_URL}/products`,
+        permanent: true,
+      },
+      {
+        source: "/posts",
+        destination: `${CANONICAL_SITE_URL}/blog`,
+        permanent: true,
+      },
+      {
+        source: "/posts/:path*",
+        destination: `${CANONICAL_SITE_URL}/blog`,
+        permanent: true,
+      },
+      {
+        source: "/about-us/blog",
+        destination: `${CANONICAL_SITE_URL}/blog`,
+        permanent: true,
+      },
+      {
+        source: "/about-us/blog/:path*",
+        destination: `${CANONICAL_SITE_URL}/blog`,
+        permanent: true,
+      },
+      {
+        source: "/inquiry",
+        destination: `${CANONICAL_SITE_URL}/contact`,
+        permanent: true,
+      },
+      {
+        source: "/get-a-quote",
+        destination: `${CANONICAL_SITE_URL}/contact`,
+        permanent: true,
+      },
+      {
+        source: "/amazon-fba-tags",
+        destination: `${CANONICAL_SITE_URL}/products/shipping-labels`,
+        permanent: true,
+      },
+      {
+        source: "/products/page/:num",
+        destination: `${CANONICAL_SITE_URL}/products`,
+        permanent: true,
+      },
+      {
+        source: "/hot-products",
+        destination: `${CANONICAL_SITE_URL}/products`,
+        permanent: true,
+      },
+      {
+        source: "/about-us/certificates",
+        destination: `${CANONICAL_SITE_URL}/manufacturing/certifications`,
+        permanent: true,
+      },
       {
         source: "/:path*",
         has: [{ type: "host", value: "zxpapers.com" }],
@@ -56,24 +154,24 @@ const nextConfig: NextConfig = {
         destination: "https://www.zxpapers.com/:path*",
         permanent: true,
       },
+      ...LEGACY_LANGUAGES.map((language) => ({
+        source: `/${language}`,
+        destination: `${CANONICAL_SITE_URL}/`,
+        permanent: true,
+      })),
       {
         source: "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/:path*",
         destination: "/:path*",
         permanent: true,
       },
       {
-        source: "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)",
-        destination: "/",
+        source: "/product/:slug(.*linerless.*)",
+        destination: "/products/linerless-labels",
         permanent: true,
       },
       {
         source: "/product/:slug*",
         destination: "/products",
-        permanent: true,
-      },
-      {
-        source: "/product/:slug(.*linerless.*)",
-        destination: "/products/linerless-labels",
         permanent: true,
       },
       // Product URL aliases → canonical content pages (replaces former client-side JS redirects)
