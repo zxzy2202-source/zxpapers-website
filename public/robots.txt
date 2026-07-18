@@ -1,14 +1,12 @@
 User-agent: *
 Allow: /
 
-# Internal / admin paths
-Disallow: /admin/
+# Non-HTML internal paths. Admin HTML remains crawlable so search engines can
+# read its noindex directive; authentication still protects private content.
 Disallow: /api/
 Disallow: /__manus__/
 
 # Keep legacy public URLs crawlable so search engines can confirm redirects.
-Disallow: /wp-admin/
-Disallow: /wp-login.php
 Disallow: /*?replytocom=
 
 # ─────────────────────────────────────────────────────────────
