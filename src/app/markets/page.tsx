@@ -6,9 +6,9 @@ import { SITE } from "@/config/siteData";
 import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
-  title: "Global Markets | Thermal Paper Supplier",
-  description: "ZhixinPaper supplies thermal paper rolls to 80+ countries. Dedicated market pages for Africa, Southeast Asia, Middle East, and Europe including Italy.",
-  keywords: "thermal paper supplier global markets, thermal paper Africa, thermal paper Southeast Asia, thermal paper Middle East, thermal paper Italy, B2B thermal paper export",
+  title: "Global Export Markets | Paper & Label Manufacturer",
+  description: "Explore ZhixinPaper export support for Africa, Southeast Asia and the Middle East, plus global supply for paper, labels and custom printed products.",
+  keywords: "paper manufacturer global markets, thermal paper Africa, thermal paper Southeast Asia, thermal paper Middle East, label manufacturer, B2B paper export",
   openGraph: {
     title: "Global Markets",
     description: "Factory-direct thermal paper supplier for Africa, Southeast Asia, and Middle East markets.",
@@ -74,43 +74,25 @@ const regions = [
     borderColor: "border-blue-200",
   },
   {
-    name: "Middle East & Africa",
-    href: "/markets/middle-east-africa",
+    name: "Middle East",
+    href: "/markets/middle-east",
     badge: "Premium Buyers",
     badgeColor: "purple",
-    description: "UAE, Saudi Arabia, Egypt, Turkey and surrounding markets. High purchasing power, strong demand for quality thermal paper.",
+    description: "UAE, Saudi Arabia, Egypt, Turkey and surrounding markets. Strong demand for dependable paper, labels and private-label supply.",
     stats: [
       { label: "POS Terminals", value: "10M+" },
       { label: "Annual Growth", value: "+15%" },
-      { label: "Countries", value: "10+" },
+      { label: "Countries", value: "4+" },
     ],
     countries: [
-      { code: "AE" as CountryCode, name: "UAE",          href: "/markets/middle-east-africa", badge: "Premium" },
-      { code: "SA" as CountryCode, name: "Saudi Arabia", href: "/markets/middle-east-africa", badge: "High Volume" },
-      { code: "EG" as CountryCode, name: "Egypt",        href: "/markets/middle-east-africa", badge: "North Africa" },
-      { code: "TR" as CountryCode, name: "Turkey",       href: "/markets/middle-east-africa", badge: "Bridge Market" },
+      { code: "AE" as CountryCode, name: "UAE",          href: "/markets/middle-east/uae",          badge: "Premium" },
+      { code: "SA" as CountryCode, name: "Saudi Arabia", href: "/markets/middle-east/saudi-arabia", badge: "High Volume" },
+      { code: "EG" as CountryCode, name: "Egypt",        href: "/markets/middle-east/egypt",        badge: "North Africa" },
+      { code: "TR" as CountryCode, name: "Turkey",       href: "/markets/middle-east/turkey",       badge: "Bridge Market" },
     ],
     color: "from-purple-500 to-violet-600",
     bgColor: "bg-purple-50",
     borderColor: "border-purple-200",
-  },
-  {
-    name: "Europe",
-    href: "/markets/europe",
-    badge: "Compliance Led",
-    badgeColor: "blue",
-    description: "EU buyers looking for BPA-free, BPS-free, phenol-free, FSC, private-label, and custom printed thermal paper rolls. Italy is the first priority page.",
-    stats: [
-      { label: "Top Size", value: "80x80" },
-      { label: "Focus", value: "BPA/BPS" },
-      { label: "Countries", value: "1+" },
-    ],
-    countries: [
-      { code: "IT" as CountryCode, name: "Italy", href: "/markets/europe/italy", badge: "80x80 + Custom" },
-    ],
-    color: "from-sky-500 to-blue-600",
-    bgColor: "bg-sky-50",
-    borderColor: "border-sky-200",
   },
 ];
 

@@ -135,6 +135,11 @@ const nextConfig: NextConfig = {
         destination: `${CANONICAL_SITE_URL}/manufacturing/certifications`,
         permanent: true,
       },
+      // Thermal paper and thermal label regional ownership for Europe lives on
+      // zhixinpaper.com. These rules precede generic host consolidation so the
+      // bare and www ZX Papers hosts reach the final owner without a redirect chain.
+      { source: "/markets/europe", destination: "https://www.zhixinpaper.com/eu", statusCode: 301 },
+      { source: "/markets/europe/:path*", destination: "https://www.zhixinpaper.com/eu", statusCode: 301 },
       {
         source: "/:path*",
         has: [{ type: "host", value: "zxpapers.com" }],

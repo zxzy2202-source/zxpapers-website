@@ -234,7 +234,6 @@ export const mainNav: (NavItem | NavDropdown)[] = [
       { label: "🌍 Africa",             href: "/markets/africa" },
       { label: "🌙 Middle East",        href: "/markets/middle-east" },
       { label: "🌏 Southeast Asia",     href: "/markets/southeast-asia" },
-      { label: "Europe",                href: "/markets/europe" },
     ],
     regionGroups: [
       {
@@ -278,15 +277,6 @@ export const mainNav: (NavItem | NavDropdown)[] = [
           { label: "Philippines",  href: "/markets/southeast-asia/philippines",  countryCode: "PH" },
           { label: "Malaysia",     href: "/markets/southeast-asia/malaysia",     countryCode: "MY" },
           { label: "Singapore",    href: "/markets/southeast-asia/singapore",    countryCode: "SG", badge: "ASEAN Hub", badgeColor: "blue" },
-        ],
-      },
-      {
-        region: "Europe",
-        regionHref: "/markets/europe",
-        badge: "EU",
-        badgeColor: "blue",
-        countries: [
-          { label: "Italy", href: "/markets/europe/italy", countryCode: "IT", badge: "80x80 + Custom", badgeColor: "blue" },
         ],
       },
     ],
@@ -397,8 +387,6 @@ export const footerLinks = {
     { label: "Philippines",          href: "/markets/southeast-asia/philippines" },
     { label: "Malaysia",             href: "/markets/southeast-asia/malaysia" },
     { label: "Singapore",            href: "/markets/southeast-asia/singapore" },
-    { label: "Europe",               href: "/markets/europe" },
-    { label: "Italy",                href: "/markets/europe/italy" },
   ],
   popularSizes: [
     { label: "80mm x 80mm Rolls",          href: "/products/thermal-rolls/80x80mm" },
