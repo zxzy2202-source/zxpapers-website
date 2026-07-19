@@ -61,7 +61,7 @@ class VercelKVStorage implements KVStorage {
     this.token = token;
   }
 
-  private async req(cmd: string[], revalidate = 3600): Promise<any> {
+  private async req(cmd: string[], revalidate = 0): Promise<any> {
     const res = await fetch(this.url, {
       method: "POST",
       headers: {
@@ -69,8 +69,8 @@ class VercelKVStorage implements KVStorage {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(cmd),
-      // 使用 Next.js 扩展的 fetch 缓存：读操作缓存 1 小时，与页面 revalidate 策略一致。
-      // 写操作（SET/DEL）会传入 revalidate=0 跳过缓存。
+      // 所有 KV 操作均不使用 fetch 缓存（revalidate=0），确保后台读写实时生效。
+      // 前台页面缓存由页面级 export const revalidate 声明控制，无需依赖 KV fetch 缓存。
       next: { revalidate },
     });
     if (!res.ok) throw new Error(`KV request failed: ${res.status} ${await res.text()}`);
