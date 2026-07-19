@@ -44,7 +44,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/markets`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
     { url: `${BASE}/markets/africa`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
     { url: `${BASE}/markets/middle-east`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${BASE}/markets/middle-east-africa`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/markets/southeast-asia`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
     { url: `${BASE}/markets/europe`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.8 },
   ];

@@ -199,6 +199,9 @@ const nextConfig: NextConfig = {
       { source: "/wp-login.php", destination: "/", permanent: true },
       { source: "/feed", destination: "/blog", permanent: true },
       { source: "/feed/:slug*", destination: "/blog", permanent: true },
+      // Legacy combined region page → canonical split pages
+      { source: "/markets/middle-east-africa", destination: "/markets/middle-east", permanent: true },
+      { source: "/markets/middle-east-africa/:path*", destination: "/markets/middle-east", permanent: true },
     ];
   },
 
