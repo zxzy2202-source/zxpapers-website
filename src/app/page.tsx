@@ -32,12 +32,12 @@ import { readHero } from "@/lib/heroStore";
 import { r2Image } from "@/lib/r2";
 
 export const metadata: Metadata = {
-  title: "Custom-Printed Thermal Paper, Labels & Carbonless Forms | Zhixin Paper",
+  title: "Thermal Paper Rolls Manufacturer | OEM & Private Label | ZhixinPaper",
   description:
-    "ISO 9001 factory for blank and custom-printed thermal paper rolls, thermal labels, machine-ready roll labels and carbonless NCR forms. OEM/private label printing plus jumbo-roll supply.",
+    "ISO 9001 certified factory. Blank & custom-printed thermal paper rolls, labels, and NCR forms. Free samples · 24h quote · CIF to 80+ countries. Request your OEM quote today.",
   alternates: { canonical: SITE.domain },
   openGraph: {
-    title: "Custom-Printed Thermal Paper, Labels & Carbonless Forms | ZhixinPaper",
+    title: "Thermal Paper Rolls Manufacturer | OEM & Private Label | ZhixinPaper",
     description:
       "Factory for blank and custom-printed thermal rolls, labels, machine-ready filling-line labels and carbonless forms. OEM/private label with export-ready packing.",
     url: SITE.domain,

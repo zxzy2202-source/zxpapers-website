@@ -11,9 +11,9 @@ import { ncrApplicationPages } from "./ncr-applications-data";
 import { ncrFormParts } from "./ncr-forms/ncr-forms-data";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper, Labels & NCR Forms | Factory Catalog",
+  title: "Thermal Paper Rolls, Labels & NCR Forms | Factory-Direct Pricing | ZhixinPaper",
   description:
-    "Factory-direct thermal paper rolls, direct thermal labels, machine-ready filling-line labels, bottle labels, and NCR forms. Browse stock sizes or request custom printing and OEM supply.",
+    "Browse 50+ SKUs: thermal paper rolls, direct thermal labels, bottle labels, and NCR forms. ISO 9001 factory. Free samples · MOQ 1 pallet · CIF worldwide. Get a quote in 24h.",
   keywords:
     "thermal paper rolls, thermal labels, shipping labels, machine ready roll labels, automatic labeling machine labels, bottle labels, NCR forms, custom printed thermal paper, thermal paper manufacturer, OEM thermal paper",
   alternates: { canonical: `${SITE.domain}/products` },

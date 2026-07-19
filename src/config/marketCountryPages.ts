@@ -521,8 +521,8 @@ export const uaeMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a thermal paper distributor in UAE. Please send me your CIF Jebel Ali price list and MOQ for 80×80mm and 57×50mm rolls.",
   showInquiryForm: true,
   metadata: {
-    title: { absolute: "Thermal Paper Rolls Supplier UAE | Bulk POS Rolls | ZhixinPaper" },
-    description: "Factory-direct thermal paper rolls for UAE distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001 certified. Fast shipping to Dubai, Abu Dhabi, Sharjah. MOQ 1 pallet.",
+    title: { absolute: "Thermal Paper Rolls Supplier UAE | CIF Jebel Ali | Arabic OEM | ZhixinPaper" },
+    description: "ISO 9001 factory for UAE & GCC distributors. 80×80mm, 57×50mm, BPA-free. CIF Jebel Ali (JAFZA) · Arabic OEM packaging · L/C accepted · MOQ 1 pallet. Free sample available.",
     keywords: "thermal paper UAE, thermal rolls Dubai, POS paper UAE, thermal paper Jebel Ali, thermal paper supplier Emirates, thermal paper AED price, thermal paper Abu Dhabi, thermal paper Sharjah, thermal paper Ajman, ورق حراري الإمارات, ورق POS دبي, bulk thermal paper UAE",
     alternates: { canonical: `${siteUrl}/markets/middle-east/uae` },
     openGraph: {
@@ -641,8 +641,8 @@ export const kenyaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a distributor in Kenya. I need thermal paper rolls. Please send CIF Mombasa pricing for 57×50mm / 57×40mm / 80×80mm.",
   showInquiryForm: true,
   metadata: {
-    title: "Thermal Paper Supplier Kenya | Mombasa",
-    description: "Factory-direct thermal paper rolls for Kenyan distributors. 57×50mm, 57×40mm, 80×80mm. CIF Mombasa pricing. ISO 9001, BPA-free.",
+    title: "Thermal Paper Rolls Supplier Kenya | CIF Mombasa | M-Pesa POS | ZhixinPaper",
+    description: "ISO 9001 factory for Kenyan distributors. 57×50mm, 57×40mm & 80×80mm for M-Pesa POS. CIF Mombasa · COMESA CO available · BPA-free · East Africa gateway. Free sample & quote.",
     keywords: "thermal paper rolls Kenya, POS paper Nairobi, receipt paper Kenya, thermal paper Mombasa, M-Pesa POS paper, thermal paper supplier Kenya, bulk thermal paper Kenya, 57x50 thermal paper Kenya, East Africa thermal paper",
     openGraph: {
       title: "Thermal Paper Supplier Kenya | CIF Mombasa",
@@ -882,8 +882,8 @@ export const nigeriaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a distributor in Nigeria. I need thermal paper rolls. Please send price list for 57×50mm / 57×40mm / 80×80mm to Lagos.",
   showInquiryForm: true,
   metadata: {
-    title: "Thermal Paper Supplier Nigeria | Lagos",
-    description: "Factory-direct thermal paper rolls for Nigerian distributors. 57×50mm, 57×40mm, 80×80mm. CIF Lagos/Apapa pricing. ISO 9001 certified, BPA-free.",
+    title: "Thermal Paper Rolls Supplier Nigeria | CIF Lagos | ISO 9001 | ZhixinPaper",
+    description: "Factory-direct supply to 15M+ POS terminals in Nigeria. 57×50mm, 80×80mm in stock. CIF Lagos/Apapa · FCL ready in 3–5 days · ISO 9001 · BPA-free. Get a free quote.",
     keywords: "thermal paper rolls Nigeria, POS paper rolls Lagos, receipt paper Nigeria, thermal paper supplier Nigeria, bulk thermal paper Nigeria, 57x50 thermal paper Nigeria, POS rolls Abuja, thermal paper wholesale Nigeria, CBN POS paper Nigeria",
     openGraph: {
       title: "Thermal Paper Supplier Nigeria | Direct",
@@ -972,8 +972,8 @@ export const ethiopiaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a thermal paper distributor in Ethiopia. Please send me price list and MOQ for 57×50mm and 80×80mm rolls. CIF Djibouti.",
   showInquiryForm: false,
   metadata: {
-    title: "Thermal Paper Supplier Ethiopia | Addis Ababa",
-    description: "Factory-direct thermal paper rolls for Ethiopia. CIF Djibouti port, 20–28 days delivery. 57×50mm and 80×80mm for CBE Birr, Telebirr POS terminals. L/C accepted.",
+    title: "Thermal Paper Rolls Supplier Ethiopia | CIF Djibouti | Telebirr POS | ZhixinPaper",
+    description: "ISO 9001 factory for Ethiopian distributors. 57×50mm & 80×80mm for CBE Birr & Telebirr POS. CIF Djibouti · 20–28 days · L/C accepted · BPA-free. Free sample & 24h quote.",
     keywords: "thermal paper rolls Ethiopia, thermal paper Addis Ababa, POS receipt paper Ethiopia, thermal paper supplier Africa",
     openGraph: {
       title: "Thermal Paper Rolls for Ethiopia",
@@ -1061,8 +1061,8 @@ export const southAfricaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a distributor in South Africa. I need thermal paper rolls. Please send CIF Durban / Cape Town pricing for 80×80mm / 57×50mm / 79×80mm.",
   showInquiryForm: true,
   metadata: {
-    title: "Thermal Paper Supplier South Africa | Durban",
-    description: "Factory-direct thermal paper rolls for South African distributors. 80×80mm, 57×50mm, 79×80mm. CIF Durban / Cape Town pricing. ISO 9001, BPA-free.",
+    title: "Thermal Paper Rolls Supplier South Africa | CIF Durban | ISO 9001 | ZhixinPaper",
+    description: "ISO 9001 factory for South African distributors. 80×80mm, 57×50mm, 79×80mm in stock. CIF Durban & Cape Town · SADC gateway · BPA-free · MOQ 1 pallet. Free sample & quote.",
     keywords: "thermal paper rolls South Africa, POS paper Durban, receipt paper South Africa, thermal paper Johannesburg, thermal paper Cape Town, bulk thermal paper South Africa, 80x80 thermal paper South Africa, SADC thermal paper supplier",
     openGraph: {
       title: "Thermal Paper Supplier South Africa | Durban",
@@ -1420,8 +1420,8 @@ export const saudiArabiaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a thermal paper distributor in Saudi Arabia. Please send me your CIF Jeddah price list and MOQ for 80×80mm and 57×50mm rolls.",
   showInquiryForm: true,
   metadata: {
-    title: { absolute: "Thermal Paper Rolls Supplier Saudi Arabia | Bulk POS | ZhixinPaper" },
-    description: "Factory-direct thermal paper rolls for Saudi Arabia distributors. 80x80mm, 57x50mm, BPA-free, ISO 9001. CIF Jeddah & Dammam. SABER support. MOQ 1 pallet.",
+    title: { absolute: "Thermal Paper Rolls Supplier Saudi Arabia | CIF Jeddah | SABER | ZhixinPaper" },
+    description: "ISO 9001 factory supplying KSA distributors. 80×80mm & 57×50mm in stock. CIF Jeddah & Dammam · SABER support · BPA-free · MOQ 1 pallet. Request a free sample & quote.",
     keywords: "thermal paper Saudi Arabia, thermal rolls Riyadh, POS paper Jeddah, thermal paper supplier KSA, thermal paper SAR price, thermal paper Dammam, thermal paper Mecca, thermal paper Medina, ورق حراري السعودية, ورق POS الرياض, bulk thermal paper KSA",
     alternates: { canonical: `${siteUrl}/markets/middle-east/saudi-arabia` },
     openGraph: {
@@ -1510,8 +1510,8 @@ export const indonesiaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a distributor in Indonesia. Please send me your thermal paper price list and CIF Tanjung Priok rates.",
   showInquiryForm: false,
   metadata: {
-    title: "Thermal Paper Supplier Indonesia | CIF Priok",
-    description: "Factory-direct thermal paper rolls for Indonesia distributors. CIF Tanjung Priok (Jakarta) pricing, 57×50mm and 80×80mm in stock. FORM E available.",
+    title: "Thermal Paper Rolls Supplier Indonesia | CIF Jakarta | FORM E | ZhixinPaper",
+    description: "ISO 9001 factory for Indonesian distributors. 57×50mm & 80×80mm in stock. CIF Tanjung Priok · FORM E available · OEM supported · MOQ 1 pallet. Free sample & 24h quote.",
     keywords: "thermal paper rolls Indonesia, thermal paper supplier Jakarta, POS paper rolls Indonesia, kertas thermal Indonesia, supplier kertas struk, harga kertas thermal IDR, thermal paper Surabaya, thermal paper Medan, thermal paper Bandung, kertas struk kasir Indonesia",
     openGraph: {
       title: "Thermal Paper Rolls Supplier Indonesia",
