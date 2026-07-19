@@ -157,7 +157,8 @@ export default function PostEditor({ initial }: Props) {
     await fetch("/api/admin/posts", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: initial.id }),
+      // 传入 slug 和 category，让服务端精确失效对应页面缓存
+      body: JSON.stringify({ id: initial.id, slug: initial.slug, category: initial.category }),
     });
     router.push("/admin/posts");
   }
