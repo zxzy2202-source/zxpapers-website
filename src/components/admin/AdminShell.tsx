@@ -13,6 +13,7 @@ import {
   Menu,
   X,
   LogOut,
+  ClipboardList,
 } from "lucide-react";
 
 const NAV = [
@@ -22,6 +23,7 @@ const NAV = [
   { href: "/admin/posts", label: "文章管理", icon: FileText },
   { href: "/admin/inquiries", label: "客户询盘", icon: Inbox, badge: true },
   { href: "/admin/seo", label: "SEO 设置", icon: Search },
+  { href: "/admin/optimization-log", label: "优化日志", icon: ClipboardList },
 ];
 
 export default function AdminShell({ children }: { children: React.ReactNode }) {
