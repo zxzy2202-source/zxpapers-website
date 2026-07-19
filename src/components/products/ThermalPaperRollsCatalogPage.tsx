@@ -22,6 +22,73 @@ interface ThermalPaperRollsCatalogPageProps {
   faqs: Array<{ q: string; a: string }>;
 }
 
+export const GLOBAL_THERMAL_ROLL_TERMS = [
+  {
+    term: "Thermal paper rolls",
+    aliases: ["Thermal receipt paper rolls", "Thermal printer paper rolls"],
+    marketUse: "Global category term",
+    specificationNote: "Add the application, printer and complete roll geometry before quoting.",
+  },
+  {
+    term: "POS paper rolls",
+    aliases: ["Receipt paper rolls", "Cash register rolls"],
+    marketUse: "Retail and hospitality procurement",
+    specificationNote: "Confirm print method, width, OD or length, core and carton pack.",
+  },
+  {
+    term: "Till rolls",
+    aliases: ["EPOS rolls", "Cash till rolls"],
+    marketUse: "UK, Commonwealth and distributor catalogs",
+    specificationNote: "The term may include thermal or impact paper, so confirm the printer technology.",
+  },
+  {
+    term: "Billing rolls",
+    aliases: ["POS billing paper", "Billing machine paper rolls"],
+    marketUse: "India and South Asian procurement",
+    specificationNote: "Confirm width, finished OD, core and the billing-printer model.",
+  },
+  {
+    term: "EDC rolls",
+    aliases: ["EDC paper rolls", "Card terminal rolls"],
+    marketUse: "Southeast Asian payment channels",
+    specificationNote: "Compact terminal rolls require model, OD, core and winding confirmation.",
+  },
+  {
+    term: "EFTPOS rolls",
+    aliases: ["Payment terminal rolls", "Credit card machine paper"],
+    marketUse: "Oceania and international payment channels",
+    specificationNote: "Width alone does not establish device compatibility.",
+  },
+];
+
+export const GLOBAL_METRIC_SPEC_FORMATS = [
+  {
+    format: "80 x 80 mm",
+    meaning: "Usually 80mm width x approximately 80mm finished outer diameter",
+    confirm: "Core ID, paper GSM, measured length, winding and carton count",
+  },
+  {
+    format: "80 x 80 x 12 mm",
+    meaning: "Often width x outer diameter x core ID",
+    confirm: "Supplier dimension order, actual core ID and usable roll length",
+  },
+  {
+    format: "80 mm x 80 m",
+    meaning: "80mm width x nominal roll length in metres",
+    confirm: "Finished OD, core ID, paper GSM and length tolerance",
+  },
+  {
+    format: "57 x 40 mm",
+    meaning: "Usually 57mm width x approximately 40mm finished outer diameter",
+    confirm: "Terminal model, core ID, winding direction and target length",
+  },
+  {
+    format: "110 x 80 mm",
+    meaning: "Usually 110mm width x approximately 80mm finished outer diameter",
+    confirm: "Printer compartment, core, paper grade and packing configuration",
+  },
+];
+
 function SectionIntro({ label, title, description }: { label: string; title: string; description: string }) {
   return (
     <div className="max-w-3xl">
@@ -155,6 +222,60 @@ export default function ThermalPaperRollsCatalogPage({
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">{route.text}</p>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section data-global-roll-terminology className="border-y border-slate-200 bg-white">
+        <div className="container py-12 lg:py-16">
+          <SectionIntro
+            label="Global buying language"
+            title="Different market names, one controlled roll specification"
+            description="A distributor may request POS rolls, till rolls, billing rolls, EDC rolls or EFTPOS rolls. Treat the market name as a buying clue, then lock the printer, dimensions, core, paper and packing before production."
+          />
+
+          <div className="mt-8 overflow-x-auto border border-slate-300">
+            <table className="min-w-[920px] w-full text-left">
+              <thead className="bg-brand-navy text-white">
+                <tr>
+                  <th className="px-5 py-4 text-xs font-semibold">Buyer term</th>
+                  <th className="px-5 py-4 text-xs font-semibold">Also called</th>
+                  <th className="px-5 py-4 text-xs font-semibold">Common market use</th>
+                  <th className="px-5 py-4 text-xs font-semibold">Specification rule</th>
+                </tr>
+              </thead>
+              <tbody>
+                {GLOBAL_THERMAL_ROLL_TERMS.map((item, index) => (
+                  <tr key={item.term} className={index % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+                    <th scope="row" className="px-5 py-5 align-top font-sora text-sm font-semibold text-slate-950">{item.term}</th>
+                    <td className="px-5 py-5 align-top text-sm leading-relaxed text-slate-600">{item.aliases.join(", ")}</td>
+                    <td className="px-5 py-5 align-top text-sm leading-relaxed text-slate-600">{item.marketUse}</td>
+                    <td className="px-5 py-5 align-top text-sm leading-relaxed text-slate-600">{item.specificationNote}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-8 overflow-x-auto border border-slate-300">
+            <table className="min-w-[860px] w-full text-left">
+              <thead className="bg-amber-700 text-white">
+                <tr>
+                  <th className="px-5 py-4 text-xs font-semibold">Metric format</th>
+                  <th className="px-5 py-4 text-xs font-semibold">What it usually means</th>
+                  <th className="px-5 py-4 text-xs font-semibold">Confirm before ordering</th>
+                </tr>
+              </thead>
+              <tbody>
+                {GLOBAL_METRIC_SPEC_FORMATS.map((item, index) => (
+                  <tr key={item.format} className={index % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+                    <th scope="row" className="px-5 py-5 align-top font-sora text-sm font-semibold text-slate-950">{item.format}</th>
+                    <td className="px-5 py-5 align-top text-sm leading-relaxed text-slate-600">{item.meaning}</td>
+                    <td className="px-5 py-5 align-top text-sm leading-relaxed text-slate-600">{item.confirm}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>

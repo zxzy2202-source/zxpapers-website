@@ -38,7 +38,6 @@ const marketLabels = new Set([
   "UAE",
   "Saudi Arabia",
   "Southeast Asia",
-  "Italy",
 ]);
 
 const footerGroups: Array<{ title: string; links: FooterLink[] }> = [

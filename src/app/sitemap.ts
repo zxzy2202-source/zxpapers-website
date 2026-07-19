@@ -9,7 +9,7 @@ export const revalidate = 3600; // 1 hour
 
 const BASE = SITE.domain;
 // Keep static page lastmod stable. Update this when static page content changes.
-const STATIC_LAST_MOD = "2026-07-16";
+const STATIC_LAST_MOD = "2026-07-20";
 
 function uniqueByUrl(entries: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
   const seen = new Set<string>();
@@ -45,7 +45,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/markets/africa`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
     { url: `${BASE}/markets/middle-east`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
     { url: `${BASE}/markets/southeast-asia`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${BASE}/markets/europe`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.8 },
   ];
 
   // Africa Country Pages (priority 0.5; sales/trust pages, near-zero search demand)
@@ -76,15 +75,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: STATIC_LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: 0.5,
-  }));
-
-  const europePages: MetadataRoute.Sitemap = [
-    "italy",
-  ].map((country) => ({
-    url: `${BASE}/markets/europe/${country}`,
-    lastModified: STATIC_LAST_MOD,
-    changeFrequency: "monthly" as const,
-    priority: 0.55,
   }));
 
   // Thermal Rolls Product Pages (priority 0.85)
@@ -221,7 +211,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...africaPages,
     ...middleEastPages,
     ...seaPages,
-    ...europePages,
     ...thermalRollPages,
     ...thermalLabelPages,
     ...detergentLabelPages,

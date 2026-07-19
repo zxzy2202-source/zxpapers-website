@@ -3,7 +3,10 @@ import { getSlotImages } from "@/lib/imageSlotUtils";
 import { r2Image } from "@/lib/r2";
 import { paperRollSizes } from "@/config/navigation";
 import { SITE } from "@/config/siteData";
-import ThermalPaperRollsCatalogPage from "@/components/products/ThermalPaperRollsCatalogPage";
+import ThermalPaperRollsCatalogPage, {
+  GLOBAL_METRIC_SPEC_FORMATS,
+  GLOBAL_THERMAL_ROLL_TERMS,
+} from "@/components/products/ThermalPaperRollsCatalogPage";
 import type { ThermalRollSizeItem } from "@/components/products/ThermalPaperRollsCatalogPage";
 
 const ROLLS_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
@@ -90,6 +93,7 @@ const collectionSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: "Thermal Paper Rolls for OEM, Private Label and Wholesale Supply",
+  alternateName: GLOBAL_THERMAL_ROLL_TERMS.flatMap((item) => [item.term, ...item.aliases]),
   description:
     "A product-line gateway for blank, private-label and custom printed thermal paper roll programs, organized by buying task, roll specification, approval route and packing requirement.",
   url: `${SITE.domain}/products/thermal-paper-rolls`,
@@ -125,7 +129,31 @@ const sizeBestFor: Record<string, string> = {
   "57x30mm": "Card terminals and ultra-compact payment devices",
 };
 
+const terminologySchema = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  name: "Global thermal paper roll terminology and metric specification formats",
+  description:
+    "Buyer terms and metric size formats used for global OEM, wholesale and private-label thermal paper roll sourcing.",
+  url: `${SITE.domain}/products/thermal-paper-rolls#global-roll-terminology`,
+  hasDefinedTerm: [
+    ...GLOBAL_THERMAL_ROLL_TERMS.map((item) => ({
+      "@type": "DefinedTerm",
+      name: item.term,
+      alternateName: item.aliases,
+      description: `${item.marketUse}. ${item.specificationNote}`,
+    })),
+    ...GLOBAL_METRIC_SPEC_FORMATS.map((item) => ({
+      "@type": "DefinedTerm",
+      name: item.format,
+      description: `${item.meaning}. Confirm: ${item.confirm}.`,
+    })),
+  ],
+};
+
 export const revalidate = 3600; // 1 hour: slot images change infrequently
+
+const serializeJsonLd = (value: unknown) => JSON.stringify(value).replace(/</g, "\\u003c");
 
 export default async function ThermalPaperRollsPage() {
   const images = await getSlotImages([
@@ -148,9 +176,10 @@ export default async function ThermalPaperRollsPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(collectionSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(terminologySchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqSchema) }} />
       <ThermalPaperRollsCatalogPage
         heroImage={r2Image(images["thermal-rolls:hero"])}
         productImage={r2Image(images["products:thermal-rolls"])}
