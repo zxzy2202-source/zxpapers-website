@@ -2,9 +2,10 @@ import { MetadataRoute } from "next";
 import { SITE } from "@/config/siteData";
 import { readAllPosts } from "@/lib/postsStore";
 
-// Dynamic so blog posts get picked up
-export const revalidate = 3600; // 1h
-export const dynamic = "force-dynamic";
+// ISR: regenerate sitemap every hour so new blog posts are picked up.
+// Note: do NOT combine with `force-dynamic` — it would override revalidate
+// and cause the sitemap to be regenerated on every request.
+export const revalidate = 3600; // 1 hour
 
 const BASE = SITE.domain;
 // Keep static page lastmod stable. Update this when static page content changes.
