@@ -61,7 +61,7 @@ class VercelKVStorage implements KVStorage {
     this.token = token;
   }
 
-  private async req(cmd: string[]): Promise<any> {
+  private async req(cmd: string[], revalidate = 3600): Promise<any> {
     const res = await fetch(this.url, {
       method: "POST",
       headers: {
@@ -69,7 +69,9 @@ class VercelKVStorage implements KVStorage {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(cmd),
-      cache: "no-store",
+      // 使用 Next.js 扩展的 fetch 缓存：读操作缓存 1 小时，与页面 revalidate 策略一致。
+      // 写操作（SET/DEL）会传入 revalidate=0 跳过缓存。
+      next: { revalidate },
     });
     if (!res.ok) throw new Error(`KV request failed: ${res.status} ${await res.text()}`);
     const json = await res.json();
@@ -87,11 +89,11 @@ class VercelKVStorage implements KVStorage {
   }
 
   async set<T>(key: string, value: T): Promise<void> {
-    await this.req(["SET", `zxp:${key}`, JSON.stringify(value)]);
+    await this.req(["SET", `zxp:${key}`, JSON.stringify(value)], 0); // 写操作不缓存
   }
 
   async delete(key: string): Promise<void> {
-    await this.req(["DEL", `zxp:${key}`]);
+    await this.req(["DEL", `zxp:${key}`], 0); // 写操作不缓存
   }
 }
 
