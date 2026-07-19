@@ -30,9 +30,11 @@ const HERO_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/Bf
 const catalogEntries: { name: string; path: string }[] = [
   { name: "Blank Thermal Paper Rolls", path: "/products/thermal-paper-rolls/blank" },
   { name: "Custom Printed Thermal Rolls", path: "/products/thermal-paper-rolls/custom-printed" },
+  { name: "Receipt Paper Rolls", path: "/products/receipt-paper-rolls" },
   ...paperRollSizes.map((size) => ({ name: `${size.label} Thermal Paper Roll`, path: `/products/thermal-rolls/${size.slug}` })),
   { name: "Blank Thermal Labels", path: "/products/thermal-labels/blank" },
-  { name: "Custom Printed Thermal Labels", path: "/products/thermal-labels/custom-printed" },
+  { name: "Custom Printed Thermal Labels", path: "/products/custom-printed-thermal-labels" },
+  { name: "Custom Printed Direct Thermal Labels", path: "/products/thermal-labels/custom-printed" },
   ...labelSizes.map((size) => ({ name: `${size.label} Thermal Label`, path: `/products/thermal-labels/${size.slug}` })),
   { name: "Barcode & Variable-Data Labels", path: "/products/barcode-labels" },
   { name: "Product & Packaging Labels", path: "/products/product-labels" },
@@ -41,6 +43,9 @@ const catalogEntries: { name: string; path: string }[] = [
   { name: "Custom Printed Detergent & Household Labels", path: "/products/detergent-labels/custom-printed" },
   ...detergentLabelSizes.map((size) => ({ name: `${size.label} Detergent & Household Label`, path: `/products/detergent-labels/${size.slug}` })),
   { name: "NCR Forms & Carbonless Paper", path: "/products/ncr-forms" },
+  { name: "Custom NCR Forms", path: "/products/custom-ncr-forms" },
+  { name: "Delivery Note Forms", path: "/products/delivery-note-forms" },
+  { name: "Continuous Computer Forms", path: "/products/continuous-computer-forms" },
   ...ncrFormParts.map((part) => ({ name: `${part.label} NCR Forms`, path: `/products/ncr-forms/${part.slug}` })),
   ...ncrApplicationPages.map((page) => ({ name: page.name, path: `/products/${page.slug}` })),
 ];

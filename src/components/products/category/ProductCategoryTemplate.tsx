@@ -569,7 +569,7 @@ export default function ProductCategoryTemplate({
       >
         <div className="container flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-semibold text-slate-950">Related label programs</p>
+            <p className="text-sm font-semibold text-slate-950">Related product programs</p>
             <p className="mt-1 text-sm text-slate-600">Continue with a defined product route.</p>
           </div>
           <div className="flex flex-wrap gap-x-6 gap-y-3">

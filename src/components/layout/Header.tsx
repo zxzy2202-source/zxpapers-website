@@ -420,7 +420,7 @@ export default function Header() {
                                   </span>
                                 </Link>
                                 <div className="mt-2">
-                                  {group.items.slice(0, 6).map((sub) => (
+                                  {group.items.slice(0, 7).map((sub) => (
                                     <Link
                                       key={sub.href + sub.label}
                                       href={sub.href}
@@ -671,7 +671,7 @@ export default function Header() {
 
                                   {isExpanded && (
                                     <div id={panelId} className="bg-slate-50 px-3 pb-2">
-                                      {group.items.slice(0, 5).map((sub) => (
+                                      {group.items.slice(0, 7).map((sub) => (
                                         <Link
                                           key={sub.href + sub.label}
                                           href={sub.href}

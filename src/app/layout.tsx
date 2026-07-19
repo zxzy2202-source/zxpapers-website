@@ -146,14 +146,18 @@ const organizationSchema = {
   knowsAbout: [
     "Thermal paper rolls",
     "Direct thermal labels",
+    "Custom printed thermal labels",
     "BPA-free thermal paper",
     "POS receipt paper",
+    "Receipt paper rolls",
     "Cash register / till rolls",
     "4x6 shipping labels",
     "Machine-ready roll labels",
     "Automatic labeling machine labels",
     "Detergent labels",
     "NCR / carbonless business forms",
+    "Delivery note and proof-of-delivery forms",
+    "Continuous fanfold and tractor-feed computer forms",
     "OEM / private-label thermal paper manufacturing",
   ],
   hasOfferCatalog: {
@@ -161,7 +165,9 @@ const organizationSchema = {
     name: "Thermal Paper & Label Products",
     itemListElement: [
       { name: "Thermal Paper Rolls", path: "/products/thermal-paper-rolls" },
+      { name: "Receipt Paper Rolls", path: "/products/receipt-paper-rolls" },
       { name: "Thermal & Shipping Labels", path: "/products/thermal-labels" },
+      { name: "Custom Printed Thermal Labels", path: "/products/custom-printed-thermal-labels" },
       { name: "Barcode & Variable-Data Labels", path: "/products/barcode-labels" },
       { name: "Product & Packaging Labels", path: "/products/product-labels" },
       { name: "BPA-Free Thermal Paper", path: "/products/bpa-free-thermal-paper" },
@@ -169,6 +175,8 @@ const organizationSchema = {
       { name: "Machine-Ready Roll Labels", path: "/products/can-labels" },
       { name: "Detergent Labels", path: "/products/detergent-labels" },
       { name: "NCR Forms & Carbonless Business Forms", path: "/products/ncr-forms" },
+      { name: "Delivery Note & POD Forms", path: "/products/delivery-note-forms" },
+      { name: "Continuous Computer Forms", path: "/products/continuous-computer-forms" },
     ].map((c) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Product", name: c.name, url: `${SITE.domain}${c.path}` },
