@@ -38,9 +38,9 @@ export const thermalLabelsCategoryConfig = {
   audience:
     "Distributors, 3PLs, e-commerce brands, packaging suppliers, food businesses and industrial procurement teams",
   metadata: {
-    title: "Thermal Labels Manufacturer | Shipping, Barcode & OEM",
+    title: "Thermal Labels Manufacturer | 4x6 Shipping, Barcode & OEM | ZhixinPaper",
     description:
-      "Source thermal labels by product family, size and application. Review printer fit, adhesive, material evidence, OEM packing and bulk supply requirements.",
+      "ISO 9001 factory for thermal labels. 4×6 shipping labels, FNSKU, barcode & linerless rolls in stock. Zebra & Honeywell compatible · OEM · MOQ 500 rolls. Free sample & 24h quote.",
     keywords: [
       "thermal labels manufacturer",
       "direct thermal labels",
