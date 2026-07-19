@@ -8,8 +8,6 @@ import { SITE } from "@/config/siteData";
 import { r2Image } from "@/lib/r2";
 import BlogSearchGrid, { type BlogCardPost } from "@/components/blog/BlogSearchGrid";
 
-export const revalidate = 60; // 1 分钟 ISR
-
 export const metadata: Metadata = {
   title: "Blog | Thermal Paper Insights, Guides & Industry News",
   description:
