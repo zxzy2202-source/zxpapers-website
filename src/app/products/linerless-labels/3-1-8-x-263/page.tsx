@@ -14,6 +14,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildProductDetailMetadata(linerlessDetailConfig, images.hero);
 }
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function LinerlessLabelDetailPage() {
   const images = await resolveImages();
   const schemas = buildProductDetailSchemas(linerlessDetailConfig, images.hero);

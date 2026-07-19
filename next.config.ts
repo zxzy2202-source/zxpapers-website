@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
+// Image optimization is ENABLED by default on Vercel.
+// Set NEXT_IMAGE_UNOPTIMIZED=true in env vars only if you need to bypass it
+// (e.g., self-hosted without a sharp binary, or during local dev with external images).
 const disableImageOptimization =
-  process.env.NEXT_IMAGE_UNOPTIMIZED !== "false"; // 默认禁用图片优化（避免外部图片源被拦截）
+  process.env.NEXT_IMAGE_UNOPTIMIZED === "true";
 const DEFAULT_R2_PUBLIC_URL =
   "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
 const CANONICAL_SITE_URL = "https://www.zxpapers.com";

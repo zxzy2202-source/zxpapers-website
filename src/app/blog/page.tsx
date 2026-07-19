@@ -21,6 +21,8 @@ const CATEGORY_LABEL: Record<string, string> = Object.fromEntries(
   RESOURCE_CATEGORIES.map((c) => [c.value, c.label.replace(/\s*\(.*\)\s*/, "")])
 );
 
+export const revalidate = 3600; // 1 hour: new posts appear infrequently
+
 export default async function BlogListPage() {
   const posts = await getPublishedPosts();
   const cards: BlogCardPost[] = posts.map((p) => ({

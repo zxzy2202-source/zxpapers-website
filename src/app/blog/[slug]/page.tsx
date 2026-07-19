@@ -9,7 +9,7 @@ import { RESOURCE_CATEGORIES, type ResourceCategory } from "@/lib/postsCategorie
 import { SITE } from "@/config/siteData";
 import { r2Image } from "@/lib/r2";
 
-export const revalidate = 60;
+export const revalidate = 3600; // 1 hour: blog posts change infrequently
 
 const CATEGORY_LABEL: Record<string, string> = Object.fromEntries(
   RESOURCE_CATEGORIES.map((c) => [c.value, c.label.replace(/\s*\(.*\)\s*/, "")])

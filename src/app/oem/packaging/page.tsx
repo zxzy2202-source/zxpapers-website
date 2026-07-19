@@ -39,6 +39,9 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+export const revalidate = 3600; // 1 hour: slot image changes infrequently
+
 export default async function PackagingPage() {
   const heroImage = await getSlotImage("oem:packaging-hero", IMG);
   return (

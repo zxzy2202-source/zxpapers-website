@@ -68,6 +68,8 @@ const faqSchema = {
   mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
 };
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function PhenolFreeThermalPaperPage() {
   const rollsImg = r2Image(await getSlotImage("thermal-rolls:hero", ROLLS_IMG_FALLBACK));
 

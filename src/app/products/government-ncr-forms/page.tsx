@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.domain}/products/${application.slug}` },
 };
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default function GovernmentNcrFormsPage() {
   return <NcrApplicationShowcasePage application={application} />;
 }

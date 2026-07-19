@@ -74,6 +74,8 @@ const faqSchema = {
   })),
 };
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function BpaFreeThermalPaperPage() {
   const rollsImg = r2Image(await getSlotImage("thermal-rolls:hero", ROLLS_IMG_FALLBACK));
 

@@ -79,6 +79,8 @@ const faqSchema = {
   mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
 };
 
+export const revalidate = 86400; // 24 hours: static content
+
 export default function ZhixinVsPandaPage() {
   return (
     <>

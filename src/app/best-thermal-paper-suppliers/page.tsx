@@ -123,6 +123,8 @@ const articleSchema = {
   inLanguage: "en-US",
 };
 
+export const revalidate = 86400; // 24 hours: static content
+
 export default function BestThermalPaperSuppliersPage() {
   return (
     <>

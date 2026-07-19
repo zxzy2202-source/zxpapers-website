@@ -73,6 +73,8 @@ const faqSchema = {
   })),
 };
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function TillRollsPage() {
   const rollsImg = r2Image(await getSlotImage("thermal-rolls:hero", TILL_ROLL_IMG));
 

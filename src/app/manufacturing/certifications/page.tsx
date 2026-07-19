@@ -56,6 +56,9 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+export const revalidate = 86400; // 24 hours: certifications content rarely changes
+
 export default async function CertificationsPage() {
   const certificationsHeroImage = await getSlotImage("manufacturing:certifications-hero", IMG_CERTIFICATIONS);
   return (

@@ -123,6 +123,8 @@ const howToSchema = {
   })),
 };
 
+export const revalidate = 3600; // 1 hour: slot images change infrequently
+
 export default async function NcrInvoiceBooksPage() {
   const images = await getSlotImages([
     { slot: "ncr-invoice-books:hero", fallback: INVOICE_HERO_IMAGE },

@@ -1,0 +1,62 @@
+<h2>SEO / GEO single-source flow and quality gates</h2>
+<p class="subtitle">One typed page config supplies visible copy, metadata, structured data, internal links and inquiry qualification. No duplicate copy sources.</p>
+
+<div class="mockup">
+  <div class="mockup-header">Build-time data flow</div>
+  <div class="mockup-body">
+    <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;text-align:center">
+      <div style="border:2px solid #f59e0b;background:#fffbeb;padding:16px"><b>Typed Page Config</b><br><small>identity · intent · buyer · modules · claims · RFQ</small></div>
+      <div style="font-size:22px;color:#64748b">→</div>
+      <div style="background:#0f2b5b;color:white;padding:16px"><b>Validator</b><br><small>ownership · required fields · evidence · links</small></div>
+      <div style="font-size:22px;color:#64748b">→</div>
+      <div style="border:1px solid #cbd5e1;background:#fff;padding:16px"><b>Template Renderer</b><br><small>Catalog · Category · Detail</small></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:16px;text-align:center;font-size:10px">
+      <div style="background:#dbeafe;padding:12px"><b>Visible HTML</b><br>H1-H3 · answers · tables</div>
+      <div style="background:#dbeafe;padding:12px"><b>Metadata</b><br>title · description · canonical · social</div>
+      <div style="background:#dbeafe;padding:12px"><b>JSON-LD</b><br>Breadcrumb · Collection/Product · FAQ</div>
+      <div style="background:#dbeafe;padding:12px"><b>Internal Links</b><br>parent · children · related routes</div>
+      <div style="background:#dbeafe;padding:12px"><b>Qualified RFQ</b><br>product-specific initial message</div>
+    </div>
+  </div>
+</div>
+
+<div class="split" style="margin-top:20px">
+  <div class="mockup">
+    <div class="mockup-header">Template-aware schema</div>
+    <div class="mockup-body">
+      <div style="border-left:4px solid #0f2b5b;padding-left:12px;margin-bottom:14px"><b>Catalog Hub</b><br><small>CollectionPage + ItemList + BreadcrumbList + FAQPage</small></div>
+      <div style="border-left:4px solid #0f2b5b;padding-left:12px;margin-bottom:14px"><b>Category Gateway</b><br><small>CollectionPage + ItemList + BreadcrumbList + FAQPage</small></div>
+      <div style="border-left:4px solid #f59e0b;padding-left:12px"><b>Product Detail</b><br><small>Product + BreadcrumbList + FAQPage; HowTo only when visible workflow qualifies</small></div>
+      <p style="font-size:11px;margin-top:14px;color:#64748b">Offer, price and availability are not generated unless real commercial data exists.</p>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">Failure behavior</div>
+    <div class="mockup-body">
+      <div style="padding:10px;background:#fee2e2;color:#991b1b;margin-bottom:7px"><b>Build fails:</b> missing canonical, H1, entity, required RFQ fields or duplicate URL ownership</div>
+      <div style="padding:10px;background:#fee2e2;color:#991b1b;margin-bottom:7px"><b>Build fails:</b> schema FAQ/workflow differs from visible content</div>
+      <div style="padding:10px;background:#fef3c7;color:#92400e;margin-bottom:7px"><b>Module omitted:</b> optional content array is empty</div>
+      <div style="padding:10px;background:#dcfce7;color:#166534"><b>Image fallback:</b> missing admin override uses registered code fallback</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:22px">
+  <div class="label">Verification ladder</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px;text-align:center;font-size:11px">
+    <div style="border:1px solid #cbd5e1;padding:12px"><b>1. Config tests</b><br>required fields, link ownership, schema source</div>
+    <div style="border:1px solid #cbd5e1;padding:12px"><b>2. Type + build</b><br>Node 24, no compile or static-generation error</div>
+    <div style="border:1px solid #cbd5e1;padding:12px"><b>3. Route contracts</b><br>200, one H1, canonical, JSON-LD, inquiry markers</div>
+    <div style="border:1px solid #cbd5e1;padding:12px"><b>4. Browser QA</b><br>desktop/mobile, images, interactions, overflow, console</div>
+  </div>
+</div>
+
+<div class="pros-cons" style="margin-top:20px">
+  <div class="pros"><h4>GEO strengths</h4><ul><li>Question-led headings and concise direct answers</li><li>Literal product, buyer, material and application entities</li><li>Comparison and selection criteria in readable HTML</li><li>Claims constrained by configured evidence scope</li></ul></div>
+  <div class="cons"><h4>Prevented drift</h4><ul><li>Schema-only text invisible to buyers</li><li>Duplicate page intent and canonical conflicts</li><li>Generic inquiry forms that omit product requirements</li><li>Unsupported fixed MOQ, certification or performance claims</li></ul></div>
+</div>
+
+<div style="margin-top:22px;padding:14px;border:1px solid #f59e0b;background:#fffbeb;color:#78350f;font-size:12px">Reply “continue” to approve the final design section.</div>

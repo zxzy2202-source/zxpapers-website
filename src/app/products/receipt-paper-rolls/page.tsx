@@ -76,6 +76,8 @@ const faqSchema = {
   })),
 };
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function ReceiptPaperRollsPage() {
   const rollsImg = r2Image(await getSlotImage("thermal-paper-rolls:blank-hero", ROLLS_IMG_FALLBACK));
 

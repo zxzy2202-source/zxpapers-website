@@ -2,6 +2,7 @@ import MarketRegionPageTemplate from "@/components/shared/MarketRegionPageTempla
 import { southeastAsiaRegionPage } from "@/config/marketCountryPages";
 
 export const metadata = southeastAsiaRegionPage.metadata;
+export const revalidate = 86400; // 24 hours: static content
 
 export default function SoutheastAsiaPage() {
   return <MarketRegionPageTemplate data={southeastAsiaRegionPage} />;

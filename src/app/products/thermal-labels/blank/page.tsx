@@ -87,6 +87,8 @@ const productSchema = {
   additionalProperty: specs.map(({ label, value }) => ({ "@type": "PropertyValue", name: label, value })),
 };
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function BlankThermalLabelsPage() {
   const heroImage = await getSlotImage("thermal-labels:blank-hero", LABELS_IMG_FALLBACK);
 

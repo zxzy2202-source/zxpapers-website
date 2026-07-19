@@ -333,6 +333,9 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+export const revalidate = 3600; // 1 hour: slot images change infrequently
+
 export default async function MiddleEastAfricaPage() {
   const imgs = await getSlotImages([
     { slot: "markets:middle-east-africa-hero", fallback: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1400&q=80" },

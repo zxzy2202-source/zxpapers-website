@@ -16,6 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildProductCategoryMetadata(detergentLabelsCategoryConfig, images.hero);
 }
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function DetergentLabelsPage() {
   const images = await resolveImages();
   const schemas = buildProductCategorySchemas(

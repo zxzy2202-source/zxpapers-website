@@ -131,6 +131,9 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+export const revalidate = 3600; // 1 hour: slot images change infrequently
+
 export default async function ApplicationCasesPage() {
   const caseImages = await getSlotImages(
     appCases.map(({ slot, image }) => ({

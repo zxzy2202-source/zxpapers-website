@@ -107,6 +107,8 @@ const faqSchema = {
   })),
 };
 
+export const revalidate = 3600; // 1 hour: slot images change infrequently
+
 export default async function ProductsPage() {
   const images = await getSlotImages([
     { slot: "products:hero", fallback: HERO_IMG_FB },

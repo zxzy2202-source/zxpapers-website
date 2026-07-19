@@ -52,6 +52,9 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+export const revalidate = 86400; // 24 hours: QC content rarely changes
+
 export default async function QualityControlPage() {
   const qcHeroImage = await getSlotImage("manufacturing:quality-hero", IMG_QC_LAB);
   return (

@@ -57,6 +57,8 @@ const breadcrumbSchema = {
 };
 const CONTACT_HERO_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
 
+export const revalidate = 3600; // 1 hour: slot image changes infrequently
+
 export default async function ContactPage() {
   const contactHeroImg = await getSlotImage("contact:hero", CONTACT_HERO_FB);
   return (

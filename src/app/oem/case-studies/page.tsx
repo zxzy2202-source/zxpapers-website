@@ -45,6 +45,9 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+export const revalidate = 3600; // 1 hour: slot image changes infrequently
+
 export default async function CaseStudiesPage() {
   const heroImage = await getSlotImage("oem:case-studies-hero", IMG);
   return (

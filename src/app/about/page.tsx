@@ -116,6 +116,8 @@ const videoSchema = {
   },
   "regionsAllowed": "US,CA,GB,DE,FR,ES,IT,NL,SA,AE,EG,ZA,NG,KE,IN,JP,KR,SG,MY,TH,VN,ID,BR,MX,AU",
 };
+export const revalidate = 3600; // 1 hour: slot images change infrequently
+
 export default async function AboutPage() {
   const imgs = await getSlotImages([
     { slot: "about:factory-aerial", fallback: FACTORY_IMG_FB },

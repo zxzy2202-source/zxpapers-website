@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.domain}/resources/industry-insights` },
 };
 
+export const revalidate = 3600; // 1 hour: new posts appear infrequently
+
 export default async function IndustryInsightsPage() {
   const posts = await getPublishedPostsByCategory("industry-insights");
 

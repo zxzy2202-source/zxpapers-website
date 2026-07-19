@@ -81,6 +81,9 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+export const revalidate = 86400; // 24 hours: equipment content rarely changes
+
 export default async function EquipmentPage() {
   const equipmentHeroImage = await getSlotImage("manufacturing:equipment-hero", IMG_EQUIPMENT);
   return (

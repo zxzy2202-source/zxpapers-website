@@ -85,6 +85,9 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+export const revalidate = 3600; // 1 hour: slot images change infrequently
+
 export default async function ManufacturingPage() {
   const imgs = await getSlotImages([
     { slot: "manufacturing:hero", fallback: "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-aerial-overview-Ck4AoJiKqjGKsLxnYqGRbU.webp" },

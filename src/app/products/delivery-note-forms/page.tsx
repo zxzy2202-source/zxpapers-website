@@ -66,6 +66,8 @@ const faqSchema = {
   mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
 };
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function DeliveryNoteFormsPage() {
   const ncrImg = r2Image(await getSlotImage("ncr-forms:hero", NCR_FORMS_IMG));
 

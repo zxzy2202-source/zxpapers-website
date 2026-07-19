@@ -73,6 +73,9 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+export const revalidate = 3600; // 1 hour: slot image changes infrequently
+
 export default async function DesignSupportPage() {
   const heroImage = await getSlotImage("oem:design-support-hero", OEM_DESIGN_SUPPORT_IMG_FB);
   return (

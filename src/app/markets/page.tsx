@@ -133,6 +133,9 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+export const revalidate = 86400; // 24 hours: static content
+
 export default function MarketsPage() {
   const whatsappMsg = encodeURIComponent("Hello, I am interested in thermal paper rolls for my market. Please send me your price list and MOQ.");
   return (

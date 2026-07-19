@@ -86,6 +86,8 @@ const faqSchema = {
   mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
 };
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function BlankThermalRollsPage() {
   const heroImage = await getSlotImage("thermal-paper-rolls:blank-hero", ROLLS_IMG_FALLBACK);
   const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a quote for blank thermal paper rolls. I can send the printer model, size, quantity, coating requirement, and destination.")}`;

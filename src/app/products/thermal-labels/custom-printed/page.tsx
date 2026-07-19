@@ -91,6 +91,8 @@ const productSchema = {
   additionalProperty: [...printingSpecs, ...productSpecs].map(({ label, value }) => ({ "@type": "PropertyValue", name: label, value })),
 };
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function CustomPrintedLabelsPage() {
   const heroImage = await getSlotImage("thermal-labels:custom-hero", LABELS_IMG_FALLBACK);
 

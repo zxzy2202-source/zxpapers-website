@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.domain}/products/ncr-forms/2-part` },
 };
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default function Page() {
   return <NcrFormDetail part={part} />;
 }

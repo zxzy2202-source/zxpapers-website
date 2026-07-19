@@ -65,6 +65,9 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+export const revalidate = 3600; // 1 hour: slot image changes infrequently
+
 export default async function IPProtectionPage() {
   const heroImage = await getSlotImage("oem:ip-protection-hero", OEM_IP_PROTECTION_IMG_FB);
   return (

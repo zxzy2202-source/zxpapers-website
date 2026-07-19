@@ -57,28 +57,36 @@ export default function InquiryForm({
   const [defaultCountry, setDefaultCountry] = useState("");
 
   useEffect(() => {
-    // Detect country from cookie set by middleware
-    const getCookie = (name: string) => {
-      if (typeof document === "undefined") return null;
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop()?.split(";").shift();
-      return null;
-    };
+    // Detect country via /api/geo (does not set cookies, cache-friendly)
+    // Cache result in sessionStorage to avoid redundant requests within the same tab.
+    const CACHE_KEY = "zx_geo_country";
+    const cached = typeof sessionStorage !== "undefined"
+      ? sessionStorage.getItem(CACHE_KEY)
+      : null;
 
-    const countryCode = getCookie("NEXT_LOC_COUNTRY");
-    if (countryCode) {
-      // Basic mapping for common countries
-      const mapping: Record<string, string> = {
-        US: "United States", GB: "United Kingdom", CA: "Canada", AU: "Australia",
-        DE: "Germany", FR: "France", IT: "Italy", ES: "Spain", NL: "Netherlands",
-        AE: "United Arab Emirates", SA: "Saudi Arabia", TR: "Turkey",
-        TH: "Thailand", ID: "Indonesia", VN: "Vietnam", PH: "Philippines",
-        MY: "Malaysia", SG: "Singapore", IN: "India", PK: "Pakistan",
-        NG: "Nigeria", KE: "Kenya", ZA: "South Africa", EG: "Egypt",
-      };
-      setDefaultCountry(mapping[countryCode] || countryCode);
+    if (cached) {
+      setDefaultCountry(cached);
+      return;
     }
+
+    fetch("/api/geo")
+      .then((res) => res.ok ? res.json() : null)
+      .then((data: { country?: string; city?: string } | null) => {
+        if (!data?.country) return;
+        // Basic mapping for common country codes
+        const mapping: Record<string, string> = {
+          US: "United States", GB: "United Kingdom", CA: "Canada", AU: "Australia",
+          DE: "Germany", FR: "France", IT: "Italy", ES: "Spain", NL: "Netherlands",
+          AE: "United Arab Emirates", SA: "Saudi Arabia", TR: "Turkey",
+          TH: "Thailand", ID: "Indonesia", VN: "Vietnam", PH: "Philippines",
+          MY: "Malaysia", SG: "Singapore", IN: "India", PK: "Pakistan",
+          NG: "Nigeria", KE: "Kenya", ZA: "South Africa", EG: "Egypt",
+        };
+        const countryName = mapping[data.country] || data.country;
+        setDefaultCountry(countryName);
+        try { sessionStorage.setItem(CACHE_KEY, countryName); } catch { /* ignore */ }
+      })
+      .catch(() => { /* silently ignore GEO errors */ });
   }, []);
 
   useEffect(() => {

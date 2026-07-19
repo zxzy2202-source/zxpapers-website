@@ -70,6 +70,8 @@ const productSchema = {
     "value": slug,
   }))
 };
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function CustomPrintedCanLabelsPage() {
   const heroImage = await getSlotImage("can-labels:custom-hero", CAN_LABELS_IMG);
   return (

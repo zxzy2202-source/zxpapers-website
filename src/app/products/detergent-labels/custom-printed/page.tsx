@@ -70,6 +70,8 @@ const productSchema = {
     "value": slug,
   }))
 };
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function CustomPrintedDetergentLabelsPage() {
   const heroImage = await getSlotImage("detergent-labels:custom-hero", DETERGENT_LABELS_IMG);
   return (

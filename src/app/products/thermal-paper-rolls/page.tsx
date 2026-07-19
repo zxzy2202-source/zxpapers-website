@@ -125,6 +125,8 @@ const sizeBestFor: Record<string, string> = {
   "57x30mm": "Card terminals and ultra-compact payment devices",
 };
 
+export const revalidate = 3600; // 1 hour: slot images change infrequently
+
 export default async function ThermalPaperRollsPage() {
   const images = await getSlotImages([
     { slot: "products:thermal-rolls", fallback: ROLLS_IMG_FB },

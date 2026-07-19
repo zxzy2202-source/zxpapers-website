@@ -53,6 +53,8 @@ const breadcrumbSchema = { "@context": "https://schema.org", "@type": "Breadcrum
   { "@type": "ListItem", position: 1, name: "Home", item: SITE.domain }, { "@type": "ListItem", position: 2, name: "Products", item: `${SITE.domain}/products` }, { "@type": "ListItem", position: 3, name: "Thermal Paper Rolls", item: `${SITE.domain}/products/thermal-paper-rolls` }, { "@type": "ListItem", position: 4, name: "Custom Printed", item: `${SITE.domain}/products/thermal-paper-rolls/custom-printed` },
 ] };
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function CustomPrintedRollsPage() {
   const heroImage = await getSlotImage("thermal-paper-rolls:custom-hero", FALLBACK);
   const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a custom printed thermal roll review. I can send the specification, printer, artwork, quantity, packing and destination.")}`;

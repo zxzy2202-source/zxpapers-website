@@ -1,0 +1,68 @@
+<h2>How should future product pages reuse the system?</h2>
+<p class="subtitle">The current site has three different buying tasks. Choose the template architecture before we define modules and code.</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#f8fafc">
+      <div style="border:1px solid #cbd5e1;background:white">
+        <div style="height:28px;background:#0f2b5b;color:white;padding:7px 10px;font-size:9px">ONE UNIVERSAL PRODUCT TEMPLATE</div>
+        <div style="padding:12px">
+          <div style="height:42px;background:#dbeafe;margin-bottom:8px"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px">
+            <div style="height:35px;background:#e2e8f0"></div><div style="height:35px;background:#e2e8f0"></div><div style="height:35px;background:#e2e8f0"></div>
+          </div>
+          <div style="height:34px;background:#fef3c7;margin-bottom:8px"></div>
+          <div style="height:45px;background:#e2e8f0"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. One universal template</h3>
+      <p>Every page uses the same section stack. Fast to launch, but aggregation pages and detail pages become too similar and carry irrelevant modules.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#f8fafc">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px">
+        <div style="border:2px solid #f59e0b;background:white">
+          <div style="background:#0f2b5b;color:white;padding:7px;font-size:8px">CATALOG HUB</div>
+          <div style="padding:7px"><div style="height:24px;background:#dbeafe;margin-bottom:5px"></div><div style="height:45px;background:#e2e8f0;margin-bottom:5px"></div><div style="height:30px;background:#f1f5f9"></div></div>
+        </div>
+        <div style="border:2px solid #f59e0b;background:white">
+          <div style="background:#0f2b5b;color:white;padding:7px;font-size:8px">CATEGORY GATEWAY</div>
+          <div style="padding:7px"><div style="height:30px;background:#dbeafe;margin-bottom:5px"></div><div style="height:32px;background:#fef3c7;margin-bottom:5px"></div><div style="height:37px;background:#e2e8f0"></div></div>
+        </div>
+        <div style="border:2px solid #f59e0b;background:white">
+          <div style="background:#0f2b5b;color:white;padding:7px;font-size:8px">PRODUCT DETAIL</div>
+          <div style="padding:7px"><div style="height:38px;background:#dbeafe;margin-bottom:5px"></div><div style="height:22px;background:#fef3c7;margin-bottom:5px"></div><div style="height:39px;background:#e2e8f0"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. Three template families (recommended)</h3>
+      <p>Catalog Hub routes broad discovery, Category Gateway helps buyers choose a product/program, and Product Detail resolves fit, risk, specification and RFQ. They share primitives, SEO/GEO builders and visual tokens.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:16px;background:#f8fafc">
+      <div style="border:1px solid #cbd5e1;background:white">
+        <div style="height:28px;background:#0f2b5b;color:white;padding:7px 10px;font-size:9px">FREEFORM MODULE BUILDER</div>
+        <div style="padding:10px;display:grid;grid-template-columns:2fr 1fr;gap:7px">
+          <div><div style="height:26px;background:#dbeafe;margin-bottom:6px"></div><div style="height:58px;background:#e2e8f0"></div></div>
+          <div><div style="height:17px;background:#fef3c7;margin-bottom:5px"></div><div style="height:17px;background:#f1f5f9;margin-bottom:5px"></div><div style="height:17px;background:#f1f5f9"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. Freeform module builder</h3>
+      <p>Each page assembles any modules in any order. Flexible for unusual products, but content governance, visual consistency and SEO ownership become harder to maintain.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px">
+  <div class="label">Current evidence</div>
+  <p>The repository already has multiple large templates and page-specific components. The biggest risk is not lack of components; it is overlapping responsibilities, duplicated schema/copy patterns, and inconsistent RFQ/specification contracts.</p>
+</div>

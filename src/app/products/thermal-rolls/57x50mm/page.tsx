@@ -14,6 +14,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildProductDetailMetadata(thermalRoll57x50Config, images.hero);
 }
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default async function ThermalRoll57x50Page() {
   const images = await resolveImages();
   const schemas = buildProductDetailSchemas(thermalRoll57x50Config, images.hero);

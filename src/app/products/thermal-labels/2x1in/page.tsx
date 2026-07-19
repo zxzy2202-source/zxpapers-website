@@ -10,6 +10,8 @@ export const metadata: Metadata = {
 };
 
 
+export const revalidate = 86400; // 24 hours: static product/market content
+
 export default function Page() {
   return (
     <>

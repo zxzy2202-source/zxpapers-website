@@ -272,6 +272,8 @@ const howToSchema = {
   })),
 };
 
+export const revalidate = 3600; // 1 hour: slot images change infrequently
+
 export default async function ShippingLabelsPage() {
   const images = await getSlotImages([
     { slot: "shipping-labels:hero", fallback: SHIPPING_LABELS_IMAGE },

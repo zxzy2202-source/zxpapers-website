@@ -43,6 +43,9 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+export const revalidate = 86400; // 24 hours: static content
+
 export default function ResourcesPage() {
   return (
     <Layout>

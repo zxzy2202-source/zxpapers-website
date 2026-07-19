@@ -32,6 +32,8 @@ const serviceSchema = { "@context": "https://schema.org", "@type": "Service", na
 const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) };
 const breadcrumbSchema = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: SITE.domain }, { "@type": "ListItem", position: 2, name: "OEM Services", item: `${SITE.domain}/oem` }, { "@type": "ListItem", position: 3, name: "Custom Printing", item: `${SITE.domain}/oem/custom-printing` }] };
 
+export const revalidate = 3600; // 1 hour: slot image changes infrequently
+
 export default async function CustomPrintingPage() {
   const heroImage = await getSlotImage("oem:custom-printing-hero", IMG);
   const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need an OEM printing review for thermal rolls or labels. I can send the product specification, artwork, quantity, packing and destination.")}`;

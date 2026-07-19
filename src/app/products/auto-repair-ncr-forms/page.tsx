@@ -120,6 +120,8 @@ const howToSchema = {
   ],
 };
 
+export const revalidate = 3600; // 1 hour: slot images change infrequently
+
 export default async function AutoRepairNcrFormsPage() {
   const images = await getSlotImages([
     { slot: "ncr-applications:auto-repair-ncr-forms:hero", fallback: HERO_IMAGE },

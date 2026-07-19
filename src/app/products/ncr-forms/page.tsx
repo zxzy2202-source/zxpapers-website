@@ -150,6 +150,8 @@ const termsSchema = {
   ],
 };
 
+export const revalidate = 3600; // 1 hour: slot images change infrequently
+
 export default async function NcrFormsPage() {
   const images = await getSlotImages([
     { slot: "ncr-forms:hero", fallback: NCR_HERO_IMAGE },
