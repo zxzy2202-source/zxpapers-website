@@ -24,7 +24,6 @@ import {
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import PopularSizesCarousel, { type SkuItem } from "@/components/shared/PopularSizesCarousel";
-import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 import type { SlotKey } from "@/config/imageSlots";
 import { CERTIFICATIONS, FACTORY, SITE } from "@/config/siteData";
 import { getSlotImages } from "@/lib/imageSlotUtils";
@@ -32,14 +31,14 @@ import { readHero } from "@/lib/heroStore";
 import { r2Image } from "@/lib/r2";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Rolls Manufacturer | OEM & Private Label | ZhixinPaper",
+  title: "Thermal Paper & Label Manufacturer | ZhixinPaper",
   description:
-    "ISO 9001 certified factory. Blank & custom-printed thermal paper rolls, labels, and NCR forms. Free samples · 24h quote · CIF to 80+ countries. Request your OEM quote today.",
+    "Source thermal paper rolls, shipping and product labels, and NCR forms by specification, sample, OEM packing, destination and repeat-order control.",
   alternates: { canonical: SITE.domain },
   openGraph: {
-    title: "Thermal Paper Rolls Manufacturer | OEM & Private Label | ZhixinPaper",
+    title: "Thermal Paper & Label Manufacturer | ZhixinPaper",
     description:
-      "Factory for blank and custom-printed thermal rolls, labels, machine-ready filling-line labels and carbonless forms. OEM/private label with export-ready packing.",
+      "Source thermal paper rolls, labels and NCR forms with specification review, sample approval, OEM packing and repeat-order control.",
     url: SITE.domain,
     type: "website",
     images: [
@@ -80,7 +79,7 @@ const productLines: ProductLine[] = [
     title: "Stock Thermal Paper Rolls",
     spec: "80x80, 57x50, 57x40 and custom widths",
     summary: "Fast-moving receipt rolls for POS, cash register, ATM, kiosk and mobile printers.",
-    href: "/products/thermal-paper-rolls/blank",
+    href: "/products/thermal-paper-rolls",
     slot: "home:category-thermal-rolls",
     fallback: THERMAL_ROLLS_IMAGE,
   },
@@ -88,7 +87,7 @@ const productLines: ProductLine[] = [
     title: "Thermal & Shipping Labels",
     spec: "4x6, 4x3, 2x1 and barcode formats",
     summary: "Direct thermal labels for courier, warehouse, inventory and product identification.",
-    href: "/products/thermal-labels/blank",
+    href: "/products/thermal-labels",
     slot: "home:category-thermal-labels",
     fallback: THERMAL_LABELS_IMAGE,
   },
@@ -131,23 +130,23 @@ const productLines: ProductLine[] = [
 const buyerRoutes = [
   {
     icon: Package,
-    title: "Standard Stock",
-    buyer: "Distributors and warehouse buyers",
-    summary: "Start with size, quantity and destination for receipt rolls or shipping labels.",
-    href: "/products/thermal-paper-rolls/blank",
+    title: "Repeat Stock Supply",
+    buyer: "Distributors and multi-location operators",
+    summary: "Match the printer, actual roll or label specification, carton pack and reorder reference before comparing offers.",
+    href: "/products/thermal-paper-rolls",
   },
   {
     icon: Printer,
-    title: "Custom Printing",
-    buyer: "Brands, retail chains and importers",
-    summary: "Confirm artwork, colors, packing and compliance requirements before sampling.",
+    title: "New OEM Program",
+    buyer: "Brands, importers and private-label teams",
+    summary: "Freeze material, artwork version, colors, core and retail packing in one approval record before the production sample.",
     href: "/oem/custom-printing",
   },
   {
     icon: FactoryIcon,
-    title: "Factory Supply",
-    buyer: "Converters and bulk purchasing teams",
-    summary: "Plan jumbo rolls, OEM production, mixed SKUs or container-level cooperation.",
+    title: "Multi-SKU Factory Supply",
+    buyer: "Converters and centralized purchasing teams",
+    summary: "Consolidate mixed sizes, cartons, pallets, loading sequence and destination documents into one supply plan.",
     href: `/contact?product=${encodeURIComponent("Jumbo Roll Supply")}`,
   },
 ];
@@ -156,7 +155,7 @@ const procurementFacts = [
   { value: SITE.founded, label: "Manufacturing since" },
   { value: FACTORY.countriesServed, label: "Export markets" },
   { value: FACTORY.dailyOutput, label: "Daily output" },
-  { value: FACTORY.fclLoadingLabel, label: "FCL lead time" },
+  { value: "Spec / Sample / Batch", label: "Approval sequence" },
 ];
 
 const popularSizes: SkuItem[] = [
@@ -174,7 +173,7 @@ const customizationCapabilities = [
   "Logo, Pantone and bilingual printing",
   "QR codes, barcodes and variable content",
   "Private-label cartons and core printing",
-  "Phenol-free and market-specific materials",
+  "BPA-free, BPS-free and phenol-free grades reviewed separately",
 ];
 
 const orderStages = [
@@ -200,27 +199,27 @@ const orderStages = [
   },
 ];
 
-const buyerOutcomes = [
+const approvalScenarios = [
   {
-    country: "United States",
-    code: "US" as CountryCode,
-    role: "POS Distributor",
-    product: "80x80 mm Receipt Rolls",
-    text: "Repeat shipments kept the same roll length, brightness and carton labels, so our retail accounts received consistent stock.",
+    icon: Printer,
+    title: "Receipt Roll Distribution",
+    risk: "The quoted size matches, but roll length, core or carton quantity does not.",
+    approval: "Printer model, width, outer diameter, core, paper grade, measured length and carton count.",
+    outcome: "A reusable specification ID keeps supplier comparisons and repeat orders consistent.",
   },
   {
-    country: "Germany",
-    code: "DE" as CountryCode,
-    role: "Office Supply Buyer",
-    product: "Phenol-Free Thermal Paper",
-    text: "Samples and documentation were confirmed before bulk production, which reduced approval risk for our customers.",
+    icon: Package,
+    title: "Warehouse & Shipping Labels",
+    risk: "Labels print correctly in a sample but skip, lift or scan poorly in the real workflow.",
+    approval: "Printer and DPI, gap or mark, face stock, adhesive, application surface, scan test and roll format.",
+    outcome: "The production check follows the actual printer, parcel surface and packing method.",
   },
   {
-    country: "UAE",
-    code: "AE" as CountryCode,
-    role: "Retail Distributor",
-    product: "OEM Printed Receipt Rolls",
-    text: "Artwork and carton design were checked before mass production. The branded rolls arrived ready for store distribution.",
+    icon: FileCheck2,
+    title: "OEM Print & NCR Forms",
+    risk: "Artwork, numbering, copy sequence or packing changes between approval and reorder.",
+    approval: "Artwork version, ink references, barcode data, sheet sequence, numbering, pack and carton marks.",
+    outcome: "The approved files and packing record become the reference for production and reorders.",
   },
 ];
 
@@ -262,7 +261,10 @@ function ProductLineCard({
 
   return (
     <article className={`group relative min-h-[340px] overflow-hidden rounded-lg bg-brand-navy-deep ${layoutClass}`}>
-      <Link href={item.href} className="absolute inset-0">
+      <Link
+        href={item.href}
+        className="absolute inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-inset"
+      >
         <Image
           src={image}
           alt={`${item.title} manufactured by ZhixinPaper`}
@@ -314,8 +316,12 @@ export default async function HomePage() {
     "Hello, I need a quotation. Product: __ Quantity: __ Destination: __",
   )}`;
   const factoryImage = images["home:category-jumbo-rolls"] ?? COATING_LINE_IMAGE;
-  const homepageTitle = hero.titleMain?.trim() || "Custom Thermal Paper, Labels & NCR Forms";
+  const homepageTitle =
+    hero.titleMain?.trim() || "Thermal Paper, Labels & NCR Forms Built to Your Specification";
   const homepageHighlight = hero.titleHighlight?.trim();
+  const heroTrustBadges = hero.trustBadges?.length
+    ? hero.trustBadges
+    : ["Blank & custom supply", "OEM packing", "Export documentation"];
 
   return (
     <Layout>
@@ -333,7 +339,7 @@ export default async function HomePage() {
         compact
         badge={{
           icon: <Award className="h-4 w-4" aria-hidden="true" />,
-          text: hero.badgeText?.trim() || "ISO 9001 Factory Since 2009",
+          text: hero.badgeText?.trim() || "B2B Manufacturing Since 2009",
           color: "amber",
         }}
         title={
@@ -349,17 +355,19 @@ export default async function HomePage() {
         }
         subtitle={
           hero.subtitle?.trim() ||
-          "Factory-direct blank and custom-printed supply with OEM packing, export documents and fast container loading."
+          "Send the printer, application, size, quantity and destination. We turn them into a quote-ready specification, approval sample and repeat-order record."
         }
+        trustBadges={heroTrustBadges}
+        mobileTrustBadgeLimit={2}
         ctas={[
           {
-            label: "Request a Quote",
+            label: "Build a Quote-Ready RFQ",
             href: "/contact",
             variant: "primary",
             icon: <MessageSquare className="h-4 w-4" aria-hidden="true" />,
           },
           {
-            label: "WhatsApp",
+            label: "Ask on WhatsApp",
             href: whatsappUrl,
             variant: "whatsapp",
             icon: <Phone className="h-4 w-4" aria-hidden="true" />,
@@ -371,11 +379,12 @@ export default async function HomePage() {
       <section className="border-b border-slate-200 bg-white py-12 sm:py-16" aria-labelledby="procurement-heading">
         <div className="container">
           <div className="max-w-3xl">
-            <h2 id="procurement-heading" className="text-3xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-4xl">
-              Start With the Way You Buy
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-brand-navy">Start With the Buying Risk</p>
+            <h2 id="procurement-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
+              Fix the Specification Before You Compare Price
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-              Choose the route closest to your order. We will confirm the specifications needed for pricing, samples and production.
+              A familiar size name can still hide a different roll length, core, adhesive, pack or material grade. Choose the route closest to your order so the commercial quote and approval sample use the same inputs.
             </p>
           </div>
 
@@ -384,7 +393,7 @@ export default async function HomePage() {
               <Link
                 key={title}
                 href={href}
-                className={`group grid gap-4 px-1 py-6 transition-colors hover:bg-slate-50 sm:grid-cols-[auto_1fr] sm:px-5 lg:block lg:px-6 lg:py-8 ${index === 0 ? "lg:bg-slate-50" : ""}`}
+                className={`group grid gap-4 px-1 py-6 transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-inset sm:grid-cols-[auto_1fr] sm:px-5 lg:block lg:px-6 lg:py-8 ${index === 0 ? "lg:bg-slate-50" : ""}`}
               >
                 <span className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-navy text-white">
                   <Icon className="h-5 w-5" aria-hidden="true" />
@@ -394,7 +403,7 @@ export default async function HomePage() {
                   <span className="mt-1 block text-sm font-medium text-slate-500">{buyer}</span>
                   <span className="mt-3 block text-sm leading-relaxed text-slate-600">{summary}</span>
                   <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy">
-                    View buying route
+                    Review this buying route
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
                   </span>
                 </span>
@@ -418,14 +427,14 @@ export default async function HomePage() {
           <div className="mb-10 flex flex-col items-start justify-between gap-5 lg:flex-row lg:items-end">
             <div className="max-w-3xl">
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-brand-navy">Core Product Lines</p>
-              <h2 id="products-heading" className="text-3xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-4xl">
-                Match Your RFQ to the Right Product
+              <h2 id="products-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
+                Choose the Product Family Before You Compare Offers
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-                Compare stock, custom printing and factory-supply options without searching through the complete catalog.
+                Start with the application and product family, then narrow the size, material, format and packing variables that change price and performance.
               </p>
             </div>
-            <Link href="/products" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover">
+            <Link href="/products" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4">
               Browse all products
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
@@ -448,14 +457,14 @@ export default async function HomePage() {
         <div className="container">
           <div className="mb-8 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
             <div className="max-w-2xl">
-              <h2 id="sizes-heading" className="text-3xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-4xl">
-                Common Sizes for Faster Sourcing
+              <h2 id="sizes-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
+                Common Sizes Are a Starting Point, Not a Full Specification
               </h2>
               <p className="mt-4 text-base leading-relaxed text-slate-600">
-                Start with a standard size, then confirm roll length, core, GSM, adhesive and packing for your market.
+                Use a familiar size to find the right product, then confirm roll length, core, paper grade or adhesive, printer compatibility and packing.
               </p>
             </div>
-            <Link href="/specifications" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover">
+            <Link href="/specifications" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4">
               View size guide
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
@@ -469,11 +478,11 @@ export default async function HomePage() {
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
             <div>
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-brand-navy">Custom Production</p>
-              <h2 id="custom-heading" className="text-3xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-4xl">
-                Turn Specifications Into Production-Ready Artwork
+              <h2 id="custom-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
+                Keep One Approval Record From Sample to Reorder
               </h2>
               <p className="mt-5 text-base leading-relaxed text-slate-600">
-                We connect technical specifications, artwork, compliance and packing in one approval workflow before bulk production.
+                Technical specifications, artwork, material evidence and packing are reviewed together so the approved sample can remain the reference for bulk production.
               </p>
               <div className="mt-7 space-y-4">
                 {customizationCapabilities.map((item) => (
@@ -484,11 +493,11 @@ export default async function HomePage() {
                 ))}
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover">
+                <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
                   <MessageSquare className="h-4 w-4" aria-hidden="true" />
                   Request a Quote
                 </Link>
-                <Link href="/oem/custom-printing" className="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-navy hover:text-brand-navy">
+                <Link href="/oem/custom-printing" className="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-navy hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
                   Custom printing options
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
@@ -507,10 +516,10 @@ export default async function HomePage() {
           </div>
 
           <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-slate-200 pt-6 text-sm font-medium text-slate-600">
-            <span className="font-semibold text-slate-950">Market-ready options</span>
-            <span>TRA and FIRS receipt formats</span>
-            <span>ZATCA and bilingual layouts</span>
-            <span>Phenol-free materials</span>
+            <span className="font-semibold text-slate-950">Approval record includes</span>
+            <span>Material or paper grade</span>
+            <span>Artwork and barcode version</span>
+            <span>Carton, pallet and destination marks</span>
           </div>
         </div>
       </section>
@@ -530,18 +539,18 @@ export default async function HomePage() {
             </div>
 
             <div>
-              <h2 id="factory-heading" className="text-3xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-4xl">
-                Factory Evidence Buyers Can Verify
+              <h2 id="factory-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
+                Review the Supply Evidence Before the Deposit
               </h2>
               <p className="mt-5 text-base leading-relaxed text-slate-600">
-                Capacity, material options, packing controls and export documents are reviewed before you commit to bulk production.
+                Confirm which capacity, material, quality and export records apply to your exact product grade and destination before you commit to bulk production.
               </p>
               <div className="mt-7 space-y-4">
                 {[
-                  "ISO 9001:2015, FSC, BPA-free, RoHS, REACH and CE support",
-                  "Private cartons, core printing, barcode marks and pallet plans",
-                  "Commercial invoice, packing list, certificate of origin and bill of lading",
-                  "Jumbo-roll supply and OEM support for converters and peer factories",
+                  "Quality-management and material documents matched to the selected grade",
+                  "Private cartons, core printing, barcode marks and pallet plans approved with the order",
+                  "Commercial invoice, packing list and destination documents reviewed before dispatch",
+                  "Jumbo-roll and finished-goods options for converters, distributors and OEM programs",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3 text-sm leading-relaxed text-slate-700">
                     <BadgeCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-navy" aria-hidden="true" />
@@ -550,13 +559,13 @@ export default async function HomePage() {
                 ))}
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover">
+                <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
                   <MessageSquare className="h-4 w-4" aria-hidden="true" />
                   Request a Quote
                 </Link>
                 <Link
                   href={`/contact?product=${encodeURIComponent("Jumbo Roll Supply")}`}
-                  className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-navy hover:text-brand-navy"
+                  className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-navy hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
                 >
                   <Handshake className="h-4 w-4" aria-hidden="true" />
                   Jumbo roll supply
@@ -582,47 +591,38 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="bg-white py-16 sm:py-20" aria-labelledby="outcomes-heading">
+      <section className="bg-brand-navy-deep py-16 text-white sm:py-20" aria-labelledby="outcomes-heading">
         <div className="container">
           <div className="max-w-3xl">
-            <h2 id="outcomes-heading" className="text-3xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-4xl">
-              What Buyers Verify Before They Reorder
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-amber-300">Quote-Ready Buying Scenarios</p>
+            <h2 id="outcomes-heading" className="text-3xl font-semibold text-white sm:text-4xl">
+              Lock Down the Variables That Cause Reorder Problems
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-600">
-              These anonymized outcomes focus on product consistency, approval risk and distribution readiness. Customer identities are withheld by request.
+            <p className="mt-4 text-base leading-relaxed text-slate-300">
+              Different products fail for different reasons. A useful RFQ records the operating condition, approval evidence and reorder reference instead of relying on a size name alone.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-            <article className="rounded-lg border border-slate-200 bg-slate-50 p-7 sm:p-9">
-              <div className="flex items-center gap-3">
-                <CountryFlag code={buyerOutcomes[0].code} label={buyerOutcomes[0].country} className="w-6" />
-                <div>
-                  <div className="font-semibold text-slate-950">{buyerOutcomes[0].role}</div>
-                  <div className="text-sm text-slate-500">{buyerOutcomes[0].country}</div>
+          <div className="mt-10 grid border-y border-white/15 lg:grid-cols-3 lg:divide-x lg:divide-white/15">
+            {approvalScenarios.map(({ icon: Icon, title, risk, approval, outcome }, index) => (
+              <article key={title} className="border-b border-white/15 py-8 last:border-b-0 lg:border-b-0 lg:px-8 lg:first:pl-0 lg:last:pr-0">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-md bg-white/10 text-amber-300">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span className="text-sm font-semibold text-slate-400">0{index + 1}</span>
                 </div>
-              </div>
-              <p className="mt-8 max-w-3xl text-xl font-medium leading-relaxed text-slate-800 sm:text-2xl">
-                &ldquo;{buyerOutcomes[0].text}&rdquo;
-              </p>
-              <div className="mt-7 border-t border-slate-200 pt-5 text-sm font-semibold text-brand-navy">
-                {buyerOutcomes[0].product}
-              </div>
-            </article>
-
-            <div className="grid gap-5">
-              {buyerOutcomes.slice(1).map((outcome) => (
-                <article key={outcome.country} className="rounded-lg border border-slate-200 bg-white p-6">
-                  <div className="flex items-center gap-3">
-                    <CountryFlag code={outcome.code} label={outcome.country} className="w-5" />
-                    <span className="text-sm font-semibold text-slate-950">{outcome.role}</span>
-                    <span className="text-sm text-slate-500">{outcome.country}</span>
-                  </div>
-                  <p className="mt-5 text-base leading-relaxed text-slate-700">&ldquo;{outcome.text}&rdquo;</p>
-                  <div className="mt-5 text-sm font-semibold text-brand-navy">{outcome.product}</div>
-                </article>
-              ))}
-            </div>
+                <h3 className="mt-6 text-xl font-semibold text-white">{title}</h3>
+                <p className="mt-6 text-xs font-semibold uppercase tracking-[0.14em] text-amber-300">Risk to avoid</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-300">{risk}</p>
+                <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">Approval record</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-300">{approval}</p>
+                <p className="mt-6 border-t border-white/15 pt-5 text-sm font-medium leading-relaxed text-white">
+                  <CheckCircle className="mr-2 inline h-4 w-4 text-amber-300" aria-hidden="true" />
+                  {outcome}
+                </p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -631,14 +631,14 @@ export default async function HomePage() {
         <div className="container">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
             <div>
-              <h2 id="facts-heading" className="text-3xl font-semibold tracking-[-0.03em] text-slate-950 sm:text-4xl">
-                Key Facts About {SITE.name}
+              <h2 id="facts-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
+                Supplier Facts for Buyer Due Diligence
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600">
                 {SITE.name}, legally Xi&apos;an Zhi Xin Paper Co., Ltd., is a factory-direct manufacturer of thermal paper rolls, direct thermal labels, packaging labels and carbonless forms. Founded in {SITE.founded} in Xi&apos;an, China, the company supplies wholesale and OEM buyers in {FACTORY.countriesServed} markets.
               </p>
-              <Link href="/about" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover">
-                About the factory
+              <Link href="/about" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4">
+                Review the factory profile
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
@@ -650,7 +650,7 @@ export default async function HomePage() {
                 { term: "Annual output", value: `${FACTORY.annualOutput} rolls` },
                 { term: "Markets", value: FACTORY.countriesServed },
                 { term: "OEM clients", value: FACTORY.oemClients },
-                { term: "FCL lead time", value: FACTORY.fclLoadingLabel },
+                { term: "Product scope", value: "Rolls, labels, NCR" },
               ].map(({ term, value }) => (
                 <div key={term} className="border-t border-slate-300 pt-4">
                   <dt className="text-sm text-slate-500">{term}</dt>
@@ -661,14 +661,14 @@ export default async function HomePage() {
           </div>
 
           <p className="mt-10 border-t border-slate-200 pt-5 text-sm leading-relaxed text-slate-500">
-            Certifications and material support: {CERTIFICATIONS.map((item) => item.name).join(", ")}. Export terms include FOB, CIF and DDP.
+            Potential supporting documents include {CERTIFICATIONS.map((item) => item.name).join(", ")}. Availability and scope depend on the selected product grade and destination requirement; export terms can include FOB, CIF and DDP.
           </p>
 
           <div className="mt-10 grid gap-8 rounded-lg border border-slate-200 border-t-4 border-t-amber-500 bg-white p-6 sm:p-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:p-10">
             <div>
-              <h2 className="text-3xl font-semibold tracking-[-0.03em] text-slate-950">Prepare a Quote-Ready RFQ</h2>
+              <h2 className="text-3xl font-semibold text-slate-950">Send the Inputs That Change the Price</h2>
               <p className="mt-3 text-base leading-relaxed text-slate-600">
-                Send four details and our export team will confirm pricing, samples, packing and loading options.
+                Send four starting details. Our export team will reply with the missing specification questions before confirming price, sample and packing options.
               </p>
             </div>
             <div>
@@ -681,11 +681,11 @@ export default async function HomePage() {
                 ))}
               </div>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-brand-navy px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover">
+                <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-brand-navy px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
                   <MessageSquare className="h-4 w-4" aria-hidden="true" />
                   Request a Quote
                 </Link>
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-md border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-navy hover:text-brand-navy">
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-md border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-navy hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
                   <Phone className="h-4 w-4" aria-hidden="true" />
                   WhatsApp
                 </a>

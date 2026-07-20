@@ -474,9 +474,9 @@ export const bpaFreeThermalPaperCategoryConfig = {
     { name: "BPA-Free Thermal Paper", path: "/products/bpa-free-thermal-paper" },
   ],
   relatedPrograms: [
+    { label: "BPS-Free Thermal Paper", href: "/products/bps-free-thermal-paper" },
     { label: "Phenol-Free Thermal Paper", href: "/products/phenol-free-thermal-paper" },
     { label: "Receipt Paper Rolls", href: "/products/receipt-paper-rolls" },
-    { label: "Thermal Paper Rolls", href: "/products/thermal-paper-rolls" },
     { label: "Custom Printed Thermal Rolls", href: "/products/thermal-paper-rolls/custom-printed" },
   ],
 } satisfies ProductCategoryConfig;

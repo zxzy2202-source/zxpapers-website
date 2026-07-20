@@ -1,34 +1,32 @@
 import type { Metadata } from "next";
 import { cache } from "react";
 import ProductCategoryTemplate from "@/components/products/category/ProductCategoryTemplate";
-import { phenolFreeThermalPaperCategoryConfig } from "@/config/product-categories/phenol-free-thermal-paper";
+import { bpsFreeThermalPaperCategoryConfig } from "@/config/product-categories/bps-free-thermal-paper";
 import { SITE } from "@/config/siteData";
 import { resolveProductCategoryImages } from "@/lib/product-pages/product-category-images";
 import { buildProductCategoryMetadata } from "@/lib/product-pages/product-category-metadata";
 import { buildProductCategorySchemas } from "@/lib/product-pages/product-category-schema";
 
 const resolveImages = cache(() =>
-  resolveProductCategoryImages(phenolFreeThermalPaperCategoryConfig),
+  resolveProductCategoryImages(bpsFreeThermalPaperCategoryConfig),
 );
 
 export async function generateMetadata(): Promise<Metadata> {
   const images = await resolveImages();
   return buildProductCategoryMetadata(
-    phenolFreeThermalPaperCategoryConfig,
+    bpsFreeThermalPaperCategoryConfig,
     images.hero,
   );
 }
 
-export const revalidate = 86400; // 24 hours: static product/market content
-
-export default async function PhenolFreeThermalPaperPage() {
+export default async function BpsFreeThermalPaperPage() {
   const images = await resolveImages();
   const schemas = buildProductCategorySchemas(
-    phenolFreeThermalPaperCategoryConfig,
+    bpsFreeThermalPaperCategoryConfig,
     images.hero,
   );
   const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent(
-    phenolFreeThermalPaperCategoryConfig.inquiry.initialMessage,
+    bpsFreeThermalPaperCategoryConfig.inquiry.initialMessage,
   )}`;
 
   return (
@@ -46,7 +44,7 @@ export default async function PhenolFreeThermalPaperPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.faq) }}
       />
       <ProductCategoryTemplate
-        config={phenolFreeThermalPaperCategoryConfig}
+        config={bpsFreeThermalPaperCategoryConfig}
         images={images}
         whatsappHref={whatsappHref}
       />

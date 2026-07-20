@@ -31,6 +31,11 @@ const catalogEntries: { name: string; path: string }[] = [
   { name: "Blank Thermal Paper Rolls", path: "/products/thermal-paper-rolls/blank" },
   { name: "Custom Printed Thermal Rolls", path: "/products/thermal-paper-rolls/custom-printed" },
   { name: "Receipt Paper Rolls", path: "/products/receipt-paper-rolls" },
+  { name: "Till Rolls", path: "/products/till-rolls" },
+  { name: "BPA-Free Thermal Paper", path: "/products/bpa-free-thermal-paper" },
+  { name: "BPS-Free Thermal Paper", path: "/products/bps-free-thermal-paper" },
+  { name: "Phenol-Free Thermal Paper", path: "/products/phenol-free-thermal-paper" },
+  { name: "Colored Thermal Paper", path: "/products/colored-thermal-paper" },
   ...paperRollSizes.map((size) => ({ name: `${size.label} Thermal Paper Roll`, path: `/products/thermal-rolls/${size.slug}` })),
   { name: "Blank Thermal Labels", path: "/products/thermal-labels/blank" },
   { name: "Custom Printed Thermal Labels", path: "/products/custom-printed-thermal-labels" },
@@ -140,7 +145,7 @@ export default async function ProductsPage() {
       href: "/products/thermal-paper-rolls",
       image: rollsImage,
       imageAlt: "Thermal paper rolls in standard POS and receipt sizes",
-      facts: ["57mm, 80mm, and custom widths", "BPA-free standard with phenol-free option", "White, colored, and pre-printed rolls"],
+      facts: ["57mm, 80mm, and custom widths", "Documented chemistry and retention routes by paper grade", "White, colored, and pre-printed rolls"],
       applications: ["Supermarket, restaurant, and retail POS receipts", "ATM, bank counter, and payment-terminal records", "Parking, ticketing, kiosk, and mobile POS systems"],
       buyers: ["POS consumable and office-supply distributors", "Retail-chain procurement and merchant-service teams", "Payment-terminal, ATM, and kiosk service companies"],
       groups: [
@@ -166,6 +171,7 @@ export default async function ProductsPage() {
           title: "Material & application",
           links: [
             { label: "BPA-Free Thermal Paper", href: "/products/bpa-free-thermal-paper" },
+            { label: "BPS-Free Thermal Paper", href: "/products/bps-free-thermal-paper" },
             { label: "Phenol-Free Thermal Paper", href: "/products/phenol-free-thermal-paper" },
             { label: "Colored Thermal Paper", href: "/products/colored-thermal-paper" },
             { label: "Till Rolls", href: "/products/till-rolls" },
