@@ -2,6 +2,7 @@
 
 import { useState, FormEvent, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
 
 function LoginForm() {
   const router = useRouter();
@@ -9,6 +10,7 @@ function LoginForm() {
   const redirect = params.get("redirect") || "/admin";
 
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -50,20 +52,45 @@ function LoginForm() {
           onSubmit={onSubmit}
           className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-2xl"
         >
-          <label className="block text-slate-200 text-sm font-medium mb-2">
+          <label htmlFor="admin-password" className="block text-slate-200 text-sm font-medium mb-2">
             管理员密码
           </label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="请输入密码"
-            className="w-full px-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-            autoFocus
-            required
-          />
+          <div className="relative">
+            <input
+              id="admin-password"
+              name="password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="请输入密码…"
+              autoComplete="current-password"
+              aria-invalid={Boolean(error)}
+              aria-describedby={error ? "login-error" : undefined}
+              className="w-full rounded-lg border border-slate-700 bg-slate-900/50 py-3 pl-4 pr-12 text-white placeholder-slate-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((visible) => !visible)}
+              aria-label={showPassword ? "隐藏密码" : "显示密码"}
+              aria-pressed={showPassword}
+              title={showPassword ? "隐藏密码" : "显示密码"}
+              className="absolute inset-y-0 right-0 flex w-12 touch-manipulation items-center justify-center rounded-r-lg text-slate-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500"
+            >
+              {showPassword ? (
+                <EyeOff className="h-5 w-5" aria-hidden="true" />
+              ) : (
+                <Eye className="h-5 w-5" aria-hidden="true" />
+              )}
+            </button>
+          </div>
           {error && (
-            <p className="text-red-400 text-sm mt-3 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
+            <p
+              id="login-error"
+              role="alert"
+              aria-live="polite"
+              className="text-red-400 text-sm mt-3 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2"
+            >
               {error}
             </p>
           )}
@@ -72,7 +99,7 @@ function LoginForm() {
             disabled={loading}
             className="w-full mt-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-cyan-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? "登录中..." : "登 录"}
+            {loading ? "登录中…" : "登录"}
           </button>
           <p className="text-slate-500 text-xs mt-6 text-center">
             首次使用？密码在服务器 <code className="text-blue-400">.env</code> 文件
