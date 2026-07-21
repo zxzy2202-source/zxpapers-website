@@ -185,7 +185,8 @@ const nextConfig: NextConfig = {
       // Product URL aliases → canonical content pages (replaces former client-side JS redirects)
       { source: "/products/custom-printed-rolls", destination: "/products/thermal-paper-rolls/custom-printed", permanent: true },
       { source: "/products/blank-thermal-rolls", destination: "/products/thermal-paper-rolls/blank", permanent: true },
-      { source: "/products/custom-printed-labels", destination: "/products/thermal-labels/custom-printed", permanent: true },
+      { source: "/products/thermal-labels/custom-printed", destination: "/products/custom-printed-thermal-labels", permanent: true },
+      { source: "/products/custom-printed-labels", destination: "/products/custom-printed-thermal-labels", permanent: true },
       { source: "/products/blank-thermal-labels", destination: "/products/thermal-labels/blank", permanent: true },
       {
         source: "/products/can-labels/:legacy(211x400|211x603|300x407|307x510|401x700|blank|custom-printed)",

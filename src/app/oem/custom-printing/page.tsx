@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-custom-printing-LUkP5mysubyQvqY9CtfS3J.webp";
 const productPaths = [
   { id: "rolls" as const, title: "Custom Printed Thermal Paper Rolls", description: "Logo, reverse print, QR, multilingual and private-label roll programs reviewed against the complete roll specification.", href: "/products/thermal-paper-rolls/custom-printed", cta: "Review custom roll requirements" },
-  { id: "labels" as const, title: "Custom Printed Thermal Labels", description: "Custom thermal label printing reviewed against facestock, adhesive, liner, dimensions, printer and application requirements.", href: "/products/thermal-labels/custom-printed", cta: "Review custom label requirements" },
+  { id: "labels" as const, title: "Custom Printed Thermal Labels", description: "Custom thermal label printing reviewed against facestock, adhesive, liner, dimensions, printer and application requirements.", href: "/products/custom-printed-thermal-labels", cta: "Review custom label requirements" },
 ];
 const steps = [
   { step: "01", title: "Choose the product", description: "Confirm whether the project is a thermal roll, thermal label or a coordinated private-label range." },

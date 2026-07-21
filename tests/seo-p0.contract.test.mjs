@@ -161,3 +161,19 @@ test("sitemap excludes can-label detail routes that permanently redirect", () =>
   assert.doesNotMatch(sitemapSource, /const canLabelPages/);
   assert.doesNotMatch(sitemapSource, /"custom-printed-thermal-rolls"/);
 });
+
+test("custom printed thermal label aliases resolve to one canonical page", () => {
+  for (const source of [
+    "/products/thermal-labels/custom-printed",
+    "/products/custom-printed-labels",
+  ]) {
+    assertRedirect(source, "/products/custom-printed-thermal-labels");
+  }
+
+  assert.match(sitemapSource, /"custom-printed-thermal-labels"/);
+  assert.doesNotMatch(sitemapSource, /"thermal-labels\/custom-printed"/);
+  assert.match(
+    imageSlots,
+    /pageUrl:\s*"\/products\/custom-printed-thermal-labels"/,
+  );
+});

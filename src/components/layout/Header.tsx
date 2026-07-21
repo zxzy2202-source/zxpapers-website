@@ -178,7 +178,7 @@ export default function Header() {
             <span className="text-slate-600">|</span>
             <span>Global Shipping</span>
             <span className="text-slate-600">|</span>
-            <span>MOQ 1 Pallet</span>
+            <span>Wholesale &amp; OEM Supply</span>
           </div>
         </div>
       </div>

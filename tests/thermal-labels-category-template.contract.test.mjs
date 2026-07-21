@@ -54,13 +54,15 @@ test("thermal labels config contains buyer-facing unique category paths", async 
   for (const destination of [
     "/products/shipping-labels",
     "/products/thermal-labels/blank",
-    "/products/thermal-labels/custom-printed",
+    "/products/custom-printed-thermal-labels",
     "/products/barcode-labels",
     "/products/linerless-labels",
     "#popular-sizes",
   ]) {
     assert.match(config, new RegExp(destination.replaceAll("/", "\\/")));
   }
+
+  assert.doesNotMatch(config, /\/products\/thermal-labels\/custom-printed/);
 
   assert.match(config, /Printer/);
   assert.match(config, /Surface and environment/);

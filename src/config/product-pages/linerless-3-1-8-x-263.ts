@@ -319,7 +319,7 @@ export const linerlessDetailConfig = {
       title: "Custom Printed Thermal Labels",
       description: "Develop printed labels, roll identification and private-label packing from approved artwork and application requirements.",
       buyerFit: "Best for brands, distributors and multilingual packaging programs.",
-      href: "/products/thermal-labels/custom-printed",
+      href: "/products/custom-printed-thermal-labels",
       linkLabel: "Explore custom printed labels",
       image: {
         slot: "linerless-3-1-8-x-263:related-custom",

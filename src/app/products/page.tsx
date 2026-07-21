@@ -39,7 +39,7 @@ const catalogEntries: { name: string; path: string }[] = [
   ...paperRollSizes.map((size) => ({ name: `${size.label} Thermal Paper Roll`, path: `/products/thermal-rolls/${size.slug}` })),
   { name: "Blank Thermal Labels", path: "/products/thermal-labels/blank" },
   { name: "Custom Printed Thermal Labels", path: "/products/custom-printed-thermal-labels" },
-  { name: "Custom Printed Direct Thermal Labels", path: "/products/thermal-labels/custom-printed" },
+  { name: "Custom Printed Direct Thermal Labels", path: "/products/custom-printed-thermal-labels" },
   ...labelSizes.map((size) => ({ name: `${size.label} Thermal Label`, path: `/products/thermal-labels/${size.slug}` })),
   { name: "Barcode & Variable-Data Labels", path: "/products/barcode-labels" },
   { name: "Product & Packaging Labels", path: "/products/product-labels" },
@@ -198,7 +198,7 @@ export default async function ProductsPage() {
           links: [
             { label: "All Thermal Labels", href: "/products/thermal-labels", badge: "Overview" },
             { label: "Blank Thermal Labels", href: "/products/thermal-labels/blank" },
-            { label: "Custom Printed Labels", href: "/products/thermal-labels/custom-printed" },
+  { label: "Custom Printed Labels", href: "/products/custom-printed-thermal-labels" },
             { label: "Linerless Labels", href: "/products/linerless-labels" },
           ],
         },

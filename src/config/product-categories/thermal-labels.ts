@@ -38,9 +38,9 @@ export const thermalLabelsCategoryConfig = {
   audience:
     "Distributors, 3PLs, e-commerce brands, packaging suppliers, food businesses and industrial procurement teams",
   metadata: {
-    title: "Thermal Labels Manufacturer | 4x6 Shipping, Barcode & OEM | ZhixinPaper",
+    title: "Thermal Labels Manufacturer | Shipping, Barcode & OEM",
     description:
-      "ISO 9001 factory for thermal labels. 4×6 shipping labels, FNSKU, barcode & linerless rolls in stock. Zebra & Honeywell compatible · OEM · MOQ 500 rolls. Free sample & 24h quote.",
+      "Compare blank, shipping, barcode, custom-printed and linerless thermal labels for bulk and OEM supply. Qualify by printer, size, surface, adhesive and packing.",
     keywords: [
       "thermal labels manufacturer",
       "direct thermal labels",
@@ -126,7 +126,7 @@ export const thermalLabelsCategoryConfig = {
       title: "Custom Printed Labels",
       description: "Pre-printed logos, fields, warnings, codes and multilingual content with repeat artwork control.",
       buyerFit: "Best for brands, distributors and packaging programs that need an approved repeat SKU.",
-      href: "/products/thermal-labels/custom-printed",
+      href: "/products/custom-printed-thermal-labels",
       linkLabel: "Review custom printing",
       image: {
         slot: "thermal-labels:custom-hero",
@@ -229,7 +229,7 @@ export const thermalLabelsCategoryConfig = {
       title: "Pharmacy and healthcare",
       description: "Short- or longer-term identification selected from the real print and handling workflow.",
       confirm: "printer, substrate, retention period, abrasion, code size and required evidence scope",
-      href: "/products/thermal-labels/custom-printed",
+      href: "/products/custom-printed-thermal-labels",
       linkLabel: "Discuss a healthcare program",
       image: {
         slot: "thermal-labels:applications:pharmacy",
@@ -242,7 +242,7 @@ export const thermalLabelsCategoryConfig = {
       title: "Industrial traceability",
       description: "Thermal-transfer constructions for assets, components and demanding handling conditions.",
       confirm: "ribbon, face stock, surface, abrasion, chemicals, temperature and required service life",
-      href: "/products/thermal-labels/custom-printed",
+      href: "/products/custom-printed-thermal-labels",
       linkLabel: "Review an industrial label",
       image: {
         slot: "thermal-labels:applications:asset",
@@ -255,7 +255,7 @@ export const thermalLabelsCategoryConfig = {
       title: "Cross-border packaging",
       description: "Custom labels and private-label packing aligned with destination and channel requirements.",
       confirm: "artwork versions, language, document scope, carton marks, destination and repeat-order control",
-      href: "/products/thermal-labels/custom-printed",
+      href: "/products/custom-printed-thermal-labels",
       linkLabel: "Plan a custom program",
       image: {
         slot: "thermal-labels:applications:crossborder",
@@ -366,6 +366,6 @@ export const thermalLabelsCategoryConfig = {
     { label: "Shipping Labels", href: "/products/shipping-labels" },
     { label: "Barcode Labels", href: "/products/barcode-labels" },
     { label: "Linerless Labels", href: "/products/linerless-labels" },
-    { label: "Custom Printed Labels", href: "/products/thermal-labels/custom-printed" },
+    { label: "Custom Printed Labels", href: "/products/custom-printed-thermal-labels" },
   ],
 } satisfies ProductCategoryConfig;

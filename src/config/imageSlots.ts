@@ -429,7 +429,7 @@ export const IMAGE_SLOTS = [
   { slot: "detergent-labels:applications:refill", label: "洗涤标签-补充装软包装", page: "洗涤剂标签", pageUrl: "/products/detergent-labels", aspect: "4:3", description: "补充装袋和软包装标签应用场景" },
   { slot: "detergent-labels:applications:filling-line", label: "洗涤标签-自动灌装贴标线", page: "洗涤剂标签", pageUrl: "/products/detergent-labels", aspect: "4:3", description: "家居清洁产品自动灌装与贴标线场景" },
   { slot: "thermal-labels:blank-hero", label: "热敏标签 空白 顶部图", page: "热敏空白标签", pageUrl: "/products/thermal-labels/blank", aspect: "16:9" },
-  { slot: "thermal-labels:custom-hero", label: "热敏标签 定制 顶部图", page: "热敏定制标签", pageUrl: "/products/thermal-labels/custom-printed", aspect: "16:9" },
+  { slot: "thermal-labels:custom-hero", label: "热敏标签 定制 顶部图", page: "热敏定制标签", pageUrl: "/products/custom-printed-thermal-labels", aspect: "16:9" },
   { slot: "thermal-paper-rolls:blank-hero", label: "热敏纸卷 空白 顶部图", page: "热敏空白纸卷", pageUrl: "/products/thermal-paper-rolls/blank", aspect: "16:9" },
   { slot: "thermal-paper-rolls:custom-hero", label: "热敏纸卷 定制 顶部图", page: "热敏定制纸卷", pageUrl: "/products/thermal-paper-rolls/custom-printed", aspect: "16:9" },
   { slot: "can-labels:blank-hero", label: "空白机贴卷筒标签", page: "灌装线自动贴标卷筒标签", pageUrl: "/products/can-labels", aspect: "16:9" },

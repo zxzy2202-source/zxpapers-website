@@ -125,7 +125,7 @@ export const customPrintedThermalLabelsCategoryConfig = {
         "Static logos, borders, instructions and fields supplied on direct-thermal media with planned areas for later variable-data printing.",
       buyerFit:
         "Best for operations that need a ribbon-free overprint step. Confirm printer model, heat settings, preprint coverage, thermal image zone, service life and storage conditions.",
-      href: "/products/thermal-labels/custom-printed",
+      href: "#inquiry",
       linkLabel: "Review custom direct thermal labels",
       featured: true,
       image: {
