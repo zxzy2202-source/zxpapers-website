@@ -77,25 +77,18 @@ const breadcrumbSchema = {
 
 const productSchema = {
   "@context": "https://schema.org",
-  "@type": "Product",
-  "@id": `${SITE.domain}/products/auto-repair-ncr-forms#product`,
+  "@type": "WebPage",
+  "@id": `${SITE.domain}/products/auto-repair-ncr-forms#webpage`,
   name: "Custom Auto Repair NCR Forms",
   alternateName: ["Auto Repair Order Forms", "Vehicle Inspection NCR Forms", "Carbonless Repair Authorization Forms"],
   description: metadata.description,
   url: `${SITE.domain}/products/auto-repair-ncr-forms`,
   image: HERO_IMAGE,
-  category: "NCR / Carbonless Auto Repair Business Forms",
-  brand: { "@type": "Brand", name: SITE.name },
-  manufacturer: { "@id": `${SITE.domain}/#organization` },
   audience: {
     "@type": "BusinessAudience",
     audienceType: "Auto repair shops, dealership service departments, body shops, fleet maintenance teams, vehicle inspection centers, form distributors, and commercial printers",
   },
-  additionalProperty: autoRepairSpecifications.map(({ label, value }) => ({
-    "@type": "PropertyValue",
-    name: label,
-    value,
-  })),
+  about: { "@type": "Thing", name: "Custom Auto Repair NCR Forms" },
 };
 
 const faqSchema = {

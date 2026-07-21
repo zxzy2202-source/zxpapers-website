@@ -161,6 +161,10 @@ const organizationSchema = {
     "Continuous fanfold and tractor-feed computer forms",
     "OEM / private-label thermal paper manufacturing",
   ],
+  // This is a quote-led B2B catalog. Keep the catalog as Offers, but do not
+  // emit Product entities without a real price, review, or aggregate rating.
+  // Product entities without one of those fields trigger Search Console's
+  // Product snippets warning on every page that includes this organization.
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Thermal Paper & Label Products",
@@ -182,7 +186,8 @@ const organizationSchema = {
       { name: "Continuous Computer Forms", path: "/products/continuous-computer-forms" },
     ].map((c) => ({
       "@type": "Offer",
-      itemOffered: { "@type": "Product", name: c.name, url: `${SITE.domain}${c.path}` },
+      name: c.name,
+      url: `${SITE.domain}${c.path}`,
     })),
   },
   hasCredential: CERTIFICATIONS.map((c) => ({

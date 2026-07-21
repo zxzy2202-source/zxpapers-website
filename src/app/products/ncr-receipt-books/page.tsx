@@ -122,8 +122,8 @@ const breadcrumbSchema = {
 
 const productSchema = {
   "@context": "https://schema.org",
-  "@type": "Product",
-  "@id": `${SITE.domain}/products/ncr-receipt-books#product`,
+  "@type": "WebPage",
+  "@id": `${SITE.domain}/products/ncr-receipt-books#webpage`,
   name: "Wholesale NCR Receipt Books",
   alternateName: [
     "Carbonless Receipt Books",
@@ -139,19 +139,12 @@ const productSchema = {
     RECEIPT_3_PART_IMAGE,
     RECEIPT_PRIVATE_LABEL_IMAGE,
   ],
-  category: "NCR / Carbonless Receipt Books",
-  brand: { "@type": "Brand", name: SITE.name },
-  manufacturer: { "@id": `${SITE.domain}/#organization` },
   audience: {
     "@type": "BusinessAudience",
     audienceType:
       "Overseas distributors, commercial printing companies, stationery wholesalers, and repeat procurement programs",
   },
-  additionalProperty: receiptBookSpecifications.map(({ label, value }) => ({
-    "@type": "PropertyValue",
-    name: label,
-    value,
-  })),
+  about: { "@type": "Thing", name: "Wholesale NCR Receipt Books" },
 };
 
 const faqSchema = {

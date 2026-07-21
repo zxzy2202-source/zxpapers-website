@@ -34,19 +34,12 @@ export default async function NcrApplicationShowcasePage({ application }: { appl
 
   const productSchema = {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "WebPage",
     name: application.name,
     description: application.metaDescription,
-    brand: { "@type": "Brand", name: SITE.name },
-    manufacturer: { "@id": `${SITE.domain}/#organization` },
     image: NCR_FORMS_IMG,
     url,
-    category: "NCR / Carbonless Business Forms",
-    additionalProperty: application.specs.map(({ label, value }) => ({
-      "@type": "PropertyValue",
-      name: label,
-      value,
-    })),
+    about: { "@type": "Thing", name: application.name },
   };
 
   const faqSchema = {

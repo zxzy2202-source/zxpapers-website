@@ -49,26 +49,12 @@ const breadcrumbSchema = {
 
 const productSchema = {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "WebPage",
   "name": "Custom Printed Detergent Labels | OEM Cleaning Product Labels",
   "description": "Custom printed detergent labels with CMYK + Pantone printing. Water-resistant, chemical-resistant, GHS compliant. Gloss/matte lamination, embossing.",
-  "brand": {
-    "@type": "Brand",
-    "name": "Zhixin Paper"
-  },
-  "manufacturer": {
-    "@type": "Organization",
-    "name": "Zhixin Paper",
-    "url": "https://www.zxpapers.com"
-  },
   "image": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=1200&q=80",
-  "url": "https://www.zxpapers.com/products/detergent-labels/custom-printed"
-,
-  "additionalProperty": detergentLabelSizes.map(({ label, slug }) => ({
-    "@type": "PropertyValue",
-    "name": label,
-    "value": slug,
-  }))
+  "url": "https://www.zxpapers.com/products/detergent-labels/custom-printed",
+  "about": { "@type": "Thing", "name": "Custom Printed Detergent Labels" },
 };
 export const revalidate = 86400; // 24 hours: static product/market content
 

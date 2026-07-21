@@ -139,8 +139,8 @@ export default async function NcrInvoiceBooksPage() {
 
   const productSchema = {
     "@context": "https://schema.org",
-    "@type": "Product",
-    "@id": `${SITE.domain}/products/ncr-invoice-books#product`,
+    "@type": "WebPage",
+    "@id": `${SITE.domain}/products/ncr-invoice-books#webpage`,
     name: "Wholesale NCR Invoice Books",
     alternateName: [
       "Carbonless Invoice Books",
@@ -156,19 +156,12 @@ export default async function NcrInvoiceBooksPage() {
       images["ncr-invoice-books:3-part"],
       images["ncr-invoice-books:private-label"],
     ],
-    category: "NCR / Carbonless Invoice Books",
-    brand: { "@type": "Brand", name: SITE.name },
-    manufacturer: { "@id": `${SITE.domain}/#organization` },
     audience: {
       "@type": "BusinessAudience",
       audienceType:
         "Overseas distributors, commercial printing companies, stationery wholesalers, and repeat procurement programs",
     },
-    additionalProperty: invoiceBookSpecifications.map(({ label, value }) => ({
-      "@type": "PropertyValue",
-      name: label,
-      value,
-    })),
+    about: { "@type": "Thing", name: "Wholesale NCR Invoice Books" },
   };
 
   const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent(

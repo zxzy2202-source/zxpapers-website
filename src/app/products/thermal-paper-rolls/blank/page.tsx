@@ -59,14 +59,12 @@ const faqs = [
 
 const productSchema = {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "WebPage",
   name: "Blank Thermal Paper Rolls",
   description: metadata.description,
-  brand: { "@type": "Brand", name: "ZhixinPaper" },
-  manufacturer: { "@type": "Organization", name: "ZhixinPaper", url: SITE.domain },
   image: ROLLS_IMG_FALLBACK,
   url: `${SITE.domain}/products/thermal-paper-rolls/blank`,
-  additionalProperty: specs.map(({ label, value }) => ({ "@type": "PropertyValue", name: label, value })),
+  about: { "@type": "Thing", name: "Blank Thermal Paper Rolls" },
 };
 
 const breadcrumbSchema = {

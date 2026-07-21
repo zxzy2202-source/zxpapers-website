@@ -6,26 +6,22 @@ export function buildProductDetailSchemas(
   image: string,
 ) {
   const url = `${SITE.domain}${config.canonicalPath}`;
-  const additionalProperty = config.specifications.flatMap((group) =>
-    group.rows.map((row) => ({
-      "@type": "PropertyValue",
-      name: row.label,
-      value: row.value,
-    })),
-  );
-
+  // These pages are quote-led B2B product guides rather than online
+  // merchant listings. Use a WebPage topic entity until a real price,
+  // review, or aggregate rating is available for a specific SKU.
   const product = {
     "@context": "https://schema.org",
-    "@type": "Product",
-    "@id": `${url}#product`,
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
     name: config.productName,
     description: config.directAnswer.answer,
-    category: config.categoryName,
     image: [image],
     url,
-    brand: { "@type": "Brand", name: SITE.name },
-    manufacturer: { "@id": `${SITE.domain}/#organization` },
-    additionalProperty,
+    about: {
+      "@type": "Thing",
+      name: config.productName,
+      description: config.directAnswer.answer,
+    },
   };
 
   const breadcrumb = {

@@ -172,22 +172,12 @@ export default async function SizeDetailPage({
 
   const productSchema = {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "WebPage",
     name: fullTitle,
     description,
-    brand: { "@type": "Brand", name: "Zhixin Paper" },
-    manufacturer: {
-      "@type": "Organization",
-      name: "Zhixin Paper",
-      url: SITE.domain,
-    },
     image: resolvedProductImage,
     url: productUrl,
-    additionalProperty: specs.map((spec) => ({
-      "@type": "PropertyValue",
-      name: spec.label,
-      value: spec.value,
-    })),
+    about: { "@type": "Thing", name: fullTitle },
   };
 
   const heroQuickFacts = [

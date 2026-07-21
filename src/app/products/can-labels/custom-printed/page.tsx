@@ -49,26 +49,12 @@ const breadcrumbSchema = {
 
 const productSchema = {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "WebPage",
   "name": "Custom Printed Can Labels | OEM Full-Color Can Labels",
   "description": "Custom printed can labels with CMYK and Pantone color printing. Full-wrap, gloss/matte lamination, NDA protection. MOQ 5,000.",
-  "brand": {
-    "@type": "Brand",
-    "name": "Zhixin Paper"
-  },
-  "manufacturer": {
-    "@type": "Organization",
-    "name": "Zhixin Paper",
-    "url": "https://www.zxpapers.com"
-  },
   "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-  "url": "https://www.zxpapers.com/products/can-labels/custom-printed"
-,
-  "additionalProperty": canLabelSizes.map(({ label, slug }) => ({
-    "@type": "PropertyValue",
-    "name": label,
-    "value": slug,
-  }))
+  "url": "https://www.zxpapers.com/products/can-labels/custom-printed",
+  "about": { "@type": "Thing", "name": "Custom Printed Can Labels" },
 };
 export const revalidate = 86400; // 24 hours: static product/market content
 

@@ -374,23 +374,14 @@ export default async function ShippingLabelsPage() {
 
   const productSchema = {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "WebPage",
     name: "Direct Thermal Shipping Labels",
     description: PAGE_DESCRIPTION,
     url: `${SITE.domain}/products/shipping-labels`,
     image: images["shipping-labels:hero"].startsWith("/")
       ? `${SITE.domain}${images["shipping-labels:hero"]}`
       : images["shipping-labels:hero"],
-    brand: { "@type": "Brand", name: "ZhixinPaper" },
-    manufacturer: { "@type": "Organization", name: "Xi'an Zhi Xin Paper Co., Ltd." },
-    category: "Direct thermal shipping labels",
-    additionalProperty: specificationGroups.flatMap((group) =>
-      group.items.map((item) => ({
-        "@type": "PropertyValue",
-        name: `${group.title}: ${item.label}`,
-        value: item.value,
-      })),
-    ),
+    about: { "@type": "Thing", name: "Direct Thermal Shipping Labels" },
   };
 
   const whatsappMessage =

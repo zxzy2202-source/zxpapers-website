@@ -77,14 +77,12 @@ const breadcrumbSchema = { "@context": "https://schema.org", "@type": "Breadcrum
 
 const productSchema = {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "WebPage",
   name: "Blank Thermal Labels | High-Temp, Low-Temp & Removable Adhesive",
   description: metadata.description,
-  brand: { "@type": "Brand", name: "Zhixin Paper" },
-  manufacturer: { "@type": "Organization", name: "Zhixin Paper", url: SITE.domain },
   image: LABELS_IMG_FALLBACK,
   url: `${SITE.domain}/products/thermal-labels/blank`,
-  additionalProperty: specs.map(({ label, value }) => ({ "@type": "PropertyValue", name: label, value })),
+  about: { "@type": "Thing", name: "Blank Thermal Labels" },
 };
 
 export const revalidate = 86400; // 24 hours: static product/market content

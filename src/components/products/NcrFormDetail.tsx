@@ -36,13 +36,11 @@ export default async function NcrFormDetail({ part }: { part: NcrFormPart }) {
 
   const productSchema = {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "WebPage",
     "name": part.shortName,
     "description": part.metaDescription,
     "url": url,
-    "category": "NCR / Carbonless Business Forms",
-    "brand": { "@type": "Brand", "name": SITE.name },
-    "manufacturer": { "@id": `${SITE.domain}/#organization` },
+    "about": { "@type": "Thing", "name": part.shortName },
   };
 
   const faqSchema = {

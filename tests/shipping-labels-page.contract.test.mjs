@@ -11,10 +11,11 @@ test("shipping labels route uses its dedicated detail component", () => {
   assert.doesNotThrow(() => readFileSync(componentPath, "utf8"));
 });
 
-test("route publishes Product, Breadcrumb, FAQ, and HowTo schemas", () => {
-  for (const schemaType of ["Product", "BreadcrumbList", "FAQPage", "HowTo"]) {
+test("route publishes WebPage, Breadcrumb, FAQ, and HowTo schemas", () => {
+  for (const schemaType of ["WebPage", "BreadcrumbList", "FAQPage", "HowTo"]) {
     assert.match(route, new RegExp(`"@type": "${schemaType}"`));
   }
+  assert.doesNotMatch(route, /"@type": "Product"/);
 });
 
 test("visible workflow and HowTo use the same four step names", () => {
