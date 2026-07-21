@@ -559,7 +559,7 @@ export default function ShippingLabelsDetailPage({
                 { label: "4x6 shipping label specification", href: "/products/thermal-labels/4x6in" },
                 { label: "Blank thermal labels", href: "/products/thermal-labels/blank" },
                 { label: "Barcode labels", href: "/products/barcode-labels" },
-                { label: "Custom printed thermal labels", href: "/products/thermal-labels/custom-printed" },
+  { label: "Custom printed thermal labels", href: "/products/custom-printed-thermal-labels" },
                 { label: "Thermal labels product range", href: "/products/thermal-labels" },
               ].map((item) => (
                 <Link key={item.href} href={item.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-navy transition-colors hover:text-amber-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500">

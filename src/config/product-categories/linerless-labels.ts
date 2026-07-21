@@ -369,7 +369,7 @@ export const linerlessLabelsCategoryConfig = {
   relatedPrograms: [
     { label: "3 1/8 x 263' Linerless Labels", href: "/products/linerless-labels/3-1-8-x-263" },
     { label: "Thermal Labels", href: "/products/thermal-labels" },
-    { label: "Custom Printed Labels", href: "/products/thermal-labels/custom-printed" },
+    { label: "Custom Printed Labels", href: "/products/custom-printed-thermal-labels" },
     { label: "OEM and Private Label", href: "/oem" },
   ],
 } satisfies ProductCategoryConfig;

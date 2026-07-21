@@ -122,7 +122,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "thermal-paper-rolls/blank",
     "thermal-paper-rolls/custom-printed",
     "thermal-labels/blank",
-    "thermal-labels/custom-printed",
     "shipping-labels",
     "till-rolls",
     "linerless-labels",

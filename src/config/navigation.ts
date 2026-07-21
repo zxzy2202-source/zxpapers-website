@@ -115,7 +115,7 @@ export const mainNav: (NavItem | NavDropdown)[] = [
         badgeColor: "blue",
         items: [
           { label: "Blank Thermal Labels",         href: "/products/thermal-labels/blank" },
-          { label: "Custom Printed Labels",        href: "/products/thermal-labels/custom-printed" },
+          { label: "Custom Printed Labels",        href: "/products/custom-printed-thermal-labels" },
           { label: "Shipping Labels",              href: "/products/shipping-labels" },
           { label: "Product & Packaging Labels",   href: "/products/product-labels" },
           { label: "Barcode Labels",               href: "/products/barcode-labels" },
@@ -131,8 +131,6 @@ export const mainNav: (NavItem | NavDropdown)[] = [
         badgeColor: "green",
         items: [
           { label: "Machine-Ready Roll Labels",          href: "/products/can-labels" },
-          { label: "Custom Printed Thermal Labels",      href: "/products/custom-printed-thermal-labels" },
-          { label: "Linerless Labels",                   href: "/products/linerless-labels" },
           { label: "Detergent & Household Labels",       href: "/products/detergent-labels" },
           { label: "Blank Bottle Labels",                href: "/products/detergent-labels/blank" },
           { label: "Custom Printed Bottle Labels",       href: "/products/detergent-labels/custom-printed" },
@@ -345,7 +343,7 @@ export const footerLinks = {
     { label: "Blank Thermal Rolls",              href: "/products/thermal-paper-rolls/blank" },
     { label: "Custom Printed Rolls",             href: "/products/thermal-paper-rolls/custom-printed" },
     { label: "Blank Thermal Labels",             href: "/products/thermal-labels/blank" },
-    { label: "Custom Printed Labels",            href: "/products/thermal-labels/custom-printed" },
+    { label: "Custom Printed Labels",            href: "/products/custom-printed-thermal-labels" },
     { label: "Machine-Ready Filling Line Labels", href: "/products/can-labels" },
     { label: "Blank Bottle Labels",              href: "/products/detergent-labels/blank" },
     { label: "Custom Printed Bottle Labels",     href: "/products/detergent-labels/custom-printed" },
