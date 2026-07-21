@@ -47,9 +47,9 @@ export const ncrFormParts: NcrFormPart[] = [
     desc: "One copy for the customer, one for your records — receipts and simple invoices.",
     shortName: "2-Part NCR Forms",
     h1: "2-Part (Duplicate) NCR Forms",
-    metaTitle: "2-Part NCR Forms | Duplicate Carbonless Forms Manufacturer",
+    metaTitle: "2-Part NCR Forms | Duplicate Carbonless Sets",
     metaDescription:
-      "Custom printed 2-part (duplicate) NCR carbonless forms for receipts, invoices, and order books. White + color plies, numbering, logo printing, books or sets. MOQ from low volume.",
+      "Specify 2-part NCR forms for receipts, invoices and order books by sheet size, copy colors, numbering, artwork, binding, packing and quantity.",
     keywords:
       "2-part NCR forms, duplicate forms, 2-part carbonless forms, 2 ply NCR, duplicate receipt books, 2-part invoice books, carbonless duplicate forms",
     intro:
@@ -69,9 +69,9 @@ export const ncrFormParts: NcrFormPart[] = [
     desc: "Customer, accounts, and warehouse/sales copies — orders and delivery notes.",
     shortName: "3-Part NCR Forms",
     h1: "3-Part (Triplicate) NCR Forms",
-    metaTitle: "3-Part NCR Forms | Triplicate Carbonless Forms Manufacturer",
+    metaTitle: "3-Part NCR Forms | Triplicate Carbonless Sets",
     metaDescription:
-      "Custom printed 3-part (triplicate) NCR carbonless forms for invoices, delivery notes, and purchase orders. Three color plies, sequential numbering, logo printing. MOQ from low volume.",
+      "Specify 3-part NCR forms for invoices, delivery notes and purchase orders by copy sequence, numbering, artwork, binding, packing and quantity.",
     keywords:
       "3-part NCR forms, triplicate forms, 3-part carbonless forms, 3 ply NCR, triplicate invoice books, 3-part delivery note, carbonless triplicate forms",
     intro:
@@ -91,9 +91,9 @@ export const ncrFormParts: NcrFormPart[] = [
     desc: "Logistics, finance, bank, and institutional copies for multi-step approval flows.",
     shortName: "4-Part NCR Forms",
     h1: "4-Part (Quadruplicate) NCR Forms",
-    metaTitle: "4-Part NCR Forms | Quadruplicate Carbonless Forms Manufacturer",
+    metaTitle: "4-Part NCR Forms | Quadruplicate Sets",
     metaDescription:
-      "Custom printed 4-part (quadruplicate) NCR carbonless forms for logistics, finance, and institutional workflows. Four color plies, numbering, logo printing, books or continuous. MOQ from low volume.",
+      "Specify 4-part NCR forms for logistics, finance and institutional workflows by copy sequence, numbering, artwork, format, binding and packing.",
     keywords:
       "4-part NCR forms, quadruplicate forms, 4-part carbonless forms, 4 ply NCR, quadruplicate invoice, 4-part waybill, carbonless quadruplicate forms",
     intro:
@@ -115,9 +115,9 @@ export const ncrFormParts: NcrFormPart[] = [
     desc: "Customs, transport, banking, and agency workflows needing five or more copies.",
     shortName: "Multi-Part NCR Forms",
     h1: "Multi-Part (5+ Ply) NCR Forms",
-    metaTitle: "Multi-Part NCR Forms | 5+ Ply Carbonless Forms Manufacturer",
+    metaTitle: "Multi-Part NCR Forms | 5+ Ply Sets",
     metaDescription:
-      "Custom printed multi-part (5+ ply) NCR carbonless forms for customs, transport, banking, and agency workflows. Configurable ply colors, numbering, logo, books or continuous. MOQ from low volume.",
+      "Specify 5+ ply NCR forms for customs, transport, banking and agency workflows by copy roles, numbering, artwork, format, binding and packing.",
     keywords:
       "multi-part NCR forms, 5-part carbonless forms, multi-ply NCR, 5 ply forms, customs forms, multi-part business forms, carbonless multi-part forms",
     intro:

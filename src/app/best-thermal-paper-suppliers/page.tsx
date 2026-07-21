@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button";
 import { SITE, FACTORY } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "Best Thermal Paper Suppliers (2026 Buyer's Guide)",
+  title: { absolute: "Best Thermal Paper Suppliers 2026 | ZhixinPaper" },
   description:
-    "How to choose the best thermal paper supplier in 2026: certifications, production capacity, MOQ, BPA-free compliance, OEM, and lead time — with a factual comparison of leading China manufacturers.",
+    "Compare thermal paper suppliers by product scope, material evidence, specification control, samples, OEM capability, packing and repeat-order support.",
   keywords:
     "best thermal paper suppliers, best thermal paper manufacturer, thermal paper roll supplier China, how to choose thermal paper supplier, BPA-free thermal paper supplier, wholesale thermal paper manufacturer, OEM thermal paper supplier",
   alternates: { canonical: `${SITE.domain}/best-thermal-paper-suppliers` },

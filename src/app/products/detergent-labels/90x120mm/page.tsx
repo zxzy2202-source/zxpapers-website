@@ -6,7 +6,7 @@ import { SITE } from "@/config/siteData";
 export const metadata: Metadata = {
   title: "90×120mm Detergent Labels | Front Panel",
   description:
-    "90×120mm detergent labels for bottle front panels. Water-resistant BOPP, chemical-resistant adhesive. CMYK + Pantone printing. MOQ 5,000. ISO 9001 certified.",
+    "Review 90×120mm detergent bottle labels by container, film, adhesive, formula exposure, print process, artwork, application method and test evidence.",
   alternates: { canonical: `${SITE.domain}/products/detergent-labels/90x120mm` },
 };
 

@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SITE } from "@/config/siteData";
+import { readInquiryAttribution } from "@/lib/inquiryAttribution";
 
 interface InquiryFormProps {
   productName?: string;
@@ -28,16 +29,24 @@ async function submitInquiryToBackend(payload: {
   subject?: string;
   message: string;
   source?: string;
-}): Promise<void> {
+  landingPage?: string;
+  referrer?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmTerm?: string;
+  utmContent?: string;
+}): Promise<{ id: string }> {
   const res = await fetch("/api/inquiry", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
   if (!res.ok) {
-    const data = await res.json().catch(() => ({}));
+    const data = await res.json().catch(() => ({} as { error?: string }));
     throw new Error(data.error ?? "Submission failed");
   }
+  return res.json();
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -147,7 +156,8 @@ export default function InquiryForm({
         ? `Inquiry about ${productName}`
         : (data.get("subject") as string) || "General Inquiry";
 
-      await submitInquiryToBackend({
+      const source = typeof window !== "undefined" ? window.location.pathname : undefined;
+      const result = await submitInquiryToBackend({
         name: (data.get("name") as string).trim(),
         email: (data.get("email") as string).trim(),
         company: ((data.get("company") as string) || "").trim() || undefined,
@@ -155,8 +165,21 @@ export default function InquiryForm({
         phone: ((data.get("phone") as string) || "").trim() || undefined,
         subject,
         message: (data.get("message") as string).trim(),
-        source: typeof window !== "undefined" ? window.location.pathname : undefined,
+        source,
+        ...readInquiryAttribution(),
       });
+
+      if (typeof window !== "undefined") {
+        const trackedWindow = window as typeof window & {
+          dataLayer?: Array<Record<string, unknown>>;
+        };
+        trackedWindow.dataLayer = trackedWindow.dataLayer || [];
+        trackedWindow.dataLayer.push({
+          event: "inquiry_submit_success",
+          inquiry_id: result.id,
+          source,
+        });
+      }
 
       setStatus("success");
       form.reset();

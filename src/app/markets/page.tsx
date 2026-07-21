@@ -6,7 +6,7 @@ import { SITE } from "@/config/siteData";
 import { CountryFlag, type CountryCode } from "@/components/ui/country-flag";
 
 export const metadata: Metadata = {
-  title: "Global Export Markets | Paper & Label Manufacturer",
+  title: { absolute: "Global Thermal Paper & Label Markets | ZhixinPaper" },
   description: "Explore ZhixinPaper export support for Africa, Southeast Asia and the Middle East, plus global supply for paper, labels and custom printed products.",
   keywords: "paper manufacturer global markets, thermal paper Africa, thermal paper Southeast Asia, thermal paper Middle East, label manufacturer, B2B paper export",
   openGraph: {

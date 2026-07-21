@@ -14,10 +14,10 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About Us | Thermal Paper Manufacturer",
-  description: "ISO 9001 & FSC certified thermal paper manufacturer in Xi'an, China. 50,000m² factory, 20+ production lines, 80+ countries served.",
+  description: "Learn about ZhixinPaper's thermal paper and label manufacturing scope, product categories, quality workflow, export support and inquiry process.",
   openGraph: {
-    title: `About Us | Thermal Paper Manufacturer Since ${SITE.founded}`,
-    description: "Zhixin Paper: Founded 2009 in Xi'an, China. 50,000m² facility, 20+ production lines, 80+ countries served.",
+    title: "About ZhixinPaper | Products, Quality & Export Support",
+    description: "Review ZhixinPaper's product scope, manufacturing workflow, quality process, OEM support and export inquiry route.",
     type: "website",
     images: [
       {

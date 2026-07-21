@@ -9,7 +9,7 @@ import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: "OEM Thermal Paper | Custom Printing & Labels",
-  description: "OEM thermal paper rolls and labels manufacturer. Custom printing, private label packaging, design support. ISO 9001 certified. MOQ 1,000 rolls. NDA available.",
+  description: "Plan OEM thermal paper rolls and labels through artwork, specification, proofing, custom printing, private-label packing and repeat-order control.",
   alternates: { canonical: `${SITE.domain}/oem` },
 };
 

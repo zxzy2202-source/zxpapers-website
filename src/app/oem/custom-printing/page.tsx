@@ -4,8 +4,8 @@ import { SITE } from "@/config/siteData";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
-  title: "OEM Printing Services for Thermal Rolls & Labels",
-  description: "Review OEM printing for thermal rolls and labels through product selection, artwork intake, proof and sample planning, version control, packing and document requirements.",
+  title: { absolute: "OEM Printing for Thermal Rolls & Labels | ZhixinPaper" },
+  description: "Plan OEM printing through product selection, artwork intake, proofing, samples, version control, packing and destination document requirements.",
   alternates: { canonical: `${SITE.domain}/oem/custom-printing` },
 };
 const IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-custom-printing-LUkP5mysubyQvqY9CtfS3J.webp";

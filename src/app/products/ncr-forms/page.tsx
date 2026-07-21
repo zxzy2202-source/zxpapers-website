@@ -22,7 +22,7 @@ const applicationFallbacks = {
 } as const;
 
 export const metadata: Metadata = {
-  title: "NCR Forms & Carbonless Paper Manufacturer | Custom Printed",
+  title: { absolute: "Custom NCR Forms & Carbonless Paper | ZhixinPaper" },
   description: "Wholesale NCR forms and carbonless paper for distributors and printers, including 2-part to 5+ part sets, books, numbering and private-label packing.",
   keywords: "wholesale NCR forms, NCR forms manufacturer, carbonless paper supplier, NCR paper for printers, custom NCR forms, 2-part forms, 3-part forms, 4-part forms, NCR receipt books, invoice books, delivery note forms, continuous computer forms",
   alternates: { canonical: `${SITE.domain}/products/ncr-forms` },

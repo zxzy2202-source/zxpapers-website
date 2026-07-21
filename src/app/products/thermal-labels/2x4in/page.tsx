@@ -5,8 +5,8 @@ import type { ApplicationItem } from "@/components/products/SizeDetailPage";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: '2" x 4" Thermal Labels | Address & Shipping Labels | ZhixinPaper',
-  description: '2" x 4" thermal address and shipping labels. Ideal for envelopes, small parcels, and address printing. Compatible with DYMO, Zebra. MOQ 5,000.',
+  title: { absolute: '2" x 4" Thermal Labels | ZhixinPaper' },
+  description: 'Review 2" x 4" direct thermal labels for addresses, small parcels, returns and inventory by printer, roll construction, adhesive and packing.',
   keywords: '2x4 thermal labels, 2 x 4 inch labels, address labels, shipping labels, narrow thermal labels',
   alternates: { canonical: `${SITE.domain}/products/thermal-labels/2x4in` },
 };

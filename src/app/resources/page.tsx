@@ -6,7 +6,7 @@ import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
   title: "Resource Center | Guides & Industry Insights",
-  description: "Comprehensive resource center for thermal paper buyers and distributors. OEM guides, product knowledge, application cases, industry insights, and.",
+  description: "Thermal paper buying guides, product specifications, application cases, compliance updates, and OEM resources for distributors and procurement teams.",
   alternates: { canonical: `${SITE.domain}/resources` },
 };
 

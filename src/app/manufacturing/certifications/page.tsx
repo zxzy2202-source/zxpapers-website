@@ -6,8 +6,8 @@ import { SITE } from "@/config/siteData";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
-  title: "Certifications | ISO 9001 FSC BPA-Free RoHS",
-  description: "ZhixinPaper certifications: ISO 9001:2015, FSC, BPA-Free, RoHS, REACH, CE. All certificates available upon request for import/customs requirements.",
+  title: { absolute: "Compliance Documents & Certifications | ZhixinPaper" },
+  description: "Review the quality, material and compliance documents relevant to thermal paper and label procurement, including issuer, scope, subject and validity.",
   alternates: { canonical: `${SITE.domain}/manufacturing/certifications` },
 };
 

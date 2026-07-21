@@ -13,14 +13,14 @@ import { SITE } from "@/config/siteData";
 import { getSlotImages } from "@/lib/imageSlotUtils";
 
 const PAGE_DESCRIPTION =
-  "Bulk direct thermal shipping labels for 3PL and warehouse operations, including 4x6 rolls and fanfold, printer matching, adhesive selection, pallet packing, samples, and repeat-order control.";
+  "Review 4x6 shipping label rolls and fanfold stacks by printer, sensor, adhesive, packing, sample plan and repeat-order specification.";
 
 const SHIPPING_LABELS_IMAGE = "/images/shipping-labels/shipping-labels-hero.webp";
 const FACTORY_LINE_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
 
 export const metadata: Metadata = {
-  title: "4x6 Shipping Labels for 3PL and Warehouses | Rolls and Fanfold",
+  title: { absolute: "4x6 Shipping Labels for 3PLs | ZhixinPaper" },
   description: PAGE_DESCRIPTION,
   keywords:
     "4x6 shipping labels bulk, direct thermal shipping labels, fanfold shipping labels, shipping label rolls, 3PL shipping labels, warehouse shipping labels, thermal printer compatible labels, wholesale shipping labels",

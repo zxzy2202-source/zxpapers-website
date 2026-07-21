@@ -9,9 +9,9 @@ import { r2Image } from "@/lib/r2";
 import BlogSearchGrid, { type BlogCardPost } from "@/components/blog/BlogSearchGrid";
 
 export const metadata: Metadata = {
-  title: "Blog | Thermal Paper Insights, Guides & Industry News",
+  title: { absolute: "Thermal Paper Guides & Insights | ZhixinPaper" },
   description:
-    "Guides, market analyses, and product knowledge on thermal paper rolls, labels, NCR forms, and OEM manufacturing from ZhixinPaper — a factory-direct supplier since 2009.",
+    "Read practical guides on thermal paper rolls, labels, NCR forms, specifications, applications, compliance questions and OEM procurement workflows.",
   alternates: { canonical: `${SITE.domain}/blog` },
 };
 

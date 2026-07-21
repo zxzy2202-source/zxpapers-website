@@ -8,9 +8,6 @@ import { readAllPosts } from "@/lib/postsStore";
 export const revalidate = 3600; // 1 hour
 
 const BASE = SITE.domain;
-// Keep static page lastmod stable. Update this when static page content changes.
-const STATIC_LAST_MOD = "2026-07-20";
-
 function uniqueByUrl(entries: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
   const seen = new Set<string>();
   return entries.filter((entry) => {
@@ -23,29 +20,29 @@ function uniqueByUrl(entries: MetadataRoute.Sitemap): MetadataRoute.Sitemap {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Core Pages (priority 1.0 / 0.9)
   const corePages: MetadataRoute.Sitemap = [
-    { url: `${BASE}/`, lastModified: STATIC_LAST_MOD, changeFrequency: "weekly", priority: 1.0 },
-    { url: `${BASE}/products`, lastModified: STATIC_LAST_MOD, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE}/products/receipt-paper-rolls`, lastModified: STATIC_LAST_MOD, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE}/products/till-rolls`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/products/bpa-free-thermal-paper`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${BASE}/products/bps-free-thermal-paper`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${BASE}/products/colored-thermal-paper`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/contact`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE}/oem`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE}/about`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/manufacturing`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/faq`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/specifications`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/resources`, lastModified: STATIC_LAST_MOD, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${BASE}/contact/oem-partnership`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/`, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${BASE}/products`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/products/receipt-paper-rolls`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/products/till-rolls`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/products/bpa-free-thermal-paper`, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${BASE}/products/bps-free-thermal-paper`, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${BASE}/products/colored-thermal-paper`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/contact`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/oem`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/about`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/manufacturing`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/faq`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/specifications`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources`, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${BASE}/contact/oem-partnership`, changeFrequency: "monthly", priority: 0.8 },
   ];
 
   // Market Hub Pages (priority 0.85)
   const marketHubs: MetadataRoute.Sitemap = [
-    { url: `${BASE}/markets`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${BASE}/markets/africa`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${BASE}/markets/middle-east`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${BASE}/markets/southeast-asia`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${BASE}/markets`, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${BASE}/markets/africa`, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${BASE}/markets/middle-east`, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${BASE}/markets/southeast-asia`, changeFrequency: "monthly", priority: 0.85 },
   ];
 
   // Africa Country Pages (priority 0.5; sales/trust pages, near-zero search demand)
@@ -53,7 +50,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "nigeria", "kenya", "ghana", "south-africa", "tanzania", "ethiopia",
   ].map((country) => ({
     url: `${BASE}/markets/africa/${country}`,
-    lastModified: STATIC_LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: 0.5,
   }));
@@ -63,7 +59,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "uae", "saudi-arabia", "egypt", "turkey",
   ].map((country) => ({
     url: `${BASE}/markets/middle-east/${country}`,
-    lastModified: STATIC_LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: 0.5,
   }));
@@ -73,7 +68,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "thailand", "indonesia", "vietnam", "philippines", "malaysia", "singapore",
   ].map((country) => ({
     url: `${BASE}/markets/southeast-asia/${country}`,
-    lastModified: STATIC_LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: 0.5,
   }));
@@ -83,17 +77,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "57x30mm", "57x40mm", "57x50mm", "80x70mm", "80x80mm", "110x80mm",
   ].map((size) => ({
     url: `${BASE}/products/thermal-rolls/${size}`,
-    lastModified: STATIC_LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: 0.85,
   }));
 
   // Thermal Labels Product Pages (priority 0.85)
   const thermalLabelPages: MetadataRoute.Sitemap = [
-    "1x1in", "2x1in", "2x4in", "3x2in", "4x3in", "4x6in", "blank", "custom-printed",
+    "1x1in", "2x1in", "2x4in", "3x2in", "4x3in", "4x6in", "blank",
   ].map((size) => ({
     url: `${BASE}/products/thermal-labels/${size}`,
-    lastModified: STATIC_LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: 0.85,
   }));
@@ -103,7 +95,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "100x100mm", "120x80mm", "70x200mm", "80x150mm", "90x120mm", "blank", "custom-printed",
   ].map((size) => ({
     url: `${BASE}/products/detergent-labels/${size}`,
-    lastModified: STATIC_LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
@@ -144,16 +135,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "ncr-forms/multi-part",
   ].map((slug) => ({
     url: `${BASE}/products/${slug}`,
-    lastModified: STATIC_LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
   // Other Static Pages (priority 0.7)
   const otherPages: MetadataRoute.Sitemap = [
-    { url: `${BASE}/blog`, lastModified: STATIC_LAST_MOD, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${BASE}/zhixinpaper-vs-panda-paper-roll`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/best-thermal-paper-suppliers`, lastModified: STATIC_LAST_MOD, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/blog`, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/zhixinpaper-vs-panda-paper-roll`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/best-thermal-paper-suppliers`, changeFrequency: "monthly", priority: 0.7 },
   ];
 
   // Manufacturing Sub-Pages (priority 0.7)
@@ -161,7 +151,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "certifications", "equipment", "quality-control",
   ].map((slug) => ({
     url: `${BASE}/manufacturing/${slug}`,
-    lastModified: STATIC_LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
@@ -172,7 +161,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "ip-protection", "packaging", "quality-assurance",
   ].map((slug) => ({
     url: `${BASE}/oem/${slug}`,
-    lastModified: STATIC_LAST_MOD,
     changeFrequency: "monthly" as const,
     priority: 0.75,
   }));
@@ -182,7 +170,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "application-cases", "industry-insights", "oem-guide", "product-knowledge",
   ].map((slug) => ({
     url: `${BASE}/resources/${slug}`,
-    lastModified: STATIC_LAST_MOD,
     changeFrequency: "weekly" as const,
     priority: 0.65,
   }));
@@ -197,7 +184,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${BASE}/blog/${p.slug}`,
         lastModified: p.updatedAt
           ? new Date(p.updatedAt).toISOString().split("T")[0]
-          : STATIC_LAST_MOD,
+          : undefined,
         changeFrequency: "monthly" as const,
         priority: 0.6,
       }));

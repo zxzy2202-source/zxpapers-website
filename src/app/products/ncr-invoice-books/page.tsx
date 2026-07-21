@@ -24,10 +24,10 @@ const USE_CASE_IMAGES = {
 } as const;
 
 const pageDescription =
-  "Wholesale NCR invoice books for distributors and commercial printers, with duplicate or triplicate sets, controlled numbering, custom binding, private-label packing, and repeat-order specifications.";
+  "Source NCR invoice books by sheet size, duplicate or triplicate sequence, numbering, artwork, binding, packing and repeat-order specification.";
 
 export const metadata: Metadata = {
-  title: "Wholesale NCR Invoice Books | Duplicate & Triplicate",
+  title: { absolute: "Wholesale NCR Invoice Books | ZhixinPaper" },
   description: pageDescription,
   alternates: { canonical: `${SITE.domain}/products/ncr-invoice-books` },
   openGraph: {

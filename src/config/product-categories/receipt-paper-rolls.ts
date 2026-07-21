@@ -41,9 +41,9 @@ export const receiptPaperRollsCategoryConfig = {
   audience:
     "Retail chains, restaurants, hospitality operators, payment-service providers, terminal distributors, banks, kiosk operators, wholesalers and OEM buyers managing receipt-printer fleets or resale programs",
   metadata: {
-    title: "Receipt Paper Rolls Manufacturer | POS, ATM & OEM | Factory-Direct | ZhixinPaper",
+    title: "Receipt Paper Rolls Manufacturer | ZhixinPaper",
     description:
-      "ISO 9001 factory for receipt paper rolls. 80×80mm, 57×50mm, ATM & kiosk rolls in stock. BPA-free options · custom printing · private label · MOQ 1 pallet. Free sample & 24h quote.",
+      "Source receipt paper rolls by printer, width, diameter, core, paper grade, image-life requirement, custom printing, packing and destination.",
     keywords: [
       "receipt paper rolls manufacturer",
       "cash register paper rolls",

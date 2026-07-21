@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "6-Stage Quality Control | ISO 9001 Process",
-  description: "ZhixinPaper quality control: 6-stage inspection from raw materials to final batch release. 99.8% pass rate, 100% batch traceability, ISO 9001 certified.",
+  title: { absolute: "Thermal Paper Quality Control | ZhixinPaper" },
+  description: "Review ZhixinPaper's inspection workflow from incoming materials and in-process checks through converting, printing, packing and batch release.",
   alternates: { canonical: `${SITE.domain}/manufacturing/quality-control` },
 };
 

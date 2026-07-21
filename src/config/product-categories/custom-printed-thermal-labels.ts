@@ -41,7 +41,7 @@ export const customPrintedThermalLabelsCategoryConfig = {
   metadata: {
     title: "Custom Printed Thermal Labels Manufacturer | OEM",
     description:
-      "Specify custom printed thermal labels by artwork, overprint method, material, adhesive, printer or applicator, roll build, proof and multi-SKU packing for repeat B2B supply.",
+      "Specify custom printed thermal labels by artwork, material, adhesive, printer or applicator, roll build, proof, packing and repeat-order control.",
     keywords: [
       "custom printed thermal labels",
       "preprinted thermal labels",

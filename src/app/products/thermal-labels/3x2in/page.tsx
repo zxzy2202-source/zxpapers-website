@@ -5,8 +5,8 @@ import type { ApplicationItem } from "@/components/products/SizeDetailPage";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: '3" x 2" Thermal Labels | Product & Retail Labels | ZhixinPaper',
-  description: '3" x 2" thermal labels for product labeling, retail price tags, and inventory management. Compatible with Zebra, Honeywell, SATO. MOQ 5,000.',
+  title: { absolute: '3" x 2" Thermal Labels | ZhixinPaper' },
+  description: 'Review 3" x 2" direct thermal labels for products, retail, inventory, food and pharmacy workflows by printer, adhesive and packing.',
   keywords: '3x2 thermal labels, 3 x 2 inch labels, product labels, retail labels, thermal label wholesale',
   alternates: { canonical: `${SITE.domain}/products/thermal-labels/3x2in` },
 };

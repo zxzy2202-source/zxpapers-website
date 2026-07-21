@@ -1,6 +1,6 @@
 /**
  * 多渠道通知：企业微信 + 飞书 + Server 酱
- * 触发后 fire-and-forget，不阻塞主流程
+ * API route awaits the delivery batch so serverless runtimes do not terminate it early.
  */
 import { pagePathToLabel } from "@/lib/pageLabels";
 import { SITE } from "@/config/siteData";
@@ -14,6 +14,18 @@ interface InquiryNotifyData {
   subject?: string;
   message: string;
   source?: string;
+  landingPage?: string;
+  referrer?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+}
+
+function attributionLine(data: InquiryNotifyData) {
+  const campaign = [data.utmSource, data.utmMedium, data.utmCampaign]
+    .filter(Boolean)
+    .join(" / ");
+  return campaign || data.referrer || data.landingPage || "—";
 }
 
 /** 企业微信群机器人 */
@@ -29,6 +41,7 @@ export async function notifyWeCom(data: InquiryNotifyData) {
     `**电话：** ${data.phone || "—"}`,
     `**主题：** ${data.subject || "—"}`,
     `**来源页面：** ${data.source ? `${pagePathToLabel(data.source)}\n  \`${data.source}\`` : "—"}`,
+    `**渠道归因：** ${attributionLine(data)}`,
     `---`,
     `**内容：**`,
     data.message,
@@ -67,7 +80,7 @@ export async function notifyFeishu(data: InquiryNotifyData) {
         },
         { tag: "hr" },
         { tag: "div", text: { tag: "lark_md", content: `**💬 内容：**\n${data.message}` } },
-        { tag: "note", elements: [{ tag: "plain_text", content: `来源：${data.source ? pagePathToLabel(data.source) : "网站"} (${data.source || "—"}) · ${new Date().toLocaleString("zh-CN")}` }] },
+        { tag: "note", elements: [{ tag: "plain_text", content: `来源：${data.source ? pagePathToLabel(data.source) : "网站"} (${data.source || "—"}) · 归因：${attributionLine(data)} · ${new Date().toLocaleString("zh-CN")}` }] },
       ],
     },
   };
@@ -95,6 +108,7 @@ export async function notifyServerChan(data: InquiryNotifyData) {
     `- **国家：** ${data.country || "—"}`,
     `- **电话：** ${data.phone || "—"}`,
     `- **来源页面：** ${data.source ? `${pagePathToLabel(data.source)}\n  \`${data.source}\`` : "—"}`,
+    `- **渠道归因：** ${attributionLine(data)}`,
     `\n### 💬 内容\n${data.message}`,
   ].join("\n");
   try {

@@ -9,8 +9,10 @@ const INQUIRY_MAX = 5;
 const INQUIRY_WINDOW_SECONDS = 10 * 60;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function optionalTrim(value: unknown) {
-  return typeof value === "string" ? value.trim() : undefined;
+function optionalTrim(value: unknown, maxLength = 500) {
+  return typeof value === "string"
+    ? value.trim().slice(0, maxLength) || undefined
+    : undefined;
 }
 
 export async function POST(req: NextRequest) {
@@ -26,12 +28,28 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json();
-  const { name, email, company, country, phone, subject, message, source } = body;
+  const {
+    name,
+    email,
+    company,
+    country,
+    phone,
+    subject,
+    message,
+    source,
+    landingPage,
+    referrer,
+    utmSource,
+    utmMedium,
+    utmCampaign,
+    utmTerm,
+    utmContent,
+  } = body;
 
-  const trimmedName = optionalTrim(name);
-  const trimmedEmail = optionalTrim(email);
-  const trimmedCountry = optionalTrim(country);
-  const trimmedMessage = optionalTrim(message);
+  const trimmedName = optionalTrim(name, 120);
+  const trimmedEmail = optionalTrim(email, 254);
+  const trimmedCountry = optionalTrim(country, 120);
+  const trimmedMessage = optionalTrim(message, 5000);
 
   if (
     !trimmedName ||
@@ -46,21 +64,30 @@ export async function POST(req: NextRequest) {
   const inquiryData = {
     name: trimmedName,
     email: trimmedEmail,
-    company: optionalTrim(company),
+    company: optionalTrim(company, 200),
     country: trimmedCountry,
-    phone: optionalTrim(phone),
-    subject: optionalTrim(subject),
+    phone: optionalTrim(phone, 80),
+    subject: optionalTrim(subject, 200),
     message: trimmedMessage,
     source: optionalTrim(source),
+    landingPage: optionalTrim(landingPage),
+    referrer: optionalTrim(referrer),
+    utmSource: optionalTrim(utmSource),
+    utmMedium: optionalTrim(utmMedium),
+    utmCampaign: optionalTrim(utmCampaign),
+    utmTerm: optionalTrim(utmTerm),
+    utmContent: optionalTrim(utmContent),
   };
 
   try {
-    // 1. 本地持久化（后台可查看）
-    await append(inquiryData).catch((e) => console.error("[inquiry:persist]", e));
+    // Persistence is the delivery source of truth. Never show success if this fails.
+    const savedInquiry = await append(inquiryData);
 
-    // 2. Web3Forms — 发邮件到您的邮箱
+    const deliveryTasks: Promise<unknown>[] = [notifyAll(inquiryData)];
+
+    // Web3Forms email is supplementary; the saved inquiry remains available if it fails.
     if (process.env.NEXT_PUBLIC_WEB3FORMS_KEY) {
-      const web3Res = await fetch("https://api.web3forms.com/submit", {
+      deliveryTasks.push(fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
@@ -76,28 +103,31 @@ export async function POST(req: NextRequest) {
           message: inquiryData.message,
           source: inquiryData.source || "—",
         }),
-      });
-      const web3Data = await web3Res.json().catch(() => ({}));
-      if (!web3Data.success) {
-        console.error("[inquiry:web3forms]", web3Data);
-      }
+      }).then(async (response) => {
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.success) throw new Error("Web3Forms delivery failed");
+      }));
     }
 
-    // 3. 多渠道推送（企业微信 + 飞书 + Server 酱）
-    // 注意: Vercel Serverless 函数响应后会立刻 kill 未 await 的异步操作
-    // 所以必须 await，不能用 fire-and-forget，否则推送会丢失
-    await notifyAll(inquiryData).catch((e) => console.error("[inquiry:notify]", e));
-
-    // 4. 可选：Google Sheets
+    // Google Sheets is also supplementary, but must be awaited in serverless runtimes.
     if (process.env.GOOGLE_SHEETS_WEBHOOK_URL) {
-      fetch(process.env.GOOGLE_SHEETS_WEBHOOK_URL, {
+      deliveryTasks.push(fetch(process.env.GOOGLE_SHEETS_WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(inquiryData),
-      }).catch((e) => console.error("[inquiry:sheets]", e));
+      }).then((response) => {
+        if (!response.ok) throw new Error(`Google Sheets delivery failed: ${response.status}`);
+      }));
     }
 
-    return NextResponse.json({ ok: true });
+    const deliveryResults = await Promise.allSettled(deliveryTasks);
+    deliveryResults.forEach((result, index) => {
+      if (result.status === "rejected") {
+        console.error(`[inquiry:delivery:${index}]`, result.reason);
+      }
+    });
+
+    return NextResponse.json({ ok: true, id: savedInquiry.id });
   } catch (err) {
     console.error("[inquiry]", err);
     return NextResponse.json({ error: "Submission failed. Please try again." }, { status: 500 });

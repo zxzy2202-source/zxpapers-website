@@ -17,9 +17,9 @@ export const linerlessDetailConfig = {
   productName: "3 1/8 x 263' Linerless Labels",
   categoryName: "Continuous direct thermal linerless labels",
   metadata: {
-    title: "3 1/8 x 263' Linerless Labels Manufacturer | Bulk OEM & Private Label | ZhixinPaper",
+    title: "3 1/8 x 263' Linerless Labels | ZhixinPaper",
     description:
-      "ISO 9001 factory for 3 1/8 x 263\u2019 linerless labels. 80mm direct thermal, no liner waste, Zebra & Honeywell compatible. OEM & private-label packing · MOQ 500 rolls. Free sample & 24h quote.",
+      "Review 3 1/8 x 263 ft linerless labels by printer, core, roll diameter, adhesive, application surface, packing and repeat-order requirements.",
     keywords: [
       "3 1/8 x 263 linerless labels",
       "linerless labels manufacturer",

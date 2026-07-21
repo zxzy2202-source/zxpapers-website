@@ -9,7 +9,7 @@ import { getPublishedPostsByCategory } from "@/lib/postsStore";
 import { r2Image } from "@/lib/r2";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper Industry Insights & Trends 2025",
+  title: "Thermal Paper Industry Insights & Updates",
   description:
     "In-depth market analysis, regulatory updates, and strategic insights for thermal paper distributors.",
   keywords:
@@ -72,7 +72,7 @@ export default async function IndustryInsightsPage() {
           <h1 className="font-sora text-3xl sm:text-4xl font-extrabold mb-3">
             Thermal Paper Industry
             <br />
-            <span className="text-amber-400">Insights & Trends 2025</span>
+            <span className="text-amber-400">Insights & Market Updates</span>
           </h1>
           <p className="text-slate-300 max-w-2xl text-base">
             Market analysis, regulatory updates, and strategic insights for thermal paper

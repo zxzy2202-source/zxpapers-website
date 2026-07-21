@@ -25,7 +25,7 @@ export const detergentLabelsCategoryConfig: ProductCategoryConfig = {
   metadata: {
     title: "Custom Detergent & Cleaning Product Labels | B2B",
     description:
-      "Custom printed and blank labels for detergent, cleaner, disinfectant and personal-care bottles. Select by container, formula exposure, application method and required test evidence.",
+      "Specify detergent and cleaning product labels by container, formula exposure, application method, artwork, packing and required test evidence.",
     keywords: [
       "custom detergent labels",
       "cleaning product bottle labels",

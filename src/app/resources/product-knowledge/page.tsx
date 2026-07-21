@@ -7,8 +7,8 @@ import { SITE } from "@/config/siteData";
 import LatestArticles from "@/components/shared/LatestArticles";
 
 export const metadata: Metadata = {
-  title: "What Is Thermal Paper? Complete Guide to Grades, Specs & Uses",
-  description: "What is thermal paper? A complete guide: how thermal printing works, what thermal paper is made of, BPA-free vs phenol-free grades, paper weight, image life, cored vs coreless rolls, and common sizes.",
+  title: { absolute: "Thermal Paper Guide: Grades, Specs & Uses | ZhixinPaper" },
+  description: "Learn how thermal paper works and compare coating grades, paper weight, image life, roll construction, common sizes and application requirements.",
   keywords: "what is thermal paper, thermal paper definition, what is thermal paper made of, how thermal printing works, thermal paper guide, BPA-free thermal paper, thermal paper grades, coreless vs cored thermal paper, how much is thermal paper",
   alternates: { canonical: `${SITE.domain}/resources/product-knowledge` },
 };

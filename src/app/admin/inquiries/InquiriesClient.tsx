@@ -143,6 +143,24 @@ export default function InquiriesClient({ initialList }: { initialList: InquiryR
                         }
                       />
                     )}
+                    {(inq.utmSource || inq.referrer || inq.landingPage) && (
+                      <Field
+                        icon={Globe}
+                        label="渠道归因"
+                        value={
+                          <span>
+                            {inq.utmSource
+                              ? [inq.utmSource, inq.utmMedium, inq.utmCampaign].filter(Boolean).join(" / ")
+                              : inq.referrer || "Direct"}
+                            {inq.landingPage && (
+                              <span className="block text-xs text-slate-400 font-mono mt-0.5">
+                                首次落地：{inq.landingPage}
+                              </span>
+                            )}
+                          </span>
+                        }
+                      />
+                    )}
                   </div>
                   <div className="bg-slate-50 rounded-lg p-3 mb-4">
                     <div className="text-xs text-slate-500 mb-1 font-medium">客户留言</div>

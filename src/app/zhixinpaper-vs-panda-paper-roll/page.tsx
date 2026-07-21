@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button";
 import { SITE, FACTORY } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: "ZhixinPaper vs Panda Paper Roll — Thermal Paper Supplier Comparison",
+  title: { absolute: "ZhixinPaper vs Panda Paper Roll | Comparison" },
   description:
-    "ZhixinPaper vs Panda Paper Roll compared: factory size, production capacity, countries served, certifications, product focus, and OEM. A factory-direct thermal paper alternative for bulk buyers.",
+    "Compare ZhixinPaper and Panda Paper Roll by product scope, published evidence, specification support, customization, packing and bulk procurement workflow.",
   keywords:
     "ZhixinPaper vs Panda Paper Roll, Panda Paper Roll alternative, thermal paper supplier comparison, best thermal paper manufacturer China, factory direct thermal paper, thermal paper roll wholesale supplier",
   alternates: { canonical: `${SITE.domain}/zhixinpaper-vs-panda-paper-roll` },

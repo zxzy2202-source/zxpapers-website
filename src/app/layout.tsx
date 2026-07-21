@@ -4,6 +4,7 @@ import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 import Script from "next/script";
 import { Inter, Sora } from "next/font/google";
 import { readSeo, readEffectiveSeo } from "@/lib/seoStore";
+import AttributionTracker from "@/components/analytics/AttributionTracker";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -290,6 +291,7 @@ export default async function RootLayout({
         />
       </head>
       <body>
+        <AttributionTracker />
         {gtmId && (
           <noscript>
             <iframe

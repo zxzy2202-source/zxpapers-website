@@ -45,7 +45,7 @@ export const productLabelsCategoryConfig = {
   metadata: {
     title: "Custom Product & Packaging Labels | B2B Manufacturer",
     description:
-      "Source product and packaging labels by label job, printer, package surface, environment and artwork. Compare retail, food, barcode, blank and custom printed routes.",
+      "Source product and packaging labels by label job, printer, package surface, environment, artwork, packing and blank or custom printed supply route.",
     keywords: [
       "custom product labels",
       "product label manufacturer",

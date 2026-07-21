@@ -11,11 +11,11 @@ import {
 import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Get a Free Quote Within 24h",
-  description: `Contact ${SITE.name} for thermal paper rolls and labels quotes. Response within ${SITE.responseTime}. WhatsApp, email, or phone. OEM inquiries welcome. Factory in Xi'an, China.`,
+  title: { absolute: "Contact ZhixinPaper | Product & OEM Inquiries" },
+  description: `Contact ${SITE.name} about thermal paper rolls, labels, NCR forms, OEM printing, specifications, samples, packing and destination requirements.`,
   openGraph: {
-    title: `Contact ${SITE.name} | Get a Quote Within 24 Hours`,
-    description: `WhatsApp, email, or phone — we respond within ${SITE.responseTime}. Free samples available. OEM inquiries welcome.`,
+    title: `Contact ${SITE.name} | Product & OEM Inquiries`,
+    description: `Send product specifications, application, quantity, packing, destination and document requirements for a scoped quotation review.`,
       images: [
       {
         url: "https://www.zxpapers.com/og-default.png",

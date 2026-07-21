@@ -75,9 +75,9 @@ export const ncrApplicationPages: NcrApplicationPageData[] = [
     slug: "government-ncr-forms",
     heroSlot: "ncr-applications:government-ncr-forms:hero",
     name: "Government NCR Forms",
-    metaTitle: "Government NCR Forms | Public-Sector Carbonless Forms",
+    metaTitle: "Government NCR Forms | Public-Sector Records",
     metaDescription:
-      "Custom government NCR forms for permits, receipts, inspection reports, customs documents, procurement receiving records and archive-ready multi-part documentation.",
+      "Specify government NCR forms for permits, receipts, inspection reports and procurement records by copy roles, numbering, fields, format and packing.",
     keywords:
       "government NCR forms, public sector carbonless forms, permit forms, inspection report forms, procurement receiving forms, customs NCR forms, numbered government forms",
     heroBadge: "Public-Sector Records",
@@ -190,9 +190,9 @@ export const ncrApplicationPages: NcrApplicationPageData[] = [
     slug: "port-customs-air-cargo-ncr-forms",
     heroSlot: "ncr-applications:port-customs-air-cargo-ncr-forms:hero",
     name: "Port, Customs & Air Cargo NCR Forms",
-    metaTitle: "Port, Customs & Air Cargo NCR Forms | Carbonless Handover Records",
+    metaTitle: "Port & Air Cargo NCR Forms | Handover Records",
     metaDescription:
-      "Custom carbonless NCR forms for port gate passes, cargo release notes, EIR, container damage reports, customs inspection records and air cargo handover documents.",
+      "Specify NCR forms for gate passes, cargo release, EIR, damage reports and air cargo handover by fields, copy roles, numbering, format and packing.",
     keywords:
       "port NCR forms, customs NCR forms, air cargo NCR forms, cargo release note, gate pass form, equipment interchange receipt, EIR forms, container damage report",
     heroBadge: "Cargo Handover Records",
@@ -305,9 +305,9 @@ export const ncrApplicationPages: NcrApplicationPageData[] = [
     slug: "field-service-ncr-forms",
     heroSlot: "ncr-applications:field-service-ncr-forms:hero",
     name: "Field Service NCR Forms",
-    metaTitle: "Field Service NCR Forms | HVAC Work Orders & Service Tickets",
+    metaTitle: "Field Service NCR Forms | Work Orders",
     metaDescription:
-      "Custom NCR service tickets and work order forms for HVAC, plumbing, electrical and field technicians, with customer signature, wraparound cover and clear copies.",
+      "Specify NCR service tickets for HVAC, plumbing, electrical and field teams by fields, signatures, copy roles, numbering, binding and packing.",
     keywords:
       "field service NCR forms, HVAC service tickets, carbonless work order forms, plumber invoice forms, technician service forms, custom service ticket books",
     heroBadge: "HVAC & Service Tickets",
@@ -420,7 +420,7 @@ export const ncrApplicationPages: NcrApplicationPageData[] = [
     slug: "auto-repair-ncr-forms",
     heroSlot: "ncr-applications:auto-repair-ncr-forms:hero",
     name: "Auto Repair NCR Forms",
-    metaTitle: "Auto Repair NCR Forms | Repair Orders & Vehicle Inspection",
+    metaTitle: "Auto Repair NCR Forms | Repair Orders",
     metaDescription:
       "Custom auto repair NCR forms for vehicle intake, damage inspection, estimates and signed repair authorization, with clear customer, workshop and insurer copies.",
     keywords:
@@ -535,7 +535,7 @@ export const ncrApplicationPages: NcrApplicationPageData[] = [
     slug: "logistics-warehouse-ncr-forms",
     heroSlot: "ncr-applications:logistics-warehouse-ncr-forms:hero",
     name: "Logistics & Warehouse NCR Forms",
-    metaTitle: "Logistics & Warehouse NCR Forms | POD & Receiving Records",
+    metaTitle: "Logistics NCR Forms | POD & Receiving",
     metaDescription:
       "Carbonless delivery notes, proof-of-delivery forms, warehouse receiving records and stock transfer forms for 3PL, warehouses and distribution teams.",
     keywords:
@@ -650,7 +650,7 @@ export const ncrApplicationPages: NcrApplicationPageData[] = [
     slug: "medical-pharmacy-ncr-forms",
     heroSlot: "ncr-applications:medical-pharmacy-ncr-forms:hero",
     name: "Medical & Pharmacy NCR Forms",
-    metaTitle: "Medical & Pharmacy NCR Forms | Clear Copies & Long-Term Records",
+    metaTitle: "Medical & Pharmacy NCR Forms | Records",
     metaDescription:
       "Custom medical and pharmacy NCR forms for prescription copies, lab handover, patient consent, public health records and archive-ready multi-part documentation.",
     keywords:

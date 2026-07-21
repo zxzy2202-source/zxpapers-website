@@ -10,8 +10,8 @@ import { getSlotImage } from "@/lib/imageSlotUtils";
 const OEM_QUALITY_ASSURANCE_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-qc-lab-GCyjnzeVMfG7M54TSNubFr.webp";
 
 export const metadata: Metadata = {
-  title: "OEM Quality Assurance | ISO 9001 Certified",
-  description: `ZhixinPaper OEM quality assurance: ISO 9001:2015 certified, multi-stage inspection, batch traceability, and third-party testing.`,
+  title: { absolute: "OEM Quality Assurance & Traceability | ZhixinPaper" },
+  description: `Review the OEM approval workflow for incoming materials, in-process inspection, samples, batch records, packing and third-party test requirements.`,
   alternates: {
     canonical: `${SITE.domain}/oem/quality-assurance`,
   },

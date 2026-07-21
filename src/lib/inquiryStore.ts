@@ -16,6 +16,13 @@ export interface InquiryRecord {
   subject?: string;
   message: string;
   source?: string;
+  landingPage?: string;
+  referrer?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmTerm?: string;
+  utmContent?: string;
   createdAt: string;
   status: "new" | "handled" | "archived";
   notes?: string;

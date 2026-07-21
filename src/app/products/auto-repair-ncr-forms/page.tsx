@@ -12,7 +12,7 @@ const INVOICE_IMAGE = "https://images.unsplash.com/photo-1554224154-26032ffc0d07
 const PRODUCTION_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
 
 export const metadata: Metadata = {
-  title: "Auto Repair NCR Forms | Repair Orders & Vehicle Inspection",
+  title: { absolute: "Auto Repair NCR Forms | Repair Orders | ZhixinPaper" },
   description: "Custom auto repair NCR forms for vehicle inspection, repair orders, estimates and authorization, with clear copies, numbering, books and custom fields.",
   keywords: "auto repair NCR forms, auto repair order forms, carbonless repair orders, vehicle inspection forms, vehicle damage report forms, repair authorization forms, mechanic work order forms, auto repair invoice books, numbered garage forms",
   alternates: { canonical: `${SITE.domain}/products/auto-repair-ncr-forms` },

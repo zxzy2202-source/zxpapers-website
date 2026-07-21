@@ -5,8 +5,8 @@ import type { ApplicationItem } from "@/components/products/SizeDetailPage";
 import { SITE } from "@/config/siteData";
 
 export const metadata: Metadata = {
-  title: '1" x 1" Thermal Labels | Mini Barcode & Price Labels | ZhixinPaper',
-  description: '1" x 1" mini thermal labels for small product barcodes, price tags, and jewelry labeling. High-density printing. Bulk wholesale from factory. MOQ 10,000 labels.',
+  title: { absolute: '1" x 1" Thermal Labels | ZhixinPaper' },
+  description: 'Review 1" x 1" direct thermal labels for small barcodes, price tags, jewelry, pharmacy and component identification by printer and application.',
   keywords: '1x1 thermal labels, 1 x 1 inch labels, mini labels, small barcode labels, jewelry labels',
   alternates: { canonical: `${SITE.domain}/products/thermal-labels/1x1in` },
 };

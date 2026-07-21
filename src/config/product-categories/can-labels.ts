@@ -36,7 +36,7 @@ export const canLabelsCategoryConfig = {
   metadata: {
     title: "Machine-Ready Roll Labels for Filling Lines | B2B",
     description:
-      "Specify roll labels for automatic filling and labeling lines by applicator, core ID, roll OD, web width, unwind, gap, liner, sensor, speed and container condition.",
+      "Specify machine-ready roll labels by applicator, core, roll diameter, web width, unwind, gap, liner, sensor, line speed and container condition.",
     keywords: [
       "machine ready roll labels",
       "labels for filling lines",

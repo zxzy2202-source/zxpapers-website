@@ -12,7 +12,7 @@ import Image from "next/image";
 import { getSlotImages } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
-  title: `Manufacturing Capabilities | ISO 9001 Thermal Paper Factory`,
+  title: { absolute: "Thermal Paper Manufacturing | ZhixinPaper" },
   description: `ZhixinPaper manufacturing: 10000sqm factory, 20 production lines, 50000 tons annual output. Advanced slitting and printing machines.`,
   openGraph: {
     title: `Manufacturing | ${FACTORY.area} ISO 9001 Certified Factory`,

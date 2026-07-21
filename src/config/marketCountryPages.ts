@@ -521,8 +521,8 @@ export const uaeMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a thermal paper distributor in UAE. Please send me your CIF Jebel Ali price list and MOQ for 80×80mm and 57×50mm rolls.",
   showInquiryForm: true,
   metadata: {
-    title: { absolute: "Thermal Paper Rolls Supplier UAE | CIF Jebel Ali | Arabic OEM | ZhixinPaper" },
-    description: "ISO 9001 factory for UAE & GCC distributors. 80×80mm, 57×50mm, BPA-free. CIF Jebel Ali (JAFZA) · Arabic OEM packaging · L/C accepted · MOQ 1 pallet. Free sample available.",
+    title: { absolute: "Thermal Paper Supplier UAE | ZhixinPaper" },
+    description: "Thermal paper rolls for UAE and GCC distributors, with 80×80mm and 57×50mm formats, BPA-free options, OEM packaging and CIF quotation routes.",
     keywords: "thermal paper UAE, thermal rolls Dubai, POS paper UAE, thermal paper Jebel Ali, thermal paper supplier Emirates, thermal paper AED price, thermal paper Abu Dhabi, thermal paper Sharjah, thermal paper Ajman, ورق حراري الإمارات, ورق POS دبي, bulk thermal paper UAE",
     alternates: { canonical: `${siteUrl}/markets/middle-east/uae` },
     openGraph: {
@@ -641,8 +641,8 @@ export const kenyaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a distributor in Kenya. I need thermal paper rolls. Please send CIF Mombasa pricing for 57×50mm / 57×40mm / 80×80mm.",
   showInquiryForm: true,
   metadata: {
-    title: "Thermal Paper Rolls Supplier Kenya | CIF Mombasa | M-Pesa POS | ZhixinPaper",
-    description: "ISO 9001 factory for Kenyan distributors. 57×50mm, 57×40mm & 80×80mm for M-Pesa POS. CIF Mombasa · COMESA CO available · BPA-free · East Africa gateway. Free sample & quote.",
+    title: { absolute: "Thermal Paper Supplier Kenya | ZhixinPaper" },
+    description: "Thermal paper rolls for Kenya distributors, including 57×50mm, 57×40mm and 80×80mm formats, BPA-free options, OEM packing and CIF Mombasa quotes.",
     keywords: "thermal paper rolls Kenya, POS paper Nairobi, receipt paper Kenya, thermal paper Mombasa, M-Pesa POS paper, thermal paper supplier Kenya, bulk thermal paper Kenya, 57x50 thermal paper Kenya, East Africa thermal paper",
     openGraph: {
       title: "Thermal Paper Supplier Kenya | CIF Mombasa",
@@ -763,7 +763,7 @@ export const ghanaMarketPage: MarketCountryPageData = {
   showInquiryForm: true,
   metadata: {
     title: "Thermal Paper Supplier Ghana | Accra",
-    description: "Factory-direct thermal paper rolls for Ghanaian distributors. 57×50mm, 57×40mm, 80×80mm. CIF Tema Port pricing. ISO 9001, BPA-free.",
+    description: "Thermal paper rolls for Ghana distributors, including 57×50mm, 57×40mm and 80×80mm formats, BPA-free options, OEM packing and CIF Tema quotes.",
     keywords: "thermal paper rolls Ghana, POS paper Accra, receipt paper Ghana, thermal paper Tema, MTN MoMo POS paper, thermal paper supplier Ghana, bulk thermal paper Ghana, West Africa thermal paper, ECOWAS thermal paper",
     openGraph: {
       title: "Thermal Paper Supplier Ghana | CIF Tema",
@@ -882,8 +882,8 @@ export const nigeriaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a distributor in Nigeria. I need thermal paper rolls. Please send price list for 57×50mm / 57×40mm / 80×80mm to Lagos.",
   showInquiryForm: true,
   metadata: {
-    title: "Thermal Paper Rolls Supplier Nigeria | CIF Lagos | ISO 9001 | ZhixinPaper",
-    description: "Factory-direct supply to 15M+ POS terminals in Nigeria. 57×50mm, 80×80mm in stock. CIF Lagos/Apapa · FCL ready in 3–5 days · ISO 9001 · BPA-free. Get a free quote.",
+    title: { absolute: "Thermal Paper Supplier Nigeria | ZhixinPaper" },
+    description: "Thermal paper rolls for Nigeria distributors, including 57×50mm and 80×80mm formats, BPA-free options, OEM packing and CIF Lagos or Apapa quotes.",
     keywords: "thermal paper rolls Nigeria, POS paper rolls Lagos, receipt paper Nigeria, thermal paper supplier Nigeria, bulk thermal paper Nigeria, 57x50 thermal paper Nigeria, POS rolls Abuja, thermal paper wholesale Nigeria, CBN POS paper Nigeria",
     openGraph: {
       title: "Thermal Paper Supplier Nigeria | Direct",
@@ -972,8 +972,8 @@ export const ethiopiaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a thermal paper distributor in Ethiopia. Please send me price list and MOQ for 57×50mm and 80×80mm rolls. CIF Djibouti.",
   showInquiryForm: false,
   metadata: {
-    title: "Thermal Paper Rolls Supplier Ethiopia | CIF Djibouti | Telebirr POS | ZhixinPaper",
-    description: "ISO 9001 factory for Ethiopian distributors. 57×50mm & 80×80mm for CBE Birr & Telebirr POS. CIF Djibouti · 20–28 days · L/C accepted · BPA-free. Free sample & 24h quote.",
+    title: { absolute: "Thermal Paper Supplier Ethiopia | ZhixinPaper" },
+    description: "Thermal paper rolls for Ethiopia distributors, including 57×50mm and 80×80mm formats, BPA-free options, OEM packing and CIF Djibouti quotes.",
     keywords: "thermal paper rolls Ethiopia, thermal paper Addis Ababa, POS receipt paper Ethiopia, thermal paper supplier Africa",
     openGraph: {
       title: "Thermal Paper Rolls for Ethiopia",
@@ -1061,8 +1061,8 @@ export const southAfricaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a distributor in South Africa. I need thermal paper rolls. Please send CIF Durban / Cape Town pricing for 80×80mm / 57×50mm / 79×80mm.",
   showInquiryForm: true,
   metadata: {
-    title: "Thermal Paper Rolls Supplier South Africa | CIF Durban | ISO 9001 | ZhixinPaper",
-    description: "ISO 9001 factory for South African distributors. 80×80mm, 57×50mm, 79×80mm in stock. CIF Durban & Cape Town · SADC gateway · BPA-free · MOQ 1 pallet. Free sample & quote.",
+    title: { absolute: "Thermal Paper Supplier South Africa | ZhixinPaper" },
+    description: "Thermal paper rolls for South Africa distributors, including 80×80mm, 79×80mm and 57×50mm formats, BPA-free options and CIF port quotations.",
     keywords: "thermal paper rolls South Africa, POS paper Durban, receipt paper South Africa, thermal paper Johannesburg, thermal paper Cape Town, bulk thermal paper South Africa, 80x80 thermal paper South Africa, SADC thermal paper supplier",
     openGraph: {
       title: "Thermal Paper Supplier South Africa | Durban",
@@ -1151,8 +1151,8 @@ export const tanzaniaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a thermal paper distributor in Tanzania. Please send me price list and MOQ for 57×50mm and 80×80mm rolls. CIF Dar es Salaam.",
   showInquiryForm: false,
   metadata: {
-    title: "Thermal Paper Rolls Supplier Tanzania | CIF Dar es Salaam | M-Pesa POS | ZhixinPaper",
-    description: "ISO 9001 factory for Tanzanian distributors. 57×50mm & 80×80mm for M-Pesa & Airtel Money POS. CIF Dar es Salaam · 18–25 days · East Africa re-export hub · BPA-free. Free quote.",
+    title: { absolute: "Thermal Paper Supplier Tanzania | ZhixinPaper" },
+    description: "Thermal paper rolls for Tanzania distributors, including 57×50mm and 80×80mm formats, BPA-free options, OEM packing and CIF Dar es Salaam quotes.",
     keywords: "thermal paper rolls Tanzania, thermal paper Dar es Salaam, POS receipt paper Tanzania, thermal paper supplier East Africa",
     openGraph: {
       title: "Thermal Paper Rolls for Tanzania",
@@ -1240,8 +1240,8 @@ export const egyptMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a thermal paper distributor in Egypt. Please send me your CIF Alexandria price list and MOQ for 80×80mm and 57×50mm rolls.",
   showInquiryForm: true,
   metadata: {
-    title: { absolute: "Thermal Paper Rolls Supplier Egypt | CIF Alexandria | Meeza POS | ZhixinPaper" },
-    description: "ISO 9001 factory for Egyptian distributors. 80×80mm & 57×50mm for Meeza card POS. CIF Alexandria & Port Said · BPA-free · Arabic OEM available · MOQ 1 pallet. Free sample & quote.",
+    title: { absolute: "Thermal Paper Supplier Egypt | ZhixinPaper" },
+    description: "Thermal paper rolls for Egypt distributors, including 80×80mm and 57×50mm formats, BPA-free options, Arabic OEM packing and CIF port quotations.",
     keywords: "thermal paper Egypt, thermal rolls Cairo, POS paper Alexandria, thermal paper supplier Egypt, thermal paper EGP price, thermal paper Giza, thermal paper Port Said, ورق حراري مصر, ورق POS القاهرة, bulk thermal paper Egypt, thermal paper distributor Egypt",
     alternates: { canonical: `${siteUrl}/markets/middle-east/egypt` },
     openGraph: {
@@ -1330,8 +1330,8 @@ export const turkeyMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a thermal paper distributor in Turkey. Please send me your CIF Istanbul price list and MOQ for 80×80mm and 80×70mm rolls.",
   showInquiryForm: true,
   metadata: {
-    title: { absolute: "Thermal Paper Rolls Supplier Turkey | CIF Istanbul | EU Sizes | ZhixinPaper" },
-    description: "ISO 9001 factory for Turkish distributors. 80×80mm, 80×70mm & 57×50mm in stock. CIF Istanbul · EU-standard sizes · BPA-free · OEM packaging · MOQ 1 pallet. Free sample & 24h quote.",
+    title: { absolute: "Thermal Paper Supplier Turkey | ZhixinPaper" },
+    description: "Thermal paper rolls for Turkey distributors, including 80×80mm, 80×70mm and 57×50mm formats, BPA-free options, OEM packing and CIF Istanbul quotes.",
     keywords: "thermal paper Turkey, thermal rolls Istanbul, POS paper Turkey, thermal paper supplier Türkiye, thermal paper TRY price, termal kağıt Türkiye, termal rulo İstanbul, termal kağıt Ankara, termal kağıt İzmir, POS kağıdı Türkiye, bulk thermal paper Turkey",
     alternates: { canonical: `${siteUrl}/markets/middle-east/turkey` },
     openGraph: {
@@ -1420,8 +1420,8 @@ export const saudiArabiaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a thermal paper distributor in Saudi Arabia. Please send me your CIF Jeddah price list and MOQ for 80×80mm and 57×50mm rolls.",
   showInquiryForm: true,
   metadata: {
-    title: { absolute: "Thermal Paper Rolls Supplier Saudi Arabia | CIF Jeddah | SABER | ZhixinPaper" },
-    description: "ISO 9001 factory supplying KSA distributors. 80×80mm & 57×50mm in stock. CIF Jeddah & Dammam · SABER support · BPA-free · MOQ 1 pallet. Request a free sample & quote.",
+    title: { absolute: "Thermal Paper Supplier Saudi Arabia | ZhixinPaper" },
+    description: "Thermal paper rolls for Saudi Arabia distributors, including 80×80mm and 57×50mm formats, BPA-free options, OEM packing and CIF port quotations.",
     keywords: "thermal paper Saudi Arabia, thermal rolls Riyadh, POS paper Jeddah, thermal paper supplier KSA, thermal paper SAR price, thermal paper Dammam, thermal paper Mecca, thermal paper Medina, ورق حراري السعودية, ورق POS الرياض, bulk thermal paper KSA",
     alternates: { canonical: `${siteUrl}/markets/middle-east/saudi-arabia` },
     openGraph: {
@@ -1510,8 +1510,8 @@ export const indonesiaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a distributor in Indonesia. Please send me your thermal paper price list and CIF Tanjung Priok rates.",
   showInquiryForm: false,
   metadata: {
-    title: "Thermal Paper Rolls Supplier Indonesia | CIF Jakarta | FORM E | ZhixinPaper",
-    description: "ISO 9001 factory for Indonesian distributors. 57×50mm & 80×80mm in stock. CIF Tanjung Priok · FORM E available · OEM supported · MOQ 1 pallet. Free sample & 24h quote.",
+    title: { absolute: "Thermal Paper Supplier Indonesia | ZhixinPaper" },
+    description: "Thermal paper rolls for Indonesia distributors, including 57×50mm and 80×80mm formats, BPA-free options, OEM packing and CIF Tanjung Priok quotes.",
     keywords: "thermal paper rolls Indonesia, thermal paper supplier Jakarta, POS paper rolls Indonesia, kertas thermal Indonesia, supplier kertas struk, harga kertas thermal IDR, thermal paper Surabaya, thermal paper Medan, thermal paper Bandung, kertas struk kasir Indonesia",
     openGraph: {
       title: "Thermal Paper Rolls Supplier Indonesia",
@@ -1599,8 +1599,8 @@ export const malaysiaMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a distributor in Malaysia. Please send me your thermal paper price list and CIF Port Klang rates.",
   showInquiryForm: false,
   metadata: {
-    title: "Thermal Paper Rolls Supplier Malaysia | CIF Port Klang | FORM E | ZhixinPaper",
-    description: "ISO 9001 factory for Malaysian distributors. 80×80mm & 57×50mm in stock. CIF Port Klang · FORM E available · OEM supported · BPA-free · MOQ 1 pallet. Free sample & 24h quote.",
+    title: { absolute: "Thermal Paper Supplier Malaysia | ZhixinPaper" },
+    description: "Thermal paper rolls for Malaysia distributors, including 80×80mm and 57×50mm formats, BPA-free options, OEM packing and CIF Port Klang quotes.",
     keywords: "thermal paper rolls Malaysia, thermal paper supplier Kuala Lumpur, POS paper rolls Malaysia, thermal roll supplier Port Klang, kertas thermal Malaysia, harga kertas thermal MYR, thermal paper Penang, thermal paper Johor Bahru, thermal paper Kota Kinabalu, kertas resit POS Malaysia",
     openGraph: {
       title: "Thermal Paper Rolls Supplier Malaysia",
@@ -1688,8 +1688,8 @@ export const philippinesMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a distributor in the Philippines. Please send me your thermal paper price list and CIF Manila rates.",
   showInquiryForm: false,
   metadata: {
-    title: "Thermal Paper Rolls Supplier Philippines | CIF Manila | FORM E | ZhixinPaper",
-    description: "ISO 9001 factory for Philippine distributors. 57×50mm & 80×80mm for GCash & BancNet POS. CIF Manila MICT · FORM E available · OEM supported · MOQ 1 pallet. Free sample & 24h quote.",
+    title: { absolute: "Thermal Paper Supplier Philippines | ZhixinPaper" },
+    description: "Thermal paper rolls for Philippines distributors, including 57×50mm and 80×80mm formats, BPA-free options, OEM packing and CIF Manila quotes.",
     keywords: "thermal paper rolls Philippines, thermal paper supplier Manila, POS paper rolls Philippines, thermal roll supplier MICT, thermal paper PHP price, thermal paper Cebu, thermal paper Davao, thermal paper Makati, POS receipt paper Philippines, papel termico Philippines",
     openGraph: {
       title: "Thermal Paper Rolls Supplier Philippines",
@@ -1777,8 +1777,8 @@ export const singaporeMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a thermal paper distributor in Singapore. Please send me your price list and MOQ. CIF Singapore port.",
   showInquiryForm: false,
   metadata: {
-    title: "Thermal Paper Rolls Supplier Singapore | CIF PSA | ASEAN Hub | ZhixinPaper",
-    description: "ISO 9001 factory for Singapore distributors. 80×80mm & 57×50mm for PayNow & NETS POS. CIF PSA port · 10–14 days · ASEAN re-distribution hub · BPA-free. Free sample & 24h quote.",
+    title: { absolute: "Thermal Paper Supplier Singapore | ZhixinPaper" },
+    description: "Thermal paper rolls for Singapore distributors, including 80×80mm and 57×50mm formats, BPA-free options, OEM packing and CIF Singapore quotes.",
     keywords: "thermal paper rolls Singapore, thermal paper supplier Singapore, POS receipt paper Singapore, ASEAN thermal paper distributor, thermal paper SGD price, thermal paper PSA port Singapore, bulk thermal paper Singapore, thermal paper distributor ASEAN hub, 80x80 thermal paper Singapore",
     openGraph: {
       title: "Thermal Paper Rolls for Singapore",
@@ -1866,8 +1866,8 @@ export const vietnamMarketPage: MarketCountryPageData = {
   whatsappMessage: "Hello, I am a distributor in Vietnam. Please send me your thermal paper price list and CIF Ho Chi Minh rates.",
   showInquiryForm: false,
   metadata: {
-    title: "Thermal Paper Rolls Supplier Vietnam | CIF Ho Chi Minh | FORM E | ZhixinPaper",
-    description: "ISO 9001 factory for Vietnamese distributors. 80×80mm & 57×50mm for VietQR & bank POS. CIF Cat Lai · FORM E available · OEM supported · BPA-free · MOQ 1 pallet. Free sample & 24h quote.",
+    title: { absolute: "Thermal Paper Supplier Vietnam | ZhixinPaper" },
+    description: "Thermal paper rolls for Vietnam distributors, including 80×80mm and 57×50mm formats, BPA-free options, OEM packing and CIF Cat Lai quotes.",
     keywords: "thermal paper rolls Vietnam, thermal paper supplier Ho Chi Minh, POS paper rolls Vietnam, giấy nhiệt Vietnam, nhà cung cấp giấy in hóa đơn, giá giấy nhiệt VND, thermal paper Hanoi, thermal paper Da Nang, giấy in bill POS Vietnam, nhà máy giấy nhiệt Trung Quốc",
     openGraph: {
       title: "Thermal Paper Rolls Supplier Vietnam",
@@ -2029,8 +2029,8 @@ export const europeRegionPage: MarketRegionPageData = {
   whatsappMessage: "Hello, I need thermal paper rolls for Europe. Please send BPA-free, BPS-free, private-label, and custom printed roll options.",
   showInquiryForm: true,
   metadata: {
-    title: { absolute: "Thermal Paper Rolls Supplier Europe | BPA-Free, FSC & Private Label | ZhixinPaper" },
-    description: "ISO 9001 factory for EU distributors. 80×80 POS rolls, BPA-free, BPS-free, phenol-free & FSC options. Private label & custom receipt printing available. Free sample & 24h quote.",
+    title: { absolute: "Thermal Paper Supplier Europe | ZhixinPaper" },
+    description: "Thermal paper rolls for European distributors, with 80×80 POS formats, BPA-free, BPS-free and phenol-free options, private label and custom printing.",
     keywords: "thermal paper rolls Europe, BPA free thermal paper Europe, BPS free thermal paper, phenol free thermal paper, custom printed thermal rolls Europe, receipt paper supplier Europe",
     alternates: { canonical: `${siteUrl}/markets/europe` },
     openGraph: {
@@ -2115,8 +2115,8 @@ export const africaRegionPage: MarketRegionPageData = {
   whatsappMessage: "Hello, I need thermal paper pricing for Africa markets. Please send recommended sizes and CIF options for my target countries.",
   showInquiryForm: true,
   metadata: {
-    title: "Thermal Paper Rolls Supplier Africa | ISO 9001 | CIF to 6 Countries | ZhixinPaper",
-    description: "ISO 9001 factory serving 15M+ POS terminals across Africa. CIF to Nigeria, Kenya, South Africa, Ghana, Tanzania & Ethiopia · BPA-free · FCL ready in 3–5 days. Free quote.",
+    title: { absolute: "Thermal Paper Supplier Africa | ZhixinPaper" },
+    description: "Thermal paper rolls for African distributors, with regional size guidance, BPA-free options, OEM packing and CIF quotation routes for major ports.",
     keywords: "thermal paper rolls Africa, thermal paper Nigeria, thermal paper Kenya, thermal paper South Africa, thermal paper Ghana, POS paper rolls Africa, receipt paper supplier Africa, bulk thermal paper Africa, wholesale thermal paper Africa",
     openGraph: {
       title: "Thermal Paper Rolls Supplier for Africa",
@@ -2199,8 +2199,8 @@ export const middleEastRegionPage: MarketRegionPageData = {
   whatsappMessage: "Hello, I need thermal paper pricing for Middle East markets. Please send recommended sizes and CIF options for my target countries.",
   showInquiryForm: true,
   metadata: {
-    title: { absolute: "Thermal Paper Rolls Supplier Middle East | Arabic OEM | CIF GCC | ZhixinPaper" },
-    description: "ISO 9001 factory for GCC & Middle East distributors. Serving UAE, Saudi Arabia, Egypt & Turkey. Arabic OEM packaging · CIF available · BPA-free · SABER support. Free sample & 24h quote.",
+    title: { absolute: "Thermal Paper Supplier Middle East | ZhixinPaper" },
+    description: "Thermal paper rolls for Middle East distributors, with regional size guidance, BPA-free options, Arabic OEM packing and CIF quotation routes.",
     keywords: "thermal paper Middle East, thermal rolls UAE Saudi Arabia, POS paper supplier Middle East",
     alternates: { canonical: `${siteUrl}/markets/middle-east` },
     openGraph: {
@@ -2285,8 +2285,8 @@ export const southeastAsiaRegionPage: MarketRegionPageData = {
   whatsappMessage: "Hello, I need thermal paper pricing for Southeast Asia markets. Please send recommended sizes and CIF options for my target countries.",
   showInquiryForm: false,
   metadata: {
-    title: "Thermal Paper Rolls Supplier Southeast Asia | FORM E | CIF 5 Countries | ZhixinPaper",
-    description: "ISO 9001 factory for SEA distributors. CIF to Thailand, Indonesia, Vietnam, Philippines & Malaysia. FORM E available · OEM supported · BPA-free · MOQ 1 pallet. Free sample & 24h quote.",
+    title: { absolute: "Thermal Paper Supplier Southeast Asia | ZhixinPaper" },
+    description: "Thermal paper rolls for Southeast Asia distributors, with regional size guidance, BPA-free options, OEM packing and CIF quotation routes.",
     keywords: "thermal paper rolls Southeast Asia, thermal paper Thailand, thermal paper Indonesia, thermal paper Vietnam, POS paper rolls supplier SEA",
     openGraph: {
       title: "Thermal Paper Supplier for Southeast Asia",

@@ -6,8 +6,8 @@ import { SITE } from "@/config/siteData";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
-  title: "Manufacturing Equipment | German & Japanese",
-  description: "ZhixinPaper production equipment: Voith coating lines, Kampf slitters, Mark Andy label presses. 12 production lines, 500M+ rolls/year capacity.",
+  title: { absolute: "Thermal Paper Manufacturing Equipment | ZhixinPaper" },
+  description: "See the coating, slitting, printing, converting and inspection equipment used across ZhixinPaper's thermal paper and label production workflow.",
   alternates: { canonical: `${SITE.domain}/manufacturing/equipment` },
 };
 

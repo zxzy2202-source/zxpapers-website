@@ -35,9 +35,9 @@ const APPLICATION_IMAGES = {
 } as const;
 
 export const metadata: Metadata = {
-  title: "NCR Receipt Books for Distributors | Duplicate & Triplicate",
+  title: { absolute: "Wholesale NCR Receipt Books | ZhixinPaper" },
   description:
-    "Wholesale NCR receipt books for distributors and printers, including duplicate and triplicate books, controlled numbering, custom covers, binding, private-label packing, and repeat-order specifications.",
+    "Source NCR receipt books by sheet size, duplicate or triplicate sequence, numbering, cover, binding, packing and repeat-order specification.",
   keywords:
     "NCR receipt books, carbonless receipt books, duplicate receipt books, triplicate receipt books, wholesale receipt books, numbered receipt books, custom receipt book printing, private label receipt books",
   alternates: { canonical: `${SITE.domain}/products/ncr-receipt-books` },
