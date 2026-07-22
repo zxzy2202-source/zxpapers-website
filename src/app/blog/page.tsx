@@ -77,7 +77,7 @@ export default async function BlogListPage() {
       <header className="bg-brand-navy-alt py-14 text-white">
         <div className="container">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">Insights & Resources</p>
-          <h1 className="text-3xl font-extrabold tracking-[-0.02em] sm:text-4xl">Thermal Paper Blog & Industry Insights</h1>
+          <h1 className="text-3xl font-extrabold sm:text-4xl">Thermal Paper Blog & Industry Insights</h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-300">
             Guides, market analyses, and product knowledge on thermal paper rolls, labels, NCR forms, and OEM
             manufacturing — from a factory-direct supplier serving 80+ countries since 2009.

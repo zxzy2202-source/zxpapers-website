@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 const faqs = [
   { q: "What is the minimum order quantity?", a: "MOQ is 1 carton for standard sizes. For OEM/private label, MOQ starts from 500 rolls." },
-  { q: "How long does it take to get a quote?", a: "We reply to all inquiries within 24 hours. WhatsApp for an instant response." },
+  { q: "How long does it take to get a quote?", a: "We review complete inquiries within one business day. WhatsApp is available for quick questions during business hours." },
   { q: "Do you offer free samples?", a: "Yes, we offer free samples for qualified buyers. Shipping cost at buyer's expense." },
   { q: "What payment terms do you accept?", a: "T/T, L/C at sight, Western Union, and PayPal for small orders. Flexible terms for regular buyers." },
 ];
@@ -75,17 +75,17 @@ export default async function ContactPage() {
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact Us" }]}
         eyebrow="Get in Touch"
         title={<>Contact <span className="text-amber-400">ZhixinPaper</span></>}
-        subtitle="Get your price quote within 24 hours. WhatsApp for instant response. Our team is ready to help you source the right thermal paper for your market."
-        trustBadges={["24h Quote Response", "Free Samples Available", "OEM Support", "CIF Pricing"]}
+        subtitle="Send the product, size, quantity, and destination. Our sales team will review your request and reply within one business day."
+        trustBadges={["One-Business-Day Reply", "Samples for Qualified Buyers", "OEM Support", "FOB / CIF / DDP"]}
         ctas={[
-          { label: "WhatsApp — Instant Reply", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a price quote for thermal paper rolls.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
-          { label: "Send Inquiry Form", href: "#inquiry-form", variant: "outline", icon: <MessageSquare className="w-4 h-4" /> },
+          { label: "WhatsApp - Quick Question", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a price quote for thermal paper rolls.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
+          { label: "Request a Quote", href: "#inquiry-form", variant: "outline", icon: <MessageSquare className="w-4 h-4" /> },
         ]}
         stats={[
-          { value: "< 30 min", label: "WhatsApp Response" },
-          { value: "< 24h", label: "Email Response" },
-          { value: "Free", label: "Sample Available" },
-          { value: "24/7", label: "Support Hours" },
+          { value: "1 day", label: "Sales Reply" },
+          { value: "4 details", label: "To Start" },
+          { value: "OEM", label: "Packaging" },
+          { value: "FOB / CIF", label: "Trade Terms" },
         ]}
       />
       {/* ── WhatsApp Priority Banner ─────────────────────────────── */}
@@ -97,7 +97,7 @@ export default async function ContactPage() {
             </div>
             <div>
               <div className="font-bold text-base">Fastest Response: WhatsApp</div>
-              <div className="text-slate-300 text-sm">Typically replies within 30 minutes · 7 days/week</div>
+              <div className="text-slate-300 text-sm">Quick questions during business hours</div>
             </div>
           </div>
           <a href={`${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a quote for thermal paper rolls. Please send me pricing and MOQ.")}`}
@@ -163,14 +163,14 @@ export default async function ContactPage() {
             <div className="bg-brand-navy text-white rounded-lg p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Zap className="w-5 h-5 text-amber-400" />
-                <span className="font-bold text-base">Response Guarantee</span>
+                <span className="font-bold text-base">Expected Response</span>
               </div>
               <div className="space-y-3">
                 {[
-                  { channel: "WhatsApp", time: "< 30 min", color: "bg-amber-400", width: "w-[15%]" },
-                  { channel: "WeChat", time: "< 30 min", color: "bg-amber-400", width: "w-[15%]" },
-                  { channel: "Email", time: "< 12 hours", color: "bg-amber-500", width: "w-[50%]" },
-                  { channel: "Inquiry Form", time: "< 24 hours", color: "bg-blue-500", width: "w-full" },
+                  { channel: "WhatsApp", time: "Business hours", color: "bg-amber-400", width: "w-[35%]" },
+                  { channel: "WeChat", time: "Business hours", color: "bg-amber-400", width: "w-[35%]" },
+                  { channel: "Email", time: "1 business day", color: "bg-amber-500", width: "w-full" },
+                  { channel: "Inquiry Form", time: "1 business day", color: "bg-blue-500", width: "w-full" },
                 ].map(({ channel, time, color, width }) => (
                   <div key={channel}>
                     <div className="flex justify-between text-xs mb-1.5">
@@ -214,11 +214,15 @@ export default async function ContactPage() {
                   <Mail className="w-5 h-5 text-amber-600" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-900">Send an Inquiry</h2>
-                  <p className="text-sm text-slate-500">Fill in your requirements and we will prepare a customized quote.</p>
+                  <h2 className="text-xl font-bold text-slate-900">Request a Factory Quote</h2>
+                  <p className="text-sm text-slate-500">Four required details are enough to start. Add company and WhatsApp only when useful.</p>
                 </div>
               </div>
-              <InquiryForm formId="contact-form" />
+              <InquiryForm
+                formId="inquiry-form"
+                responseNote="Reply within one business day. NDA available. No spam."
+                successMessage="We'll respond within one business day."
+              />
             </div>
 
             {/* FAQ preview */}

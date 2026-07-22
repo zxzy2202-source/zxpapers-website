@@ -12,6 +12,56 @@ function escapeHtml(s: string): string {
     .replace(/'/g, "&#39;");
 }
 
+function safeHref(value: string, allowImages = false): string | null {
+  const href = value.trim();
+  if (href.startsWith("/") || href.startsWith("#")) return href;
+  if (/^https?:\/\//i.test(href)) return href;
+  if (!allowImages && /^mailto:/i.test(href)) return href;
+  return null;
+}
+
+function plainHeadingText(value: string): string {
+  return value
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[*_`~]/g, "")
+    .trim();
+}
+
+function headingSlug(value: string): string {
+  return plainHeadingText(value)
+    .toLowerCase()
+    .replace(/&amp;/g, "and")
+    .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "section";
+}
+
+export interface MarkdownHeading {
+  level: 2 | 3;
+  id: string;
+  text: string;
+}
+
+export function extractMarkdownHeadings(md: string): MarkdownHeading[] {
+  const seen = new Map<string, number>();
+  const headings: MarkdownHeading[] = [];
+
+  for (const line of md.replace(/\r\n/g, "\n").split("\n")) {
+    const match = line.match(/^(#{2,3})\s+(.+)$/);
+    if (!match) continue;
+    const base = headingSlug(match[2]);
+    const count = (seen.get(base) || 0) + 1;
+    seen.set(base, count);
+    headings.push({
+      level: match[1].length as 2 | 3,
+      id: count === 1 ? base : `${base}-${count}`,
+      text: plainHeadingText(match[2]),
+    });
+  }
+
+  return headings;
+}
+
 function renderInline(text: string): string {
   // 转义首先
   let out = escapeHtml(text);
@@ -22,13 +72,24 @@ function renderInline(text: string): string {
   // 图片 ![alt](url)
   out = out.replace(
     /!\[([^\]]*)\]\(([^)]+)\)/g,
-    '<img src="$2" alt="$1" class="rounded-xl my-6 mx-auto max-w-full" loading="lazy" />'
+    (_match, alt: string, href: string) => {
+      const safe = safeHref(href, true);
+      return safe
+        ? `<img src="${safe}" alt="${alt}" class="my-6 mx-auto max-w-full rounded-lg" loading="lazy" />`
+        : alt;
+    },
   );
 
   // 链接 [text](url)
   out = out.replace(
     /\[([^\]]+)\]\(([^)]+)\)/g,
-    '<a href="$2" class="font-medium text-brand-navy underline decoration-brand-navy/30 underline-offset-2 transition-colors hover:decoration-brand-navy" target="_blank" rel="noopener nofollow">$1</a>'
+    (_match, label: string, href: string) => {
+      const safe = safeHref(href);
+      if (!safe) return label;
+      const external = /^https?:\/\//i.test(safe);
+      const attrs = external ? ' target="_blank" rel="noopener nofollow"' : "";
+      return `<a href="${safe}" class="font-medium text-brand-navy underline decoration-brand-navy/30 underline-offset-2 transition-colors hover:decoration-brand-navy"${attrs}>${label}</a>`;
+    },
   );
 
   // 加粗 **text**
@@ -44,6 +105,7 @@ export function renderMarkdown(md: string): string {
   const lines = md.replace(/\r\n/g, "\n").split("\n");
   const out: string[] = [];
   let i = 0;
+  const headingCounts = new Map<string, number>();
 
   while (i < lines.length) {
     const line = lines[i];
@@ -77,7 +139,11 @@ export function renderMarkdown(md: string): string {
     if (heading) {
       const level = heading[1].length;
       const sizes = ["", "text-4xl mt-12 mb-6", "text-3xl mt-10 mb-5", "text-2xl mt-8 mb-4", "text-xl mt-6 mb-3", "text-lg mt-5 mb-2", "text-base mt-4 mb-2"];
-      out.push(`<h${level} class="font-bold tracking-tight text-slate-900 ${sizes[level]}">${renderInline(heading[2])}</h${level}>`);
+      const base = headingSlug(heading[2]);
+      const count = (headingCounts.get(base) || 0) + 1;
+      headingCounts.set(base, count);
+      const id = count === 1 ? base : `${base}-${count}`;
+      out.push(`<h${level} id="${id}" class="scroll-mt-24 font-bold text-slate-900 ${sizes[level]}">${renderInline(heading[2])}</h${level}>`);
       i++;
       continue;
     }

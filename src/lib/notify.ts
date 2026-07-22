@@ -28,6 +28,39 @@ function attributionLine(data: InquiryNotifyData) {
   return campaign || data.referrer || data.landingPage || "—";
 }
 
+type WebhookPayload = Record<string, unknown>;
+
+function webhookResultCode(payload: WebhookPayload) {
+  return payload.code ?? payload.errcode ?? payload.StatusCode;
+}
+
+async function assertWebhookAccepted(response: Response, channel: string) {
+  const raw = await response.text();
+  let payload: WebhookPayload | null = null;
+
+  if (raw) {
+    try {
+      payload = JSON.parse(raw) as WebhookPayload;
+    } catch {
+      payload = null;
+    }
+  }
+
+  if (!response.ok) {
+    throw new Error(`${channel} webhook returned HTTP ${response.status}`);
+  }
+
+  const resultCode = payload ? webhookResultCode(payload) : undefined;
+  if (resultCode !== undefined && String(resultCode) !== "0") {
+    const resultMessage = payload?.msg ?? payload?.errmsg ?? payload?.StatusMessage;
+    throw new Error(
+      `${channel} webhook rejected the request (code ${String(resultCode)}${
+        resultMessage ? `: ${String(resultMessage).slice(0, 160)}` : ""
+      })`,
+    );
+  }
+}
+
 /** 企业微信群机器人 */
 export async function notifyWeCom(data: InquiryNotifyData) {
   const url = process.env.WECOM_WEBHOOK_URL;
@@ -46,15 +79,12 @@ export async function notifyWeCom(data: InquiryNotifyData) {
     `**内容：**`,
     data.message,
   ].join("\n");
-  try {
-    await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ msgtype: "markdown", markdown: { content: markdown } }),
-    });
-  } catch (e) {
-    console.error("[notify:wecom]", e);
-  }
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ msgtype: "markdown", markdown: { content: markdown } }),
+  });
+  await assertWebhookAccepted(response, "WeCom");
 }
 
 /** 飞书自定义机器人 */
@@ -84,15 +114,12 @@ export async function notifyFeishu(data: InquiryNotifyData) {
       ],
     },
   };
-  try {
-    await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(card),
-    });
-  } catch (e) {
-    console.error("[notify:feishu]", e);
-  }
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(card),
+  });
+  await assertWebhookAccepted(response, "Feishu");
 }
 
 /** Server 酱 - 推送到个人微信 */
@@ -111,22 +138,29 @@ export async function notifyServerChan(data: InquiryNotifyData) {
     `- **渠道归因：** ${attributionLine(data)}`,
     `\n### 💬 内容\n${data.message}`,
   ].join("\n");
-  try {
-    await fetch(`https://sctapi.ftqq.com/${key}.send`, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `title=${encodeURIComponent(title)}&desp=${encodeURIComponent(desp)}`,
-    });
-  } catch (e) {
-    console.error("[notify:serverchan]", e);
-  }
+  const response = await fetch(`https://sctapi.ftqq.com/${key}.send`, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `title=${encodeURIComponent(title)}&desp=${encodeURIComponent(desp)}`,
+  });
+  await assertWebhookAccepted(response, "ServerChan");
 }
 
 /** 一键多渠道推送 */
 export async function notifyAll(data: InquiryNotifyData) {
-  await Promise.allSettled([
-    notifyWeCom(data),
-    notifyFeishu(data),
-    notifyServerChan(data),
-  ]);
+  const channels = [
+    { name: "wecom", deliver: () => notifyWeCom(data) },
+    { name: "feishu", deliver: () => notifyFeishu(data) },
+    { name: "serverchan", deliver: () => notifyServerChan(data) },
+  ];
+  const results = await Promise.allSettled(channels.map((channel) => channel.deliver()));
+  const failedChannels = results.flatMap((result, index) => {
+    if (result.status === "fulfilled") return [];
+    console.error(`[notify:${channels[index].name}]`, result.reason);
+    return [channels[index].name];
+  });
+
+  if (failedChannels.length > 0) {
+    throw new Error(`Inquiry notification failed for: ${failedChannels.join(", ")}`);
+  }
 }

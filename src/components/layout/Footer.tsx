@@ -170,7 +170,7 @@ export default function Footer() {
 
             <div className="mt-6 flex items-start gap-3 border-t border-white/10 pt-5 text-xs leading-relaxed text-slate-400">
               <Clock3 className="mt-0.5 h-4 w-4 flex-none text-amber-300" aria-hidden="true" />
-              <span><span className="font-semibold text-slate-200">Business hours:</span> {SITE.businessHours}. WhatsApp replies 7 days a week.</span>
+              <span><span className="font-semibold text-slate-200">Business hours:</span> {SITE.businessHours}. WhatsApp is monitored during business hours.</span>
             </div>
           </div>
 

@@ -20,6 +20,15 @@ test("supplementary delivery channels are awaited without hiding a saved inquiry
   assert.match(route, /deliveryTasks\.push\(fetch\(process\.env\.GOOGLE_SHEETS_WEBHOOK_URL/);
 });
 
+test("webhook delivery rejects HTTP and provider-level failures", async () => {
+  const notify = await read("src/lib/notify.ts");
+
+  assert.match(notify, /if \(!response\.ok\)/);
+  assert.match(notify, /payload\.code \?\? payload\.errcode \?\? payload\.StatusCode/);
+  assert.match(notify, /String\(resultCode\) !== "0"/);
+  assert.match(notify, /Inquiry notification failed for:/);
+});
+
 test("inquiry attribution stores only first-touch routing fields", async () => {
   const [tracker, attribution, form, store] = await Promise.all([
     read("src/components/analytics/AttributionTracker.tsx"),
@@ -33,7 +42,7 @@ test("inquiry attribution stores only first-touch routing fields", async () => {
   assert.match(attribution, /utm_source/);
   assert.match(attribution, /parsed\.origin.*parsed\.pathname/s);
   assert.doesNotMatch(attribution, /document\.cookie|localStorage/);
-  assert.match(form, /event: "inquiry_submit_success"/);
+  assert.match(form, /trackConversionEvent\("inquiry_submit_success"/);
   assert.match(form, /readInquiryAttribution\(\)/);
   assert.match(store, /landingPage\?: string/);
   assert.match(store, /utmCampaign\?: string/);

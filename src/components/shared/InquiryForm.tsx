@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SITE } from "@/config/siteData";
 import { readInquiryAttribution } from "@/lib/inquiryAttribution";
+import { trackConversionEvent } from "@/lib/analytics";
 
 interface InquiryFormProps {
   productName?: string;
@@ -63,6 +64,7 @@ export default function InquiryForm({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const messageRef = useRef<HTMLTextAreaElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const startedRef = useRef(false);
   const [defaultCountry, setDefaultCountry] = useState("");
 
   useEffect(() => {
@@ -143,6 +145,10 @@ export default function InquiryForm({
     const validationErrors = validate(data);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      trackConversionEvent("inquiry_validation_failed", {
+        form_id: formId || "inquiry-form",
+        invalid_field_count: Object.keys(validationErrors).length,
+      });
       requestAnimationFrame(() => {
         form.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
       });
@@ -169,24 +175,31 @@ export default function InquiryForm({
         ...readInquiryAttribution(),
       });
 
-      if (typeof window !== "undefined") {
-        const trackedWindow = window as typeof window & {
-          dataLayer?: Array<Record<string, unknown>>;
-        };
-        trackedWindow.dataLayer = trackedWindow.dataLayer || [];
-        trackedWindow.dataLayer.push({
-          event: "inquiry_submit_success",
-          inquiry_id: result.id,
-          source,
-        });
-      }
+      trackConversionEvent("inquiry_submit_success", {
+        inquiry_id: result.id,
+        form_id: formId || "inquiry-form",
+        source,
+      });
 
       setStatus("success");
       form.reset();
     } catch (err) {
       console.error("[InquiryForm] submission error:", err);
+      trackConversionEvent("inquiry_submit_failed", {
+        form_id: formId || "inquiry-form",
+        source: typeof window !== "undefined" ? window.location.pathname : undefined,
+      });
       setStatus("error");
     }
+  };
+
+  const handleFormFocus = () => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    trackConversionEvent("inquiry_form_started", {
+      form_id: formId || "inquiry-form",
+      product_context: productName ? "product" : "general",
+    });
   };
 
   const errorInputClass = "border-red-400 focus-visible:ring-red-400 bg-red-50";
@@ -213,8 +226,10 @@ export default function InquiryForm({
 
   return (
     <form
+      id={formId}
       ref={formRef}
       onSubmit={handleSubmit}
+      onFocusCapture={handleFormFocus}
       noValidate
       className={`space-y-3 ${highlighted ? "ring-2 ring-brand-navy rounded-md p-3 bg-slate-50" : ""}`}
     >
@@ -271,20 +286,6 @@ export default function InquiryForm({
       </div>
 
       <div>
-        <Label htmlFor="inquiry-company" className="block text-xs font-medium text-slate-700 mb-1.5">
-          Company Name
-        </Label>
-        <Input
-          id="inquiry-company"
-          type="text"
-          name="company"
-          autoComplete="organization"
-          placeholder="Your company…"
-          className="h-11"
-        />
-      </div>
-
-      <div>
         <Label htmlFor="inquiry-country" className="block text-xs font-medium text-slate-700 mb-1.5">
           Country / Region <span className="text-red-500" aria-hidden="true">*</span>
         </Label>
@@ -304,20 +305,40 @@ export default function InquiryForm({
         {errors.country && <p id="inquiry-country-error" role="alert" className="text-xs text-red-600 mt-1">{errors.country}</p>}
       </div>
 
-      <div>
-        <Label htmlFor="inquiry-phone" className="block text-xs font-medium text-slate-700 mb-1.5">
-          Phone / WhatsApp <span className="text-slate-500 font-normal">(optional)</span>
-        </Label>
-        <Input
-          id="inquiry-phone"
-          type="tel"
-          name="phone"
-          inputMode="tel"
-          autoComplete="tel"
-          placeholder="Phone / WhatsApp…"
-          className="h-11"
-        />
-      </div>
+      <details className="group border-t border-slate-200 pt-3">
+        <summary className="cursor-pointer text-sm font-medium text-brand-navy marker:text-slate-400">
+          Add company and WhatsApp details <span className="font-normal text-slate-500">(optional)</span>
+        </summary>
+        <div className={compact ? "mt-3 space-y-2.5" : "mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3"}>
+          <div>
+            <Label htmlFor="inquiry-company" className="block text-xs font-medium text-slate-700 mb-1.5">
+              Company Name
+            </Label>
+            <Input
+              id="inquiry-company"
+              type="text"
+              name="company"
+              autoComplete="organization"
+              placeholder="Your company"
+              className="h-11"
+            />
+          </div>
+          <div>
+            <Label htmlFor="inquiry-phone" className="block text-xs font-medium text-slate-700 mb-1.5">
+              Phone / WhatsApp
+            </Label>
+            <Input
+              id="inquiry-phone"
+              type="tel"
+              name="phone"
+              inputMode="tel"
+              autoComplete="tel"
+              placeholder="Phone or WhatsApp"
+              className="h-11"
+            />
+          </div>
+        </div>
+      </details>
 
       <div>
         <Label htmlFor="inquiry-message" className="block text-xs font-medium text-slate-700 mb-1.5">
@@ -351,7 +372,7 @@ export default function InquiryForm({
         ) : (
           <>
             <Send className="w-4 h-4" aria-hidden="true" />
-            Send Inquiry
+            Request My Quote
           </>
         )}
       </Button>

@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowLeft, ArrowRight, MessageSquare, CalendarDays } from "lucide-react";
+import { ArrowLeft, ArrowRight, MessageSquare, CalendarDays, Clock3 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { getPost, getPublishedPosts, getPublishedPostsByCategory } from "@/lib/postsStore";
-import { renderMarkdown } from "@/lib/markdown";
+import { extractMarkdownHeadings, renderMarkdown } from "@/lib/markdown";
 import { RESOURCE_CATEGORIES, type ResourceCategory } from "@/lib/postsCategories";
 import { SITE } from "@/config/siteData";
 import { r2Image } from "@/lib/r2";
@@ -56,12 +56,18 @@ function formatDate(iso?: string) {
   return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
 
+function readingMinutes(content: string) {
+  const words = content.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 220));
+}
+
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post || !post.published) notFound();
 
   const html = renderMarkdown(post.content);
+  const tableOfContents = extractMarkdownHeadings(post.content);
   const cover = post.cover ? r2Image(post.cover) : undefined;
   const categoryLabel = post.category ? CATEGORY_LABEL[post.category] ?? post.category : undefined;
 
@@ -133,23 +139,44 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </Link>
             )}
 
-            <h1 className="text-3xl font-extrabold leading-tight tracking-[-0.02em] text-slate-900 sm:text-4xl">
+            <h1 className="max-w-4xl text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl">
               {post.title}
             </h1>
 
-            <div className="mt-4 inline-flex items-center gap-1.5 text-sm text-slate-400">
-              <CalendarDays className="h-4 w-4" aria-hidden="true" />
-              {post.publishedAt ? `Published ${formatDate(post.publishedAt)}` : ""}
+            <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500">
+              <span className="inline-flex items-center gap-1.5">
+                <CalendarDays className="h-4 w-4" aria-hidden="true" />
+                {post.publishedAt ? `Published ${formatDate(post.publishedAt)}` : ""}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Clock3 className="h-4 w-4" aria-hidden="true" />
+                {readingMinutes(post.content)} min read
+              </span>
             </div>
 
             {cover && (
               <div className="mt-8 aspect-[21/9] w-full overflow-hidden rounded-2xl bg-slate-100">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={cover} alt={post.title} className="h-full w-full object-cover" />
+                <img src={cover} alt={post.coverAlt || post.title} className="h-full w-full object-cover" />
               </div>
             )}
 
-            <div className="prose-content mt-10" dangerouslySetInnerHTML={{ __html: html }} />
+            {tableOfContents.filter((heading) => heading.level === 2).length >= 3 ? (
+              <nav aria-label="Article contents" className="mt-8 max-w-3xl border-y border-slate-200 py-5">
+                <h2 className="text-sm font-bold uppercase text-slate-900">In this guide</h2>
+                <ol className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+                  {tableOfContents.filter((heading) => heading.level === 2).map((heading) => (
+                    <li key={heading.id} className="text-sm font-medium">
+                      <a href={`#${heading.id}`} className="text-slate-600 hover:text-brand-navy hover:underline">
+                        {heading.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            ) : null}
+
+            <div className="prose-content mt-10 max-w-3xl" dangerouslySetInnerHTML={{ __html: html }} />
 
             {/* Bottom CTA */}
             <div className="mt-12 flex flex-col items-start justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:flex-row sm:items-center">
@@ -178,7 +205,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         <span className="h-14 w-16 flex-shrink-0 overflow-hidden rounded-md bg-slate-100">
                           {p.cover ? (
                             // eslint-disable-next-line @next/next/no-img-element
-                            <img src={r2Image(p.cover)} alt={p.title} loading="lazy" className="h-full w-full object-cover" />
+                            <img src={r2Image(p.cover)} alt={p.coverAlt || p.title} loading="lazy" className="h-full w-full object-cover" />
                           ) : (
                             <span className="flex h-full w-full items-center justify-center text-[9px] font-semibold uppercase tracking-wider text-slate-300">ZXP</span>
                           )}
