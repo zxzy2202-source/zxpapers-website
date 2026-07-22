@@ -13,6 +13,206 @@ const LEGACY_LANGUAGES = [
   "ru", "zh", "hi", "vi", "th", "id", "ms",
 ] as const;
 const LEGACY_LANGUAGE_PATTERN = LEGACY_LANGUAGES.join("|");
+const LEGACY_PRODUCT_REDIRECTS = [
+  // GSC Coverage Validation export, 2026-07-17: preserve the most specific
+  // size and material intent before broader product-family migrations.
+  {
+    slugPattern: ".*4-x-6-.*direct-thermal.*label.*",
+    destination: "/products/thermal-labels/4x6in",
+  },
+  {
+    slugPattern: ".*4-x-3-.*direct-thermal.*label.*",
+    destination: "/products/thermal-labels/4x3in",
+  },
+  {
+    slugPattern: ".*3-x-2-.*direct-thermal.*label.*",
+    destination: "/products/thermal-labels/3x2in",
+  },
+  {
+    slugPattern: ".*2-x-1-.*direct-thermal.*label.*",
+    destination: "/products/thermal-labels/2x1in",
+  },
+  {
+    slugPattern: ".*linerless.*",
+    destination: "/products/linerless-labels",
+  },
+  {
+    slugPattern: ".*liner-free.*",
+    destination: "/products/linerless-labels",
+  },
+  {
+    slugPattern: ".*phenol-free.*",
+    destination: "/products/phenol-free-thermal-paper",
+  },
+  {
+    slugPattern: ".*bpa-bps.*",
+    destination: "/products/phenol-free-thermal-paper",
+  },
+  {
+    slugPattern: ".*bpa-free.*",
+    destination: "/products/bpa-free-thermal-paper",
+  },
+  {
+    slugPattern: ".*direct-thermal.*label.*",
+    destination: "/products/thermal-labels",
+  },
+  {
+    slugPattern: ".*thermal-label.*sticker.*",
+    destination: "/products/thermal-labels",
+  },
+  {
+    slugPattern: ".*thermal-transfer.*label.*",
+    destination: "/products/barcode-labels",
+  },
+  {
+    slugPattern: ".*polypro-4000t.*",
+    destination: "/products/barcode-labels",
+  },
+  {
+    slugPattern: ".*z-perform.*",
+    destination: "/products/barcode-labels",
+  },
+  {
+    slugPattern: ".*z-select.*",
+    destination: "/products/barcode-labels",
+  },
+  {
+    slugPattern: ".*baggage.*tag.*",
+    destination: "/products/shipping-labels",
+  },
+  {
+    slugPattern: ".*detergent.*label.*",
+    destination: "/products/detergent-labels",
+  },
+  {
+    slugPattern: ".*inkjet.*label.*",
+    destination: "/products/product-labels",
+  },
+  {
+    slugPattern: ".*bottle.*label.*",
+    destination: "/products/product-labels",
+  },
+  {
+    slugPattern: ".*vinyl.*label.*",
+    destination: "/products/product-labels",
+  },
+  {
+    slugPattern: ".*bopp.*label.*",
+    destination: "/products/product-labels",
+  },
+  {
+    slugPattern: ".*oil-drum.*label.*",
+    destination: "/products/product-labels",
+  },
+  {
+    slugPattern: ".*cosmetic.*label.*",
+    destination: "/products/product-labels",
+  },
+  {
+    slugPattern: ".*label.*raw-material.*",
+    destination: "/products/product-labels",
+  },
+  {
+    slugPattern: ".*raw-material.*label.*",
+    destination: "/products/product-labels",
+  },
+  {
+    slugPattern: ".*waterproof.*label.*",
+    destination: "/products/product-labels",
+  },
+  {
+    slugPattern: ".*water-proof.*label.*",
+    destination: "/products/product-labels",
+  },
+  {
+    slugPattern: ".*film.*label.*",
+    destination: "/products/product-labels",
+  },
+  {
+    slugPattern: ".*adhesive.*label.*",
+    destination: "/products/product-labels",
+  },
+  {
+    slugPattern: ".*carbonless.*",
+    destination: "/products/ncr-forms",
+  },
+  {
+    slugPattern: ".*gilbarco.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*thermal.*paper.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*thermal.*receipt.*",
+    destination: "/products/receipt-paper-rolls",
+  },
+  {
+    slugPattern: ".*receipt.*thermal.*",
+    destination: "/products/receipt-paper-rolls",
+  },
+  {
+    slugPattern: ".*thermal.*ticket.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*thermal.*boarding.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*atm.*paper.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*kiosk.*paper.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*gas-pump.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*star-micronics.*",
+    destination: "/products/receipt-paper-rolls",
+  },
+  {
+    slugPattern: ".*parkeon.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*flowbird.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*triton.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*wrg-genesis.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*hengstler.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*practical-automation.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    slugPattern: ".*duratherm.*",
+    destination: "/products/thermal-paper-rolls",
+  },
+] as const;
+const LEGACY_STATIC_REDIRECTS = [
+  { source: "/about-us", destination: "/about" },
+  { source: "/contact-us", destination: "/contact" },
+  {
+    source: "/about-us/certificates",
+    destination: "/manufacturing/certifications",
+  },
+] as const;
 
 function getAbsolutePublicUrl(value: string | undefined, fallback: string) {
   if (!value) return fallback;
@@ -45,6 +245,30 @@ const nextConfig: NextConfig = {
     return [
       // Evidence-backed WordPress migrations. Absolute destinations collapse
       // legacy path, language and bare-host cleanup into one application rule.
+      ...LEGACY_PRODUCT_REDIRECTS.flatMap(({ slugPattern, destination }) => [
+        {
+          source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/product/:slug(${slugPattern})`,
+          destination: `${CANONICAL_SITE_URL}${destination}`,
+          permanent: true,
+        },
+        {
+          source: `/product/:slug(${slugPattern})`,
+          destination: `${CANONICAL_SITE_URL}${destination}`,
+          permanent: true,
+        },
+      ]),
+      ...LEGACY_STATIC_REDIRECTS.flatMap(({ source, destination }) => [
+        {
+          source: `/:lang(${LEGACY_LANGUAGE_PATTERN})${source}`,
+          destination: `${CANONICAL_SITE_URL}${destination}`,
+          permanent: true,
+        },
+        {
+          source,
+          destination: `${CANONICAL_SITE_URL}${destination}`,
+          permanent: true,
+        },
+      ]),
       {
         source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/product-category/:slug*`,
         destination: `${CANONICAL_SITE_URL}/products`,
@@ -61,17 +285,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/posts/:path*`,
-        destination: `${CANONICAL_SITE_URL}/blog`,
-        permanent: true,
-      },
-      {
         source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/about-us/blog`,
-        destination: `${CANONICAL_SITE_URL}/blog`,
-        permanent: true,
-      },
-      {
-        source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/about-us/blog/:path*`,
         destination: `${CANONICAL_SITE_URL}/blog`,
         permanent: true,
       },
@@ -91,17 +305,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/posts/:path*",
-        destination: `${CANONICAL_SITE_URL}/blog`,
-        permanent: true,
-      },
-      {
         source: "/about-us/blog",
-        destination: `${CANONICAL_SITE_URL}/blog`,
-        permanent: true,
-      },
-      {
-        source: "/about-us/blog/:path*",
         destination: `${CANONICAL_SITE_URL}/blog`,
         permanent: true,
       },
@@ -128,11 +332,6 @@ const nextConfig: NextConfig = {
       {
         source: "/hot-products",
         destination: `${CANONICAL_SITE_URL}/products`,
-        permanent: true,
-      },
-      {
-        source: "/about-us/certificates",
-        destination: `${CANONICAL_SITE_URL}/manufacturing/certifications`,
         permanent: true,
       },
       // Thermal paper and thermal label regional ownership for Europe lives on
@@ -172,16 +371,6 @@ const nextConfig: NextConfig = {
         destination: "/:path*",
         permanent: true,
       },
-      {
-        source: "/product/:slug(.*linerless.*)",
-        destination: "/products/linerless-labels",
-        permanent: true,
-      },
-      {
-        source: "/product/:slug*",
-        destination: "/products",
-        permanent: true,
-      },
       // Product URL aliases → canonical content pages (replaces former client-side JS redirects)
       { source: "/products/custom-printed-rolls", destination: "/products/thermal-paper-rolls/custom-printed", permanent: true },
       { source: "/products/blank-thermal-rolls", destination: "/products/thermal-paper-rolls/blank", permanent: true },
@@ -193,16 +382,8 @@ const nextConfig: NextConfig = {
         destination: "/products/can-labels",
         permanent: true,
       },
-      { source: "/about-us", destination: "/about", permanent: true },
-      { source: "/about-us/", destination: "/about", permanent: true },
-      { source: "/contact-us", destination: "/contact", permanent: true },
-      { source: "/contact-us/", destination: "/contact", permanent: true },
-      { source: "/category/:slug*", destination: "/products", permanent: true },
+      { source: "/category/:slug*", destination: "/blog", permanent: true },
       { source: "/tag/:slug*", destination: "/blog", permanent: true },
-      { source: "/page/:num", destination: "/", permanent: true },
-      { source: "/wp-content/:path*", destination: "/", permanent: true },
-      { source: "/wp-admin/:path*", destination: "/", permanent: true },
-      { source: "/wp-login.php", destination: "/", permanent: true },
       { source: "/feed", destination: "/blog", permanent: true },
       { source: "/feed/:slug*", destination: "/blog", permanent: true },
       // Legacy combined region page → canonical split pages
