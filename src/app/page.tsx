@@ -27,7 +27,7 @@ import PopularSizesCarousel, { type SkuItem } from "@/components/shared/PopularS
 import type { SlotKey } from "@/config/imageSlots";
 import { CERTIFICATIONS, FACTORY, SITE } from "@/config/siteData";
 import { getSlotImages } from "@/lib/imageSlotUtils";
-import { readHero } from "@/lib/heroStore";
+import { readPublicHero } from "@/lib/heroStore";
 import { r2Image } from "@/lib/r2";
 
 export const metadata: Metadata = {
@@ -295,7 +295,7 @@ function ProductLineCard({
 export default async function HomePage() {
   const [images, hero] = await Promise.all([
     getSlotImages(productLines.map((item) => ({ slot: item.slot, fallback: item.fallback }))),
-    readHero(),
+    readPublicHero(),
   ]);
 
   const banners = hero.banners ?? [];

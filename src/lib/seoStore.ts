@@ -3,8 +3,11 @@
  * key: "seo"
  */
 import { getStorage } from "@/lib/storage";
+import { revalidateTag, unstable_cache } from "next/cache";
 
 const KEY = "seo";
+const PUBLIC_SEO_CACHE_TAG = "public-seo-settings";
+const PUBLIC_SEO_CACHE_SECONDS = 60 * 60;
 
 export interface SeoSettings {
   // 全站默认
@@ -92,6 +95,14 @@ let cache: SeoSettings | null = null;
 let cacheTime = 0;
 const CACHE_TTL = 30 * 1000;
 
+const readPublicSeoCached = unstable_cache(
+  async (): Promise<SeoSettings> => {
+    return (await getStorage().get<SeoSettings>(KEY)) || {};
+  },
+  ["public-seo-settings"],
+  { revalidate: PUBLIC_SEO_CACHE_SECONDS, tags: [PUBLIC_SEO_CACHE_TAG] },
+);
+
 export async function readSeo(): Promise<SeoSettings> {
   if (cache && Date.now() - cacheTime < CACHE_TTL) return cache;
   const data = (await getStorage().get<SeoSettings>(KEY)) || {};
@@ -100,12 +111,17 @@ export async function readSeo(): Promise<SeoSettings> {
   return data;
 }
 
+/** Public pages use the shared Next Data Cache instead of hitting KV per request. */
+export async function readPublicSeo(): Promise<SeoSettings> {
+  return readPublicSeoCached();
+}
+
 /**
  * 读取生效配置（用户填值优先，空字段自动用 SEO_DEFAULTS 兜底）
  * 业务页面 / metadata 工厂应当用此函数，确保即使用户没填也有专业默认。
  */
 export async function readEffectiveSeo(): Promise<SeoSettings> {
-  const user = await readSeo();
+  const user = await readPublicSeo();
   return {
     ...user,
     siteTitle: user.siteTitle?.trim() || SEO_DEFAULTS.siteTitle,
@@ -123,6 +139,7 @@ export async function writeSeo(data: Partial<SeoSettings>): Promise<SeoSettings>
   const existing = await readSeo();
   const merged = { ...existing, ...data };
   await getStorage().set(KEY, merged);
+  revalidateTag(PUBLIC_SEO_CACHE_TAG);
   cache = merged;
   cacheTime = Date.now();
   return merged;

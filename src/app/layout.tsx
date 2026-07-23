@@ -3,7 +3,7 @@ import "./globals.css";
 import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
 import Script from "next/script";
 import { Inter, Sora } from "next/font/google";
-import { readSeo, readEffectiveSeo } from "@/lib/seoStore";
+import { readPublicSeo, readEffectiveSeo } from "@/lib/seoStore";
 import AttributionTracker from "@/components/analytics/AttributionTracker";
 
 const inter = Inter({
@@ -69,7 +69,7 @@ export const viewport: Viewport = {
 export async function generateMetadata(): Promise<Metadata> {
   // v2.1: 使用 readEffectiveSeo，用户填的优先，空字段自动用 SEO_DEFAULTS 兜底
   const adminSeo = await readEffectiveSeo().catch(
-    () => ({} as Awaited<ReturnType<typeof readSeo>>),
+    () => ({} as Awaited<ReturnType<typeof readEffectiveSeo>>),
   );
 
   const title = adminSeo.siteTitle || `${SITE.name} | ${SITE.tagline}`;
@@ -262,8 +262,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const adminSeo = await readSeo().catch(
-    () => ({} as Awaited<ReturnType<typeof readSeo>>),
+  const adminSeo = await readPublicSeo().catch(
+    () => ({} as Awaited<ReturnType<typeof readPublicSeo>>),
   );
   const gaId = resolveGoogleTagId(adminSeo.googleAnalyticsId);
   const gtmId = resolveGoogleTagManagerId(adminSeo.googleTagManagerId);

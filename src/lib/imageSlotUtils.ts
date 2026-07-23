@@ -1,5 +1,5 @@
 import { r2Image } from "./r2";
-import { readOverrides } from "./imageSlotStore";
+import { readPublicOverrides } from "./imageSlotStore";
 import type { SlotKey } from "@/config/imageSlots";
 
 /**
@@ -15,7 +15,7 @@ import type { SlotKey } from "@/config/imageSlots";
 export async function getSlotImages(
   slots: Array<{ slot: SlotKey; fallback: string }>,
 ): Promise<Record<string, string>> {
-  const overrides = await readOverrides();
+  const overrides = await readPublicOverrides();
   return Object.fromEntries(
     slots.map(({ slot, fallback }) => {
       const override = overrides[slot];
@@ -29,7 +29,7 @@ export async function getSlotImage(
   slot: SlotKey,
   fallback: string,
 ): Promise<string> {
-  const overrides = await readOverrides();
+  const overrides = await readPublicOverrides();
   const override = overrides[slot];
   return !override && fallback.startsWith("/") ? fallback : r2Image(override || fallback);
 }
