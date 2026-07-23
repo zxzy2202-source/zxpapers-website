@@ -228,12 +228,12 @@ export default function SeoClient({ initialSeo, notifyStatus }: Props) {
 
       {/* 追踪 */}
       <Section title="📊 第三方追踪" desc="Google Analytics、GTM 用于流量分析。">
-        <Field label="Google Analytics ID (GA4)">
+        <Field label="Google tag ID (GA4)">
           <input
             type="text"
             value={seo.googleAnalyticsId || ""}
             onChange={(e) => update("googleAnalyticsId", e.target.value)}
-            placeholder="G-XXXXXXXXXX"
+            placeholder="G-XXXXXXXXXX or GT-XXXXXXXXXX"
             className={inputCls}
           />
         </Field>

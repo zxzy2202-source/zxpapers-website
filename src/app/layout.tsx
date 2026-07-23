@@ -19,6 +19,31 @@ const sora = Sora({
 });
 
 const DEFAULT_R2_PUBLIC_ORIGIN = "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
+const DEFAULT_GOOGLE_TAG_ID = "GT-TB7DWD3S";
+const DEFAULT_GOOGLE_TAG_MANAGER_ID = "GTM-MLFJ4XB3";
+const GOOGLE_TAG_ID_PATTERN = /^(?:G|GT|AW|DC)-[A-Z0-9]+$/i;
+const GOOGLE_TAG_MANAGER_ID_PATTERN = /^GTM-[A-Z0-9]+$/i;
+
+function resolveGoogleTagId(configured?: string) {
+  const candidate =
+    configured?.trim() ||
+    process.env.NEXT_PUBLIC_GOOGLE_TAG_ID?.trim() ||
+    DEFAULT_GOOGLE_TAG_ID;
+
+  return GOOGLE_TAG_ID_PATTERN.test(candidate) ? candidate : DEFAULT_GOOGLE_TAG_ID;
+}
+
+function resolveGoogleTagManagerId(configured?: string) {
+  const candidate =
+    configured?.trim() ||
+    process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID?.trim() ||
+    DEFAULT_GOOGLE_TAG_MANAGER_ID;
+
+  return GOOGLE_TAG_MANAGER_ID_PATTERN.test(candidate)
+    ? candidate
+    : DEFAULT_GOOGLE_TAG_MANAGER_ID;
+}
+
 const R2_PUBLIC_ORIGIN = (() => {
   try {
     const configured = process.env.NEXT_PUBLIC_R2_URL;
@@ -240,8 +265,8 @@ export default async function RootLayout({
   const adminSeo = await readSeo().catch(
     () => ({} as Awaited<ReturnType<typeof readSeo>>),
   );
-  const gaId = adminSeo.googleAnalyticsId?.trim();
-  const gtmId = adminSeo.googleTagManagerId?.trim();
+  const gaId = resolveGoogleTagId(adminSeo.googleAnalyticsId);
+  const gtmId = resolveGoogleTagManagerId(adminSeo.googleTagManagerId);
 
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable}`}>
@@ -269,9 +294,9 @@ export default async function RootLayout({
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-              strategy="lazyOnload"
+              strategy="afterInteractive"
             />
-            <Script id="ga-init" strategy="lazyOnload">
+            <Script id="ga-init" strategy="afterInteractive">
               {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaId}');`}
             </Script>
           </>
