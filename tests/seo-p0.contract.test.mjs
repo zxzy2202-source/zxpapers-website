@@ -202,6 +202,35 @@ test("legacy blog archives redirect to the canonical blog", () => {
   }
 });
 
+test("GSC-indexed legacy product categories redirect to the closest current category", () => {
+  const mappings = new Map([
+    [
+      "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/direct-thermal-labels/:path*",
+      "https://www.zxpapers.com/products/thermal-labels",
+    ],
+    [
+      "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/thermal-paper-rolls/:path*",
+      "https://www.zxpapers.com/products/thermal-paper-rolls",
+    ],
+    [
+      "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/adhesive-label-material/:path*",
+      "https://www.zxpapers.com/products/product-labels",
+    ],
+  ]);
+
+  const genericArchiveIndex = redirects.findIndex(
+    (redirect) =>
+      redirect.source ===
+      "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/:slug*",
+  );
+
+  for (const [source, destination] of mappings) {
+    const index = redirects.findIndex((redirect) => redirect.source === source);
+    assertRedirect(source, destination);
+    assert.ok(index < genericArchiveIndex, `${source} must run before the generic archive rule`);
+  }
+});
+
 test("high-intent legacy URLs redirect to the closest current page", () => {
   const mappings = new Map([
     ["/inquiry", "https://www.zxpapers.com/contact"],

@@ -205,6 +205,22 @@ const LEGACY_PRODUCT_REDIRECTS = [
     destination: "/products/thermal-paper-rolls",
   },
 ] as const;
+const LEGACY_PRODUCT_CATEGORY_REDIRECTS = [
+  // GSC Coverage Drilldown, 2026-07-23: these indexed WordPress archives
+  // have clear current equivalents and should not collapse to /products.
+  {
+    categoryPath: "direct-thermal-labels",
+    destination: "/products/thermal-labels",
+  },
+  {
+    categoryPath: "thermal-paper-rolls",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    categoryPath: "adhesive-label-material",
+    destination: "/products/product-labels",
+  },
+] as const;
 const LEGACY_STATIC_REDIRECTS = [
   { source: "/about-us", destination: "/about" },
   { source: "/contact-us", destination: "/contact" },
@@ -269,6 +285,20 @@ const nextConfig: NextConfig = {
           permanent: true,
         },
       ]),
+      ...LEGACY_PRODUCT_CATEGORY_REDIRECTS.flatMap(
+        ({ categoryPath, destination }) => [
+          {
+            source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/product-category/${categoryPath}/:path*`,
+            destination: `${CANONICAL_SITE_URL}${destination}`,
+            permanent: true,
+          },
+          {
+            source: `/product-category/${categoryPath}/:path*`,
+            destination: `${CANONICAL_SITE_URL}${destination}`,
+            permanent: true,
+          },
+        ],
+      ),
       {
         source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/product-category/:slug*`,
         destination: `${CANONICAL_SITE_URL}/products`,
