@@ -187,6 +187,60 @@ sitemap.xml 中无残留 ✅
 
 ---
 
+## 2026-07-24
+
+### 一、SEO 专项审计（源码级，87/100 → 92+）
+
+**审计范围：** metadata、结构化数据、sitemap/robots、重定向、hreflang、图片 alt、加载性能配置
+
+**主要发现：**
+- ✅ 结构化数据覆盖深度（Organization/Manufacturer、BreadcrumbList 30+ 页、FAQPage、Product、HowTo、Article）属行业一流
+- ✅ robots.txt GEO 策略：为 12 个 AI 爬虫单独声明 Allow，llms.txt 完整
+- ✅ 80+ 条 WordPress 迁移 301 重定向全覆盖
+- 🔴 **hreflang 完全缺失**（唯一重大缺口，已修复）
+- ⚠️ Hero 图片 `alt=""` 对搜索引擎不可见（已修复）
+
+**修复操作：**
+
+| 修复项 | 文件 | 说明 |
+|---|---|---|
+| hreflang | `src/app/layout.tsx` | 添加 `alternates.languages: { en: SITE.domain }` |
+| PageHero bgImageAlt prop | `src/components/shared/PageHero.tsx` | 新增可选 `bgImageAlt` prop，替换硬编码 `alt=""` |
+| 15 个 PageHero 调用点 | app 页面 + 产品/市场模板 | 填入描述性 alt 文本 |
+
+- 提交：`a239bb5`
+- 详细报告：`SEO审计报告-20260724.md`
+
+---
+
+### 二、UI 专项审查（78/100）
+
+**审查范围：** 设计系统一致性、交互状态、动画、移动端适配、表单 UX、组件一致性
+
+**主要发现：**
+- ✅ 交互状态覆盖 100%（hover/focus-visible/disabled/active 全要素）
+- ✅ 动画系统统一 `duration-200`，尊重 `prefers-reduced-motion`
+- ✅ WhatsApp FAB、InquiryForm 表单 UX 优秀
+- 🔴 圆角策略混乱：7 种值（`rounded-[22px]/[24px]/[26px]/[28px]` 等魔法值）
+- 🔴 导航断点 `xl`（1280px）过高，iPad Pro 和 13 寸笔记本显示汉堡菜单
+- ⚠️ 卡片 hover 边框色：4 种不同配色并行
+
+**修复操作：**
+
+| 修复项 | 文件 | 说明 |
+|---|---|---|
+| 导航断点 xl→lg | `src/components/layout/Header.tsx` | 4 处 `xl` 改 `lg`，1024px+ 设备显示完整导航 |
+| Footer 图标圆角 | `src/components/layout/Footer.tsx` | Trust Bar 图标容器加 `rounded-lg` |
+| 统一圆角（3 级） | `ProductLandingPageTemplate.tsx` | `rounded-[28px]/[22px]/[26px]/3xl` → `rounded-2xl/xl` |
+| 统一圆角（3 级） | `ProductCategoryShowcaseTemplate.tsx` | 7 处魔法值 → `rounded-2xl` |
+| 统一卡片 hover 色 | `MarketCountryPageTemplate.tsx` | `hover:border-blue-200` → `hover:border-brand-navy/30` |
+| 统一卡片 hover 色 | `MarketRegionPageTemplate.tsx` | `hover:border-blue-200` → `hover:border-brand-navy/30` |
+
+- 提交：`a239bb5`
+- 详细报告：`UI审计报告-20260724.md`
+
+---
+
 ## 待处理事项
 
 | 优先级 | 事项 | 说明 |
@@ -194,7 +248,10 @@ sitemap.xml 中无残留 ✅
 | 🔴 高 | 在 Vercel 设置 `ADMIN_PASSWORD` 环境变量 | 避免使用默认密码 `admin123` |
 | 🟡 中 | 在 `sitemap.ts` 中动态生成博客文章 URL | 当前 sitemap 只有 `/blog` 列表页，单篇文章未被收录 |
 | 🟡 中 | 4 周后在 GSC 效果报告中复查 CTR 变化 | 验证本次 metadata 优化效果 |
+| 🟡 中 | 统一 Button 体系 | 用 `<Button variant>` 替代内联 Tailwind 按钮，当前有 3 套并行 |
+| 🟡 中 | 移动端 top bar 精简 | 电话+邮箱占用首屏，建议只保留询盘入口 |
 | 🟢 低 | 考虑为 `/markets/europe/italy` 等单国页面补充更多国家 | 目前欧洲只有 Italy 一个国家页 |
+| 🟢 低 | 首页 section spacing 节奏 | 10 个 section 大部分 `py-20`，缺乏层次变化 |
 
 ---
 
