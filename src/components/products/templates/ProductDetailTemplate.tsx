@@ -19,6 +19,7 @@ import {
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import InquiryForm from "@/components/shared/InquiryForm";
+import QuickQuoteBrief from "@/components/products/QuickQuoteBrief";
 import MobileInquiryBar from "./MobileInquiryBar";
 import type {
   ProductDetailConfig,
@@ -130,6 +131,17 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
           </div>
         </section>
 
+        <QuickQuoteBrief
+          kind="detail"
+          label="Fast specification check"
+          items={[
+            { title: "Equipment", description: "Name the printer or share the current item." },
+            { title: "Use", description: "Tell us where and how the product is used." },
+            { title: "Order", description: "Add the quantity and delivery country." },
+          ]}
+          ctaLabel="Request review"
+        />
+
         <section className="bg-slate-50" data-product-detail-section="procurement-overview">
           <div className="container py-9 lg:py-12">
             <div className="border border-slate-200 border-t-4 border-t-brand-navy bg-white p-4 shadow-[0_12px_32px_rgba(7,23,47,0.06)] sm:p-6 lg:p-8">
@@ -188,7 +200,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
               number="02"
               label="Risk control"
               title="Resolve the problems behind the roll specification"
-              description="A size name is not enough for a production order. Confirm how the roll loads, cuts, adheres, prints, scans, ships, and repeats before approving the supply specification."
+              description="A size name does not define a production order. Confirm loading, cutting, adhesion, printing, scanning, packing, and repeat supply."
             />
             <div className="mt-6 grid border-l border-t border-slate-300 sm:grid-cols-2 lg:grid-cols-3">
               {config.problems.map((problem, index) => (
@@ -215,7 +227,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
               number="03"
               label="Specification"
               title="Define the complete roll before comparing quotes"
-              description="The values below describe the quotation and approval fields for this format. Final manufacturing tolerances, material, packing, and test scope belong in the approved specification."
+              description="Use these fields to compare quotes. Put the final tolerance, material, packing, and test scope in the approved specification."
             />
             <div className="mt-6 space-y-6" data-compact-specifications>
               {config.specifications.map((group) => {
@@ -255,7 +267,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
                   number="04"
                   label="Application"
                   title="Match the adhesive and test plan to the real surface"
-                  description="The same roll dimensions can behave differently across containers, temperatures, dwell times, condensation, grease, and handling. Review the application before choosing the adhesive."
+                  description="The same roll can behave differently on another surface. Temperature, moisture, grease, and handling can change adhesion. Test the real application."
                 />
                 <div className="mt-5 border-t border-slate-300">
                   {config.applications.map((application) => (
@@ -279,7 +291,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
               number="05"
               label="Approval route"
               title="Move from a qualified RFQ to a repeatable supply reference"
-              description="The B2B approval route connects application, complete roll specification, OEM packing, samples, bulk-order approval, and repeat-order control."
+              description="Start with the use case and a complete specification. Approve samples and packing before bulk production. Keep the record for repeat orders."
             />
             <ol className="relative mt-6 grid gap-px border border-slate-200 bg-slate-200 before:absolute before:bottom-5 before:left-6 before:top-5 before:w-px before:bg-amber-400 sm:grid-cols-2 sm:before:hidden lg:grid-cols-4" data-workflow-rail>
               {config.workflow.map((item) => (
@@ -346,7 +358,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
               number="08"
               label="Sourcing FAQ"
               title={config.productName + " sourcing questions"}
-              description="Concise answers for printer fit, adhesive selection, sample review, packing, and repeat-order control."
+              description="Short answers on printer fit, adhesive, samples, packing, and repeat orders."
             />
             <div className="mt-6 grid gap-x-8 lg:grid-cols-2" data-faq-columns>
               {config.faq.map((faq, index) => (
@@ -369,7 +381,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
               number="09"
               label="Related programs"
               title="Compare the next product route for your buying brief"
-              description="Use these related pages when the project needs printed branding, additional label formats, or a logistics-specific supply program."
+              description="Compare these routes when you need another format, printed branding, or a logistics program."
             />
             <div className="-mx-4 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-3 md:gap-0 md:overflow-visible md:p-0 md:pb-0" data-related-scroller aria-label="Related product programs">
               {config.relatedProducts.map((product) => (

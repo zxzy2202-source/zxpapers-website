@@ -4,14 +4,22 @@ import { readFile } from "node:fs/promises";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("homepage leads B2B buyers from risk to a quote-ready specification", async () => {
+test("homepage states the buyer, leads with products, and keeps the RFQ on-page", async () => {
   const page = await read("src/app/page.tsx");
 
-  assert.match(page, /Thermal Paper, Labels & NCR Forms Built to Your Specification/);
-  assert.match(page, /Fix the Specification Before You Compare Price/);
-  assert.match(page, /Build a Quote-Ready RFQ/);
+  assert.match(page, /Thermal Paper & Labels Built for Reliable Reorders/);
+  assert.match(page, /For Importers, Distributors & OEM Buyers/);
+  assert.match(page, /Get a Factory Quote/);
+  assert.match(page, /href: "#home-rfq-form"/);
+  assert.match(page, /id="home-rfq"/);
+  assert.match(page, /formId="home-rfq-form"/);
+  assert.ok((page.match(/#home-rfq-form/g) ?? []).length >= 2, "homepage quote CTAs should share the on-page RFQ target");
   assert.match(page, /Spec \/ Sample \/ Batch/);
-  assert.match(page, /Send the Inputs That Change the Price/);
+  assert.ok(
+    page.indexOf('id="core-products"') < page.indexOf('aria-labelledby="procurement-heading"'),
+    "core products should appear before buyer-route education",
+  );
+  assert.doesNotMatch(page, /bgCarouselInterval=/);
 });
 
 test("homepage sends broad product intent to category aggregation pages", async () => {
@@ -23,13 +31,16 @@ test("homepage sends broad product intent to category aggregation pages", async 
   assert.doesNotMatch(page, /href: "\/products\/thermal-labels\/blank"/);
 });
 
-test("homepage uses approval scenarios instead of unverifiable testimonials", async () => {
+test("homepage routes buyers to inspectable evidence instead of unverifiable testimonials", async () => {
   const page = await read("src/app/page.tsx");
 
-  assert.match(page, /const approvalScenarios/);
-  assert.match(page, /Risk to avoid/);
-  assert.match(page, /Approval record/);
-  assert.doesNotMatch(page, /buyerOutcomes|CountryFlag|anonymized outcomes/);
+  assert.match(page, /const evidenceRoutes/);
+  assert.match(page, /\/manufacturing\/certifications/);
+  assert.match(page, /\/manufacturing\/quality-control/);
+  assert.match(page, /\/manufacturing\/equipment/);
+  assert.match(page, /<figcaption/);
+  assert.match(page, /Confirm the equipment and inspection records/);
+  assert.doesNotMatch(page, /buyerOutcomes|CountryFlag|anonymized outcomes|testimonial/i);
 });
 
 test("homepage keeps SEO metadata concise and evidence claims scoped", async () => {

@@ -5,13 +5,10 @@ import { preconnect, preload } from "react-dom";
 import {
   ArrowRight,
   Award,
-  BadgeCheck,
   CheckCircle,
   ClipboardCheck,
   Factory as FactoryIcon,
   FileCheck2,
-  Globe,
-  Handshake,
   Layers,
   MessageSquare,
   Package,
@@ -19,9 +16,9 @@ import {
   Phone,
   Printer,
   ShieldCheck,
-  Zap,
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
+import InquiryForm from "@/components/shared/InquiryForm";
 import PageHero from "@/components/shared/PageHero";
 import PopularSizesCarousel, { type SkuItem } from "@/components/shared/PopularSizesCarousel";
 import type { SlotKey } from "@/config/imageSlots";
@@ -199,27 +196,30 @@ const orderStages = [
   },
 ];
 
-const approvalScenarios = [
+const evidenceRoutes = [
   {
-    icon: Printer,
-    title: "Receipt Roll Distribution",
-    risk: "The quoted size matches, but roll length, core or carton quantity does not.",
-    approval: "Printer model, width, outer diameter, core, paper grade, measured length and carton count.",
-    outcome: "A reusable specification ID keeps supplier comparisons and repeat orders consistent.",
+    icon: ShieldCheck,
+    label: "Certification scope",
+    title: "Match documents to the quoted grade",
+    text: "Review which quality, sourcing and material documents apply to the selected paper or label construction and destination.",
+    href: "/manufacturing/certifications",
+    linkLabel: "Review certification scope",
   },
   {
-    icon: Package,
-    title: "Warehouse & Shipping Labels",
-    risk: "Labels print correctly in a sample but skip, lift or scan poorly in the real workflow.",
-    approval: "Printer and DPI, gap or mark, face stock, adhesive, application surface, scan test and roll format.",
-    outcome: "The production check follows the actual printer, parcel surface and packing method.",
+    icon: ClipboardCheck,
+    label: "Quality control",
+    title: "Review the checks behind each batch",
+    text: "See how incoming material, coating, slitting, print, dimensions, packing and final release are checked against the approved order.",
+    href: "/manufacturing/quality-control",
+    linkLabel: "See quality checkpoints",
   },
   {
-    icon: FileCheck2,
-    title: "OEM Print & NCR Forms",
-    risk: "Artwork, numbering, copy sequence or packing changes between approval and reorder.",
-    approval: "Artwork version, ink references, barcode data, sheet sequence, numbering, pack and carton marks.",
-    outcome: "The approved files and packing record become the reference for production and reorders.",
+    icon: FactoryIcon,
+    label: "Production equipment",
+    title: "Check the line used for your format",
+    text: "Review coating, slitting, printing, die-cutting and packing capabilities, then confirm which equipment applies to the quoted product.",
+    href: "/manufacturing/equipment",
+    linkLabel: "Review production equipment",
   },
 ];
 
@@ -317,11 +317,11 @@ export default async function HomePage() {
   )}`;
   const factoryImage = images["home:category-jumbo-rolls"] ?? COATING_LINE_IMAGE;
   const homepageTitle =
-    hero.titleMain?.trim() || "Thermal Paper, Labels & NCR Forms Built to Your Specification";
+    hero.titleMain?.trim() || "Thermal Paper & Labels Built for Reliable Reorders";
   const homepageHighlight = hero.titleHighlight?.trim();
   const heroTrustBadges = hero.trustBadges?.length
     ? hero.trustBadges
-    : ["Blank & custom supply", "OEM packing", "Export documentation"];
+    : ["Specification review", "Sample approval", "Repeat-order records"];
 
   return (
     <Layout>
@@ -331,16 +331,15 @@ export default async function HomePage() {
       />
 
       <PageHero
-        bgImages={heroImages}
+        bgImages={[primaryHeroImage]}
         bgImageAlt="ZhixinPaper thermal paper factory production floor with coating, slitting and packaging lines"
-        bgCarouselInterval={5000}
         overlayDir="left"
         overlayOpacity={58}
-        minHeight="min-h-[560px]"
+        minHeight="min-h-[540px]"
         compact
         badge={{
           icon: <Award className="h-4 w-4" aria-hidden="true" />,
-          text: hero.badgeText?.trim() || "B2B Manufacturing Since 2009",
+          text: hero.badgeText?.trim() || "For Importers, Distributors & OEM Buyers",
           color: "amber",
         }}
         title={
@@ -356,83 +355,49 @@ export default async function HomePage() {
         }
         subtitle={
           hero.subtitle?.trim() ||
-          "Send the printer, application, size, quantity and destination. We turn them into a quote-ready specification, approval sample and repeat-order record."
+          "Source stock and custom thermal rolls, shipping labels and printed products through one specification, sample and repeat-order record."
         }
         trustBadges={heroTrustBadges}
         mobileTrustBadgeLimit={2}
         ctas={[
           {
-            label: "Build a Quote-Ready RFQ",
-            href: "/contact",
+            label: "Get a Factory Quote",
+            href: "#home-rfq-form",
             variant: "primary",
             icon: <MessageSquare className="h-4 w-4" aria-hidden="true" />,
           },
           {
-            label: "Ask on WhatsApp",
-            href: whatsappUrl,
-            variant: "whatsapp",
-            icon: <Phone className="h-4 w-4" aria-hidden="true" />,
-            external: true,
+            label: "Browse Core Products",
+            href: "#core-products",
+            variant: "outline",
+            icon: <Package className="h-4 w-4" aria-hidden="true" />,
           },
         ]}
       />
 
-      <section className="border-b border-slate-200 bg-white py-12 sm:py-16" aria-labelledby="procurement-heading">
+      <section className="border-b border-slate-200 bg-white py-5 sm:py-6" aria-label="Manufacturer facts">
         <div className="container">
-          <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-brand-navy">Start With the Buying Risk</p>
-            <h2 id="procurement-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
-              Fix the Specification Before You Compare Price
-            </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-              A familiar size name can still hide a different roll length, core, adhesive, pack or material grade. Choose the route closest to your order so the commercial quote and approval sample use the same inputs.
-            </p>
-          </div>
-
-          <div className="mt-9 grid divide-y divide-slate-200 border-y border-slate-200 lg:grid-cols-[1.15fr_1fr_1fr] lg:divide-x lg:divide-y-0">
-            {buyerRoutes.map(({ icon: Icon, title, buyer, summary, href }, index) => (
-              <Link
-                key={title}
-                href={href}
-                className={`group grid gap-4 px-1 py-6 transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-inset sm:grid-cols-[auto_1fr] sm:px-5 lg:block lg:px-6 lg:py-8 ${index === 0 ? "lg:bg-slate-50" : ""}`}
-              >
-                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-navy text-white">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <span className="block">
-                  <span className="block text-lg font-semibold text-slate-950 group-hover:text-brand-navy">{title}</span>
-                  <span className="mt-1 block text-sm font-medium text-slate-500">{buyer}</span>
-                  <span className="mt-3 block text-sm leading-relaxed text-slate-600">{summary}</span>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy">
-                    Review this buying route
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
-                  </span>
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          <dl className="mt-8 grid grid-cols-2 gap-y-7 sm:grid-cols-4">
+          <dl className="grid grid-cols-2 gap-y-5 sm:grid-cols-4">
             {procurementFacts.map(({ value, label }, index) => (
               <div key={label} className={`min-w-0 ${index % 2 ? "border-l border-slate-200 pl-5" : ""} sm:border-l sm:pl-6 sm:first:border-l-0 sm:first:pl-0`}>
-                <dd className="text-2xl font-semibold text-slate-950 sm:text-3xl">{value}</dd>
-                <dt className="mt-1 text-sm text-slate-500">{label}</dt>
+                <dd className="text-xl font-semibold text-slate-950 sm:text-2xl">{value}</dd>
+                <dt className="mt-1 text-xs font-medium uppercase tracking-[0.08em] text-slate-500">{label}</dt>
               </div>
             ))}
           </dl>
         </div>
       </section>
 
-      <section className="bg-slate-50 py-16 sm:py-20" aria-labelledby="products-heading">
+      <section id="core-products" className="scroll-mt-28 bg-slate-50 py-16 sm:py-20" aria-labelledby="products-heading">
         <div className="container">
           <div className="mb-10 flex flex-col items-start justify-between gap-5 lg:flex-row lg:items-end">
             <div className="max-w-3xl">
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-brand-navy">Core Product Lines</p>
               <h2 id="products-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
-                Choose the Product Family Before You Compare Offers
+                Start With the Product You Need to Source
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-                Start with the application and product family, then narrow the size, material, format and packing variables that change price and performance.
+                Choose the closest product family first. Each route narrows the size, material, print, packing and printer variables that change performance and price.
               </p>
             </div>
             <Link href="/products" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4">
@@ -449,6 +414,43 @@ export default async function HomePage() {
                 image={images[item.slot] ?? item.fallback}
                 index={index}
               />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white py-14 sm:py-16" aria-labelledby="procurement-heading">
+        <div className="container">
+          <div className="max-w-3xl">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-brand-navy">Choose Your Buying Route</p>
+            <h2 id="procurement-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
+              Match the Supply Plan to the Order
+            </h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
+              Stock replenishment, a new private-label program and multi-SKU supply need different approval records. Start with the route closest to your purchasing task.
+            </p>
+          </div>
+
+          <div className="mt-9 grid divide-y divide-slate-200 border-y border-slate-200 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+            {buyerRoutes.map(({ icon: Icon, title, buyer, summary, href }) => (
+              <Link
+                key={title}
+                href={href}
+                className="group grid gap-4 px-1 py-6 transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-inset sm:grid-cols-[auto_1fr] sm:px-5 lg:block lg:px-6 lg:py-8"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-navy text-white">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <span className="block">
+                  <span className="block text-lg font-semibold text-slate-950 group-hover:text-brand-navy">{title}</span>
+                  <span className="mt-1 block text-sm font-medium text-slate-500">{buyer}</span>
+                  <span className="mt-3 block text-sm leading-relaxed text-slate-600">{summary}</span>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy">
+                    Review this buying route
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
+                  </span>
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -494,7 +496,7 @@ export default async function HomePage() {
                 ))}
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
+                <Link href="#home-rfq-form" className="inline-flex items-center gap-2 rounded-md bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
                   <MessageSquare className="h-4 w-4" aria-hidden="true" />
                   Request a Quote
                 </Link>
@@ -527,170 +529,110 @@ export default async function HomePage() {
 
       <section className="border-y border-slate-200 bg-slate-50 py-16 sm:py-20" aria-labelledby="factory-heading">
         <div className="container">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
-              <Image
-                src={factoryImage}
-                alt="ZhixinPaper thermal paper converting and jumbo roll production line"
-                fill
-                loading="lazy"
-                sizes="(max-width: 1024px) 100vw, 52vw"
-                className="object-cover"
-              />
-            </div>
+          <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+            <figure>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
+                <Image
+                  src={factoryImage}
+                  alt="ZhixinPaper thermal paper converting and jumbo roll production line"
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 1024px) 100vw, 52vw"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 text-xs leading-relaxed text-slate-500">
+                Production-line image used for factory review. Confirm the equipment and inspection records that apply to the quoted product.
+              </figcaption>
+            </figure>
 
             <div>
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-brand-navy">Factory & Quality Evidence</p>
               <h2 id="factory-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
-                Review the Supply Evidence Before the Deposit
+                Check the Evidence Behind the Quote
               </h2>
               <p className="mt-5 text-base leading-relaxed text-slate-600">
-                Confirm which capacity, material, quality and export records apply to your exact product grade and destination before you commit to bulk production.
+                {SITE.name}, legally Xi&apos;an Zhi Xin Paper Co., Ltd., supplies thermal paper rolls, direct thermal labels, packaging labels and carbonless forms from Xi&apos;an, China. Before a deposit, confirm the records that apply to the exact grade, format and destination in your quotation.
               </p>
-              <div className="mt-7 space-y-4">
+              <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6">
                 {[
-                  "Quality-management and material documents matched to the selected grade",
-                  "Private cartons, core printing, barcode marks and pallet plans approved with the order",
-                  "Commercial invoice, packing list and destination documents reviewed before dispatch",
-                  "Jumbo-roll and finished-goods options for converters, distributors and OEM programs",
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-3 text-sm leading-relaxed text-slate-700">
-                    <BadgeCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-navy" aria-hidden="true" />
-                    <span>{item}</span>
+                  { term: "Manufacturing since", value: SITE.founded },
+                  { term: "Factory area", value: FACTORY.area },
+                  { term: "Production lines", value: FACTORY.productionLines },
+                  { term: "Product scope", value: "Rolls, labels, NCR" },
+                ].map(({ term, value }) => (
+                  <div key={term} className="border-t border-slate-300 pt-3">
+                    <dt className="text-xs uppercase tracking-[0.08em] text-slate-500">{term}</dt>
+                    <dd className="mt-1 text-lg font-semibold text-slate-950">{value}</dd>
                   </div>
                 ))}
-              </div>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
-                  <MessageSquare className="h-4 w-4" aria-hidden="true" />
-                  Request a Quote
-                </Link>
-                <Link
-                  href={`/contact?product=${encodeURIComponent("Jumbo Roll Supply")}`}
-                  className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-navy hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
-                >
-                  <Handshake className="h-4 w-4" aria-hidden="true" />
-                  Jumbo roll supply
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden border border-slate-200 bg-slate-200 lg:grid-cols-4">
-            {[
-              { icon: FactoryIcon, value: FACTORY.area, label: "Factory area" },
-              { icon: Zap, value: FACTORY.dailyOutput, label: "Daily output" },
-              { icon: Globe, value: FACTORY.countriesServed, label: "Export markets" },
-              { icon: ShieldCheck, value: FACTORY.oemClients, label: "OEM clients" },
-            ].map(({ icon: Icon, value, label }) => (
-              <div key={label} className="bg-white p-5 sm:p-6">
-                <Icon className="h-5 w-5 text-brand-navy" aria-hidden="true" />
-                <dd className="mt-4 text-2xl font-semibold text-slate-950">{value}</dd>
-                <dt className="mt-1 text-sm text-slate-500">{label}</dt>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      <section className="bg-brand-navy-deep py-16 text-white sm:py-20" aria-labelledby="outcomes-heading">
-        <div className="container">
-          <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-amber-300">Quote-Ready Buying Scenarios</p>
-            <h2 id="outcomes-heading" className="text-3xl font-semibold text-white sm:text-4xl">
-              Lock Down the Variables That Cause Reorder Problems
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-300">
-              Different products fail for different reasons. A useful RFQ records the operating condition, approval evidence and reorder reference instead of relying on a size name alone.
-            </p>
-          </div>
-
-          <div className="mt-10 grid border-y border-white/15 lg:grid-cols-3 lg:divide-x lg:divide-white/15">
-            {approvalScenarios.map(({ icon: Icon, title, risk, approval, outcome }, index) => (
-              <article key={title} className="border-b border-white/15 py-8 last:border-b-0 lg:border-b-0 lg:px-8 lg:first:pl-0 lg:last:pr-0">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-md bg-white/10 text-amber-300">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <span className="text-sm font-semibold text-slate-400">0{index + 1}</span>
-                </div>
-                <h3 className="mt-6 text-xl font-semibold text-white">{title}</h3>
-                <p className="mt-6 text-xs font-semibold uppercase tracking-[0.14em] text-amber-300">Risk to avoid</p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-300">{risk}</p>
-                <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">Approval record</p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-300">{approval}</p>
-                <p className="mt-6 border-t border-white/15 pt-5 text-sm font-medium leading-relaxed text-white">
-                  <CheckCircle className="mr-2 inline h-4 w-4 text-amber-300" aria-hidden="true" />
-                  {outcome}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-slate-200 bg-slate-50 py-16 sm:py-20" aria-labelledby="facts-heading">
-        <div className="container">
-          <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
-            <div>
-              <h2 id="facts-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
-                Supplier Facts for Buyer Due Diligence
-              </h2>
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600">
-                {SITE.name}, legally Xi&apos;an Zhi Xin Paper Co., Ltd., is a factory-direct manufacturer of thermal paper rolls, direct thermal labels, packaging labels and carbonless forms. Founded in {SITE.founded} in Xi&apos;an, China, the company supplies wholesale and OEM buyers in {FACTORY.countriesServed} markets.
-              </p>
-              <Link href="/about" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4">
+              </dl>
+              <Link href="/about" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4">
                 Review the factory profile
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
-
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-3">
-              {[
-                { term: "Founded", value: SITE.founded },
-                { term: "Factory size", value: FACTORY.area },
-                { term: "Annual output", value: `${FACTORY.annualOutput} rolls` },
-                { term: "Markets", value: FACTORY.countriesServed },
-                { term: "OEM clients", value: FACTORY.oemClients },
-                { term: "Product scope", value: "Rolls, labels, NCR" },
-              ].map(({ term, value }) => (
-                <div key={term} className="border-t border-slate-300 pt-4">
-                  <dt className="text-sm text-slate-500">{term}</dt>
-                  <dd className="mt-1 text-xl font-semibold text-slate-950">{value}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
 
-          <p className="mt-10 border-t border-slate-200 pt-5 text-sm leading-relaxed text-slate-500">
+          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 lg:grid-cols-3">
+            {evidenceRoutes.map(({ icon: Icon, label, title, text, href, linkLabel }) => (
+              <Link
+                key={title}
+                href={href}
+                className="group bg-white p-6 transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-inset sm:p-7"
+              >
+                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-navy text-white">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <span className="mt-5 block text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">{label}</span>
+                <span className="mt-2 block text-lg font-semibold text-slate-950">{title}</span>
+                <span className="mt-3 block text-sm leading-relaxed text-slate-600">{text}</span>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy">
+                  {linkLabel}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <p className="mt-8 border-t border-slate-200 pt-5 text-sm leading-relaxed text-slate-500">
             Potential supporting documents include {CERTIFICATIONS.map((item) => item.name).join(", ")}. Availability and scope depend on the selected product grade and destination requirement; export terms can include FOB, CIF and DDP.
           </p>
+        </div>
+      </section>
 
-          <div className="mt-10 grid gap-8 rounded-lg border border-slate-200 border-t-4 border-t-amber-500 bg-white p-6 sm:p-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:p-10">
+      <section id="home-rfq" className="scroll-mt-28 bg-brand-navy-deep py-16 text-white sm:py-20" aria-labelledby="home-rfq-heading">
+        <div className="container">
+          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-16">
             <div>
-              <h2 className="text-3xl font-semibold text-slate-950">Send the Inputs That Change the Price</h2>
-              <p className="mt-3 text-base leading-relaxed text-slate-600">
-                Send four starting details. Our export team will reply with the missing specification questions before confirming price, sample and packing options.
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-amber-300">Quote-Ready Order Brief</p>
+              <h2 id="home-rfq-heading" className="text-3xl font-semibold text-white sm:text-4xl">
+                Get a Factory Quote Without Leaving the Page
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-300">
+                Send four starting details. The export team will identify the missing specification questions before confirming price, sample and packing options.
               </p>
-            </div>
-            <div>
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                 {quoteChecklist.map((item) => (
-                  <div key={item} className="flex items-center gap-2 border-b border-slate-200 py-2.5 text-sm font-medium text-slate-700">
-                    <CheckCircle className="h-4 w-4 flex-shrink-0 text-amber-500" aria-hidden="true" />
+                  <div key={item} className="flex items-center gap-3 border-b border-white/15 py-3 text-sm font-medium text-white">
+                    <CheckCircle className="h-4 w-4 flex-shrink-0 text-amber-300" aria-hidden="true" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-brand-navy px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
-                  <MessageSquare className="h-4 w-4" aria-hidden="true" />
-                  Request a Quote
-                </Link>
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-md border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-navy hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-amber-300 hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-4 focus-visible:ring-offset-brand-navy-deep">
                   <Phone className="h-4 w-4" aria-hidden="true" />
-                  WhatsApp
-                </a>
-              </div>
+                  Ask a quick question on WhatsApp
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
+
+            <div className="rounded-lg bg-white p-6 text-slate-950 shadow-xl shadow-black/10 sm:p-8">
+              <InquiryForm
+                formId="home-rfq-form"
+                responseNote="Reply within one business day. NDA available. No spam."
+                successMessage="We'll respond within one business day."
+              />
             </div>
           </div>
         </div>

@@ -313,6 +313,7 @@ export const detergentLabelsCategoryConfig: ProductCategoryConfig = {
     { name: "Detergent & Household Labels", path: "/products/detergent-labels" },
   ],
   relatedPrograms: [
+    { label: "Custom Printed Bottle Labels", href: "/products/detergent-labels/custom-printed" },
     { label: "Machine-Ready Filling Line Labels", href: "/products/can-labels" },
     { label: "Product Labels", href: "/products/product-labels" },
     { label: "Custom Printed Thermal Labels", href: "/products/custom-printed-thermal-labels" },

@@ -133,9 +133,12 @@ export default async function QualityControlPage() {
               </div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
               <Link href="/manufacturing/certifications" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors">
                 View Our Certifications <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link href="/oem/quality-assurance" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm transition-colors">
+                OEM Quality Assurance <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href="/manufacturing" className="text-slate-500 hover:text-slate-700 text-sm transition-colors">
                 ← Manufacturing Overview

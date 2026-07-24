@@ -129,7 +129,7 @@ export default function Footer() {
             </Link>
 
             <p className="mt-5 max-w-md text-sm leading-relaxed text-slate-400">
-              Factory manufacturer of thermal paper rolls, direct thermal labels, packaging labels, and NCR forms. ISO 9001 certified with export supply to {FACTORY.countriesServed}+ countries.
+              Factory manufacturer of thermal paper rolls, direct thermal labels, packaging labels, and NCR forms. ISO 9001 certified with export supply to {FACTORY.countriesServed} countries.
             </p>
 
             <div className="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">

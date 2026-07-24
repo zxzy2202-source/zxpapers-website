@@ -13,6 +13,7 @@ test("contact hero CTA targets the rendered inquiry form", async () => {
   assert.match(page, /href: "#inquiry-form"/);
   assert.match(page, /formId="inquiry-form"/);
   assert.match(form, /id=\{formId\}/);
+  assert.match(form, /scroll-mt-28/);
 });
 
 test("inquiry funnel events avoid personal form values", async () => {

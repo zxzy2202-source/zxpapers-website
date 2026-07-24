@@ -231,7 +231,7 @@ export default function InquiryForm({
       onSubmit={handleSubmit}
       onFocusCapture={handleFormFocus}
       noValidate
-      className={`space-y-3 ${highlighted ? "ring-2 ring-brand-navy rounded-md p-3 bg-slate-50" : ""}`}
+      className={`scroll-mt-28 space-y-3 ${highlighted ? "ring-2 ring-brand-navy rounded-md p-3 bg-slate-50" : ""}`}
     >
       {!compact && (
         <h3 className="text-lg font-semibold tracking-[-0.02em] text-slate-900 mb-4">

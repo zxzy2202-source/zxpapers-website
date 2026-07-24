@@ -11,6 +11,7 @@ import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import PageHero from "@/components/shared/PageHero";
 import ProductCategoryActionLink from "@/components/products/category/ProductCategoryActionLink";
+import QuickQuoteBrief from "@/components/products/QuickQuoteBrief";
 import { cn } from "@/lib/utils";
 import type {
   ProductCategoryConfig,
@@ -152,6 +153,17 @@ export default function ProductCategoryTemplate({
         </div>
       </nav>
 
+      <QuickQuoteBrief
+        kind="category"
+        label="Quick quote brief"
+        items={[
+          { title: "Product", description: "Name the product or share a current sample." },
+          { title: "Specification", description: "Add the size, material, printer, or use case." },
+          { title: "Order", description: "Give the quantity and delivery country." },
+        ]}
+        ctaLabel="Send the brief"
+      />
+
       <section
         id="product-families"
         data-category-section="product-families"
@@ -166,7 +178,7 @@ export default function ProductCategoryTemplate({
             }
             description={
               config.sectionCopy?.families?.description ??
-              "Start with the product route that matches the printer and job. Size, material, adhesive, packing and commercial terms are confirmed inside that route."
+              "Choose the route that matches the printer and job. Confirm size, material, adhesive, packing, and order terms next."
             }
           />
 
@@ -296,7 +308,7 @@ export default function ProductCategoryTemplate({
                 }
                 description={
                   config.sectionCopy?.sizes?.description ??
-                  "A size name does not confirm core, outer diameter, gap, winding, face stock or adhesive. Open the size page, then qualify the full construction."
+                  "A size name is only a starting point. Confirm the core, outer diameter, gap, winding, face stock, and adhesive on the size page."
                 }
               />
               <div className={cn("grid border-l border-t border-slate-300", sizeGridClass)}>
@@ -346,7 +358,7 @@ export default function ProductCategoryTemplate({
             }
             description={
               config.sectionCopy?.applications?.description ??
-              "Application pages help define the risk. The final product route still depends on the printer, surface, environment and required evidence."
+              "Start with the real use case. Then confirm the printer, surface, environment, and test evidence."
             }
           />
           <div
@@ -413,7 +425,7 @@ export default function ProductCategoryTemplate({
             }
             description={
               config.sectionCopy?.selection?.description ??
-              "The material route comes last. Printer geometry and the actual application determine which construction is worth testing."
+              "Define the printer and use case first. Then select a construction for testing."
             }
           />
           <ol className="mt-8 grid border-l border-t border-slate-300 lg:grid-cols-4">

@@ -22,6 +22,7 @@ import {
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import InquiryForm from "@/components/shared/InquiryForm";
+import QuickQuoteBrief from "@/components/products/QuickQuoteBrief";
 
 export interface CatalogLink {
   label: string;
@@ -389,6 +390,17 @@ export default function ProductsCatalogPage({ heroImage, whatsappHref, families,
           { label: "Request a Quote", href: "#inquiry", variant: "primary", icon: <MessageSquare className="h-4 w-4" /> },
           { label: "WhatsApp", href: whatsappHref, variant: "whatsapp", icon: <Phone className="h-4 w-4" />, external: true },
         ]}
+      />
+
+      <QuickQuoteBrief
+        kind="products"
+        label="Quick quote brief"
+        items={[
+          { title: "Product", description: "Choose rolls, labels, packaging, or NCR forms." },
+          { title: "Specification", description: "Add the size, material, print, or use case." },
+          { title: "Order", description: "Give the quantity and delivery country." },
+        ]}
+        ctaLabel="Send the brief"
       />
 
       <ProductApplications families={families} />
