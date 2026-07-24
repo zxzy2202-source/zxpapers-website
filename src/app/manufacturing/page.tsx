@@ -105,6 +105,7 @@ export default async function ManufacturingPage() {
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
         bgImage={imgs["manufacturing:hero"]}
+        bgImageAlt="ZhixinPaper ISO 9001 certified thermal paper production line with German and Japanese equipment"
         overlayDir="left"
         overlayOpacity={50}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Manufacturing" }]}

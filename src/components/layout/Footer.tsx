@@ -95,7 +95,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-x-5 gap-y-5 lg:grid-cols-4">
             {trustItems.map(({ icon: Icon, label, sub }) => (
               <div key={label} className="flex min-w-0 items-center gap-3">
-                <span className="flex h-9 w-9 flex-none items-center justify-center border border-white/10 bg-white/5 text-amber-300">
+                <span className="flex h-9 w-9 flex-none items-center justify-center rounded-lg border border-white/10 bg-white/5 text-amber-300">
                   <Icon className="h-4 w-4" aria-hidden="true" />
                 </span>
                 <span className="min-w-0">

@@ -232,6 +232,7 @@ export default async function MarketCountryPageTemplate({ data }: MarketCountryP
 
       <PageHero
         bgImage={heroImage}
+        bgImageAlt={`ZhixinPaper thermal paper and label supply to ${data.countryName} — B2B factory-direct export`}
         overlayDir="left"
         overlayOpacity={56}
         breadcrumbs={[
@@ -302,7 +303,7 @@ export default async function MarketCountryPageTemplate({ data }: MarketCountryP
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {data.products.map((product) => (
-              <div key={product.name} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-blue-200 hover:shadow-md transition-all">
+              <div key={product.name} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-brand-navy/30 hover:shadow-md transition-all">
                 <div className="flex items-start justify-between gap-3 mb-4">
                   <h3 className="font-sora text-xl font-bold text-slate-900">{product.name}</h3>
                   <span className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-bold ${product.badgeClassName}`}>{product.badge}</span>

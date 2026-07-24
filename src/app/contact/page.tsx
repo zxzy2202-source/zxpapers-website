@@ -70,6 +70,7 @@ export default async function ContactPage() {
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
         bgImage={contactHeroImg}
+        bgImageAlt="Contact ZhixinPaper thermal paper sales team for factory-direct wholesale quotes and OEM inquiries"
         overlayDir="center"
         overlayOpacity={50}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact Us" }]}

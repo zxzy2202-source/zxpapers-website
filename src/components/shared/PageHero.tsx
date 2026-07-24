@@ -35,6 +35,8 @@ export interface PageHeroProps {
   bgImage?: string;
   /** Background image carousel URLs */
   bgImages?: string[];
+  /** Alt text for background images (applied to all slides) */
+  bgImageAlt?: string;
   /** Carousel interval in milliseconds */
   bgCarouselInterval?: number;
   /** Overlay gradient direction: left (default) | center | right */
@@ -86,6 +88,7 @@ const badgeColors = {
 export default function PageHero({
   bgImage,
   bgImages,
+  bgImageAlt,
   bgCarouselInterval = 5000,
   overlayDir = "left",
   overlayOpacity = 50,
@@ -183,7 +186,7 @@ export default function PageHero({
               >
                 <Image
                   src={image}
-                  alt=""
+                  alt={bgImageAlt || ""}
                   fill
                   priority={slideIndex === 0}
                   loading={slideIndex === 0 ? "eager" : undefined}

@@ -138,6 +138,7 @@ export default async function AboutPage() {
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
         bgImage={FACTORY_IMG}
+        bgImageAlt="ZhixinPaper thermal paper manufacturing facility in Xi'an, Shaanxi, China"
         overlayDir="left"
         overlayOpacity={50}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]}

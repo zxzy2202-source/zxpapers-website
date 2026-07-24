@@ -123,6 +123,7 @@ export default function AutoRepairNcrFormsCatalogPage({
     <Layout>
       <PageHero
         bgImage={heroImage}
+        bgImageAlt="ZhixinPaper auto repair NCR carbonless forms — factory custom manufacturing for vehicle service shops"
         overlayDir="left"
         overlayOpacity={68}
         minHeight="min-h-[410px]"

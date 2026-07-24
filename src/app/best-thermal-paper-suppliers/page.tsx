@@ -133,6 +133,7 @@ export default function BestThermalPaperSuppliersPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <Layout>
         <PageHero
+          bgImageAlt="Thermal paper supplier comparison guide — factory selection criteria and certification checklist"
           overlayDir="left"
           overlayOpacity={70}
           minHeight="min-h-[380px]"

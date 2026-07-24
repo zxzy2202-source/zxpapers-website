@@ -147,6 +147,7 @@ export default function ShippingLabelsDetailPage({
     <Layout>
       <PageHero
         bgImage={heroImage}
+        bgImageAlt="ZhixinPaper direct thermal shipping labels — 4x6 and custom sizes, factory-direct wholesale"
         overlayDir="left"
         overlayOpacity={70}
         minHeight="min-h-[430px]"

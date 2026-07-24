@@ -88,6 +88,7 @@ export default function ZhixinVsPandaPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Layout>
         <PageHero
+          bgImageAlt="ZhixinPaper vs Panda Paper Roll — factory-direct thermal paper manufacturer comparison"
           overlayDir="left"
           overlayOpacity={70}
           minHeight="min-h-[380px]"

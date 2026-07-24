@@ -163,7 +163,7 @@ function SplitSection({ block, reverse, tinted, eyebrow }: { block: SplitBlock; 
               </div>
             ) : null}
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border border-slate-200 shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-slate-200 shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
             <Image src={block.image} alt={block.imageAlt} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
           </div>
         </div>
@@ -305,6 +305,7 @@ export default function ProductCategoryShowcaseTemplate({
     <Layout>
       <PageHero
         bgImage={heroImage}
+        bgImageAlt="ZhixinPaper thermal paper products — factory-direct B2B wholesale and OEM supply"
         overlayDir="left"
         overlayOpacity={56}
         minHeight="min-h-[460px]"
@@ -371,12 +372,12 @@ export default function ProductCategoryShowcaseTemplate({
                 <Link
                   key={item.title}
                   href={item.href}
-                  className="group rounded-[26px] border border-slate-200 bg-white p-5 shadow-[0_16px_40px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-amber-300 hover:shadow-[0_24px_55px_rgba(245,158,11,0.16)]"
+                  className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_16px_40px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-amber-300 hover:shadow-[0_24px_55px_rgba(245,158,11,0.16)]"
                 >
                   {inner}
                 </Link>
               ) : (
-                <div key={item.title} className="group rounded-[26px] border border-slate-200 bg-white p-5 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
+                <div key={item.title} className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
                   {inner}
                 </div>
               );
@@ -404,7 +405,7 @@ export default function ProductCategoryShowcaseTemplate({
         <section className="bg-white">
           <div className="container py-16 lg:py-20">
             <SectionHeading eyebrow="Compare" title={comparison.title} />
-            <div className="overflow-hidden rounded-[26px] border border-slate-200 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
+            <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[640px] text-sm">
                   <thead className="bg-slate-50">
@@ -435,7 +436,7 @@ export default function ProductCategoryShowcaseTemplate({
         <section className="bg-slate-50 border-y border-slate-100">
           <div className="container py-16 lg:py-20">
             <SectionHeading title={specs.title} />
-            <div className="overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
+            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_16px_40px_rgba(15,23,42,0.06)]">
               <table className="w-full text-sm">
                 <tbody>
                   {specs.rows.map((row, i) => (
@@ -462,7 +463,7 @@ export default function ProductCategoryShowcaseTemplate({
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {whyUs.items.map((item) => (
-                <div key={item.title} className="rounded-[24px] border border-white/10 bg-white/5 p-6">
+                <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-6">
                   <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/15 text-amber-400 [&_svg]:h-6 [&_svg]:w-6">
                     {item.icon}
                   </div>
@@ -530,7 +531,7 @@ export default function ProductCategoryShowcaseTemplate({
       {/* Inquiry — navy panel + form (ref: template MTcontactDetail) */}
       <section id="inquiry" className="bg-slate-50 border-t border-slate-100 scroll-mt-24">
         <div className="container py-16 lg:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-[28px] shadow-[0_30px_70px_rgba(15,23,42,0.16)]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-2xl shadow-[0_30px_70px_rgba(15,23,42,0.16)]">
             <div className="bg-brand-navy text-white p-8 lg:p-10 flex flex-col">
               <div className="flex items-center gap-2 mb-5">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />

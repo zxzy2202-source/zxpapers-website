@@ -83,6 +83,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
       <main className="pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0" data-product-detail-template={config.slug}>
         <PageHero
           bgImage={images.hero}
+          bgImageAlt={config.images.hero.alt}
           overlayOpacity={64}
           minHeight="min-h-[420px] sm:min-h-[390px] lg:min-h-[370px]"
           compact

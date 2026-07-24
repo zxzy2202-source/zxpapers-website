@@ -50,6 +50,7 @@ export default async function MarketRegionPageTemplate({ data }: MarketRegionPag
 
       <PageHero
         bgImage={heroImage}
+        bgImageAlt={`ZhixinPaper thermal paper and label export to ${data.regionName} — B2B factory-direct supply`}
         overlayDir="left"
         overlayOpacity={56}
         breadcrumbs={[
@@ -100,7 +101,7 @@ export default async function MarketRegionPageTemplate({ data }: MarketRegionPag
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {data.countries.map((country) => (
-              <Link key={country.name} href={country.href} className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg">
+              <Link key={country.name} href={country.href} className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-brand-navy/30 hover:shadow-lg">
                 <div className="flex items-start justify-between gap-4 mb-4">
                   <div>
                     <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-slate-400 uppercase tracking-[0.18em]">

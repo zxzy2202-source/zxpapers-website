@@ -254,6 +254,7 @@ export default function NcrInvoiceBooksCatalogPage({
     <Layout>
       <PageHero
         bgImage={heroImage}
+        bgImageAlt="ZhixinPaper NCR carbonless invoice books — factory custom manufacturing and wholesale supply"
         overlayDir="left"
         overlayOpacity={68}
         minHeight="min-h-[400px]"

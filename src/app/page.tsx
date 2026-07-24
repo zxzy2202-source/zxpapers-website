@@ -332,6 +332,7 @@ export default async function HomePage() {
 
       <PageHero
         bgImages={heroImages}
+        bgImageAlt="ZhixinPaper thermal paper factory production floor with coating, slitting and packaging lines"
         bgCarouselInterval={5000}
         overlayDir="left"
         overlayOpacity={58}

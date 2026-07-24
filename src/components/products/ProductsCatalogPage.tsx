@@ -377,6 +377,7 @@ export default function ProductsCatalogPage({ heroImage, whatsappHref, families,
     <Layout>
       <PageHero
         bgImage={heroImage}
+        bgImageAlt="ZhixinPaper thermal paper rolls, labels and NCR forms product catalog — factory-direct B2B supply"
         overlayDir="left"
         overlayOpacity={62}
         minHeight="min-h-[360px]"

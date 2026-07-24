@@ -143,6 +143,9 @@ export async function generateMetadata(): Promise<Metadata> {
         "max-snippet": -1,
       },
     },
+    alternates: {
+      languages: { en: SITE.domain },
+    },
   };
 }
 

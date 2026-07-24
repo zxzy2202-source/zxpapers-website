@@ -204,7 +204,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="relative hidden xl:flex items-center gap-0.5 flex-1 justify-center">
+          <div className="relative hidden lg:flex items-center gap-0.5 flex-1 justify-center">
             {mainNav.map((item) => {
               if (!isDropdown(item)) {
                 return (
@@ -561,7 +561,7 @@ export default function Header() {
           </div>
 
           {/* CTA */}
-          <div className="hidden xl:flex items-center gap-3 flex-shrink-0 ml-2">
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0 ml-2">
             <Link
               href="/contact"
               className="bg-brand-navy hover:bg-brand-navy-hover text-white font-semibold text-sm px-4 py-2 rounded-md transition-colors duration-200 whitespace-nowrap"
@@ -572,7 +572,7 @@ export default function Header() {
 
           {/* Mobile toggle */}
           <button
-            className="xl:hidden p-2 text-slate-700 hover:text-brand-navy transition-colors"
+            className="lg:hidden p-2 text-slate-700 hover:text-brand-navy transition-colors"
             onClick={() => {
               const nextOpen = !mobileOpen;
               setMobileOpen(nextOpen);
@@ -590,7 +590,7 @@ export default function Header() {
 
         {/* ── Mobile menu ── */}
         {mobileOpen && (
-          <div className="h-[calc(100dvh-99px)] overflow-y-auto overscroll-contain border-t border-slate-200 bg-white xl:hidden">
+          <div className="h-[calc(100dvh-99px)] overflow-y-auto overscroll-contain border-t border-slate-200 bg-white lg:hidden">
             <div className="container py-4 space-y-1">
               {mainNav.map((item) => {
                 if (!isDropdown(item)) {

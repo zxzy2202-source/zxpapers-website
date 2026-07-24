@@ -254,12 +254,12 @@ export default function ProductLandingPageTemplate({
             </div>
 
             <div className="relative">
-              <div className={`absolute -inset-3 rounded-[28px] blur-2xl ${palette.heroGlow}`} />
-              <div className={`relative rounded-[28px] border p-3 shadow-2xl ${palette.heroPanel}`}>
+              <div className={`absolute -inset-3 rounded-2xl blur-2xl ${palette.heroGlow}`} />
+              <div className={`relative rounded-2xl border p-3 shadow-2xl ${palette.heroPanel}`}>
                 <Image
                   src={heroImage}
                   alt={heroAlt}
-                  className="w-full h-[280px] sm:h-[360px] object-cover rounded-[22px]"
+                  className="w-full h-[280px] sm:h-[360px] object-cover rounded-xl"
                   width={720}
                   height={520}
                   sizes="(max-width: 768px) 100vw, 40vw"
@@ -294,7 +294,7 @@ export default function ProductLandingPageTemplate({
         <div className="container py-10 lg:py-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 space-y-12">
-              <div className="rounded-3xl border border-white/70 bg-white/90 p-6 sm:p-7 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-sm">
+              <div className="rounded-2xl border border-white/70 bg-white/90 p-6 sm:p-7 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-sm">
                 <h2 className="font-sora text-xl font-bold text-slate-900 mb-4">{topSectionTitle}</h2>
                 {topSectionVariant === "cards" && topSectionCards ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -462,7 +462,7 @@ export default function ProductLandingPageTemplate({
 
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-4" id="inquiry-panel">
-              <div className={`rounded-[26px] border-2 ${palette.cardBorder} bg-white p-6 shadow-[0_24px_60px_rgba(15,23,42,0.14)]`}>
+              <div className={`rounded-2xl border-2 ${palette.cardBorder} bg-white p-6 shadow-[0_24px_60px_rgba(15,23,42,0.14)]`}>
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                   <span className="text-xs text-green-600 font-semibold">Online — Responding within 12h</span>

@@ -66,6 +66,7 @@ export default async function OEMPage() {
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
         bgImage={oemHeroImg}
+        bgImageAlt="ZhixinPaper OEM private label thermal paper rolls with custom logo printing and branded packaging"
         overlayDir="left"
         overlayOpacity={50}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "OEM Services" }]}

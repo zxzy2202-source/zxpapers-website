@@ -91,6 +91,7 @@ export default function ProductCategoryTemplate({
     <Layout>
       <PageHero
         bgImage={images.hero}
+        bgImageAlt={config.hero.image.alt}
         overlayDir="left"
         overlayOpacity={72}
         minHeight="min-h-[430px]"
