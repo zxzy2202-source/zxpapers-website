@@ -562,6 +562,7 @@ export default function ShippingLabelsDetailPage({
                 { label: "Barcode labels", href: "/products/barcode-labels" },
                 { label: "Custom printed thermal labels", href: "/products/custom-printed-thermal-labels" },
                 { label: "Thermal labels product range", href: "/products/thermal-labels" },
+                { label: "3 1/8 x 263' linerless labels", href: "/products/linerless-labels/3-1-8-x-263" },
               ].map((item) => (
                 <Link key={item.href} href={item.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-navy transition-colors hover:text-amber-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500">
                   {item.label}

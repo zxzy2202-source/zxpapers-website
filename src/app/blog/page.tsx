@@ -154,6 +154,30 @@ export default async function BlogListPage() {
               </div>
             )}
 
+            <div className="rounded-2xl border border-slate-200 bg-white p-5">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900">Buyer Comparison Guides</h2>
+              <ul className="mt-3 space-y-2 text-sm">
+                <li>
+                  <Link
+                    href="/best-thermal-paper-suppliers"
+                    className="inline-flex items-start gap-2 font-medium leading-snug text-slate-700 transition-colors hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/30"
+                  >
+                    <ArrowRight className="mt-0.5 h-4 w-4 flex-none text-amber-600" aria-hidden="true" />
+                    Best thermal paper suppliers
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/zhixinpaper-vs-panda-paper-roll"
+                    className="inline-flex items-start gap-2 font-medium leading-snug text-slate-700 transition-colors hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy/30"
+                  >
+                    <ArrowRight className="mt-0.5 h-4 w-4 flex-none text-amber-600" aria-hidden="true" />
+                    ZhixinPaper vs Panda Paper Roll
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
             {/* Contact / CTA */}
             <div className="rounded-2xl border border-brand-navy/20 bg-brand-navy-alt p-5 text-white">
               <h2 className="text-sm font-bold uppercase tracking-wider text-amber-300">Need a Quote?</h2>

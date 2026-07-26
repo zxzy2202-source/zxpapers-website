@@ -10,7 +10,8 @@ export const SITE = {
   email: "Sales@zxpapers.com",
   phone: "+86 158 9176 6700",
   whatsapp: "+86 180 9211 7618",
-  whatsappUrl: "/contact/whatsapp",
+  // Keep per-page messages in the fragment so crawlers see one stable handoff URL.
+  whatsappUrl: "/contact/whatsapp#",
   wechat: "+86 158 9176 6700",
   address:
     "Building 15, Phase 1 Zone 2, Ronghao Industrial Park, Gaoling District, Xi'an, Shaanxi, China",

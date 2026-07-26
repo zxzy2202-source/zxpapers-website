@@ -6,7 +6,11 @@ import { trackConversionEvent } from "@/lib/analytics";
 
 function contactChannel(href: string) {
   const normalized = href.toLowerCase();
-  if (normalized.startsWith("https://wa.me/") || normalized.startsWith("https://api.whatsapp.com/")) {
+  if (
+    normalized.startsWith("/contact/whatsapp") ||
+    normalized.startsWith("https://wa.me/") ||
+    normalized.startsWith("https://api.whatsapp.com/")
+  ) {
     return "whatsapp";
   }
   if (normalized.startsWith("mailto:")) return "email";

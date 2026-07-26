@@ -138,7 +138,7 @@ export default function MarketsPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-3 rounded-lg transition-colors">Get Market-Specific Quote</Link>
-            <a href={`https://wa.me/${SITE.whatsapp}?text=${whatsappMsg}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">WhatsApp Us</a>
+            <a href={`${SITE.whatsappUrl}?text=${whatsappMsg}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">WhatsApp Us</a>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
             {[
@@ -231,7 +231,7 @@ export default function MarketsPage() {
           <p className="text-blue-200 mb-8">Tell us your country and we&apos;ll send you a tailored CIF quote with the most popular sizes for your market within 24 hours.</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-3 rounded-lg transition-colors">Send Inquiry</Link>
-            <a href={`https://wa.me/${SITE.whatsapp}?text=${whatsappMsg}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">WhatsApp for Quick Quote</a>
+            <a href={`${SITE.whatsappUrl}?text=${whatsappMsg}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">WhatsApp for Quick Quote</a>
           </div>
         </div>
       </section>
