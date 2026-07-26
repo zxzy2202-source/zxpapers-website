@@ -35,6 +35,10 @@ interface FeishuConfig {
   attachmentFieldId: string;
 }
 
+export interface PrepareBlogPostCoverOptions {
+  force?: boolean;
+}
+
 interface FeishuApiEnvelope<T> {
   code?: number;
   msg?: string;
@@ -69,6 +73,16 @@ function getConfig(): FeishuConfig {
     throw new Error(`飞书素材库自动配图未配置：${missing.join(", ")}`);
   }
   return config;
+}
+
+export function isFeishuAssetLibraryConfigured(): boolean {
+  return Boolean(
+    process.env.FEISHU_APP_ID?.trim()
+    && process.env.FEISHU_APP_SECRET?.trim()
+    && process.env.FEISHU_ASSET_BASE_TOKEN?.trim()
+    && process.env.FEISHU_ASSET_TABLE_ID?.trim()
+    && process.env.FEISHU_ASSET_ATTACHMENT_FIELD_ID?.trim(),
+  );
 }
 
 async function readJson<T>(response: Response, operation: string): Promise<FeishuApiEnvelope<T>> {
@@ -257,8 +271,11 @@ function safeSegment(value: string): string {
     .slice(0, 70) || "asset";
 }
 
-export async function prepareBlogPostCover(post: PostRecord): Promise<PostRecord> {
-  if (post.cover) return post;
+export async function prepareBlogPostCover(
+  post: PostRecord,
+  options: PrepareBlogPostCoverOptions = {},
+): Promise<PostRecord> {
+  if (post.cover && !options.force) return post;
   const assetQuery = post.assetQuery || getBlogAssetQuery(post.slug);
   if (!assetQuery) return post;
   if (!r2Configured || !R2_BUCKET_NAME) {
@@ -269,7 +286,7 @@ export async function prepareBlogPostCover(post: PostRecord): Promise<PostRecord
   const token = await getTenantAccessToken(config);
   const ranked = rankFeishuAssets(await listFeishuAssetCandidates(), assetQuery);
   if (ranked.length === 0) {
-    throw new Error("飞书素材库暂无符合已批准、Website、版权和相关性门禁的图片");
+    throw new Error("飞书素材库暂无符合已批准、Website、附件、保密和相关性门禁的图片");
   }
 
   const failures: string[] = [];

@@ -36,11 +36,13 @@ test("post storage requires approval, a due date and a publishable format", () =
   assert.match(store, /validation\.errors/);
   assert.match(store, /assetQuery\?: BlogAssetQuery/);
   assert.match(store, /preparePost\?: \(post: PostRecord\)/);
+  assert.match(store, /backfillPublishedPostCovers/);
+  assert.match(store, /post\.coverAsset\?\.provider === "feishu-base"/);
 });
 
 test("Middle East P0 campaign contains six formatted, publishable guides", () => {
   const source = read("src/content/blogCampaigns/middleEastThermalPaperP0.ts");
-  const articles = [...source.matchAll(/content: `([\s\S]*?)`,\n\s*},/g)].map((match) => match[1]);
+  const articles = [...source.matchAll(/content: `([\s\S]*?)`,\r?\n\s*},/g)].map((match) => match[1]);
 
   assert.equal(articles.length, 6);
   for (const article of articles) {

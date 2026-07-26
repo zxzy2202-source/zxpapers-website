@@ -49,9 +49,9 @@ const assetQuery = {
   keywords: ["QR code", "receipt", "POS"],
 };
 
-test("approved Website images with clear rights pass the Feishu asset gate", async () => {
+test("approved Website factory images pass without duplicate copyright metadata", async () => {
   const { isPublishableWebsiteAsset } = await loadMatcher();
-  assert.equal(isPublishableWebsiteAsset(candidate()), true);
+  assert.equal(isPublishableWebsiteAsset(candidate({ copyrightStatus: [] })), true);
 });
 
 test("unapproved, confidential, reference-only, or attachment-free assets are rejected", async () => {
@@ -95,6 +95,8 @@ test("the scheduled publisher invokes Feishu preparation without hardcoding reso
 
   assert.match(cron, /prepareBlogPostCover/);
   assert.match(cron, /publishDuePosts\(new Date\(\), prepareBlogPostCover\)/);
+  assert.match(cron, /backfillPublishedPostCovers/);
+  assert.match(cron, /force: true/);
   assert.match(service, /process\.env\.FEISHU_APP_SECRET/);
   assert.match(service, /records\/search/);
   assert.match(service, /drive\/v1\/medias/);

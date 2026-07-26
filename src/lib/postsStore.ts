@@ -240,6 +240,40 @@ export async function publishDuePosts(
   return { published, rejected };
 }
 
+export async function backfillPublishedPostCovers(
+  preparePost: (post: PostRecord) => Promise<PostRecord>,
+): Promise<{
+  updated: PostRecord[];
+  rejected: Array<{ slug: string; errors: string[] }>;
+}> {
+  const all = await readAllPosts();
+  const updated: PostRecord[] = [];
+  const rejected: Array<{ slug: string; errors: string[] }> = [];
+
+  for (let index = 0; index < all.length; index += 1) {
+    const post = all[index];
+    if (!post.published || !post.assetQuery || post.coverAsset?.provider === "feishu-base") continue;
+
+    try {
+      const candidate = await preparePost({ ...post });
+      const next: PostRecord = {
+        ...candidate,
+        updatedAt: new Date().toISOString(),
+      };
+      all[index] = next;
+      updated.push(next);
+    } catch (error) {
+      rejected.push({
+        slug: post.slug,
+        errors: [error instanceof Error ? error.message : "飞书封面回填失败"],
+      });
+    }
+  }
+
+  if (updated.length > 0) await writeAll(all);
+  return { updated, rejected };
+}
+
 export async function deletePost(id: string): Promise<void> {
   const all = await readAllPosts();
   await writeAll(all.filter((p) => p.id !== id));

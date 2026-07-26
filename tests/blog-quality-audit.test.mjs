@@ -70,7 +70,7 @@ test("the six Middle East campaign articles avoid high AI-style risk", async () 
     path.join(root, "src/content/blogCampaigns/middleEastThermalPaperP0.ts"),
     "utf8",
   );
-  const articles = [...source.matchAll(/content: `([\s\S]*?)`,\n\s*},/g)].map((match) => match[1]);
+  const articles = [...source.matchAll(/content: `([\s\S]*?)`,\r?\n\s*},/g)].map((match) => match[1]);
 
   assert.equal(articles.length, 6);
   for (const content of articles) {

@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { pingIndexNow } from "@/lib/indexnow";
-import { publishDuePosts } from "@/lib/postsStore";
-import { prepareBlogPostCover } from "@/lib/feishuAssetLibrary";
+import { backfillPublishedPostCovers, publishDuePosts } from "@/lib/postsStore";
+import {
+  isFeishuAssetLibraryConfigured,
+  prepareBlogPostCover,
+} from "@/lib/feishuAssetLibrary";
 
 export const dynamic = "force-dynamic";
 
@@ -16,11 +19,14 @@ export async function GET(request: NextRequest) {
   }
 
   const result = await publishDuePosts(new Date(), prepareBlogPostCover);
+  const assetBackfill = isFeishuAssetLibraryConfigured()
+    ? await backfillPublishedPostCovers((post) => prepareBlogPostCover(post, { force: true }))
+    : { updated: [], rejected: [] };
 
-  if (result.published.length > 0) {
+  if (result.published.length > 0 || assetBackfill.updated.length > 0) {
     revalidatePath("/blog");
     revalidatePath("/sitemap.xml");
-    for (const post of result.published) {
+    for (const post of [...result.published, ...assetBackfill.updated]) {
       revalidatePath(`/blog/${post.slug}`);
       if (post.category) revalidatePath(`/resources/${post.category}`);
     }
@@ -34,5 +40,10 @@ export async function GET(request: NextRequest) {
     success: true,
     published: result.published.map((post) => post.slug),
     rejected: result.rejected,
+    assetBackfill: {
+      configured: isFeishuAssetLibraryConfigured(),
+      updated: assetBackfill.updated.map((post) => post.slug),
+      rejected: assetBackfill.rejected,
+    },
   });
 }

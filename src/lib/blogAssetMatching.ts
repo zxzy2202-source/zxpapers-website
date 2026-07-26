@@ -32,7 +32,6 @@ export interface RankedFeishuAsset extends FeishuAssetCandidate {
   matchReasons: string[];
 }
 
-const APPROVED_COPYRIGHT = new Set(["公司原创", "客户已授权", "供应商已授权", "已购买版权"]);
 const IMAGE_FORMATS = new Set(["Photo", "Infographic", "3D/Render"]);
 
 function normalize(value: string): string {
@@ -50,7 +49,7 @@ export function isPublishableWebsiteAsset(asset: FeishuAssetCandidate): boolean 
   if (!asset.mediaFormats.some((format) => IMAGE_FORMATS.has(format))) return false;
   if (asset.attachments.length === 0) return false;
   if (!asset.altText.trim()) return false;
-  if (!asset.copyrightStatus.some((status) => APPROVED_COPYRIGHT.has(status))) return false;
+  // This Base is scoped to company-shot factory imagery. Explicit restriction flags still veto use.
   if (asset.copyrightStatus.includes("限制使用") || asset.copyrightStatus.includes("待确认")) return false;
   if (asset.sourceTypes.includes("公开参考")) return false;
   if (asset.confidentialityRisks.some((risk) => risk !== "无")) return false;
