@@ -207,12 +207,12 @@ export default function MarketsPage() {
           <h2 className="text-3xl font-bold text-brand-navy mb-12">Why Global Distributors Choose ZhixinPaper</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: "🏭", title: "Factory Direct", desc: "No middlemen. Direct from our 50,000m² factory in China. Best FOB/CIF prices guaranteed." },
+              { icon: "🏭", title: "Factory Direct", desc: "Direct supply from our manufacturing facility in China, with FOB/CIF pricing based on the confirmed specification, quantity, packing, and destination." },
               { icon: "🚢", title: "Export Experience", desc: "15+ years exporting to 80+ countries. Full export documentation: CO, SGS, fumigation, phytosanitary." },
               { icon: "📦", title: "Flexible MOQ", desc: "From trial orders of 500 rolls to full 40ft containers. We accommodate buyers at every stage." },
               { icon: "🏷️", title: "OEM & Private Label", desc: "Custom brand packaging for distributors. NDA available. MOQ 1,000 rolls per size." },
               { icon: "💳", title: "Flexible Payment", desc: "T/T, L/C at sight, Western Union. 30-day terms for established customers." },
-              { icon: "⚡", title: "Fast Response", desc: "Quote within 24 hours. WhatsApp available. Dedicated export sales team for each region." },
+              { icon: "⚡", title: "Inquiry Review", desc: "We aim to provide an initial quotation within one business day after complete product, quantity, packing, and destination details are received." },
             ].map((f) => (
               <div key={f.title} className="bg-white rounded-xl p-6 shadow-sm text-left">
                 <div className="text-3xl mb-3">{f.icon}</div>
@@ -228,7 +228,7 @@ export default function MarketsPage() {
       <section className="py-16 px-4 bg-brand-navy text-white text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Find Your Market&apos;s Best Solution</h2>
-          <p className="text-blue-200 mb-8">Tell us your country and we&apos;ll send you a tailored CIF quote with the most popular sizes for your market within 24 hours.</p>
+          <p className="text-blue-200 mb-8">Tell us your country, product requirements, quantity, and destination port. We will review suitable sizes and confirm CIF quotation timing after the required details are received.</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-3 rounded-lg transition-colors">Send Inquiry</Link>
             <a href={`${SITE.whatsappUrl}?text=${whatsappMsg}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-lg transition-colors">WhatsApp for Quick Quote</a>

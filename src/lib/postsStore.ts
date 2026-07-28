@@ -12,6 +12,20 @@ import type { ResourceCategory } from "@/lib/postsCategories";
 
 const KEY = "posts";
 
+export interface PostContributor {
+  name: string;
+  role?: string;
+  bio?: string;
+  profileUrl?: string;
+}
+
+export interface PostSource {
+  title: string;
+  url: string;
+  publisher?: string;
+  accessedAt?: string;
+}
+
 export interface PostRecord {
   id: string;
   slug: string;
@@ -31,6 +45,12 @@ export interface PostRecord {
   scheduledAt?: string;
   publishApproved?: boolean;
   campaignId?: string;
+  author?: PostContributor;
+  reviewer?: PostContributor;
+  reviewedAt?: string;
+  revisionNote?: string;
+  methodology?: string;
+  sources?: PostSource[];
   createdAt: string;
   updatedAt: string;
 }
@@ -134,6 +154,12 @@ export async function upsertPost(
     scheduledAt: data.published ? undefined : data.scheduledAt,
     publishApproved: data.published ? false : data.publishApproved ?? false,
     campaignId: data.campaignId,
+    author: data.author,
+    reviewer: data.reviewer,
+    reviewedAt: data.reviewedAt,
+    revisionNote: data.revisionNote,
+    methodology: data.methodology,
+    sources: data.sources,
     createdAt: now,
     updatedAt: now,
   };
@@ -156,6 +182,7 @@ export async function importScheduledPosts(
       skipped.push(template.slug);
       continue;
     }
+    validatePublishableState({ ...template, published: false, publishApproved: false });
     const validation = validateBlogPost(template);
     if (validation.errors.length > 0) {
       throw new Error(
@@ -206,16 +233,17 @@ export async function publishDuePosts(
     }
 
     let candidate = post;
-    if (preparePost) {
-      try {
+    try {
+      if (preparePost) {
         candidate = await preparePost({ ...post });
-      } catch (error) {
-        rejected.push({
-          slug: post.slug,
-          errors: [error instanceof Error ? error.message : "发布前素材处理失败"],
-        });
-        continue;
       }
+      validatePublishableState(candidate);
+    } catch (error) {
+      rejected.push({
+        slug: post.slug,
+        errors: [error instanceof Error ? error.message : "发布前素材处理失败"],
+      });
+      continue;
     }
 
     const preparedValidation = validateBlogPost(candidate);
@@ -256,6 +284,7 @@ export async function backfillPublishedPostCovers(
 
     try {
       const candidate = await preparePost({ ...post });
+      validatePublishableState(candidate);
       const next: PostRecord = {
         ...candidate,
         updatedAt: new Date().toISOString(),
@@ -291,6 +320,9 @@ function slugify(s: string): string {
 }
 
 function validatePublishableState(data: Partial<PostRecord> & { title: string; content: string }) {
+  if (data.reviewedAt && !data.reviewer?.name.trim()) {
+    throw new Error("设置审核日期前必须填写审核人");
+  }
   if (data.publishApproved && !data.scheduledAt) {
     throw new Error("批准自动发布前必须设置发布时间");
   }

@@ -17,41 +17,41 @@ const equipmentCategories = [
   {
     title: "Coating Lines",
     icon: Wind,
-    desc: "Our core production assets — precision coating machines apply thermal-sensitive chemical layers onto base paper with micrometer-level accuracy.",
+    desc: "Coating equipment applies thermal-sensitive layers under controlled process settings selected for the applicable material and specification.",
     equipment: [
-      { name: "Voith Curtain Coater (Germany)", count: "4 units", specs: "Max width: 2,800mm | Speed: 800m/min | Coating weight: 2–8 g/m²", highlight: "Enables ultra-uniform BPA-free coating with ±0.1g/m² tolerance" },
-      { name: "Jagenberg Blade Coater (Germany)", count: "3 units", specs: "Max width: 2,400mm | Speed: 600m/min | Dual-side coating capable", highlight: "Used for specialty and high-sensitivity thermal grades" },
-      { name: "Valmet Infrared Drying System", count: "7 units", specs: "Temperature range: 80–180°C | Zone-controlled drying", highlight: "Ensures consistent coating cure without paper distortion" },
+      { name: "Voith Curtain Coater (Germany)", count: "4 units", specs: "Max width: 2,800mm | Rated speed: 800m/min | Coating weight range: 2–8 g/m²", highlight: "Machine capability; final coating acceptance criteria are confirmed in the approved product specification" },
+      { name: "Jagenberg Blade Coater (Germany)", count: "3 units", specs: "Max width: 2,400mm | Rated speed: 600m/min | Dual-side coating capable", highlight: "Used for selected specialty and high-sensitivity thermal grades" },
+      { name: "Valmet Infrared Drying System", count: "7 units", specs: "Temperature range: 80–180°C | Zone-controlled drying", highlight: "Drying settings are controlled for the applicable material and process plan" },
     ],
   },
   {
     title: "Slitting & Rewinding",
     icon: Settings,
-    desc: "After coating, large parent rolls are precision-slit to customer-specified widths and rewound to exact lengths with automated tension control.",
+    desc: "After coating, parent rolls are converted to specified widths and lengths under the approved order tolerances.",
     equipment: [
-      { name: "Kampf Slitter-Rewinder (Germany)", count: "8 units", specs: "Min width: 20mm | Max width: 1,200mm | Speed: 1,200m/min | Tolerance: ±0.3mm", highlight: "Servo-driven width adjustment for rapid size changeover" },
-      { name: "Tidland Automatic Tension Control", count: "All slitters", specs: "Closed-loop tension feedback | Prevents roll telescoping", highlight: "Critical for consistent roll hardness in POS applications" },
-      { name: "Perini Rewinder (Italy)", count: "4 units", specs: "Log diameter: 20–120mm | Core sizes: 12mm, 25mm, 38mm", highlight: "High-speed rewinding for small-core portable printer rolls" },
+      { name: "Kampf Slitter-Rewinder (Germany)", count: "8 units", specs: "Min width: 20mm | Max width: 1,200mm | Rated speed: 1,200m/min", highlight: "Machine capability; final width tolerance is confirmed in the approved product specification" },
+      { name: "Tidland Automatic Tension Control", count: "Configured slitters", specs: "Closed-loop tension feedback", highlight: "Supports defined roll-hardness and winding requirements" },
+      { name: "Perini Rewinder (Italy)", count: "4 units", specs: "Log diameter: 20–120mm | Core sizes: 12mm, 25mm, 38mm", highlight: "Supports selected small-core portable-printer roll formats" },
     ],
   },
   {
     title: "Label Converting",
     icon: Cpu,
-    desc: "Dedicated label production lines handle die-cutting, matrix removal, and roll-to-roll converting for thermal label products.",
+    desc: "Label production lines support die-cutting, matrix removal, and roll-to-roll converting for confirmed label specifications.",
     equipment: [
-      { name: "Mark Andy Label Press (USA)", count: "3 units", specs: "Max web width: 330mm | Die-cut accuracy: ±0.2mm | Speed: 200m/min", highlight: "Handles complex label shapes and perforations" },
-      { name: "Edale Flexo Printing Unit", count: "2 units", specs: "Up to 8 colors | UV curing | Min label size: 10mm x 10mm", highlight: "For custom-printed label OEM orders" },
-      { name: "Prati Rewinder & Inspection", count: "4 units", specs: "100% print inspection | Defect detection: ≥0.3mm | Speed: 400m/min", highlight: "Automated vision system rejects any defective labels" },
+      { name: "Mark Andy Label Press (USA)", count: "3 units", specs: "Max web width: 330mm | Rated speed: 200m/min", highlight: "Machine capability; die-cut tolerance is confirmed for the applicable label and order" },
+      { name: "Edale Flexo Printing Unit", count: "2 units", specs: "Up to 8 colors | UV curing | Min label size: 10mm x 10mm", highlight: "Available for qualifying custom-printed label orders" },
+      { name: "Prati Rewinder & Inspection", count: "4 units", specs: "Inline vision inspection | Configurable defect threshold | Rated speed: 400m/min", highlight: "Detects defined print defects under the configured inspection plan and threshold" },
     ],
   },
   {
     title: "Quality & Testing Lab",
     icon: Microscope,
-    desc: "Our in-house laboratory runs continuous quality checks throughout production, with equipment calibrated to international standards.",
+    desc: "In-house testing capabilities support the methods and sampling requirements defined for the applicable material, product, and order.",
     equipment: [
-      { name: "Mettler Toledo Basis Weight Tester", count: "6 units", specs: "Accuracy: ±0.1g/m² | Range: 20–200g/m²", highlight: "Inline measurement every 500m of production" },
-      { name: "X-Rite Spectrophotometer", count: "4 units", specs: "CIE L*a*b* color measurement | Gloss measurement", highlight: "Ensures consistent whiteness and brightness across batches" },
-      { name: "Accelerated Aging Chamber", count: "2 units", specs: "Temperature: 20–80°C | Humidity: 20–95% RH | 12 test positions", highlight: "Simulates 5+ years storage in 24 hours" },
+      { name: "Mettler Toledo Basis Weight Tester", count: "6 units", specs: "Instrument accuracy: ±0.1g/m² | Range: 20–200g/m²", highlight: "Measurement frequency is defined by the applicable process or quality plan" },
+      { name: "X-Rite Spectrophotometer", count: "4 units", specs: "CIE L*a*b* color measurement | Gloss measurement", highlight: "Supports batch comparison against specified color and brightness criteria" },
+      { name: "Accelerated Aging Chamber", count: "2 units", specs: "Temperature: 20–80°C | Humidity: 20–95% RH | 12 test positions", highlight: "Supports comparative aging under documented laboratory conditions; field life depends on grade and exposure" },
     ],
   },
 ];
@@ -105,17 +105,17 @@ export default async function EquipmentPage() {
             <span className="text-amber-400 text-sm font-semibold uppercase tracking-wider">Production Equipment</span>
           </div>
           <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
-            State-of-the-Art<br /><span className="text-amber-400">Manufacturing Equipment</span>
+            Thermal Paper<br /><span className="text-amber-400">Manufacturing Equipment</span>
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl">
-            German and Japanese precision machinery across 12 production lines, capable of 500 million rolls per year with consistent quality.
+            Equipment ratings describe installed capability; actual output and acceptance criteria depend on product mix, specification, and production scheduling.
           </p>
         </div>
       </div>
 
       <div className="container py-16 space-y-14">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {[{ value: "12", label: "Production Lines" }, { value: "50,000 m²", label: "Factory Area" }, { value: "500M+", label: "Rolls/Year Capacity" }, { value: "24/7", label: "Operation" }].map(({ value, label }) => (
+          {[{ value: "12", label: "Production Lines" }, { value: "50,000 m²", label: "Factory Area" }, { value: "500M+", label: "Rated Rolls/Year" }, { value: "By Schedule", label: "Operation" }].map(({ value, label }) => (
             <div key={label} className="bg-slate-50 rounded-2xl p-5 text-center">
               <div className="font-sora text-2xl font-extrabold text-brand-navy">{value}</div>
               <div className="text-xs text-slate-500 mt-1">{label}</div>

@@ -11,7 +11,7 @@ import { getSlotImage } from "@/lib/imageSlotUtils";
 export const metadata: Metadata = {
   title: "Blank Can Labels | Unprinted Full-Wrap",
   description:
-    "Blank unprinted can labels in white, kraft, and clear BOPP. Food-safe adhesive, moisture-resistant, compatible with all standard can sizes. MOQ 5,000.",
+    "Blank unprinted can labels in white, kraft, and clear BOPP, available for common can formats after container dimensions, label panel, material, adhesive, and application method are confirmed.",
   alternates: { canonical: `${SITE.domain}/products/can-labels/blank` },
 };
 
@@ -51,7 +51,7 @@ const productSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Blank Can Labels | Unprinted Full-Wrap Can Labels",
-  "description": "Blank unprinted can labels in white, kraft, and clear BOPP. Food-safe adhesive, moisture-resistant, compatible with all standard can sizes. MOQ 5,000.",
+  "description": "Blank unprinted can labels in white, kraft, and clear BOPP, available for common can formats after container dimensions, label panel, material, adhesive, and application method are confirmed.",
   "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
   "url": "https://www.zxpapers.com/products/can-labels/blank",
   "about": { "@type": "Thing", "name": "Blank Can Labels" },

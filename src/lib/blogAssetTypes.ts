@@ -4,6 +4,7 @@ export interface BlogAssetQuery {
   contentTypes: string[];
   applications: string[];
   keywords: string[];
+  preferredAssetIds?: string[];
 }
 
 export interface BlogCoverAssetSource {

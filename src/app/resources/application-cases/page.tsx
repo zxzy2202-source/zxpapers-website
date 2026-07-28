@@ -249,7 +249,7 @@ export default async function ApplicationCasesPage() {
             <div className="bg-brand-navy rounded-3xl p-10 text-white flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
                 <h2 className="font-sora text-2xl font-extrabold mb-2">Don&apos;t See Your Industry?</h2>
-                <p className="text-slate-300 text-sm max-w-lg">We serve 30+ industries. Contact us with your application requirements and we will recommend the right product and specifications within 12 hours.</p>
+                <p className="text-slate-300 text-sm max-w-lg">Contact us with your application, printer, environment, quantity, and destination requirements. We will review suitable product options and confirm the response scope.</p>
               </div>
               <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
                 Contact Our Team <ArrowRight className="w-5 h-5" />
@@ -259,7 +259,7 @@ export default async function ApplicationCasesPage() {
           <div className="space-y-5">
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
               <h3 className="font-sora text-base font-bold text-slate-900 mb-1">Get a Free Quote</h3>
-              <p className="text-xs text-slate-500 mb-4">12-hour response guaranteed</p>
+              <p className="text-xs text-slate-500 mb-4">Initial reply targeted within one business day after sufficient details are received</p>
               <InquiryForm compact />
             </div>
             <div className="bg-slate-50 rounded-2xl p-5">

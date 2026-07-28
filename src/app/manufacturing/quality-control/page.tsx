@@ -19,12 +19,12 @@ export const metadata: Metadata = {
 const IMG_QC_LAB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-qc-lab-GCyjnzeVMfG7M54TSNubFr.webp";
 
 const qcStages = [
-  { step: "01", title: "Raw Material Inspection", icon: Microscope, desc: "Every incoming roll of base paper and chemical coating is tested for weight (g/m²), moisture content, brightness, and chemical composition before entering production.", checks: ["Basis weight (±1g/m²)", "Moisture content (<6%)", "Brightness (≥80 ISO)", "BPA/BPS chemical test"] },
-  { step: "02", title: "In-Process Monitoring", icon: Gauge, desc: "Real-time sensors on every coating line monitor coating weight, drying temperature, and line speed. Statistical Process Control (SPC) charts flag deviations instantly.", checks: ["Coating weight uniformity", "Drying temperature curve", "Line speed consistency", "Real-time SPC alerts"] },
-  { step: "03", title: "Slitting & Rewinding QC", icon: Settings, desc: "After coating, paper is slit to exact widths. Automated vision systems detect edge defects, splices, and surface contamination. Roll diameter and length are verified per batch.", checks: ["Width tolerance ±0.5mm", "Edge quality inspection", "Roll length verification", "Splice detection"] },
-  { step: "04", title: "Thermal Performance Testing", icon: ClipboardCheck, desc: "Finished rolls are printed on reference printers at standard and extreme temperatures to verify image density, print speed compatibility, and image stability.", checks: ["Print density (OD ≥1.0)", "Image stability test", "Low/high temp print test", "Printer compatibility"] },
-  { step: "05", title: "Aging & Durability Test", icon: RefreshCw, desc: "Samples from each batch undergo accelerated aging (60°C / 80% RH for 24h) to simulate 5+ years of storage. Image retention must meet ≥80% density after aging.", checks: ["Accelerated aging (60°C/80%RH)", "Image retention ≥80%", "Adhesive performance (labels)", "Chemical resistance"] },
-  { step: "06", title: "Final Batch Release", icon: BarChart3, desc: "Each production batch receives a Certificate of Conformance (CoC) with full test data. Batch traceability codes are printed on packaging for end-to-end accountability.", checks: ["Certificate of Conformance", "Batch traceability code", "AQL sampling inspection", "Customer-specific tests"] },
+  { step: "01", title: "Raw Material Inspection", icon: Microscope, desc: "Incoming materials are inspected or tested according to the approved material specification and sampling plan before release to production.", checks: ["Basis weight", "Moisture content", "Brightness", "Phenol testing when required"] },
+  { step: "02", title: "In-Process Monitoring", icon: Gauge, desc: "Configured coating lines use inline monitoring and SPC alerts at defined sampling intervals and thresholds.", checks: ["Coating weight uniformity", "Drying temperature curve", "Line speed consistency", "Configured SPC alerts"] },
+  { step: "03", title: "Slitting & Rewinding QC", icon: Settings, desc: "After coating, paper is converted to the confirmed dimensions. Vision inspection, roll measurements, and acceptance criteria follow the applicable product specification and quality plan.", checks: ["Order-specific width tolerance", "Edge quality inspection", "Roll length verification", "Splice detection"] },
+  { step: "04", title: "Thermal Performance Testing", icon: ClipboardCheck, desc: "Selected finished rolls are tested on reference printers under documented conditions when required by the approved specification and quality plan.", checks: ["Specified print density", "Image stability test", "Defined temperature test", "Confirmed printer setup"] },
+  { step: "05", title: "Aging & Durability Test", icon: RefreshCw, desc: "Accelerated comparative aging may be used under a documented laboratory method; it does not guarantee field storage life, which depends on material grade and exposure.", checks: ["Documented aging method", "Specified retention criteria", "Adhesive performance when applicable", "Chemical resistance when required"] },
+  { step: "06", title: "Final Batch Release", icon: BarChart3, desc: "Release records, declarations, test data, and traceability scope are provided when required by the approved order quality plan.", checks: ["Applicable conformity record", "Defined traceability code", "Approved sampling inspection", "Customer-specific tests"] },
 ];
 
 
@@ -79,7 +79,7 @@ export default async function QualityControlPage() {
             6-Stage Quality<br /><span className="text-amber-400">Control System</span>
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl">
-            Every roll and label passes through six rigorous inspection stages — from raw material intake to final batch release — ensuring consistent quality for every order.
+            Production batches are reviewed through the applicable inspection stages defined in the approved specification and order quality plan.
           </p>
         </div>
       </div>
@@ -88,7 +88,7 @@ export default async function QualityControlPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-8">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {[{ value: "6", label: "QC Stages" }, { value: "99.8%", label: "Pass Rate" }, { value: "100%", label: "Batch Traced" }, { value: "ISO 9001", label: "Certified" }].map(({ value, label }) => (
+              {[{ value: "6", label: "Available QC Stages" }, { value: "By Plan", label: "Acceptance Criteria" }, { value: "Defined", label: "Traceability Scope" }, { value: "On Request", label: "Quality Evidence" }].map(({ value, label }) => (
                 <div key={label} className="bg-slate-50 rounded-2xl p-4 text-center">
                   <div className="font-sora text-2xl font-extrabold text-brand-navy">{value}</div>
                   <div className="text-xs text-slate-500 mt-1">{label}</div>

@@ -32,7 +32,7 @@ export default function Page() {
         slug="3x2in"
         fullTitle='3" x 2" Thermal Labels'
         badge="Product Labels"
-        description='The 3" x 2" thermal label is a versatile mid-size label widely used for product identification, retail price tags, and inventory management. Its balanced dimensions make it ideal for displaying product names, barcodes, and pricing information clearly. Compatible with all major desktop and industrial thermal printers.'
+        description='The 3" x 2" thermal label is a versatile mid-size label used for product identification, retail price tags, and inventory management. It is available for selected desktop and industrial thermal printers when media dimensions, sensing, core, roll diameter, and printer settings are confirmed.'
         specs={[
           { label: "Size", value: '3" x 2" (76.2mm x 50.8mm)' },
           { label: "Labels Per Roll", value: "500 / 1,000" },

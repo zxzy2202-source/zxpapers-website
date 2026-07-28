@@ -4,6 +4,7 @@ const query = (value: BlogAssetQuery): BlogAssetQuery => value;
 
 export const BLOG_ASSET_QUERIES: Record<string, BlogAssetQuery> = {
   "choose-thermal-paper-gcc-vat-receipts-qr-codes": query({
+    preferredAssetIds: ["AST-20260722-008"],
     productLine: "Thermal Paper Rolls",
     markets: ["Middle East", "Global", "EN", "AR"],
     contentTypes: ["Test & Evidence", "Application", "Customization"],
@@ -11,6 +12,7 @@ export const BLOG_ASSET_QUERIES: Record<string, BlogAssetQuery> = {
     keywords: ["thermal paper", "receipt", "POS", "QR code", "VAT", "Arabic", "custom printed"],
   }),
   "80mm-vs-57mm-thermal-paper-gcc-pos-systems": query({
+    preferredAssetIds: ["AST-20260722-009"],
     productLine: "Thermal Paper Rolls",
     markets: ["Middle East", "Global", "EN"],
     contentTypes: ["Specification", "Compatibility", "Product Main"],
@@ -18,6 +20,7 @@ export const BLOG_ASSET_QUERIES: Record<string, BlogAssetQuery> = {
     keywords: ["80mm", "57mm", "POS", "receipt roll", "core", "printer"],
   }),
   "thermal-paper-roll-specification-checklist-middle-east-importers": query({
+    preferredAssetIds: ["AST-20260722-045"],
     productLine: "Thermal Paper Rolls",
     markets: ["Middle East", "Global", "EN"],
     contentTypes: ["Specification", "Quality Control", "Packaging & Shipping"],
@@ -25,6 +28,7 @@ export const BLOG_ASSET_QUERIES: Record<string, BlogAssetQuery> = {
     keywords: ["roll width", "core", "GSM", "packing", "carton", "inspection", "thermal paper"],
   }),
   "test-qr-code-readability-thermal-receipt-paper": query({
+    preferredAssetIds: ["AST-20260722-035"],
     productLine: "Thermal Paper Rolls",
     markets: ["Middle East", "Global", "EN"],
     contentTypes: ["Test & Evidence", "Quality Control", "Compatibility"],
@@ -32,6 +36,7 @@ export const BLOG_ASSET_QUERIES: Record<string, BlogAssetQuery> = {
     keywords: ["QR code", "scan", "readability", "print test", "POS", "receipt paper"],
   }),
   "thermal-paper-hot-warehouses-gcc-storage-risk": query({
+    preferredAssetIds: ["AST-20260722-046"],
     productLine: "Thermal Paper Rolls",
     markets: ["Middle East", "Global", "EN"],
     contentTypes: ["Packaging & Shipping", "Application", "Quality Control"],
@@ -39,6 +44,7 @@ export const BLOG_ASSET_QUERIES: Record<string, BlogAssetQuery> = {
     keywords: ["heat", "warehouse", "storage", "carton", "transport", "thermal paper"],
   }),
   "arabic-english-custom-receipt-paper-artwork-checklist": query({
+    preferredAssetIds: ["AST-20260722-010"],
     productLine: "Thermal Paper Rolls",
     markets: ["Middle East", "Global", "EN", "AR"],
     contentTypes: ["Customization", "Product Detail", "Brand & Company"],

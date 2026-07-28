@@ -23,7 +23,7 @@ import {
   Upload,
 } from "lucide-react";
 import { RESOURCE_CATEGORIES, type ResourceCategory } from "@/lib/postsCategories";
-import type { PostRecord } from "@/lib/postsStore";
+import type { PostRecord, PostSource } from "@/lib/postsStore";
 import { renderMarkdown } from "@/lib/markdown";
 import { validateBlogPost } from "@/lib/blogPostValidation";
 
@@ -36,6 +36,18 @@ function toLocalDateTime(iso?: string): string {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return "";
   return new Date(date.getTime() - date.getTimezoneOffset() * 60_000).toISOString().slice(0, 16);
+}
+
+function parseSources(value: string) {
+  return value
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [title, url] = line.split("|").map((part) => part.trim());
+      return title && /^https?:\/\//i.test(url || "") ? { title, url } : null;
+    })
+    .filter((source): source is { title: string; url: string } => source !== null);
 }
 
 export default function PostEditor({ initial }: Props) {
@@ -53,6 +65,16 @@ export default function PostEditor({ initial }: Props) {
   const [metaKeywordsText, setMetaKeywordsText] = useState((initial?.metaKeywords || []).join(", "));
   const [published, setPublished] = useState(initial?.published ?? false);
   const [category, setCategory] = useState<ResourceCategory | "">(initial?.category || "");
+  const [authorName, setAuthorName] = useState(initial?.author?.name || "");
+  const [authorRole, setAuthorRole] = useState(initial?.author?.role || "");
+  const [reviewerName, setReviewerName] = useState(initial?.reviewer?.name || "");
+  const [reviewerRole, setReviewerRole] = useState(initial?.reviewer?.role || "");
+  const [reviewedAt, setReviewedAt] = useState(toLocalDateTime(initial?.reviewedAt));
+  const [revisionNote, setRevisionNote] = useState(initial?.revisionNote || "");
+  const [methodology, setMethodology] = useState(initial?.methodology || "");
+  const [sourcesText, setSourcesText] = useState(
+    (initial?.sources || []).map((source) => `${source.title} | ${source.url}`).join("\n"),
+  );
   const [scheduledAt, setScheduledAt] = useState(toLocalDateTime(initial?.scheduledAt));
   const [publishApproved, setPublishApproved] = useState(initial?.publishApproved ?? false);
   const [mode, setMode] = useState<"edit" | "preview">("edit");
@@ -83,6 +105,13 @@ export default function PostEditor({ initial }: Props) {
       ? "bg-amber-100 text-amber-800"
       : "bg-emerald-100 text-emerald-700";
   const previewHtml = useMemo(() => renderMarkdown(content), [content]);
+  const invalidSourceLines = useMemo(
+    () => sourcesText
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line && !/^.+\|\s*https?:\/\/\S+$/i.test(line)),
+    [sourcesText],
+  );
   const reviewContentChanged = Boolean(initial) && (
     title !== (initial?.title || "") ||
     excerpt !== (initial?.excerpt || "") ||
@@ -91,7 +120,15 @@ export default function PostEditor({ initial }: Props) {
     content !== (initial?.content || "") ||
     metaTitle !== (initial?.metaTitle || "") ||
     metaDescription !== (initial?.metaDescription || "") ||
-    metaKeywordsText !== (initial?.metaKeywords || []).join(", ")
+    metaKeywordsText !== (initial?.metaKeywords || []).join(", ") ||
+    authorName !== (initial?.author?.name || "") ||
+    authorRole !== (initial?.author?.role || "") ||
+    reviewerName !== (initial?.reviewer?.name || "") ||
+    reviewerRole !== (initial?.reviewer?.role || "") ||
+    reviewedAt !== toLocalDateTime(initial?.reviewedAt) ||
+    revisionNote !== (initial?.revisionNote || "") ||
+    methodology !== (initial?.methodology || "") ||
+    sourcesText !== (initial?.sources || []).map((source) => `${source.title} | ${source.url}`).join("\n")
   );
 
   function insertAtCursor(snippet: string, selectStart?: number) {
@@ -151,6 +188,14 @@ export default function PostEditor({ initial }: Props) {
       setError("请先选择自动发布时间");
       return;
     }
+    if (invalidSourceLines.length > 0) {
+      setError(`有 ${invalidSourceLines.length} 行来源格式不正确，请使用“标题 | https://...”格式`);
+      return;
+    }
+    if (reviewedAt && !reviewerName.trim()) {
+      setError("填写审核日期前，请先填写可核验的审核人姓名");
+      return;
+    }
 
     setSaving(true);
     setError(null);
@@ -176,6 +221,19 @@ export default function PostEditor({ initial }: Props) {
         metaTitle,
         metaDescription,
         metaKeywords: metaKeywordsText.split(/[,，]/).map((value) => value.trim()).filter(Boolean),
+        author: authorName.trim()
+          ? { ...initial?.author, name: authorName.trim(), role: authorRole.trim() || undefined }
+          : undefined,
+        reviewer: reviewerName.trim()
+          ? { ...initial?.reviewer, name: reviewerName.trim(), role: reviewerRole.trim() || undefined }
+          : undefined,
+        reviewedAt: reviewerName.trim() && reviewedAt ? new Date(reviewedAt).toISOString() : undefined,
+        revisionNote: revisionNote.trim() || undefined,
+        methodology: methodology.trim() || undefined,
+        sources: parseSources(sourcesText).map((source): PostSource => ({
+          ...initial?.sources?.find((existing) => existing.url === source.url),
+          ...source,
+        })),
         published: nextPublished,
         scheduledAt: nextPublished || !scheduledAt ? undefined : new Date(scheduledAt).toISOString(),
         publishApproved: nextApproved,
@@ -458,6 +516,40 @@ export default function PostEditor({ initial }: Props) {
           <label className="mt-4 block text-sm font-semibold text-slate-900">URL Slug
             <input value={slug} onChange={(event) => setSlug(event.target.value)} placeholder="auto-generated" className="mt-2 w-full rounded-md border border-slate-300 px-3 py-2 font-mono text-sm font-normal" />
           </label>
+        </section>
+
+        <section className="rounded-lg border border-slate-200 bg-white p-4">
+          <div className="text-sm font-semibold text-slate-900">责任信息与来源</div>
+          <p className="mt-2 text-xs leading-5 text-slate-500">只填写可核验的真实姓名、职责和公开来源。留空时前台继续使用机构署名，不会生成个人信息。</p>
+          <label className="mt-3 block text-xs font-medium text-slate-600">作者姓名
+            <input value={authorName} onChange={(event) => setAuthorName(event.target.value)} className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm font-normal" />
+          </label>
+          <label className="mt-3 block text-xs font-medium text-slate-600">作者职责
+            <input value={authorRole} onChange={(event) => setAuthorRole(event.target.value)} placeholder="e.g. Export Sales Manager" className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm font-normal" />
+          </label>
+          <label className="mt-3 block text-xs font-medium text-slate-600">审核人姓名
+            <input value={reviewerName} onChange={(event) => { const value = event.target.value; setReviewerName(value); if (!value.trim()) setReviewedAt(""); }} className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm font-normal" />
+          </label>
+          <label className="mt-3 block text-xs font-medium text-slate-600">审核人职责
+            <input value={reviewerRole} onChange={(event) => setReviewerRole(event.target.value)} className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm font-normal" />
+          </label>
+          <label className="mt-3 block text-xs font-medium text-slate-600">审核日期
+            <input type="datetime-local" value={reviewedAt} onChange={(event) => setReviewedAt(event.target.value)} disabled={!reviewerName.trim()} className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm font-normal disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400" />
+          </label>
+          <label className="mt-3 block text-xs font-medium text-slate-600">修订说明
+            <input value={revisionNote} onChange={(event) => setRevisionNote(event.target.value)} placeholder="What was checked or updated" className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm font-normal" />
+          </label>
+          <label className="mt-3 block text-xs font-medium text-slate-600">评估方法
+            <textarea value={methodology} onChange={(event) => setMethodology(event.target.value)} rows={3} className="mt-1 w-full resize-y rounded-md border border-slate-300 px-3 py-2 text-sm font-normal" />
+          </label>
+          <label className="mt-3 block text-xs font-medium text-slate-600">来源（每行：标题 | https://...）
+            <textarea value={sourcesText} onChange={(event) => setSourcesText(event.target.value)} rows={5} className="mt-1 w-full resize-y rounded-md border border-slate-300 px-3 py-2 font-mono text-xs font-normal" />
+          </label>
+          {invalidSourceLines.length > 0 ? (
+            <p className="mt-2 text-xs leading-5 text-red-700">
+              {invalidSourceLines.length} 行格式不正确，保存前请补全标题、分隔符和公开 URL。
+            </p>
+          ) : null}
         </section>
 
         <section className="rounded-lg border border-slate-200 bg-white p-4">

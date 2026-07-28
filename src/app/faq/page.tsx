@@ -11,21 +11,21 @@ import {
 } from "@/components/ui/accordion";
 
 const productFAQs = [
-  { q: "What is the minimum order quantity (MOQ)?", a: "Our standard MOQ is 1,000 rolls for blank thermal paper rolls and 5,000 labels for thermal labels. For custom/OEM orders, MOQ may vary depending on specifications. Contact us for small trial orders." },
-  { q: "Are your thermal papers BPA-free?", a: "Yes, all our thermal papers are available in BPA-free formulations. We use a proprietary BPA-free thermal coating that meets EU and US safety standards. BPA-free products are available at a small premium." },
-  { q: "What certifications do your products hold?", a: "Our products are ISO 9001:2015 certified. We hold FSC certification for sustainable forestry. All products comply with RoHS, REACH, and CE standards. BPA-free certification is available upon request." },
-  { q: "How long is the image life of your thermal paper?", a: "Standard thermal paper has an image life of 3–5 years under normal conditions. Our archival-grade thermal paper offers 7–10 years of image life. Image life depends on storage conditions — avoid heat, humidity, and direct sunlight." },
-  { q: "What printer brands are your products compatible with?", a: "Our thermal paper rolls are compatible with all major POS printer brands including Epson, Star, Bixolon, Citizen, Seiko, and others. Our thermal labels are compatible with Zebra, DYMO, Honeywell, SATO, Datamax, and all standard thermal label printers." },
-  { q: "Can you produce custom sizes?", a: "Yes, we can manufacture any width, length, and core size to your specifications. Custom sizes are available with MOQ 1,000 rolls. Please contact our OEM team with your exact requirements." },
+  { q: "What is the minimum order quantity (MOQ)?", a: "MOQ is confirmed by product grade, dimensions, packaging, printing requirements, and available materials. Share the required specification and trial-order quantity so our team can confirm the applicable minimum before quotation." },
+  { q: "Are your thermal papers BPA-free?", a: "BPA-free grades are available for selected thermal paper specifications. BPA-free, BPS-free, and phenol-free are separate claims, so we confirm the exact paper grade, requested substance scope, report or declaration, and destination requirement before order approval." },
+  { q: "What compliance documents are available?", a: "Available evidence may include a quality-management certificate, FSC chain-of-custody documentation for eligible products, product- or batch-specific test reports, supplier declarations, and regulatory references. Scope and applicability depend on the legal entity, product specification, material, destination market, and document date; request the relevant copies for verification before ordering." },
+  { q: "How long is the image life of your thermal paper?", a: "Expected image life varies by paper grade, print density, storage, handling, heat, humidity, light, plasticizers, and other chemical exposure. Confirm the required retention period and operating conditions so we can recommend a grade and provide the applicable supporting specification." },
+  { q: "What printer brands are your products compatible with?", a: "Compatibility is checked against the printer model, print method, paper or label dimensions, core, sensing method, adhesive, and operating conditions. Share the exact printer model and media specification so we can confirm a suitable product or sample test before ordering." },
+  { q: "Can you produce custom sizes?", a: "Custom widths, lengths, core sizes, materials, and packaging can be evaluated against equipment limits, material availability, tolerances, and order quantity. Send the complete specification so our OEM team can confirm feasibility, MOQ, sample requirements, and schedule." },
 ];
 
 const oemFAQs = [
-  { q: "What does your OEM service include?", a: "Our OEM service includes: custom printing (logo, text, QR codes), private label packaging, custom size manufacturing, design support, batch traceability, and IP protection. We handle everything from design to delivery." },
-  { q: "How long does OEM production take?", a: "Sample production takes 3–5 days. Mass production lead time is typically 10–20 business days depending on order quantity and complexity. Rush orders can be accommodated — contact us for details." },
-  { q: "Do you sign NDA agreements?", a: "Yes, we sign Non-Disclosure Agreements (NDA) with all OEM clients before sharing any design files or proprietary information. Your brand designs and product specifications are kept strictly confidential." },
-  { q: "What is the MOQ for OEM custom printing?", a: "For custom printed thermal paper rolls, the MOQ is 5,000 rolls. For custom printed thermal labels, the MOQ is 10,000 labels. Lower quantities may be possible for specific products — please inquire." },
-  { q: "Can you help with packaging design?", a: "Yes, our in-house design team can create custom packaging designs including box design, label artwork, and brand identity. We provide design proofs for approval before production. Design fees may apply for complex projects." },
-  { q: "How do you ensure product quality for OEM orders?", a: "Every OEM order goes through our multi-stage quality control process: incoming material inspection, in-process quality checks, finished product inspection, and pre-shipment sampling. We provide quality inspection reports and batch traceability documentation." },
+  { q: "What does your OEM service include?", a: "OEM scope can include custom printing, private-label packaging, size configuration, artwork support, and agreed production records. Deliverables, responsibilities, intellectual-property controls, logistics scope, and approval steps are confirmed in the quotation or contract before work begins." },
+  { q: "How long does OEM production take?", a: "Sample and mass-production schedules are confirmed after artwork, product specifications, quantity, packaging, materials, approval steps, and production-slot availability are known. Any expedited schedule is subject to a separate feasibility review and written confirmation." },
+  { q: "Do you sign NDA agreements?", a: "A mutual Non-Disclosure Agreement can be reviewed when confidential designs or proprietary information will be exchanged. The protected information, permitted use, recipients, term, exclusions, and handling obligations must be agreed in the signed document before disclosure." },
+  { q: "What is the MOQ for OEM custom printing?", a: "OEM MOQ is confirmed by product type, print process, color count, artwork, dimensions, packaging, setup requirements, and material availability. Share the complete specification and target quantity for a product-specific quotation." },
+  { q: "Can you help with packaging design?", a: "Packaging artwork or structural-design support can be included when agreed in the project scope. Required files, approvals, responsibilities, fees, and production-ready specifications are confirmed before design work or manufacturing begins." },
+  { q: "How do you ensure product quality for OEM orders?", a: "The approved product specification and order quality plan define applicable incoming-material checks, in-process controls, finished-product inspection, sampling, acceptance criteria, traceability records, and report availability. Required evidence should be agreed before production." },
 ];
 
 
@@ -94,7 +94,7 @@ export default function FAQPage() {
                 <AccordionTrigger className="text-left font-semibold text-slate-900 text-sm font-sora hover:no-underline">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-slate-600 leading-relaxed">
+                <AccordionContent forceMount className="text-sm text-slate-600 leading-relaxed">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
@@ -114,7 +114,7 @@ export default function FAQPage() {
                 <AccordionTrigger className="text-left font-semibold text-slate-900 text-sm font-sora hover:no-underline">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-slate-600 leading-relaxed">
+                <AccordionContent forceMount className="text-sm text-slate-600 leading-relaxed">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>

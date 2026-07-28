@@ -146,7 +146,7 @@ export default async function IndustryInsightsPage() {
           <div className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
               <h3 className="font-sora text-base font-bold text-slate-900 mb-1">Get a Free Quote</h3>
-              <p className="text-xs text-slate-500 mb-4">12-hour response guaranteed</p>
+              <p className="text-xs text-slate-500 mb-4">Initial reply targeted within one business day after sufficient details are received</p>
               <InquiryForm compact />
             </div>
             <div className="bg-slate-50 rounded-2xl p-5">

@@ -19,18 +19,18 @@ const services = [
   { icon: Printer, title: "Custom Printing & Specifications", desc: "Print your logo, brand colors, promotional messages, or QR codes on thermal paper rolls and labels.", href: "/oem/custom-printing" },
   { icon: Package, title: "Packaging & Private Label", desc: "Custom packaging design with your brand identity. Full private label solutions for distributors.", href: "/oem/packaging" },
   { icon: Palette, title: "Design Support", desc: "Our in-house design team helps create artwork, packaging layouts, and brand guidelines.", href: "/oem/design-support" },
-  { icon: Award, title: "Quality Assurance & Traceability", desc: "Batch traceability system, quality inspection reports, and pre-shipment sampling for every order.", href: "/oem/quality-assurance" },
-  { icon: Lock, title: "IP Protection & NDA", desc: "Strict NDA agreements and IP protection protocols to safeguard your brand and product designs.", href: "/oem/ip-protection" },
+  { icon: Award, title: "Quality Assurance & Traceability", desc: "Inspection records, sampling, and traceability scope are confirmed in the approved order quality plan.", href: "/oem/quality-assurance" },
+  { icon: Lock, title: "IP Protection & NDA", desc: "Confidentiality and IP handling requirements can be documented in the signed agreement and order terms.", href: "/oem/ip-protection" },
   { icon: Shield, title: "Case Studies", desc: "See how global distributors and retailers have grown their business with our OEM solutions.", href: "/oem/case-studies" },
 ];
 
 const process = [
-  { step: "01", title: "Submit Requirements", desc: "Tell us your product specs, quantity, and branding requirements." },
-  { step: "02", title: "Design & Quotation", desc: "We prepare artwork proofs and a detailed quotation within 24 hours." },
-  { step: "03", title: "Sample Approval", desc: "Physical samples delivered in 3–5 days for your approval." },
-  { step: "04", title: "Mass Production", desc: "Full production begins after sample sign-off. Lead time 10–20 days." },
-  { step: "05", title: "Quality Inspection", desc: "100% quality check before shipment. Batch reports provided." },
-  { step: "06", title: "Global Delivery", desc: "Reliable shipping to your warehouse with full tracking." },
+  { step: "01", title: "Submit Requirements", desc: "Tell us your product specifications, quantity, packaging, destination, and branding requirements." },
+  { step: "02", title: "Design & Quotation", desc: "Artwork review and quotation timing are confirmed after complete project details are received." },
+  { step: "03", title: "Sample Approval", desc: "Sample scope, production timing, and delivery method are confirmed for the selected product and destination." },
+  { step: "04", title: "Mass Production", desc: "Production begins after required approvals; scheduling depends on materials, specification, quantity, and line availability." },
+  { step: "05", title: "Quality Inspection", desc: "Pre-shipment inspection follows the approved sampling plan and acceptance criteria; agreed batch records can be provided." },
+  { step: "06", title: "Global Delivery", desc: "Shipping terms, tracking, and required documents are confirmed for the applicable order and destination." },
 ];
 
 
@@ -91,7 +91,7 @@ export default async function OEMPage() {
         <div className="mb-16">
           <div className="text-center mb-10">
             <h2 className="section-title">OEM Services</h2>
-            <p className="section-subtitle max-w-2xl mx-auto">Complete OEM solutions from design to delivery — all under one roof.</p>
+            <p className="section-subtitle max-w-2xl mx-auto">Coordinated OEM support from design through production and delivery, with third-party services identified where applicable.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map(({ icon: Icon, title, desc, href }) => (
@@ -112,7 +112,7 @@ export default async function OEMPage() {
         <div className="mb-16 bg-slate-50 rounded-3xl p-10">
           <div className="text-center mb-10">
             <h2 className="section-title">OEM Process</h2>
-            <p className="section-subtitle">From inquiry to delivery in as little as 3 weeks</p>
+            <p className="section-subtitle">Timing is confirmed after specifications, approvals, materials, quantity, destination, and production availability are reviewed.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {process.map(({ step, title, desc }) => (
@@ -136,8 +136,8 @@ export default async function OEMPage() {
                 "ISO 9001:2015 certified quality management",
                 "MOQ as low as 1,000 units for custom orders",
                 "In-house design team for artwork support",
-                "Strict NDA and IP protection protocols",
-                "Batch traceability for every production run",
+                "NDA and IP handling terms available for mutual review",
+                "Order-specific batch records and traceability scope",
                 "Dedicated account manager for each OEM client",
                 "Competitive pricing with volume discounts",
               ].map((item) => (

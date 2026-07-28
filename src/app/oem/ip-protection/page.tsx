@@ -11,7 +11,7 @@ const OEM_IP_PROTECTION_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/31051966
 
 export const metadata: Metadata = {
   title: "IP Protection & NDA | Confidential OEM",
-  description: `ZhixinPaper protects your brand and intellectual property. NDA available before discussion. Exclusive mold ownership for OEM clients.`,
+  description: `Review NDA, file-access, design-use, and tooling-ownership terms for confidential OEM projects with ZhixinPaper.`,
   alternates: {
     canonical: `${SITE.domain}/oem/ip-protection`,
   },
@@ -21,22 +21,22 @@ const protections = [
   {
     icon: FileText,
     title: "Non-Disclosure Agreement (NDA)",
-    desc: "We sign an NDA before any design, pricing, or business discussion. Your brand identity, product specifications, and business plans remain strictly confidential.",
+    desc: "A mutual NDA can be reviewed before confidential information is exchanged; obligations apply as stated in the signed agreement.",
   },
   {
     icon: Lock,
-    title: "Design Exclusivity",
-    desc: "Your custom designs, artwork, and packaging are never shared with or sold to other clients. We maintain strict file access controls.",
+    title: "Design Use & Disclosure",
+    desc: "Permitted use, disclosure, recipients, and file-access controls for custom designs are documented in the signed NDA and project terms.",
   },
   {
     icon: Shield,
-    title: "Mold & Tooling Ownership",
-    desc: "Any custom molds or tooling created for your OEM order remain your property. We will not use them for any other client.",
+    title: "Mold & Tooling Terms",
+    desc: "Ownership, permitted use, storage, maintenance, and release of custom tooling are governed by the signed tooling agreement and order terms.",
   },
   {
     icon: Eye,
     title: "Factory Access Control",
-    desc: "Production of your OEM orders is restricted to authorized personnel only. Visitor access to your production line requires prior approval.",
+    desc: "Access to confidential OEM files and designated production areas is managed under the applicable project controls and visitor approval process.",
   },
 ];
 
@@ -92,7 +92,7 @@ export default async function IPProtectionPage() {
             IP Protection <span className="text-amber-400">&amp; NDA</span>
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl">
-            Your brand, designs, and business information are protected at every stage. We sign NDAs before any discussion and enforce strict confidentiality policies.
+            Confidentiality scope, recipients, handling requirements, term, exclusions, and remedies are defined in the signed agreement for the applicable OEM project.
           </p>
         </div>
       </div>
@@ -119,9 +119,9 @@ export default async function IPProtectionPage() {
               <div className="space-y-4">
                 {[
                   { step: "01", title: "Request NDA", desc: "Contact us and request an NDA before sharing any sensitive information." },
-                  { step: "02", title: "Review & Sign", desc: "We send our standard NDA within 24 hours. Custom NDA terms are also accepted." },
-                  { step: "03", title: "Secure Discussion", desc: "Once signed, we can discuss your product specifications, designs, and business requirements in full confidence." },
-                  { step: "04", title: "Ongoing Protection", desc: "The NDA remains in effect throughout our business relationship and for 3 years after termination." },
+                  { step: "02", title: "Review & Sign", desc: "We aim to provide or review an NDA draft within one business day; custom terms are subject to review and mutual agreement." },
+                  { step: "03", title: "Controlled Discussion", desc: "Once signed, confidential information can be exchanged within the agreement's defined purpose, recipients, and handling requirements." },
+                  { step: "04", title: "Ongoing Protection", desc: "The confidentiality term, exclusions, return or destruction requirements, and remedies follow the signed agreement." },
                 ].map(({ step, title, desc }) => (
                   <div key={step} className="flex gap-4">
                     <div className="w-9 h-9 bg-brand-navy text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
@@ -141,13 +141,13 @@ export default async function IPProtectionPage() {
               <h3 className="font-extrabold text-slate-900 text-lg mb-5">Our IP Commitments</h3>
               <div className="space-y-3">
                 {[
-                  "NDA signed before any design or pricing discussion",
-                  "Your designs are never shared with competitors or third parties",
-                  "Custom molds and tooling remain your exclusive property",
-                  "Strict internal access controls for OEM client files",
-                  "Employee confidentiality agreements in place",
-                  "Secure file storage with access logging",
-                  "Legal recourse available for any breach of confidentiality",
+                  "Mutual NDA review available before confidential information is exchanged",
+                  "Design use and disclosure governed by the signed agreement",
+                  "Tooling ownership and permitted use documented in project terms",
+                  "Project-specific access controls for confidential OEM files",
+                  "Internal confidentiality obligations applied where relevant",
+                  "File handling and access records defined by the project controls",
+                  "Remedies and dispute handling follow the signed agreement and applicable law",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2.5">
                     <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
@@ -162,7 +162,7 @@ export default async function IPProtectionPage() {
           <div className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
               <h3 className="font-bold text-slate-900 mb-1 text-base">Request NDA</h3>
-              <p className="text-xs text-slate-500 mb-4">We&apos;ll send you our standard NDA within 24 hours.</p>
+              <p className="text-xs text-slate-500 mb-4">We aim to provide or review an NDA draft within one business day, subject to the required details and mutual review.</p>
               <InquiryForm
                 productName="NDA Request"
                 compact

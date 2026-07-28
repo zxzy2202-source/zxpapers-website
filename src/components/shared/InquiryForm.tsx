@@ -56,8 +56,8 @@ export default function InquiryForm({
   compact,
   initialMessage,
   formId,
-  responseNote = "Response within 12 hours. NDA available. No spam.",
-  successMessage = "We'll respond within 12 hours.",
+  responseNote = "We aim to reply within one business day after receiving sufficient inquiry details. NDA review is available on request. No spam.",
+  successMessage = "We'll review your inquiry and confirm the next steps.",
 }: InquiryFormProps) {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [highlighted, setHighlighted] = useState(false);

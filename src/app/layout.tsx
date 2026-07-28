@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { SITE, FACTORY, CERTIFICATIONS } from "@/config/siteData";
+import { SITE, FACTORY } from "@/config/siteData";
 import Script from "next/script";
 import { Inter, Sora } from "next/font/google";
 import { readPublicSeo, readEffectiveSeo } from "@/lib/seoStore";
@@ -165,7 +165,7 @@ const organizationSchema = {
   },
   slogan: SITE.tagline,
   description:
-    `ISO 9001:2015, FSC and BPA-free certified manufacturer of thermal paper rolls, direct thermal and shipping labels, machine-ready roll labels, and bottle labels. Founded in 2009 in Xi'an, China, ZhixinPaper operates a ${FACTORY.area} factory with ${FACTORY.productionLines} production lines producing ${FACTORY.annualOutput} rolls per year, exporting to ${FACTORY.countriesServed} countries with factory-direct wholesale pricing and OEM/private-label programs for ${FACTORY.oemClients} clients.`,
+    `Manufacturer of thermal paper rolls, direct thermal and shipping labels, machine-ready roll labels, and bottle labels. Founded in 2009 in Xi'an, China, ZhixinPaper operates a ${FACTORY.area} factory with ${FACTORY.productionLines} production lines and ${FACTORY.annualOutputLabel.toLowerCase()}, serving customers in ${FACTORY.countriesServed} countries with factory-direct wholesale pricing and OEM/private-label programs for ${FACTORY.oemClients} clients. Product, quality, sourcing, test, and regulatory evidence is confirmed for the applicable legal entity, material, order, and destination.`,
   foundingDate: "2009",
   foundingLocation: {
     "@type": "Place",
@@ -219,11 +219,6 @@ const organizationSchema = {
       url: `${SITE.domain}${c.path}`,
     })),
   },
-  hasCredential: CERTIFICATIONS.map((c) => ({
-    "@type": "EducationalOccupationalCredential",
-    credentialCategory: "certification",
-    name: c.name,
-  })),
   contactPoint: [
     {
       "@type": "ContactPoint",

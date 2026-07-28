@@ -90,6 +90,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     ],
   };
 
+  const articleAuthor = post.author
+    ? {
+        "@type": "Person",
+        name: post.author.name,
+        ...(post.author.role ? { jobTitle: post.author.role } : {}),
+        ...(post.author.profileUrl ? { url: post.author.profileUrl } : {}),
+      }
+    : { "@id": `${SITE.domain}/#organization` };
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -97,9 +106,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     description: post.metaDescription || post.excerpt,
     ...(cover ? { image: cover } : {}),
     datePublished: post.publishedAt,
-    dateModified: post.updatedAt || post.publishedAt,
+    dateModified: post.reviewedAt || post.updatedAt || post.publishedAt,
     mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE.domain}/blog/${post.slug}` },
-    author: { "@id": `${SITE.domain}/#organization` },
+    author: articleAuthor,
+    ...(post.reviewer ? {
+      reviewedBy: {
+        "@type": "Person",
+        name: post.reviewer.name,
+        ...(post.reviewer.role ? { jobTitle: post.reviewer.role } : {}),
+        ...(post.reviewer.profileUrl ? { url: post.reviewer.profileUrl } : {}),
+      },
+    } : {}),
+    ...(post.sources?.length ? { citation: post.sources.map((source) => source.url) } : {}),
     publisher: { "@id": `${SITE.domain}/#organization` },
   };
 
@@ -152,7 +170,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <Clock3 className="h-4 w-4" aria-hidden="true" />
                 {readingMinutes(post.content)} min read
               </span>
+              <span>By {post.author?.name || SITE.name}</span>
+              {post.reviewer ? <span>Reviewed by {post.reviewer.name}{post.reviewedAt ? ` on ${formatDate(post.reviewedAt)}` : ""}</span> : null}
             </div>
+            {post.revisionNote ? <p className="mt-3 text-sm text-slate-500">Revision note: {post.revisionNote}</p> : null}
 
             {cover && (
               <div className="mt-8 aspect-[21/9] w-full overflow-hidden rounded-2xl bg-slate-100">
@@ -176,13 +197,37 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </nav>
             ) : null}
 
+            {post.methodology ? (
+              <section className="mt-8 max-w-3xl border-l-2 border-brand-navy/30 bg-slate-50 px-5 py-4" aria-labelledby="methodology-heading">
+                <h2 id="methodology-heading" className="text-sm font-bold uppercase tracking-wide text-slate-900">Methodology</h2>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{post.methodology}</p>
+              </section>
+            ) : null}
+
             <div className="prose-content mt-10 max-w-3xl" dangerouslySetInnerHTML={{ __html: html }} />
+
+            {post.sources?.length ? (
+              <section className="mt-10 max-w-3xl border-t border-slate-200 pt-6" aria-labelledby="sources-heading">
+                <h2 id="sources-heading" className="text-lg font-bold text-slate-900">Sources</h2>
+                <ol className="mt-3 space-y-2 text-sm text-slate-600">
+                  {post.sources.map((source) => (
+                    <li key={`${source.title}-${source.url}`}>
+                      <a href={source.url} target="_blank" rel="noopener noreferrer" className="font-medium text-brand-navy hover:underline">
+                        {source.title}
+                      </a>
+                      {source.publisher ? ` — ${source.publisher}` : ""}
+                      {source.accessedAt ? ` (accessed ${formatDate(source.accessedAt)})` : ""}
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            ) : null}
 
             {/* Bottom CTA */}
             <div className="mt-12 flex flex-col items-start justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:flex-row sm:items-center">
               <div>
                 <p className="text-base font-semibold text-slate-900">Need thermal paper, labels, or NCR forms?</p>
-                <p className="mt-1 text-sm text-slate-500">Factory-direct bulk pricing and OEM quotes within 24 hours.</p>
+                <p className="mt-1 text-sm text-slate-500">We normally respond {SITE.responseTime} {SITE.responseTimeCondition}.</p>
               </div>
               <Link
                 href="/contact"
@@ -247,7 +292,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <div className="rounded-2xl border border-brand-navy/20 bg-brand-navy-alt p-5 text-white">
               <h2 className="text-sm font-bold uppercase tracking-wider text-amber-300">Get a Quote</h2>
               <p className="mt-2 text-sm leading-relaxed text-slate-200">
-                Factory-direct thermal paper, labels, and NCR forms — bulk pricing and OEM in 24 hours.
+                Send complete specifications for factory-direct bulk pricing and OEM support. We normally respond {SITE.responseTime}.
               </p>
               <Link
                 href="/contact"

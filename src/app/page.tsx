@@ -22,7 +22,8 @@ import InquiryForm from "@/components/shared/InquiryForm";
 import PageHero from "@/components/shared/PageHero";
 import PopularSizesCarousel, { type SkuItem } from "@/components/shared/PopularSizesCarousel";
 import type { SlotKey } from "@/config/imageSlots";
-import { CERTIFICATIONS, FACTORY, SITE } from "@/config/siteData";
+import { FACTORY, SITE } from "@/config/siteData";
+import { COMPLIANCE_EVIDENCE } from "@/config/complianceData";
 import { getSlotImages } from "@/lib/imageSlotUtils";
 import { readPublicHero } from "@/lib/heroStore";
 import { r2Image } from "@/lib/r2";
@@ -596,7 +597,7 @@ export default async function HomePage() {
           </div>
 
           <p className="mt-8 border-t border-slate-200 pt-5 text-sm leading-relaxed text-slate-500">
-            Potential supporting documents include {CERTIFICATIONS.map((item) => item.name).join(", ")}. Availability and scope depend on the selected product grade and destination requirement; export terms can include FOB, CIF and DDP.
+            Potential supporting evidence includes {COMPLIANCE_EVIDENCE.map((item) => `${item.name} (${item.kind.toLowerCase()})`).join(", ")}. Availability and scope depend on the selected product grade, legal entity, order, and destination requirement; export terms can include FOB, CIF and DDP.
           </p>
         </div>
       </section>

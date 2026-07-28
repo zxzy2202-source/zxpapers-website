@@ -85,11 +85,27 @@ test("semantic ranking prefers a relevant Middle East thermal-paper image", asyn
   assert.ok(ranked[0].matchReasons.some((reason) => reason.startsWith("产品主线")));
 });
 
+test("a reviewed Blog asset mapping outranks other publishable candidates", async () => {
+  const { rankFeishuAssets } = await loadMatcher();
+  const preferred = candidate({ assetId: "AST-REVIEWED-001", recordId: "rec-reviewed" });
+  const ranked = rankFeishuAssets(
+    [candidate(), preferred],
+    { ...assetQuery, preferredAssetIds: [preferred.assetId] },
+  );
+
+  assert.equal(ranked[0].assetId, preferred.assetId);
+  assert.ok(ranked[0].matchReasons.some((reason) => reason.startsWith("指定素材")));
+});
+
 test("the scheduled publisher invokes Feishu preparation without hardcoding resource credentials", () => {
   const cron = fs.readFileSync(path.join(root, "src/app/api/cron/publish-posts/route.ts"), "utf8");
   const service = fs.readFileSync(path.join(root, "src/lib/feishuAssetLibrary.ts"), "utf8");
   const campaign = fs.readFileSync(
     path.join(root, "src/content/blogCampaigns/middleEastThermalPaperP0.ts"),
+    "utf8",
+  );
+  const queries = fs.readFileSync(
+    path.join(root, "src/content/blogCampaigns/blogAssetQueries.ts"),
     "utf8",
   );
 
@@ -103,4 +119,5 @@ test("the scheduled publisher invokes Feishu preparation without hardcoding reso
   assert.match(service, /PutObjectCommand/);
   assert.doesNotMatch(service, /WK1KbqBGda9dWbsUOk8c9Pgbn8M/);
   assert.equal((campaign.match(/assetQuery: BLOG_ASSET_QUERIES/g) || []).length, 6);
+  assert.equal((queries.match(/preferredAssetIds:/g) || []).length, 6);
 });

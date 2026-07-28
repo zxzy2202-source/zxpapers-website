@@ -61,6 +61,11 @@ export function scoreFeishuAsset(asset: FeishuAssetCandidate, query: BlogAssetQu
   let score = 0;
   const matchReasons: string[] = [];
 
+  if (query.preferredAssetIds?.includes(asset.assetId)) {
+    score += 100;
+    matchReasons.push(`指定素材：${asset.assetId}`);
+  }
+
   if (asset.productLines.map(normalize).includes(normalize(query.productLine))) {
     score += 40;
     matchReasons.push(`产品主线：${query.productLine}`);

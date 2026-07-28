@@ -93,7 +93,7 @@ export default function ResourcesPage() {
         <div className="bg-slate-50 rounded-3xl p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <h2 className="font-sora text-2xl font-extrabold text-slate-900 mb-2">Ready to Source Thermal Paper?</h2>
-            <p className="text-slate-600 text-sm max-w-lg">Get a free quote from our OEM team. We respond within 12 hours with pricing, samples, and technical specifications.</p>
+            <p className="text-slate-600 text-sm max-w-lg">Request an OEM quotation. We aim to reply within one business day after complete specifications, quantity, packaging, and destination details are received.</p>
           </div>
           <Link href="/contact" className="font-sora flex-shrink-0 inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-blue text-white font-bold px-7 py-3.5 rounded-xl transition-all whitespace-nowrap">
             Get Free Quote <ArrowRight className="w-5 h-5" />

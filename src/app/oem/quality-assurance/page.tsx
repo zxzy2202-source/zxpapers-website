@@ -3,7 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
-import { FACTORY, CERTIFICATIONS, SITE } from "@/config/siteData";
+import { FACTORY, SITE } from "@/config/siteData";
+import { COMPLIANCE_EVIDENCE } from "@/config/complianceData";
 import { Shield, CheckCircle, Award, ClipboardCheck, ArrowRight, Microscope } from "lucide-react";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 
@@ -20,23 +21,23 @@ export const metadata: Metadata = {
 const qaSteps = [
   {
     icon: ClipboardCheck,
-    title: "Incoming Material Inspection",
-    desc: "All raw materials — base paper, thermal coating chemicals — are tested upon arrival. Only materials meeting our strict specifications enter production.",
+    title: "Incoming Material Review",
+    desc: "Incoming material checks are defined by the approved product specification and quality plan. Required records can be agreed before production.",
   },
   {
     icon: Shield,
     title: "In-Process Quality Control",
-    desc: "Automated sensors monitor coating weight, thickness, and sensitivity throughout production. Any deviation triggers immediate line stop and review.",
+    desc: "Process parameters and inspection points are set for the approved specification. Deviations are reviewed under the applicable order quality plan.",
   },
   {
     icon: Microscope,
     title: "Finished Product Testing",
-    desc: "Every batch undergoes print sensitivity, image stability, and dimensional accuracy testing before packaging. Samples are retained for 12 months.",
+    desc: "Finished-product checks, sampling frequency, acceptance criteria, and any retained-sample period are confirmed for the product and order.",
   },
   {
     icon: Award,
-    title: "Third-Party Certification",
-    desc: "We support third-party lab testing (SGS, BV, Intertek) for OEM clients who require independent quality verification.",
+    title: "Independent Testing",
+    desc: "Third-party laboratory or inspection arrangements can be included when requested and agreed, with scope, provider, timing, and cost confirmed before order.",
   },
 ];
 
@@ -92,7 +93,7 @@ export default async function QualityAssurancePage() {
             OEM <span className="text-amber-400">Quality Assurance</span>
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl">
-            ISO 9001:2015 certified quality management system. Every OEM order is produced, inspected, and documented to meet your exact specifications.
+            Define the applicable specification, inspection plan, acceptance criteria, records, and independent-testing requirements before OEM production.
           </p>
         </div>
       </div>
@@ -119,16 +120,20 @@ export default async function QualityAssurancePage() {
               ))}
             </div>
 
-            {/* Certifications */}
+            {/* Compliance evidence */}
             <div className="bg-slate-50 rounded-2xl p-8 mb-8">
-              <h3 className="font-extrabold text-slate-900 text-lg mb-6">Certifications &amp; Compliance</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {CERTIFICATIONS.map(({ name, desc }) => (
-                  <div key={name} className="flex items-center gap-3 bg-white rounded-xl p-3 border border-slate-200">
-                    <Award className="w-5 h-5 text-blue-600 flex-shrink-0" />
+              <h3 className="font-extrabold text-slate-900 text-lg mb-2">Compliance Evidence</h3>
+              <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                Evidence type, scope, validity, and order relevance are confirmed before a claim is used for an OEM product.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {COMPLIANCE_EVIDENCE.map(({ name, kind, availability, icon: Icon }) => (
+                  <div key={name} className="flex items-start gap-3 bg-white rounded-xl p-3 border border-slate-200">
+                    <Icon className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                     <div>
                       <div className="font-bold text-slate-900 text-sm">{name}</div>
-                      <div className="text-xs text-slate-500">{desc}</div>
+                      <div className="text-xs font-semibold text-blue-700">{kind}</div>
+                      <div className="text-xs text-slate-500 mt-1 leading-relaxed">{availability}</div>
                     </div>
                   </div>
                 ))}
@@ -140,12 +145,12 @@ export default async function QualityAssurancePage() {
               <h3 className="font-extrabold text-slate-900 text-lg mb-5">Our Quality Commitments to OEM Partners</h3>
               <div className="space-y-3">
                 {[
-                  "Batch traceability — every roll can be traced back to its production run",
-                  "Certificate of Conformance (CoC) provided with every shipment",
-                  "Retained samples kept for 12 months after delivery",
-                  "Third-party inspection (SGS, BV, Intertek) supported and welcomed",
-                  "Pre-shipment inspection reports available on request",
-                  "Full refund or replacement for any quality non-conformance",
+                  "Batch traceability scope is defined for the applicable product and production records",
+                  "Certificates of conformance or inspection records can be agreed as order documents",
+                  "Any retained-sample period is confirmed in the order quality plan",
+                  "Independent inspection or laboratory testing can be arranged when scope, provider, timing, and cost are agreed",
+                  "Pre-shipment inspection reports are available when included in the approved inspection plan",
+                  "Non-conformance handling follows the agreed specification, contract terms, and corrective-action process",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2.5">
                     <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
@@ -182,7 +187,7 @@ export default async function QualityAssurancePage() {
               <ul className="space-y-2">
                 <li>
                   <Link href="/manufacturing/certifications" className="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1.5 transition-colors">
-                    <ArrowRight className="w-3.5 h-3.5" /> View All Certifications
+                    <ArrowRight className="w-3.5 h-3.5" /> Review Compliance Evidence
                   </Link>
                 </li>
                 <li>

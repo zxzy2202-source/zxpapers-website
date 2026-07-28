@@ -1,0 +1,22 @@
+[
+  {
+    "date": "2026-07-24",
+    "category": "SEO 优化",
+    "title": "SEO 专项审计并修复 hreflang 缺失与 Hero 图片 alt",
+    "description": "对全站源码进行 SEO 专项审计（评分 87/100 → 92+）。\n\n主要发现：\n- 全站完全缺失 hreflang 标签（最大缺口）\n- 15 个 PageHero 组件调用点 alt=\"\" 对搜索引擎不可见\n- 结构化数据、robots.txt GEO 策略、sitemap、重定向均属行业一流\n\n修复操作：\n1. layout.tsx 添加 alternates.languages: { en: SITE.domain }，补全 hreflang\n2. PageHero 组件新增 bgImageAlt prop，替换硬编码 alt=\"\"\n3. 所有 15 个 PageHero 调用点（app 页面 + 产品/市场模板）填入描述性 alt 文本",
+    "commit": "a239bb5",
+    "files": "src/app/layout.tsx, src/components/shared/PageHero.tsx, src/app/page.tsx",
+    "result": "TypeScript 编译零错误 ✅ | 预计 SEO 评分 87/100 → 92+",
+    "id": "5fc5aec7-3e51-4f27-97a7-18fd4fcfa3a0"
+  },
+  {
+    "date": "2026-07-24",
+    "category": "其他",
+    "title": "UI 专项审查并修复圆角混乱、导航断点过高、卡片 hover 不统一",
+    "description": "对全站 UI/UX 进行专项审查（评分 78/100）。\n\n主要发现：\n- 圆角策略混乱：7 种值（含 rounded-[22px]/[24px]/[26px]/[28px] 魔法值）\n- 导航断点 xl（1280px）过高，iPad Pro 和 13 寸笔记本显示汉堡菜单\n- Footer Trust Bar 图标容器无圆角（全站唯一方形容器）\n- 卡片 hover 边框色：4 种不同配色并行\n\n修复操作：\n1. Header.tsx：导航断点 xl→lg，1024px+ 设备显示完整桌面导航\n2. Footer.tsx：Trust Bar 图标容器加 rounded-lg\n3. ProductLandingPageTemplate.tsx：rounded-[28px]/[22px]/[26px]/3xl 统一为 rounded-2xl/xl\n4. ProductCategoryShowcaseTemplate.tsx：7 处魔法值统一为 rounded-2xl\n5. MarketCountryPageTemplate.tsx + MarketRegionPageTemplate.tsx：hover:border-blue-200 → hover:border-brand-navy/30",
+    "commit": "a239bb5",
+    "files": "src/components/layout/Header.tsx, src/components/layout/Footer.tsx, src/components/products/ProductLandingPageTemplate.tsx, src/components/products/ProductCategoryShowcaseTemplate.tsx, src/components/shared/MarketCountryPageTemplate.tsx, src/components/shared/MarketRegionPageTemplate.tsx",
+    "result": "TypeScript 编译零错误 ✅ | 圆角从 7 种减少到 3 种 | 本地预览验证通过",
+    "id": "0ba82925-2f77-451c-b262-d8896025a56f"
+  }
+]

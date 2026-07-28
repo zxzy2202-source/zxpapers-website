@@ -100,7 +100,7 @@ export default async function DesignSupportPage() {
             OEM <span className="text-amber-400">Design Support</span>
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl">
-            Professional artwork and pre-press services to ensure your custom thermal paper looks exactly as intended — every print run.
+            Artwork and pre-press support helps align each custom run with the approved artwork and agreed color and print tolerances.
           </p>
         </div>
       </div>
@@ -147,7 +147,7 @@ export default async function DesignSupportPage() {
               <div className="space-y-4">
                 {[
                   { step: "01", title: "Submit Your Artwork", desc: "Send your design files via email or our inquiry form." },
-                  { step: "02", title: "Free Design Review", desc: "Our team reviews your files within 24 hours and provides feedback." },
+                  { step: "02", title: "Artwork Review", desc: "Review is available for eligible OEM projects; timing is confirmed after complete files and requirements are received." },
                   { step: "03", title: "Digital Proof", desc: "We send a digital proof for your approval before production." },
                   { step: "04", title: "Physical Sample (Optional)", desc: "Request a physical print sample before full production run." },
                   { step: "05", title: "Production & Delivery", desc: "Approved designs go into production with your confirmed specifications." },
@@ -174,7 +174,7 @@ export default async function DesignSupportPage() {
             <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5">
               <h4 className="font-bold text-amber-900 mb-2 text-sm">Free Design Review</h4>
               <p className="text-sm text-amber-800">
-                We offer free artwork review for all OEM orders. Send us your files and we&apos;ll check them within 24 hours.
+                Artwork review is available for eligible OEM projects. Send complete files and requirements so we can confirm scope and timing.
               </p>
             </div>
             <div className="bg-slate-50 rounded-2xl p-5">

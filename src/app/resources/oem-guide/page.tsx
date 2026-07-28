@@ -95,7 +95,7 @@ export default function OEMGuidePage() {
               <p className="text-slate-600 leading-relaxed mb-5">Understanding the full OEM workflow before you begin prevents delays and miscommunication. A well-managed OEM project from inquiry to first delivery typically takes 25–35 days. Here is what each stage involves:</p>
               <div className="space-y-4">
                 {[
-                  { step: "01", title: "Initial Inquiry & NDA", desc: "Submit your requirements (size, quantity, coating, packaging). We sign an NDA before any technical discussion to protect your IP. This is non-negotiable for us — your formulation preferences and market strategy are confidential." },
+                  { step: "01", title: "Initial Inquiry & NDA", desc: "Submit your size, quantity, coating, packaging, and destination requirements. A mutual NDA can be reviewed before confidential technical or commercial information is exchanged." },
                   { step: "02", title: "Technical Specification", desc: "Our engineering team works with you to define paper weight, coating grade (standard, premium, BPA-free, phenol-free), core size, and roll dimensions. We will also advise on which specifications are compatible with your target printer models." },
                   { step: "03", title: "Sample Production", desc: "We produce 3–5 sample rolls within 3–5 business days. Samples are tested on your target printers before approval. We recommend testing in the actual end-use environment — a kitchen printer in a 40°C environment behaves differently than an office POS terminal." },
                   { step: "04", title: "Packaging Design", desc: "Our design team creates packaging artwork per your brand guidelines. Shrink wrap, polybag, box, or custom display packaging available. We provide a print-ready PDF proof for your approval before production." },
@@ -296,7 +296,7 @@ export default function OEMGuidePage() {
                 <Lightbulb className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <div className="font-sora font-bold text-amber-900 mb-1">Ready to Start Your OEM Project?</div>
-                  <p className="text-sm text-amber-800 mb-3">Contact our OEM team with your specifications. We will respond within 12 hours with a detailed quote and sample timeline. No commitment required for samples.</p>
+                  <p className="text-sm text-amber-800 mb-3">Contact our OEM team with complete specifications, quantity, packaging, and destination details. We will confirm quotation and sample scope after review.</p>
                   <Link href="/contact/oem-partnership" className="inline-flex items-center gap-2 text-sm font-bold text-amber-700 hover:text-amber-900">
                     Start OEM Partnership <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -308,7 +308,7 @@ export default function OEMGuidePage() {
           <div className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
               <h3 className="font-sora text-base font-bold text-slate-900 mb-1">Get a Free Quote</h3>
-              <p className="text-xs text-slate-500 mb-4">12-hour response guaranteed</p>
+              <p className="text-xs text-slate-500 mb-4">Initial reply targeted within one business day after sufficient details are received</p>
               <InquiryForm compact />
             </div>
             <div className="bg-slate-50 rounded-2xl p-5">

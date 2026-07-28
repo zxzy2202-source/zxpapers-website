@@ -56,7 +56,7 @@ export default function OEMPartnershipPage() {
           <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
             Start Your<br /><span className="text-amber-400">OEM Partnership</span>
           </h1>
-          <p className="text-slate-300 max-w-2xl text-lg">Tell us your requirements and we will respond within 12 hours with a detailed quote, sample timeline, and NDA for your review.</p>
+          <p className="text-slate-300 max-w-2xl text-lg">Tell us your requirements and we will review the project details, NDA needs, quotation scope, and sample timeline with you.</p>
         </div>
       </div>
 
@@ -74,10 +74,10 @@ export default function OEMPartnershipPage() {
               <h3 className="font-sora font-bold text-slate-900 mb-4">What Happens Next?</h3>
               <div className="space-y-3">
                 {[
-                  { step: "01", text: "We review your inquiry and sign an NDA within 2 hours" },
-                  { step: "02", text: "Our OEM team sends a detailed quote within 12 hours" },
-                  { step: "03", text: "We arrange a video call to discuss your requirements" },
-                  { step: "04", text: "Sample production begins within 3–5 business days" },
+                  { step: "01", text: "We review your inquiry and confirm whether an NDA is needed before confidential information is exchanged" },
+                  { step: "02", text: "Our OEM team confirms quotation timing after complete specifications and commercial details are received" },
+                  { step: "03", text: "We arrange a video call when useful to clarify your requirements" },
+                  { step: "04", text: "Sample scope and timing are confirmed after material, artwork, and specification review" },
                 ].map(({ step, text }) => (
                   <div key={step} className="flex items-start gap-3">
                     <div className="font-sora w-7 h-7 bg-brand-navy text-white rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0">{step}</div>

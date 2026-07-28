@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
-import { FACTORY, CERTIFICATIONS, SITE } from "@/config/siteData";
+import { FACTORY, SITE } from "@/config/siteData";
+import { COMPLIANCE_EVIDENCE } from "@/config/complianceData";
 import {
   CheckCircle, ArrowRight, Factory, Award, Shield, Cpu,
   Zap, Package, Truck, BarChart3, Settings, FlaskConical,
@@ -13,10 +14,10 @@ import { getSlotImages } from "@/lib/imageSlotUtils";
 
 export const metadata: Metadata = {
   title: { absolute: "Thermal Paper Manufacturing | ZhixinPaper" },
-  description: `ZhixinPaper manufacturing: 10000sqm factory, 20 production lines, 50000 tons annual output. Advanced slitting and printing machines.`,
+  description: `Review ZhixinPaper's ${FACTORY.area} facility, ${FACTORY.productionLines} production lines, ${FACTORY.annualOutputLabel.toLowerCase()}, process controls, and evidence available for buyer review.`,
   openGraph: {
-    title: `Manufacturing | ${FACTORY.area} ISO 9001 Certified Factory`,
-    description: `ZhixinPaper manufacturing: 10000sqm factory, 20 production lines, 50000 tons annual output. Advanced slitting and printing machines.`,
+    title: `Manufacturing | ${FACTORY.area} Paper and Label Facility`,
+    description: `Review ZhixinPaper's facility, rated capacity, production workflow, quality controls, and product-specific compliance evidence.`,
       images: [
       {
         url: "https://www.zxpapers.com/og-default.png",
@@ -34,17 +35,17 @@ const IMG_AERIAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJ
 const IMG_COATING = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
 
 const productionSteps = [
-  { step: "01", title: "Raw Material Inspection", desc: "All incoming base paper and chemical coatings are tested in our in-house lab before entering production.", icon: FlaskConical, color: "bg-blue-500" },
-  { step: "02", title: "Thermal Coating", desc: "Precision coating application using German and Japanese equipment. Coating weight controlled to ±0.5 g/m².", icon: Settings, color: "bg-amber-500" },
-  { step: "03", title: "Drying & Curing", desc: "Multi-zone drying tunnels ensure uniform coating adhesion and optimal thermal sensitivity.", icon: Zap, color: "bg-green-500" },
-  { step: "04", title: "Slitting & Cutting", desc: "High-precision slitting to exact customer specifications. Tolerance: ±0.3mm on width, ±1% on length.", icon: Cpu, color: "bg-purple-500" },
-  { step: "05", title: "Quality Inspection", desc: "100% roll inspection for print quality, roll length, core size, and packaging integrity.", icon: Shield, color: "bg-red-500" },
-  { step: "06", title: "Packing & Loading", desc: "OEM or standard packaging. FCL container loading available in 3–5 business days.", icon: Package, color: "bg-teal-500" },
+  { step: "01", title: "Raw Material Inspection", desc: "Incoming materials are reviewed and tested when required by the approved product specification and order quality plan.", icon: FlaskConical, color: "bg-blue-500" },
+  { step: "02", title: "Thermal Coating", desc: "Coating parameters are set and monitored against the applicable product specification and process plan.", icon: Settings, color: "bg-amber-500" },
+  { step: "03", title: "Drying & Curing", desc: "Multi-zone drying settings are controlled to support the specified coating and thermal-performance requirements.", icon: Zap, color: "bg-green-500" },
+  { step: "04", title: "Slitting & Cutting", desc: "Rolls are converted to the confirmed dimensions; order tolerances and acceptance criteria are documented in the approved specification.", icon: Cpu, color: "bg-purple-500" },
+  { step: "05", title: "Quality Inspection", desc: "Inspection method, sampling plan, and acceptance criteria follow the approved product specification and order quality plan.", icon: Shield, color: "bg-red-500" },
+  { step: "06", title: "Packing & Loading", desc: `OEM or standard packaging. ${FACTORY.fclLoadingLabel} applies ${FACTORY.fclLoadingCondition}.`, icon: Package, color: "bg-teal-500" },
 ];
 
 const equipment = [
-  { name: "Coating Machine", origin: "Germany", spec: "2.5m working width, ±0.5 g/m² precision", qty: "4 units" },
-  { name: "Slitting Machine", origin: "Japan", spec: "Max 1,200 m/min, ±0.3mm tolerance", qty: "12 units" },
+  { name: "Coating Machine", origin: "Germany", spec: "2.5m working width; process settings confirmed by product specification", qty: "4 units" },
+  { name: "Slitting Machine", origin: "Japan", spec: "Maximum rated speed 1,200 m/min; order tolerance confirmed by specification", qty: "12 units" },
   { name: "Rewinding Machine", origin: "Taiwan", spec: "Auto tension control, 0–200mm core", qty: "8 units" },
   { name: "Lab Testing Equipment", origin: "Germany", spec: "Thermal sensitivity, image density, whiteness", qty: "Full suite" },
 ];
@@ -52,17 +53,17 @@ const equipment = [
 const qcChecks = [
   "Thermal sensitivity (print darkness at standard temperature)",
   "Image stability (resistance to heat, light, and moisture)",
-  "Roll length accuracy (±1% tolerance)",
-  "Width tolerance (±0.3mm)",
+  "Roll length acceptance criteria defined in the approved specification",
+  "Width tolerance confirmed for the applicable product and order",
   "Core size and paper thickness",
-  "BPA content testing (BPA-free certified batches)",
+  "BPA or phenol testing when required for the applicable material or batch",
   "Packaging integrity and labeling accuracy",
 ];
 
 const capabilities = [
   { title: "Factory Overview", desc: `${FACTORY.area} modern manufacturing facility.`, href: "/manufacturing", icon: Factory },
   { title: "Quality Control", desc: "Multi-stage QC with statistical process control.", href: "/manufacturing/quality-control", icon: Shield },
-  { title: "Certifications", desc: "ISO 9001, FSC, BPA-Free, RoHS, CE certified.", href: "/manufacturing/certifications", icon: Award },
+  { title: "Compliance Evidence", desc: "Review certificates, test reports, declarations, and their applicable scope.", href: "/manufacturing/certifications", icon: Award },
   { title: "Equipment", desc: "German and Japanese precision machinery.", href: "/manufacturing/equipment", icon: Cpu },
 ];
 
@@ -105,15 +106,15 @@ export default async function ManufacturingPage() {
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <PageHero
         bgImage={imgs["manufacturing:hero"]}
-        bgImageAlt="ZhixinPaper ISO 9001 certified thermal paper production line with German and Japanese equipment"
+        bgImageAlt="ZhixinPaper paper and label production facility with manufacturing equipment"
         overlayDir="left"
         overlayOpacity={50}
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Manufacturing" }]}
-        eyebrow="ISO 9001 Certified Factory"
+        eyebrow="Paper and Label Manufacturing"
         badge={{ icon: <Factory className="w-4 h-4" />, text: `${FACTORY.area} · Xi'an, China`, color: "blue" }}
         title={<>Manufacturing <span className="text-amber-400">Capabilities</span></>}
-        subtitle={`${FACTORY.productionLines} high-speed production lines. ${FACTORY.annualOutput} rolls/year capacity. German & Japanese equipment. FCL ready in ${FACTORY.fclLoadingDays} business days.`}
-        trustBadges={["ISO 9001:2015", "FSC Certified", "BPA-Free", "SGS Tested", "CE Marking"]}
+        subtitle={`${FACTORY.productionLines} production lines and ${FACTORY.annualOutputLabel.toLowerCase()}. ${FACTORY.capacityBasis}. FCL timing is confirmed by product, material, and production-slot availability.`}
+        trustBadges={["Specification Review", "Batch Records", "Sampling Plans", "Test Reports on Request", "Order-Specific Evidence"]}
         ctas={[
           { label: "Request Factory Audit", href: "/contact", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
           { label: "WhatsApp Factory Team", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I'd like to learn about your manufacturing capabilities and request a factory audit.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
@@ -122,7 +123,7 @@ export default async function ManufacturingPage() {
           { value: FACTORY.area, label: "Factory Area" },
           { value: FACTORY.productionLines, label: "Production Lines" },
           { value: FACTORY.annualOutput, label: "Annual Output" },
-          { value: `${FACTORY.fclLoadingDays} Days`, label: "FCL Loading" },
+          { value: "By Order", label: "FCL Loading Schedule" },
         ]}
       />
       {/* ── Quick Nav ────────────────────────────────────────────── */}
@@ -158,8 +159,8 @@ export default async function ManufacturingPage() {
                 <span className="text-brand-navy">Manufacturing</span>
               </h2>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Our {FACTORY.area} facility houses {FACTORY.productionLines} production lines capable of producing {FACTORY.annualOutput} rolls per year.
-                Every production run is tracked through our batch traceability system, ensuring consistent quality and full accountability.
+                Our {FACTORY.area} facility houses {FACTORY.productionLines} production lines with {FACTORY.annualOutputLabel.toLowerCase()}; {FACTORY.capacityBasis}.
+                Batch traceability scope and retained records are confirmed for the applicable product, specification, and order quality plan.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {[
@@ -176,12 +177,12 @@ export default async function ManufacturingPage() {
               </div>
               <div className="space-y-3">
                 {[
-                  "24/7 production with automated monitoring systems",
-                  "German and Japanese precision coating equipment",
-                  "Real-time batch traceability and quality tracking",
-                  "In-house raw material testing laboratory",
+                  "Production scheduling based on order and line availability",
+                  "German and Japanese coating equipment",
+                  "Order-specific batch records and traceability scope",
+                  "In-house material testing capabilities",
                   "Climate-controlled production zones",
-                  "ISO 9001:2015 certified quality management",
+                  "Quality-management evidence available for buyer review",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2.5">
                     <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
@@ -212,7 +213,7 @@ export default async function ManufacturingPage() {
             6-Step Production Process
           </h2>
           <p className="text-slate-500 max-w-2xl mx-auto">
-            From raw material to finished container-ready product — every step is controlled and documented.
+            From raw material review to container-ready packing, controls and records are defined by the approved specification and order quality plan.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -244,7 +245,7 @@ export default async function ManufacturingPage() {
               German &amp; Japanese Precision Machinery
             </h2>
             <p className="text-slate-400 max-w-xl mx-auto">
-              We invest in the best equipment to deliver consistent quality at scale.
+              Equipment capabilities and process controls are matched to the applicable product specification and order quality plan.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -274,10 +275,10 @@ export default async function ManufacturingPage() {
               Quality Control
             </div>
             <h2 className="text-3xl font-extrabold text-slate-900 mb-5">
-              100% Inspection Before Shipment
+              Pre-Shipment Inspection by Quality Plan
             </h2>
             <p className="text-slate-600 leading-relaxed mb-6">
-              Every roll is inspected before it leaves our facility. Our QC team performs both automated and manual checks to ensure every order meets or exceeds customer specifications.
+              Inspection scope, sampling frequency, acceptance criteria, and report availability are confirmed against the approved specification and order requirements.
             </p>
             <div className="space-y-3">
               {qcChecks.map((check) => (
@@ -296,13 +297,14 @@ export default async function ManufacturingPage() {
             <h2 className="text-3xl font-extrabold text-slate-900 mb-5">
               Internationally Recognized Standards
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {CERTIFICATIONS.map(({ name, desc }) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {COMPLIANCE_EVIDENCE.map(({ name, kind, availability, icon: Icon }) => (
                 <div key={name}
-                  className="flex flex-col items-center text-center p-4 bg-white border border-slate-200 hover:border-blue-200 hover:bg-blue-50 rounded-2xl transition-all duration-200">
-                  <Award className="w-7 h-7 text-blue-600 mb-2" />
+                  className="p-4 bg-white border border-slate-200 hover:border-blue-200 hover:bg-blue-50 rounded-2xl transition-all duration-200">
+                  <Icon className="w-7 h-7 text-blue-600 mb-2" />
                   <div className="font-bold text-slate-900 text-sm mb-1">{name}</div>
-                  <div className="text-xs text-slate-500">{desc}</div>
+                  <div className="text-xs font-semibold text-blue-700 mb-1">{kind}</div>
+                  <div className="text-xs text-slate-500 leading-relaxed">{availability}</div>
                 </div>
               ))}
             </div>
@@ -317,7 +319,7 @@ export default async function ManufacturingPage() {
             Ready to Place a Bulk Order?
           </h2>
           <p className="text-slate-800 mb-8 max-w-xl mx-auto">
-            Our factory is ready to fulfill your order. Get a quote within 24 hours with full production timeline.
+            Our team responds {SITE.responseTime} {SITE.responseTimeCondition}. Product feasibility, pricing, and the production schedule are confirmed in the quotation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact"
