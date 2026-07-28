@@ -167,17 +167,6 @@ test("image manager links point directly to canonical product pages", () => {
   );
 });
 
-test("legacy product archives redirect to the canonical products hub", () => {
-  for (const source of [
-    "/product-category/:slug*",
-    "/product-tag/:slug*",
-    "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/:slug*",
-    "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-tag/:slug*",
-  ]) {
-    assertRedirect(source, "https://www.zxpapers.com/products");
-  }
-});
-
 test("legacy blog archives redirect to the canonical blog", () => {
   for (const source of [
     "/posts",
@@ -216,18 +205,26 @@ test("GSC-indexed legacy product categories redirect to the closest current cate
       "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/adhesive-label-material/:path*",
       "https://www.zxpapers.com/products/product-labels",
     ],
+    [
+      "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/labelsstick/:path*",
+      "https://www.zxpapers.com/products/product-labels",
+    ],
+    [
+      "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/thermal-receipt-paper-rolls/:path*",
+      "https://www.zxpapers.com/products/receipt-paper-rolls",
+    ],
+    [
+      "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/carbonless-paper/:path*",
+      "https://www.zxpapers.com/products/ncr-forms",
+    ],
+    [
+      "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/bpabps-free-thermal-paper/:path*",
+      "https://www.zxpapers.com/products/phenol-free-thermal-paper",
+    ],
   ]);
 
-  const genericArchiveIndex = redirects.findIndex(
-    (redirect) =>
-      redirect.source ===
-      "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/:slug*",
-  );
-
   for (const [source, destination] of mappings) {
-    const index = redirects.findIndex((redirect) => redirect.source === source);
     assertRedirect(source, destination);
-    assert.ok(index < genericArchiveIndex, `${source} must run before the generic archive rule`);
   }
 });
 
@@ -238,6 +235,15 @@ test("high-intent legacy URLs redirect to the closest current page", () => {
     ["/amazon-fba-tags", "https://www.zxpapers.com/products/shipping-labels"],
     ["/products/page/:num", "https://www.zxpapers.com/products"],
     ["/hot-products", "https://www.zxpapers.com/products"],
+    ["/hot-products/page/:num", "https://www.zxpapers.com/products"],
+    [
+      "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/hot-products/page/:num",
+      "https://www.zxpapers.com/products",
+    ],
+    [
+      "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/inquiry",
+      "https://www.zxpapers.com/contact",
+    ],
     ["/about-us/certificates", "https://www.zxpapers.com/manufacturing/certifications"],
     ["/about-us", "https://www.zxpapers.com/about"],
     ["/contact-us", "https://www.zxpapers.com/contact"],
@@ -249,20 +255,21 @@ test("high-intent legacy URLs redirect to the closest current page", () => {
 });
 
 test("evidence-backed legacy mappings run before host and language fallbacks", () => {
-  const archiveSource = "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/:slug*";
+  const archiveSource = "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/thermal-receipt-paper-rolls/:path*";
   const archiveIndex = redirects.findIndex((redirect) => redirect.source === archiveSource);
   const hostIndex = redirects.findIndex(
     (redirect) => redirect.source === "/:path*" && redirect.has?.[0]?.type === "host",
   );
-  const languageFallbackIndex = redirects.findIndex(
-    (redirect) => redirect.source === "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/:path*",
+  const currentRouteIndex = redirects.findIndex(
+    (redirect) => redirect.source === "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/about",
   );
 
   assert.notEqual(archiveIndex, -1, "missing evidence-backed archive redirect");
   assert.notEqual(hostIndex, -1, "missing canonical host redirect");
-  assert.notEqual(languageFallbackIndex, -1, "missing language fallback redirect");
+  assert.notEqual(currentRouteIndex, -1, "missing language redirect for a current route");
   assert.ok(archiveIndex < hostIndex, "legacy mapping should consolidate path and host in one rule");
-  assert.ok(archiveIndex < languageFallbackIndex, "legacy mapping should avoid a language-strip chain");
+  assert.ok(currentRouteIndex < hostIndex, "current routes should canonicalize language and host in one hop");
+  assert.equal(redirects[currentRouteIndex].destination, "https://www.zxpapers.com/about");
 
   for (const source of [
     "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product/:slug(.*linerless.*)",
@@ -273,13 +280,47 @@ test("evidence-backed legacy mappings run before host and language fallbacks", (
     const mappingIndex = redirects.findIndex((redirect) => redirect.source === source);
     assert.notEqual(mappingIndex, -1, `missing direct migration mapping for ${source}`);
     assert.ok(mappingIndex < hostIndex, `${source} must run before host consolidation`);
-    assert.ok(mappingIndex < languageFallbackIndex, `${source} must avoid a language-strip chain`);
   }
 });
 
+test("unmapped legacy URLs remain genuine not-found responses", () => {
+  for (const source of [
+    "/product/:slug*",
+    "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product/:slug*",
+    "/download",
+    "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/download",
+    "/site-map/:path*",
+    "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/site-map/:path*",
+    "/product-category/:slug*",
+    "/product-tag/:slug*",
+    "/category/:slug*",
+    "/tag/:slug*",
+    "/feed/:path*",
+    "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-category/:slug*",
+    "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/product-tag/:slug*",
+    "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/category/:slug*",
+    "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/tag/:slug*",
+    "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/feed/:path*",
+    "/:path+/",
+  ]) {
+    assert.equal(
+      redirects.findIndex((redirect) => redirect.source === source),
+      -1,
+      `${source} must not soft-redirect without an equivalent current page`,
+    );
+  }
+});
+
+test("trailing slashes normalize only for confirmed current route families", () => {
+  assert.equal(nextConfig.skipTrailingSlashRedirect, true);
+  assertRedirect("/about/", "https://www.zxpapers.com/about");
+  assertRedirect("/products/:path+/", "https://www.zxpapers.com/products/:path+");
+  assertRedirect("/blog/:path+/", "https://www.zxpapers.com/blog/:path+");
+});
+
 test("legacy language roots use explicit redirects with non-empty locations", () => {
-  const fallbackIndex = redirects.findIndex(
-    (redirect) => redirect.source === "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/:path*",
+  const hostIndex = redirects.findIndex(
+    (redirect) => redirect.source === "/:path*" && redirect.has?.[0]?.type === "host",
   );
 
   for (const language of [
@@ -288,7 +329,7 @@ test("legacy language roots use explicit redirects with non-empty locations", ()
   ]) {
     assertRedirect(`/${language}`, "https://www.zxpapers.com/");
     const explicitIndex = redirects.findIndex((redirect) => redirect.source === `/${language}`);
-    assert.ok(explicitIndex < fallbackIndex, `/${language} must run before the optional path fallback`);
+    assert.ok(explicitIndex < hostIndex, `/${language} must canonicalize before host consolidation`);
   }
 });
 

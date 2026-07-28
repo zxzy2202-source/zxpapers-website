@@ -141,16 +141,16 @@ const LEGACY_PRODUCT_REDIRECTS = [
     destination: "/products/thermal-paper-rolls",
   },
   {
-    slugPattern: ".*thermal.*paper.*",
-    destination: "/products/thermal-paper-rolls",
-  },
-  {
     slugPattern: ".*thermal.*receipt.*",
     destination: "/products/receipt-paper-rolls",
   },
   {
     slugPattern: ".*receipt.*thermal.*",
     destination: "/products/receipt-paper-rolls",
+  },
+  {
+    slugPattern: ".*thermal.*paper.*",
+    destination: "/products/thermal-paper-rolls",
   },
   {
     slugPattern: ".*thermal.*ticket.*",
@@ -220,16 +220,116 @@ const LEGACY_PRODUCT_CATEGORY_REDIRECTS = [
     categoryPath: "adhesive-label-material",
     destination: "/products/product-labels",
   },
+  {
+    categoryPath: "labelsstick",
+    destination: "/products/product-labels",
+  },
+  {
+    categoryPath: "jumbo-roll-thermal-paper",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    categoryPath: "carbonless-paper",
+    destination: "/products/ncr-forms",
+  },
+  {
+    categoryPath: "bpabps-free-thermal-paper",
+    destination: "/products/phenol-free-thermal-paper",
+  },
+  {
+    categoryPath: "atm-receipt-paper-rolls",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    categoryPath: "thermal-receipt-paper-rolls",
+    destination: "/products/receipt-paper-rolls",
+  },
+  {
+    categoryPath: "kiosk-receipt-paper-rolls",
+    destination: "/products/thermal-paper-rolls",
+  },
+  {
+    categoryPath: "inkjetlaser-labels",
+    destination: "/products/product-labels",
+  },
+  {
+    categoryPath: "cosmetic-labels",
+    destination: "/products/product-labels",
+  },
+  {
+    categoryPath: "food-packaging-labels",
+    destination: "/products/product-labels",
+  },
+  {
+    categoryPath: "electronic-industry-label",
+    destination: "/products/product-labels",
+  },
+  {
+    categoryPath: "pharmaceutical-labels",
+    destination: "/products/product-labels",
+  },
+  {
+    categoryPath: "thermal-weigh-scale-labels",
+    destination: "/products/thermal-labels",
+  },
+  {
+    categoryPath: "printed-paper-roll",
+    destination: "/products/thermal-paper-rolls/custom-printed",
+  },
 ] as const;
 const LEGACY_STATIC_REDIRECTS = [
   { source: "/about-us", destination: "/about" },
   { source: "/contact-us", destination: "/contact" },
+  { source: "/inquiry", destination: "/contact" },
+  { source: "/get-a-quote", destination: "/contact" },
+  { source: "/amazon-fba-tags", destination: "/products/shipping-labels" },
   {
     source: "/about-us/certificates",
     destination: "/manufacturing/certifications",
   },
 ] as const;
-
+const LEGACY_CURRENT_ROUTE_REDIRECTS = [
+  "/about",
+  "/contact",
+  "/contact/:path*",
+  "/products",
+  "/products/:path*",
+  "/blog",
+  "/blog/:path*",
+  "/faq",
+  "/manufacturing",
+  "/manufacturing/:path*",
+  "/markets",
+  "/markets/:path*",
+  "/oem",
+  "/oem/:path*",
+  "/resources",
+  "/resources/:path*",
+  "/specifications",
+  "/best-thermal-paper-suppliers",
+  "/zhixinpaper-vs-panda-paper-roll",
+] as const;
+const CURRENT_TRAILING_SLASH_REDIRECTS = [
+  { source: "/about/", destination: "/about" },
+  { source: "/contact/", destination: "/contact" },
+  { source: "/contact/:path+/", destination: "/contact/:path+" },
+  { source: "/products/", destination: "/products" },
+  { source: "/products/:path+/", destination: "/products/:path+" },
+  { source: "/blog/", destination: "/blog" },
+  { source: "/blog/:path+/", destination: "/blog/:path+" },
+  { source: "/faq/", destination: "/faq" },
+  { source: "/manufacturing/", destination: "/manufacturing" },
+  { source: "/manufacturing/:path+/", destination: "/manufacturing/:path+" },
+  { source: "/markets/", destination: "/markets" },
+  { source: "/markets/:path+/", destination: "/markets/:path+" },
+  { source: "/oem/", destination: "/oem" },
+  { source: "/oem/:path+/", destination: "/oem/:path+" },
+  { source: "/resources/", destination: "/resources" },
+  { source: "/resources/:path+/", destination: "/resources/:path+" },
+  { source: "/specifications/", destination: "/specifications" },
+  { source: "/best-thermal-paper-suppliers/", destination: "/best-thermal-paper-suppliers" },
+  { source: "/zhixinpaper-vs-panda-paper-roll/", destination: "/zhixinpaper-vs-panda-paper-roll" },
+] as const;
 function getAbsolutePublicUrl(value: string | undefined, fallback: string) {
   if (!value) return fallback;
 
@@ -256,6 +356,7 @@ const r2PublicHostname = new URL(r2PublicOrigin).hostname;
 
 const nextConfig: NextConfig = {
   trailingSlash: false,
+  skipTrailingSlashRedirect: true,
 
   async redirects() {
     return [
@@ -300,16 +401,6 @@ const nextConfig: NextConfig = {
         ],
       ),
       {
-        source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/product-category/:slug*`,
-        destination: `${CANONICAL_SITE_URL}/products`,
-        permanent: true,
-      },
-      {
-        source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/product-tag/:slug*`,
-        destination: `${CANONICAL_SITE_URL}/products`,
-        permanent: true,
-      },
-      {
         source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/posts`,
         destination: `${CANONICAL_SITE_URL}/blog`,
         permanent: true,
@@ -317,16 +408,6 @@ const nextConfig: NextConfig = {
       {
         source: `/:lang(${LEGACY_LANGUAGE_PATTERN})/about-us/blog`,
         destination: `${CANONICAL_SITE_URL}/blog`,
-        permanent: true,
-      },
-      {
-        source: "/product-category/:slug*",
-        destination: `${CANONICAL_SITE_URL}/products`,
-        permanent: true,
-      },
-      {
-        source: "/product-tag/:slug*",
-        destination: `${CANONICAL_SITE_URL}/products`,
         permanent: true,
       },
       {
@@ -339,36 +420,42 @@ const nextConfig: NextConfig = {
         destination: `${CANONICAL_SITE_URL}/blog`,
         permanent: true,
       },
-      {
-        source: "/inquiry",
-        destination: `${CANONICAL_SITE_URL}/contact`,
+      ...[
+        "/products/page/:num",
+        "/hot-products",
+        "/hot-products/page/:num",
+      ].flatMap((source) => [
+        {
+          source: `/:lang(${LEGACY_LANGUAGE_PATTERN})${source}`,
+          destination: `${CANONICAL_SITE_URL}/products`,
+          permanent: true,
+        },
+        {
+          source,
+          destination: `${CANONICAL_SITE_URL}/products`,
+          permanent: true,
+        },
+      ]),
+      ...LEGACY_LANGUAGES.map((language) => ({
+        source: `/${language}`,
+        destination: `${CANONICAL_SITE_URL}/`,
         permanent: true,
-      },
-      {
-        source: "/get-a-quote",
-        destination: `${CANONICAL_SITE_URL}/contact`,
+      })),
+      ...LEGACY_CURRENT_ROUTE_REDIRECTS.map((source) => ({
+        source: `/:lang(${LEGACY_LANGUAGE_PATTERN})${source}`,
+        destination: `${CANONICAL_SITE_URL}${source}`,
         permanent: true,
-      },
-      {
-        source: "/amazon-fba-tags",
-        destination: `${CANONICAL_SITE_URL}/products/shipping-labels`,
-        permanent: true,
-      },
-      {
-        source: "/products/page/:num",
-        destination: `${CANONICAL_SITE_URL}/products`,
-        permanent: true,
-      },
-      {
-        source: "/hot-products",
-        destination: `${CANONICAL_SITE_URL}/products`,
-        permanent: true,
-      },
+      })),
       // Thermal paper and thermal label regional ownership for Europe lives on
       // zhixinpaper.com. These rules precede generic host consolidation so the
       // bare and www ZX Papers hosts reach the final owner without a redirect chain.
       { source: "/markets/europe", destination: "https://www.zhixinpaper.com/eu", statusCode: 301 },
       { source: "/markets/europe/:path*", destination: "https://www.zhixinpaper.com/eu", statusCode: 301 },
+      ...CURRENT_TRAILING_SLASH_REDIRECTS.map(({ source, destination }) => ({
+        source,
+        destination: `${CANONICAL_SITE_URL}${destination}`,
+        permanent: true,
+      })),
       {
         source: "/:path*",
         has: [{ type: "host", value: "zxpapers.com" }],
@@ -391,16 +478,6 @@ const nextConfig: NextConfig = {
         destination: "https://www.zxpapers.com/:path*",
         permanent: true,
       },
-      ...LEGACY_LANGUAGES.map((language) => ({
-        source: `/${language}`,
-        destination: `${CANONICAL_SITE_URL}/`,
-        permanent: true,
-      })),
-      {
-        source: "/:lang(ro|de|fr|es|it|pt|pl|nl|tr|ar|ja|ko|ru|zh|hi|vi|th|id|ms)/:path*",
-        destination: "/:path*",
-        permanent: true,
-      },
       // Product URL aliases → canonical content pages (replaces former client-side JS redirects)
       { source: "/products/custom-printed-rolls", destination: "/products/thermal-paper-rolls/custom-printed", permanent: true },
       { source: "/products/blank-thermal-rolls", destination: "/products/thermal-paper-rolls/blank", permanent: true },
@@ -412,10 +489,6 @@ const nextConfig: NextConfig = {
         destination: "/products/can-labels",
         permanent: true,
       },
-      { source: "/category/:slug*", destination: "/blog", permanent: true },
-      { source: "/tag/:slug*", destination: "/blog", permanent: true },
-      { source: "/feed", destination: "/blog", permanent: true },
-      { source: "/feed/:slug*", destination: "/blog", permanent: true },
       // Legacy combined region page → canonical split pages
       { source: "/markets/middle-east-africa", destination: "/markets/middle-east", permanent: true },
       { source: "/markets/middle-east-africa/:path*", destination: "/markets/middle-east", permanent: true },
