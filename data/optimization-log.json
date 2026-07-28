@@ -28,5 +28,15 @@
     "files": "next.config.ts, tests/seo-p0.contract.test.mjs",
     "result": "契约测试 14/14 通过 | TypeScript 检查通过 | 生产构建通过（129 个静态页面）| 独立复核 PASS",
     "id": "97e232b8-4cf0-4ce8-96be-2ebf12957b7d"
+  },
+  {
+    "date": "2026-07-29",
+    "category": "UI 优化",
+    "title": "重构 Contact 联系页询价工作台并强化表单主任务",
+    "description": "针对 /contact#inquiry-form 进行局部 UI 重构，不改变询价提交接口和业务流程。\n\n主要优化：\n1. 压缩 Hero 高度，移除重复统计和竞争性 CTA，保留单一 Start Your Quote 主操作\n2. 将独立 WhatsApp 横幅改为紧凑联系渠道条，统一 WhatsApp、Email、Phone 和响应时效展示\n3. 重构桌面双栏层级，以询价表单为视觉中心，辅助信息合并为提交清单、隐私说明、工厂信息和相关资源\n4. 表单启用 compact 模式，消除重复标题，同时保留必填验证、可选公司信息、提交状态和成功反馈\n5. 将 FAQ 改为低权重开放列表，减少卡片堆叠并提升扫描效率\n6. 优化移动端顺序，使表单优先于辅助说明，并保持清晰焦点状态\n7. 为宽版询价表单增加独立响应式布局：桌面姓名与邮箱双列，移动端自动恢复单列，不影响其他紧凑表单\n8. 移除联系页嵌套 main，确保全页仅保留一个主内容语义区\n9. 联系页移动端隐藏全局 WhatsApp 浮动按钮，避免遮挡消息输入框；桌面端及其他页面继续保留原有触发行为",
+    "commit": "未提交",
+    "files": "src/app/contact/page.tsx, src/components/shared/InquiryForm.tsx, src/components/layout/WhatsAppFAB.tsx",
+    "result": "TypeScript 检查通过 | Next.js 生产构建通过（129 个静态页面）| 全新生产预览 http://127.0.0.1:3048 验收通过 | 1440x900 桌面表单双列、WhatsApp FAB 可见且无横向溢出 | 390x844 联系页表单单列、仅一个 main、FAB 隐藏且 textarea 无遮挡 | 首页移动端滚动至 831px 后 FAB 正常出现 | 运行时错误 0",
+    "id": "cf1ea4b1-3be9-4768-9cee-0ba9e3de78bf"
   }
 ]

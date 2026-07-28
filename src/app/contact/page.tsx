@@ -2,21 +2,29 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
+import PageHero from "@/components/shared/PageHero";
 import { SITE } from "@/config/siteData";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 import {
-  Phone, Mail, MapPin, Clock, MessageSquare, Package,
-  CheckCircle, ArrowRight, Zap, Globe, Shield,
+  ArrowRight,
+  Check,
+  CheckCircle,
+  Clock,
+  Mail,
+  MapPin,
+  MessageSquare,
+  Package,
+  Phone,
+  ShieldCheck,
 } from "lucide-react";
-import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
   title: { absolute: "Contact ZhixinPaper | Product & OEM Inquiries" },
   description: `Contact ${SITE.name} about thermal paper rolls, labels, NCR forms, OEM printing, specifications, samples, packing and destination requirements.`,
   openGraph: {
     title: `Contact ${SITE.name} | Product & OEM Inquiries`,
-    description: `Send product specifications, application, quantity, packing, destination and document requirements for a scoped quotation review.`,
-      images: [
+    description: "Send product specifications, application, quantity, packing, destination and document requirements for a scoped quotation review.",
+    images: [
       {
         url: "https://www.zxpapers.com/og-default.png",
         width: 1200,
@@ -36,28 +44,18 @@ const faqs = [
   { q: "What payment terms do you accept?", a: "T/T, L/C at sight, Western Union, and PayPal for small orders. Flexible terms for regular buyers." },
 ];
 
-
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.zxpapers.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Contact",
-      "item": "https://www.zxpapers.com/contact"
-    }
-  ]
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.zxpapers.com" },
+    { "@type": "ListItem", position: 2, name: "Contact", item: "https://www.zxpapers.com/contact" },
+  ],
 };
+
 const CONTACT_HERO_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
 
-export const revalidate = 3600; // 1 hour: slot image changes infrequently
+export const revalidate = 3600;
 
 interface ContactPageProps {
   searchParams: Promise<{ product?: string | string[] }>;
@@ -77,6 +75,13 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   const initialMessage = productContext
     ? `Product: ${productContext}\nSize / specification:\nQuantity:\nDestination:`
     : undefined;
+  const whatsappHref = `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a quote for thermal paper rolls. Please send me pricing and MOQ.")}`;
+
+  const contactMethods = [
+    { icon: MessageSquare, label: "WhatsApp", value: SITE.whatsapp, href: whatsappHref, external: true },
+    { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
+    { icon: Phone, label: "Phone", value: SITE.phone, href: `tel:${SITE.phone.replace(/\s/g, "")}` },
+  ];
 
   return (
     <Layout>
@@ -84,189 +89,162 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      {/* ── Hero ─────────────────────────────────────────────────── */}
+
       <PageHero
         bgImage={contactHeroImg}
-        bgImageAlt="Contact ZhixinPaper thermal paper sales team for factory-direct wholesale quotes and OEM inquiries"
-        overlayDir="center"
-        overlayOpacity={50}
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact Us" }]}
-        eyebrow="Get in Touch"
-        title={<>Contact <span className="text-amber-400">ZhixinPaper</span></>}
-        subtitle="Send the product, size, quantity, and destination. Our sales team will review your request and reply within one business day."
-        trustBadges={["One-Business-Day Reply", "Samples for Qualified Buyers", "OEM Support", "FOB / CIF / DDP"]}
+        bgImageAlt="ZhixinPaper thermal paper production team supporting wholesale and OEM inquiries"
+        overlayDir="left"
+        overlayOpacity={58}
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+        eyebrow="Factory inquiry desk"
+        title={<>Request a Thermal Paper <span className="text-amber-400">Quote</span></>}
+        subtitle="Share your specifications, quantity, and destination. Our team will review the details and prepare the right production and delivery options."
         ctas={[
-          { label: "WhatsApp - Quick Question", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a price quote for thermal paper rolls.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
-          { label: "Request a Quote", href: "#inquiry-form", variant: "outline", icon: <MessageSquare className="w-4 h-4" /> },
+          { label: "Start Your Quote", href: "#inquiry-form", variant: "primary", icon: <ArrowRight className="h-4 w-4" /> },
         ]}
-        stats={[
-          { value: "1 day", label: "Sales Reply" },
-          { value: "4 details", label: "To Start" },
-          { value: "OEM", label: "Packaging" },
-          { value: "FOB / CIF", label: "Trade Terms" },
-        ]}
+        compact
+        minHeight="min-h-[300px] sm:min-h-[340px]"
       />
-      {/* ── WhatsApp Priority Banner ─────────────────────────────── */}
-      <div className="bg-brand-navy-alt py-4 border-t border-white/10">
-        <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3 text-white">
-            <div className="w-10 h-10 bg-amber-500/15 border border-amber-400/30 rounded-md flex items-center justify-center">
-              <MessageSquare className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="font-bold text-base">Fastest Response: WhatsApp</div>
-              <div className="text-slate-300 text-sm">Quick questions during business hours</div>
-            </div>
+
+      <section className="border-b border-slate-200 bg-white" aria-label="Contact options">
+        <div className="container grid divide-y divide-slate-200 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+          {contactMethods.map(({ icon: Icon, label, value, href, external }) => (
+            <a
+              key={label}
+              href={href}
+              target={external ? "_blank" : undefined}
+              rel={external ? "noopener noreferrer" : undefined}
+              className="group flex min-w-0 items-center gap-3 px-1 py-4 sm:px-5 lg:px-6"
+            >
+              <span className="flex h-10 w-10 flex-none items-center justify-center rounded-md border border-slate-200 bg-slate-50 text-brand-navy transition-colors group-hover:border-amber-300 group-hover:bg-amber-50">
+                <Icon className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs font-medium text-slate-500">{label}</span>
+                <span className="block truncate text-sm font-semibold text-slate-900 group-hover:text-brand-navy">{value}</span>
+              </span>
+            </a>
+          ))}
+          <div className="flex items-center gap-3 px-1 py-4 sm:px-5 lg:px-6">
+            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-md border border-emerald-200 bg-emerald-50 text-emerald-700">
+              <Clock className="h-4 w-4" aria-hidden="true" />
+            </span>
+            <span>
+              <span className="block text-xs font-medium text-slate-500">Response target</span>
+              <span className="block text-sm font-semibold text-slate-900">Within one business day</span>
+            </span>
           </div>
-          <a href={`${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a quote for thermal paper rolls. Please send me pricing and MOQ.")}`}
-            target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-white text-brand-navy font-bold px-6 py-3 rounded-md hover:bg-slate-100 transition-colors whitespace-nowrap">
-            <MessageSquare className="w-5 h-5" />
-            WhatsApp: {SITE.whatsapp}
-          </a>
         </div>
-      </div>
+      </section>
 
-      {/* ── Main Content ─────────────────────────────────────────── */}
-      <div className="container py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-
-          {/* Left sidebar */}
-          <div className="space-y-6">
-            {/* Contact info card */}
-            <div className="bg-white border border-slate-200 rounded-lg p-6">
-              <h2 className="text-base font-bold text-slate-900 mb-5 flex items-center gap-2">
-                <div className="w-6 h-6 bg-slate-50 border border-slate-200 rounded-md flex items-center justify-center">
-                  <Phone className="w-3.5 h-3.5 text-brand-navy" />
+      <div className="bg-slate-50 py-10 sm:py-14 lg:py-16">
+        <div className="container">
+          <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-10">
+            <aside className="order-2 lg:order-1 lg:col-span-4" aria-label="Inquiry support information">
+              <div className="border border-slate-200 bg-white">
+                <div className="border-b border-slate-200 p-5 sm:p-6">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-brand-navy">Before you submit</p>
+                  <h2 className="text-xl font-semibold text-slate-900">Four details help us quote faster</h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">A short, specific request is enough. Attachments and final drawings can follow by email.</p>
                 </div>
-                Contact Information
-              </h2>
-              <div className="space-y-4">
-                {[
-                  { icon: Phone, label: "Phone", value: SITE.phone, href: `tel:${SITE.phone.replace(/\s/g, "")}` },
-                  { icon: MessageSquare, label: "WhatsApp", value: SITE.whatsapp, href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a quote for thermal paper rolls.")}` },
-                  { icon: MessageSquare, label: "WeChat", value: SITE.wechat, href: null },
-                  { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
-                  { icon: MapPin, label: "Address", value: SITE.address, href: null },
-                  { icon: Clock, label: "Business Hours", value: SITE.businessHours, href: null },
-                ].map(({ icon: Icon, label, value, href }) => (
-                  <div key={label} className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-md flex items-center justify-center flex-shrink-0 bg-slate-50 border border-slate-200 text-brand-navy">
-                      {label === "WeChat" ? (
-                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
-                          <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.306A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.117l-.292-.174-3.03.796.808-2.96-.19-.303A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.406-5.884c-.242-.121-1.43-.706-1.652-.786-.222-.081-.383-.121-.545.121-.161.242-.624.786-.765.948-.14.161-.282.181-.524.06-.242-.12-1.02-.376-1.943-1.198-.718-.64-1.203-1.431-1.344-1.673-.14-.242-.015-.373.106-.493.108-.108.242-.282.363-.423.12-.14.16-.242.242-.403.08-.161.04-.302-.02-.423-.061-.12-.545-1.314-.747-1.798-.196-.472-.396-.408-.545-.415l-.464-.008c-.161 0-.423.06-.645.302-.222.242-.847.828-.847 2.02 0 1.19.867 2.34.988 2.502.12.161 1.706 2.604 4.134 3.651.578.25 1.029.398 1.38.51.58.184 1.108.158 1.525.096.465-.069 1.43-.585 1.632-1.15.201-.564.201-1.047.14-1.149-.06-.1-.222-.161-.464-.282z"/>
-                        </svg>
-                      ) : (
-                        <Icon className="w-4 h-4" />
-                      )}
-                    </div>
+
+                <ol className="divide-y divide-slate-200">
+                  {["Product or paper type", "Size or specification", "Required quantity", "Delivery country or port"].map((item, index) => (
+                    <li key={item} className="flex items-center gap-3 px-5 py-4 sm:px-6">
+                      <span className="flex h-7 w-7 flex-none items-center justify-center rounded-md bg-brand-navy text-xs font-semibold text-white">{index + 1}</span>
+                      <span className="text-sm font-medium text-slate-800">{item}</span>
+                    </li>
+                  ))}
+                </ol>
+
+                <div className="space-y-4 border-t border-slate-200 bg-slate-50 p-5 sm:p-6">
+                  <div className="flex items-start gap-3">
+                    <ShieldCheck className="mt-0.5 h-5 w-5 flex-none text-brand-navy" aria-hidden="true" />
                     <div>
-                      <div className="text-xs text-slate-400 mb-0.5 uppercase tracking-wide">{label}</div>
-                      {href ? (
-                        <a href={href} target={href.startsWith("http") ? "_blank" : undefined}
-                          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="text-sm font-medium text-slate-800 hover:text-brand-navy transition-colors break-all">
-                          {value}
-                        </a>
-                      ) : (
-                        <div className="text-sm font-medium text-slate-800">{value}</div>
-                      )}
+                      <h3 className="text-sm font-semibold text-slate-900">Commercial details stay private</h3>
+                      <p className="mt-1 text-sm leading-6 text-slate-600">NDA review is available for custom products and private-label projects.</p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Response time visual */}
-            <div className="bg-brand-navy text-white rounded-lg p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <Zap className="w-5 h-5 text-amber-400" />
-                <span className="font-bold text-base">Expected Response</span>
-              </div>
-              <div className="space-y-3">
-                {[
-                  { channel: "WhatsApp", time: "Business hours", color: "bg-amber-400", width: "w-[35%]" },
-                  { channel: "WeChat", time: "Business hours", color: "bg-amber-400", width: "w-[35%]" },
-                  { channel: "Email", time: "1 business day", color: "bg-amber-500", width: "w-full" },
-                  { channel: "Inquiry Form", time: "1 business day", color: "bg-blue-500", width: "w-full" },
-                ].map(({ channel, time, color, width }) => (
-                  <div key={channel}>
-                    <div className="flex justify-between text-xs mb-1.5">
-                      <span className="text-slate-300">{channel}</span>
-                      <span className="text-white font-semibold">{time}</span>
-                    </div>
-                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                      <div className={`h-full ${color} rounded-full ${width}`} />
+                  <div className="flex items-start gap-3">
+                    <MapPin className="mt-0.5 h-5 w-5 flex-none text-brand-navy" aria-hidden="true" />
+                    <div>
+                      <h3 className="text-sm font-semibold text-slate-900">Factory contact</h3>
+                      <p className="mt-1 text-sm leading-6 text-slate-600">{SITE.address}</p>
+                      <p className="mt-1 text-xs text-slate-500">{SITE.businessHours}</p>
                     </div>
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
 
-            {/* Quick links */}
-            <div className="bg-slate-50 rounded-lg p-5 border border-slate-200">
-              <h3 className="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wide">Quick Links</h3>
-              <div className="space-y-2.5">
-                {[
-                  { icon: Package, label: "OEM Partnership Inquiry", href: "/contact/oem-partnership" },
-                  { icon: MessageSquare, label: "Frequently Asked Questions", href: "/faq" },
-                  { icon: Shield, label: "Request NDA / IP Protection", href: "/oem/ip-protection" },
-                  { icon: Globe, label: "Africa Market Info", href: "/markets/africa" },
-                ].map(({ icon: Icon, label, href }) => (
-                  <Link key={href} href={href}
-                    className="flex items-center gap-2.5 text-sm text-brand-navy hover:text-slate-900 font-medium transition-colors group">
-                    <Icon className="w-4 h-4 flex-shrink-0" />
-                    {label}
-                    <ArrowRight className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+              <nav className="mt-5 border-t border-slate-300 pt-5" aria-label="Related inquiry resources">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Related resources</p>
+                <div className="space-y-1">
+                  {[
+                    { icon: Package, label: "OEM partnership inquiry", href: "/contact/oem-partnership" },
+                    { icon: ShieldCheck, label: "NDA and IP protection", href: "/oem/ip-protection" },
+                    { icon: MessageSquare, label: "All frequently asked questions", href: "/faq" },
+                  ].map(({ icon: Icon, label, href }) => (
+                    <Link key={href} href={href} className="group flex min-h-11 items-center gap-3 py-2 text-sm font-medium text-brand-navy">
+                      <Icon className="h-4 w-4 flex-none" aria-hidden="true" />
+                      <span>{label}</span>
+                      <ArrowRight className="ml-auto h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </Link>
+                  ))}
+                </div>
+              </nav>
+            </aside>
+
+            <section className="order-1 lg:order-2 lg:col-span-8" aria-labelledby="quote-form-title">
+              <div className="border border-slate-300 bg-white">
+                <div className="border-b border-slate-200 px-5 py-5 sm:px-8 sm:py-6">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-amber-700">Step 1 of 1</p>
+                      <h2 id="quote-form-title" className="text-2xl font-semibold text-slate-900">Tell us what you need</h2>
+                      <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">Required fields are marked with an asterisk. You can send company and WhatsApp details only when useful.</p>
+                    </div>
+                    <div className="inline-flex w-fit items-center gap-2 border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-medium text-emerald-800">
+                      <Check className="h-4 w-4" aria-hidden="true" />
+                      No account required
+                    </div>
+                  </div>
+                </div>
+                <div className="p-5 sm:p-8">
+                  <InquiryForm
+                    compact
+                    wide
+                    formId="inquiry-form"
+                    productName={productContext}
+                    initialMessage={initialMessage}
+                    responseNote="Your request goes directly to our sales team. Reply within one business day."
+                    successMessage="We'll respond within one business day."
+                  />
+                </div>
+              </div>
+
+              <section className="mt-8 border-t border-slate-300 pt-7" aria-labelledby="contact-faq-title">
+                <div className="mb-5 flex items-end justify-between gap-4">
+                  <div>
+                    <p className="mb-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Common questions</p>
+                    <h2 id="contact-faq-title" className="text-xl font-semibold text-slate-900">Before requesting a quote</h2>
+                  </div>
+                  <Link href="/faq" className="hidden items-center gap-2 text-sm font-semibold text-brand-navy sm:inline-flex">
+                    View all <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Inquiry form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white border border-slate-200 rounded-lg p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-amber-100 border border-amber-200 rounded-md flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-amber-600" />
                 </div>
-                <div>
-                  <h2 className="text-xl font-bold text-slate-900">Request a Factory Quote</h2>
-                  <p className="text-sm text-slate-500">Four required details are enough to start. Add company and WhatsApp only when useful.</p>
-                </div>
-              </div>
-              <InquiryForm
-                formId="inquiry-form"
-                productName={productContext}
-                initialMessage={initialMessage}
-                responseNote="Reply within one business day. NDA available. No spam."
-                successMessage="We'll respond within one business day."
-              />
-            </div>
-
-            {/* FAQ preview */}
-            <div className="mt-8 bg-slate-50 rounded-lg p-6 border border-slate-200">
-              <h3 className="font-bold text-slate-900 mb-5 flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-brand-navy" />
-                Frequently Asked Questions
-              </h3>
-              <div className="space-y-4">
-                {faqs.map(({ q, a }) => (
-                  <div key={q} className="bg-white rounded-md p-4 border border-slate-200">
-                    <div className="font-semibold text-slate-900 text-sm mb-1.5 flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
-                      {q}
+                <div className="divide-y divide-slate-200 border-y border-slate-200">
+                  {faqs.map(({ q, a }) => (
+                    <div key={q} className="grid gap-2 py-4 sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] sm:gap-6">
+                      <h3 className="flex items-start gap-2 text-sm font-semibold text-slate-900">
+                        <CheckCircle className="mt-0.5 h-4 w-4 flex-none text-amber-600" aria-hidden="true" />
+                        {q}
+                      </h3>
+                      <p className="text-sm leading-6 text-slate-600 sm:pl-0">{a}</p>
                     </div>
-                    <p className="text-slate-500 text-sm leading-relaxed pl-6">{a}</p>
-                  </div>
-                ))}
-              </div>
-              <Link href="/faq"
-                className="inline-flex items-center gap-2 text-brand-navy hover:text-slate-900 text-sm font-semibold mt-4 transition-colors">
-                View all FAQs <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+                  ))}
+                </div>
+              </section>
+            </section>
           </div>
         </div>
       </div>

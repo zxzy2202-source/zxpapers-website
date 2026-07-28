@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Phone, X, MessageSquare } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { SITE } from "@/config/siteData";
 
 const QUICK_MESSAGES = [
@@ -24,6 +25,7 @@ const QUICK_MESSAGES = [
 ];
 
 export default function WhatsAppFAB() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [showMobileFab, setShowMobileFab] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -73,7 +75,7 @@ export default function WhatsAppFAB() {
   return (
     <div
       className={`fixed bottom-5 right-4 z-50 flex-col items-end gap-3 sm:bottom-6 sm:right-6 ${
-        showMobileFab ? "flex" : "hidden sm:flex"
+        pathname === "/contact" ? "hidden sm:flex" : showMobileFab ? "flex" : "hidden sm:flex"
       }`}
     >
       {/* Quick message panel */}

@@ -13,6 +13,7 @@ import { trackConversionEvent } from "@/lib/analytics";
 interface InquiryFormProps {
   productName?: string;
   compact?: boolean;
+  wide?: boolean;
   initialMessage?: string;
   formId?: string;
   responseNote?: string;
@@ -54,6 +55,7 @@ async function submitInquiryToBackend(payload: {
 export default function InquiryForm({
   productName,
   compact,
+  wide = false,
   initialMessage,
   formId,
   responseNote = "We aim to reply within one business day after receiving sufficient inquiry details. NDA review is available on request. No spam.",
@@ -250,7 +252,7 @@ export default function InquiryForm({
         </div>
       )}
 
-      <div className={compact ? "space-y-2.5" : "grid grid-cols-1 sm:grid-cols-2 gap-3"}>
+      <div className={compact && !wide ? "space-y-2.5" : "grid grid-cols-1 gap-3 sm:grid-cols-2"}>
         <div>
           <Label htmlFor="inquiry-name" className="block text-xs font-medium text-slate-700 mb-1.5">
             Your Name <span className="text-red-500" aria-hidden="true">*</span>
@@ -312,7 +314,7 @@ export default function InquiryForm({
         <summary className="cursor-pointer text-sm font-medium text-brand-navy marker:text-slate-400">
           Add company and WhatsApp details <span className="font-normal text-slate-500">(optional)</span>
         </summary>
-        <div className={compact ? "mt-3 space-y-2.5" : "mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3"}>
+        <div className={compact && !wide ? "mt-3 space-y-2.5" : "mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2"}>
           <div>
             <Label htmlFor="inquiry-company" className="block text-xs font-medium text-slate-700 mb-1.5">
               Company Name
