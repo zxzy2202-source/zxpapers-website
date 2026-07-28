@@ -42,6 +42,8 @@ test("page component contains the approved operations sections", () => {
   ]) {
     assert.match(component, new RegExp(section.replace(/[?]/g, "\\?")));
   }
+  // must route to the exact-size specification page for 4x6 details
+  assert.match(component, /\/products\/thermal-labels\/4x6in/);
 });
 
 test("route defines at least nine visible FAQs from one shared array", () => {

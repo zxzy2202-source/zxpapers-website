@@ -35,8 +35,8 @@ export const receiptPaperRollsCategoryConfig = {
     "Cash Register Paper Rolls",
     "POS Receipt Paper",
     "Thermal Receipt Rolls",
-    "Till Rolls",
     "Receipt Printer Paper Rolls",
+    "POS Thermal Paper Rolls",
   ],
   audience:
     "Retail chains, restaurants, hospitality operators, payment-service providers, terminal distributors, banks, kiosk operators, wholesalers and OEM buyers managing receipt-printer fleets or resale programs",
@@ -54,7 +54,7 @@ export const receiptPaperRollsCategoryConfig = {
       "57mm receipt paper rolls",
       "custom printed receipt rolls",
       "OEM receipt paper rolls",
-      "private label till rolls",
+      "private label receipt rolls",
     ],
   },
   hero: {

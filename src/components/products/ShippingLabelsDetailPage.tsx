@@ -165,7 +165,7 @@ export default function ShippingLabelsDetailPage({
             <span className="text-amber-300">High-Volume Fulfillment</span>
           </>
         }
-        subtitle="Direct thermal 4x6 shipping labels in rolls and fanfold, matched to your printer, throughput, parcel surface and replenishment plan."
+        subtitle="Direct thermal shipping labels in rolls and fanfold across multiple sizes, matched to your printer, throughput, parcel surface and replenishment plan."
         trustBadges={[
           "4x6 / 100x150 mm",
           "Roll and fanfold",

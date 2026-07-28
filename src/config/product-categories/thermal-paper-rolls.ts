@@ -97,29 +97,28 @@ export const thermalPaperRollsCategoryConfig: ProductCategoryConfig = {
   canonicalPath: "/products/thermal-paper-rolls",
   categoryName: "Thermal Paper Rolls",
   alternateNames: [
-    "Thermal Receipt Paper Rolls",
-    "POS Thermal Paper",
-    "Thermal Till Rolls",
+    "POS Thermal Paper Rolls",
     "OEM Thermal Paper Rolls",
     "Wholesale Thermal Paper Rolls",
+    "Thermal Printer Paper Rolls",
   ],
   audience:
     "POS distributors, retail and hospitality procurement teams, payment-terminal suppliers, private-label brands, converters and OEM buyers",
   metadata: {
-    title: "Thermal Paper Rolls Manufacturer | OEM & Wholesale",
+    title: "Thermal Paper Roll Types & Sizes | OEM Manufacturer",
     description:
-      "Source thermal paper rolls by printer, width, roll geometry, core, paper grade, print route, packing, destination and repeat-order control.",
+      "Compare blank, printed and material-specific thermal paper roll programs, then select by printer, size, core, paper grade, packing and destination.",
     keywords: [
+      "thermal paper roll types",
+      "thermal paper roll sizes",
       "thermal paper rolls manufacturer",
       "OEM thermal paper rolls",
       "wholesale thermal paper rolls",
-      "thermal receipt paper rolls",
-      "POS thermal paper",
-      "thermal till rolls supplier",
+      "blank thermal paper rolls",
       "custom printed thermal rolls",
-      "private label receipt rolls",
-      "thermal paper roll sizes",
-      "BPA free thermal paper rolls",
+      "thermal paper material grades",
+      "POS thermal paper rolls",
+      "private label thermal rolls",
     ],
   },
   hero: {
@@ -128,11 +127,11 @@ export const thermalPaperRollsCategoryConfig: ProductCategoryConfig = {
       fallback: ROLLS_IMAGE,
       alt: "Thermal paper rolls prepared for OEM and repeat supply programs",
     },
-    badge: "B2B roll specification review",
-    titleBefore: "Thermal Paper Rolls for ",
-    titleHighlight: "OEM & Repeat Supply",
+    badge: "B2B category and specification guide",
+    titleBefore: "Compare Thermal Paper Roll ",
+    titleHighlight: "Types, Sizes & Supply Routes",
     description:
-      "Start with the printer and application, then lock width, outer diameter or length, core, paper grade, winding, packing and destination before comparing quotes.",
+      "Use this category guide to choose blank, custom-printed or material-specific supply before opening the receipt, till or exact-size page for the final specification.",
     trustBadges: [
       "Blank and custom print routes",
       "Printer and roll geometry review",
@@ -160,9 +159,9 @@ export const thermalPaperRollsCategoryConfig: ProductCategoryConfig = {
   sectionCopy: {
     families: {
       label: "Roll programs",
-      title: "Choose the buying route before the paper grade",
+      title: "Choose the category route before the exact specification",
       description:
-        "Start with the commercial route that matches the order. The full quotation then connects printer geometry, paper grade, artwork, packing and repeat-order controls.",
+        "Use this overview to separate blank, printed, material-grade and converter programs. Receipt, till and exact-size pages then handle their narrower application or specification intent.",
     },
     sizes: {
       label: "Popular specifications",
@@ -199,6 +198,38 @@ export const thermalPaperRollsCategoryConfig: ProductCategoryConfig = {
         slot: "products:thermal-rolls",
         fallback: ROLLS_IMAGE,
         alt: "Blank thermal paper rolls in common POS formats",
+      },
+    },
+    {
+      id: "receipt-paper",
+      label: "Application route",
+      title: "Receipt Paper Rolls",
+      description:
+        "Receipt-media selection for POS, cash-register, payment-terminal and printer-fleet programs.",
+      buyerFit:
+        "Use this route when the purchasing task starts with receipt equipment or workflow rather than a known paper construction.",
+      href: "/products/receipt-paper-rolls",
+      linkLabel: "Choose receipt media",
+      image: {
+        slot: "products:thermal-rolls",
+        fallback: ROLLS_IMAGE,
+        alt: "Receipt paper rolls for POS and payment printer programs",
+      },
+    },
+    {
+      id: "till-rolls",
+      label: "UK and EPOS route",
+      title: "Till Rolls",
+      description:
+        "Thermal and impact till media for UK, European and Commonwealth EPOS and cash-register terminology.",
+      buyerFit:
+        "Use this route when the buying list uses till-roll terminology and the printer method still needs confirmation.",
+      href: "/products/till-rolls",
+      linkLabel: "Review till-roll options",
+      image: {
+        slot: "products:thermal-rolls",
+        fallback: ROLLS_IMAGE,
+        alt: "Till rolls for EPOS and cash-register supply",
       },
     },
     {
@@ -464,7 +495,11 @@ export const thermalPaperRollsCategoryConfig: ProductCategoryConfig = {
   ],
   relatedPrograms: [
     { label: "Receipt Paper Rolls", href: "/products/receipt-paper-rolls" },
+    { label: "Till Rolls for UK & EPOS", href: "/products/till-rolls" },
     { label: "BPA-Free Thermal Paper", href: "/products/bpa-free-thermal-paper" },
+    { label: "BPS-Free Thermal Paper", href: "/products/bps-free-thermal-paper" },
+    { label: "Phenol-Free Thermal Paper", href: "/products/phenol-free-thermal-paper" },
+    { label: "Colored Thermal Paper", href: "/products/colored-thermal-paper" },
     { label: "Custom Printed Thermal Rolls", href: "/products/thermal-paper-rolls/custom-printed" },
     { label: "OEM & Private Label Supply", href: "/oem" },
   ],

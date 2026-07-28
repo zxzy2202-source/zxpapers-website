@@ -13,22 +13,22 @@ import { SITE } from "@/config/siteData";
 import { getSlotImages } from "@/lib/imageSlotUtils";
 
 const PAGE_DESCRIPTION =
-  "Review 4x6 shipping label rolls and fanfold stacks by printer, sensor, adhesive, packing, sample plan and repeat-order specification.";
+  "Review direct thermal shipping label rolls and fanfold stacks across multiple sizes by printer, sensor, adhesive, packing, sample plan and repeat-order specification.";
 
 const SHIPPING_LABELS_IMAGE = "/images/shipping-labels/shipping-labels-hero.webp";
 const FACTORY_LINE_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
 
 export const metadata: Metadata = {
-  title: { absolute: "4x6 Shipping Labels for 3PLs | ZhixinPaper" },
+  title: { absolute: "Shipping Label Rolls & Fanfold Supply | Multi-Size 3PL & Warehouse" },
   description: PAGE_DESCRIPTION,
   keywords:
-    "4x6 shipping labels bulk, direct thermal shipping labels, fanfold shipping labels, shipping label rolls, 3PL shipping labels, warehouse shipping labels, thermal printer compatible labels, wholesale shipping labels",
+    "shipping label rolls wholesale, fanfold shipping labels, direct thermal shipping labels, warehouse shipping labels, 3PL shipping label supplier, shipping labels bulk, thermal shipping label manufacturer, printer compatible shipping labels, 4x6 shipping labels OEM, multi-size shipping label programs",
   alternates: { canonical: `${SITE.domain}/products/shipping-labels` },
   openGraph: {
-    title: "4x6 Shipping Labels for 3PL and Warehouses | ZhixinPaper",
+    title: "Shipping Label Rolls & Fanfold Supply | Multi-Size 3PL & Warehouse | ZhixinPaper",
     description:
-      "Printer-matched 4x6 rolls and fanfold labels for high-volume fulfillment, with adhesive, packing and repeat-SKU control.",
+      "Printer-matched roll and fanfold shipping labels for high-volume fulfillment across multiple sizes, with adhesive, packing and repeat-SKU control. See the 4x6 page for exact construction details.",
     url: `${SITE.domain}/products/shipping-labels`,
     type: "website",
     images: [

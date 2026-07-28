@@ -56,6 +56,7 @@ test("thermal labels config contains buyer-facing unique category paths", async 
     "/products/thermal-labels/blank",
     "/products/custom-printed-thermal-labels",
     "/products/barcode-labels",
+    "/products/product-labels",
     "/products/linerless-labels",
     "#popular-sizes",
   ]) {
@@ -63,6 +64,12 @@ test("thermal labels config contains buyer-facing unique category paths", async 
   }
 
   assert.doesNotMatch(config, /\/products\/thermal-labels\/custom-printed/);
+
+  assert.match(config, /Thermal Label Types & Sizes/);
+  assert.match(config, /category guide/);
+  assert.match(config, /Application routes/);
+  assert.match(config, /4 x 6 Shipping Label Specification/);
+  assert.doesNotMatch(config, /"4x6 shipping labels"|"FNSKU labels"/i);
 
   assert.match(config, /Printer/);
   assert.match(config, /Surface and environment/);

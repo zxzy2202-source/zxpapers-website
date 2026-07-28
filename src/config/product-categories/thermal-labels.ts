@@ -30,27 +30,27 @@ export const thermalLabelsCategoryConfig = {
   canonicalPath: "/products/thermal-labels",
   categoryName: "Thermal Labels",
   alternateNames: [
-    "Direct Thermal Labels",
-    "Thermal Transfer Labels",
-    "Shipping Labels",
-    "Barcode Labels",
+    "Direct Thermal Label Range",
+    "Thermal Transfer Label Range",
+    "OEM Thermal Label Programs",
+    "Bulk Thermal Labels",
   ],
   audience:
     "Distributors, 3PLs, e-commerce brands, packaging suppliers, food businesses and industrial procurement teams",
   metadata: {
-    title: "Thermal Labels Manufacturer | Shipping, Barcode & OEM",
+    title: "Thermal Label Types & Sizes | OEM Manufacturer",
     description:
-      "Compare blank, shipping, barcode, custom-printed and linerless thermal labels for bulk and OEM supply. Qualify by printer, size, surface, adhesive and packing.",
+      "Compare blank, shipping, barcode, custom-printed and linerless thermal label routes, then qualify the printer, size, surface, adhesive and packing.",
     keywords: [
+      "thermal label types",
+      "thermal label sizes",
       "thermal labels manufacturer",
-      "direct thermal labels",
-      "thermal transfer labels",
-      "4x6 shipping labels",
-      "barcode labels",
-      "FNSKU labels",
+      "direct thermal label range",
+      "thermal transfer label range",
       "blank thermal labels",
       "custom printed thermal labels",
       "linerless labels",
+      "bulk thermal labels",
       "OEM thermal label supplier",
     ],
   },
@@ -60,11 +60,11 @@ export const thermalLabelsCategoryConfig = {
       fallback: HERO_IMAGE,
       alt: "Thermal label rolls for shipping barcode and OEM supply",
     },
-    badge: "B2B thermal label catalog",
-    titleBefore: "Thermal Labels for ",
-    titleHighlight: "Shipping, Barcode and OEM",
+    badge: "B2B category and selection guide",
+    titleBefore: "Compare Thermal Label ",
+    titleHighlight: "Types, Sizes & Supply Routes",
     description:
-      "Start with the product family, then confirm the printer, size, surface, environment, material, adhesive, quantity, packing and destination before quotation.",
+      "Use this category guide to choose a shipping, barcode, blank, custom-printed or linerless route before opening the application or exact-size page.",
     trustBadges: [
       "Roll and fanfold",
       "Direct thermal and transfer",
@@ -72,7 +72,7 @@ export const thermalLabelsCategoryConfig = {
       "Private-label packing",
     ],
     facts: [
-      { value: "5 routes", label: "Distinct product families" },
+      { value: "6 routes", label: "Distinct product families" },
       { value: "6 sizes", label: "Popular stock formats" },
       { value: "4 inputs", label: "Core qualification path" },
       { value: "B2B", label: "Bulk and OEM review" },
@@ -81,13 +81,39 @@ export const thermalLabelsCategoryConfig = {
     secondaryCta: { label: "Request a B2B Quote", href: "#inquiry" },
   },
   jumpLinks: [
-    { label: "Products", href: "#product-families" },
+    { label: "Label routes", href: "#product-families" },
     { label: "Sizes", href: "#popular-sizes" },
     { label: "Applications", href: "#applications" },
     { label: "Selection", href: "#selection-guide" },
     { label: "FAQ", href: "#faq" },
     { label: "Quote", href: "#inquiry" },
   ],
+  sectionCopy: {
+    families: {
+      label: "Label routes",
+      title: "Choose the application route before the exact size",
+      description:
+        "Use this overview to separate shipping, barcode, blank, product-packaging, custom-printed and linerless needs. Each child page then owns its narrower workflow or specification.",
+    },
+    sizes: {
+      label: "Popular specifications",
+      title: "Open a size page only when the dimensions are known",
+      description:
+        "The size page confirms the exact construction. Application pages remain responsible for shipping, barcode and packaging workflow decisions across multiple formats.",
+    },
+    applications: {
+      label: "Application routes",
+      title: "Match the label route to the real workflow",
+      description:
+        "Start with the printer, surface and operating condition, then move to the application page that owns the shipping, scanning, packaging or traceability task.",
+    },
+    selection: {
+      label: "Four-step selection",
+      title: "Build one label specification that can be tested and reordered",
+      description:
+        "Confirm equipment and dimensions before selecting the surface, material and adhesive route used for sample approval and repeat supply.",
+    },
+  },
   families: [
     {
       id: "shipping-labels",
@@ -118,6 +144,22 @@ export const thermalLabelsCategoryConfig = {
         slot: "thermal-labels:blank-hero",
         fallback: HERO_IMAGE,
         alt: "Blank thermal label rolls for variable-data printing",
+      },
+    },
+    {
+      id: "product-packaging-labels",
+      label: "Packaging application",
+      title: "Product & Packaging Labels",
+      description:
+        "Labels selected for retail products, branded packaging, container surfaces and manufacturing workflows.",
+      buyerFit:
+        "Best when the buying task starts with packaging presentation, required fields, surface and application method rather than thermal printing alone.",
+      href: "/products/product-labels",
+      linkLabel: "Review packaging labels",
+      image: {
+        slot: "thermal-labels:custom-hero",
+        fallback: CUSTOM_IMAGE,
+        alt: "Product and packaging labels for retail and manufacturing",
       },
     },
     {
@@ -363,9 +405,12 @@ export const thermalLabelsCategoryConfig = {
     { name: "Thermal Labels", path: "/products/thermal-labels" },
   ],
   relatedPrograms: [
-    { label: "Shipping Labels", href: "/products/shipping-labels" },
-    { label: "Barcode Labels", href: "/products/barcode-labels" },
+    { label: "Shipping Label Programs", href: "/products/shipping-labels" },
+    { label: "4 x 6 Shipping Label Specification", href: "/products/thermal-labels/4x6in" },
+    { label: "Barcode & Variable-Data Labels", href: "/products/barcode-labels" },
+    { label: "Product & Packaging Labels", href: "/products/product-labels" },
+    { label: "Blank Thermal Labels", href: "/products/thermal-labels/blank" },
     { label: "Linerless Labels", href: "/products/linerless-labels" },
-    { label: "Custom Printed Labels", href: "/products/custom-printed-thermal-labels" },
+    { label: "Custom Printed Thermal Labels", href: "/products/custom-printed-thermal-labels" },
   ],
 } satisfies ProductCategoryConfig;

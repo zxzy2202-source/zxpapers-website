@@ -130,8 +130,8 @@ export const tillRollsCategoryConfig = {
         "Direct-thermal receipt rolls for retail, supermarket, hospitality and standard till or EPOS printing workflows.",
       buyerFit:
         "Confirm printer model, width, maximum roll diameter, core, expected receipts per day, cutter, paper grade, sensitivity and pack quantity by site.",
-      href: "/products/receipt-paper-rolls",
-      linkLabel: "Review receipt-roll programs",
+      href: "#inquiry",
+      linkLabel: "Specify an EPOS program",
       featured: true,
       image: {
         slot: "till-rolls:series:epos",
@@ -252,8 +252,8 @@ export const tillRollsCategoryConfig = {
         "High-frequency receipt printing across multiple tills, stores and replenishment points.",
       confirm:
         "EPOS models, roll size by terminal, receipts per day, paper grade, readable period, packs per store, site allocation and reorder point",
-      href: "/products/receipt-paper-rolls",
-      linkLabel: "Review retail receipt rolls",
+      href: "/products/thermal-paper-rolls",
+      linkLabel: "Compare roll categories",
       image: {
         slot: "till-rolls:applications:retail",
         fallback: RETAIL_IMAGE,

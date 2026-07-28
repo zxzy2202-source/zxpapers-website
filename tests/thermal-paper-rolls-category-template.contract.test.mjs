@@ -19,10 +19,28 @@ test("thermal paper rolls route uses the shared category architecture", async ()
   assert.match(route, /terminologySchema/);
   assert.match(config, /GLOBAL_THERMAL_ROLL_TERMS/);
   assert.match(config, /GLOBAL_METRIC_SPEC_FORMATS/);
-  assert.match(config, /Thermal Paper Rolls for /);
-  assert.match(config, /OEM & Repeat Supply/);
+  assert.match(config, /Compare Thermal Paper Roll /);
+  assert.match(config, /Types, Sizes & Supply Routes/);
   assert.match(config, /Paper grade & print/);
   assert.match(config, /Sample, pack & repeat/);
+  assert.match(config, /Thermal Paper Roll Types & Sizes/);
+  assert.match(config, /category guide/);
+
+  for (const destination of [
+    "/products/receipt-paper-rolls",
+    "/products/till-rolls",
+    "/products/bpa-free-thermal-paper",
+    "/products/bps-free-thermal-paper",
+    "/products/phenol-free-thermal-paper",
+    "/products/colored-thermal-paper",
+  ]) {
+    assert.match(config, new RegExp(destination.replaceAll("/", "\\/")));
+  }
+
+  // child-specific keywords must not appear in parent metadata or alternateNames
+  // (GLOBAL_THERMAL_ROLL_TERMS is a buyer-facing glossary that may list these as regional aliases)
+  const pageConfig = config.split("export const thermalPaperRollsCategoryConfig")[1];
+  assert.doesNotMatch(pageConfig, /"thermal receipt paper rolls"|"thermal till rolls supplier"/i);
 });
 
 test("thermal paper roll category keeps the buyer qualification chain explicit", async () => {
