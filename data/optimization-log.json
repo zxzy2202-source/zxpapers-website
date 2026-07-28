@@ -18,5 +18,15 @@
     "files": "src/components/layout/Header.tsx, src/components/layout/Footer.tsx, src/components/products/ProductLandingPageTemplate.tsx, src/components/products/ProductCategoryShowcaseTemplate.tsx, src/components/shared/MarketCountryPageTemplate.tsx, src/components/shared/MarketRegionPageTemplate.tsx",
     "result": "TypeScript 编译零错误 ✅ | 圆角从 7 种减少到 3 种 | 本地预览验证通过",
     "id": "0ba82925-2f77-451c-b262-d8896025a56f"
+  },
+  {
+    "date": "2026-07-28",
+    "category": "SEO 优化",
+    "title": "治理 GSC 历史 404 并建立旧链接一跳迁移契约",
+    "description": "依据 Google Search Console 的 404 覆盖明细，对历史 WordPress 产品、分类、分页、询盘及多语言链接进行语义分流。\n\n主要发现：\n- 高价值旧产品和分类链接存在可确认的当前等价页面\n- 通用语言、分类、标签和尾斜杠兜底会制造重定向链或软 404\n- 未知产品、下载、旧 sitemap 和无证据归档应保留真实 404\n\n修复操作：\n1. 为有明确对应关系的旧产品、产品分类、询盘和 hot-products 分页配置直达规范地址的永久重定向\n2. 将 receipt 相关规则置于宽泛 thermal paper 规则之前，避免意图误匹配\n3. 移除未知 product/category/tag/feed 的集合页兜底，仅对白名单当前路由规范化语言前缀和尾斜杠\n4. 新增契约测试，锁定一跳顺序、规范目标和真实 404 边界\n5. 使用生产构建逐项核验代表链接的 308 与 404 响应",
+    "commit": "2e19742",
+    "files": "next.config.ts, tests/seo-p0.contract.test.mjs",
+    "result": "契约测试 14/14 通过 | TypeScript 检查通过 | 生产构建通过（129 个静态页面）| 独立复核 PASS",
+    "id": "97e232b8-4cf0-4ce8-96be-2ebf12957b7d"
   }
 ]
