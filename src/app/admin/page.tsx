@@ -11,7 +11,7 @@ import {
   Database,
   Cloud,
 } from "lucide-react";
-import { IMAGE_SLOTS } from "@/config/imageSlots";
+import { ADMIN_IMAGE_SLOTS } from "@/config/imageSlots";
 import { readOverrides } from "@/lib/imageSlotStore";
 import { readAllPosts } from "@/lib/postsStore";
 import { readAll as readAllInquiries } from "@/lib/inquiryStore";
@@ -80,8 +80,8 @@ async function getStats() {
   const newInquiries = inquiries.filter((i) => i.status === "new").length;
 
   return {
-    totalSlots: IMAGE_SLOTS.length,
-    customized: Object.keys(overrides).length,
+    totalSlots: ADMIN_IMAGE_SLOTS.length,
+    customized: ADMIN_IMAGE_SLOTS.filter((slot) => overrides[slot.slot]).length,
     publishedPosts: posts.filter((p) => p.published).length,
     totalPosts: posts.length,
     todayInquiries,

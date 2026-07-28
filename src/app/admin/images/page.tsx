@@ -1,4 +1,4 @@
-import { IMAGE_SLOTS, groupSlotsByPage } from "@/config/imageSlots";
+import { ADMIN_IMAGE_SLOTS, groupSlotsByPage } from "@/config/imageSlots";
 import { readOverrides } from "@/lib/imageSlotStore";
 import { buildDefaultImagesForSlots } from "@/lib/imageSlotDefaults";
 import ImageManagerClient from "./ImageManagerClient";
@@ -9,7 +9,8 @@ export const dynamic = "force-dynamic";
 export default async function ImagesPage() {
   const overrides = await readOverrides();
   const grouped = groupSlotsByPage();
-  const defaultImages = buildDefaultImagesForSlots(IMAGE_SLOTS);
+  const defaultImages = buildDefaultImagesForSlots(ADMIN_IMAGE_SLOTS);
+  const customizedCount = ADMIN_IMAGE_SLOTS.filter((slot) => overrides[slot.slot]).length;
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -28,8 +29,8 @@ export default async function ImagesPage() {
           </div>
         </div>
         <div className="rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
-          全站共 <b className="text-slate-900">{IMAGE_SLOTS.length}</b> 个图片位，
-          已自定义 <b className="text-blue-600">{Object.keys(overrides).length}</b> 个。
+          全站共 <b className="text-slate-900">{ADMIN_IMAGE_SLOTS.length}</b> 个图片位，
+          已自定义 <b className="text-blue-600">{customizedCount}</b> 个。
         </div>
       </div>
 

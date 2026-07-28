@@ -305,6 +305,10 @@ export default async function HomePage() {
     banners[index]?.url ? r2Image(banners[index]!.url) : fallback,
   );
   const primaryHeroImage = heroImages[0];
+  const heroCarouselInterval = Math.min(
+    15_000,
+    Math.max(3_000, hero.carouselIntervalMs ?? 4_500),
+  );
 
   if (primaryHeroImage) {
     preload(primaryHeroImage, { as: "image", fetchPriority: "high" });
@@ -323,6 +327,14 @@ export default async function HomePage() {
   const heroTrustBadges = hero.trustBadges?.length
     ? hero.trustBadges
     : ["Specification review", "Sample approval", "Repeat-order records"];
+  const primaryCta = {
+    label: hero.ctaPrimary?.label?.trim() || "Get a Factory Quote",
+    href: hero.ctaPrimary?.href?.trim() || "#home-rfq-form",
+  };
+  const secondaryCta = {
+    label: hero.ctaSecondary?.label?.trim() || "Browse Core Products",
+    href: hero.ctaSecondary?.href?.trim() || "#core-products",
+  };
 
   return (
     <Layout>
@@ -332,8 +344,9 @@ export default async function HomePage() {
       />
 
       <PageHero
-        bgImages={[primaryHeroImage]}
+        bgImages={heroImages}
         bgImageAlt="ZhixinPaper thermal paper factory production floor with coating, slitting and packaging lines"
+        bgCarouselInterval={heroCarouselInterval}
         overlayDir="left"
         overlayOpacity={58}
         minHeight="min-h-[540px]"
@@ -343,6 +356,7 @@ export default async function HomePage() {
           text: hero.badgeText?.trim() || "For Importers, Distributors & OEM Buyers",
           color: "amber",
         }}
+        eyebrow={hero.eyebrow?.trim() || undefined}
         title={
           homepageHighlight ? (
             <>
@@ -362,16 +376,18 @@ export default async function HomePage() {
         mobileTrustBadgeLimit={2}
         ctas={[
           {
-            label: "Get a Factory Quote",
-            href: "#home-rfq-form",
+            label: primaryCta.label,
+            href: primaryCta.href,
             variant: "primary",
             icon: <MessageSquare className="h-4 w-4" aria-hidden="true" />,
+            external: primaryCta.href.startsWith("http"),
           },
           {
-            label: "Browse Core Products",
-            href: "#core-products",
-            variant: "outline",
+            label: secondaryCta.label,
+            href: secondaryCta.href,
+            variant: secondaryCta.href.includes("wa.me") ? "whatsapp" : "outline",
             icon: <Package className="h-4 w-4" aria-hidden="true" />,
+            external: secondaryCta.href.startsWith("http"),
           },
         ]}
       />

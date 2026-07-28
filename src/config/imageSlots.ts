@@ -19,30 +19,13 @@ export interface ImageSlot {
   pageUrl: string;       // 预览链接（前台 URL）
   aspect?: string;       // 推荐宽高比（提示用）
   description?: string;  // 用途说明
+  adminVisible?: boolean; // false 时保留类型与页面兼容性，但不在后台图片管理展示
 }
 
 // ⚠️ 严格保持此数组与代码中所有 getSlotImage / getSlotImages 的 slot 参数一致
 export const IMAGE_SLOTS = [
   // ===== 首页（来自 src/app/page.tsx）=====
-  // 注: 首页 3 张 Hero Banner 改在 /admin/hero 编辑（跟文案/CTA 绑定），不再单独占图片管理槽位
-  { slot: "home:product-labels", label: "首页 产品板块 - 标签兜底图", page: "首页", pageUrl: "/", aspect: "4:3", description: "中段产品展示区 - 任何热敏标签产品未单独设置图时使用" },
-  { slot: "home:product-rolls", label: "首页 产品板块 - 纸卷兜底图", page: "首页", pageUrl: "/", aspect: "4:3", description: "中段产品展示区 - 任何热敏纸卷产品未单独设置图时使用" },
-
-  // 首页 ② POPULAR SIZES 区域 - 18 个产品独立可换图
-  // === Thermal Paper Rolls 组（6 个）===
-  { slot: "home:product-pos-receipt-rolls", label: "首页产品-POS Receipt Rolls", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏纸卷组卡片 1" },
-  { slot: "home:product-portable-mobile-printer-rolls", label: "首页产品-Portable/Mobile Printer Rolls", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏纸卷组卡片 2" },
-  { slot: "home:product-phenol-free-thermal-paper", label: "首页产品-Phenol Free Thermal Paper", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏纸卷组卡片 3" },
-  { slot: "home:product-custom-printed-rolls", label: "首页产品-Custom Printed Rolls", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏纸卷组卡片 4" },
-  { slot: "home:product-atm-banking-rolls", label: "首页产品-ATM & Banking Rolls", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏纸卷组卡片 5" },
-  { slot: "home:product-blank-thermal-rolls", label: "首页产品-Blank Thermal Rolls", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏纸卷组卡片 6" },
-  // === Thermal Labels 组（6 个）===
-  { slot: "home:product-blank-thermal-labels", label: "首页产品-Blank Thermal Labels", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏标签组卡片 1" },
-  { slot: "home:product-4x6-shipping-labels", label: "首页产品-4x6 Shipping Labels", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏标签组卡片 2" },
-  { slot: "home:product-barcode-thermal-labels", label: "首页产品-Barcode Thermal Labels", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏标签组卡片 3" },
-  { slot: "home:product-custom-printed-labels", label: "首页产品-Custom Printed Labels", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏标签组卡片 4" },
-  { slot: "home:product-4x3-thermal-labels", label: "首页产品-4x3 Thermal Labels", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏标签组卡片 5" },
-  { slot: "home:product-2x4-thermal-labels", label: "首页产品-2x4 Thermal Labels", page: "首页", pageUrl: "/", aspect: "4:3", description: "首页热敏标签组卡片 6" },
+  // 首页 Hero 图片在 /admin/hero 编辑；这里仅注册当前首页实际消费的产品线卡片。
   // === Linerless Labels ===
   { slot: "linerless-labels:hero", label: "无底纸标签聚合页 Hero 图", page: "无底纸标签聚合页", pageUrl: "/products/linerless-labels", aspect: "16:9", description: "品类聚合页首屏，优先使用多卷无底纸标签或实际设备应用图" },
   { slot: "linerless-labels:family-removable", label: "无底纸标签聚合页 - 可移胶", page: "无底纸标签聚合页", pageUrl: "/products/linerless-labels", aspect: "16:9", description: "可移胶或临时标识产品图" },
@@ -74,18 +57,13 @@ export const IMAGE_SLOTS = [
   { slot: "thermal-label-4x6in:related-shipping", label: "4x6 shipping label detail - related shipping labels", page: "4x6 shipping labels", pageUrl: "/products/thermal-labels/4x6in", aspect: "4:3", description: "Related roll and fanfold shipping-label programs" },
   { slot: "thermal-label-4x6in:related-barcode", label: "4x6 shipping label detail - related barcode labels", page: "4x6 shipping labels", pageUrl: "/products/thermal-labels/4x6in", aspect: "4:3", description: "Related warehouse and variable-data barcode labels" },
   { slot: "thermal-label-4x6in:related-custom", label: "4x6 shipping label detail - related custom labels", page: "4x6 shipping labels", pageUrl: "/products/thermal-labels/4x6in", aspect: "4:3", description: "Related custom printed and private-label thermal labels" },
-  // === 其他可能用到的 6 个 ===
-  { slot: "home:product-lottery-gaming-rolls", label: "首页产品-Lottery & Gaming Rolls", page: "首页", pageUrl: "/", aspect: "4:3", description: "（备用）首页彩票游戏纸卷" },
-  { slot: "home:product-colored-thermal-paper", label: "首页产品-Colored Thermal Paper", page: "首页", pageUrl: "/", aspect: "4:3", description: "（备用）首页彩色热敏纸" },
-  { slot: "home:product-coreless-paper-roll", label: "首页产品-Coreless Paper Roll", page: "首页", pageUrl: "/", aspect: "4:3", description: "（备用）首页无芯纸卷" },
-  { slot: "home:product-multi-ply-carbonless-rolls", label: "首页产品-Multi-Ply Carbonless Rolls", page: "首页", pageUrl: "/", aspect: "4:3", description: "（备用）首页无碳复写纸卷" },
-  { slot: "home:product-oem-printed-receipts", label: "首页产品-OEM Printed Receipts", page: "首页", pageUrl: "/", aspect: "4:3", description: "（备用）首页 OEM 印刷收据" },
+  // 兼容仍在产品聚合配置中使用的历史键；该位置不属于当前首页后台编辑范围。
+  { slot: "home:product-phenol-free-thermal-paper", label: "材料路线参考图（兼容）", page: "产品聚合页", pageUrl: "/products/thermal-paper-rolls", aspect: "4:3", description: "热敏纸材料路线模块的兼容图片键", adminVisible: false },
 
   // 首页「完整产品线」6 类目模块（Hero 下方），admin 可单独换图
   { slot: "home:category-thermal-rolls", label: "首页类目-热敏纸卷", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 热敏纸卷类目卡片" },
   { slot: "home:category-thermal-labels", label: "首页类目-热敏标签", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 热敏标签类目卡片" },
   { slot: "home:category-can-labels", label: "首页类目-灌装/罐头标签", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 灌装标签类目卡片" },
-  { slot: "home:category-bottle-labels", label: "首页类目-瓶装标签", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 瓶装标签类目卡片（原洗涤剂标签）" },
   { slot: "home:category-carbonless", label: "首页类目-无碳复写纸表格", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 无碳复写纸表格类目卡片" },
   { slot: "home:category-jumbo-rolls", label: "首页类目-巨型卷代理", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 巨型卷代理销售类目卡片" },
   { slot: "home:category-custom-rolls", label: "首页类目-定制纸卷/标签", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 定制印刷纸卷/标签类目卡片" },
@@ -485,9 +463,14 @@ export const IMAGE_SLOTS = [
 /** 全部 slot key 的 union type — 编译期防止拼错 */
 export type SlotKey = (typeof IMAGE_SLOTS)[number]["slot"];
 
+/** 后台图片管理实际展示的槽位；隐藏项仍保留在 SlotKey 中供页面兼容使用。 */
+export const ADMIN_IMAGE_SLOTS: readonly ImageSlot[] = IMAGE_SLOTS.filter(
+  (slot) => !("adminVisible" in slot) || slot.adminVisible !== false,
+);
+
 /** 按页面分组（后台展示用） */
 export function groupSlotsByPage(): Record<string, ImageSlot[]> {
-  return IMAGE_SLOTS.reduce((acc, slot) => {
+  return ADMIN_IMAGE_SLOTS.reduce((acc, slot) => {
     if (!acc[slot.page]) acc[slot.page] = [];
     acc[slot.page].push(slot);
     return acc;

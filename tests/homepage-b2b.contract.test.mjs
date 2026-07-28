@@ -10,7 +10,8 @@ test("homepage states the buyer, leads with products, and keeps the RFQ on-page"
   assert.match(page, /Thermal Paper & Labels Built for Reliable Reorders/);
   assert.match(page, /For Importers, Distributors & OEM Buyers/);
   assert.match(page, /Get a Factory Quote/);
-  assert.match(page, /href: "#home-rfq-form"/);
+  assert.match(page, /hero\.ctaPrimary\?\.href\?\.trim\(\) \|\| "#home-rfq-form"/);
+  assert.match(page, /href: primaryCta\.href/);
   assert.match(page, /id="home-rfq"/);
   assert.match(page, /formId="home-rfq-form"/);
   assert.ok((page.match(/#home-rfq-form/g) ?? []).length >= 2, "homepage quote CTAs should share the on-page RFQ target");
@@ -19,7 +20,40 @@ test("homepage states the buyer, leads with products, and keeps the RFQ on-page"
     page.indexOf('id="core-products"') < page.indexOf('aria-labelledby="procurement-heading"'),
     "core products should appear before buyer-route education",
   );
-  assert.doesNotMatch(page, /bgCarouselInterval=/);
+  assert.match(page, /bgImages=\{heroImages\}/);
+  assert.match(page, /bgCarouselInterval=\{heroCarouselInterval\}/);
+  assert.match(page, /eyebrow=\{hero\.eyebrow\?\.trim\(\) \|\| undefined\}/);
+  assert.match(page, /hero\.ctaPrimary\?\.label/);
+  assert.match(page, /hero\.ctaSecondary\?\.label/);
+});
+
+test("homepage image admin exposes only product-line slots consumed by the current page", async () => {
+  const [page, slots] = await Promise.all([
+    read("src/app/page.tsx"),
+    read("src/config/imageSlots.ts"),
+  ]);
+
+  const activeHomeSlots = [
+    "home:category-thermal-rolls",
+    "home:category-thermal-labels",
+    "home:category-custom-rolls",
+    "home:category-carbonless",
+    "home:category-can-labels",
+    "home:category-jumbo-rolls",
+  ];
+
+  for (const slot of activeHomeSlots) {
+    assert.match(page, new RegExp(slot));
+    assert.match(slots, new RegExp(slot));
+  }
+
+  assert.match(
+    slots,
+    /slot: "home:product-phenol-free-thermal-paper"[\s\S]*?adminVisible: false/,
+    "valid compatibility slots should remain type-safe but stay hidden from admin",
+  );
+  assert.match(slots, /IMAGE_SLOTS\.filter\([\s\S]*?"adminVisible" in slot[\s\S]*?slot\.adminVisible !== false/);
+  assert.doesNotMatch(slots, /home:category-bottle-labels/);
 });
 
 test("homepage sends broad product intent to category aggregation pages", async () => {

@@ -10,15 +10,16 @@ interface Props {
 }
 
 const DEFAULTS = {
-  badgeText: "Direct Thermal Paper Factory Since 2009",
-  eyebrow: "Bulk POS Rolls / OEM Packaging / Export Orders",
-  titleMain: "Thermal Paper Rolls",
-  titleHighlight: "Supplier for Bulk Orders",
+  badgeText: "For Importers, Distributors & OEM Buyers",
+  eyebrow: "",
+  titleMain: "Thermal Paper & Labels Built for Reliable Reorders",
+  titleHighlight: "",
   subtitle:
-    "Factory-direct thermal rolls for distributors, importers, and retail chains. Custom printing, precise slitting, export-ready packing, and fast loading from our Xi'an, China facility.",
-  trustBadges: ["ISO 9001 Certified", "BPA-Free", "FCL Ready 3–5 Days", "OEM Available"],
-  ctaPrimary: { label: "Get Quick Quote", href: "/contact" },
-  ctaSecondary: { label: "WhatsApp Us", href: "https://wa.me/8617792370431" },
+    "Source stock and custom thermal rolls, shipping labels and printed products through one specification, sample and repeat-order record.",
+  trustBadges: ["Specification review", "Sample approval", "Repeat-order records"],
+  ctaPrimary: { label: "Get a Factory Quote", href: "#home-rfq-form" },
+  ctaSecondary: { label: "Browse Core Products", href: "#core-products" },
+  carouselIntervalMs: 4500,
 };
 
 export default function HeroEditor({ initial }: Props) {
@@ -97,7 +98,7 @@ export default function HeroEditor({ initial }: Props) {
       )}
       {success && (
         <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-700 text-sm flex items-center gap-2">
-          <Check size={16} /> 保存成功，访问首页查看效果（可能需要强制刷新 Ctrl+F5）
+          <Check size={16} /> 保存成功，首页缓存已刷新，可直接打开预览查看效果
         </div>
       )}
 
@@ -214,7 +215,7 @@ export default function HeroEditor({ initial }: Props) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-3">
-            <div className="text-sm font-medium text-slate-700">主按钮（蓝色）</div>
+            <div className="text-sm font-medium text-slate-700">主按钮（琥珀色）</div>
             <Field
               label="按钮文字"
               placeholder={DEFAULTS.ctaPrimary.label}
@@ -230,7 +231,7 @@ export default function HeroEditor({ initial }: Props) {
             />
           </div>
           <div className="space-y-3">
-            <div className="text-sm font-medium text-slate-700">次按钮（WhatsApp 绿）</div>
+            <div className="text-sm font-medium text-slate-700">次按钮（外链或站内导航）</div>
             <Field
               label="按钮文字"
               placeholder={DEFAULTS.ctaSecondary.label}
@@ -239,7 +240,7 @@ export default function HeroEditor({ initial }: Props) {
             />
             <Field
               label="跳转链接"
-              hint="WhatsApp 用 https://wa.me/手机号"
+              hint="站内锚点如 #core-products；WhatsApp 可填写完整 wa.me 链接"
               placeholder={DEFAULTS.ctaSecondary.href}
               value={data.ctaSecondary?.href}
               onChange={(v) => update("ctaSecondary", { ...data.ctaSecondary, href: v })}
@@ -250,10 +251,29 @@ export default function HeroEditor({ initial }: Props) {
 
       {/* === 轮播图 === */}
       <section className="bg-white border border-slate-200 rounded-xl p-6">
-        <h2 className="text-lg font-semibold text-slate-900 mb-1">🖼 Hero 轮播图（3 张）</h2>
+        <h2 className="text-lg font-semibold text-slate-900 mb-1">Hero 轮播图（3 张）</h2>
         <p className="text-xs text-slate-500 mb-5">
-          首页大图区会以 4.5 秒间隔轮播这 3 张图。任意位置留空 = 用图片管理槽位的默认图。
+          首页会按顺序轮播 3 张图片；未上传的位置使用首页内置工厂和产品图。
         </p>
+
+        <label className="mb-5 block max-w-xs text-sm font-medium text-slate-700">
+          轮播间隔（秒）
+          <input
+            type="number"
+            min={3}
+            max={15}
+            step={0.5}
+            value={(data.carouselIntervalMs ?? DEFAULTS.carouselIntervalMs) / 1000}
+            onChange={(event) => {
+              const seconds = Number(event.target.value);
+              if (Number.isFinite(seconds)) {
+                update("carouselIntervalMs", Math.round(seconds * 1000));
+              }
+            }}
+            className="mt-1.5 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <span className="mt-1 block text-xs font-normal text-slate-400">可设置 3–15 秒，默认 4.5 秒</span>
+        </label>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[0, 1, 2].map((idx) => {

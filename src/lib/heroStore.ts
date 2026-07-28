@@ -29,6 +29,7 @@ export interface HomeHeroSettings {
   ctaPrimary?: HeroCTA;
   ctaSecondary?: HeroCTA;
   banners?: HeroBanner[];
+  carouselIntervalMs?: number;
   updatedAt?: string;
 }
 
