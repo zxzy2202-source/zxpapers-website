@@ -15,6 +15,7 @@ import path from "path";
 export interface KVStorage {
   get<T = unknown>(key: string): Promise<T | null>;
   set<T = unknown>(key: string, value: T): Promise<void>;
+  prepend<T = unknown>(key: string, value: T): Promise<void>;
   delete(key: string): Promise<void>;
 }
 
@@ -40,6 +41,11 @@ class FileStorage implements KVStorage {
   async set<T>(key: string, value: T): Promise<void> {
     await fs.mkdir(this.dir, { recursive: true });
     await fs.writeFile(this.filePath(key), JSON.stringify(value, null, 2), "utf-8");
+  }
+
+  async prepend<T>(key: string, value: T): Promise<void> {
+    const current = await this.get<T[]>(key);
+    await this.set(key, [value, ...(Array.isArray(current) ? current : [])]);
   }
 
   async delete(key: string): Promise<void> {
@@ -92,6 +98,17 @@ class VercelKVStorage implements KVStorage {
     await this.req(["SET", `zxp:${key}`, JSON.stringify(value)], 0); // 写操作不缓存
   }
 
+  async prepend<T>(key: string, value: T): Promise<void> {
+    const script = `
+      local current = redis.call('GET', KEYS[1])
+      local rows = current and cjson.decode(current) or {}
+      table.insert(rows, 1, cjson.decode(ARGV[1]))
+      redis.call('SET', KEYS[1], cjson.encode(rows))
+      return 1
+    `;
+    await this.req(["EVAL", script, "1", `zxp:${key}`, JSON.stringify(value)], 0);
+  }
+
   async delete(key: string): Promise<void> {
     await this.req(["DEL", `zxp:${key}`], 0); // 写操作不缓存
   }
@@ -99,6 +116,10 @@ class VercelKVStorage implements KVStorage {
 
 // ============== 工厂 ==============
 let _storage: KVStorage | null = null;
+
+export function hasDurableStorageConfig(): boolean {
+  return Boolean(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
+}
 
 export function getStorage(): KVStorage {
   if (_storage) return _storage;

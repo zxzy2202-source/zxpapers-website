@@ -38,6 +38,28 @@ test("inquiry funnel events avoid personal form values", async () => {
   );
 });
 
+test("contact query preserves a sanitized product brief in the inquiry form", async () => {
+  const page = await read("src/app/contact/page.tsx");
+
+  assert.match(page, /searchParams: Promise<\{ product\?: string \| string\[\] \}>/);
+  assert.match(page, /replace\(\/\[\\r\\n\\t<>\]\/g, " "\)/);
+  assert.match(page, /trim\(\)\.slice\(0, 120\)/);
+  assert.match(page, /Product: \$\{productContext\}\\nSize \/ specification:\\nQuantity:\\nDestination:/);
+  assert.match(page, /productName=\{productContext\}/);
+  assert.match(page, /initialMessage=\{initialMessage\}/);
+});
+
+test("asynchronous country detection never remounts or overwrites buyer input", async () => {
+  const form = await read("src/components/shared/InquiryForm.tsx");
+
+  assert.match(form, /const countryRef = useRef<HTMLInputElement>\(null\)/);
+  assert.match(form, /countryRef\.current && !countryRef\.current\.value\.trim\(\)/);
+  assert.match(form, /countryRef\.current\.value = countryName/);
+  assert.match(form, /ref=\{countryRef\}/);
+  assert.doesNotMatch(form, /key=\{defaultCountry\}/);
+  assert.doesNotMatch(form, /setDefaultCountry/);
+});
+
 test("optional buyer details are collapsed and reply copy is consistent", async () => {
   const [page, form] = await Promise.all([
     read("src/app/contact/page.tsx"),

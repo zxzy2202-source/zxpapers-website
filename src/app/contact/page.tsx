@@ -59,8 +59,25 @@ const CONTACT_HERO_FB = "https://d2xsxph8kpxj0f.cloudfront.net/31051966328877031
 
 export const revalidate = 3600; // 1 hour: slot image changes infrequently
 
-export default async function ContactPage() {
-  const contactHeroImg = await getSlotImage("contact:hero", CONTACT_HERO_FB);
+interface ContactPageProps {
+  searchParams: Promise<{ product?: string | string[] }>;
+}
+
+function sanitizeProductContext(value: string | string[] | undefined) {
+  const raw = Array.isArray(value) ? value[0] : value;
+  return raw?.replace(/[\r\n\t<>]/g, " ").replace(/\s+/g, " ").trim().slice(0, 120) || undefined;
+}
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const [{ product }, contactHeroImg] = await Promise.all([
+    searchParams,
+    getSlotImage("contact:hero", CONTACT_HERO_FB),
+  ]);
+  const productContext = sanitizeProductContext(product);
+  const initialMessage = productContext
+    ? `Product: ${productContext}\nSize / specification:\nQuantity:\nDestination:`
+    : undefined;
+
   return (
     <Layout>
       <script
@@ -221,6 +238,8 @@ export default async function ContactPage() {
               </div>
               <InquiryForm
                 formId="inquiry-form"
+                productName={productContext}
+                initialMessage={initialMessage}
                 responseNote="Reply within one business day. NDA available. No spam."
                 successMessage="We'll respond within one business day."
               />

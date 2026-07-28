@@ -5,6 +5,14 @@
 import { pagePathToLabel } from "@/lib/pageLabels";
 import { SITE } from "@/config/siteData";
 
+export type NotificationChannelStatus = "delivered" | "skipped" | "failed";
+
+export interface NotificationHealth {
+  wecom: NotificationChannelStatus;
+  feishu: NotificationChannelStatus;
+  serverchan: NotificationChannelStatus;
+}
+
 interface InquiryNotifyData {
   name: string;
   email: string;
@@ -62,9 +70,9 @@ async function assertWebhookAccepted(response: Response, channel: string) {
 }
 
 /** 企业微信群机器人 */
-export async function notifyWeCom(data: InquiryNotifyData) {
+export async function notifyWeCom(data: InquiryNotifyData): Promise<NotificationChannelStatus> {
   const url = process.env.WECOM_WEBHOOK_URL;
-  if (!url) return;
+  if (!url) return "skipped";
   const markdown = [
     `## 📨 新询盘 | ${SITE.notificationLabel || SITE.name}`,
     `**姓名：** ${data.name}`,
@@ -85,12 +93,13 @@ export async function notifyWeCom(data: InquiryNotifyData) {
     body: JSON.stringify({ msgtype: "markdown", markdown: { content: markdown } }),
   });
   await assertWebhookAccepted(response, "WeCom");
+  return "delivered";
 }
 
 /** 飞书自定义机器人 */
-export async function notifyFeishu(data: InquiryNotifyData) {
+export async function notifyFeishu(data: InquiryNotifyData): Promise<NotificationChannelStatus> {
   const url = process.env.FEISHU_WEBHOOK_URL;
-  if (!url) return;
+  if (!url) return "skipped";
   const card = {
     msg_type: "interactive",
     card: {
@@ -120,12 +129,13 @@ export async function notifyFeishu(data: InquiryNotifyData) {
     body: JSON.stringify(card),
   });
   await assertWebhookAccepted(response, "Feishu");
+  return "delivered";
 }
 
 /** Server 酱 - 推送到个人微信 */
-export async function notifyServerChan(data: InquiryNotifyData) {
+export async function notifyServerChan(data: InquiryNotifyData): Promise<NotificationChannelStatus> {
   const key = process.env.SERVERCHAN_SENDKEY;
-  if (!key) return;
+  if (!key) return "skipped";
   const title = `[${SITE.notificationLabel || SITE.name}] 新询盘 - ${data.name} (${data.country || "—"})`;
   const desp = [
     `## 📨 新询盘 | ${SITE.notificationLabel || SITE.name}`,
@@ -144,23 +154,28 @@ export async function notifyServerChan(data: InquiryNotifyData) {
     body: `title=${encodeURIComponent(title)}&desp=${encodeURIComponent(desp)}`,
   });
   await assertWebhookAccepted(response, "ServerChan");
+  return "delivered";
 }
 
 /** 一键多渠道推送 */
-export async function notifyAll(data: InquiryNotifyData) {
+export async function notifyAll(data: InquiryNotifyData): Promise<NotificationHealth> {
   const channels = [
     { name: "wecom", deliver: () => notifyWeCom(data) },
     { name: "feishu", deliver: () => notifyFeishu(data) },
     { name: "serverchan", deliver: () => notifyServerChan(data) },
-  ];
+  ] as const;
   const results = await Promise.allSettled(channels.map((channel) => channel.deliver()));
-  const failedChannels = results.flatMap((result, index) => {
-    if (result.status === "fulfilled") return [];
-    console.error(`[notify:${channels[index].name}]`, result.reason);
-    return [channels[index].name];
+  const health = {} as NotificationHealth;
+
+  results.forEach((result, index) => {
+    const channel = channels[index].name;
+    if (result.status === "fulfilled") {
+      health[channel] = result.value;
+      return;
+    }
+    health[channel] = "failed";
+    console.error(`[notify:${channel}]`, result.reason);
   });
 
-  if (failedChannels.length > 0) {
-    throw new Error(`Inquiry notification failed for: ${failedChannels.join(", ")}`);
-  }
+  return health;
 }

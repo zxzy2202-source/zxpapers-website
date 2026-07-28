@@ -40,15 +40,13 @@ async function writeAll(rows: InquiryRecord[]): Promise<void> {
 export async function append(
   record: Omit<InquiryRecord, "id" | "createdAt" | "status">
 ): Promise<InquiryRecord> {
-  const all = await readAll();
   const newRecord: InquiryRecord = {
     ...record,
     id: `inq-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     createdAt: new Date().toISOString(),
     status: "new",
   };
-  all.unshift(newRecord);
-  await writeAll(all);
+  await getStorage().prepend(KEY, newRecord);
   return newRecord;
 }
 

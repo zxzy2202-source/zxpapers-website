@@ -1,32 +1,104 @@
 import assert from "node:assert/strict";
+import { createRequire } from "node:module";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
+const require = createRequire(import.meta.url);
+const ts = require("typescript");
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("inquiry success requires durable persistence", async () => {
-  const route = await read("src/app/api/inquiry/route.ts");
+async function loadRouteModule() {
+  const source = await read("src/app/api/inquiry/route.ts");
+  const compiled = ts.transpileModule(source, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+  }).outputText;
+  const module = { exports: {} };
+  const requireStub = (id) => {
+    if (id === "next/server") {
+      return { NextResponse: { json: (body, init) => ({ body, init }) } };
+    }
+    return new Proxy({}, { get: () => () => undefined });
+  };
 
+  new Function("require", "module", "exports", compiled)(requireStub, module, module.exports);
+  return module.exports;
+}
+
+test("inquiry success requires durable persistence", async () => {
+  const [route, storage, store] = await Promise.all([
+    read("src/app/api/inquiry/route.ts"),
+    read("src/lib/storage.ts"),
+    read("src/lib/inquiryStore.ts"),
+  ]);
+
+  assert.match(route, /process\.env\.NODE_ENV === "production" && !hasDurableStorageConfig\(\)/);
+  assert.match(route, /\{ status: 503 \}/);
   assert.match(route, /const savedInquiry = await append\(inquiryData\)/);
   assert.doesNotMatch(route, /append\(inquiryData\)\.catch/);
-  assert.match(route, /return NextResponse\.json\(\{ ok: true, id: savedInquiry\.id \}\)/);
+  assert.match(route, /const notificationStatus = summarizeDeliveryHealth\(deliveryHealth\)/);
+  assert.match(route, /notificationStatus,/);
+  assert.match(storage, /prepend<T = unknown>\(key: string, value: T\): Promise<void>/);
+  assert.match(storage, /\["EVAL", script, "1", `zxp:\$\{key\}`, JSON\.stringify\(value\)\]/);
+  assert.match(storage, /table\.insert\(rows, 1, cjson\.decode\(ARGV\[1\]\)\)/);
+  assert.match(store, /await getStorage\(\)\.prepend\(KEY, newRecord\)/);
+  assert.doesNotMatch(store, /all\.unshift\(newRecord\)/);
 });
 
-test("supplementary delivery channels are awaited without hiding a saved inquiry", async () => {
+test("supplementary delivery channels are named and awaited without hiding a saved inquiry", async () => {
   const route = await read("src/app/api/inquiry/route.ts");
 
-  assert.match(route, /Promise\.allSettled\(deliveryTasks\)/);
-  assert.match(route, /deliveryTasks\.push\(fetch\("https:\/\/api\.web3forms\.com\/submit"/);
-  assert.match(route, /deliveryTasks\.push\(fetch\(process\.env\.GOOGLE_SHEETS_WEBHOOK_URL/);
+  assert.match(route, /name: "webhooks", deliver: notifyAll\(inquiryData\)/);
+  assert.match(route, /name: "web3forms"/);
+  assert.match(route, /name: "googleSheets"/);
+  assert.match(route, /Promise\.allSettled\(\s*deliveryTasks\.map\(\(task\) => task\.deliver\)\s*\)/);
+  assert.match(route, /deliveryHealth\[task\.name\] = "failed"/);
+  assert.match(route, /channels: deliveryHealth/);
+  assert.match(route, /ok: true,[\s\S]*notificationStatus,/);
 });
 
-test("webhook delivery rejects HTTP and provider-level failures", async () => {
+test("notification status is complete only after at least one successful delivery", async () => {
+  const route = await read("src/app/api/inquiry/route.ts");
+  const { summarizeDeliveryHealth } = await loadRouteModule();
+
+  assert.match(route, /const statuses = Object\.values\(deliveryHealth\)\.flatMap/);
+  assert.doesNotMatch(route, /JSON\.stringify\(deliveryHealth\)\.includes\('\"failed\"'\)/);
+  assert.equal(
+    summarizeDeliveryHealth({
+      webhooks: { wecom: "skipped", feishu: "skipped", serverchan: "skipped" },
+      web3forms: "skipped",
+      googleSheets: "skipped",
+    }),
+    "partial",
+  );
+  assert.equal(
+    summarizeDeliveryHealth({
+      webhooks: { wecom: "delivered", feishu: "skipped", serverchan: "skipped" },
+      web3forms: "skipped",
+      googleSheets: "skipped",
+    }),
+    "complete",
+  );
+  assert.equal(
+    summarizeDeliveryHealth({
+      webhooks: { wecom: "delivered", feishu: "failed", serverchan: "skipped" },
+      web3forms: "skipped",
+      googleSheets: "skipped",
+    }),
+    "partial",
+  );
+});
+
+test("webhook delivery rejects provider failures and returns per-channel health", async () => {
   const notify = await read("src/lib/notify.ts");
 
   assert.match(notify, /if \(!response\.ok\)/);
   assert.match(notify, /payload\.code \?\? payload\.errcode \?\? payload\.StatusCode/);
   assert.match(notify, /String\(resultCode\) !== "0"/);
-  assert.match(notify, /Inquiry notification failed for:/);
+  assert.match(notify, /export interface NotificationHealth/);
+  assert.match(notify, /health\[channel\] = result\.value/);
+  assert.match(notify, /health\[channel\] = "failed"/);
+  assert.match(notify, /return health/);
+  assert.doesNotMatch(notify, /Inquiry notification failed for:/);
 });
 
 test("inquiry attribution stores only first-touch routing fields", async () => {

@@ -63,9 +63,9 @@ export default function InquiryForm({
   const [highlighted, setHighlighted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  const countryRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const startedRef = useRef(false);
-  const [defaultCountry, setDefaultCountry] = useState("");
 
   useEffect(() => {
     // Detect country via /api/geo (does not set cookies, cache-friendly)
@@ -76,7 +76,9 @@ export default function InquiryForm({
       : null;
 
     if (cached) {
-      setDefaultCountry(cached);
+      if (countryRef.current && !countryRef.current.value.trim()) {
+        countryRef.current.value = cached;
+      }
       return;
     }
 
@@ -94,7 +96,9 @@ export default function InquiryForm({
           NG: "Nigeria", KE: "Kenya", ZA: "South Africa", EG: "Egypt",
         };
         const countryName = mapping[data.country] || data.country;
-        setDefaultCountry(countryName);
+        if (countryRef.current && !countryRef.current.value.trim()) {
+          countryRef.current.value = countryName;
+        }
         try { sessionStorage.setItem(CACHE_KEY, countryName); } catch { /* ignore */ }
       })
       .catch(() => { /* silently ignore GEO errors */ });
@@ -290,14 +294,13 @@ export default function InquiryForm({
           Country / Region <span className="text-red-500" aria-hidden="true">*</span>
         </Label>
         <Input
+          ref={countryRef}
           id="inquiry-country"
           type="text"
           name="country"
           autoComplete="country-name"
           placeholder="Country or region…"
           required
-          defaultValue={defaultCountry}
-          key={defaultCountry} // Force re-render when defaultCountry is set
           aria-invalid={errors.country ? true : undefined}
           aria-describedby={errors.country ? "inquiry-country-error" : undefined}
           className={`h-11 ${errors.country ? errorInputClass : ""}`}
