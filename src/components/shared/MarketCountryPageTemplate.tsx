@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MessageSquare, Phone, CheckCircle, Globe, Package, Ship, Truck, ArrowRight } from "lucide-react";
 
 import Layout from "@/components/layout/Layout";
-import PageHero from "@/components/shared/PageHero";
+import PageHero, { STANDARD_PAGE_HERO_WITH_SLOT_MIN_HEIGHT } from "@/components/shared/PageHero";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { CountryFlag } from "@/components/ui/country-flag";
 import { SITE } from "@/config/siteData";
@@ -235,6 +235,8 @@ export default async function MarketCountryPageTemplate({ data }: MarketCountryP
         bgImageAlt={`ZhixinPaper thermal paper and label supply to ${data.countryName} — B2B factory-direct export`}
         overlayDir="left"
         overlayOpacity={56}
+        minHeight={STANDARD_PAGE_HERO_WITH_SLOT_MIN_HEIGHT}
+        compact
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Markets", href: "/markets" },
@@ -274,6 +276,7 @@ export default async function MarketCountryPageTemplate({ data }: MarketCountryP
         stats={data.stats}
         rightSlot={heroRfqSlip}
         mobileRightSlot={heroRfqSlip}
+        mobileRightSlotBeforeStats
       />
 
       <MarketDecisionPathways data={data} />

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
+import PageHero from "@/components/shared/PageHero";
 import { FACTORY, SITE } from "@/config/siteData";
 import { COMPLIANCE_EVIDENCE } from "@/config/complianceData";
-import { Shield, CheckCircle, Award, ClipboardCheck, ArrowRight, Microscope } from "lucide-react";
+import { Shield, CheckCircle, Award, ClipboardCheck, ArrowRight, Microscope, MessageSquare, Phone } from "lucide-react";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 
 const OEM_QUALITY_ASSURANCE_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-qc-lab-GCyjnzeVMfG7M54TSNubFr.webp";
@@ -77,26 +77,30 @@ export default async function QualityAssurancePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="page-hero">
-        {heroImage && (
-          <div className="absolute inset-0">
-            <Image src={heroImage} alt="" fill priority sizes="100vw" className="object-cover opacity-30" />
-            <div className="absolute inset-0 bg-brand-navy/75" />
-          </div>
-        )}
-        <div className="page-hero-content">
-          <div className="text-xs text-amber-400 font-semibold uppercase tracking-widest mb-3">
-            <Link href="/oem" className="hover:text-amber-300 transition-colors">OEM Services</Link>
-            {" "}&rsaquo;{" "}Quality Assurance
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4">
-            OEM <span className="text-amber-400">Quality Assurance</span>
-          </h1>
-          <p className="text-lg text-slate-300 max-w-2xl">
-            Define the applicable specification, inspection plan, acceptance criteria, records, and independent-testing requirements before OEM production.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        bgImage={heroImage}
+        bgImageAlt="ZhixinPaper OEM quality assurance and traceability workflow for thermal paper and labels"
+        overlayDir="left"
+        overlayOpacity={62}
+        minHeight="min-h-[380px]"
+        compact
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "OEM Services", href: "/oem" }, { label: "Quality Assurance" }]}
+        badge={{ text: "OEM Service", color: "amber" }}
+        eyebrow="Inspection planning and batch traceability"
+        title={<>OEM <span className="text-amber-400">Quality Assurance</span></>}
+        subtitle="Define the applicable specification, inspection plan, acceptance criteria, records, and independent-testing requirements before OEM production."
+        trustBadges={[
+          "Incoming Material Review",
+          "In-Process Control",
+          "Batch Traceability",
+          "Third-Party Testing",
+        ]}
+        mobileTrustBadgeLimit={2}
+        ctas={[
+          { label: "Request QA Review", href: "#qa-form", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
+          { label: "WhatsApp QA Team", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need an OEM quality assurance review for thermal rolls or labels.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
+        ]}
+      />
 
       <div className="container py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

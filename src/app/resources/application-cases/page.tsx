@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
+import PageHero from "@/components/shared/PageHero";
 import { CheckCircle, ArrowRight, Package, Globe, ShieldCheck, Tag, BarChart3, Printer, ChevronRight, Clock } from "lucide-react";
 import Image from "next/image";
 import { getSlotImages } from "@/lib/imageSlotUtils";
@@ -154,22 +155,28 @@ export default async function ApplicationCasesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-brand-navy text-white py-14">
-        <div className="container">
-          <div className="flex items-center gap-2 mb-3">
-            <Link href="/resources" className="text-amber-400 text-xs font-bold uppercase tracking-wider hover:underline">Resources</Link>
-            <span className="text-slate-500">·</span>
-            <span className="text-amber-400 text-xs font-bold uppercase tracking-wider">Application Cases</span>
-            <span className="text-slate-500">·</span>
-            <span className="text-slate-400 text-xs flex items-center gap-1"><Clock className="w-3 h-3" /> 16 min read</span>
-          </div>
-          <h1 className="font-sora text-3xl sm:text-4xl font-extrabold mb-3">
-            Thermal Paper Applications<br /><span className="text-amber-400">Across Industries</span>
-          </h1>
-          <p className="text-slate-300 max-w-2xl text-base">From retail POS to hospital wristbands — an in-depth guide to how thermal paper products serve 6 major industries, with specific requirements, product recommendations, volume benchmarks, and the technical details that matter for procurement decisions.</p>
-        </div>
-      </div>
-
+      <PageHero
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Resources", href: "/resources" },
+          { label: "Application Cases" },
+        ]}
+        eyebrow="Resources"
+        badge={{ text: "Industry Scenarios", color: "green" }}
+        title={<>Thermal Paper & Label<br /><span className="text-amber-400">Application Cases</span></>}
+        subtitle="Review how different industries specify thermal rolls and labels, from retail POS and food service to logistics, healthcare, parking, and banking environments."
+        trustBadges={[
+          "Industry-specific requirements",
+          "Specification and compliance cues",
+          "Volume and client-fit context",
+        ]}
+        ctas={[
+          { label: "Browse Resources", href: "/resources", variant: "primary" },
+          { label: "Discuss Your Use Case", href: "/contact", variant: "outline" },
+        ]}
+        minHeight="min-h-[380px]"
+        compact
+      />
       <div className="container py-14">
         {/* Intro */}
         <div className="max-w-3xl mb-12">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
+import PageHero from "@/components/shared/PageHero";
 import { Tag, Clock, ChevronRight, Thermometer, Droplets, Sun, AlertCircle, CheckCircle } from "lucide-react";
 import { SITE } from "@/config/siteData";
 import LatestArticles from "@/components/shared/LatestArticles";
@@ -70,21 +71,28 @@ export default function ProductKnowledgePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <div className="bg-brand-navy text-white py-14">
-        <div className="container">
-          <div className="flex items-center gap-2 mb-3">
-            <Link href="/resources" className="text-amber-400 text-xs font-bold uppercase tracking-wider hover:underline">Resources</Link>
-            <span className="text-slate-500">·</span>
-            <span className="text-amber-400 text-xs font-bold uppercase tracking-wider">Product Knowledge</span>
-            <span className="text-slate-500">·</span>
-            <span className="text-slate-400 text-xs flex items-center gap-1"><Clock className="w-3 h-3" /> 14 min read</span>
-          </div>
-          <h1 className="font-sora text-3xl sm:text-4xl font-extrabold mb-3 max-w-3xl leading-tight">
-            What Is Thermal Paper?<br /><span className="text-amber-400">A Complete Technical Guide</span>
-          </h1>
-          <p className="text-slate-300 max-w-2xl text-base">What thermal paper is and what it&apos;s made of, how it works at the chemistry level, the real differences between grades, how to select the right paper for your printer and environment, and what causes premature image fading — with practical guidance for buyers and distributors.</p>
-        </div>
-      </div>
+      <PageHero
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Resources", href: "/resources" },
+          { label: "Product Knowledge" },
+        ]}
+        eyebrow="Resources"
+        badge={{ text: "14 min read", color: "blue" }}
+        title={<>What Is Thermal Paper?<br /><span className="text-amber-400">A Complete Technical Guide</span></>}
+        subtitle="What thermal paper is and what it is made of, how it works at the chemistry level, the real differences between grades, how to select the right paper for your printer and environment, and what causes premature image fading."
+        trustBadges={[
+          "Grade and chemistry breakdown",
+          "Printer-fit selection guidance",
+          "Buyer-focused storage advice",
+        ]}
+        ctas={[
+          { label: "Browse Resources", href: "/resources", variant: "primary" },
+          { label: "Request Product Advice", href: "/contact", variant: "outline" },
+        ]}
+        minHeight="min-h-[380px]"
+        compact
+      />
 
       <div className="container py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

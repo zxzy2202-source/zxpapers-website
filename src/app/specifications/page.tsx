@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/shared/PageHero";
 import { ArrowRight } from "lucide-react";
 import { buildMetadata } from "@/lib/seo";
 
@@ -64,15 +65,26 @@ export default function SpecificationsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-brand-navy text-white py-14">
-        <div className="container">
-          <div className="text-amber-400 text-sm font-semibold mb-3">Technical Reference</div>
-          <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
-            Product <span className="text-amber-400">Specifications</span>
-          </h1>
-          <p className="text-slate-300 max-w-2xl text-lg">Complete technical specifications for all thermal paper rolls and labels. Use this reference to select the right product for your application.</p>
-        </div>
-      </div>
+      <PageHero
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Specifications" },
+        ]}
+        eyebrow="Technical Reference"
+        title={<>Product <span className="text-amber-400">Specifications</span></>}
+        subtitle="Complete technical specifications for thermal paper rolls and labels, including dimensions, weights, cores, coating grades, and application guidance for faster product selection."
+        trustBadges={[
+          "Roll and label size matrix",
+          "Coating-grade comparison",
+          "Application-fit reference",
+        ]}
+        ctas={[
+          { label: "Request Custom Specs", href: "/contact", variant: "primary" },
+          { label: "View Product Range", href: "/products", variant: "outline" },
+        ]}
+        minHeight="min-h-[360px]"
+        compact
+      />
 
       <div className="container py-14 space-y-14">
         {/* Thermal Paper Rolls */}

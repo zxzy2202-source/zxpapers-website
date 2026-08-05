@@ -137,6 +137,7 @@ export default function BestThermalPaperSuppliersPage() {
           overlayDir="left"
           overlayOpacity={70}
           minHeight="min-h-[380px]"
+          compact
           breadcrumbs={[{ label: "Home", href: "/" }, { label: "Best Thermal Paper Suppliers" }]}
           badge={{ text: "2026 Buyer's Guide", color: "amber" }}
           title={<>Best Thermal Paper Suppliers</>}

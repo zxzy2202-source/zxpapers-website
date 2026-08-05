@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/shared/PageHero";
 import { CheckCircle, Award, ArrowRight } from "lucide-react";
 import { SITE } from "@/config/siteData";
 import { COMPLIANCE_EVIDENCE } from "@/config/complianceData";
@@ -59,26 +60,30 @@ export default async function CertificationsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="relative bg-brand-navy text-white py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${certificationsHeroImage})` }} />
-        <div className="relative container">
-          <div className="text-amber-400 text-sm font-semibold mb-3">
-            <Link href="/manufacturing" className="hover:underline">Manufacturing</Link> / Certifications
-          </div>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
-              <Award className="w-6 h-6 text-amber-400" />
-            </div>
-            <span className="text-amber-400 text-sm font-semibold uppercase tracking-wider">Compliance & Certifications</span>
-          </div>
-          <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
-            Industry Certifications<br /><span className="text-amber-400">& Compliance</span>
-          </h1>
-          <p className="text-lg text-slate-300 max-w-2xl">
-            Review the evidence types buyers may request for a specific product or order. Certificate scope, report dates, tested materials, and regulatory applicability must be checked on the supplied documents.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        bgImage={certificationsHeroImage}
+        bgImageAlt="ZhixinPaper compliance documents and certification evidence for thermal paper and labels"
+        overlayDir="left"
+        overlayOpacity={60}
+        minHeight="min-h-[380px]"
+        compact
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Manufacturing", href: "/manufacturing" }, { label: "Certifications" }]}
+        badge={{ text: "Manufacturing", color: "amber", icon: <Award className="w-4 h-4" /> }}
+        eyebrow="Compliance scope and document review"
+        title={<>Industry Certifications <span className="text-amber-400">&amp; Compliance</span></>}
+        subtitle="Review the evidence types buyers may request for a specific product or order. Certificate scope, report dates, tested materials, and regulatory applicability must be checked on the supplied documents."
+        trustBadges={[
+          "FSC & ISO Records",
+          "Batch-Specific Evidence",
+          "Material Scope Review",
+          "Validity Check",
+        ]}
+        mobileTrustBadgeLimit={2}
+        ctas={[
+          { label: "Review Evidence Types", href: "#compliance-evidence", variant: "primary" },
+          { label: "Ask for Documentation", href: "/contact", variant: "outline" },
+        ]}
+      />
 
       <div className="container py-16">
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-4 mb-14">

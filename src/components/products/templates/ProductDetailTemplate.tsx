@@ -16,6 +16,7 @@ import {
   Tag,
   type LucideIcon,
 } from "lucide-react";
+import { HERO_LIMITS } from "@/lib/heroLimits";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import InquiryForm from "@/components/shared/InquiryForm";
@@ -86,7 +87,7 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
           bgImage={images.hero}
           bgImageAlt={config.images.hero.alt}
           overlayOpacity={64}
-          minHeight="min-h-[420px] sm:min-h-[390px] lg:min-h-[370px]"
+          minHeight={HERO_LIMITS.pageHeroMinHeight}
           compact
           breadcrumbs={config.breadcrumbs.map((item, index) => ({
             label: item.name,

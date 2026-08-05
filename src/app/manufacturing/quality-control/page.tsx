@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
+import PageHero from "@/components/shared/PageHero";
 import { SITE } from "@/config/siteData";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 import {
@@ -63,26 +64,30 @@ export default async function QualityControlPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="relative bg-brand-navy text-white py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${qcHeroImage})` }} />
-        <div className="relative container">
-          <div className="text-amber-400 text-sm font-semibold mb-3">
-            <Link href="/manufacturing" className="hover:underline">Manufacturing</Link> / Quality Control
-          </div>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
-              <Shield className="w-6 h-6 text-amber-400" />
-            </div>
-            <span className="text-amber-400 text-sm font-semibold uppercase tracking-wider">Quality Management</span>
-          </div>
-          <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
-            6-Stage Quality<br /><span className="text-amber-400">Control System</span>
-          </h1>
-          <p className="text-lg text-slate-300 max-w-2xl">
-            Production batches are reviewed through the applicable inspection stages defined in the approved specification and order quality plan.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        bgImage={qcHeroImage}
+        bgImageAlt="ZhixinPaper quality control workflow for thermal paper and label production"
+        overlayDir="left"
+        overlayOpacity={60}
+        minHeight="min-h-[380px]"
+        compact
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Manufacturing", href: "/manufacturing" }, { label: "Quality Control" }]}
+        badge={{ text: "Manufacturing", color: "amber", icon: <Shield className="w-4 h-4" /> }}
+        eyebrow="Inspection plan and release controls"
+        title={<>6-Stage Quality <span className="text-amber-400">Control System</span></>}
+        subtitle="Production batches are reviewed through the applicable inspection stages defined in the approved specification and order quality plan."
+        trustBadges={[
+          "Incoming Material Checks",
+          "In-Process Control",
+          "Traceability Records",
+          "Batch Release Review",
+        ]}
+        mobileTrustBadgeLimit={2}
+        ctas={[
+          { label: "See QC Stages", href: "#qc-stages", variant: "primary" },
+          { label: "Request QC Review", href: "#inquiry", variant: "outline" },
+        ]}
+      />
 
       <div className="container py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

@@ -12,6 +12,7 @@ import InquiryForm from "@/components/shared/InquiryForm";
 import PageHero from "@/components/shared/PageHero";
 import ProductCategoryActionLink from "@/components/products/category/ProductCategoryActionLink";
 import QuickQuoteBrief from "@/components/products/QuickQuoteBrief";
+import { HERO_LIMITS } from "@/lib/heroLimits";
 import { cn } from "@/lib/utils";
 import type {
   ProductCategoryConfig,
@@ -95,7 +96,7 @@ export default function ProductCategoryTemplate({
         bgImageAlt={config.hero.image.alt}
         overlayDir="left"
         overlayOpacity={72}
-        minHeight="min-h-[430px]"
+        minHeight={HERO_LIMITS.pageHeroMinHeight}
         compact
         breadcrumbs={config.breadcrumbs.map((item, index) => ({
           label: item.name,
@@ -111,7 +112,7 @@ export default function ProductCategoryTemplate({
         }
         subtitle={config.hero.description}
         trustBadges={config.hero.trustBadges}
-        stats={config.hero.facts}
+        stats={undefined}
         mobileTrustBadgeLimit={2}
         mobileStatLimit={2}
         ctas={[
@@ -129,6 +130,19 @@ export default function ProductCategoryTemplate({
           },
         ]}
       />
+
+      <section className="border-b border-slate-200 bg-slate-50" aria-label="Category facts">
+          <div className="container grid grid-cols-2 divide-x divide-slate-200 sm:grid-cols-4">
+            {config.hero.facts.map((fact) => (
+              <div key={fact.label} className="min-w-0 px-3 py-3 text-center sm:px-4 sm:py-4">
+                <p className="text-lg font-semibold leading-none text-brand-navy sm:text-xl">{fact.value}</p>
+                <p className="mt-1 break-words text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500 sm:text-[11px]">
+                  {fact.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
 
       <nav
         data-category-jump-nav

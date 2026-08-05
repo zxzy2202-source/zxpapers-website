@@ -11,4 +11,6 @@ export const HERO_LIMITS = {
   bannerAlt: 140,
   banners: 3,
   carouselIntervalMs: { min: 3000, max: 15000 },
+  pageHeroMinHeight: "min-h-[360px] sm:min-h-[400px] lg:min-h-[440px]",
+  pageHeroWithSlotMinHeight: "min-h-[400px] sm:min-h-[460px] lg:min-h-[500px]",
 } as const;

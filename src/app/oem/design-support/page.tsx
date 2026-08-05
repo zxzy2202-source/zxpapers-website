@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
+import PageHero from "@/components/shared/PageHero";
 import { SITE } from "@/config/siteData";
-import { Palette, FileImage, Layers, CheckCircle, ArrowRight, Printer } from "lucide-react";
+import { Palette, FileImage, Layers, CheckCircle, ArrowRight, Printer, MessageSquare, Phone } from "lucide-react";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 
 const OEM_DESIGN_SUPPORT_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-custom-printing-LUkP5mysubyQvqY9CtfS3J.webp";
@@ -84,26 +84,30 @@ export default async function DesignSupportPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="page-hero">
-        {heroImage && (
-          <div className="absolute inset-0">
-            <Image src={heroImage} alt="" fill priority sizes="100vw" className="object-cover opacity-30" />
-            <div className="absolute inset-0 bg-brand-navy/75" />
-          </div>
-        )}
-        <div className="page-hero-content">
-          <div className="text-xs text-amber-400 font-semibold uppercase tracking-widest mb-3">
-            <Link href="/oem" className="hover:text-amber-300 transition-colors">OEM Services</Link>
-            {" "}&rsaquo;{" "}Design Support
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4">
-            OEM <span className="text-amber-400">Design Support</span>
-          </h1>
-          <p className="text-lg text-slate-300 max-w-2xl">
-            Artwork and pre-press support helps align each custom run with the approved artwork and agreed color and print tolerances.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        bgImage={heroImage}
+        bgImageAlt="ZhixinPaper OEM design support and pre-press workflow for thermal paper and labels"
+        overlayDir="left"
+        overlayOpacity={62}
+        minHeight="min-h-[380px]"
+        compact
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "OEM Services", href: "/oem" }, { label: "Design Support" }]}
+        badge={{ text: "OEM Service", color: "amber" }}
+        eyebrow="Artwork review, proofing and color control"
+        title={<>OEM <span className="text-amber-400">Design Support</span></>}
+        subtitle="Artwork and pre-press support helps align each custom run with the approved artwork and agreed color and print tolerances."
+        trustBadges={[
+          "Artwork Intake",
+          "Pre-Press Review",
+          "Color Matching",
+          "Proof Approval",
+        ]}
+        mobileTrustBadgeLimit={2}
+        ctas={[
+          { label: "Request Design Review", href: "#design-support-form", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
+          { label: "WhatsApp Design Team", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need OEM design support for thermal rolls or labels.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
+        ]}
+      />
 
       <div className="container py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

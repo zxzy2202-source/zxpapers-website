@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/shared/PageHero";
 import { CheckCircle, Cpu, ArrowRight, Microscope, Settings, Wind } from "lucide-react";
 import { SITE } from "@/config/siteData";
 import { getSlotImage } from "@/lib/imageSlotUtils";
@@ -92,26 +93,30 @@ export default async function EquipmentPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="relative bg-brand-navy text-white py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-15" style={{ backgroundImage: `url(${equipmentHeroImage})` }} />
-        <div className="relative container">
-          <div className="text-amber-400 text-sm font-semibold mb-3">
-            <Link href="/manufacturing" className="hover:underline">Manufacturing</Link> / Equipment
-          </div>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
-              <Cpu className="w-6 h-6 text-amber-400" />
-            </div>
-            <span className="text-amber-400 text-sm font-semibold uppercase tracking-wider">Production Equipment</span>
-          </div>
-          <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
-            Thermal Paper<br /><span className="text-amber-400">Manufacturing Equipment</span>
-          </h1>
-          <p className="text-lg text-slate-300 max-w-2xl">
-            Equipment ratings describe installed capability; actual output and acceptance criteria depend on product mix, specification, and production scheduling.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        bgImage={equipmentHeroImage}
+        bgImageAlt="ZhixinPaper thermal paper manufacturing equipment and converting lines"
+        overlayDir="left"
+        overlayOpacity={60}
+        minHeight="min-h-[380px]"
+        compact
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Manufacturing", href: "/manufacturing" }, { label: "Equipment" }]}
+        badge={{ text: "Manufacturing", color: "amber", icon: <Cpu className="w-4 h-4" /> }}
+        eyebrow="Installed equipment and process capability"
+        title={<>Thermal Paper <span className="text-amber-400">Manufacturing Equipment</span></>}
+        subtitle="Equipment ratings describe installed capability; actual output and acceptance criteria depend on product mix, specification, and production scheduling."
+        trustBadges={[
+          "Coating Lines",
+          "Slitting & Rewinding",
+          "Label Converting",
+          "Testing Lab",
+        ]}
+        mobileTrustBadgeLimit={2}
+        ctas={[
+          { label: "Browse Equipment", href: "#equipment-categories", variant: "primary" },
+          { label: "Discuss Capacity", href: "/contact", variant: "outline" },
+        ]}
+      />
 
       <div className="container py-16 space-y-14">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

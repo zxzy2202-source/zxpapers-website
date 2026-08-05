@@ -18,6 +18,7 @@ import {
   ShieldCheck,
   Tags,
 } from "lucide-react";
+import { HERO_LIMITS } from "@/lib/heroLimits";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import InquiryForm from "@/components/shared/InquiryForm";
@@ -379,7 +380,7 @@ export default function ProductsCatalogPage({ heroImage, whatsappHref, families,
         bgImageAlt="ZhixinPaper thermal paper rolls, labels and NCR forms product catalog — factory-direct B2B supply"
         overlayDir="left"
         overlayOpacity={62}
-        minHeight="min-h-[360px]"
+        minHeight={HERO_LIMITS.pageHeroMinHeight}
         compact
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
         title={<>Thermal Paper &amp; <span className="text-amber-400">Label Products</span></>}

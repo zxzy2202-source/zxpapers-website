@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
-import { ArrowRight, Globe, Package, Star } from "lucide-react";
+import PageHero from "@/components/shared/PageHero";
+import { ArrowRight, Globe, Package, Star, MessageSquare, Phone } from "lucide-react";
 import { SITE } from "@/config/siteData";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 
@@ -56,16 +57,30 @@ export default async function CaseStudiesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="relative bg-brand-navy text-white py-14 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${heroImage})` }} />
-        <div className="relative container">
-          <div className="text-amber-400 text-sm font-semibold mb-3">
-            <Link href="/oem" className="hover:underline">OEM</Link> / Case Studies
-          </div>
-          <h1 className="font-sora text-4xl font-extrabold mb-3">OEM Case Studies</h1>
-          <p className="text-slate-300 max-w-xl">Real results from global clients who trust ZhixinPaper for their OEM thermal paper needs.</p>
-        </div>
-      </div>
+      <PageHero
+        bgImage={heroImage}
+        bgImageAlt="ZhixinPaper OEM case studies and client success stories for thermal paper and label projects"
+        overlayDir="left"
+        overlayOpacity={62}
+        minHeight="min-h-[380px]"
+        compact
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "OEM Services", href: "/oem" }, { label: "Case Studies" }]}
+        badge={{ text: "OEM Service", color: "amber" }}
+        eyebrow="Distributor and retailer project outcomes"
+        title={<>OEM <span className="text-amber-400">Case Studies</span></>}
+        subtitle="Real results from global clients who trust ZhixinPaper for their OEM thermal paper needs."
+        trustBadges={[
+          "Global Distributor Projects",
+          "Private Label Rollouts",
+          "Logistics Label Scale",
+          "Repeat Supply Programs",
+        ]}
+        mobileTrustBadgeLimit={2}
+        ctas={[
+          { label: "View OEM Partnership", href: "/contact/oem-partnership", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
+          { label: "WhatsApp OEM Team", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I want to discuss an OEM project after reviewing your case studies.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
+        ]}
+      />
       <div className="container py-14">
         <div className="space-y-8 mb-16">
           {cases.map((c) => (

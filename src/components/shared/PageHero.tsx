@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ReactNode, useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { HERO_LIMITS } from "@/lib/heroLimits";
 
 export interface HeroBadge {
   icon?: ReactNode;
@@ -69,13 +70,18 @@ export interface PageHeroProps {
   rightSlot?: ReactNode;
   /** Compact slot rendered below hero content on mobile/tablet */
   mobileRightSlot?: ReactNode;
-  /** Min height class */
+  /** Place the mobile slot before stats instead of after */
+  mobileRightSlotBeforeStats?: boolean;
+  /** Min height class. Defaults to the shared compact page-banner standard. */
   minHeight?: string;
   /** Tighter homepage composition that keeps the primary CTA above the fold */
   compact?: boolean;
   /** Extra class names */
   className?: string;
 }
+
+export const STANDARD_PAGE_HERO_MIN_HEIGHT = HERO_LIMITS.pageHeroMinHeight;
+export const STANDARD_PAGE_HERO_WITH_SLOT_MIN_HEIGHT = HERO_LIMITS.pageHeroWithSlotMinHeight;
 
 const badgeColors = {
   amber: "bg-amber-500/20 text-amber-300 border-amber-500/30",
@@ -105,7 +111,8 @@ export default function PageHero({
   ctas,
   rightSlot,
   mobileRightSlot,
-  minHeight = "min-h-[520px]",
+  mobileRightSlotBeforeStats = false,
+  minHeight = STANDARD_PAGE_HERO_MIN_HEIGHT,
   compact = false,
   className = "",
 }: PageHeroProps) {
@@ -357,6 +364,12 @@ export default function PageHero({
                 </div>
               )}
 
+              {mobileRightSlot && mobileRightSlotBeforeStats && (
+                <div className="mt-6 lg:hidden">
+                  {mobileRightSlot}
+                </div>
+              )}
+
               {/* Stats */}
               {stats && stats.length > 0 && (
                 <div className={`grid grid-cols-1 min-[380px]:grid-cols-2 ${statsGridClass} gap-3`}>
@@ -379,7 +392,7 @@ export default function PageHero({
                 </div>
               )}
 
-              {mobileRightSlot && (
+              {mobileRightSlot && !mobileRightSlotBeforeStats && (
                 <div className="mt-6 lg:hidden">
                   {mobileRightSlot}
                 </div>

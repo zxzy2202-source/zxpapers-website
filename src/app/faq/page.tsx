@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/shared/PageHero";
 import { ArrowRight } from "lucide-react";
 import {
   Accordion,
@@ -70,16 +71,25 @@ export default function FAQPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-brand-navy text-white py-16">
-        <div className="container">
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 font-sora">
-            Frequently Asked <span className="text-amber-400">Questions</span>
-          </h1>
-          <p className="text-lg text-slate-300 max-w-2xl">
-            Find answers to common questions about our products, OEM services, and ordering process.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "FAQ" },
+        ]}
+        eyebrow="Support Center"
+        title={<>Frequently Asked <span className="text-amber-400">Questions</span></>}
+        subtitle="Find answers to common questions about product specifications, OEM services, order planning, compliance documents, and the information our team needs to confirm your request."
+        trustBadges={[
+          "Product and OEM coverage",
+          "Specification-first answers",
+          "Direct path to the sales team",
+        ]}
+        ctas={[
+          { label: "Contact Us", href: "/contact", variant: "primary", icon: <ArrowRight className="w-4 h-4" /> },
+        ]}
+        minHeight="min-h-[340px]"
+        compact
+      />
 
       <div className="container py-16 max-w-4xl">
         <div className="mb-12">

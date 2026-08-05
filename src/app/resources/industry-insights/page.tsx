@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/shared/PageHero";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { ChevronRight } from "lucide-react";
 import { SITE } from "@/config/siteData";
@@ -55,31 +56,27 @@ export default async function IndustryInsightsPage() {
     <Layout>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
-      <div className="bg-brand-navy text-white py-14">
-        <div className="container">
-          <div className="flex items-center gap-2 mb-3">
-            <Link
-              href="/resources"
-              className="text-amber-400 text-xs font-bold uppercase tracking-wider hover:underline"
-            >
-              Resources
-            </Link>
-            <span className="text-slate-500">·</span>
-            <span className="text-amber-400 text-xs font-bold uppercase tracking-wider">
-              Industry Insights
-            </span>
-          </div>
-          <h1 className="font-sora text-3xl sm:text-4xl font-extrabold mb-3">
-            Thermal Paper Industry
-            <br />
-            <span className="text-amber-400">Insights & Market Updates</span>
-          </h1>
-          <p className="text-slate-300 max-w-2xl text-base">
-            Market analysis, regulatory updates, and strategic insights for thermal paper
-            distributors, buyers, and brand owners.
-          </p>
-        </div>
-      </div>
+      <PageHero
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Resources", href: "/resources" },
+          { label: "Industry Insights" },
+        ]}
+        eyebrow="Resources"
+        title={<>Thermal Paper Industry<br /><span className="text-amber-400">Insights & Market Updates</span></>}
+        subtitle="Market analysis, regulatory updates, and strategic insights for thermal paper distributors, buyers, and brand owners."
+        trustBadges={[
+          "Regulatory and market tracking",
+          "Procurement-focused commentary",
+          "Fresh insight roundups",
+        ]}
+        ctas={[
+          { label: "Browse All Resources", href: "/resources", variant: "primary" },
+          { label: "Request a Quote", href: "/contact", variant: "outline" },
+        ]}
+        minHeight="min-h-[360px]"
+        compact
+      />
 
       <div className="container py-14">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

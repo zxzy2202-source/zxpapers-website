@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
+import PageHero from "@/components/shared/PageHero";
 import { CheckCircle, Mail, Phone, Clock } from "lucide-react";
 import { SITE } from "@/config/siteData";
 
@@ -46,19 +47,28 @@ export default function OEMPartnershipPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-brand-navy text-white py-14">
-        <div className="container">
-          <div className="flex items-center gap-2 mb-3">
-            <Link href="/contact" className="text-amber-400 text-xs font-bold uppercase tracking-wider hover:underline">Contact</Link>
-            <span className="text-slate-500">·</span>
-            <span className="text-amber-400 text-xs font-bold uppercase tracking-wider">OEM Partnership</span>
-          </div>
-          <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
-            Start Your<br /><span className="text-amber-400">OEM Partnership</span>
-          </h1>
-          <p className="text-slate-300 max-w-2xl text-lg">Tell us your requirements and we will review the project details, NDA needs, quotation scope, and sample timeline with you.</p>
-        </div>
-      </div>
+      <PageHero
+        overlayDir="left"
+        overlayOpacity={62}
+        minHeight="min-h-[380px]"
+        compact
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact", href: "/contact" }, { label: "OEM Partnership" }]}
+        badge={{ text: "Contact", color: "amber" }}
+        eyebrow="Project intake, NDA and sample timing"
+        title={<>Start Your <span className="text-amber-400">OEM Partnership</span></>}
+        subtitle="Tell us your requirements and we will review the project details, NDA needs, quotation scope, and sample timeline with you."
+        trustBadges={[
+          "Project Scope Review",
+          "NDA Discussion",
+          "Sample Planning",
+          "OEM Team Follow-Up",
+        ]}
+        mobileTrustBadgeLimit={2}
+        ctas={[
+          { label: "Submit Inquiry", href: "#oem-inquiry", variant: "primary" },
+          { label: "Talk to OEM Team", href: `mailto:${SITE.email}`, variant: "outline" },
+        ]}
+      />
 
       <div className="container py-14">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

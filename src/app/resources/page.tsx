@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
+import PageHero from "@/components/shared/PageHero";
 import { BookOpen, TrendingUp, Users, Lightbulb, ArrowRight, Clock } from "lucide-react";
 import { SITE } from "@/config/siteData";
 
@@ -53,15 +54,28 @@ export default function ResourcesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-brand-navy text-white py-14">
-        <div className="container">
-          <div className="text-amber-400 text-sm font-semibold mb-3">Resource Center</div>
-          <h1 className="font-sora text-4xl sm:text-5xl font-extrabold mb-4">
-            Thermal Paper<br /><span className="text-amber-400">Knowledge Hub</span>
-          </h1>
-          <p className="text-slate-300 max-w-2xl text-lg">Comprehensive guides, technical knowledge, and market insights for thermal paper buyers, distributors, and OEM partners worldwide.</p>
-        </div>
-      </div>
+      <PageHero
+        overlayDir="left"
+        overlayOpacity={62}
+        minHeight="min-h-[380px]"
+        compact
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Resources" }]}
+        badge={{ text: "Resource Center", color: "amber", icon: <BookOpen className="w-4 h-4" /> }}
+        eyebrow="Guides, market insights and buying references"
+        title={<>Thermal Paper <span className="text-amber-400">Knowledge Hub</span></>}
+        subtitle="Comprehensive guides, technical knowledge, and market insights for thermal paper buyers, distributors, and OEM partners worldwide."
+        trustBadges={[
+          "OEM Guides",
+          "Technical Explainers",
+          "Application Cases",
+          "Market Insights",
+        ]}
+        mobileTrustBadgeLimit={2}
+        ctas={[
+          { label: "Browse Guides", href: "#resource-grid", variant: "primary" },
+          { label: "Request Quote", href: "/contact", variant: "outline" },
+        ]}
+      />
 
       <div className="container py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">

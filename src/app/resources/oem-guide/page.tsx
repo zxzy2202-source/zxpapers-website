@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
+import PageHero from "@/components/shared/PageHero";
 import { CheckCircle, ArrowRight, Package, ShieldCheck, Globe, Lightbulb, Clock, ChevronRight, AlertTriangle, DollarSign, FileText, Truck } from "lucide-react";
 import LatestArticles from "@/components/shared/LatestArticles";
 import { buildMetadata } from "@/lib/seo";
@@ -54,21 +55,28 @@ export default function OEMGuidePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="bg-brand-navy text-white py-14">
-        <div className="container">
-          <div className="flex items-center gap-2 mb-3">
-            <Link href="/resources" className="text-amber-400 text-xs font-bold uppercase tracking-wider hover:underline">Resources</Link>
-            <span className="text-slate-500">·</span>
-            <span className="text-amber-400 text-xs font-bold uppercase tracking-wider">OEM Guide</span>
-            <span className="text-slate-500">·</span>
-            <span className="text-slate-400 text-xs flex items-center gap-1"><Clock className="w-3 h-3" /> 15 min read</span>
-          </div>
-          <h1 className="font-sora text-3xl sm:text-4xl font-extrabold mb-3 max-w-3xl leading-tight">
-            The Complete Guide to<br /><span className="text-amber-400">Thermal Paper OEM Manufacturing</span>
-          </h1>
-          <p className="text-slate-300 max-w-2xl text-base">Everything a distributor or brand owner needs to know about sourcing custom thermal paper rolls and labels — from MOQ and sampling to private label packaging, quality control, and avoiding the most common sourcing pitfalls.</p>
-        </div>
-      </div>
+      <PageHero
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Resources", href: "/resources" },
+          { label: "OEM Guide" },
+        ]}
+        eyebrow="Resources"
+        badge={{ text: "15 min read", color: "amber" }}
+        title={<>The Complete Guide to<br /><span className="text-amber-400">Thermal Paper OEM Manufacturing</span></>}
+        subtitle="Everything a distributor or brand owner needs to know about sourcing custom thermal paper rolls and labels, from MOQ and sampling to private-label packaging, quality control, and the most common sourcing pitfalls."
+        trustBadges={[
+          "MOQ and sampling checkpoints",
+          "Private-label packaging workflow",
+          "OEM quality-control guidance",
+        ]}
+        ctas={[
+          { label: "Explore OEM Services", href: "/oem", variant: "primary" },
+          { label: "Request an OEM Quote", href: "/contact", variant: "outline" },
+        ]}
+        minHeight="min-h-[380px]"
+        compact
+      />
 
       <div className="container py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

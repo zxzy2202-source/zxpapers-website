@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import PageHero from "@/components/shared/PageHero";
+import { CheckCircle, ArrowRight, MessageSquare, Phone } from "lucide-react";
 import { SITE } from "@/config/siteData";
 import { getSlotImage } from "@/lib/imageSlotUtils";
 
@@ -50,16 +51,25 @@ export default async function PackagingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="relative bg-brand-navy text-white py-14 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${heroImage})` }} />
-        <div className="relative container">
-          <div className="text-amber-400 text-sm font-semibold mb-3">
-            <Link href="/oem" className="hover:underline">OEM</Link> / Packaging
-          </div>
-          <h1 className="font-sora text-4xl font-extrabold mb-3">Packaging &amp; Private Label</h1>
-          <p className="text-slate-300 max-w-xl">Complete private label solutions — from custom box design to branded packaging.</p>
-        </div>
-      </div>
+      <PageHero
+        bgImage={heroImage}
+        bgImageAlt="ZhixinPaper OEM packaging and private label service for thermal paper rolls and labels"
+        overlayDir="left"
+        overlayOpacity={62}
+        minHeight="min-h-[380px]"
+        compact
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "OEM Services", href: "/oem" }, { label: "Packaging" }]}
+        badge={{ text: "OEM Service", color: "amber" }}
+        eyebrow="Private label packaging and packing control"
+        title={<>Packaging &amp; <span className="text-amber-400">Private Label</span></>}
+        subtitle="Coordinate box design, shrink wrap, carton structure, retail presentation and repeat-order packing rules through one OEM packaging workflow."
+        trustBadges={["Custom Box Design", "Retail & Bulk Packs", "Packing References", "Repeat-Order Control"]}
+        mobileTrustBadgeLimit={2}
+        ctas={[
+          { label: "Request Packaging Quote", href: "/contact", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
+          { label: "WhatsApp Packaging Team", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I need a private label packaging review for thermal rolls or labels.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
+        ]}
+      />
       <div className="container py-14">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2 space-y-8">

@@ -92,6 +92,7 @@ export default function ZhixinVsPandaPage() {
           overlayDir="left"
           overlayOpacity={70}
           minHeight="min-h-[380px]"
+          compact
           breadcrumbs={[{ label: "Home", href: "/" }, { label: "ZhixinPaper vs Panda Paper Roll" }]}
           badge={{ text: "Supplier Comparison", color: "amber" }}
           title={<>ZhixinPaper vs Panda Paper Roll</>}
