@@ -91,7 +91,7 @@ export const revalidate = 3600; // 1 hour: slot images change infrequently
 
 export default async function ManufacturingPage() {
   const imgs = await getSlotImages([
-    { slot: "manufacturing:hero", fallback: "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-aerial-overview-Ck4AoJiKqjGKsLxnYqGRbU.webp" },
+    { slot: "manufacturing:hero", fallback: IMG_AERIAL },
     { slot: "manufacturing:facility-aerial", fallback: IMG_AERIAL },
     { slot: "manufacturing:facility-line", fallback: IMG_COATING },
   ]);
@@ -108,36 +108,52 @@ export default async function ManufacturingPage() {
         bgImage={imgs["manufacturing:hero"]}
         bgImageAlt="ZhixinPaper paper and label production facility with manufacturing equipment"
         overlayDir="left"
-        overlayOpacity={50}
+        overlayOpacity={56}
+        minHeight="min-h-[390px]"
+        compact
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Manufacturing" }]}
         eyebrow="Paper and Label Manufacturing"
         badge={{ icon: <Factory className="w-4 h-4" />, text: `${FACTORY.area} · Xi'an, China`, color: "blue" }}
         title={<>Manufacturing <span className="text-amber-400">Capabilities</span></>}
         subtitle={`${FACTORY.productionLines} production lines and ${FACTORY.annualOutputLabel.toLowerCase()}. ${FACTORY.capacityBasis}. FCL timing is confirmed by product, material, and production-slot availability.`}
         trustBadges={["Specification Review", "Batch Records", "Sampling Plans", "Test Reports on Request", "Order-Specific Evidence"]}
+        mobileTrustBadgeLimit={2}
         ctas={[
           { label: "Request Factory Audit", href: "/contact", variant: "primary", icon: <MessageSquare className="w-4 h-4" /> },
           { label: "WhatsApp Factory Team", href: `${SITE.whatsappUrl}?text=${encodeURIComponent("Hello, I'd like to learn about your manufacturing capabilities and request a factory audit.")}`, variant: "whatsapp", icon: <Phone className="w-4 h-4" />, external: true },
         ]}
-        stats={[
-          { value: FACTORY.area, label: "Factory Area" },
-          { value: FACTORY.productionLines, label: "Production Lines" },
-          { value: FACTORY.annualOutput, label: "Annual Output" },
-          { value: "By Order", label: "FCL Loading Schedule" },
-        ]}
+        stats={undefined}
       />
+
+      <section className="border-b border-slate-200 bg-slate-50" aria-label="Manufacturing facts">
+        <div className="container grid grid-cols-2 divide-x divide-slate-200 sm:grid-cols-4">
+          {[
+            { value: FACTORY.area, label: "Factory Area" },
+            { value: FACTORY.productionLines, label: "Production Lines" },
+            { value: FACTORY.annualOutput, label: "Annual Output" },
+            { value: "By Order", label: "FCL Loading Schedule" },
+          ].map((fact) => (
+            <div key={fact.label} className="min-w-0 px-3 py-3 text-center sm:px-4 sm:py-4">
+              <p className="text-lg font-semibold leading-none text-brand-navy sm:text-xl">{fact.value}</p>
+              <p className="mt-1 break-words text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500 sm:text-[11px]">
+                {fact.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
       {/* ── Quick Nav ────────────────────────────────────────────── */}
       <div className="container py-10">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {capabilities.map(({ title, desc, href, icon: Icon }) => (
             <Link key={href} href={href}
-              className="group p-5 bg-white border border-slate-200 hover:border-blue-300 rounded-2xl hover:shadow-lg transition-all duration-200">
-              <div className="w-10 h-10 bg-blue-100 group-hover:bg-blue-600 rounded-xl flex items-center justify-center mb-3 transition-colors">
-                <Icon className="w-5 h-5 text-blue-600 group-hover:text-white transition-colors" />
+              className="group p-5 bg-white border border-slate-200 hover:border-amber-300 rounded-2xl hover:shadow-lg transition-all duration-200">
+                <div className="w-10 h-10 bg-amber-50 group-hover:bg-brand-navy rounded-xl flex items-center justify-center mb-3 transition-colors">
+                  <Icon className="w-5 h-5 text-amber-700 group-hover:text-white transition-colors" />
               </div>
               <h3 className="font-bold text-slate-900 text-sm mb-1">{title}</h3>
               <p className="text-xs text-slate-500 leading-relaxed mb-2">{desc}</p>
-              <span className="inline-flex items-center gap-1 text-xs text-blue-600 font-semibold">
+              <span className="inline-flex items-center gap-1 text-xs text-brand-navy font-semibold">
                 Learn More <ArrowRight className="w-3 h-3" />
               </span>
             </Link>

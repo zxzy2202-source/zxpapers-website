@@ -1,17 +1,23 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight, Package, ShieldCheck, Globe, Lightbulb, Clock, ChevronRight, AlertTriangle, DollarSign, FileText, Truck } from "lucide-react";
-import { SITE } from "@/config/siteData";
 import LatestArticles from "@/components/shared/LatestArticles";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "OEM Thermal Paper Guide | MOQ & Private Label",
-  description: "Everything distributors need to know about thermal paper OEM manufacturing: MOQ, sampling process, private label packaging, customization options, lead.",
-  keywords: "thermal paper OEM, custom thermal rolls, private label thermal paper, thermal paper manufacturer, BPA-free thermal paper OEM",
-  alternates: { canonical: `${SITE.domain}/resources/oem-guide` },
-};
+  description:
+    "Plan thermal paper OEM sourcing by reviewing minimum orders, sampling, private-label packaging, customization, quality controls, and delivery inputs.",
+  path: "/resources/oem-guide",
+  keywords: [
+    "thermal paper OEM",
+    "custom thermal rolls",
+    "private label thermal paper",
+    "thermal paper manufacturer",
+    "BPA-free thermal paper OEM",
+  ],
+});
 
 
 const breadcrumbSchema = {

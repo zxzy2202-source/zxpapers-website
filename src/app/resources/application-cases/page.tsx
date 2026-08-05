@@ -1,20 +1,26 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight, Package, Globe, ShieldCheck, Tag, BarChart3, Printer, ChevronRight, Clock } from "lucide-react";
-import { SITE } from "@/config/siteData";
 import Image from "next/image";
 import { getSlotImages } from "@/lib/imageSlotUtils";
 import type { SlotKey } from "@/config/imageSlots";
 import LatestArticles from "@/components/shared/LatestArticles";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Application Cases | Retail & Logistics",
-  description: "In-depth thermal paper application guide for 6 major industries: retail POS, food service, e-commerce logistics, healthcare, parking & transportation, and.",
-  keywords: "thermal paper applications, POS receipt paper, shipping label thermal paper, healthcare thermal labels, restaurant kitchen printer paper",
-  alternates: { canonical: `${SITE.domain}/resources/application-cases` },
-};
+  description:
+    "Review thermal paper and label application requirements for retail POS, food service, logistics, healthcare, parking, transportation, and ticketing.",
+  path: "/resources/application-cases",
+  keywords: [
+    "thermal paper applications",
+    "POS receipt paper",
+    "shipping label thermal paper",
+    "healthcare thermal labels",
+    "restaurant kitchen printer paper",
+  ],
+});
 
 const appCases = [
   {

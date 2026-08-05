@@ -38,19 +38,50 @@ export const metadata: Metadata = {
 };
 
 const faqs = [
-  { q: "What is the minimum order quantity?", a: "MOQ is 1 carton for standard sizes. For OEM/private label, MOQ starts from 500 rolls." },
-  { q: "How long does it take to get a quote?", a: "We review complete inquiries within one business day. WhatsApp is available for quick questions during business hours." },
-  { q: "Do you offer free samples?", a: "Yes, we offer free samples for qualified buyers. Shipping cost at buyer's expense." },
-  { q: "What payment terms do you accept?", a: "T/T, L/C at sight, Western Union, and PayPal for small orders. Flexible terms for regular buyers." },
+  { q: "What is the minimum order quantity?", a: "Order quantity depends on the product, specification, material, packing and production plan. We confirm the applicable MOQ during specification review." },
+  { q: "How long does it take to get a quote?", a: "We aim to review complete inquiries within one business day. Timing depends on the information provided and the scope of the request." },
+  { q: "Do you offer samples?", a: "Sample availability, specification and shipping arrangements are confirmed for each project before dispatch." },
+  { q: "What payment terms do you accept?", a: "Payment terms are confirmed with the quotation based on order scope, destination, commercial review and buyer approval." },
 ];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.zxpapers.com" },
-    { "@type": "ListItem", position: 2, name: "Contact", item: "https://www.zxpapers.com/contact" },
+    { "@type": "ListItem", position: 1, name: "Home", item: `${SITE.domain}/` },
+    { "@type": "ListItem", position: 2, name: "Contact", item: `${SITE.domain}/contact` },
   ],
+};
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "@id": `${SITE.domain}/contact#contact-page`,
+  url: `${SITE.domain}/contact`,
+  name: `Contact ${SITE.name} | Product & OEM Inquiries`,
+  description: `Contact ${SITE.name} about thermal paper rolls, labels, NCR forms, OEM printing, specifications, samples, packing and destination requirements.`,
+  isPartOf: { "@id": `${SITE.domain}/#website` },
+  mainEntity: {
+    "@type": "Organization",
+    "@id": `${SITE.domain}/#organization`,
+    name: SITE.name,
+    email: SITE.email,
+    telephone: SITE.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Building 15, Phase 1 Zone 2, Ronghao Industrial Park, Gaoling District",
+      addressLocality: "Xi'an",
+      addressRegion: "Shaanxi",
+      addressCountry: "CN",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: SITE.phone,
+      email: SITE.email,
+      contactType: "sales",
+      availableLanguage: ["English", "Chinese"],
+    },
+  },
 };
 
 const CONTACT_HERO_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
@@ -88,6 +119,10 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
       />
 
       <PageHero
@@ -131,7 +166,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             </span>
             <span>
               <span className="block text-xs font-medium text-slate-500">Response target</span>
-              <span className="block text-sm font-semibold text-slate-900">Within one business day</span>
+              <span className="block text-sm font-semibold text-slate-900">Initial review target: one business day</span>
             </span>
           </div>
         </div>
@@ -216,8 +251,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     formId="inquiry-form"
                     productName={productContext}
                     initialMessage={initialMessage}
-                    responseNote="Your request goes directly to our sales team. Reply within one business day."
-                    successMessage="We'll respond within one business day."
+                    responseNote="Your request goes directly to our sales team. We aim to begin review within one business day after sufficient details are received."
+                    successMessage="Your inquiry was received. Review timing depends on the details and project scope."
                   />
                 </div>
               </div>

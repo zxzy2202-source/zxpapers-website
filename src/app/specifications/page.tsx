@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import { ArrowRight } from "lucide-react";
-import { SITE } from "@/config/siteData";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Thermal Paper Specifications | Technical Data",
-  description: "Complete technical specifications for all thermal paper rolls and labels: dimensions, paper weight, coating grades, image life, temperature range, and.",
-  alternates: { canonical: `${SITE.domain}/specifications` },
-};
+  description:
+    "Compare thermal paper roll and label dimensions, paper weights, coating grades, image-life references, temperature ranges, cores, and applications.",
+  path: "/specifications",
+});
 
 const rollSpecs = [
   { size: "80x80mm", width: "80mm", length: "80m", core: "12/25mm", od: "80mm", weight: "55-58gsm", life: "5-7 years", market: "Global POS" },

@@ -6,7 +6,6 @@ import { SITE } from "@/config/siteData";
 import ProductsCatalogPage from "@/components/products/ProductsCatalogPage";
 import type { CatalogFamily } from "@/components/products/ProductsCatalogPage";
 import { CAN_LABELS_IMG } from "./can-labels/can-labels-data";
-import { DETERGENT_LABELS_IMG } from "./detergent-labels/detergent-labels-data";
 import { ncrApplicationPages } from "./ncr-applications-data";
 import { ncrFormParts } from "./ncr-forms/ncr-forms-data";
 
@@ -22,7 +21,6 @@ export const metadata: Metadata = {
 const ROLLS_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-rolls-RQBrphmgzbAMk7eq3HsvNq.webp";
 const LABELS_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/product-thermal-labels-FgJ5U8LZDHPF5nwmD6Uqa5.webp";
 const CAN_LABELS_IMG_FB = CAN_LABELS_IMG;
-const DETERGENT_LABELS_IMG_FB = DETERGENT_LABELS_IMG;
 const NCR_FORMS_IMG_FB = "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80";
 const HERO_IMG_FB = "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
 
@@ -39,10 +37,16 @@ const catalogEntries: { name: string; path: string }[] = [
   ...paperRollSizes.map((size) => ({ name: `${size.label} Thermal Paper Roll`, path: `/products/thermal-rolls/${size.slug}` })),
   { name: "Blank Thermal Labels", path: "/products/thermal-labels/blank" },
   { name: "Custom Printed Thermal Labels", path: "/products/custom-printed-thermal-labels" },
-  ...labelSizes.map((size) => ({ name: `${size.label} Thermal Label`, path: `/products/thermal-labels/${size.slug}` })),
+  { name: "Shipping Labels", path: "/products/shipping-labels" },
   { name: "Barcode & Variable-Data Labels", path: "/products/barcode-labels" },
+  { name: "Linerless Labels", path: "/products/linerless-labels" },
+  { name: "3 1/8 x 263 ft Linerless Labels", path: "/products/linerless-labels/3-1-8-x-263" },
+  ...labelSizes.map((size) => ({ name: `${size.label} Thermal Label`, path: `/products/thermal-labels/${size.slug}` })),
   { name: "Product & Packaging Labels", path: "/products/product-labels" },
   { name: "Machine-Ready Roll Labels for Filling Lines", path: "/products/can-labels" },
+  { name: "Blank Can Labels", path: "/products/can-labels/blank" },
+  { name: "Custom Printed Can Labels", path: "/products/can-labels/custom-printed" },
+  { name: "Detergent & Household Labels", path: "/products/detergent-labels" },
   { name: "Blank Detergent & Household Labels", path: "/products/detergent-labels/blank" },
   { name: "Custom Printed Detergent & Household Labels", path: "/products/detergent-labels/custom-printed" },
   ...detergentLabelSizes.map((size) => ({ name: `${size.label} Detergent & Household Label`, path: `/products/detergent-labels/${size.slug}` })),
@@ -97,12 +101,12 @@ const faqs = [
     a: "Popular stock formats include 57mm and 80mm thermal rolls, 4 x 6 inch shipping labels, standard can and bottle label dimensions, and 2-part to multi-part NCR forms. Custom widths, shapes, and form sizes can be produced to specification.",
   },
   {
-    q: "What is the minimum order quantity?",
-    a: "Stock sizes are available from low volume. Custom sizes, printing, adhesives, numbering, or private-label packaging typically start at 5,000 units. MOQ depends on the material and conversion process, so send the product and quantity for confirmation.",
+    q: "How is the minimum order quantity confirmed?",
+    a: "MOQ is confirmed for the quoted product, material, size, printing, finishing, packing, and production route. Send the intended quantity and specification so the factory can confirm the applicable order threshold.",
   },
   {
-    q: "Where do you ship and how fast?",
-    a: "We export worldwide on FOB, CIF, or DDP terms. Stock items normally ship in 3 to 7 days, while custom production normally takes 10 to 18 days after artwork and specification approval.",
+    q: "How are shipping terms and production timing confirmed?",
+    a: "Available trade terms, production timing, and dispatch planning are confirmed in the quotation after the product specification, quantity, artwork or sample requirements, packing, and destination documents have been reviewed.",
   },
 ];
 
@@ -124,14 +128,12 @@ export default async function ProductsPage() {
     { slot: "products:thermal-rolls", fallback: ROLLS_IMG_FB },
     { slot: "products:thermal-labels", fallback: LABELS_IMG_FB },
     { slot: "products:can-labels", fallback: CAN_LABELS_IMG_FB },
-    { slot: "products:detergent-labels", fallback: DETERGENT_LABELS_IMG_FB },
     { slot: "products:ncr-forms", fallback: NCR_FORMS_IMG_FB },
   ]);
 
   const rollsImage = r2Image(images["products:thermal-rolls"]);
   const labelsImage = r2Image(images["products:thermal-labels"]);
   const canImage = r2Image(images["products:can-labels"]);
-  const bottleImage = r2Image(images["products:detergent-labels"]);
   const ncrImage = r2Image(images["products:ncr-forms"]);
 
   const families: CatalogFamily[] = [
@@ -222,59 +224,37 @@ export default async function ProductsPage() {
       ],
     },
     {
-      id: "can-labels",
-      navLabel: "Filling Line Labels",
-      title: "Machine-Ready Roll Labels for Filling Lines",
-      badge: "Automatic Label Applicators",
-      description: "Pressure-sensitive roll labels specified for automatic filling and labeling lines by applicator, core, roll diameter, unwind, gap, liner, sensor, speed, and container condition.",
-      href: "/products/can-labels",
+      id: "packaging-labels",
+      navLabel: "Printed & Packaging Labels",
+      title: "Printed & Packaging Labels",
+      badge: "Product, Bottle & Filling Line",
+      description: "Product, can, bottle, and machine-ready roll labels organized under one packaging family, with each route retaining its own container, material, printing, and applicator requirements.",
+      href: "/products/product-labels",
       image: canImage,
-      imageAlt: "Machine-ready roll labels for automatic filling and labeling lines",
-      facts: ["Applicator and line-speed review", "Controlled core, roll, unwind, liner, and sensor specification", "First-roll trial planning"],
-      applications: ["Beverage and food filling lines", "Personal-care and household-product bottling", "Multi-SKU co-packer and OEM lines"],
-      buyers: ["Filling plants and production engineers", "Co-packers and private-label manufacturers", "Packaging procurement teams and label distributors"],
+      imageAlt: "Printed packaging labels prepared for bottles, cans, and automatic labeling lines",
+      facts: ["Product and container review", "Material, adhesive, print, and finish configuration", "Manual and machine-applied supply routes"],
+      applications: ["Food, beverage, and retail product packaging", "Detergent, cleaner, personal-care, and household containers", "Automatic filling, labeling, and multi-SKU co-packing lines"],
+      buyers: ["Brand owners and packaging procurement teams", "Filling plants, co-packers, and production engineers", "Packaging integrators and label distributors"],
       groups: [
         {
-          title: "Start the line review",
+          title: "Choose by packaging route",
           links: [
-            { label: "Machine-Ready Roll Labels", href: "/products/can-labels", badge: "Overview" },
-            { label: "Custom Printed Thermal Labels", href: "/products/custom-printed-thermal-labels" },
-            { label: "Linerless Labels", href: "/products/linerless-labels" },
+            { label: "All Product & Packaging Labels", href: "/products/product-labels", badge: "Overview" },
+            { label: "Machine-Ready Roll Labels", href: "/products/can-labels" },
+            { label: "Detergent & Household Labels", href: "/products/detergent-labels" },
           ],
         },
         {
-          title: "Related packaging programs",
+          title: "Choose by configuration",
           links: [
-            { label: "Bottle & Household Labels", href: "/products/detergent-labels" },
-            { label: "Product & Packaging Labels", href: "/products/product-labels" },
-            { label: "OEM & Private Label Supply", href: "/oem" },
-          ],
-        },
-      ],
-    },
-    {
-      id: "bottle-labels",
-      navLabel: "Detergent & Household Labels",
-      title: "Detergent & Household Product Labels",
-      badge: "Bottle, Formula & Process Review",
-      description: "Custom printed and blank labels for detergent, cleaner, disinfectant, hand-soap, and industrial-cleaner containers, specified by bottle, formula exposure, handling, and application method.",
-      href: "/products/detergent-labels",
-      image: bottleImage,
-      imageAlt: "Detergent and household cleaning product bottles prepared for custom labels",
-      facts: ["HDPE, LDPE, PET, glass, and flexible-pack review", "Formula-contact and wet-hand test planning", "Printed, blank, manual, and machine-applied routes"],
-      applications: ["Laundry, fabric-care, and dishwashing bottles", "Household cleaner, disinfectant, and trigger-spray packaging", "Hand-soap, refill-pack, and industrial-cleaner containers"],
-      buyers: ["Detergent and cleaning-product brand owners", "OEM/ODM manufacturers and co-packers", "Packaging procurement, quality teams, and label distributors"],
-      groups: [
-        {
-          title: "Choose a supply route",
-          links: [
-            { label: "All Detergent & Household Labels", href: "/products/detergent-labels", badge: "Overview" },
+            { label: "Blank Can Labels", href: "/products/can-labels/blank" },
+            { label: "Custom Printed Can Labels", href: "/products/can-labels/custom-printed" },
             { label: "Blank Bottle Labels", href: "/products/detergent-labels/blank" },
             { label: "Custom Printed Bottle Labels", href: "/products/detergent-labels/custom-printed" },
           ],
         },
         {
-          title: "Reference label formats",
+          title: "Reference bottle label formats",
           links: detergentLabelSizes.map((size) => ({
             label: size.label,
             href: `/products/detergent-labels/${size.slug}`,

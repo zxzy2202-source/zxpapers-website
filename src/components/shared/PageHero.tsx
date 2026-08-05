@@ -33,9 +33,9 @@ export interface HeroBreadcrumb {
 export interface PageHeroProps {
   /** Background image URL */
   bgImage?: string;
-  /** Background image carousel URLs */
-  bgImages?: string[];
-  /** Alt text for background images (applied to all slides) */
+  /** Background image carousel URLs or per-slide image metadata */
+  bgImages?: Array<string | { src: string; alt?: string }>;
+  /** Alt text fallback for background images */
   bgImageAlt?: string;
   /** Carousel interval in milliseconds */
   bgCarouselInterval?: number;
@@ -109,7 +109,9 @@ export default function PageHero({
   compact = false,
   className = "",
 }: PageHeroProps) {
-  const heroImages = (bgImages?.length ? bgImages : bgImage ? [bgImage] : []).filter(Boolean);
+  const heroImages = (bgImages?.length ? bgImages : bgImage ? [bgImage] : [])
+    .map((image) => (typeof image === "string" ? { src: image, alt: bgImageAlt } : image))
+    .filter((image) => Boolean(image.src));
   const hasCarousel = heroImages.length > 1;
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -178,15 +180,15 @@ export default function PageHero({
 
             return (
               <div
-                key={`${image}-${slideIndex}`}
+                key={`${image.src}-${slideIndex}`}
                 className={`absolute inset-0 transition-opacity duration-1000 ${
                   slideIndex === activeSlide ? "opacity-100" : "opacity-0"
                 }`}
                 aria-hidden={slideIndex !== activeSlide}
               >
-                <Image
-                  src={image}
-                  alt={bgImageAlt || ""}
+                  <Image
+                    src={image.src}
+                    alt={image.alt || ""}
                   fill
                   priority={slideIndex === 0}
                   loading={slideIndex === 0 ? "eager" : undefined}
@@ -252,7 +254,7 @@ export default function PageHero({
               {/* Badge */}
               {badge && (
                 <div
-                  className={`inline-flex items-center gap-2 text-sm font-medium px-4 py-1.5 rounded-md border ${compact ? "mb-4" : "mb-5"} ${
+                  className={`inline-flex min-w-0 max-w-full items-center gap-2 break-words text-sm font-medium px-4 py-1.5 rounded-md border ${compact ? "mb-4" : "mb-5"} ${
                     badgeColors[badge.color ?? "amber"]
                   }`}
                 >
@@ -263,16 +265,16 @@ export default function PageHero({
 
               {/* Eyebrow */}
               {eyebrow && (
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex min-w-0 items-center gap-3 mb-4">
                   <div className="w-10 h-px bg-amber-400" />
-                  <span className="text-amber-300 text-[11px] font-semibold uppercase tracking-[0.22em]">
+                  <span className="min-w-0 break-words text-amber-300 text-[11px] font-semibold uppercase tracking-[0.22em]">
                     {eyebrow}
                   </span>
                 </div>
               )}
 
               {/* Title */}
-              <h1 className={`max-w-full font-semibold tracking-normal sm:tracking-[-0.03em] text-white ${
+              <h1 className={`max-w-full min-w-0 break-words font-semibold tracking-normal sm:tracking-[-0.03em] text-white ${
                 compact
                   ? "text-[2.2rem] sm:text-[3rem] lg:text-[3.55rem] leading-[1.08] sm:leading-[1.04] mb-4"
                   : "text-[2.25rem] sm:text-[3.5rem] lg:text-[4.15rem] leading-[1.06] sm:leading-[1.02] mb-5"
@@ -290,7 +292,7 @@ export default function PageHero({
 
               {/* Subtitle */}
               {subtitle && (
-                <p className={`text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl ${compact ? "mb-6" : "mb-7"}`}>
+                <p className={`min-w-0 break-words text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl ${compact ? "mb-6" : "mb-7"}`}>
                   {subtitle}
                 </p>
               )}
@@ -305,7 +307,7 @@ export default function PageHero({
                         mobileTrustBadgeLimit !== undefined && index >= mobileTrustBadgeLimit
                           ? "hidden sm:inline-flex"
                           : "inline-flex"
-                      } items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] bg-white/5 border border-white/15 text-slate-200 px-3 py-2 rounded-md`}
+                      } min-w-0 max-w-full break-words items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] bg-white/5 border border-white/15 text-slate-200 px-3 py-2 rounded-md`}
                     >
                       <span className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
                       {badge}
@@ -319,7 +321,7 @@ export default function PageHero({
                 <div className={`flex flex-col min-[420px]:flex-row min-[420px]:flex-wrap gap-3 ${compact ? "mb-0" : "mb-8"}`}>
                   {ctas.map((cta) => {
                     const base =
-                      "inline-flex items-center justify-center gap-2 font-semibold px-5 sm:px-6 py-3 rounded-md transition-colors duration-200 text-sm";
+                      "inline-flex min-w-0 min-h-11 w-full sm:w-auto items-center justify-center gap-2 font-semibold px-5 sm:px-6 py-3 rounded-md transition-colors duration-200 text-sm break-words text-center";
                     const variants = {
                       primary:
                         "bg-amber-500 hover:bg-amber-400 text-slate-950",

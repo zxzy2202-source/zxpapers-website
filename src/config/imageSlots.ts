@@ -60,17 +60,19 @@ export const IMAGE_SLOTS = [
   // 兼容仍在产品聚合配置中使用的历史键；该位置不属于当前首页后台编辑范围。
   { slot: "home:product-phenol-free-thermal-paper", label: "材料路线参考图（兼容）", page: "产品聚合页", pageUrl: "/products/thermal-paper-rolls", aspect: "4:3", description: "热敏纸材料路线模块的兼容图片键", adminVisible: false },
 
-  // 首页「完整产品线」6 类目模块（Hero 下方），admin 可单独换图
-  { slot: "home:category-thermal-rolls", label: "首页类目-热敏纸卷", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 热敏纸卷类目卡片" },
-  { slot: "home:category-thermal-labels", label: "首页类目-热敏标签", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 热敏标签类目卡片" },
-  { slot: "home:category-can-labels", label: "首页类目-灌装/罐头标签", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 灌装标签类目卡片" },
-  { slot: "home:category-carbonless", label: "首页类目-无碳复写纸表格", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 无碳复写纸表格类目卡片" },
-  { slot: "home:category-jumbo-rolls", label: "首页类目-巨型卷代理", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 巨型卷代理销售类目卡片" },
-  { slot: "home:category-custom-rolls", label: "首页类目-定制纸卷/标签", page: "首页", pageUrl: "/", aspect: "4:3", description: "完整产品线模块 - 定制印刷纸卷/标签类目卡片" },
+  // 首页四个 canonical 产品家族模块（Hero 下方），admin 可单独换图
+  { slot: "home:category-thermal-rolls", label: "首页类目-热敏纸卷", page: "首页", pageUrl: "/", aspect: "4:3", description: "产品家族模块 - 热敏纸卷" },
+  { slot: "home:category-thermal-labels", label: "首页类目-热敏标签", page: "首页", pageUrl: "/", aspect: "4:3", description: "产品家族模块 - 热敏标签" },
+  { slot: "home:category-can-labels", label: "首页类目-印刷与包装标签", page: "首页", pageUrl: "/", aspect: "4:3", description: "产品家族模块 - 印刷与包装标签" },
+  { slot: "home:category-carbonless", label: "首页类目-NCR与商业表单", page: "首页", pageUrl: "/", aspect: "4:3", description: "产品家族模块 - NCR与商业表单" },
+  { slot: "home:category-jumbo-rolls", label: "首页制造能力证据图", page: "首页", pageUrl: "/", aspect: "4:3", description: "制造、设备与检验记录模块图片" },
+  { slot: "home:category-custom-rolls", label: "定制纸卷/标签兼容图", page: "产品详情页", pageUrl: "/products/thermal-paper-rolls", aspect: "4:3", description: "定制印刷与包装模块的兼容图片键", adminVisible: false },
 
   // ===== 关于我们（来自 src/app/about/page.tsx）=====
   { slot: "about:factory-aerial", label: "关于我们 工厂航拍图", page: "关于我们", pageUrl: "/about", aspect: "16:9" },
   { slot: "about:factory-line", label: "关于我们 生产线", page: "关于我们", pageUrl: "/about", aspect: "16:9" },
+  { slot: "about:equipment-coating", label: "关于我们 涂布设备", page: "关于我们", pageUrl: "/about", aspect: "4:3", description: "热敏涂布生产线设备照片" },
+  { slot: "about:equipment-slitting", label: "关于我们 分切设备", page: "关于我们", pageUrl: "/about", aspect: "4:3", description: "分切复卷设备照片" },
 
   // ===== OEM 系列 =====
   { slot: "oem:hero", label: "OEM 首页 顶部图", page: "OEM 定制", pageUrl: "/oem", aspect: "16:9" },

@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { Save, Upload, Trash2, AlertCircle, Check, ExternalLink, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import type { HomeHeroSettings, HeroBanner } from "@/lib/heroStore";
+import { HERO_LIMITS } from "@/lib/heroLimits";
 
 interface Props {
   initial: HomeHeroSettings;
@@ -146,39 +147,44 @@ export default function HeroEditor({ initial }: Props) {
             hint="例：Direct Thermal Paper Factory Since 2009"
             placeholder={DEFAULTS.badgeText}
             value={data.badgeText}
-            onChange={(v) => update("badgeText", v)}
-          />
+             onChange={(v) => update("badgeText", v)}
+             maxLength={HERO_LIMITS.badgeText}
+           />
           <Field
             label="标题上方一行小字（Eyebrow）"
             hint="例：Bulk POS Rolls / OEM Packaging / Export Orders"
             placeholder={DEFAULTS.eyebrow}
             value={data.eyebrow}
-            onChange={(v) => update("eyebrow", v)}
-          />
+             onChange={(v) => update("eyebrow", v)}
+             maxLength={HERO_LIMITS.eyebrow}
+           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Field
               label="主标题（白色部分）"
               hint="例：Thermal Paper Rolls"
               placeholder={DEFAULTS.titleMain}
               value={data.titleMain}
-              onChange={(v) => update("titleMain", v)}
-            />
+               onChange={(v) => update("titleMain", v)}
+               maxLength={HERO_LIMITS.titleMain}
+             />
             <Field
               label="主标题（高亮琥珀色部分）"
               hint="例：Supplier for Bulk Orders"
               placeholder={DEFAULTS.titleHighlight}
               value={data.titleHighlight}
-              onChange={(v) => update("titleHighlight", v)}
-            />
+               onChange={(v) => update("titleHighlight", v)}
+               maxLength={HERO_LIMITS.titleHighlight}
+             />
           </div>
           <Field
             label="副标题（一段说明文字）"
             hint="一段 1-3 句的简介"
             placeholder={DEFAULTS.subtitle}
             value={data.subtitle}
-            onChange={(v) => update("subtitle", v)}
-            textarea
-          />
+             onChange={(v) => update("subtitle", v)}
+             maxLength={HERO_LIMITS.subtitle}
+             textarea
+           />
 
           {/* Trust badges 数组 */}
           <div>
@@ -190,15 +196,16 @@ export default function HeroEditor({ initial }: Props) {
               onChange={(e) =>
                 update(
                   "trustBadges",
-                  e.target.value
-                    .split("\n")
-                    .map((s) => s.trim())
-                    .filter(Boolean)
-                    .slice(0, 4)
-                )
+                     e.target.value
+                     .split("\n")
+                     .map((s) => s.trim().slice(0, HERO_LIMITS.trustBadge))
+                     .filter(Boolean)
+                     .slice(0, HERO_LIMITS.trustBadges)
+                 )
               }
-              placeholder={DEFAULTS.trustBadges.join("\n")}
-              rows={4}
+               placeholder={DEFAULTS.trustBadges.join("\n")}
+               maxLength={HERO_LIMITS.trustBadges * (HERO_LIMITS.trustBadge + 1)}
+               rows={4}
               className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono"
             />
             <p className="text-xs text-slate-400 mt-1">
@@ -220,15 +227,17 @@ export default function HeroEditor({ initial }: Props) {
               label="按钮文字"
               placeholder={DEFAULTS.ctaPrimary.label}
               value={data.ctaPrimary?.label}
-              onChange={(v) => update("ctaPrimary", { ...data.ctaPrimary, label: v })}
-            />
+               onChange={(v) => update("ctaPrimary", { ...data.ctaPrimary, label: v })}
+               maxLength={HERO_LIMITS.ctaLabel}
+             />
             <Field
               label="跳转链接"
               hint="站内路径写 /contact，外链写完整 URL"
               placeholder={DEFAULTS.ctaPrimary.href}
               value={data.ctaPrimary?.href}
-              onChange={(v) => update("ctaPrimary", { ...data.ctaPrimary, href: v })}
-            />
+               onChange={(v) => update("ctaPrimary", { ...data.ctaPrimary, href: v })}
+               maxLength={HERO_LIMITS.ctaHref}
+             />
           </div>
           <div className="space-y-3">
             <div className="text-sm font-medium text-slate-700">次按钮（外链或站内导航）</div>
@@ -236,15 +245,17 @@ export default function HeroEditor({ initial }: Props) {
               label="按钮文字"
               placeholder={DEFAULTS.ctaSecondary.label}
               value={data.ctaSecondary?.label}
-              onChange={(v) => update("ctaSecondary", { ...data.ctaSecondary, label: v })}
-            />
+               onChange={(v) => update("ctaSecondary", { ...data.ctaSecondary, label: v })}
+               maxLength={HERO_LIMITS.ctaLabel}
+             />
             <Field
               label="跳转链接"
               hint="站内锚点如 #core-products；WhatsApp 可填写完整 wa.me 链接"
               placeholder={DEFAULTS.ctaSecondary.href}
               value={data.ctaSecondary?.href}
-              onChange={(v) => update("ctaSecondary", { ...data.ctaSecondary, href: v })}
-            />
+               onChange={(v) => update("ctaSecondary", { ...data.ctaSecondary, href: v })}
+               maxLength={HERO_LIMITS.ctaHref}
+             />
           </div>
         </div>
       </section>
@@ -299,18 +310,25 @@ export default function HeroEditor({ initial }: Props) {
                   )}
                 </div>
                 <div className="p-3">
-                  <input
-                    ref={fileRefs[idx]}
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={(e) => {
-                      const f = e.target.files?.[0];
-                      if (f) uploadBanner(idx, f);
-                      e.target.value = "";
-                    }}
-                  />
-                  <button
+                   <input
+                     ref={fileRefs[idx]}
+                     type="file"
+                     accept="image/*"
+                     className="hidden"
+                     onChange={(e) => {
+                       const f = e.target.files?.[0];
+                       if (f) uploadBanner(idx, f);
+                       e.target.value = "";
+                     }}
+                   />
+                   <Field
+                     label="图片说明（Alt）"
+                     value={banner?.alt}
+                     onChange={(alt) => updateBanner(idx, { ...(banner || { url: "" }), alt })}
+                     placeholder="描述图片中的工厂、产品或包装场景"
+                     maxLength={HERO_LIMITS.bannerAlt}
+                   />
+                   <button
                     onClick={() => fileRefs[idx].current?.click()}
                     disabled={uploadingIdx === idx}
                     className="w-full py-2 text-sm border border-slate-200 hover:bg-slate-50 rounded-lg flex items-center justify-center gap-1.5 disabled:opacity-50"
@@ -334,15 +352,17 @@ function Field({
   value,
   onChange,
   placeholder,
-  textarea,
-}: {
-  label: string;
-  hint?: string;
-  value?: string;
-  onChange: (v: string) => void;
-  placeholder?: string;
-  textarea?: boolean;
-}) {
+   textarea,
+   maxLength,
+ }: {
+   label: string;
+   hint?: string;
+   value?: string;
+   onChange: (v: string) => void;
+   placeholder?: string;
+   textarea?: boolean;
+   maxLength?: number;
+ }) {
   const Comp: any = textarea ? "textarea" : "input";
   return (
     <div>
@@ -350,8 +370,9 @@ function Field({
       <Comp
         type="text"
         value={value || ""}
-        onChange={(e: any) => onChange(e.target.value)}
-        placeholder={placeholder}
+         onChange={(e: any) => onChange(e.target.value)}
+         maxLength={maxLength}
+         placeholder={placeholder}
         rows={textarea ? 3 : undefined}
         className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
       />

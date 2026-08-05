@@ -211,7 +211,7 @@ export default function MarketsPage() {
               { icon: "🚢", title: "Export Experience", desc: "15+ years exporting to 80+ countries. Full export documentation: CO, SGS, fumigation, phytosanitary." },
               { icon: "📦", title: "Flexible MOQ", desc: "From trial orders of 500 rolls to full 40ft containers. We accommodate buyers at every stage." },
               { icon: "🏷️", title: "OEM & Private Label", desc: "Custom brand packaging for distributors. NDA available. MOQ 1,000 rolls per size." },
-              { icon: "💳", title: "Flexible Payment", desc: "T/T, L/C at sight, Western Union. 30-day terms for established customers." },
+              { icon: "💳", title: "Payment Review", desc: "Payment methods and terms are confirmed in the quotation based on the order scope, destination, and commercial review." },
               { icon: "⚡", title: "Inquiry Review", desc: "We aim to provide an initial quotation within one business day after complete product, quantity, packing, and destination details are received." },
             ].map((f) => (
               <div key={f.title} className="bg-white rounded-xl p-6 shadow-sm text-left">

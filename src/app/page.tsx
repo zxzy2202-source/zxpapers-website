@@ -3,38 +3,42 @@ import Image from "next/image";
 import Link from "next/link";
 import { preconnect, preload } from "react-dom";
 import {
+  AlertTriangle,
   ArrowRight,
   Award,
   CheckCircle,
   ClipboardCheck,
   Factory as FactoryIcon,
   FileCheck2,
+  FlaskConical,
   Layers,
   MessageSquare,
   Package,
   Palette,
   Phone,
   Printer,
+  Ruler,
   ShieldCheck,
+  Thermometer,
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import PageHero from "@/components/shared/PageHero";
 import PopularSizesCarousel, { type SkuItem } from "@/components/shared/PopularSizesCarousel";
 import type { SlotKey } from "@/config/imageSlots";
-import { FACTORY, SITE } from "@/config/siteData";
+import { SITE } from "@/config/siteData";
 import { COMPLIANCE_EVIDENCE } from "@/config/complianceData";
 import { getSlotImages } from "@/lib/imageSlotUtils";
 import { readPublicHero } from "@/lib/heroStore";
 import { r2Image } from "@/lib/r2";
 
 export const metadata: Metadata = {
-  title: "Thermal Paper & Label Manufacturer | ZhixinPaper",
+  title: "Thermal Paper, Labels & NCR Forms | ZhixinPaper",
   description:
-    "Source thermal paper rolls, shipping and product labels, and NCR forms by specification, sample, OEM packing, destination and repeat-order control.",
+    "Source thermal paper rolls, shipping and product labels, and NCR forms through specification review, sample approval, OEM packing and repeat-order control.",
   alternates: { canonical: SITE.domain },
   openGraph: {
-    title: "Thermal Paper & Label Manufacturer | ZhixinPaper",
+    title: "Thermal Paper, Labels & NCR Forms | ZhixinPaper",
     description:
       "Source thermal paper rolls, labels and NCR forms with specification review, sample approval, OEM packing and repeat-order control.",
     url: SITE.domain,
@@ -51,7 +55,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 3600; // 1 hour: hero/slot images change infrequently
+export const revalidate = 3600;
 
 const FACTORY_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/oem-factory-EHdu8eZwwzSo5DxSRyzQdF.webp";
@@ -66,6 +70,7 @@ type ProductLine = {
   title: string;
   spec: string;
   summary: string;
+  ctaLabel: string;
   href: string;
   slot: SlotKey;
   fallback: string;
@@ -74,54 +79,73 @@ type ProductLine = {
 
 const productLines: ProductLine[] = [
   {
-    title: "Stock Thermal Paper Rolls",
-    spec: "80x80, 57x50, 57x40 and custom widths",
-    summary: "Fast-moving receipt rolls for POS, cash register, ATM, kiosk and mobile printers.",
+    title: "Thermal Paper Rolls",
+    spec: "Receipt · POS · Till · ATM",
+    summary: "Blank, printed and material-specific thermal rolls qualified by printer, geometry, grade and packing.",
+    ctaLabel: "Review Thermal Paper Rolls",
     href: "/products/thermal-paper-rolls",
     slot: "home:category-thermal-rolls",
     fallback: THERMAL_ROLLS_IMAGE,
   },
   {
-    title: "Thermal & Shipping Labels",
-    spec: "4x6, 4x3, 2x1 and barcode formats",
-    summary: "Direct thermal labels for courier, warehouse, inventory and product identification.",
+    title: "Thermal Labels",
+    spec: "Shipping · Barcode · Linerless · Custom",
+    summary: "Direct thermal labels qualified by printer, facestock, adhesive, sensing method, roll format and application.",
+    ctaLabel: "Review Thermal Labels",
     href: "/products/thermal-labels",
     slot: "home:category-thermal-labels",
     fallback: THERMAL_LABELS_IMAGE,
   },
   {
-    title: "Custom Printed Rolls & Labels",
-    spec: "Logo, Pantone, QR and bilingual printing",
-    summary: "Brand-ready products with artwork checking, core printing and private-label cartons.",
-    href: "/products/thermal-paper-rolls/custom-printed",
-    slot: "home:category-custom-rolls",
-    fallback: FACTORY_IMAGE,
-    imagePosition: "object-center",
-  },
-  {
-    title: "NCR & Business Forms",
-    spec: "2, 3 and 4-part invoices and delivery notes",
-    summary: "Custom carbonless forms for dispatch, field service, receipts and order workflows.",
-    href: "/products/ncr-forms",
-    slot: "home:category-carbonless",
-    fallback: COATING_LINE_IMAGE,
-  },
-  {
-    title: "Filling Line Roll Labels",
-    spec: "Machine-ready rolls for automatic label applicators",
-    summary: "Printed and blank roll labels qualified by applicator, roll format, sensor, speed and container condition.",
-    href: "/products/can-labels",
+    title: "Printed & Packaging Labels",
+    spec: "Product · Can · Bottle · Filling-Line",
+    summary: "Printed and blank packaging labels qualified by substrate, applicator, container, finish and operating condition.",
+    ctaLabel: "Review Packaging Labels",
+    href: "/products/product-labels",
     slot: "home:category-can-labels",
     fallback: THERMAL_LABELS_IMAGE,
     imagePosition: "object-right",
   },
   {
-    title: "Jumbo Roll & OEM Supply",
-    spec: "405, 640 and 880 mm base rolls",
-    summary: "Base-paper supply and finished-goods support for converters and peer factories.",
-    href: `/contact?product=${encodeURIComponent("Jumbo Roll Supply")}`,
-    slot: "home:category-jumbo-rolls",
+    title: "NCR & Business Forms",
+    spec: "2-Part · 3-Part · 4-Part · Continuous",
+    summary: "Carbonless forms qualified by size, parts, printing, numbering, finishing and workflow.",
+    ctaLabel: "Review NCR Forms",
+    href: "/products/ncr-forms",
+    slot: "home:category-carbonless",
     fallback: COATING_LINE_IMAGE,
+  },
+];
+
+// Pain points — sourcing problems buyers actually report before switching supplier
+const sourcingPainPoints = [
+  {
+    icon: Thermometer,
+    problem: "Receipts fade before the retention period ends",
+    detail:
+      "Coating weight and image stability were never confirmed against the storage temperature, handling and archive period the buyer actually needs.",
+    response: "We record the required retention period and confirm the coating specification before the sample.",
+  },
+  {
+    icon: Printer,
+    problem: "Rolls jam or misfeed in the installed printer",
+    detail:
+      "Core diameter, maximum roll OD, winding direction and sensing method were assumed instead of matched to the printer already in service.",
+    response: "We check the printer model, core, OD and winding before quoting a replacement roll.",
+  },
+  {
+    icon: Ruler,
+    problem: "Two quotations look identical but arrive different",
+    detail:
+      "Paper grade, real roll length, adhesive, packing and inspection method can all differ while the size name on the quotation stays the same.",
+    response: "We quote against a complete written specification, not a size label alone.",
+  },
+  {
+    icon: FlaskConical,
+    problem: "The reorder does not match the approved sample",
+    detail:
+      "Uncontrolled material, adhesive, artwork or packing changes between batches create new complaints that are hard to investigate.",
+    response: "The approved specification is frozen and referenced on every repeat order.",
   },
 ];
 
@@ -149,22 +173,34 @@ const buyerRoutes = [
   },
 ];
 
-const procurementFacts = [
-  { value: SITE.founded, label: "Manufacturing since" },
-  { value: FACTORY.countriesServed, label: "Export markets" },
-  { value: FACTORY.dailyOutput, label: "Daily output" },
-  { value: "Spec / Sample / Batch", label: "Approval sequence" },
+const quoteBasisItems = [
+  {
+    label: "Product & use",
+    value: "Roll, label, NCR or packaging format",
+  },
+  {
+    label: "Fit & geometry",
+    value: "Printer, size, core, winding or ply",
+  },
+  {
+    label: "Material & finish",
+    value: "Paper grade, adhesive, coating or print",
+  },
+  {
+    label: "Packing & delivery",
+    value: "Quantity, cartons, destination and term",
+  },
 ];
 
 const popularSizes: SkuItem[] = [
-  { size: "80 x 80 mm", use: "Restaurant and retail POS", badge: "Best seller", href: "/products/thermal-rolls/80x80mm" },
-  { size: "57 x 50 mm", use: "Counter POS and card terminals", href: "/products/thermal-rolls/57x50mm" },
-  { size: "57 x 40 mm", use: "Mobile and handheld printers", href: "/products/thermal-rolls/57x40mm" },
-  { size: "80 x 70 mm", use: "European POS printers", href: "/products/thermal-rolls/80x70mm" },
-  { size: "4 x 6 in", use: "Courier and shipping labels", badge: "High demand", href: "/products/thermal-labels/4x6in" },
-  { size: "4 x 3 in", use: "Warehouse and carton labels", href: "/products/thermal-labels/4x3in" },
-  { size: "2 x 1 in", use: "Barcode and SKU labels", href: "/products/thermal-labels/2x1in" },
-  { size: "2 x 4 in", use: "Address and product labels", href: "/products/thermal-labels/2x4in" },
+  { size: "80 × 80 mm", use: "Restaurant and retail POS", badge: "Best seller", href: "/products/thermal-rolls/80x80mm" },
+  { size: "57 × 50 mm", use: "Counter POS and card terminals", href: "/products/thermal-rolls/57x50mm" },
+  { size: "57 × 40 mm", use: "Mobile and handheld printers", href: "/products/thermal-rolls/57x40mm" },
+  { size: "80 × 70 mm", use: "European POS printers", href: "/products/thermal-rolls/80x70mm" },
+  { size: "4 × 6 in", use: "Courier and shipping labels", badge: "High demand", href: "/products/thermal-labels/4x6in" },
+  { size: "4 × 3 in", use: "Warehouse and carton labels", href: "/products/thermal-labels/4x3in" },
+  { size: "2 × 1 in", use: "Barcode and SKU labels", href: "/products/thermal-labels/2x1in" },
+  { size: "2 × 4 in", use: "Address and product labels", href: "/products/thermal-labels/2x4in" },
 ];
 
 const customizationCapabilities = [
@@ -224,12 +260,30 @@ const evidenceRoutes = [
   },
 ];
 
-const quoteChecklist = [
-  "Product and size",
-  "Quantity or container plan",
-  "Blank stock or custom print",
-  "Destination country or port",
+const quoteReadinessItems = [
+  {
+    label: "Product",
+    value: "Rolls, labels, NCR or packaging labels",
+    hint: "Tell us blank stock or custom printed.",
+  },
+  {
+    label: "Specification",
+    value: "Size, length, core, GSM, adhesive or ply",
+    hint: "Share a printer model or current sample when available.",
+  },
+  {
+    label: "Customization",
+    value: "Logo, Pantone, QR, core and cartons",
+    hint: "Artwork can be checked before the production sample.",
+  },
+  {
+    label: "Delivery",
+    value: "Quantity, destination and trade term",
+    hint: "Include the country or port for FOB, CIF or DDP review.",
+  },
 ];
+
+const quoteChecklist = quoteReadinessItems.map((item) => item.value);
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -244,67 +298,86 @@ const breadcrumbSchema = {
   ],
 };
 
+// ─── Product Line Card (2×2 horizontal banner) ───────────────────────────────
 function ProductLineCard({
   item,
   image,
-  index,
+  reverse,
 }: {
   item: ProductLine;
   image: string;
-  index: number;
+  reverse?: boolean;
 }) {
-  const featured = index === 0;
-  const layoutClass = featured
-    ? "lg:col-span-7 lg:row-span-2 lg:min-h-[520px]"
-    : index < 3
-      ? "lg:col-span-5 lg:min-h-[252px]"
-      : "lg:col-span-4 lg:min-h-[300px]";
-
   return (
-    <article className={`group relative min-h-[340px] overflow-hidden rounded-lg bg-brand-navy-deep ${layoutClass}`}>
-      <Link
-        href={item.href}
-        className="absolute inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-inset"
+    <article
+      data-component="product-route-card"
+      className="group grid overflow-hidden rounded-lg border border-slate-200 bg-white transition-[border-color,box-shadow] duration-200 hover:border-brand-navy/30 hover:shadow-md motion-reduce:transition-none sm:grid-cols-2"
+    >
+      {/* Image — shown first on mobile, swapped on desktop when reverse=true */}
+      <div
+        className={`relative aspect-[4/3] overflow-hidden bg-slate-100 sm:aspect-auto ${
+          reverse ? "sm:order-2" : "sm:order-1"
+        }`}
       >
         <Image
           src={image}
           alt={`${item.title} manufactured by ZhixinPaper`}
           fill
           loading="lazy"
-          sizes={featured ? "(max-width: 1024px) 100vw, 58vw" : "(max-width: 1024px) 100vw, 34vw"}
-          className={`object-cover transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transition-none ${item.imagePosition ?? "object-center"}`}
+          sizes="(max-width: 640px) 100vw, 50vw"
+          className={`object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none ${item.imagePosition ?? "object-center"}`}
         />
-        <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,23,47,0.04)_18%,rgba(7,23,47,0.92)_100%)]" />
-        <span className={`absolute inset-x-0 bottom-0 p-5 text-white ${featured ? "sm:p-8" : "sm:p-6"}`}>
-          <span className="block text-sm font-medium text-amber-300">{item.spec}</span>
-          <span className={`mt-2 block font-semibold leading-tight ${featured ? "text-3xl sm:text-4xl" : "text-2xl"}`}>
-            {item.title}
-          </span>
-          <span className={`mt-3 block max-w-2xl text-sm leading-relaxed text-slate-200 ${featured ? "sm:text-base" : ""}`}>
-            {item.summary}
-          </span>
-          <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">
-            Explore product
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true" />
-          </span>
+        {/* Spec pill overlaid on image */}
+        <span className="absolute bottom-3 left-3 rounded-full bg-brand-navy/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
+          {item.spec}
         </span>
-      </Link>
+      </div>
+
+      {/* Content */}
+      <div
+        className={`flex min-w-0 flex-col justify-center p-7 lg:p-9 ${
+          reverse ? "sm:order-1" : "sm:order-2"
+        }`}
+      >
+        <h3 className="text-xl font-semibold leading-snug text-slate-950 transition-colors duration-150 group-hover:text-brand-navy sm:text-2xl">
+          {item.title}
+        </h3>
+        <p className="mt-3 text-sm leading-relaxed text-slate-600 lg:text-base">
+          {item.summary}
+        </p>
+        <Link
+          href={item.href}
+          className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+          aria-label={`${item.ctaLabel} — ${item.title}`}
+        >
+          {item.ctaLabel}
+          <ArrowRight
+            className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-1 motion-reduce:transition-none"
+            aria-hidden="true"
+          />
+        </Link>
+      </div>
     </article>
   );
 }
 
+// ─── Page ─────────────────────────────────────────────────────────────────────
 export default async function HomePage() {
   const [images, hero] = await Promise.all([
-    getSlotImages(productLines.map((item) => ({ slot: item.slot, fallback: item.fallback }))),
+    getSlotImages([
+      ...productLines.map((item) => ({ slot: item.slot, fallback: item.fallback })),
+      { slot: "home:category-jumbo-rolls", fallback: COATING_LINE_IMAGE },
+    ]),
     readPublicHero(),
   ]);
 
   const banners = hero.banners ?? [];
   const heroFallbacks = [FACTORY_IMAGE, COATING_LINE_IMAGE, THERMAL_ROLLS_IMAGE];
-  const heroImages = heroFallbacks.map((fallback, index) =>
-    banners[index]?.url ? r2Image(banners[index]!.url) : fallback,
-  );
-  const primaryHeroImage = heroImages[0];
+  const heroImages = heroFallbacks.map((fallback, index) => ({
+    src: banners[index]?.url ? r2Image(banners[index]!.url) : fallback,
+    alt: banners[index]?.alt?.trim() || "ZhixinPaper paper converting and packaging production floor",
+  }));
+  const primaryHeroImage = heroImages[0]?.src;
   const heroCarouselInterval = Math.min(
     15_000,
     Math.max(3_000, hero.carouselIntervalMs ?? 4_500),
@@ -322,7 +395,7 @@ export default async function HomePage() {
   )}`;
   const factoryImage = images["home:category-jumbo-rolls"] ?? COATING_LINE_IMAGE;
   const homepageTitle =
-    hero.titleMain?.trim() || "Thermal Paper & Labels Built for Reliable Reorders";
+    hero.titleMain?.trim() || "Thermal Paper, Labels & NCR Forms for Repeat Orders";
   const homepageHighlight = hero.titleHighlight?.trim();
   const heroTrustBadges = hero.trustBadges?.length
     ? hero.trustBadges
@@ -343,13 +416,14 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
+      {/* ── 1. Hero ───────────────────────────────────────────────────────────── */}
       <PageHero
         bgImages={heroImages}
-        bgImageAlt="ZhixinPaper thermal paper factory production floor with coating, slitting and packaging lines"
+        bgImageAlt="ZhixinPaper paper converting and packaging production floor"
         bgCarouselInterval={heroCarouselInterval}
         overlayDir="left"
         overlayOpacity={58}
-        minHeight="min-h-[540px]"
+        minHeight="min-h-[580px] lg:min-h-[620px]"
         compact
         badge={{
           icon: <Award className="h-4 w-4" aria-hidden="true" />,
@@ -370,7 +444,7 @@ export default async function HomePage() {
         }
         subtitle={
           hero.subtitle?.trim() ||
-          "Source stock and custom thermal rolls, shipping labels and printed products through one specification, sample and repeat-order record."
+          "Specify sizes, materials and packing once. Get a factory quote for repeat supply, OEM programs and custom printed orders."
         }
         trustBadges={heroTrustBadges}
         mobileTrustBadgeLimit={2}
@@ -390,101 +464,244 @@ export default async function HomePage() {
             external: secondaryCta.href.startsWith("http"),
           },
         ]}
+        rightSlot={
+          <aside
+            aria-label="Quote readiness checklist"
+            className="w-full max-w-[470px] overflow-hidden rounded-lg border border-white/20 bg-brand-ink/90 shadow-lg shadow-black/25 backdrop-blur-sm"
+          >
+            <div className="flex items-start justify-between gap-6 border-b border-white/15 px-6 py-5">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-300">
+                  RFQ Specification Sheet
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-slate-300">
+                  Four inputs make the first quotation useful.
+                </p>
+              </div>
+              <span className="shrink-0 text-xs font-semibold text-slate-400">01-04</span>
+            </div>
+            <ol className="divide-y divide-white/10 px-6">
+              {quoteReadinessItems.map(({ label, value }, index) => (
+                <li key={label} className="grid grid-cols-[2rem_1fr] gap-3 py-4">
+                  <span className="font-sora text-sm font-semibold text-amber-300">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+                      {label}
+                    </span>
+                    <span className="mt-1 block text-sm font-medium leading-snug text-white">
+                      {value}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+            <Link
+              href="#home-rfq-form"
+              className="flex min-h-12 items-center justify-between gap-4 bg-amber-500 px-6 py-3 text-sm font-semibold text-slate-950 transition-colors duration-150 hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset"
+            >
+              Start with these details
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </aside>
+        }
+        mobileRightSlot={
+          <div className="border-y border-white/15 bg-black/20 px-4 py-4">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-300">
+              A useful quote starts with
+            </p>
+            <ol className="mt-3 grid grid-cols-2 gap-x-4 gap-y-3">
+              {quoteReadinessItems.map(({ label }, index) => (
+                <li key={label} className="flex min-w-0 items-center gap-2 text-xs font-medium text-white">
+                  <span className="text-amber-300">{index + 1}.</span>
+                  <span>{label}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        }
       />
 
-      <section className="border-b border-slate-200 bg-white py-5 sm:py-6" aria-label="Manufacturer facts">
+      {/* ── 2. Quote basis ────────────────────────────────────────────────────── */}
+      <section
+        data-component="quote-basis-strip"
+        className="border-b border-slate-200 bg-white"
+        aria-label="Quotation basis"
+      >
         <div className="container">
-          <dl className="grid grid-cols-2 gap-y-5 sm:grid-cols-4">
-            {procurementFacts.map(({ value, label }, index) => (
-              <div key={label} className={`min-w-0 ${index % 2 ? "border-l border-slate-200 pl-5" : ""} sm:border-l sm:pl-6 sm:first:border-l-0 sm:first:pl-0`}>
-                <dd className="text-xl font-semibold text-slate-950 sm:text-2xl">{value}</dd>
-                <dt className="mt-1 text-xs font-medium uppercase tracking-[0.08em] text-slate-500">{label}</dt>
-              </div>
-            ))}
-          </dl>
+          <div className="grid md:grid-cols-[13rem_1fr]">
+            <div className="border-b border-slate-200 py-6 md:border-b-0 md:border-r md:pr-8">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-600">
+                Quote basis
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                Compare written specifications, not size names alone.
+              </p>
+            </div>
+            <dl className="grid sm:grid-cols-2 lg:grid-cols-4">
+              {quoteBasisItems.map(({ value, label }, index) => (
+                <div
+                  key={label}
+                  className={`min-w-0 py-5 sm:px-6 ${
+                    index > 0 ? "border-t border-slate-200 sm:border-t-0" : ""
+                  } ${index % 2 !== 0 ? "sm:border-l" : ""} lg:border-l lg:first:border-l-0`}
+                >
+                  <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+                    {label}
+                  </dt>
+                  <dd className="mt-2 text-sm font-semibold leading-snug text-slate-900">
+                    {value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </section>
 
-      <section id="core-products" className="scroll-mt-28 bg-slate-50 py-16 sm:py-20" aria-labelledby="products-heading">
+      {/* ── 3. Core Products — 2×2 banner cards ──────────────────────────────── */}
+      <section
+        id="core-products"
+        data-component="core-product-selector"
+        className="scroll-mt-28 bg-slate-50 py-16 sm:py-20 lg:py-24"
+        aria-labelledby="products-heading"
+      >
         <div className="container">
-          <div className="mb-10 flex flex-col items-start justify-between gap-5 lg:flex-row lg:items-end">
-            <div className="max-w-3xl">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-brand-navy">Core Product Lines</p>
-              <h2 id="products-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
-                Start With the Product You Need to Source
+          <div className="mb-12 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-600">
+                Core Product Lines
+              </p>
+              <h2
+                id="products-heading"
+                className="text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl lg:text-5xl"
+              >
+                Start With the Product<br className="hidden sm:block" /> You Need to Source
               </h2>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-                Choose the closest product family first. Each route narrows the size, material, print, packing and printer variables that change performance and price.
+              <p className="mt-4 text-base leading-relaxed text-slate-600 lg:text-lg">
+                Choose the closest product family first. Each route narrows the size, material,
+                print, packing and printer variables that change performance and price.
               </p>
             </div>
-            <Link href="/products" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4">
+            <Link
+              href="/products"
+              className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4"
+            >
               Browse all products
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-12">
+          {/* 2×2 banner card grid */}
+          <div className="grid gap-5 lg:grid-cols-2">
             {productLines.map((item, index) => (
               <ProductLineCard
                 key={item.title}
                 item={item}
                 image={images[item.slot] ?? item.fallback}
-                index={index}
+                reverse={index % 2 === 1}
               />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-b border-slate-200 bg-white py-14 sm:py-16" aria-labelledby="procurement-heading">
+      {/* ── 4. Risk controls ─────────────────────────────────────────────────── */}
+      <section
+        data-component="specification-risk-controls"
+        className="border-y border-slate-200 bg-white py-16 sm:py-20 lg:py-24"
+        aria-labelledby="painpoints-heading"
+      >
         <div className="container">
-          <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-brand-navy">Choose Your Buying Route</p>
-            <h2 id="procurement-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
-              Match the Supply Plan to the Order
-            </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-              Stock replenishment, a new private-label program and multi-SKU supply need different approval records. Start with the route closest to your purchasing task.
-            </p>
-          </div>
-
-          <div className="mt-9 grid divide-y divide-slate-200 border-y border-slate-200 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
-            {buyerRoutes.map(({ icon: Icon, title, buyer, summary, href }) => (
-              <Link
-                key={title}
-                href={href}
-                className="group grid gap-4 px-1 py-6 transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-inset sm:grid-cols-[auto_1fr] sm:px-5 lg:block lg:px-6 lg:py-8"
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+            <div className="max-w-xl">
+              <p className="mb-3 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-red-600">
+                <AlertTriangle className="h-3.5 w-3.5" aria-hidden="true" />
+                Before Price Comparison
+              </p>
+              <h2
+                id="painpoints-heading"
+                className="text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl lg:text-5xl"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-navy text-white">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <span className="block">
-                  <span className="block text-lg font-semibold text-slate-950 group-hover:text-brand-navy">{title}</span>
-                  <span className="mt-1 block text-sm font-medium text-slate-500">{buyer}</span>
-                  <span className="mt-3 block text-sm leading-relaxed text-slate-600">{summary}</span>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy">
-                    Review this buying route
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
-                  </span>
-                </span>
+                Most Repeat-Order Problems Start With an Incomplete Specification
+              </h2>
+              <p className="mt-5 text-base leading-relaxed text-slate-600">
+                A familiar size can still hide a different paper grade, roll length, core, adhesive,
+                winding or packing method. We turn those variables into a written approval record
+                before the order becomes a repeat program.
+              </p>
+              <Link
+                href="#home-rfq-form"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4"
+              >
+                Send a specification for review
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-            ))}
+            </div>
+
+            <div className="border-t border-slate-300">
+              {sourcingPainPoints.map(({ icon: Icon, problem, detail, response }, index) => (
+                <article
+                  key={problem}
+                  className="grid gap-4 border-b border-slate-300 py-6 sm:grid-cols-[1fr_0.92fr] sm:gap-8 sm:py-7"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-red-50 text-red-600">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+                        Risk {String(index + 1).padStart(2, "0")}
+                      </p>
+                      <h3 className="mt-1 text-base font-semibold leading-snug text-slate-950">
+                        {problem}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">{detail}</p>
+                    </div>
+                  </div>
+                  <div className="border-l-2 border-emerald-500 pl-4 sm:self-center">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-700">
+                      Control
+                    </p>
+                    <p className="mt-1.5 text-sm font-medium leading-relaxed text-slate-800">
+                      {response}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-white py-14 sm:py-16" aria-labelledby="sizes-heading">
+      {/* ── 4. Popular Sizes ──────────────────────────────────────────────────── */}
+      <section
+        data-component="popular-size-selector"
+        className="bg-white py-12 sm:py-14"
+        aria-labelledby="sizes-heading"
+      >
         <div className="container">
-          <div className="mb-8 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+          <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <h2 id="sizes-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
+              <p className="mb-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-600">
+                Popular Sizes
+              </p>
+              <h2
+                id="sizes-heading"
+                className="text-2xl font-semibold leading-tight text-slate-950 sm:text-3xl"
+              >
                 Common Sizes Are a Starting Point, Not a Full Specification
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-slate-600">
-                Use a familiar size to find the right product, then confirm roll length, core, paper grade or adhesive, printer compatibility and packing.
+              <p className="mt-3 text-base leading-relaxed text-slate-600">
+                Use a familiar size to find the right product, then confirm roll length, core,
+                paper grade or adhesive, printer compatibility and packing.
               </p>
             </div>
-            <Link href="/specifications" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4">
+            <Link
+              href="/specifications"
+              className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4"
+            >
               View size guide
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
@@ -493,50 +710,135 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="bg-white py-16 sm:py-20" aria-labelledby="custom-heading">
+      {/* ── 5. Buyer Routes ───────────────────────────────────────────────────── */}
+      <section
+        data-component="buyer-route-list"
+        className="bg-slate-950 py-16 sm:py-20"
+        aria-labelledby="procurement-heading"
+      >
         <div className="container">
-          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+          <div className="max-w-2xl">
+            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-400">
+              Choose Your Buying Route
+            </p>
+            <h2
+              id="procurement-heading"
+              className="text-3xl font-semibold leading-tight text-white sm:text-4xl"
+            >
+              Match the Supply Plan to the Order
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-400">
+              Stock replenishment, a new private-label program and multi-SKU supply need different
+              approval records. Start with the route closest to your purchasing task.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {buyerRoutes.map(({ icon: Icon, title, buyer, summary, href }) => (
+              <Link
+                key={title}
+                href={href}
+                className="group flex flex-col gap-5 rounded-lg border border-white/10 bg-white/5 p-6 transition-colors duration-200 hover:border-amber-400/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 sm:p-7"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-amber-400/10 text-amber-400 transition-colors duration-150 group-hover:bg-amber-400 group-hover:text-slate-950">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <span className="flex flex-1 flex-col">
+                  <span className="block text-lg font-semibold text-white transition-colors duration-150 group-hover:text-amber-400">
+                    {title}
+                  </span>
+                  <span className="mt-1 block text-sm font-medium text-slate-400">{buyer}</span>
+                  <span className="mt-3 block flex-1 text-sm leading-relaxed text-slate-400">
+                    {summary}
+                  </span>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-amber-400">
+                    Review this route
+                    <ArrowRight
+                      className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. Approval Sequence ──────────────────────────────────────────────── */}
+      <section
+        data-component="approval-sequence"
+        className="border-y border-slate-200 bg-white py-16 sm:py-20 lg:py-24"
+        aria-labelledby="custom-heading"
+      >
+        <div className="container">
+          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-brand-navy">Custom Production</p>
-              <h2 id="custom-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-600">
+                Custom Production
+              </p>
+              <h2
+                id="custom-heading"
+                className="text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl"
+              >
                 Keep One Approval Record From Sample to Reorder
               </h2>
               <p className="mt-5 text-base leading-relaxed text-slate-600">
-                Technical specifications, artwork, material evidence and packing are reviewed together so the approved sample can remain the reference for bulk production.
+                Technical specifications, artwork, material evidence and packing are reviewed
+                together so the approved sample can remain the reference for bulk production.
               </p>
-              <div className="mt-7 space-y-4">
+              <ul className="mt-6 space-y-3.5">
                 {customizationCapabilities.map((item) => (
-                  <div key={item} className="flex items-start gap-3 text-sm font-medium text-slate-700">
-                    <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500" aria-hidden="true" />
+                  <li key={item} className="flex items-start gap-3 text-sm font-medium text-slate-700">
+                    <CheckCircle
+                      className="mt-0.5 h-5 w-5 shrink-0 text-amber-500"
+                      aria-hidden="true"
+                    />
                     <span>{item}</span>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="#home-rfq-form" className="inline-flex items-center gap-2 rounded-md bg-brand-navy px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
+                <Link
+                  href="#home-rfq-form"
+                  className="inline-flex items-center gap-2 rounded-md bg-brand-navy px-6 py-3 text-sm font-semibold text-white transition-colors duration-150 hover:bg-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                >
                   <MessageSquare className="h-4 w-4" aria-hidden="true" />
                   Request a Quote
                 </Link>
-                <Link href="/oem/custom-printing" className="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brand-navy hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2">
+                <Link
+                  href="/oem/custom-printing"
+                  className="inline-flex items-center gap-2 rounded-md border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition-colors duration-150 hover:border-brand-navy hover:text-brand-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                >
                   Custom printing options
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </div>
             </div>
 
-            <div className="grid gap-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 sm:grid-cols-2">
-              {orderStages.map(({ icon: Icon, title, text }) => (
-                <div key={title} className="bg-slate-50 p-6 sm:p-7">
-                  <Icon className="h-6 w-6 text-brand-navy" aria-hidden="true" />
-                  <h3 className="mt-5 text-lg font-semibold text-slate-950">{title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
-                </div>
+            <ol className="border-y border-slate-300">
+              {orderStages.map(({ icon: Icon, title, text }, idx) => (
+                <li
+                  key={title}
+                  className="grid grid-cols-[2.75rem_1fr] gap-4 border-b border-slate-300 py-5 last:border-b-0 sm:grid-cols-[3.25rem_1fr] sm:py-6"
+                >
+                  <span className="font-sora text-xl font-semibold text-amber-600">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-3">
+                      <Icon className="h-5 w-5 text-brand-navy" aria-hidden="true" />
+                      <h3 className="text-base font-semibold text-slate-950">{title}</h3>
+                    </div>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
+                  </div>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
 
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-slate-200 pt-6 text-sm font-medium text-slate-600">
-            <span className="font-semibold text-slate-950">Approval record includes</span>
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-2.5 border-t border-slate-200 pt-6 text-sm text-slate-500">
+            <span className="font-semibold text-slate-800">Approval record includes</span>
             <span>Material or paper grade</span>
             <span>Artwork and barcode version</span>
             <span>Carton, pallet and destination marks</span>
@@ -544,112 +846,137 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-slate-50 py-16 sm:py-20" aria-labelledby="factory-heading">
+      {/* ── 7. Factory Evidence ───────────────────────────────────────────────── */}
+      <section
+        data-component="factory-evidence"
+        className="bg-slate-50 py-16 sm:py-20 lg:py-24"
+        aria-labelledby="factory-heading"
+      >
         <div className="container">
-          <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-            <figure>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <figure className="relative">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-slate-200 shadow-lg">
                 <Image
                   src={factoryImage}
-                  alt="ZhixinPaper thermal paper converting and jumbo roll production line"
+                  alt="ZhixinPaper paper converting production floor"
                   fill
                   loading="lazy"
-                  sizes="(max-width: 1024px) 100vw, 52vw"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>
               <figcaption className="mt-3 text-xs leading-relaxed text-slate-500">
-                Production-line image used for factory review. Confirm the equipment and inspection records that apply to the quoted product.
+                Production media provides context. Confirm the equipment and inspection records
+                that apply to the quoted product and format.
               </figcaption>
             </figure>
 
+            {/* Factory facts */}
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-brand-navy">Factory & Quality Evidence</p>
-              <h2 id="factory-heading" className="text-3xl font-semibold text-slate-950 sm:text-4xl">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-600">
+                Factory &amp; Quality Evidence
+              </p>
+              <h2
+                id="factory-heading"
+                className="text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl"
+              >
                 Check the Evidence Behind the Quote
               </h2>
               <p className="mt-5 text-base leading-relaxed text-slate-600">
-                {SITE.name}, legally Xi&apos;an Zhi Xin Paper Co., Ltd., supplies thermal paper rolls, direct thermal labels, packaging labels and carbonless forms from Xi&apos;an, China. Before a deposit, confirm the records that apply to the exact grade, format and destination in your quotation.
+                {SITE.name}, legally Xi&apos;an Zhi Xin Paper Co., Ltd., supplies thermal paper
+                rolls, direct thermal labels, packaging labels and carbonless forms from Xi&apos;an,
+                China. Before a deposit, confirm the records that apply to the exact grade, format
+                and destination in your quotation.
               </p>
-              <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6">
-                {[
-                  { term: "Manufacturing since", value: SITE.founded },
-                  { term: "Factory area", value: FACTORY.area },
-                  { term: "Production lines", value: FACTORY.productionLines },
-                  { term: "Product scope", value: "Rolls, labels, NCR" },
-                ].map(({ term, value }) => (
-                  <div key={term} className="border-t border-slate-300 pt-3">
-                    <dt className="text-xs uppercase tracking-[0.08em] text-slate-500">{term}</dt>
-                    <dd className="mt-1 text-lg font-semibold text-slate-950">{value}</dd>
-                  </div>
+
+              <div className="mt-8 space-y-3">
+                {evidenceRoutes.map(({ icon: Icon, label, title, href, linkLabel }) => (
+                  <Link
+                    key={title}
+                    href={href}
+                    className="group flex items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 transition-colors duration-150 hover:border-brand-navy/40 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+                  >
+                    <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-brand-navy text-white">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[10px] font-semibold uppercase tracking-wider text-slate-400">{label}</span>
+                      <span className="block text-sm font-semibold text-slate-900 group-hover:text-brand-navy">{title}</span>
+                    </span>
+                    <ArrowRight className="h-4 w-4 flex-shrink-0 text-slate-400 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:text-brand-navy motion-reduce:transition-none" aria-hidden="true" />
+                  </Link>
                 ))}
-              </dl>
-              <Link href="/about" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4">
-                Review the factory profile
+              </div>
+
+              <Link
+                href="/about"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy hover:text-brand-navy-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-4"
+              >
+                Review the full factory profile
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </div>
 
-          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-slate-200 bg-slate-200 lg:grid-cols-3">
-            {evidenceRoutes.map(({ icon: Icon, label, title, text, href, linkLabel }) => (
-              <Link
-                key={title}
-                href={href}
-                className="group bg-white p-6 transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-inset sm:p-7"
-              >
-                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-navy text-white">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <span className="mt-5 block text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">{label}</span>
-                <span className="mt-2 block text-lg font-semibold text-slate-950">{title}</span>
-                <span className="mt-3 block text-sm leading-relaxed text-slate-600">{text}</span>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-navy">
-                  {linkLabel}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true" />
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          <p className="mt-8 border-t border-slate-200 pt-5 text-sm leading-relaxed text-slate-500">
-            Potential supporting evidence includes {COMPLIANCE_EVIDENCE.map((item) => `${item.name} (${item.kind.toLowerCase()})`).join(", ")}. Availability and scope depend on the selected product grade, legal entity, order, and destination requirement; export terms can include FOB, CIF and DDP.
+          <p className="mt-12 border-t border-slate-200 pt-6 text-sm leading-relaxed text-slate-400">
+            Potential supporting evidence includes{" "}
+            {COMPLIANCE_EVIDENCE.map((item) => `${item.name} (${item.kind.toLowerCase()})`).join(
+              ", ",
+            )}
+            . Availability and scope depend on the selected product grade, legal entity, order, and
+            destination requirement; export terms can include FOB, CIF and DDP.
           </p>
         </div>
       </section>
 
-      <section id="home-rfq" className="scroll-mt-28 bg-brand-navy-deep py-16 text-white sm:py-20" aria-labelledby="home-rfq-heading">
+      {/* ── 8. Homepage RFQ ───────────────────────────────────────────────────── */}
+      <section
+        id="home-rfq"
+        data-component="homepage-rfq"
+        className="scroll-mt-28 bg-brand-navy py-16 text-white sm:py-20 lg:py-24"
+        aria-labelledby="home-rfq-heading"
+      >
         <div className="container">
-          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-16">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-amber-300">Quote-Ready Order Brief</p>
-              <h2 id="home-rfq-heading" className="text-3xl font-semibold text-white sm:text-4xl">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-300">
+                Quote-Ready Order Brief
+              </p>
+              <h2
+                id="home-rfq-heading"
+                className="text-3xl font-semibold leading-tight text-white sm:text-4xl"
+              >
                 Get a Factory Quote Without Leaving the Page
               </h2>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-300">
-                Send four starting details. The export team will identify the missing specification questions before confirming price, sample and packing options.
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-blue-100">
+                Send four starting details. The export team will identify the missing specification
+                questions before confirming price, sample and packing options.
               </p>
-              <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+              <div className="mt-8 space-y-0">
                 {quoteChecklist.map((item) => (
-                  <div key={item} className="flex items-center gap-3 border-b border-white/15 py-3 text-sm font-medium text-white">
-                    <CheckCircle className="h-4 w-4 flex-shrink-0 text-amber-300" aria-hidden="true" />
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 border-b border-white/10 py-3.5 text-sm font-medium text-white"
+                  >
+                    <CheckCircle className="h-4 w-4 shrink-0 text-amber-400" aria-hidden="true" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-amber-300 hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-4 focus-visible:ring-offset-brand-navy-deep">
-                  <Phone className="h-4 w-4" aria-hidden="true" />
-                  Ask a quick question on WhatsApp
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-amber-300 hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-4 focus-visible:ring-offset-brand-navy"
+              >
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                Ask a quick question on WhatsApp
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
 
-            <div className="rounded-lg bg-white p-6 text-slate-950 shadow-xl shadow-black/10 sm:p-8">
-              <InquiryForm
-                formId="home-rfq-form"
-                responseNote="Reply within one business day. NDA available. No spam."
-                successMessage="We'll respond within one business day."
-              />
+            <div className="rounded-lg bg-white p-6 text-slate-950 shadow-lg shadow-black/20 sm:p-8">
+              <InquiryForm formId="home-rfq-form" />
             </div>
           </div>
         </div>
