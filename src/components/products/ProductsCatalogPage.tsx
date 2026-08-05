@@ -10,7 +10,6 @@ import {
   Factory,
   FileStack,
   Globe2,
-  Layers3,
   MessageSquare,
   Package,
   Phone,
@@ -37,7 +36,7 @@ export interface CatalogLinkGroup {
 }
 
 export interface CatalogFamily {
-  id: "thermal-rolls" | "thermal-labels" | "can-labels" | "bottle-labels" | "ncr-forms";
+  id: "thermal-rolls" | "thermal-labels" | "packaging-labels" | "ncr-forms";
   navLabel: string;
   title: string;
   badge: string;
@@ -61,8 +60,7 @@ interface ProductsCatalogPageProps {
 const familyIcons: Record<CatalogFamily["id"], ReactNode> = {
   "thermal-rolls": <ReceiptText />,
   "thermal-labels": <Tags />,
-  "can-labels": <Package />,
-  "bottle-labels": <Layers3 />,
+  "packaging-labels": <Package />,
   "ncr-forms": <FileStack />,
 };
 
