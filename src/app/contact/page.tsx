@@ -244,9 +244,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     </div>
                   </div>
                 </div>
-                <div className="p-5 sm:p-8">
+                <div className="p-4 sm:p-5">
                   <InquiryForm
-                    compact
                     wide
                     formId="inquiry-form"
                     productName={productContext}

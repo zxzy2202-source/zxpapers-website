@@ -14,6 +14,17 @@ export interface InquiryRecord {
   country?: string;
   phone?: string;
   subject?: string;
+  productLine?: string;
+  purchaseTask?: string;
+  estimatedQuantity?: string;
+  targetTimeline?: string;
+  rollSize?: string;
+  printerModel?: string;
+  paperRequirement?: string;
+  formSize?: string;
+  formParts?: string;
+  formFinishing?: string;
+  referenceAvailable?: string;
   message: string;
   source?: string;
   landingPage?: string;

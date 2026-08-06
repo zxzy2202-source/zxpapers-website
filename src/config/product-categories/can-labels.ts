@@ -1,4 +1,5 @@
 import type { ProductCategoryConfig } from "@/components/products/category/product-category-types";
+import { canLabelSizes } from "@/app/products/can-labels/can-labels-data";
 
 const MACHINE_LINE_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663288770311/BfJE76PehM8XtSkNGC6wH2/factory-coating-line-Rfrrgy9ZbXu6C6rJRRsG37.webp";
@@ -6,8 +7,6 @@ const PRINTED_ROLL_IMAGE =
   "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=1200&q=82";
 const BLANK_ROLL_IMAGE =
   "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=1200&q=82";
-const CLEAR_FILM_IMAGE =
-  "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1200&q=82";
 const BEVERAGE_IMAGE =
   "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=1200&q=82";
 const FOOD_IMAGE =
@@ -66,7 +65,7 @@ export const canLabelsCategoryConfig = {
       "First-roll trial planning",
     ],
     facts: [
-      { value: "6 series", label: "Machine-ready product routes" },
+      { value: "2 routes", label: "Printed and blank product pages" },
       { value: "1 spec", label: "Quote-to-production control" },
       { value: "4 stages", label: "Line qualification" },
       { value: "B2B", label: "OEM and co-packer supply" },
@@ -76,6 +75,7 @@ export const canLabelsCategoryConfig = {
   },
   jumpLinks: [
     { label: "Supply Routes", href: "#product-families" },
+    { label: "Sizes", href: "#popular-sizes" },
     { label: "Applications", href: "#applications" },
     { label: "Line Checklist", href: "#selection-guide" },
     { label: "Trial", href: "#qualification" },
@@ -84,8 +84,8 @@ export const canLabelsCategoryConfig = {
   ],
   sectionCopy: {
     families: {
-      label: "Machine-ready product series",
-      title: "Choose by label format and production workflow",
+      label: "Machine-ready product routes",
+      title: "Choose printed or blank label supply",
       description:
         "The product series defines how labels are printed, sensed, dispensed and changed on the line. Final material, adhesive and roll construction are confirmed against the actual applicator and container.",
     },
@@ -105,103 +105,45 @@ export const canLabelsCategoryConfig = {
   families: [
     {
       id: "custom-printed",
-      label: "Core product series",
-      title: "Custom Printed Roll Labels for Automatic Applicators",
+      label: "Printed product route",
+      title: "Custom Printed Filling Line Labels",
       description:
         "Finished pressure-sensitive labels supplied to an approved artwork, material construction, die-cut and machine-ready roll specification.",
       buyerFit:
         "Best for brands, filling plants and co-packers that need repeatable color, finish, roll geometry, artwork revision and carton identification.",
-      href: "#inquiry",
-      linkLabel: "Specify custom printed rolls",
+      href: "/products/can-labels/custom-printed",
+      linkLabel: "Explore custom printed filling line labels",
       featured: true,
       image: {
         slot: "can-labels:custom-hero",
         fallback: PRINTED_ROLL_IMAGE,
-        alt: "Custom printed roll labels prepared for automatic application",
-      },
-    },
-    {
-      id: "wraparound",
-      label: "Single-label bottle format",
-      title: "Wraparound Roll Labels",
-      description:
-        "Full-wrap or near-wrap labels for cylindrical bottles and jars, supplied with controlled overlap, gap, orientation and seam position.",
-      buyerFit:
-        "Best for stable round containers. Confirm across x around dimensions, bottle roundness, label stiffness, overlap or gap and wrap-belt setup.",
-      href: "#inquiry",
-      linkLabel: "Review a wraparound format",
-      image: {
-        slot: "can-labels:series:wraparound",
-        fallback: BEVERAGE_IMAGE,
-        alt: "Wraparound roll labels for cylindrical bottles on an automatic line",
-      },
-    },
-    {
-      id: "front-back",
-      label: "Paired label format",
-      title: "Front and Back Label Sets",
-      description:
-        "Coordinated front and back labels supplied as separate or paired rolls for applicators placing two panels on one container.",
-      buyerFit:
-        "Best for bottles needing a branded front panel and regulatory back panel. Confirm pitch, relative orientation, two-head setup and changeover controls.",
-      href: "#inquiry",
-      linkLabel: "Specify a front/back set",
-      image: {
-        slot: "can-labels:series:front-back",
-        fallback: PERSONAL_CARE_IMAGE,
-        alt: "Front and back bottle label set prepared for automatic application",
-      },
-    },
-    {
-      id: "clear-film",
-      label: "Sensor-critical construction",
-      title: "Clear Film Machine-Ready Labels",
-      description:
-        "Transparent film labels for a no-label-look appearance, qualified with the liner, gap or mark and the actual label sensor.",
-      buyerFit:
-        "Best for clear PET or glass packaging. White ink, barcode contrast, trapped air and sensing must be approved on the intended line.",
-      href: "#inquiry",
-      linkLabel: "Review clear-film sensing",
-      image: {
-        slot: "can-labels:series:clear-film",
-        fallback: CLEAR_FILM_IMAGE,
-        alt: "Clear film labels for transparent bottles and automatic label sensing",
+        alt: "Custom printed filling line labels prepared for automatic application",
       },
     },
     {
       id: "blank-variable-data",
-      label: "On-demand print route",
-      title: "Blank and Variable-Data Roll Labels",
+      label: "Blank product route",
+      title: "Blank Filling Line Labels for Variable Data",
       description:
         "Blank or preprinted rolls for adding batch, barcode, date or serial data before automatic application.",
       buyerFit:
         "Best for plants controlling data in-house. Printer, ribbon or direct-thermal method, DPI, sensor and downstream applicator must be reviewed together.",
-      href: "#inquiry",
-      linkLabel: "Confirm printer and applicator",
+      href: "/products/can-labels/blank",
+      linkLabel: "Explore blank filling line labels",
       image: {
         slot: "can-labels:blank-hero",
         fallback: BLANK_ROLL_IMAGE,
-        alt: "Blank roll labels for variable-data printing and automatic application",
-      },
-    },
-    {
-      id: "multi-sku",
-      label: "Version-controlled supply",
-      title: "Multi-SKU Short-Run Roll Labels",
-      description:
-        "Controlled short runs for multiple flavors, capacities, languages or markets sharing compatible construction and roll specifications.",
-      buyerFit:
-        "Best for launches and co-packers reducing per-version inventory. SKU codes, quantities, revisions, roll IDs and carton separation are required.",
-      href: "#inquiry",
-      linkLabel: "Review a multi-SKU order",
-      image: {
-        slot: "can-labels:series:multi-sku",
-        fallback: COPACKER_IMAGE,
-        alt: "Multiple roll-label versions controlled for a co-packer filling line",
+        alt: "Blank filling line labels for variable-data printing and automatic application",
       },
     },
   ],
-  sizes: [],
+  sizes: canLabelSizes.map((size) => ({
+    slug: size.slug,
+    label: size.label,
+    market: size.markets,
+    badge: size.badge,
+    use: size.use,
+  })),
   applications: [
     {
       id: "beverage-lines",
@@ -222,7 +164,7 @@ export const canLabelsCategoryConfig = {
       id: "food-lines",
       title: "Food and sauce filling",
       description:
-        "Machine-applied labels for jars, bottles and rigid food containers with project-specific exposure review.",
+        "Machine-applied exterior labels for jars, bottles and rigid food containers with project-specific exposure review. Direct food contact is a separate scope.",
       confirm:
         "container material, filling temperature, surface contamination, oil or sauce contact, cleaning, storage and application position",
       href: "#inquiry",
@@ -297,46 +239,46 @@ export const canLabelsCategoryConfig = {
   selectionSteps: [
     {
       step: "01",
-      title: "Applicator and line",
-      description: "Identify the target equipment and operating condition before setting the roll format.",
+      title: "Container and surface",
+      description: "Qualify adhesion and placement against the production container presented to the label head.",
       inputs: [
-        "Applicator brand, model and label head",
-        "Target and start-up line speed",
-        "Front, back, wraparound or top application",
-        "Gap, black-mark or other sensor method",
+        "Container material, coating, shape, curvature and stiffness",
+        "Actual container dimensions and available label panel",
+        "Empty or filled; dry, wet, dusty or oily surface",
+        "Application position and overlap allowance",
       ],
     },
     {
       step: "02",
-      title: "Roll construction",
-      description: "Match the roll to the machine's physical limits and web path.",
+      title: "Filling, labeling and exposure",
+      description: "Define the production sequence and service conditions before selecting a construction.",
       inputs: [
-        "Core ID and maximum roll outer diameter",
-        "Web width, gap or pitch and labels per roll",
-        "Unwind direction and label orientation",
-        "Liner, splice allowance and roll packing",
+        "Applicator brand, model, label head and sensor method",
+        "Target and start-up line speed",
+        "Filling, cooling, cleaning and handling sequence",
+        "Application, storage and expected exposure conditions",
       ],
     },
     {
       step: "03",
-      title: "Container and process",
-      description: "Qualify adhesion and placement against the real container presented to the label head.",
+      title: "Material, adhesive and finish",
+      description: "Review each construction against the recorded container, process and exposure instead of assuming universal compatibility.",
       inputs: [
-        "Container material, shape, curvature and stiffness",
-        "Empty or filled; dry, wet, dusty or oily surface",
-        "Application and storage temperature",
-        "Filling, cooling, cleaning and handling sequence",
+        "Paper, film or other face-stock preference",
+        "Adhesive matched to the surface and application temperature",
+        "Finish, print method and variable-data requirement",
+        "Core, roll diameter, web, unwind, gap, liner and packing",
       ],
     },
     {
       step: "04",
-      title: "Artwork, trial and control",
-      description: "Use one approved specification from quotation through production and reorders.",
+      title: "Artwork, roll and commercial",
+      description: "Use one approved specification from quotation through trial, production and reorders.",
       inputs: [
-        "Artwork revision and SKU quantity",
+        "Artwork revision and quantity by SKU",
         "Proof, sample and first-roll trial requirement",
         "Acceptance criteria at target speed",
-        "Roll, carton and replacement identification",
+        "Minimum order, requested delivery window and destination",
       ],
     },
   ],
@@ -419,6 +361,7 @@ export const canLabelsCategoryConfig = {
       "Core ID, maximum roll OD, web width, unwind, gap, liner and labels per roll",
       "Container material, shape, empty/filled state, surface condition and temperature",
       "Label construction, artwork versions, quantity by SKU, packing and destination",
+      "Tender or technical-submission requirements, product data sheet, sample approval and acceptance criteria",
     ],
     productName: "Machine-Ready Roll Labels for Filling Lines",
     initialMessage:
@@ -426,7 +369,7 @@ export const canLabelsCategoryConfig = {
     responseNote:
       "Compatibility, timing and evidence scope are confirmed after the line specification review.",
     successMessage:
-      "We'll review your line specification and reply with the next required step.",
+      "We'll review your line specification, tender requirements and evidence needs, then reply with the next required step.",
   },
   breadcrumbs: [
     { name: "Home", path: "/" },

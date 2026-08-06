@@ -21,7 +21,6 @@ import {
 import { HERO_LIMITS } from "@/lib/heroLimits";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
-import InquiryForm from "@/components/shared/InquiryForm";
 import QuickQuoteBrief from "@/components/products/QuickQuoteBrief";
 
 export interface CatalogLink {
@@ -496,33 +495,23 @@ export default function ProductsCatalogPage({ heroImage, whatsappHref, families,
         </div>
       </section>
 
-      <section id="inquiry" className="scroll-mt-24 bg-slate-50">
-        <div className="container py-12 lg:py-16">
-          <div className="grid overflow-hidden border border-slate-200 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.09)] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-            <div className="flex flex-col bg-brand-navy p-8 text-white lg:p-10">
+      <section id="inquiry" className="scroll-mt-24 bg-brand-navy py-8 text-white sm:py-10">
+        <div className="container">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
               <p className="text-xs font-semibold uppercase tracking-normal text-amber-300">Factory Quote / Next Step</p>
-              <h2 className="mt-3 font-sora text-3xl font-semibold leading-tight lg:text-4xl">Turn your product brief into pricing</h2>
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-300 lg:text-base">
-                Send the product, size, quantity, destination, and supply path. We will review the specification and return MOQ, lead time, packing, and export pricing.
+              <h2 className="mt-2 font-sora text-2xl font-semibold leading-tight text-white sm:text-3xl">Turn your product brief into pricing</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-300">
+                Send product, size, quantity and destination through the contact page or WhatsApp.
               </p>
-              <div className="mt-8 grid border-y border-white/15 sm:grid-cols-2">
-                {factoryFacts.map((item) => (
-                  <div key={item.title} className="border-b border-white/15 py-4 pr-4 last:border-b-0 sm:odd:border-r sm:even:pl-4">
-                    <span className="text-amber-400 [&_svg]:h-4 [&_svg]:w-4" aria-hidden="true">{item.icon}</span>
-                    <h3 className="mt-2 text-sm font-semibold text-white">{item.title}</h3>
-                    <p className="mt-1 text-xs leading-relaxed text-slate-300">{item.text}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-amber-200"><BadgeCheck className="h-4 w-4" /> NDA and private-label programs available</div>
-              <div className="mt-auto pt-8">
-                <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-amber-300 hover:text-amber-200">
-                  <Phone className="h-4 w-4" /> Send details on WhatsApp
-                </a>
-              </div>
             </div>
-            <div className="p-7 lg:p-9">
-              <InquiryForm compact initialMessage="Product:&#10;Size / specification:&#10;Quantity:&#10;Destination:&#10;Blank or custom:" />
+            <div className="flex flex-wrap gap-3">
+              <Link href="/contact" className="inline-flex min-h-10 items-center gap-2 rounded-md bg-amber-300 px-4 text-sm font-semibold text-slate-950 transition-colors hover:bg-amber-200">
+                Request a quote <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 items-center gap-2 rounded-md border border-white/25 px-4 text-sm font-semibold text-white transition-colors hover:bg-white/10">
+                <Phone className="h-4 w-4" /> WhatsApp
+              </a>
             </div>
           </div>
         </div>

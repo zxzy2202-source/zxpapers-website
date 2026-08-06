@@ -22,7 +22,6 @@ import {
   Thermometer,
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
-import InquiryForm from "@/components/shared/InquiryForm";
 import PageHero from "@/components/shared/PageHero";
 import PopularSizesCarousel, { type SkuItem } from "@/components/shared/PopularSizesCarousel";
 import type { SlotKey } from "@/config/imageSlots";
@@ -929,54 +928,43 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── 8. Homepage RFQ ───────────────────────────────────────────────────── */}
+      {/* ── 8. Short Contact CTA ─────────────────────────────────────────────── */}
       <section
         id="home-rfq"
         data-component="homepage-rfq"
-        className="scroll-mt-28 bg-brand-navy py-16 text-white sm:py-20 lg:py-24"
+        className="scroll-mt-28 bg-brand-navy py-8 text-white sm:py-10"
         aria-labelledby="home-rfq-heading"
       >
         <div className="container">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-300">
-                Quote-Ready Order Brief
+              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-300">
+                Quote-ready order brief
               </p>
-              <h2
-                id="home-rfq-heading"
-                className="text-3xl font-semibold leading-tight text-white sm:text-4xl"
-              >
-                Get a Factory Quote Without Leaving the Page
+              <h2 id="home-rfq-heading" className="font-sora text-2xl font-semibold text-white sm:text-3xl">
+                Need a factory quote?
               </h2>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-blue-100">
-                Send four starting details. The export team will identify the missing specification
-                questions before confirming price, sample and packing options.
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-blue-100">
+                Send product, size, quantity and destination through the contact page or WhatsApp.
               </p>
-              <div className="mt-8 space-y-0">
-                {quoteChecklist.map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3 border-b border-white/10 py-3.5 text-sm font-medium text-white"
-                  >
-                    <CheckCircle className="h-4 w-4 shrink-0 text-amber-400" aria-hidden="true" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className="inline-flex min-h-10 items-center gap-2 rounded-md bg-amber-300 px-4 text-sm font-semibold text-slate-950 transition-colors hover:bg-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-4 focus-visible:ring-offset-brand-navy"
+              >
+                Request a quote
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-amber-300 hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-4 focus-visible:ring-offset-brand-navy"
+                className="inline-flex min-h-10 items-center gap-2 rounded-md border border-white/25 px-4 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-4 focus-visible:ring-offset-brand-navy"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                Ask a quick question on WhatsApp
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                WhatsApp
               </a>
-            </div>
-
-            <div className="rounded-lg bg-white p-6 text-slate-950 shadow-lg shadow-black/20 sm:p-8">
-              <InquiryForm formId="home-rfq-form" />
             </div>
           </div>
         </div>

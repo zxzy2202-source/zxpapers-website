@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
-import InquiryForm from "@/components/shared/InquiryForm";
 import { Button } from "@/components/ui/button";
 import type { HeroBadge, HeroCTA, HeroStat } from "@/components/shared/PageHero";
 import { ArrowRight } from "lucide-react";
@@ -308,15 +307,31 @@ export default function ProductCategoryShowcaseTemplate({
         bgImageAlt="ZhixinPaper thermal paper products — factory-direct B2B wholesale and OEM supply"
         overlayDir="left"
         overlayOpacity={56}
-        minHeight="min-h-[460px]"
+        minHeight="min-h-[390px]"
+        compact
         breadcrumbs={breadcrumbs}
         badge={heroBadge}
         title={title}
         subtitle={subtitle}
         trustBadges={trustBadges}
-        stats={stats}
+        stats={undefined}
+        mobileTrustBadgeLimit={2}
+        mobileStatLimit={2}
         ctas={ctas}
       />
+
+      <section className="border-b border-slate-200 bg-slate-50" aria-label="Category facts">
+        <div className="container grid grid-cols-2 divide-x divide-slate-200 sm:grid-cols-4">
+          {stats.map((fact) => (
+            <div key={fact.label} className="min-w-0 px-3 py-3 text-center sm:px-4 sm:py-4">
+              <p className="text-lg font-semibold leading-none text-brand-navy sm:text-xl">{fact.value}</p>
+              <p className="mt-1 break-words text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500 sm:text-[11px]">
+                {fact.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Section 1 — intro split */}
       <SplitSection block={introSplit} tinted eyebrow="Overview" />
@@ -528,29 +543,23 @@ export default function ProductCategoryShowcaseTemplate({
         </div>
       </section>
 
-      {/* Inquiry — navy panel + form (ref: template MTcontactDetail) */}
-      <section id="inquiry" className="bg-slate-50 border-t border-slate-100 scroll-mt-24">
-        <div className="container py-16 lg:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-2xl shadow-[0_30px_70px_rgba(15,23,42,0.16)]">
-            <div className="bg-brand-navy text-white p-8 lg:p-10 flex flex-col">
-              <div className="flex items-center gap-2 mb-5">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
-                <span className="text-xs font-semibold text-green-300">Online — Responding within 12h</span>
-              </div>
-              <h2 className="font-sora text-3xl lg:text-[42px] font-light leading-[1.15] tracking-tight text-white mb-4">{inquiry.title}</h2>
-              <p className="text-base leading-relaxed text-slate-300 mb-8 max-w-md">{inquiry.description}</p>
-              {crossLinks.length > 0 ? (
-                <div className="mt-auto flex flex-wrap gap-x-6 gap-y-3 border-t border-white/15 pt-6">
-                  {crossLinks.map((item) => (
-                    <Link key={item.href} href={item.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-300 hover:text-amber-200">
-                      {item.label} <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  ))}
-                </div>
-              ) : null}
+      <section id="inquiry" className="border-t border-slate-100 bg-brand-navy py-8 text-white scroll-mt-24 sm:py-10">
+        <div className="container">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-300">Request a quote</p>
+              <h2 className="mt-2 font-sora text-2xl font-semibold leading-tight text-white sm:text-3xl">{inquiry.title}</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-300">Send your product, size, quantity and destination through the contact page or WhatsApp.</p>
             </div>
-            <div className="bg-white p-7 lg:p-9">
-              <InquiryForm compact />
+            <div className="flex flex-wrap gap-3">
+              <Link href="/contact" className="inline-flex min-h-10 items-center gap-2 rounded-md bg-amber-300 px-4 text-sm font-semibold text-slate-950 transition-colors hover:bg-amber-200">
+                Request a quote <ArrowRight className="h-4 w-4" />
+              </Link>
+              {crossLinks.slice(0, 1).map((item) => (
+                <Link key={item.href} href={item.href} className="inline-flex min-h-10 items-center gap-2 rounded-md border border-white/25 px-4 text-sm font-semibold text-white transition-colors hover:bg-white/10">
+                  {item.label} <ArrowRight className="h-4 w-4" />
+                </Link>
+              ))}
             </div>
           </div>
         </div>

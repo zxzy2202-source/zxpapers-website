@@ -355,6 +355,7 @@ const r2PublicOrigin = getAbsolutePublicUrl(
 const r2PublicHostname = new URL(r2PublicOrigin).hostname;
 
 const nextConfig: NextConfig = {
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   trailingSlash: false,
   skipTrailingSlashRedirect: true,
 
@@ -484,11 +485,10 @@ const nextConfig: NextConfig = {
       { source: "/products/thermal-labels/custom-printed", destination: "/products/custom-printed-thermal-labels", permanent: true },
       { source: "/products/custom-printed-labels", destination: "/products/custom-printed-thermal-labels", permanent: true },
       { source: "/products/blank-thermal-labels", destination: "/products/thermal-labels/blank", permanent: true },
-      {
-        source: "/products/can-labels/:legacy(211x400|211x603|300x407|307x510|401x700|blank|custom-printed)",
-        destination: "/products/can-labels",
-        permanent: true,
-      },
+      // Historical trust-content paths cited by external audits should resolve to
+      // the closest current pages instead of competing as 404 or duplicate URLs.
+      { source: "/factory/virtual-tour", destination: "/about", permanent: true },
+      { source: "/case-studies", destination: "/oem/case-studies", permanent: true },
       // Legacy combined region page → canonical split pages
       { source: "/markets/middle-east-africa", destination: "/markets/middle-east", permanent: true },
       { source: "/markets/middle-east-africa/:path*", destination: "/markets/middle-east", permanent: true },

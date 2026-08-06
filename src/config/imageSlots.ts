@@ -381,17 +381,17 @@ export const IMAGE_SLOTS = [
   { slot: "thermal-rolls:applications:kiosk", label: "热敏纸卷-自助终端", page: "热敏纸卷", pageUrl: "/products/thermal-rolls", aspect: "4:3", description: "自助点单/购票终端场景" },
   { slot: "thermal-rolls:applications:credit-card", label: "热敏纸卷-信用卡终端", page: "热敏纸卷", pageUrl: "/products/thermal-rolls", aspect: "4:3", description: "信用卡支付终端小票场景" },
 
-  // 罐头标签 - 应用场景图（在 can-labels-data.tsx 中用 slotKey 引用）
-  { slot: "can-labels:applications:beverage", label: "灌装线卷标-饮料线", page: "灌装线自动贴标卷筒标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "饮料瓶灌装和自动贴标生产线应用图" },
+  // 灌装线自动贴标卷筒标签 - 应用场景图（slot keys remain URL-compatible）
+  { slot: "can-labels:applications:beverage", label: "灌装线卷标-饮料线", page: "灌装线自动贴标卷筒标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "饮料容器灌装和自动贴标生产线应用图" },
   { slot: "can-labels:applications:food", label: "灌装线卷标-食品线", page: "灌装线自动贴标卷筒标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "食品、酱料和罐装容器自动贴标应用图" },
   { slot: "can-labels:applications:canning", label: "灌装线卷标-代工多SKU", page: "灌装线自动贴标卷筒标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "Co-packer 和多 SKU 灌装贴标线应用图" },
-  { slot: "can-labels:applications:retail", label: "罐头标签-零售货架", page: "罐头标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "超市货架陈列应用图" },
+  { slot: "can-labels:applications:retail", label: "灌装线卷标-零售包装", page: "灌装线自动贴标卷筒标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "零售包装容器自动贴标与货架陈列应用图" },
   { slot: "can-labels:applications:pet-food", label: "灌装线卷标-个护产品", page: "灌装线自动贴标卷筒标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "洗护、化妆品和小直径容器自动贴标应用图" },
   { slot: "can-labels:applications:industrial", label: "灌装线卷标-工业液体", page: "灌装线自动贴标卷筒标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "润滑油、化学品和工业液体灌装贴标应用图" },
-  { slot: "can-labels:applications:chemical", label: "罐头标签-化工品", page: "罐头标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "GHS 化工品罐应用图" },
+  { slot: "can-labels:applications:chemical", label: "灌装线卷标-工业容器", page: "灌装线自动贴标卷筒标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "工业液体容器灌装、信息标识与自动贴标应用图" },
   { slot: "can-labels:applications:paint", label: "灌装线卷标-家居日化", page: "灌装线自动贴标卷筒标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "清洁剂、洗涤剂和家居日化灌装贴标应用图" },
-  { slot: "can-labels:applications:seafood", label: "罐头标签-海产品", page: "罐头标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "金枪鱼/沙丁鱼等海产罐应用图" },
-  { slot: "can-labels:applications:vegetable", label: "罐头标签-蔬菜", page: "罐头标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "蔬菜/番茄/豆类罐应用图" },
+  { slot: "can-labels:applications:seafood", label: "灌装线卷标-食品容器", page: "灌装线自动贴标卷筒标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "海产品食品容器灌装与自动贴标应用图" },
+  { slot: "can-labels:applications:vegetable", label: "灌装线卷标-蔬菜及食品包装", page: "灌装线自动贴标卷筒标签", pageUrl: "/products/can-labels", aspect: "4:3", description: "蔬菜、番茄和豆类食品容器的灌装与自动贴标应用图" },
 
   // 洗涤剂标签 - 应用场景图（在 detergent-labels-data.tsx 中用 slotKey 引用）
   { slot: "detergent-labels:applications:laundry", label: "洗涤标签-洗衣液", page: "洗涤剂标签", pageUrl: "/products/detergent-labels", aspect: "4:3", description: "洗衣液/洗衣粉应用图" },

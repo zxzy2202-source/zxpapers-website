@@ -395,7 +395,7 @@ export default function Header() {
                             </div>
                           </div>
 
-                          <div className="grid grid-cols-4 divide-x divide-slate-200">
+                          <div data-component="product-family-grid" className="grid grid-cols-4 divide-x divide-slate-200">
                             {(item as NavDropdown).productGroups!.map((group: NavProductGroup) => (
                               <div
                                 key={group.groupLabel}
@@ -420,7 +420,7 @@ export default function Header() {
                                   </span>
                                 </Link>
                                 <div className="mt-2">
-                                  {group.items.slice(0, 7).map((sub) => (
+                                  {group.items.map((sub) => (
                                     <Link
                                       key={sub.href + sub.label}
                                       href={sub.href}
@@ -440,7 +440,7 @@ export default function Header() {
                           {hasSizeGroups && (
                             <div className="flex flex-wrap items-center gap-2 border-t border-slate-200 bg-slate-50 px-5 py-3">
                               <span className="mr-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                                Popular Sizes
+                                Popular Specifications
                               </span>
                               {(item as NavDropdown).sizeGroups!
                                 .flatMap((group) => group.items.slice(0, 2))
@@ -482,7 +482,7 @@ export default function Header() {
                           {hasSizeGroups && (
                             <div className="flex-1 py-2 px-2">
                               <div className="px-3 py-2 text-[10px] font-semibold text-slate-400 uppercase tracking-widest">
-                                Popular Sizes
+                                Popular Specifications
                               </div>
                               <div className="grid grid-cols-3 gap-0 divide-x divide-slate-100">
                                 {(item as NavDropdown).sizeGroups!.map((group) => (
@@ -529,7 +529,7 @@ export default function Header() {
                           {!hasSizeGroups && item.featured && (
                             <div className="flex-1 py-2">
                               <div className="px-4 py-2 text-[10px] font-semibold text-slate-400 uppercase tracking-widest">
-                                Popular Sizes
+                                Popular Specifications
                               </div>
                               {item.featured.map((feat) => (
                                 <Link
@@ -671,7 +671,7 @@ export default function Header() {
 
                                   {isExpanded && (
                                     <div id={panelId} className="bg-slate-50 px-3 pb-2">
-                                      {group.items.slice(0, 7).map((sub) => (
+                                      {group.items.map((sub) => (
                                         <Link
                                           key={sub.href + sub.label}
                                           href={sub.href}
@@ -769,7 +769,7 @@ export default function Header() {
                         {hasSizeGroups && !hasProductGroups && (
                           <div className="pt-2 mt-2 border-t border-slate-200 space-y-3">
                             <div className="px-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                              Popular Sizes
+                              Popular Specifications
                             </div>
                             {(item as NavDropdown).sizeGroups!.map((group) => (
                               <div key={group.groupLabel}>

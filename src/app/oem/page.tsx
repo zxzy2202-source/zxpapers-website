@@ -185,7 +185,8 @@ export default async function OEMPage() {
               ))}
             </ul>
           </div>
-          <div className="border border-slate-200 bg-white p-7 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:p-8 lg:p-9">
+            <div className="border border-slate-200 bg-white p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:p-6 lg:p-7">
+
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-700">Start the project</p>
             <h3 className="mt-2 font-sora text-2xl font-semibold text-slate-950">Send one complete OEM brief</h3>
             <p className="mt-3 text-sm leading-relaxed text-slate-600">Share the product route, dimensions, material, artwork, print side, quantity plan, packaging, destination, and confidentiality needs. That gives the team enough context to prepare the right next step instead of a generic reply.</p>
@@ -201,7 +202,7 @@ export default async function OEMPage() {
               <InquiryForm
                 productName="OEM Partnership Inquiry"
                 compact
-                initialMessage={"Business type / market:\nProduct route (rolls / labels / mixed):\nSpecification and artwork status:\nPackaging hierarchy / carton requirements:\nExpected quantity and reorder plan:\nDestination country:\nNDA or confidentiality requirements:"}
+                initialMessage={undefined}
               />
             </div>
           </div>

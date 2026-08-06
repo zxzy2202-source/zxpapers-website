@@ -79,3 +79,19 @@ test("the six Middle East campaign articles avoid high AI-style risk", async () 
     assert.ok(!result.errors.some((issue) => issue.code === "ai-style-high-risk"));
   }
 });
+
+test("the eight Middle East P1 campaign articles avoid high AI-style risk", async () => {
+  const { validateBlogPost } = await loadValidator();
+  const source = fs.readFileSync(
+    path.join(root, "src/content/blogCampaigns/middleEastThermalPaperP1.ts"),
+    "utf8",
+  );
+  const articles = [...source.matchAll(/content: `([\s\S]*?)`,\r?\n\s*},/g)].map((match) => match[1]);
+
+  assert.equal(articles.length, 8);
+  for (const content of articles) {
+    const result = validateBlogPost({ title: "Middle East thermal paper guide", content });
+    assert.notEqual(result.qualityAudit.aiStyleRisk, "high");
+    assert.ok(!result.errors.some((issue) => issue.code === "ai-style-high-risk"));
+  }
+});

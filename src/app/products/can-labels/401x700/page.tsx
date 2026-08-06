@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import SizeDetailPage from "@/components/products/SizeDetailPage";
 import { CAN_LABELS_IMG, apps401x700 } from "../can-labels-data";
-import { SITE } from "@/config/siteData";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "401×700 Can Labels | Large Format Industrial",
+export const metadata = buildMetadata({
+  title: "401×700 Filling Line Labels | Large Format",
   description:
-    "401×700 can labels for #10 large food cans, paint cans, and industrial containers. GHS compliant, solvent-resistant. MOQ 5,000. ISO 9001 certified manufacturer.",
-  alternates: { canonical: `${SITE.domain}/products/can-labels/401x700` },
-};
+    "Specify 401×700 machine-ready large-format labels for #10 food containers or industrial vessels by surface, exposure, artwork, material, adhesive, and roll setup.",
+  path: "/products/can-labels/401x700",
+});
 
 
 export const revalidate = 86400; // 24 hours: static product/market content
@@ -20,22 +19,22 @@ export default function Page() {
         type="labels"
         sizeLabel="401 × 700"
         slug="401x700"
-        fullTitle="401×700 Can Labels (Large Format)"
+        fullTitle="401×700 Filling Line Labels (Large Format)"
         badge="Large Format"
-        description="The 401×700 is a large-format label for #10 institutional food cans, 1-gallon paint cans, and industrial chemical containers. The large surface area supports comprehensive ingredient lists, GHS hazard communication, and full-bleed brand artwork. Available in food-safe, solvent-resistant, and GHS-compliant variants."
+        description="The 401×700 route supports machine-ready large-format label planning for #10 food containers, paint containers and industrial vessels. The format can carry buyer-approved ingredient or hazard communication artwork; final material and compliance scope remain project-specific."
         specs={[
-          { label: "Can Size", value: "401×700 (#10 food can / 1-gallon industrial)" },
-          { label: "Label Dimensions", value: "Approx. 104mm × 178mm (full-wrap)" },
-          { label: "Face Stock", value: "White gloss, matte, BOPP, or polyester" },
-          { label: "Adhesive", value: "Permanent acrylic (food-safe or industrial)" },
-          { label: "Print Method", value: "Flexo / offset CMYK + Pantone" },
-          { label: "Coating", value: "Gloss, matte, or chemical-resistant lamination" },
-          { label: "MOQ", value: "5,000 labels" },
-          { label: "Lead Time", value: "12–20 days" },
-          { label: "Certifications", value: "ISO 9001, GHS / HazCom 2012, FDA 21 CFR (food)" },
+          { label: "Container Reference", value: "401×700 reference; verify the production container" },
+          { label: "Label Dimensions", value: "Approx. 104mm × 178mm; confirm the available label panel" },
+          { label: "Face Stock", value: "White gloss, matte, film, or polyester options by application" },
+          { label: "Adhesive", value: "Selected after container surface and exposure review" },
+          { label: "Print Method", value: "Flexo / offset CMYK + Pantone options" },
+          { label: "Finish", value: "Selected and tested for the specified exposure" },
+          { label: "Order Quantity", value: "Confirmed by construction, artwork and SKU mix" },
+          { label: "Production Timing", value: "Confirmed after proof, trial and order review" },
+          { label: "Evidence Scope", value: "Material, product and market documents confirmed by project" },
         ]}
         applications={apps401x700}
-        markets={["Global", "Americas", "Europe"]}
+        markets={["Global"]}
         productImage={CAN_LABELS_IMG}
         productImageSlot="can-labels"
       />

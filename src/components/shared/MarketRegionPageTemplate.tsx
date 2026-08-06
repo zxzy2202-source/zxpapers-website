@@ -242,7 +242,7 @@ export default async function MarketRegionPageTemplate({ data }: MarketRegionPag
                 </a>
               </div>
             </div>
-            {data.showInquiryForm ? <div className="rounded-2xl bg-white p-6 text-slate-900 shadow-xl"><InquiryForm /></div> : null}
+            {data.showInquiryForm ? <div className="rounded-xl bg-white p-3.5 text-slate-900 shadow-lg"><InquiryForm compact /></div> : null}
           </div>
         </div>
       </section>

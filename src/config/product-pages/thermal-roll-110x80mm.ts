@@ -13,7 +13,7 @@ export const thermalRoll110x80Config = createThermalRollDetailConfig({
   heroDescription: "For kiosk integrators, restaurant-system suppliers and specialist receipt programs. Confirm the 110 mm print width, 80 mm roll bay, core, length, paper grade and packing before quotation.",
   directAnswer: "110 mm x 80 mm thermal paper rolls provide additional printable width for detailed bills, kiosk output and specialist receipt systems. They require a printer designed for 110 mm media and must be qualified for width tolerance, 80 mm outer diameter, core, winding, paper basis and cutter or feed path.",
   buyerFit: "Kiosk integrators, restaurant-system suppliers and specialist printer distributors",
-  markets: ["Americas", "Europe", "Global"],
+  markets: ["Africa", "Middle East", "Southeast Asia", "Global"],
   rollSpecification: [
     { label: "Nominal width", value: "110 mm", note: "Legacy reference tolerance: +/-0.5 mm; confirm on the order specification." },
     { label: "Nominal outer diameter", value: "80 mm" },

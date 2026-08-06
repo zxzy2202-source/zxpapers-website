@@ -8,7 +8,6 @@ import {
   ExternalLink,
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
-import InquiryForm from "@/components/shared/InquiryForm";
 import PageHero from "@/components/shared/PageHero";
 import ProductCategoryActionLink from "@/components/products/category/ProductCategoryActionLink";
 import QuickQuoteBrief from "@/components/products/QuickQuoteBrief";
@@ -544,47 +543,22 @@ export default function ProductCategoryTemplate({
       <section
         id="inquiry"
         data-category-section="inquiry"
-        className="scroll-mt-24 bg-slate-50"
+        className="scroll-mt-24 bg-brand-navy py-8 text-white sm:py-10"
       >
-        <div className="container py-10 sm:py-12 lg:py-16">
-          <div className="grid overflow-hidden border border-slate-200 bg-white shadow-[0_18px_48px_rgba(15,23,42,0.08)] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-            <div className="flex flex-col bg-brand-navy p-7 text-white sm:p-8 lg:p-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-300">
-                {config.inquiry.label}
-              </p>
-              <h2 className="mt-2 font-sora text-2xl font-semibold leading-tight text-white sm:text-3xl">
-                {config.inquiry.title}
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-slate-300">
-                {config.inquiry.description}
-              </p>
-              <ul className="mt-6 space-y-3 border-t border-white/15 pt-5">
-                {config.inquiry.checklist.map((item) => (
-                  <li key={item} className="flex gap-2 text-xs leading-relaxed text-slate-200 sm:text-sm">
-                    <Check className="mt-0.5 h-4 w-4 flex-none text-amber-400" aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-7 inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-amber-300 transition-colors hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy motion-reduce:transition-none"
-              >
-                <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                Send the specification on WhatsApp
-              </a>
+        <div className="container">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-300">{config.inquiry.label}</p>
+              <h2 className="mt-2 font-sora text-2xl font-semibold leading-tight text-white sm:text-3xl">{config.inquiry.title}</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-300">Send your product, size, quantity and destination through the contact page or WhatsApp.</p>
             </div>
-            <div className="p-6 sm:p-7 lg:p-9">
-              <InquiryForm
-                compact
-                formId={inquiryFormId}
-                productName={config.inquiry.productName}
-                initialMessage={config.inquiry.initialMessage}
-                responseNote={config.inquiry.responseNote}
-                successMessage={config.inquiry.successMessage}
-              />
+            <div className="flex flex-wrap gap-3">
+              <Link href="/contact" className="inline-flex min-h-10 items-center gap-2 rounded-md bg-amber-300 px-4 text-sm font-semibold text-slate-950 transition-colors hover:bg-amber-200">
+                Request a quote <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 items-center gap-2 rounded-md border border-white/25 px-4 text-sm font-semibold text-white transition-colors hover:bg-white/10">
+                WhatsApp <ExternalLink className="h-4 w-4" />
+              </a>
             </div>
           </div>
         </div>

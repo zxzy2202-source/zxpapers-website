@@ -19,7 +19,6 @@ import {
 import { HERO_LIMITS } from "@/lib/heroLimits";
 import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
-import InquiryForm from "@/components/shared/InquiryForm";
 import QuickQuoteBrief from "@/components/products/QuickQuoteBrief";
 import MobileInquiryBar from "./MobileInquiryBar";
 import type {
@@ -328,26 +327,21 @@ export default function ProductDetailTemplate({ config, images, whatsappHref }: 
           </div>
         </section>
 
-        <section id="inquiry" className="scroll-mt-24 bg-slate-50" data-product-detail-section="inquiry">
-          <div className="container py-9 lg:py-12">
-            <div className="grid overflow-hidden border border-slate-200 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]">
-              <div className="bg-brand-navy p-6 text-white lg:p-8">
-                <StageIntro number="07" label="Request quote" title={config.inquiry.title} description={config.inquiry.description} inverse />
-                <div className="mt-6 border-y border-white/15">
-                  {config.inquiry.checklist.map((item) => (
-                    <p key={item} className="flex gap-2 border-b border-white/15 py-2.5 text-sm text-slate-200 last:border-b-0">
-                      <PackageCheck className="mt-0.5 h-4 w-4 flex-none text-amber-300" aria-hidden="true" />
-                      {item}
-                    </p>
-                  ))}
-                </div>
-                <Link href={whatsappHref} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex min-h-11 items-center gap-2 border border-white/25 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300">
-                  Discuss the application on WhatsApp
+        <section id="inquiry" className="scroll-mt-24 bg-brand-navy py-8 text-white" data-product-detail-section="inquiry">
+          <div className="container">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <StageIntro number="07" label="Request quote" title={config.inquiry.title} description="Send product, size, quantity and destination through the contact page or WhatsApp." inverse />
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/contact" className="inline-flex min-h-10 items-center gap-2 rounded-md bg-amber-300 px-4 text-sm font-semibold text-slate-950 transition-colors hover:bg-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-4 focus-visible:ring-offset-brand-navy">
+                  Request a quote
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
-              </div>
-              <div className="bg-white p-6 lg:p-8">
-                <InquiryForm compact productName={config.inquiry.productName} initialMessage={config.inquiry.initialMessage} />
+                <Link href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 items-center gap-2 rounded-md border border-white/25 px-4 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-4 focus-visible:ring-offset-brand-navy">
+                  WhatsApp
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
               </div>
             </div>
           </div>

@@ -568,7 +568,7 @@ export default function NcrReceiptBooksCatalogPage({
               <InquiryForm
                 compact
                 productName="private-label NCR receipt books"
-                initialMessage={"Buyer type / resale program:\n2-part or 3-part copy roles:\nSize and sets per book:\nBinding / cover / perforation:\nNumber range / branch allocation:\nArtwork / colors / languages:\nQuantity / packing / destination:\nRepeat-order plan:"}
+                initialMessage={undefined}
               />
             </div>
           </div>

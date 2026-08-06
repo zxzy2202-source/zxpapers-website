@@ -468,33 +468,33 @@ export default function NcrInvoiceBooksCatalogPage({
       <FaqSection faqs={faqs} />
 
       <section id="inquiry" className="scroll-mt-24 bg-slate-50" aria-labelledby="inquiry-heading">
-        <div className="container py-12 lg:py-16">
-          <div className="grid overflow-hidden border border-slate-200 shadow-[0_18px_50px_rgba(15,23,42,0.09)] lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]">
-            <div className="bg-brand-navy p-8 text-white lg:p-10">
+        <div className="container py-9 lg:py-12">
+          <div className="grid overflow-hidden border border-slate-200 shadow-[0_14px_36px_rgba(15,23,42,0.07)] lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]">
+            <div className="bg-brand-navy p-6 text-white lg:p-8">
               <p className="text-xs font-semibold uppercase tracking-normal text-amber-300">Wholesale invoice-book quote</p>
-              <h2 id="inquiry-heading" className="mt-3 text-pretty font-sora text-3xl font-semibold leading-tight lg:text-4xl">Build an Invoice Book SKU You Can Reorder</h2>
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-300 lg:text-base">Send the copy roles, size, sets per book, binding, number rules, artwork, quantity, packing, destination, and repeat-order plan.</p>
-              <div className="mt-8 border-y border-white/15">
+              <h2 id="inquiry-heading" className="mt-2 text-pretty font-sora text-2xl font-semibold leading-tight lg:text-3xl">Build an Invoice Book SKU You Can Reorder</h2>
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-300">Send the copy roles, size, sets per book, binding, number rules, artwork, quantity, packing, destination, and repeat-order plan.</p>
+              <div className="mt-5 border-y border-white/15">
                 {[
                   "2-part or 3-part copy roles and sheet colors",
                   "Book size, sets per book, cover, binding, and perforation",
                   "Start and end numbers, branch allocation, barcode, or QR rules",
                   "Private-label covers, labels, cartons, destination, and repeat plan",
                 ].map((item) => (
-                  <p key={item} className="flex gap-2 border-b border-white/15 py-3 text-sm text-slate-200 last:border-b-0">
+                  <p key={item} className="flex gap-2 border-b border-white/15 py-2 text-xs text-slate-200 last:border-b-0">
                     <Check className="mt-0.5 h-4 w-4 flex-none text-amber-400" aria-hidden="true" />{item}
                   </p>
                 ))}
               </div>
-              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className={`mt-7 inline-flex items-center gap-2 text-sm font-semibold text-amber-300 hover:text-amber-200 ${focusLink}`}>
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className={`mt-5 inline-flex items-center gap-2 text-sm font-semibold text-amber-300 hover:text-amber-200 ${focusLink}`}>
                 <Phone className="h-4 w-4" aria-hidden="true" />Send the Specification on WhatsApp
               </a>
             </div>
-            <div className="bg-white p-7 lg:p-9">
+            <div className="bg-white p-5 lg:p-7">
               <InquiryForm
                 compact
                 productName="wholesale NCR invoice books"
-                initialMessage={"Buyer type / resale program:\n2-part or 3-part copy roles:\nSize and sets per book:\nBinding / cover / perforation:\nNumber range / branch allocation:\nArtwork / colors / languages:\nQuantity / packing / destination:\nRepeat-order plan:"}
+                initialMessage={undefined}
               />
             </div>
           </div>

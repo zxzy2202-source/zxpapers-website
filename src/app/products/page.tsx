@@ -44,8 +44,8 @@ const catalogEntries: { name: string; path: string }[] = [
   ...labelSizes.map((size) => ({ name: `${size.label} Thermal Label`, path: `/products/thermal-labels/${size.slug}` })),
   { name: "Product & Packaging Labels", path: "/products/product-labels" },
   { name: "Machine-Ready Roll Labels for Filling Lines", path: "/products/can-labels" },
-  { name: "Blank Can Labels", path: "/products/can-labels/blank" },
-  { name: "Custom Printed Can Labels", path: "/products/can-labels/custom-printed" },
+  { name: "Blank Filling Line Labels", path: "/products/can-labels/blank" },
+  { name: "Custom Printed Filling Line Labels", path: "/products/can-labels/custom-printed" },
   { name: "Detergent & Household Labels", path: "/products/detergent-labels" },
   { name: "Blank Detergent & Household Labels", path: "/products/detergent-labels/blank" },
   { name: "Custom Printed Detergent & Household Labels", path: "/products/detergent-labels/custom-printed" },
@@ -63,7 +63,7 @@ const collectionSchema = {
   "@type": "CollectionPage",
   name: "Thermal Paper, Labels and NCR Form Products",
   description:
-    "Factory catalog of thermal paper rolls, direct thermal labels, can and bottle labels, and NCR forms in blank, stock, and custom printed options.",
+    "Factory catalog of thermal paper rolls, direct thermal labels, container and filling-line labels, and NCR forms in blank, stock, and custom printed options.",
   url: `${SITE.domain}/products`,
   isPartOf: { "@id": `${SITE.domain}/#website` },
   mainEntity: {
@@ -90,7 +90,7 @@ const breadcrumbSchema = {
 const faqs = [
   {
     q: "What thermal paper and label products do you manufacture?",
-    a: "We manufacture thermal paper rolls for POS, ATM, kiosk, and till applications; direct thermal shipping and barcode labels; can and bottle labels; and custom NCR business forms. Each range includes stock, blank, or custom printed options where applicable.",
+    a: "We manufacture thermal paper rolls for POS, ATM, kiosk, and till applications; direct thermal shipping and barcode labels; container and machine-ready filling-line labels; and custom NCR business forms. Each range includes stock, blank, or custom printed options where applicable.",
   },
   {
     q: "Do you supply blank and custom printed options?",
@@ -98,7 +98,7 @@ const faqs = [
   },
   {
     q: "What sizes are available?",
-    a: "Popular stock formats include 57mm and 80mm thermal rolls, 4 x 6 inch shipping labels, standard can and bottle label dimensions, and 2-part to multi-part NCR forms. Custom widths, shapes, and form sizes can be produced to specification.",
+    a: "Popular stock formats include 57mm and 80mm thermal rolls, 4 x 6 inch shipping labels, common container and filling-line label dimensions, and 2-part to multi-part NCR forms. Custom widths, shapes, and form sizes can be produced to specification.",
   },
   {
     q: "How is the minimum order quantity confirmed?",
@@ -228,10 +228,10 @@ export default async function ProductsPage() {
       navLabel: "Printed & Packaging Labels",
       title: "Printed & Packaging Labels",
       badge: "Product, Bottle & Filling Line",
-      description: "Product, can, bottle, and machine-ready roll labels organized under one packaging family, with each route retaining its own container, material, printing, and applicator requirements.",
+      description: "Product, container, and machine-ready filling-line labels organized under one packaging family, with each route retaining its own material, printing, surface, and applicator requirements.",
       href: "/products/product-labels",
       image: canImage,
-      imageAlt: "Printed packaging labels prepared for bottles, cans, and automatic labeling lines",
+      imageAlt: "Printed packaging labels prepared for containers and automatic filling lines",
       facts: ["Product and container review", "Material, adhesive, print, and finish configuration", "Manual and machine-applied supply routes"],
       applications: ["Food, beverage, and retail product packaging", "Detergent, cleaner, personal-care, and household containers", "Automatic filling, labeling, and multi-SKU co-packing lines"],
       buyers: ["Brand owners and packaging procurement teams", "Filling plants, co-packers, and production engineers", "Packaging integrators and label distributors"],
@@ -247,8 +247,8 @@ export default async function ProductsPage() {
         {
           title: "Choose by configuration",
           links: [
-            { label: "Blank Can Labels", href: "/products/can-labels/blank" },
-            { label: "Custom Printed Can Labels", href: "/products/can-labels/custom-printed" },
+            { label: "Blank Filling Line Labels", href: "/products/can-labels/blank" },
+            { label: "Custom Printed Filling Line Labels", href: "/products/can-labels/custom-printed" },
             { label: "Blank Bottle Labels", href: "/products/detergent-labels/blank" },
             { label: "Custom Printed Bottle Labels", href: "/products/detergent-labels/custom-printed" },
           ],

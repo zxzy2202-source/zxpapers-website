@@ -542,7 +542,7 @@ export const kenyaMarketPage: MarketCountryPageData = {
   countryName: "Kenya",
   countryCode: "KE",
   slot: "markets:kenya-hero",
-  heroFallback: "",
+  heroFallback: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1400&q=80",
   heroBadge: { text: "Kenya Market", color: "red" },
   eyebrow: "Thermal Paper Supplier for Kenya",
   title: "Thermal Paper Rolls Supplier for Kenya",
@@ -2273,7 +2273,7 @@ export const southeastAsiaRegionPage: MarketRegionPageData = {
   faqs: [
     { q: "What is the MOQ for Southeast Asia orders?", a: "MOQ can start from pallet level for standard items, with stronger pricing on recurring LCL and FCL business." },
     { q: "Do you provide CIF pricing to SEA ports?", a: "Yes. We support CIF pricing to major ASEAN ports depending on the buyer's destination strategy." },
-    { q: "Can I get free samples before placing a bulk order?", a: "Sample support is available so buyers can validate the right size and quality before scaling volume." },
+    { q: "Can I request samples before placing a bulk order?", a: "Sample availability, specification, cost, and shipping arrangements are confirmed for each project before dispatch." },
     { q: "Do you support FORM E?", a: "Yes. FORM E can be supported where the shipment structure and product route require it." },
     { q: "What payment terms do you accept?", a: "We support standard trade methods such as T/T and L/C depending on order structure." },
     { q: "Which products are strongest in Southeast Asia?", a: "80×80mm, 57×50mm, and 4x6 labels form the strongest cross-market product mix in ASEAN." },

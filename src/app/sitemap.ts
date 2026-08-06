@@ -90,6 +90,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
+  // Can Labels Product Pages (priority 0.8)
+  const canLabelPages: MetadataRoute.Sitemap = [
+    "211x400", "211x603", "300x407", "307x510", "401x700", "blank", "custom-printed",
+  ].map((size) => ({
+    url: `${BASE}/products/can-labels/${size}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   // Detergent Labels Product Pages (priority 0.8)
   const detergentLabelPages: MetadataRoute.Sitemap = [
     "100x100mm", "120x80mm", "70x200mm", "80x150mm", "90x120mm", "blank", "custom-printed",
@@ -200,6 +209,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...seaPages,
     ...thermalRollPages,
     ...thermalLabelPages,
+    ...canLabelPages,
     ...detergentLabelPages,
     ...productCategoryPages,
     ...otherPages,

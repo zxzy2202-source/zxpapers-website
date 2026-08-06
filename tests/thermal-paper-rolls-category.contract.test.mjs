@@ -3,7 +3,8 @@ import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
 const route = readFileSync("src/app/products/thermal-paper-rolls/page.tsx", "utf8");
-const component = readFileSync("src/components/products/ThermalPaperRollsCatalogPage.tsx", "utf8");
+const config = readFileSync("src/config/product-categories/thermal-paper-rolls.ts", "utf8");
+const schemaBuilder = readFileSync("src/lib/product-pages/product-category-schema.ts", "utf8");
 const llms = readFileSync("public/llms.txt", "utf8");
 const nextConfig = readFileSync("next.config.ts", "utf8");
 const navigation = readFileSync("src/config/navigation.ts", "utf8");
@@ -12,24 +13,29 @@ const sitemap = readFileSync("src/app/sitemap.ts", "utf8");
 const sizeDetail = readFileSync("src/components/products/SizeDetailPage.tsx", "utf8");
 
 test("thermal paper roll category keeps its global OEM search owner", () => {
-  assert.match(route, /OEM Thermal Paper Rolls Manufacturer/);
-  assert.match(component, /OEM, Private Label &amp; Wholesale Supply/);
-  assert.doesNotMatch(component, /Thermal Paper Rolls for Europe, USA and Canada/);
+  assert.match(config, /canonicalPath: "\/products\/thermal-paper-rolls"/);
+  assert.match(config, /"OEM Thermal Paper Rolls"/);
+  assert.match(config, /OEM \/ private label/);
+  assert.doesNotMatch(config, /Thermal Paper Rolls for Europe, USA and Canada/);
 });
 
 test("visible content defines global buyer terms and metric size notation", () => {
   for (const term of ["Billing rolls", "EDC rolls", "EFTPOS rolls", "80 x 80 x 12 mm", "80 mm x 80 m"]) {
-    assert.match(component, new RegExp(term));
+    assert.match(config, new RegExp(term));
   }
-  assert.match(component, /data-global-roll-terminology/);
-  assert.match(component, /GLOBAL_THERMAL_ROLL_TERMS\.map/);
-  assert.match(component, /GLOBAL_METRIC_SPEC_FORMATS\.map/);
+  assert.match(route, /global-roll-terminology/);
+  assert.match(route, /GLOBAL_THERMAL_ROLL_TERMS\.map/);
+  assert.match(route, /GLOBAL_METRIC_SPEC_FORMATS\.map/);
 });
 
 test("route publishes breadcrumb collection terminology and FAQ schemas", () => {
-  for (const schemaType of ["BreadcrumbList", "CollectionPage", "DefinedTermSet", "FAQPage"]) {
-    assert.match(route, new RegExp(`"@type": "${schemaType}"`));
+  for (const schemaType of ["BreadcrumbList", "CollectionPage", "FAQPage"]) {
+    assert.match(schemaBuilder, new RegExp(`"@type": "${schemaType}"`));
   }
+  assert.match(route, /"@type": "DefinedTermSet"/);
+  assert.match(route, /schemas\.collection/);
+  assert.match(route, /schemas\.breadcrumb/);
+  assert.match(route, /schemas\.faq/);
   assert.match(route, /serializeJsonLd/);
 });
 

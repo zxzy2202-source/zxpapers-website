@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import SizeDetailPage from "@/components/products/SizeDetailPage";
 import { CAN_LABELS_IMG, apps211x603 } from "../can-labels-data";
-import { SITE } from "@/config/siteData";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "211×603 Can Labels | Tall 16oz Beverage",
+export const metadata = buildMetadata({
+  title: "211×603 Filling Line Labels | 16oz Beverage",
   description:
-    "211×603 can labels for 16oz tall beverage cans. Full-wrap, moisture-resistant. CMYK + Pantone printing. MOQ 5,000. ISO 9001 certified manufacturer.",
-  alternates: { canonical: `${SITE.domain}/products/can-labels/211x603` },
-};
+    "Specify 211×603 machine-ready full-wrap labels for tall 16oz beverage containers by container dimensions, surface, application sequence, artwork, material, and roll setup.",
+  path: "/products/can-labels/211x603",
+});
 
 
 export const revalidate = 86400; // 24 hours: static product/market content
@@ -20,22 +19,22 @@ export default function Page() {
         type="labels"
         sizeLabel="211 × 603"
         slug="211x603"
-        fullTitle="211×603 Can Labels (Tall 16oz)"
-        badge="Tall Can"
-        description="The 211×603 is the standard full-wrap label for 16oz tall beverage cans — the premium format for craft beer, hard seltzers, sparkling water, and RTD cocktails. The taller profile provides more branding real estate for bold artwork and regulatory compliance text. Moisture-resistant and food-safe for refrigerated products."
+        fullTitle="211×603 Filling Line Labels (Tall 16oz)"
+        badge="Tall Format"
+        description="The 211×603 route supports machine-ready full-wrap label planning for tall 16oz beverage containers and provides additional artwork space. Confirm the production container, label panel, condensation timing, application sequence, exposure and roll setup before material approval."
         specs={[
-          { label: "Can Size", value: "211×603 (16oz tall can)" },
-          { label: "Label Dimensions", value: "Approx. 87mm × 153mm (full-wrap)" },
-          { label: "Face Stock", value: "White gloss, matte, or clear BOPP" },
-          { label: "Adhesive", value: "Permanent acrylic (food-safe)" },
-          { label: "Print Method", value: "Flexo / offset CMYK + Pantone" },
-          { label: "Coating", value: "Gloss or matte lamination" },
-          { label: "MOQ", value: "5,000 labels" },
-          { label: "Lead Time", value: "10–18 days" },
-          { label: "Certifications", value: "ISO 9001, FDA 21 CFR, BPA-Free" },
+          { label: "Container Reference", value: "211×603 reference; verify the production container" },
+          { label: "Label Dimensions", value: "Approx. 87mm × 153mm; confirm the available label panel" },
+          { label: "Face Stock", value: "White gloss, matte, or clear film options by application" },
+          { label: "Adhesive", value: "Selected after container surface and condensation review" },
+          { label: "Print Method", value: "Flexo / offset CMYK + Pantone options" },
+          { label: "Finish", value: "Gloss or matte options by exposure and artwork" },
+          { label: "Order Quantity", value: "Confirmed by construction, artwork and SKU mix" },
+          { label: "Production Timing", value: "Confirmed after proof, trial and order review" },
+          { label: "Evidence Scope", value: "Material and market documents confirmed by project" },
         ]}
         applications={apps211x603}
-        markets={["Americas", "Europe"]}
+        markets={["Global"]}
         productImage={CAN_LABELS_IMG}
         productImageSlot="can-labels"
       />

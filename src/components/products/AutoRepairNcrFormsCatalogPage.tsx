@@ -126,7 +126,7 @@ export default function AutoRepairNcrFormsCatalogPage({
         bgImageAlt="ZhixinPaper auto repair NCR carbonless forms — factory custom manufacturing for vehicle service shops"
         overlayDir="left"
         overlayOpacity={68}
-        minHeight="min-h-[410px]"
+        minHeight="min-h-[390px]"
         compact
         breadcrumbs={[
           { label: "Home", href: "/" },
@@ -142,19 +142,17 @@ export default function AutoRepairNcrFormsCatalogPage({
         ]}
       />
 
-      <section className="border-b border-slate-200 bg-white" aria-label="Auto repair NCR form order overview">
-        <div className="container py-5">
-          <div className="grid grid-cols-2 border-l border-t border-slate-200 lg:grid-cols-4">
-            {orderFacts.map((fact) => (
-              <div key={fact.label} className="flex min-h-20 items-center gap-3 border-b border-r border-slate-200 px-4 py-3 sm:px-5">
-                <span className="text-amber-700 [&_svg]:h-5 [&_svg]:w-5" aria-hidden="true">{fact.icon}</span>
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold uppercase tracking-normal text-slate-500">{fact.label}</p>
-                  <p className="mt-1 text-sm font-semibold leading-snug text-slate-900">{fact.value}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+      <section className="border-b border-slate-200 bg-slate-50" aria-label="Auto repair NCR form order overview">
+        <div className="container grid grid-cols-2 divide-x divide-slate-200 sm:grid-cols-4">
+          {orderFacts.map((fact) => (
+            <div key={fact.label} className="min-w-0 px-3 py-3 text-center sm:px-4 sm:py-4">
+              <span className="mx-auto flex h-8 w-8 items-center justify-center text-amber-700 [&_svg]:h-4 [&_svg]:w-4" aria-hidden="true">{fact.icon}</span>
+              <p className="mt-1 text-sm font-semibold leading-tight text-brand-navy sm:text-base">{fact.value}</p>
+              <p className="mt-1 break-words text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500 sm:text-[11px]">
+                {fact.label}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -397,7 +395,7 @@ export default function AutoRepairNcrFormsCatalogPage({
               <InquiryForm
                 compact
                 productName="custom auto repair NCR forms"
-                initialMessage={"Business type / application:\nCurrent form or required fields:\nNumber of parts and copy roles:\nSize / books, pads, or loose sets:\nVehicle diagram / numbering / perforation:\nQuantity and repeat-order plan:\nDestination country:"}
+                initialMessage={undefined}
               />
             </div>
           </div>

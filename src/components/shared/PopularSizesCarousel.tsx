@@ -18,7 +18,7 @@ function getSkuType(item: SkuItem) {
   const text = `${item.size} ${item.use}`.toLowerCase();
 
   if (text.includes("can")) {
-    return { label: "Can Label", tone: "border-slate-400 text-slate-700" };
+    return { label: "Filling Line Label", tone: "border-slate-400 text-slate-700" };
   }
 
   if (text.includes("label") || text.includes("shipping") || text.includes("barcode")) {

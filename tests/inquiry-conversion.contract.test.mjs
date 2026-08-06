@@ -60,7 +60,7 @@ test("asynchronous country detection never remounts or overwrites buyer input", 
   assert.doesNotMatch(form, /setDefaultCountry/);
 });
 
-test("optional buyer details are collapsed and reply copy is consistent", async () => {
+test("optional buyer details are collapsed and reply copy is qualified", async () => {
   const [page, form] = await Promise.all([
     read("src/app/contact/page.tsx"),
     read("src/components/shared/InquiryForm.tsx"),
@@ -69,6 +69,69 @@ test("optional buyer details are collapsed and reply copy is consistent", async 
   assert.match(form, /<details/);
   assert.match(form, /Add company and WhatsApp details/);
   assert.match(form, /Request My Quote/);
-  assert.match(page, /Reply within one business day/);
+  assert.match(page, /aim to begin review within one business day after sufficient details are received/);
   assert.doesNotMatch(page, /Instant Reply|30 minutes|24\/7|< 12 hours/);
+});
+
+test("paper inquiries preserve structured purchase and specification fields end to end", async () => {
+  const [form, route, store, notify, admin] = await Promise.all([
+    read("src/components/shared/InquiryForm.tsx"),
+    read("src/app/api/inquiry/route.ts"),
+    read("src/lib/inquiryStore.ts"),
+    read("src/lib/notify.ts"),
+    read("src/app/admin/inquiries/InquiriesClient.tsx"),
+  ]);
+
+  for (const field of [
+    "productLine",
+    "purchaseTask",
+    "estimatedQuantity",
+    "targetTimeline",
+    "rollSize",
+    "printerModel",
+    "paperRequirement",
+    "formSize",
+    "formParts",
+    "formFinishing",
+    "referenceAvailable",
+  ]) {
+    assert.match(form, new RegExp(`name=\\"${field}\\"`));
+    assert.match(route, new RegExp(`${field}: optionalTrim\\(${field},`));
+    assert.match(store, new RegExp(`${field}\\?: string`));
+  }
+
+  assert.match(form, /Thermal Paper Rolls/);
+  assert.match(form, /NCR &amp; Business Forms/);
+  assert.match(form, /Not sure yet/);
+  assert.match(notify, /specificationLines\(data\)/);
+  assert.match(admin, /label="产品线"/);
+});
+
+test("contact page exposes verified page schema without fixed commercial promises", async () => {
+  const page = await read("src/app/contact/page.tsx");
+
+  assert.match(page, /"@type": "ContactPage"/);
+  assert.match(page, /"@id": `\$\{SITE\.domain\}\/contact#contact-page`/);
+  assert.match(page, /mainEntity: \{/);
+  assert.match(page, /"@id": `\$\{SITE\.domain\}\/#organization`/);
+  assert.match(page, /email: SITE\.email/);
+  assert.match(page, /telephone: SITE\.phone/);
+  assert.doesNotMatch(page, /MOQ is 1 carton|MOQ starts from 500 rolls|free samples|Western Union|PayPal for small orders/);
+});
+
+test("homepage and market entry pages qualify response, sample, and payment claims", async () => {
+  const [home, markets, marketPages, form] = await Promise.all([
+    read("src/app/page.tsx"),
+    read("src/app/markets/page.tsx"),
+    read("src/config/marketCountryPages.ts"),
+    read("src/components/shared/InquiryForm.tsx"),
+  ]);
+
+  assert.match(home, /<InquiryForm formId="home-rfq-form" \/>/);
+  assert.match(form, /aim to reply within one business day after receiving sufficient inquiry details/i);
+  assert.doesNotMatch(home, /Reply within one business day|We'll respond within one business day/);
+  assert.doesNotMatch(markets, /Western Union|30-day terms/);
+  assert.match(markets, /Payment methods and terms are confirmed in the quotation/);
+  assert.doesNotMatch(marketPages, /free samples/i);
+  assert.match(marketPages, /Sample availability, specification, cost, and shipping arrangements are confirmed/);
 });

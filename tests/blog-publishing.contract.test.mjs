@@ -8,11 +8,14 @@ const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 
 test("scheduled publishing is protected and registered as a daily Vercel cron", () => {
   const route = read("src/app/api/cron/publish-posts/route.ts");
+  const campaignRoute = read("src/app/api/admin/posts/campaign/route.ts");
   const config = JSON.parse(read("vercel.json"));
 
   assert.match(route, /process\.env\.CRON_SECRET/);
   assert.match(route, /authorization/);
   assert.match(route, /publishDuePosts/);
+  assert.match(campaignRoute, /getBlogCampaign/);
+  assert.match(campaignRoute, /body\.campaignId/);
   assert.deepEqual(config.crons, [
     { path: "/api/cron/publish-posts", schedule: "0 1 * * *" },
   ]);
@@ -45,6 +48,21 @@ test("Middle East P0 campaign contains six formatted, publishable guides", () =>
   const articles = [...source.matchAll(/content: `([\s\S]*?)`,\r?\n\s*},/g)].map((match) => match[1]);
 
   assert.equal(articles.length, 6);
+  for (const article of articles) {
+    const words = article.trim().split(/\s+/).filter(Boolean);
+    assert.ok(words.length >= 600, `expected at least 600 words, received ${words.length}`);
+    assert.doesNotMatch(article, /^#\s+/m);
+    assert.ok((article.match(/^##\s+/gm) || []).length >= 3);
+    assert.match(article, /^## Frequently Asked Questions$/m);
+    assert.match(article, /\[[^\]]+\]\(\/(?:products|contact|markets|resources)/);
+  }
+});
+
+test("Middle East P1 campaign contains eight formatted, publishable guides", () => {
+  const source = read("src/content/blogCampaigns/middleEastThermalPaperP1.ts");
+  const articles = [...source.matchAll(/content: `([\s\S]*?)`,\r?\n\s*},/g)].map((match) => match[1]);
+
+  assert.equal(articles.length, 8);
   for (const article of articles) {
     const words = article.trim().split(/\s+/).filter(Boolean);
     assert.ok(words.length >= 600, `expected at least 600 words, received ${words.length}`);

@@ -63,9 +63,9 @@ export const apps3x1: ApplicationItem[] = [
 ];
 
 export const apps101x152: ApplicationItem[] = [
-  { name: "European E-commerce",   image: APP_IMAGES.europe,      slotKey: "thermal-labels:applications:europe", description: "A6 format standard for European online retailers." },
-  { name: "DPD / DHL Europe",      image: APP_IMAGES.shipping,    slotKey: "thermal-labels:applications:shipping", description: "Carrier-compliant labels for European parcel services." },
-  { name: "Hermes / Evri",         image: APP_IMAGES.logistics,   slotKey: "thermal-labels:applications:logistics", description: "Compatible with Hermes/Evri UK shipping labels." },
-  { name: "Cross-border Shipping", image: APP_IMAGES.crossborder, slotKey: "thermal-labels:applications:crossborder", description: "International shipping labels for EU cross-border trade." },
-  { name: "Logistics",             image: APP_IMAGES.warehouse,   slotKey: "thermal-labels:applications:warehouse", description: "European warehouse and logistics labeling." },
+  { name: "International E-commerce", image: APP_IMAGES.ecommerce,  slotKey: "thermal-labels:applications:ecommerce", description: "A6-format labels for online retailers and parcel fulfillment." },
+  { name: "Carrier Shipping",         image: APP_IMAGES.shipping,   slotKey: "thermal-labels:applications:shipping", description: "Carrier-compliant labels for regional and cross-border parcel services." },
+  { name: "Marketplace Fulfillment",  image: APP_IMAGES.logistics,  slotKey: "thermal-labels:applications:logistics", description: "Shipping labels for marketplace and third-party fulfillment workflows." },
+  { name: "Cross-border Shipping",    image: APP_IMAGES.crossborder, slotKey: "thermal-labels:applications:crossborder", description: "Labels for international customs and trade documentation." },
+  { name: "Warehouse Logistics",      image: APP_IMAGES.warehouse,  slotKey: "thermal-labels:applications:warehouse", description: "Warehouse and logistics labeling for distribution operations." },
 ];

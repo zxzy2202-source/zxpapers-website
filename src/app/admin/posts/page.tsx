@@ -2,6 +2,7 @@ import Link from "next/link";
 import { readAllPosts, RESOURCE_CATEGORIES } from "@/lib/postsStore";
 import { Plus, FileText, Edit3, ExternalLink } from "lucide-react";
 import BlogCampaignImporter from "@/components/admin/BlogCampaignImporter";
+import { BLOG_CAMPAIGNS } from "@/content/blogCampaigns/registry";
 
 const CATEGORY_LABEL: Record<string, string> = Object.fromEntries(
   RESOURCE_CATEGORIES.map((c) => [c.value, c.label.split(" (")[0]]),
@@ -12,7 +13,14 @@ export const dynamic = "force-dynamic";
 export default async function PostsPage() {
   const posts = await readAllPosts();
   const published = posts.filter((p) => p.published).length;
-  const campaignCount = posts.filter((p) => p.campaignId === "middle-east-thermal-paper-p0-2026").length;
+  const campaignSummaries = BLOG_CAMPAIGNS.map((campaign) => ({
+    id: campaign.id,
+    name: campaign.name,
+    description: campaign.description || "",
+    cadenceDays: campaign.cadenceDays,
+    total: campaign.posts.length,
+    imported: posts.filter((post) => post.campaignId === campaign.id).length,
+  }));
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -33,7 +41,7 @@ export default async function PostsPage() {
         </Link>
       </div>
 
-      <BlogCampaignImporter importedCount={campaignCount} />
+      <BlogCampaignImporter campaigns={campaignSummaries} />
 
       {posts.length === 0 ? (
         <div className="bg-white rounded-2xl p-16 border border-slate-200 text-center">

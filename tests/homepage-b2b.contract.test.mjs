@@ -36,10 +36,8 @@ test("homepage image admin exposes only product-line slots consumed by the curre
   const activeHomeSlots = [
     "home:category-thermal-rolls",
     "home:category-thermal-labels",
-    "home:category-custom-rolls",
-    "home:category-carbonless",
     "home:category-can-labels",
-    "home:category-jumbo-rolls",
+    "home:category-carbonless",
   ];
 
   for (const slot of activeHomeSlots) {
@@ -52,15 +50,27 @@ test("homepage image admin exposes only product-line slots consumed by the curre
     /slot: "home:product-phenol-free-thermal-paper"[\s\S]*?adminVisible: false/,
     "valid compatibility slots should remain type-safe but stay hidden from admin",
   );
+  assert.match(slots, /slot: "home:category-custom-rolls"[\s\S]*?adminVisible: false/);
+  assert.match(slots, /slot: "home:category-jumbo-rolls"[\s\S]*?首页制造能力证据图/);
   assert.match(slots, /IMAGE_SLOTS\.filter\([\s\S]*?"adminVisible" in slot[\s\S]*?slot\.adminVisible !== false/);
   assert.doesNotMatch(slots, /home:category-bottle-labels/);
 });
 
-test("homepage sends broad product intent to category aggregation pages", async () => {
+test("homepage sends broad product intent to the four canonical family owners", async () => {
   const page = await read("src/app/page.tsx");
+  const productLines = page.match(/const productLines: ProductLine\[\] = \[([\s\S]*?)\n\];/)?.[1] ?? "";
 
-  assert.match(page, /href: "\/products\/thermal-paper-rolls"/);
-  assert.match(page, /href: "\/products\/thermal-labels"/);
+  for (const destination of [
+    "/products/thermal-paper-rolls",
+    "/products/thermal-labels",
+    "/products/product-labels",
+    "/products/ncr-forms",
+  ]) {
+    assert.match(productLines, new RegExp(`href: "${destination.replaceAll("/", "\\/")}"`));
+  }
+
+  assert.equal((productLines.match(/href:/g) ?? []).length, 4);
+  assert.doesNotMatch(productLines, /Jumbo Roll|Custom Printed Rolls & Labels|Filling Line Roll Labels/);
   assert.doesNotMatch(page, /href: "\/products\/thermal-paper-rolls\/blank"/);
   assert.doesNotMatch(page, /href: "\/products\/thermal-labels\/blank"/);
 });
@@ -73,7 +83,7 @@ test("homepage routes buyers to inspectable evidence instead of unverifiable tes
   assert.match(page, /\/manufacturing\/quality-control/);
   assert.match(page, /\/manufacturing\/equipment/);
   assert.match(page, /<figcaption/);
-  assert.match(page, /Confirm the equipment and inspection records/);
+  assert.match(page, /Confirm the equipment and inspection\s+records/);
   assert.doesNotMatch(page, /buyerOutcomes|CountryFlag|anonymized outcomes|testimonial/i);
 });
 

@@ -3,19 +3,26 @@ import type { NextRequest } from 'next/server';
 import { verifySessionTokenEdge, COOKIE_NAME } from '@/lib/authEdge';
 
 /**
- * 中间件：仅负责 /admin 路径保护。
+ * Edge 中间件：域名规范化 + 后台鉴权。
  *
- * ⚠️ GEO 检测已从此处移除。
- *    原因：在中间件中写入 Set-Cookie 会导致 Vercel CDN 将所有页面响应标记为
- *    `private, no-cache`，完全绕过边缘缓存，造成性能损耗。
+ * 1. 将裸域 zxpapers.com 301 重定向到 www.zxpapers.com。
+ * 2. /admin 路径通过 session token 校验保护。
  *
- *    新方案：客户端在组件挂载后调用 /api/geo 接口异步获取国家信息，
- *    该接口不写 Cookie，响应可被浏览器缓存（Cache-Control: public, max-age=3600）。
- *
- * ⚠️ 注意：本文件运行在 Edge runtime，不能使用 Node 内置模块（fs, crypto 等）
+ * ⚠️ GEO 检测已从此处移除（见下方注释）。
+ * ⚠️ 本文件运行在 Edge runtime，不能使用 Node 内置模块。
  */
 export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, hostname } = request.nextUrl;
+
+  // ===== Non-www → www canonical redirect =====
+  if (hostname === 'zxpapers.com') {
+    const wwwUrl = new URL(pathname + request.nextUrl.search, 'https://www.zxpapers.com');
+    // Preserve hash fragments manually — URL constructor discards them.
+    if (request.nextUrl.hash) {
+      wwwUrl.hash = request.nextUrl.hash;
+    }
+    return NextResponse.redirect(wwwUrl, 301);
+  }
 
   // ===== /admin 路径访问控制 =====
   if (pathname.startsWith('/admin')) {
@@ -38,7 +45,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // 只匹配 /admin 路径，排除 API、静态资源
-    '/admin/:path*',
+    // Non-www redirect needs to cover all non-asset requests.
+    '/((?!_next|api/geo|favicon\\.ico|sitemap\\.xml|robots\\.txt).*)',
   ],
 };

@@ -1,5 +1,35 @@
 [
   {
+    "date": "2026-08-04",
+    "category": "其他",
+    "title": "重构全站页脚信息架构并完成构建验证",
+    "description": "针对共享 Footer 与响应式页脚导航进行结构重构，目标是降低中屏与移动端的链接墙压力，提升联系入口与采购导航的扫描效率，同时保持现有品牌语义、产品路由和询盘入口不变。\n\n主要优化：\n1. 新增独立 RFQ 顶部带，集中承接报价主任务，并保留 Contact 与 WhatsApp 两个高意图入口\n2. 将信任证据条重构为统一图标+标签+说明的四项证据带，增强页脚顶部识别度\n3. 重构品牌信息区，统一展示工厂定位、电话、邮箱、WhatsApp、WeChat 与工作时间\n4. 抽离 ResponsiveFooterNavigation，桌面端使用四组导航列，移动端改为 details 折叠组，减少长列表堆叠\n5. 单独整理 Popular product sizes 区块，在桌面与移动端分别采用横向分组与折叠展示\n6. 简化底部法律条与地址区，保留 Sitemap、FAQ、Contact 快速入口与工厂所在地说明\n7. 清理旧页脚乱码注释与中屏布局问题，统一 focus-visible、最小点击高度与深色背景对比度表现",
+    "commit": "未提交",
+    "files": "src/components/layout/Footer.tsx, src/components/layout/ResponsiveFooterNavigation.tsx, src/components/layout/Layout.tsx",
+    "result": "TypeScript 检查通过 | Next.js 生产构建通过（129 个静态页面）| /about、/manufacturing、/best-thermal-paper-suppliers 等共享页脚页面构建产物正常 | 无新增类型错误 | 页脚共享组件拆分完成",
+    "id": "adfd5054-9f69-4dc2-bcad-1fd6a5c39d01"
+  },
+  {
+    "date": "2026-07-29",
+    "category": "UI 优化",
+    "title": "重构首页采购路径并强化 RFQ 转化层级",
+    "description": "针对首页进行 B2B 采购路径与视觉层级优化，保留现有品牌、产品路由、后台 Hero 配置、SEO/GEO 内容和询价业务逻辑。\n\n主要优化：\n1. 在 Hero 增加桌面与移动响应式 Quote Readiness 面板，集中提示产品、规格、定制和交付四类询价信息\n2. 将六个产品���口重构为统一的白底采购卡片，保留真实产品图片与原有链接，并使用产品专属 CTA 文案\n3. 将 Popular Sizes 前置到 Buying Routes 之前，方便明确尺寸的买家更快进入具体产品路径\n4. 优化首页区块背景、边框与纵向间距，仅在 Hero 和最终 RFQ 保留深色重点区域\n5. 强化 OEM 审批顺序、工厂证据与最终询价区的层级和扫描效率\n6. 保留动态 Hero、图片槽位、结构化数据、核心实体内容、内链及现有询价表单行为\n7. 新增首页设计契约，记录视觉方向、响应式规则、组件方案和既有素材清单",
+    "commit": "未提交",
+    "files": "DESIGN.md, src/app/page.tsx",
+    "result": "TypeScript 检查通过 | Next.js 生产构建通过（129 个静态页面）| 生产预览 http://127.0.0.1:3001/ 验收通过 | 1440x900 桌面与 390x844 移动端页面非空、无横向溢出、无区块重叠 | 桌面与移动 Quote Readiness 面板均完整可见 | 6 个产品采购卡片及图片完整 | Popular Sizes 顺序正确 | Factory Evidence 与最终 RFQ 可见 | 运行时错误 0 | 控制台错误 0",
+    "id": "1aa71c1c-d31a-4a36-8d94-c9c25d122ce4"
+  },
+  {
+    "date": "2026-07-28",
+    "category": "SEO 优化",
+    "title": "恢复七个 Can Labels 独立详情页并统一索引信号",
+    "description": "按独立规格页架构恢复 211x400、211x603、300x407、307x510、401x700、blank 和 custom-printed 七个 Can Labels 详情页。\n\n主要优化：\n1. 移除将七个详情地址统一重定向到品类页的规则，使每个规范 URL 直接返回 200\n2. 为七页配置独立标题、描述、自引用 canonical、Open Graph、Twitter 与 index/follow\n3. 将七个入口加入品类页普通内链和 XML Sitemap，并保持每个 URL 仅出现一次\n4. 统一可见面包屑与 BreadcrumbList JSON-LD，父级固定为 /products/can-labels\n5. 统一 blank、custom-printed 页的可见 Hero 图片与 WebPage JSON-LD 图片\n6. 修复 specifications、application-cases、oem-guide 的残缺描述\n7. 将 MOQ、交期、样品、认证、食品接触、耐湿、耐化学品和耐溶剂等固定声明改为按材料、表面、应用、暴露、设备、市场和项目审核确认的限定表述\n8. 扩展 Can Labels 与 SEO P0 契约测试，锁定独立 canonical、Sitemap、面包屑、图片一致性和声明边界",
+    "commit": "未提交",
+    "files": "next.config.ts, src/app/sitemap.ts, src/config/product-categories/can-labels.ts, src/app/products/can-labels/can-labels-data.tsx, src/components/products/SizeDetailPage.tsx, src/app/products/can-labels/*/page.tsx, src/app/specifications/page.tsx, src/app/resources/application-cases/page.tsx, src/app/resources/oem-guide/page.tsx, tests/can-labels-category-template.contract.test.mjs, tests/seo-p0.contract.test.mjs",
+    "result": "Can Labels 契约测试 8/8 通过 | SEO P0 契约测试 14/14 通过 | TypeScript 检查通过 | 生产构建通过（129 个静态页面）| 七页运行态均为 200 且无重定向 | canonical、og:url、robots、JSON-LD 通过 | 品类页七个内链各 1 次 | Sitemap 七个 URL 各 1 次 | 浏览器渲染与可见面包屑通过 | 完整契约套件 109/112 通过，3 项为既有 Linerless/热敏纸模板契约漂移，与本次修改无关",
+    "id": "c93879cb-4ac3-49b7-9ddc-8eac0f0eaa73"
+  },
+  {
     "date": "2026-07-24",
     "category": "SEO 优化",
     "title": "SEO 专项审计并修复 hreflang 缺失与 Hero 图片 alt",

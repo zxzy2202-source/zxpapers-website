@@ -20,6 +20,17 @@ interface InquiryNotifyData {
   country?: string;
   phone?: string;
   subject?: string;
+  productLine?: string;
+  purchaseTask?: string;
+  estimatedQuantity?: string;
+  targetTimeline?: string;
+  rollSize?: string;
+  printerModel?: string;
+  paperRequirement?: string;
+  formSize?: string;
+  formParts?: string;
+  formFinishing?: string;
+  referenceAvailable?: string;
   message: string;
   source?: string;
   landingPage?: string;
@@ -34,6 +45,22 @@ function attributionLine(data: InquiryNotifyData) {
     .filter(Boolean)
     .join(" / ");
   return campaign || data.referrer || data.landingPage || "—";
+}
+
+function specificationLines(data: InquiryNotifyData) {
+  return [
+    ["产品线", data.productLine],
+    ["采购任务", data.purchaseTask],
+    ["预计数量", data.estimatedQuantity],
+    ["目标时间", data.targetTimeline],
+    ["卷纸规格", data.rollSize],
+    ["设备型号", data.printerModel],
+    ["纸张/印刷/包装", data.paperRequirement],
+    ["表单尺寸", data.formSize],
+    ["联数", data.formParts],
+    ["印刷/号码/后道", data.formFinishing],
+    ["参考资料", data.referenceAvailable],
+  ].filter((entry): entry is [string, string] => Boolean(entry[1]));
 }
 
 type WebhookPayload = Record<string, unknown>;
@@ -81,6 +108,7 @@ export async function notifyWeCom(data: InquiryNotifyData): Promise<Notification
     `**国家：** ${data.country || "—"}`,
     `**电话：** ${data.phone || "—"}`,
     `**主题：** ${data.subject || "—"}`,
+    ...specificationLines(data).map(([label, value]) => `**${label}：** ${value}`),
     `**来源页面：** ${data.source ? `${pagePathToLabel(data.source)}\n  \`${data.source}\`` : "—"}`,
     `**渠道归因：** ${attributionLine(data)}`,
     `---`,
@@ -117,6 +145,20 @@ export async function notifyFeishu(data: InquiryNotifyData): Promise<Notificatio
             { is_short: true, text: { tag: "lark_md", content: `**📞 电话**\n${data.phone || "—"}` } },
           ],
         },
+        ...(specificationLines(data).length > 0
+          ? [
+              { tag: "hr" },
+              {
+                tag: "div",
+                text: {
+                  tag: "lark_md",
+                  content: specificationLines(data)
+                    .map(([label, value]) => `**${label}：** ${value}`)
+                    .join("\n"),
+                },
+              },
+            ]
+          : []),
         { tag: "hr" },
         { tag: "div", text: { tag: "lark_md", content: `**💬 内容：**\n${data.message}` } },
         { tag: "note", elements: [{ tag: "plain_text", content: `来源：${data.source ? pagePathToLabel(data.source) : "网站"} (${data.source || "—"}) · 归因：${attributionLine(data)} · ${new Date().toLocaleString("zh-CN")}` }] },
@@ -144,6 +186,7 @@ export async function notifyServerChan(data: InquiryNotifyData): Promise<Notific
     `- **公司：** ${data.company || "—"}`,
     `- **国家：** ${data.country || "—"}`,
     `- **电话：** ${data.phone || "—"}`,
+    ...specificationLines(data).map(([label, value]) => `- **${label}：** ${value}`),
     `- **来源页面：** ${data.source ? `${pagePathToLabel(data.source)}\n  \`${data.source}\`` : "—"}`,
     `- **渠道归因：** ${attributionLine(data)}`,
     `\n### 💬 内容\n${data.message}`,

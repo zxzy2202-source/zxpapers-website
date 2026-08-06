@@ -29,25 +29,16 @@ test("linerless category separates the parent intent from the featured detail ro
   assert.doesNotMatch(config, /MOQ:\s*\d|10.?18|compatible with all|all FDA/i);
 });
 
-test("Products navigation exposes both the category and the featured linerless detail", async () => {
+test("Products navigation keeps linerless at category level and leaves its detail to the category page", async () => {
   const navigation = await read("src/config/navigation.ts");
-
-  assert.match(navigation, /Linerless Labels/);
-  assert.match(navigation, /3 1\/8.*263.*Linerless/);
-  assert.match(navigation, /\/products\/linerless-labels\/3-1-8-x-263/);
 
   const thermalGroup = navigation.slice(
     navigation.indexOf('groupLabel: "Thermal Labels"'),
-    navigation.indexOf('groupLabel: "Packaging Labels"'),
+    navigation.indexOf('groupLabel: "Printed & Packaging Labels"'),
   );
-  assert.ok(
-    thermalGroup.indexOf('label: "Linerless Labels"') < thermalGroup.indexOf('label: "Barcode Labels"'),
-    "the category entry should remain visible before the desktop and mobile menu limits",
-  );
-  assert.ok(
-    thermalGroup.indexOf('3 1/8 × 263') < thermalGroup.indexOf('label: "Barcode Labels"'),
-    "the featured detail entry should remain visible before the desktop and mobile menu limits",
-  );
+  assert.match(thermalGroup, /label: "Linerless Labels"/);
+  assert.match(thermalGroup, /href: "\/products\/linerless-labels"/);
+  assert.doesNotMatch(thermalGroup, /3 1\/8 × 263|\/products\/linerless-labels\/3-1-8-x-263/);
 });
 
 test("category layout adapts to the active item count and preserves mobile context", async () => {

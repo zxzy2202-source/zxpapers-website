@@ -41,9 +41,9 @@ export const apps57x50: ApplicationItem[] = [
 ];
 
 export const apps80x70: ApplicationItem[] = [
-  { name: "European POS Systems", image: APP_IMAGES.pos,         slotKey: "thermal-rolls:applications:pos", description: "Standard POS receipt size across European retail." },
-  { name: "Restaurant Printers",  image: APP_IMAGES.restaurant,  slotKey: "thermal-rolls:applications:restaurant", description: "Table-side and kitchen receipt printing in Europe." },
-  { name: "Retail Checkout",      image: APP_IMAGES.retail,      slotKey: "thermal-rolls:applications:retail", description: "Checkout receipt printing for European retail chains." },
+  { name: "Compact POS Systems", image: APP_IMAGES.pos,         slotKey: "thermal-rolls:applications:pos", description: "Standard POS receipt size for retail and service operations." },
+  { name: "Restaurant Printers",  image: APP_IMAGES.restaurant,  slotKey: "thermal-rolls:applications:restaurant", description: "Table-side and kitchen receipt printing for hospitality operations." },
+  { name: "Retail Checkout",      image: APP_IMAGES.retail,      slotKey: "thermal-rolls:applications:retail", description: "Checkout receipt printing for retail branches and distributors." },
   { name: "Hospitality",          image: APP_IMAGES.hospitality, slotKey: "thermal-rolls:applications:hospitality", description: "Hotel and hospitality billing and receipt printing." },
 ];
 

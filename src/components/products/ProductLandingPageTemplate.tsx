@@ -457,18 +457,24 @@ export default function ProductLandingPageTemplate({
                   {item.label} <ArrowRight className="w-4 h-4" />
                 </Link>
               ))}
+              <Link href="/resources/product-knowledge" className={`inline-flex items-center gap-2 text-sm font-semibold ${palette.text}`}>
+                Product knowledge <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link href="/specifications" className={`inline-flex items-center gap-2 text-sm font-semibold ${palette.text}`}>
+                Specifications <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
 
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-4" id="inquiry-panel">
-              <div className={`rounded-2xl border-2 ${palette.cardBorder} bg-white p-6 shadow-[0_24px_60px_rgba(15,23,42,0.14)]`}>
+              <div className={`rounded-xl border ${palette.cardBorder} bg-white p-3.5 shadow-[0_16px_40px_rgba(15,23,42,0.1)]`}>
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                   <span className="text-xs text-green-600 font-semibold">Online — Responding within 12h</span>
                 </div>
-                <h3 className="font-sora text-xl font-extrabold text-slate-900 mb-1">{sidebarTitle}</h3>
-                <p className="text-sm text-slate-500 mb-5">{sidebarDescription}</p>
+                <h3 className="font-sora text-lg font-extrabold text-slate-900 mb-1">{sidebarTitle}</h3>
+                <p className="text-sm text-slate-500 mb-2.5">{sidebarDescription}</p>
                 <InquiryForm compact />
               </div>
 

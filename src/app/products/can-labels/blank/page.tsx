@@ -1,19 +1,21 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { canLabelSizes, CAN_LABELS_IMG } from "../can-labels-data";
-import { SITE } from "@/config/siteData";
 import Image from "next/image";
 import { getSlotImage } from "@/lib/imageSlotUtils";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Blank Can Labels | Unprinted Full-Wrap",
-  description:
-    "Blank unprinted can labels in white, kraft, and clear BOPP, available for common can formats after container dimensions, label panel, material, adhesive, and application method are confirmed.",
-  alternates: { canonical: `${SITE.domain}/products/can-labels/blank` },
-};
+const description =
+  "Blank filling line labels in white, kraft, and clear film options, specified after the container, label panel, print method, material, adhesive, and machine-ready roll setup are confirmed.";
+
+export const metadata = buildMetadata({
+  title: "Blank Filling Line Labels | Machine-Ready Rolls",
+  description,
+  path: "/products/can-labels/blank",
+  image: CAN_LABELS_IMG,
+});
 
 
 const breadcrumbSchema = {
@@ -35,7 +37,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Can Labels",
+      "name": "Filling Line Labels",
       "item": "https://www.zxpapers.com/products/can-labels"
     },
     {
@@ -47,19 +49,19 @@ const breadcrumbSchema = {
   ]
 };
 
-const productSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Blank Can Labels | Unprinted Full-Wrap Can Labels",
-  "description": "Blank unprinted can labels in white, kraft, and clear BOPP, available for common can formats after container dimensions, label panel, material, adhesive, and application method are confirmed.",
-  "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-  "url": "https://www.zxpapers.com/products/can-labels/blank",
-  "about": { "@type": "Thing", "name": "Blank Can Labels" },
-};
 export const revalidate = 86400; // 24 hours: static product/market content
 
 export default async function BlankCanLabelsPage() {
   const heroImage = await getSlotImage("can-labels:blank-hero", CAN_LABELS_IMG);
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Blank Filling Line Labels | Machine-Ready Rolls",
+    description,
+    "image": heroImage,
+    "url": "https://www.zxpapers.com/products/can-labels/blank",
+    "about": { "@type": "Thing", "name": "Blank Filling Line Labels" },
+  };
   return (
     <Layout>
       <script
@@ -77,9 +79,9 @@ export default async function BlankCanLabelsPage() {
             <span className="mx-1">/</span>
             <Link href="/products" className="hover:text-blue-600">Products</Link>
             <span className="mx-1">/</span>
-            <Link href="/products/can-labels" className="hover:text-blue-600">Can Labels</Link>
+            <Link href="/products/can-labels" className="hover:text-blue-600">Filling Line Labels</Link>
             <span className="mx-1">/</span>
-            <span>Blank Can Labels</span>
+            <span>Blank Filling Line Labels</span>
           </div>
         </div>
       </div>
@@ -91,26 +93,26 @@ export default async function BlankCanLabelsPage() {
             <div className="flex flex-col sm:flex-row gap-6">
               <Image
                 src={heroImage}
-                alt="Blank Can Labels"
+                alt="Blank filling line label rolls"
                 className="w-full sm:w-64 h-48 object-cover rounded-2xl flex-shrink-0"
                width={256} height={192} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               <div>
                 <span className="inline-block bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">
-                  Can Labels
+                  Filling Line Labels
                 </span>
                 <h1
                   className="text-3xl font-extrabold text-slate-900 mb-3"
 
                 >
-                  Blank Can Labels
+                  Blank Filling Line Labels
                 </h1>
                 <p className="text-slate-600 leading-relaxed mb-4">
-                  Unprinted full-wrap can labels in white gloss, matte, kraft, and clear BOPP face stocks.
-                  Ideal for in-house digital printing, private label, or variable-data applications.
-                  Food-safe permanent adhesive, moisture-resistant, compatible with automated labeling lines.
+                  Unprinted machine-ready roll label options include white gloss, matte, kraft, and clear film.
+                  They can support in-house printing, private-label, or variable-data workflows after printer,
+                  container surface, exposure, adhesive, sensor, liner and applicator requirements are reviewed.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {["Unprinted", "White / Kraft / Clear", "Food Safe", "Moisture Resistant", "MOQ 5,000"].map((tag) => (
+                  {["Unprinted", "White / Kraft / Clear", "Printer Review", "Surface Review", "Project-Based Quantity"].map((tag) => (
                     <span key={tag} className="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">
                       {tag}
                     </span>
@@ -125,14 +127,14 @@ export default async function BlankCanLabelsPage() {
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
-                  "White gloss, matte, kraft, and clear BOPP options",
-                  "Food-safe acrylic adhesive (FDA 21 CFR compliant)",
-                  "Moisture and condensation resistant",
-                  "Consistent die-cut for automated labeling machines",
-                  "Compatible with inkjet, laser, and thermal transfer printers",
-                  "Silicone-coated liner for clean peel and apply",
-                  "BPA-free and phenol-free coating available",
-                  "ISO 9001 certified production with AQL inspection",
+                  "White gloss, matte, kraft, and clear film options",
+                  "Adhesive selected after production-can surface review",
+                  "Condensation and moisture exposure defined before testing",
+                  "Die-cut and roll geometry matched to the applicator",
+                  "Printer, ink or ribbon and DPI reviewed together",
+                  "Liner and release selected for the label head",
+                  "Material documentation confirmed by construction and market",
+                  "Trial and inspection criteria recorded by project",
                 ].map((b) => (
                   <div key={b} className="flex items-start gap-2.5 text-sm text-slate-700">
                     <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
@@ -189,8 +191,11 @@ export default async function BlankCanLabelsPage() {
               <h3 className="font-sora text-lg font-bold text-slate-900 mb-1">
                 Get a Quote
               </h3>
-              <p className="text-sm text-slate-500 mb-5">Response within 12 hours</p>
-              <InquiryForm compact />
+              <p className="text-sm text-slate-500 mb-5">Response timing is confirmed after requirements review.</p>
+              <InquiryForm
+                compact
+                productName="Blank Machine-Ready Roll Labels for Filling Lines"
+              />
             </div>
           </div>
         </div>

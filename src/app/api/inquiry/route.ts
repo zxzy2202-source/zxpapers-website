@@ -63,6 +63,17 @@ export async function POST(req: NextRequest) {
     country,
     phone,
     subject,
+    productLine,
+    purchaseTask,
+    estimatedQuantity,
+    targetTimeline,
+    rollSize,
+    printerModel,
+    paperRequirement,
+    formSize,
+    formParts,
+    formFinishing,
+    referenceAvailable,
     message,
     source,
     landingPage,
@@ -73,6 +84,13 @@ export async function POST(req: NextRequest) {
     utmTerm,
     utmContent,
   } = body;
+
+  // Honeypot — bots auto-fill hidden fields
+  const honeypot = optionalTrim(body.website, 1);
+  if (honeypot) {
+    // Silently accept to avoid tipping off bots, but don't persist or notify
+    return NextResponse.json({ ok: true, id: "honeypot" });
+  }
 
   const trimmedName = optionalTrim(name, 120);
   const trimmedEmail = optionalTrim(email, 254);
@@ -96,6 +114,17 @@ export async function POST(req: NextRequest) {
     country: trimmedCountry,
     phone: optionalTrim(phone, 80),
     subject: optionalTrim(subject, 200),
+    productLine: optionalTrim(productLine, 80),
+    purchaseTask: optionalTrim(purchaseTask, 120),
+    estimatedQuantity: optionalTrim(estimatedQuantity, 160),
+    targetTimeline: optionalTrim(targetTimeline, 160),
+    rollSize: optionalTrim(rollSize, 240),
+    printerModel: optionalTrim(printerModel, 240),
+    paperRequirement: optionalTrim(paperRequirement, 500),
+    formSize: optionalTrim(formSize, 240),
+    formParts: optionalTrim(formParts, 120),
+    formFinishing: optionalTrim(formFinishing, 500),
+    referenceAvailable: optionalTrim(referenceAvailable, 120),
     message: trimmedMessage,
     source: optionalTrim(source),
     landingPage: optionalTrim(landingPage),
@@ -133,6 +162,17 @@ export async function POST(req: NextRequest) {
             country: inquiryData.country,
             phone: inquiryData.phone || "—",
             inquiry_subject: inquiryData.subject || "—",
+            product_line: inquiryData.productLine || "—",
+            purchase_task: inquiryData.purchaseTask || "—",
+            estimated_quantity: inquiryData.estimatedQuantity || "—",
+            target_timeline: inquiryData.targetTimeline || "—",
+            roll_size: inquiryData.rollSize || "—",
+            printer_model: inquiryData.printerModel || "—",
+            paper_requirement: inquiryData.paperRequirement || "—",
+            form_size: inquiryData.formSize || "—",
+            form_parts: inquiryData.formParts || "—",
+            form_finishing: inquiryData.formFinishing || "—",
+            reference_available: inquiryData.referenceAvailable || "—",
             message: inquiryData.message,
             source: inquiryData.source || "—",
           }),

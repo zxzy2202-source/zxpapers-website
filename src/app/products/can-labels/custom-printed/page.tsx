@@ -1,19 +1,21 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import InquiryForm from "@/components/shared/InquiryForm";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { canLabelSizes, CAN_LABELS_IMG } from "../can-labels-data";
-import { SITE } from "@/config/siteData";
 import Image from "next/image";
 import { getSlotImage } from "@/lib/imageSlotUtils";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Custom Printed Can Labels | OEM Full-Color",
-  description:
-    "Custom printed can labels with CMYK and Pantone color printing. Full-wrap, gloss/matte lamination, NDA protection. MOQ 5,000.",
-  alternates: { canonical: `${SITE.domain}/products/can-labels/custom-printed` },
-};
+const description =
+  "Specify custom printed filling line labels by artwork, color targets, container dimensions, material, adhesive, finish, roll geometry, applicator and quantity by SKU.";
+
+export const metadata = buildMetadata({
+  title: "Custom Printed Filling Line Labels | OEM Rolls",
+  description,
+  path: "/products/can-labels/custom-printed",
+  image: CAN_LABELS_IMG,
+});
 
 
 const breadcrumbSchema = {
@@ -35,7 +37,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Can Labels",
+      "name": "Filling Line Labels",
       "item": "https://www.zxpapers.com/products/can-labels"
     },
     {
@@ -47,19 +49,19 @@ const breadcrumbSchema = {
   ]
 };
 
-const productSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Custom Printed Can Labels | OEM Full-Color Can Labels",
-  "description": "Custom printed can labels with CMYK and Pantone color printing. Full-wrap, gloss/matte lamination, NDA protection. MOQ 5,000.",
-  "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-  "url": "https://www.zxpapers.com/products/can-labels/custom-printed",
-  "about": { "@type": "Thing", "name": "Custom Printed Can Labels" },
-};
 export const revalidate = 86400; // 24 hours: static product/market content
 
 export default async function CustomPrintedCanLabelsPage() {
   const heroImage = await getSlotImage("can-labels:custom-hero", CAN_LABELS_IMG);
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Custom Printed Filling Line Labels | OEM Rolls",
+    description,
+    "image": heroImage,
+    "url": "https://www.zxpapers.com/products/can-labels/custom-printed",
+    "about": { "@type": "Thing", "name": "Custom Printed Filling Line Labels" },
+  };
   return (
     <Layout>
       <script
@@ -77,7 +79,7 @@ export default async function CustomPrintedCanLabelsPage() {
             <span className="mx-1">/</span>
             <Link href="/products" className="hover:text-blue-600">Products</Link>
             <span className="mx-1">/</span>
-            <Link href="/products/can-labels" className="hover:text-blue-600">Can Labels</Link>
+            <Link href="/products/can-labels" className="hover:text-blue-600">Filling Line Labels</Link>
             <span className="mx-1">/</span>
             <span>Custom Printed</span>
           </div>
@@ -91,26 +93,26 @@ export default async function CustomPrintedCanLabelsPage() {
             <div className="flex flex-col sm:flex-row gap-6">
               <Image
                 src={heroImage}
-                alt="Custom Printed Can Labels"
+                alt="Custom printed filling line label rolls"
                 className="w-full sm:w-64 h-48 object-cover rounded-2xl flex-shrink-0"
                width={256} height={192} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
               <div>
                 <span className="inline-block bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">
-                  Can Labels
+                  Filling Line Labels
                 </span>
                 <h1
                   className="text-3xl font-extrabold text-slate-900 mb-3"
 
                 >
-                  Custom Printed Can Labels
+                  Custom Printed Filling Line Labels
                 </h1>
                 <p className="text-slate-600 leading-relaxed mb-4">
-                  Full-color custom printed can labels with your brand artwork. CMYK and Pantone color matching,
-                  gloss or matte lamination, embossing, and hot stamping options. NDA protection, design support,
-                  and private label packaging available. ISO 9001 certified, food-safe, and BPA-free compliant.
+                  Custom printed filling line labels can be reviewed for CMYK and Pantone targets, gloss or matte finish,
+                  embossing, and foil options. Artwork handling, packaging, material documentation and any
+                  application-specific compliance scope are confirmed for the approved construction and market.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {["CMYK + Pantone", "Full-Wrap", "NDA Protected", "Design Support", "MOQ 5,000"].map((tag) => (
+                  {["CMYK + Pantone", "Full-Wrap", "Artwork Control", "Proof Review", "Project-Based Quantity"].map((tag) => (
                     <span key={tag} className="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full">
                       {tag}
                     </span>
@@ -125,14 +127,14 @@ export default async function CustomPrintedCanLabelsPage() {
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
-                  "Up to 8-color CMYK + Pantone spot color printing",
-                  "Gloss, matte, and soft-touch lamination options",
-                  "Embossing, debossing, and hot stamping available",
-                  "NDA and IP protection for all artwork",
-                  "Free design support and pre-press proofing",
-                  "Food-safe inks compliant with FDA and EU standards",
-                  "Moisture-resistant for refrigerated and frozen products",
-                  "Private label and OEM packaging available",
+                  "CMYK and Pantone targets reviewed against the artwork",
+                  "Gloss, matte, and soft-touch finish options",
+                  "Embossing, debossing, and foil options by construction",
+                  "Artwork revision and access controls defined by project",
+                  "Prepress proof and approval workflow available",
+                  "Ink and material documents confirmed by construction and market",
+                  "Condensation and cold exposure defined before testing",
+                  "Private-label and OEM packing options reviewed",
                 ].map((b) => (
                   <div key={b} className="flex items-start gap-2.5 text-sm text-slate-700">
                     <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
@@ -189,8 +191,11 @@ export default async function CustomPrintedCanLabelsPage() {
               <h3 className="font-sora text-lg font-bold text-slate-900 mb-1">
                 Get a Quote
               </h3>
-              <p className="text-sm text-slate-500 mb-5">Response within 12 hours</p>
-              <InquiryForm compact />
+              <p className="text-sm text-slate-500 mb-5">Response timing is confirmed after requirements review.</p>
+              <InquiryForm
+                compact
+                productName="Custom Printed Machine-Ready Roll Labels for Filling Lines"
+              />
             </div>
           </div>
         </div>

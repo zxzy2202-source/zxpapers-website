@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { isAuthenticated } from "@/lib/auth";
 import { importScheduledPosts } from "@/lib/postsStore";
-import { MIDDLE_EAST_THERMAL_PAPER_P0_CAMPAIGN } from "@/content/blogCampaigns/middleEastThermalPaperP0";
+import { getBlogCampaign } from "@/content/blogCampaigns/registry";
 
 export async function POST(request: NextRequest) {
   if (!(await isAuthenticated())) {
@@ -10,6 +10,10 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json().catch(() => ({}));
+  const campaign = getBlogCampaign(body.campaignId || "middle-east-thermal-paper-p0-2026");
+  if (!campaign) {
+    return NextResponse.json({ error: "未找到对应的内容排期" }, { status: 400 });
+  }
   const startAt = new Date(body.startAt);
   if (Number.isNaN(startAt.getTime())) {
     return NextResponse.json({ error: "请选择有效的首篇发布时间" }, { status: 400 });
@@ -18,11 +22,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "首篇发布时间必须晚于当前时间" }, { status: 400 });
   }
 
-  const templates = MIDDLE_EAST_THERMAL_PAPER_P0_CAMPAIGN.posts.map((post, index) => ({
+  const templates = campaign.posts.map((post, index) => ({
     ...post,
-    campaignId: MIDDLE_EAST_THERMAL_PAPER_P0_CAMPAIGN.id,
+    campaignId: campaign.id,
     scheduledAt: new Date(
-      startAt.getTime() + index * MIDDLE_EAST_THERMAL_PAPER_P0_CAMPAIGN.cadenceDays * 24 * 60 * 60 * 1000,
+      startAt.getTime() + index * campaign.cadenceDays * 24 * 60 * 60 * 1000,
     ).toISOString(),
   }));
   const result = await importScheduledPosts(templates);
@@ -30,7 +34,7 @@ export async function POST(request: NextRequest) {
   revalidatePath("/admin/posts");
   return NextResponse.json({
     success: true,
-    campaign: MIDDLE_EAST_THERMAL_PAPER_P0_CAMPAIGN.id,
+    campaign: campaign.id,
     created: result.created.map((post) => ({ id: post.id, slug: post.slug, scheduledAt: post.scheduledAt })),
     skipped: result.skipped,
   });

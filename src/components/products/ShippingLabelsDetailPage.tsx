@@ -575,27 +575,27 @@ export default function ShippingLabelsDetailPage({
       </section>
 
       <section id="inquiry" className="scroll-mt-24 bg-slate-50">
-        <div className="container py-14 lg:py-20">
+        <div className="container py-9 lg:py-12">
           <div className="grid overflow-hidden border border-slate-300 bg-white lg:grid-cols-2">
-            <div className="flex flex-col bg-brand-navy p-7 text-white sm:p-9 lg:p-10">
+            <div className="flex flex-col bg-brand-navy p-5 text-white sm:p-7 lg:p-8">
               <div className="flex items-center gap-2 text-amber-300">
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
                 <span className="text-xs font-semibold uppercase">Shipping label quote</span>
               </div>
-              <h2 className="mt-5 font-sora text-3xl font-semibold leading-tight text-white lg:text-[2.6rem]">
+              <h2 className="mt-3 font-sora text-2xl font-semibold leading-tight text-white lg:text-[2.2rem]">
                 Send the details that determine reliable feeding and scans
               </h2>
-              <p className="mt-4 max-w-[54ch] text-base leading-relaxed text-slate-300">
+              <p className="mt-3 max-w-[54ch] text-sm leading-relaxed text-slate-300">
                 We will confirm the construction, printer fit, sample route, packing plan, MOQ and lead time from your operating specification.
               </p>
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
                 {[
                   "Printer and media-path review",
                   "Real-surface adhesive sample",
                   "Carton and pallet calculation",
                   "Repeat-SKU specification",
                 ].map((item) => (
-                  <div key={item} className="flex gap-3 border-t border-white/20 pt-4 text-sm text-slate-200">
+                  <div key={item} className="flex gap-2.5 border-t border-white/20 pt-2.5 text-xs text-slate-200">
                     <PackageCheck className="h-4 w-4 shrink-0 text-amber-300" aria-hidden="true" />
                     <span>{item}</span>
                   </div>
@@ -603,17 +603,17 @@ export default function ShippingLabelsDetailPage({
               </div>
               <Link
                 href={whatsappUrl}
-                className="mt-9 inline-flex w-fit items-center gap-2 whitespace-nowrap border border-amber-300 px-5 py-3 text-sm font-semibold text-amber-200 transition-colors hover:bg-amber-300 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                className="mt-6 inline-flex w-fit items-center gap-2 whitespace-nowrap border border-amber-300 px-4 py-2.5 text-xs font-semibold text-amber-200 transition-colors hover:bg-amber-300 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
               >
                 Send printer model on WhatsApp
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
-            <div className="p-7 sm:p-9 lg:p-10">
+            <div className="p-5 sm:p-7 lg:p-8">
               <InquiryForm
                 compact
                 productName="bulk direct thermal shipping labels"
-                initialMessage={"Printer brand / model:\nLabel size:\nRoll or fanfold:\nCore / roll diameter / label count:\nGap / perforation / unwind:\nParcel surface / temperature:\nDaily or monthly volume:\nCarton / pallet / private label:\nDestination / Incoterm:"}
+                initialMessage={undefined}
               />
             </div>
           </div>

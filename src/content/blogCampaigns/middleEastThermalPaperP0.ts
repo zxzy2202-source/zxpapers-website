@@ -1,22 +1,11 @@
-import type { ResourceCategory } from "@/lib/postsCategories";
 import type { BlogAssetQuery } from "@/lib/blogAssetTypes";
 import { BLOG_ASSET_QUERIES } from "@/content/blogCampaigns/blogAssetQueries";
+import type { BlogCampaign } from "@/content/blogCampaigns/types";
 
-export interface BlogCampaignPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  category: ResourceCategory;
-  metaTitle: string;
-  metaDescription: string;
-  metaKeywords: string[];
-  assetQuery: BlogAssetQuery;
-}
-
-export const MIDDLE_EAST_THERMAL_PAPER_P0_CAMPAIGN = {
+export const MIDDLE_EAST_THERMAL_PAPER_P0_CAMPAIGN: BlogCampaign = {
   id: "middle-east-thermal-paper-p0-2026",
   name: "Middle East Thermal Paper P0",
+  description: "The first GCC thermal paper batch focused on QR receipts, size compatibility, RFQ basics, storage risk, and Arabic-English custom printing.",
   cadenceDays: 7,
   posts: [
     {
@@ -590,5 +579,5 @@ It is necessary but not sufficient for higher-risk projects. A physical sample r
 
 Upload the artwork, printer model, language versions and quantity through our [contact page](/contact) for a structured pre-production review.`,
     },
-  ] satisfies BlogCampaignPost[],
-} as const;
+  ],
+};

@@ -84,22 +84,22 @@ const FAMILY_CONTENT: Record<
 > = {
   "thermal-rolls": {
     parentLabel: "Thermal Paper Rolls",
-    parentPath: "/products/thermal-paper-rolls/blank",
+    parentPath: "/products/thermal-paper-rolls",
     detailPathPrefix: "/products/thermal-rolls",
   },
   "thermal-labels": {
     parentLabel: "Thermal Labels",
-    parentPath: "/products/thermal-labels/blank",
+    parentPath: "/products/thermal-labels",
     detailPathPrefix: "/products/thermal-labels",
   },
   "can-labels": {
-    parentLabel: "Can Labels",
-    parentPath: "/products/can-labels/blank",
+    parentLabel: "Filling Line Labels",
+    parentPath: "/products/can-labels",
     detailPathPrefix: "/products/can-labels",
   },
   "detergent-labels": {
     parentLabel: "Detergent Labels",
-    parentPath: "/products/detergent-labels/blank",
+    parentPath: "/products/detergent-labels",
     detailPathPrefix: "/products/detergent-labels",
   },
 };
@@ -151,12 +151,12 @@ export default async function SizeDetailPage({
   const waUrl = `${SITE.whatsappUrl}?text=${waText}`;
 
   const coreSellPoints = [
-    "Smooth printing performance",
-    "Stable roll length — consistent every batch",
-    "OEM packaging available",
-    "Bulk order supported",
-    "BPA-free coating options",
-    "ISO 9001:2015 certified manufacturing",
+    "Construction reviewed for the recorded application",
+    "Roll geometry matched to the target equipment",
+    "Artwork and packing options reviewed by project",
+    "Bulk quantities supported after specification review",
+    "Material and adhesive options selected by use case",
+    "Trial criteria recorded before production approval",
   ];
 
   const breadcrumbSchema = {
@@ -182,8 +182,8 @@ export default async function SizeDetailPage({
 
   const heroQuickFacts = [
     specs.find((item) => item.label === "Width" || item.label === "Size")?.value ?? sizeLabel,
-    specs.find((item) => item.label === "Length")?.value ?? "Custom length available",
-    palletInfo ? `${palletInfo.rollsPerPallet.toLocaleString()} rolls / pallet` : "MOQ from 1 pallet",
+    specs.find((item) => item.label === "Length")?.value ?? "Custom dimensions reviewed",
+    palletInfo ? `${palletInfo.rollsPerPallet.toLocaleString()} rolls / pallet` : "Order quantity confirmed by specification",
   ];
 
   const pageAnchors = [
@@ -194,10 +194,10 @@ export default async function SizeDetailPage({
   ];
 
   const purchaseHighlights = [
-    { icon: ClipboardList, title: "MOQ", value: palletInfo ? "1 pallet" : "Small bulk orders" },
-    { icon: Ship, title: "Shipping", value: "FOB / CIF quotation" },
-    { icon: FileText, title: "Samples", value: "Free sample support" },
-    { icon: Factory, title: "OEM", value: "Private label available" },
+    { icon: ClipboardList, title: "Order quantity", value: "Confirmed after specification review" },
+    { icon: Ship, title: "Shipping", value: "Incoterm and destination reviewed" },
+    { icon: FileText, title: "Samples", value: "Availability confirmed by project" },
+    { icon: Factory, title: "OEM", value: "Artwork and packing reviewed" },
   ];
 
   return (
@@ -498,12 +498,15 @@ export default async function SizeDetailPage({
                     <ArrowRight className="w-4 h-4" />Private Label
                   </Link>
                   {type === "rolls" ? (
-                    <Link href="https://www.zhixinpaper.com/eu" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-brand-navy hover:text-brand-navy text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
-                      <ArrowRight className="w-4 h-4" />Europe Thermal Paper Site
+                    <Link href="/resources/product-knowledge" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-brand-navy hover:text-brand-navy text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
+                      <ArrowRight className="w-4 h-4" />Thermal Paper Knowledge Guide
                     </Link>
                   ) : null}
                   <Link href="/manufacturing/certifications" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-brand-navy hover:text-brand-navy text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
                     <Award className="w-4 h-4" />Certifications
+                  </Link>
+                  <Link href="/specifications" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-brand-navy hover:text-brand-navy text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition-colors">
+                    <ArrowRight className="w-4 h-4" />Product Specifications
                   </Link>
                 </div>
               </div>

@@ -333,16 +333,31 @@ test("legacy language roots use explicit redirects with non-empty locations", ()
   }
 });
 
-test("sitemap excludes can-label detail routes that permanently redirect", () => {
+test("historical trust-content URLs redirect to the closest current pages", () => {
+  assertRedirect("/factory/virtual-tour", "/about");
+  assertRedirect("/case-studies", "/oem/case-studies");
+});
+
+test("can-label detail routes retain independent canonical ownership", () => {
   const canLabelRedirect = redirects.find(
     (redirect) =>
       redirect.source ===
       "/products/can-labels/:legacy(211x400|211x603|300x407|307x510|401x700|blank|custom-printed)",
   );
-  assert.ok(canLabelRedirect, "missing can-label consolidation redirect");
-  assert.equal(canLabelRedirect.destination, "/products/can-labels");
-  assert.match(sitemapSource, /"can-labels",/);
-  assert.doesNotMatch(sitemapSource, /const canLabelPages/);
+  assert.equal(canLabelRedirect, undefined, "can-label detail pages must not redirect to the category");
+  assert.match(sitemapSource, /const canLabelPages/);
+  for (const slug of [
+    "211x400",
+    "211x603",
+    "300x407",
+    "307x510",
+    "401x700",
+    "blank",
+    "custom-printed",
+  ]) {
+    assert.match(sitemapSource, new RegExp(`\\"${slug}\\"`));
+  }
+  assert.match(sitemapSource, /\.\.\.canLabelPages/);
   assert.doesNotMatch(sitemapSource, /"custom-printed-thermal-rolls"/);
 });
 

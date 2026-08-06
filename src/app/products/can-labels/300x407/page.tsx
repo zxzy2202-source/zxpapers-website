@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
 import SizeDetailPage from "@/components/products/SizeDetailPage";
 import { CAN_LABELS_IMG, apps300x407 } from "../can-labels-data";
-import { SITE } from "@/config/siteData";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "300×407 Can Labels | #2 Food Can Labels",
+export const metadata = buildMetadata({
+  title: "300×407 Filling Line Labels | Food Containers",
   description:
-    "300×407 can labels for standard #2 food cans — tomatoes, soups, seafood, pet food. Food-safe, moisture-resistant. CMYK printing. MOQ 5,000. ISO 9001 certified.",
-  alternates: { canonical: `${SITE.domain}/products/can-labels/300x407` },
-};
+    "Specify 300×407 machine-ready full-wrap labels for #2 food containers by production dimensions, surface coating, filling sequence, material, adhesive, and roll setup.",
+  path: "/products/can-labels/300x407",
+});
 
 
 export const revalidate = 86400; // 24 hours: static product/market content
@@ -20,22 +19,22 @@ export default function Page() {
         type="labels"
         sizeLabel="300 × 407"
         slug="300x407"
-        fullTitle="300×407 Can Labels (#2 Food Standard)"
+        fullTitle="300×407 Filling Line Labels (#2 Food Standard)"
         badge="Food Standard"
-        description="The 300×407 is the standard label size for #2 food cans — the most common format for canned tomatoes, soups, seafood, and pet food globally. Full-wrap coverage with food-safe permanent adhesive and moisture-resistant face stock. Compliant with FDA 21 CFR and EU food contact regulations."
+        description="The 300×407 route supports machine-ready full-wrap label planning for #2 food containers used for tomatoes, soups, seafood and pet food. Confirm the production container, coating, filling sequence, storage and label position. Direct food contact is a separate scope from an exterior label."
         specs={[
-          { label: "Can Size", value: "300×407 (#2 standard food can)" },
-          { label: "Label Dimensions", value: "Approx. 76mm × 111mm (full-wrap)" },
-          { label: "Face Stock", value: "White gloss, matte, or kraft" },
-          { label: "Adhesive", value: "Permanent acrylic (food-safe, FDA 21 CFR)" },
-          { label: "Print Method", value: "Flexo / offset CMYK + Pantone" },
-          { label: "Coating", value: "Gloss or matte lamination" },
-          { label: "MOQ", value: "5,000 labels" },
-          { label: "Lead Time", value: "10–18 days" },
-          { label: "Certifications", value: "ISO 9001, FDA 21 CFR, EU 10/2011, BPA-Free" },
+          { label: "Container Reference", value: "300×407 reference; verify the production container" },
+          { label: "Label Dimensions", value: "Approx. 76mm × 111mm; confirm the available label panel" },
+          { label: "Face Stock", value: "White gloss, matte, or kraft options by application" },
+          { label: "Adhesive", value: "Selected after container surface and process review" },
+          { label: "Print Method", value: "Flexo / offset CMYK + Pantone options" },
+          { label: "Finish", value: "Gloss or matte options by exposure and artwork" },
+          { label: "Order Quantity", value: "Confirmed by construction, artwork and SKU mix" },
+          { label: "Production Timing", value: "Confirmed after proof, trial and order review" },
+          { label: "Evidence Scope", value: "Packaging and market documents confirmed by project" },
         ]}
         applications={apps300x407}
-        markets={["Global", "Americas", "Europe"]}
+        markets={["Global"]}
         productImage={CAN_LABELS_IMG}
         productImageSlot="can-labels"
       />

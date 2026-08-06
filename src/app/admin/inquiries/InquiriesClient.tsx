@@ -143,6 +143,17 @@ export default function InquiriesClient({ initialList }: { initialList: InquiryR
                         }
                       />
                     )}
+                    {inq.productLine && <Field icon={MessageSquare} label="产品线" value={inq.productLine} />}
+                    {inq.purchaseTask && <Field icon={MessageSquare} label="采购任务" value={inq.purchaseTask} />}
+                    {inq.estimatedQuantity && <Field icon={MessageSquare} label="预计数量" value={inq.estimatedQuantity} />}
+                    {inq.targetTimeline && <Field icon={MessageSquare} label="目标时间" value={inq.targetTimeline} />}
+                    {inq.rollSize && <Field icon={MessageSquare} label="卷纸规格" value={inq.rollSize} />}
+                    {inq.printerModel && <Field icon={MessageSquare} label="设备型号" value={inq.printerModel} />}
+                    {inq.paperRequirement && <Field icon={MessageSquare} label="纸张/印刷/包装" value={inq.paperRequirement} />}
+                    {inq.formSize && <Field icon={MessageSquare} label="表单尺寸" value={inq.formSize} />}
+                    {inq.formParts && <Field icon={MessageSquare} label="联数" value={inq.formParts} />}
+                    {inq.formFinishing && <Field icon={MessageSquare} label="印刷/号码/后道" value={inq.formFinishing} />}
+                    {inq.referenceAvailable && <Field icon={MessageSquare} label="参考资料" value={inq.referenceAvailable} />}
                     {(inq.utmSource || inq.referrer || inq.landingPage) && (
                       <Field
                         icon={Globe}
