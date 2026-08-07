@@ -21,6 +21,8 @@ const sora = Sora({
 const DEFAULT_R2_PUBLIC_ORIGIN = "https://pub-529e97a14b4f4353b8b72301cfd8b481.r2.dev";
 const DEFAULT_GOOGLE_TAG_ID = "GT-TB7DWD3S";
 const DEFAULT_GOOGLE_TAG_MANAGER_ID = "GTM-MLFJ4XB3";
+// Bing site ownership verification; admin panel value overrides this fallback.
+const DEFAULT_BING_SITE_VERIFICATION = "FA9C5D701F1DDD2F7BFDE39942D48A04";
 const GOOGLE_TAG_ID_PATTERN = /^(?:G|GT|AW|DC)-[A-Z0-9]+$/i;
 const GOOGLE_TAG_MANAGER_ID_PATTERN = /^GTM-[A-Z0-9]+$/i;
 
@@ -85,13 +87,14 @@ export async function generateMetadata(): Promise<Metadata> {
   const verificationOther: Record<string, string> = {};
   if (adminSeo.baiduSiteVerification)
     verificationOther["baidu-site-verification"] = adminSeo.baiduSiteVerification;
-  if (adminSeo.bingSiteVerification)
-    verificationOther["msvalidate.01"] = adminSeo.bingSiteVerification;
+  verificationOther["msvalidate.01"] =
+    adminSeo.bingSiteVerification || DEFAULT_BING_SITE_VERIFICATION;
 
   return {
-    ...(adminSeo.googleSiteVerification && {
-      verification: { google: adminSeo.googleSiteVerification, other: verificationOther },
-    }),
+    verification: {
+      ...(adminSeo.googleSiteVerification && { google: adminSeo.googleSiteVerification }),
+      other: verificationOther,
+    },
     metadataBase: new URL(SITE.domain),
     title: {
       default: title,
