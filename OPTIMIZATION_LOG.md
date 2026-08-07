@@ -241,6 +241,27 @@ sitemap.xml 中无残留 ✅
 
 ---
 
+## 2026-08-07
+
+### 一、Bing 站点所有权验证
+
+**背景：** 在 Bing Webmaster Tools 验证 `www.zxpapers.com` 所有权时，采用 meta 标签方式（用户提供验证码 `FA9C5D701F1DDD2F7BFDE39942D48A04`），无需上传 XML 文件。
+
+**修复操作：**
+- 修改文件：`src/app/layout.tsx`
+- 改动：
+  - 新增 `DEFAULT_BING_SITE_VERIFICATION` 兜底常量，后台 `/admin/seo` 未配置 Bing 验证码时使用该值
+  - 修复 `verification` 输出条件：原逻辑仅在配置了 Google 验证码时才输出整个 verification 对象，导致仅配置 Bing 验证码时标签丢失
+- 提交：`dbfa163`
+
+**验证结果：**
+```
+本地构建产物 .next/server/app/index.html 已包含：
+<meta name="msvalidate.01" content="FA9C5D701F1DDD2F7BFDE39942D48A04"/>
+```
+
+---
+
 ## 待处理事项
 
 | 优先级 | 事项 | 说明 |
