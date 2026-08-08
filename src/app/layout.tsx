@@ -152,8 +152,25 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+const productCatalog = [
+  { name: "Thermal Paper Rolls", path: "/products/thermal-paper-rolls" },
+  { name: "Receipt Paper Rolls", path: "/products/receipt-paper-rolls" },
+  { name: "Thermal & Shipping Labels", path: "/products/thermal-labels" },
+  { name: "Custom Printed Thermal Labels", path: "/products/custom-printed-thermal-labels" },
+  { name: "Barcode & Variable-Data Labels", path: "/products/barcode-labels" },
+  { name: "Product & Packaging Labels", path: "/products/product-labels" },
+  { name: "BPA-Free Thermal Paper", path: "/products/bpa-free-thermal-paper" },
+  { name: "BPS-Free Thermal Paper", path: "/products/bps-free-thermal-paper" },
+  { name: "Phenol-Free Thermal Paper", path: "/products/phenol-free-thermal-paper" },
+  { name: "Till Rolls", path: "/products/till-rolls" },
+  { name: "Machine-Ready Roll Labels", path: "/products/can-labels" },
+  { name: "Detergent Labels", path: "/products/detergent-labels" },
+  { name: "NCR Forms & Carbonless Business Forms", path: "/products/ncr-forms" },
+  { name: "Delivery Note & POD Forms", path: "/products/delivery-note-forms" },
+  { name: "Continuous Computer Forms", path: "/products/continuous-computer-forms" },
+];
+
 const organizationSchema = {
-  "@context": "https://schema.org",
   "@type": ["Organization", "Manufacturer"],
   "@id": `${SITE.domain}/#organization`,
   name: SITE.name,
@@ -162,19 +179,29 @@ const organizationSchema = {
   url: SITE.domain,
   logo: {
     "@type": "ImageObject",
+    "@id": `${SITE.domain}/#logo`,
     url: `${SITE.domain}/images/logo-dark.png`,
     width: 400,
     height: 400,
   },
   slogan: SITE.tagline,
   description:
-    `Manufacturer of thermal paper rolls, direct thermal and shipping labels, machine-ready roll labels, and bottle labels. Founded in 2009 in Xi'an, China, ZhixinPaper operates a ${FACTORY.area} factory with ${FACTORY.productionLines} production lines and ${FACTORY.annualOutputLabel.toLowerCase()}, serving customers in ${FACTORY.countriesServed} countries with factory-direct wholesale pricing and OEM/private-label programs for ${FACTORY.oemClients} clients. Product, quality, sourcing, test, and regulatory evidence is confirmed for the applicable legal entity, material, order, and destination.`,
+    `Manufacturer of thermal paper rolls, direct thermal and shipping labels, machine-ready roll labels, and bottle labels. Founded in 2009 in Xi'an, China, ZhixinPaper operates a ${FACTORY.areaShort} factory with ${FACTORY.productionLines} production lines and ${FACTORY.annualOutputLabel.toLowerCase()}. It serves customers in ${FACTORY.countriesServed} countries and offers factory-direct wholesale, OEM, and private-label programs for ${FACTORY.oemClients} clients. Capacity and delivery depend on product mix, specification, materials, production schedule, and destination.`,
   foundingDate: "2009",
   foundingLocation: {
     "@type": "Place",
-    address: { "@type": "PostalAddress", addressLocality: "Xi'an", addressRegion: "Shaanxi", addressCountry: "CN" },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Xi'an",
+      addressRegion: "Shaanxi",
+      addressCountry: "CN",
+    },
   },
-  numberOfEmployees: { "@type": "QuantitativeValue", value: 800 },
+  numberOfEmployees: {
+    "@type": "QuantitativeValue",
+    minValue: 800,
+    unitText: "employees",
+  },
   knowsAbout: [
     "Thermal paper rolls",
     "Direct thermal labels",
@@ -193,33 +220,18 @@ const organizationSchema = {
     "Continuous fanfold and tractor-feed computer forms",
     "OEM / private-label thermal paper manufacturing",
   ],
-  // This is a quote-led B2B catalog. Keep the catalog as Offers, but do not
-  // emit Product entities without a real price, review, or aggregate rating.
-  // Product entities without one of those fields trigger Search Console's
-  // Product snippets warning on every page that includes this organization.
   hasOfferCatalog: {
     "@type": "OfferCatalog",
+    "@id": `${SITE.domain}/#product-catalog`,
     name: "Thermal Paper & Label Products",
-    itemListElement: [
-      { name: "Thermal Paper Rolls", path: "/products/thermal-paper-rolls" },
-      { name: "Receipt Paper Rolls", path: "/products/receipt-paper-rolls" },
-      { name: "Thermal & Shipping Labels", path: "/products/thermal-labels" },
-      { name: "Custom Printed Thermal Labels", path: "/products/custom-printed-thermal-labels" },
-      { name: "Barcode & Variable-Data Labels", path: "/products/barcode-labels" },
-      { name: "Product & Packaging Labels", path: "/products/product-labels" },
-      { name: "BPA-Free Thermal Paper", path: "/products/bpa-free-thermal-paper" },
-      { name: "BPS-Free Thermal Paper", path: "/products/bps-free-thermal-paper" },
-      { name: "Phenol-Free Thermal Paper", path: "/products/phenol-free-thermal-paper" },
-      { name: "Till Rolls", path: "/products/till-rolls" },
-      { name: "Machine-Ready Roll Labels", path: "/products/can-labels" },
-      { name: "Detergent Labels", path: "/products/detergent-labels" },
-      { name: "NCR Forms & Carbonless Business Forms", path: "/products/ncr-forms" },
-      { name: "Delivery Note & POD Forms", path: "/products/delivery-note-forms" },
-      { name: "Continuous Computer Forms", path: "/products/continuous-computer-forms" },
-    ].map((c) => ({
+    itemListElement: productCatalog.map((product) => ({
       "@type": "Offer",
-      name: c.name,
-      url: `${SITE.domain}${c.path}`,
+      itemOffered: {
+        "@type": "Service",
+        name: product.name,
+        url: `${SITE.domain}${product.path}`,
+      },
+      url: `${SITE.domain}${product.path}`,
     })),
   },
   contactPoint: [
@@ -248,14 +260,20 @@ const organizationSchema = {
 };
 
 const websiteSchema = {
-  "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": `${SITE.domain}/#website`,
   url: SITE.domain,
   name: SITE.name,
   description:
-    "ISO 9001 certified thermal paper rolls and labels manufacturer. Factory direct, OEM available.",
+    "Thermal paper rolls, direct thermal labels, shipping labels, NCR forms, and OEM manufacturing from ZhixinPaper.",
+  inLanguage: "en",
   publisher: { "@id": `${SITE.domain}/#organization` },
+  about: { "@id": `${SITE.domain}/#organization` },
+};
+
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [organizationSchema, websiteSchema],
 };
 
 export default async function RootLayout({
@@ -278,13 +296,7 @@ export default async function RootLayout({
         <link rel="preconnect" href={R2_PUBLIC_ORIGIN} crossOrigin="anonymous" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
         {gtmId && (
           <Script id="gtm-head" strategy="afterInteractive">
